@@ -4,9 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
-import java.io.StringReader;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,14 +12,7 @@ import civitas.common.TestUtil;
 import civitas.common.Util;
 import civitas.common.UtilTestData;
 
-public class ReadUntilTest {
-
-	public static StringReader reader;
-
-	@BeforeEach
-	private void setUp() {
-		reader = new StringReader(UtilTestData.READER_CONTENT);
-	}
+public class ReadUntilTest extends UtilTestBase {
 
 	@Test
 	@DisplayName("readUntil returns empty string for null string")
@@ -59,14 +50,15 @@ public class ReadUntilTest {
 	@Test
 	@DisplayName("readUntil returns what is up to the string")
 	void test19() throws IllegalArgumentException, IOException {
-		assertEquals("<div> ", Util.readUntil(reader, UtilTestData.FOUND_STRING));
+		assertEquals(UtilTestData.UP_TO_FOUND_STRING,
+				Util.readUntil(reader, UtilTestData.FOUND_STRING));
 	}
 
 	@Test
 	@DisplayName("readUntil reads to after the string")
 	void test22() throws IllegalArgumentException, IOException {
 		Util.readUntil(reader, UtilTestData.FOUND_STRING);
-		assertEquals(" the next tag", TestUtil.readerToString(reader));
+		assertEquals(UtilTestData.AFTER_IS, TestUtil.readerToString(reader));
 	}
 
 }

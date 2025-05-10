@@ -65,7 +65,7 @@ public class SkipUntilTest {
 	@DisplayName("skipUntil reads to after the string")
 	void test22() throws IllegalArgumentException, IOException {
 		Util.skipUntil(reader, UtilTestData.FOUND_STRING);
-		assertEquals(" the next tag", TestUtil.readerToString(reader));
+		assertEquals(UtilTestData.AFTER_IS, TestUtil.readerToString(reader));
 	}
 
 }

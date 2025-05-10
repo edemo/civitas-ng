@@ -14,6 +14,7 @@ import civitas.common.Util;
 import civitas.common.UtilTestData;
 
 public class EscapeStringTest {
+
 	@Test
 	@DisplayName("escapeString returns empty string for null")
 	void test6_1() {
@@ -37,37 +38,43 @@ public class EscapeStringTest {
 	@Test
 	@DisplayName("escapeString escapes & with &amp;")
 	void test7() {
-		assertEquals("hello &amp; mum", Util.escapeString("hello & mum"));
+		assertEquals(UtilTestData.ESCAPED_AMP,
+				Util.escapeString(UtilTestData.UNESCAPED_AMP));
 	}
 
 	@Test
 	@DisplayName("escapeString escapes < with &lt;")
 	void test8() {
-		assertEquals("hello &lt; mum", Util.escapeString("hello < mum"));
+		assertEquals(UtilTestData.ESCAPED_LT,
+				Util.escapeString(UtilTestData.UNESCAPED_LT));
 	}
 
 	@Test
 	@DisplayName("escapeString escapes > with &gt;")
 	void test9() {
-		assertEquals("hello &gt; mum", Util.escapeString("hello > mum"));
+		assertEquals(UtilTestData.ESCAPED_GT,
+				Util.escapeString(UtilTestData.UNESCAPED_GT));
 	}
 
 	@Test
 	@DisplayName("escapeString escapes ' with &apos; FIXME: report bug in original code")
 	void test10() {
-		assertEquals("hello &apos; mum", Util.escapeString("hello ' mum"));
+		assertEquals(UtilTestData.ESCAPED_APOS,
+				Util.escapeString(UtilTestData.UNESCAPED_APOS));
 	}
 
 	@Test
 	@DisplayName("escapeString escapes \" with &quot;")
 	void test11() {
-		assertEquals("hello &quot; mum", Util.escapeString("hello \" mum"));
+		assertEquals(UtilTestData.ESCAPED_QUOT,
+				Util.escapeString(UtilTestData.UNESCAPED_QUOT));
 	}
 
 	@Test
 	@DisplayName("escapeString escapes multiple special characters")
 	void test12() {
-		assertEquals(UtilTestData.ESCAPED, Util.escapeString(UtilTestData.UNESCAPED));
+		assertEquals(UtilTestData.ESCAPED,
+				Util.escapeString(UtilTestData.UNESCAPED));
 	}
 
 	@Test
@@ -79,7 +86,8 @@ public class EscapeStringTest {
 	@Test
 	@DisplayName("escapeString(unescapeString()) is idempotent for correctly escaped string")
 	void test15() {
-		assertEquals(UtilTestData.ESCAPED, Util.escapeString(Util.unescapeString(UtilTestData.ESCAPED)));
+		assertEquals(UtilTestData.ESCAPED,
+				Util.escapeString(Util.unescapeString(UtilTestData.ESCAPED)));
 	}
 
 }

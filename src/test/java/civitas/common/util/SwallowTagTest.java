@@ -39,21 +39,21 @@ public class SwallowTagTest {
 	@DisplayName("swallowTag throws IllegalArgumentException for null reader")
 	void test() throws IllegalArgumentException, IOException {
 		assertThrows(IllegalArgumentException.class,
-				() -> Util.swallowTag(null, "div"));
+				() -> Util.swallowTag(null, UtilTestData.TAG_NAME));
 	}
 
 	@Test
 	@DisplayName("swallowTag reads until end of tag")
 	void test1() throws IllegalArgumentException, IOException {
-		Util.swallowTag(reader, "div");
-		assertEquals(" is the next tag", TestUtil.readerToString(reader));
+		Util.swallowTag(reader, UtilTestData.TAG_NAME);
+		assertEquals(UtilTestData.AFTER_TAG, TestUtil.readerToString(reader));
 	}
 
 	@Test
 	@DisplayName("swallowTag skips over leading whitespace")
 	void test2() throws IllegalArgumentException, IOException {
-		Util.swallowTag(readerWhitLeadingWhiteSpace, "div");
-		assertEquals(" is the next tag",
+		Util.swallowTag(readerWhitLeadingWhiteSpace, UtilTestData.TAG_NAME);
+		assertEquals(UtilTestData.AFTER_TAG,
 				TestUtil.readerToString(readerWhitLeadingWhiteSpace));
 	}
 
@@ -61,14 +61,14 @@ public class SwallowTagTest {
 	@DisplayName("swallowTag throws for all whitespace content")
 	void test3() throws IllegalArgumentException, IOException {
 		assertThrows(IOException.class,
-				() -> Util.swallowTag(readerWithAllWhiteSpace, "div"));
+				() -> Util.swallowTag(readerWithAllWhiteSpace, UtilTestData.TAG_NAME));
 	}
 
 	@Test
 	@DisplayName("swallowTag throws for different tag")
 	void test4() throws IllegalArgumentException, IOException {
-		assertThrows(IOException.class,
-				() -> Util.swallowTag(readerWithAllWhiteSpace, "li"));
+		assertThrows(IOException.class, () -> Util
+				.swallowTag(readerWithAllWhiteSpace, UtilTestData.FOUND_STRING));
 	}
 
 }
