@@ -6,9 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.Util;
-import civitas.common.UtilTestData;
 
-public class StripTrailingLeadingWhitespaceTest {
+public class StripTrailingLeadingWhitespaceTest extends UtilTestBase {
 
 	@Test
 	@DisplayName("stripTrailingLeadingWhitespace returns null for null")
@@ -19,32 +18,35 @@ public class StripTrailingLeadingWhitespaceTest {
 	@Test
 	@DisplayName("stripTrailingLeadingWhitespace returns empty string for all whitespaces")
 	void test5() {
-		assertEquals("", Util.stripTrailingLeadingWhitespace(UtilTestData.ALL_WHITESPACE));
+		assertEquals("", Util.stripTrailingLeadingWhitespace(ALL_WHITESPACE));
 	}
 
 	@Test
 	@DisplayName("stripTrailingLeadingWhitespace returns the same if there is no leading or trailing whitespace")
 	void test6() {
-		assertEquals(UtilTestData.VERSIONSTRING, Util.stripTrailingLeadingWhitespace(UtilTestData.VERSIONSTRING));
+		assertEquals(VERSIONSTRING,
+				Util.stripTrailingLeadingWhitespace(VERSIONSTRING));
 	}
 
 	@Test
 	@DisplayName("stripTrailingLeadingWhitespace strips the trailing whitespace")
 	void test7() {
-		assertEquals(UtilTestData.VERSIONSTRING, Util.stripTrailingLeadingWhitespace(UtilTestData.TRAILING_WHITESPACE));
+		assertEquals(VERSIONSTRING,
+				Util.stripTrailingLeadingWhitespace(TRAILING_WHITESPACE));
 	}
 
 	@Test
 	@DisplayName("stripTrailingLeadingWhitespace strips the leading whitespace")
 	void test8() {
-		assertEquals(UtilTestData.VERSIONSTRING, Util.stripTrailingLeadingWhitespace(UtilTestData.LEADING_WHITESPACE));
+		assertEquals(VERSIONSTRING,
+				Util.stripTrailingLeadingWhitespace(LEADING_WHITESPACE));
 	}
 
 	@Test
 	@DisplayName("stripTrailingLeadingWhitespace cuts leading and trailing whitespace")
 	void test9() {
-		assertEquals(UtilTestData.VERSIONSTRING,
-				Util.stripTrailingLeadingWhitespace((UtilTestData.LEADING_TRAILING_WHITESPACE)));
+		assertEquals(VERSIONSTRING,
+				Util.stripTrailingLeadingWhitespace((LEADING_TRAILING_WHITESPACE)));
 	}
 
 }

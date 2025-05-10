@@ -6,9 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.Util;
-import civitas.common.UtilTestData;
 
-public class StripTrailingWhitespaceTest {
+public class StripTrailingWhitespaceTest extends UtilTestBase {
 
 	@Test
 	@DisplayName("stripTrailingWhitespace returns null for null")
@@ -19,19 +18,21 @@ public class StripTrailingWhitespaceTest {
 	@Test
 	@DisplayName("stripTrailingWhitespace returns empty string for all whitespaces")
 	void test1() {
-		assertEquals("", Util.stripTrailingWhitespace(UtilTestData.ALL_WHITESPACE));
+		assertEquals("", Util.stripTrailingWhitespace(ALL_WHITESPACE));
 	}
 
 	@Test
 	@DisplayName("stripTrailingWhitespace strips the trailing whitespace")
 	void test2() {
-		assertEquals(UtilTestData.VERSIONSTRING, Util.stripTrailingWhitespace(UtilTestData.TRAILING_WHITESPACE));
+		assertEquals(VERSIONSTRING,
+				Util.stripTrailingWhitespace(TRAILING_WHITESPACE));
 	}
 
 	@Test
 	@DisplayName("stripTrailingWhitespace returns the same if there is no trailing whitespace")
 	void test3() {
-		assertEquals(UtilTestData.LEADING_WHITESPACE, Util.stripTrailingWhitespace(UtilTestData.LEADING_WHITESPACE));
+		assertEquals(LEADING_WHITESPACE,
+				Util.stripTrailingWhitespace(LEADING_WHITESPACE));
 	}
 
 }

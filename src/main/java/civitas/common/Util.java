@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringWriter;
-
-import civitas.crypto.common.Base64;
+import java.util.Base64;
 
 /**
  * Some miscellaneous utility functions.
@@ -65,19 +64,6 @@ public class Util {
 		if (l == 0 && r == length)
 			return s;
 		return s.substring(l, r);
-	}
-
-	/*
-	 * Some simple tests
-	 */
-	public static void main(String[] args) {
-		System.err.println(escapeString("Hello "));
-		System.err.println(escapeString("Hello mum & da'd "));
-		System.err.println(unescapeString(escapeString("Hello ")));
-		System.err.println(unescapeString(escapeString("Hello mum & da'd ")));
-		String s = "askfjjnalskdfhlasdfh alskjdfh ";
-		System.err.println(escapeString(s) == s);
-		System.err.println(unescapeString(escapeString(s)) == s);
 	}
 
 	static boolean[] is_meta = new boolean[128];
@@ -189,16 +175,19 @@ public class Util {
 		return t.toString();
 	}
 
-	public static String nextTag(Reader r) throws IllegalArgumentException, IOException {
+	public static String nextTag(Reader r)
+			throws IllegalArgumentException, IOException {
 		swallowString(r, "<");
 		return readUntil(r, ">");
 	}
 
-	public static String readUntil(Reader r, String s) throws IllegalArgumentException, IOException {
+	public static String readUntil(Reader r, String s)
+			throws IllegalArgumentException, IOException {
 		return readUntilImpl(r, s, true);
 	}
 
-	public static void skipUntil(Reader r, String s) throws IllegalArgumentException, IOException {
+	public static void skipUntil(Reader r, String s)
+			throws IllegalArgumentException, IOException {
 		readUntilImpl(r, s, false);
 	}
 
@@ -243,7 +232,8 @@ public class Util {
 	/**
 	 * Swallows initial white space, and the initial "<tag>" string
 	 */
-	public static void swallowTag(Reader r, String tag) throws IllegalArgumentException, IOException {
+	public static void swallowTag(Reader r, String tag)
+			throws IllegalArgumentException, IOException {
 		swallowString(r, "<");
 		swallowString(r, tag);
 		swallowString(r, ">");
@@ -252,13 +242,15 @@ public class Util {
 	/**
 	 * Swallows initial white space, and the initial "</tag>" string
 	 */
-	public static void swallowEndTag(Reader r, String tag) throws IllegalArgumentException, IOException {
+	public static void swallowEndTag(Reader r, String tag)
+			throws IllegalArgumentException, IOException {
 		swallowString(r, "</");
 		swallowString(r, tag);
 		swallowString(r, ">");
 	}
 
-	private static void swallowString(Reader r, String s) throws IllegalArgumentException, IOException {
+	private static void swallowString(Reader r, String s)
+			throws IllegalArgumentException, IOException {
 		if (r == null || s == null) {
 			throw new IllegalArgumentException("Null arguments");
 		}
@@ -289,7 +281,8 @@ public class Util {
 								break;
 						}
 					} finally {
-						throw new IOException("Expecting " + s + " got " + received.toString());
+						throw new IOException(
+								"Expecting " + s + " got " + received.toString());
 					}
 				}
 			} catch (StringIndexOutOfBoundsException imposs) {
@@ -303,7 +296,8 @@ public class Util {
 	/**
 	 * Returns everything in s up to the next '<' char
 	 */
-	public static String readSimpleTag(Reader r, String tag) throws IllegalArgumentException, IOException {
+	public static String readSimpleTag(Reader r, String tag)
+			throws IllegalArgumentException, IOException {
 		if (r == null || tag == null) {
 			throw new IllegalArgumentException("Null arguments");
 		}
@@ -345,7 +339,8 @@ public class Util {
 	/**
 	 * Returns the value of the next simple tag, interpreted as an integer.
 	 */
-	public static int readSimpleIntTag(Reader r, String tag) throws IllegalArgumentException, IOException {
+	public static int readSimpleIntTag(Reader r, String tag)
+			throws IllegalArgumentException, IOException {
 		String s = readSimpleTag(r, tag);
 		try {
 			return Integer.parseInt(s);
@@ -357,7 +352,8 @@ public class Util {
 	/**
 	 * Returns the value of the next simple tag, interpreted as a long.
 	 */
-	public static long readSimpleLongTag(Reader r, String tag) throws IllegalArgumentException, IOException {
+	public static long readSimpleLongTag(Reader r, String tag)
+			throws IllegalArgumentException, IOException {
 		String s = readSimpleTag(r, tag);
 		try {
 			return Long.parseLong(s);
@@ -369,19 +365,22 @@ public class Util {
 	/**
 	 * Returns the value of the next simple tag, interpreted as a boolean.
 	 */
-	public static boolean readSimpleBooleanTag(Reader r, String tag) throws IllegalArgumentException, IOException {
+	public static boolean readSimpleBooleanTag(Reader r, String tag)
+			throws IllegalArgumentException, IOException {
 		return stringToBoolean(readSimpleTag(r, tag));
 	}
 
 	public static boolean stringToBoolean(String s) {
-		return "true".equalsIgnoreCase(s) || "yes".equalsIgnoreCase(s) || "y".equalsIgnoreCase(s);
+		return "true".equalsIgnoreCase(s) || "yes".equalsIgnoreCase(s)
+				|| "y".equalsIgnoreCase(s);
 	}
 
 	/**
 	 * returns true if the next tag is "<tag>". does not consume any characters
 	 * except whitespace
 	 */
-	public static boolean isNextTag(Reader r, String tag) throws IllegalArgumentException, IOException {
+	public static boolean isNextTag(Reader r, String tag)
+			throws IllegalArgumentException, IOException {
 		if (r == null || tag == null) {
 			throw new IllegalArgumentException("Null arguments");
 		}
@@ -429,12 +428,13 @@ public class Util {
 		if (bs == null)
 			return null;
 
-		return Base64.encodeBytes(bs);
+		return Base64.getEncoder().encodeToString(bs);
 	}
 
 	/**
 	 * Convert a byte array into a string suitable for an xml message.
 	 */
+	@Deprecated
 	public static String constBytesToString(byte[] bs) {
 		return bytesToString(bs);
 	}
@@ -445,12 +445,13 @@ public class Util {
 	public static byte[] stringToBytes(String s) {
 		if (s == null)
 			return null;
-		return Base64.decode(s);
+		return Base64.getDecoder().decode(s);
 	}
 
 	/**
 	 * Convert string produced by bytesToString back into a byte array.
 	 */
+	@Deprecated
 	public static byte[] stringToConstBytes(String s) {
 		return stringToBytes(s);
 	}
@@ -458,6 +459,7 @@ public class Util {
 	/**
 	 * Check that two byte arrays are equal.
 	 */
+	@Deprecated // Arrays.equal
 	public static boolean equals(byte[] a, byte[] b) {
 		if (a == b)
 			return true;
@@ -475,6 +477,7 @@ public class Util {
 		return true;
 	}
 
+	@Deprecated
 	public static boolean equals(byte[] a, byte[] b, boolean constArrays) {
 		if (a == b)
 			return true;

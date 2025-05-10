@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestUtil;
 import civitas.common.Util;
-import civitas.common.UtilTestData;
 
 class NextTagTest extends UtilTestBase {
 
@@ -23,7 +22,7 @@ class NextTagTest extends UtilTestBase {
 	@Test
 	@DisplayName("nextTag returns the next tag's name")
 	void test17() throws IllegalArgumentException, IOException {
-		assertEquals(UtilTestData.TAG_NAME, Util.nextTag(reader));
+		assertEquals(TAG_NAME, Util.nextTag(reader));
 	}
 
 	@Test
@@ -37,7 +36,7 @@ class NextTagTest extends UtilTestBase {
 	@DisplayName("nextTag reads until the end of the tag")
 	void test19() throws IllegalArgumentException, IOException {
 		Util.nextTag(reader);
-		assertEquals(UtilTestData.AFTER_TAG, TestUtil.readerToString(reader));
+		assertEquals(AFTER_TAG, TestUtil.readerToString(reader));
 	}
 
 }

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestUtil;
 import civitas.common.Util;
-import civitas.common.UtilTestData;
 
 public class SwallowEndTagTest extends UtilTestBase {
 
@@ -22,24 +21,24 @@ public class SwallowEndTagTest extends UtilTestBase {
 	}
 
 	@Test
-	@DisplayName("swallowEndTag throws IllegalArgumentException for null readerEndTag")
+	@DisplayName("swallowEndTag throws IllegalArgumentException for null reader")
 	void test() throws IllegalArgumentException, IOException {
 		assertThrows(IllegalArgumentException.class,
-				() -> Util.swallowEndTag(null, "div"));
+				() -> Util.swallowEndTag(null, TAG_NAME));
 	}
 
 	@Test
 	@DisplayName("swallowEndTag reads until end of tag")
 	void test1() throws IllegalArgumentException, IOException {
-		Util.swallowEndTag(readerEndTag, "div");
-		assertEquals(UtilTestData.AFTER_TAG, TestUtil.readerToString(readerEndTag));
+		Util.swallowEndTag(readerEndTag, TAG_NAME);
+		assertEquals(AFTER_TAG, TestUtil.readerToString(readerEndTag));
 	}
 
 	@Test
 	@DisplayName("swallowEndTag skips over leading whitespace")
 	void test2() throws IllegalArgumentException, IOException {
 		Util.swallowEndTag(readerEndTagWhitLeadingWhiteSpace, "div");
-		assertEquals(UtilTestData.AFTER_TAG,
+		assertEquals(AFTER_TAG,
 				TestUtil.readerToString(readerEndTagWhitLeadingWhiteSpace));
 	}
 
@@ -47,14 +46,14 @@ public class SwallowEndTagTest extends UtilTestBase {
 	@DisplayName("swallowEndTag throws for all whitespace content")
 	void test3() throws IllegalArgumentException, IOException {
 		assertThrows(IOException.class,
-				() -> Util.swallowEndTag(readerEndTagWithAllWhiteSpace, "div"));
+				() -> Util.swallowEndTag(readerWithAllWhiteSpace, TAG));
 	}
 
 	@Test
 	@DisplayName("swallowEndTag throws for different tag")
 	void test4() throws IllegalArgumentException, IOException {
-		assertThrows(IOException.class,
-				() -> Util.swallowEndTag(readerEndTagWithAllWhiteSpace, "li"));
+		assertThrows(IOException.class, () -> Util
+				.swallowEndTag(readerEndTagWhitLeadingWhiteSpace, FOUND_STRING));
 	}
 
 }

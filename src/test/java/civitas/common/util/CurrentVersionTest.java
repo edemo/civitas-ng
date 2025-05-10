@@ -6,13 +6,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.Util;
-import civitas.common.UtilTestData;
 
-public class CurrentVersionTest {
+public class CurrentVersionTest extends UtilTestBase {
 	@Test
 	@DisplayName("The version is JCivitas-v0.1")
 	void test() {
-		assertEquals(UtilTestData.VERSIONSTRING, Util.currentVersion());
+		assertEquals(VERSIONSTRING, Util.currentVersion());
 	}
 
 }

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestUtil;
 import civitas.common.Util;
-import civitas.common.UtilTestData;
 
 public class ReadUntilTest extends UtilTestBase {
 
@@ -30,35 +29,34 @@ public class ReadUntilTest extends UtilTestBase {
 	@DisplayName("readUntil throws NullPointerException for null reader")
 	void test21() throws IllegalArgumentException, IOException {
 		assertThrows(NullPointerException.class,
-				() -> Util.readUntil(null, UtilTestData.ESCAPED));
+				() -> Util.readUntil(null, ESCAPED));
 	}
 
 	@Test
 	@DisplayName("readUntil throws IOException if the searched string is not in the content")
 	void test21_2() throws IllegalArgumentException, IOException {
 		assertThrows(IOException.class,
-				() -> Util.readUntil(reader, UtilTestData.NOTFOUND_STRING));
+				() -> Util.readUntil(reader, NOTFOUND_STRING));
 	}
 
 	@Test
 	@DisplayName("readUntil throws IOException if the searched string is just partially found")
 	void test21_3() throws IllegalArgumentException, IOException {
 		assertThrows(IOException.class,
-				() -> Util.readUntil(reader, UtilTestData.HALFFOUND_STRING));
+				() -> Util.readUntil(reader, HALFFOUND_STRING));
 	}
 
 	@Test
 	@DisplayName("readUntil returns what is up to the string")
 	void test19() throws IllegalArgumentException, IOException {
-		assertEquals(UtilTestData.UP_TO_FOUND_STRING,
-				Util.readUntil(reader, UtilTestData.FOUND_STRING));
+		assertEquals(UP_TO_FOUND_STRING, Util.readUntil(reader, FOUND_STRING));
 	}
 
 	@Test
 	@DisplayName("readUntil reads to after the string")
 	void test22() throws IllegalArgumentException, IOException {
-		Util.readUntil(reader, UtilTestData.FOUND_STRING);
-		assertEquals(UtilTestData.AFTER_IS, TestUtil.readerToString(reader));
+		Util.readUntil(reader, FOUND_STRING);
+		assertEquals(AFTER_IS, TestUtil.readerToString(reader));
 	}
 
 }
