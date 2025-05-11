@@ -1,0 +1,91 @@
+/*
+ * This file is part of the Civitas software distribution.
+ * Copyright (c) 2007-2008, Civitas project group, Cornell University.
+ * See the LICENSE file accompanying this distribution for further license
+ * and copyright information.
+ */
+package civitas.crypto.concrete;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.util.Base64;
+
+import javax.crypto.SecretKey;
+
+import civitas.common.Util;
+import civitas.crypto.SharedKey;
+
+public class SharedKeyC implements SharedKey {
+	final SecretKey k;
+	final String name;
+
+	public SharedKeyC(SecretKey k, String name) {
+		this.k = k;
+		this.name = name;
+	}
+
+	public String name() {
+		return name;
+	}
+
+	public String toXML() {
+		StringWriter sb = new StringWriter();
+		toXML(new PrintWriter(sb));
+		return sb.toString();
+	}
+
+	@Override
+	public void toXML(PrintWriter s) {
+		s.print('<');
+		s.print(OPENING_TAG);
+		s.print('>');
+		s.print("<n>");
+		s.print(name);
+		s.print("</n>");
+		s.print("<k>");
+		CryptoFactoryC factory = CryptoFactoryC.singleton();
+		byte[] bs = factory.sharedKeyToBytes(k);
+		Util.escapeString(Base64.getEncoder().encodeToString(bs), s);
+		s.print("</k>");
+		s.print("</");
+		s.print(OPENING_TAG);
+		s.print('>');
+	}
+
+	@Override
+	public void toWire(PrintWriter s) {
+		s.print(name);
+		s.print('\n');
+		CryptoFactoryC factory = CryptoFactoryC.singleton();
+		byte[] bs = factory.sharedKeyToBytes(k);
+		s.print(Base64.getEncoder().encode(bs));
+		// FIXME s.print(Base64.encodeBytes(bs, Base64.DONT_BREAK_LINES |
+		// Base64.GZIP));
+		s.print('\n');
+	}
+
+	public static SharedKey fromXML(Reader r)
+			throws IllegalArgumentException, IOException {
+		Util.swallowTag(r, OPENING_TAG);
+		String name = Util.readSimpleTag(r, "n");
+		String s = Util.unescapeString(Util.readSimpleTag(r, "k"));
+		Util.swallowEndTag(r, OPENING_TAG);
+
+		byte[] bs = Base64.getDecoder().decode(s);
+		CryptoFactoryC factory = CryptoFactoryC.singleton();
+		return new SharedKeyC(factory.sharedKeyFromBytes(bs), name);
+	}
+
+	public static SharedKey fromWire(BufferedReader r)
+			throws IllegalArgumentException, IOException {
+		String name = r.readLine();
+		String s = r.readLine();
+		byte[] bs = Base64.getDecoder().decode(s);
+		CryptoFactoryC factory = CryptoFactoryC.singleton();
+		return new SharedKeyC(factory.sharedKeyFromBytes(bs), name);
+	}
+
+}
