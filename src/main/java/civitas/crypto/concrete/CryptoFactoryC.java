@@ -514,14 +514,14 @@ public class CryptoFactoryC implements CryptoFactory {
 			ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
 			ElGamalPublicKeyC k = (ElGamalPublicKeyC) key;
 			ElGamalCiphertextC c = (ElGamalCiphertextC) ciphertext;
-			CivitasBigInteger a = c.a;
-			CivitasBigInteger b = c.b;
-			CivitasBigInteger r = CryptoAlgs.randomElement(ps.q);
-			a = a.modMultiply(ps.g.modPow(r, ps.p), ps.p);
-			b = b.modMultiply(k.y.modPow(r, ps.p), ps.p);
-			return new ElGamalCiphertextC(a, b);
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
+			CivitasBigInteger c1 = c.a;
+			CivitasBigInteger c2 = c.b;
+			CivitasBigInteger y = CryptoAlgs.randomElement(ps.q);
+			c1 = c1.modMultiply(ps.g.modPow(y, ps.p), ps.p);
+			c2 = c2.modMultiply(k.y.modPow(y, ps.p), ps.p);
+			return new ElGamalCiphertextC(c1, c2);
+		} catch (ClassCastException impossible) {
+			throw new CryptoError(impossible);
 		}
 	}
 
@@ -734,8 +734,15 @@ public class CryptoFactoryC implements CryptoFactory {
 
 	@Override
 	public ElGamalMsg elGamalDecrypt(ElGamalPrivateKey key,
+			ElGamalSignedCiphertext ciphertext, byte[] additionalEnv)
+			throws CryptoException {
+		return elGamalDecryptImpl(key, ciphertext, additionalEnv);
+	}
+
+	@Override
+	public ElGamalMsg elGamalDecrypt(ElGamalPrivateKey key,
 			ElGamalCiphertext ciphertext) throws CryptoException {
-		return elGamalDecryptImpl(key, ciphertext, null);
+		return elGamalDecryptImpl(key, ciphertext, (byte[]) null);
 	}
 
 	private ElGamalMsg elGamalDecryptImpl(ElGamalPrivateKey key,
@@ -766,40 +773,23 @@ public class CryptoFactoryC implements CryptoFactory {
 	}
 
 	@Override
-	public ElGamalMsg elGamalDecrypt(ElGamalPrivateKey key,
-			ElGamalSignedCiphertext ciphertext, byte[] additionalEnv)
-			throws CryptoException {
-		return elGamalDecryptImpl(key, ciphertext, additionalEnv);
-	}
-
-	@Override
 	public ElGamalProofKnowDiscLog constructProofKnowDiscLog(
 			ElGamalParameters prms, ElGamalPrivateKey k) {
 		if (k == null || !(k instanceof ElGamalPrivateKeyC)) {
-			if (DEBUG)
-				Thread.dumpStack();
 			return null;
 		}
 		if (prms == null || !(prms instanceof ElGamalParametersC)) {
-			if (DEBUG)
-				Thread.dumpStack();
 			return null;
 		}
 		ElGamalParametersC params = (ElGamalParametersC) prms;
 		CivitasBigInteger x = ((ElGamalPrivateKeyC) k).x;
-		try {
-			CivitasBigInteger v = params.g.modPow(x, params.p);
-			CivitasBigInteger z = CryptoAlgs.randomElement(params.q);
-			CivitasBigInteger a = params.g.modPow(z, params.p);
-			CivitasBigInteger c = hash(v, a).mod(params.q); // can take mod q without
-																											// any ill effects.
-			CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q), params.q);
-			return new ElGamalProofKnowDiscLogC(a, c, r, v);
-		} catch (RuntimeException e) {
-			if (DEBUG)
-				e.printStackTrace();
-			return null;
-		}
+		CivitasBigInteger v = params.g.modPow(x, params.p);
+		CivitasBigInteger z = CryptoAlgs.randomElement(params.q);
+		CivitasBigInteger a = params.g.modPow(z, params.p);
+		CivitasBigInteger c = hash(v, a).mod(params.q); // can take mod q without
+																										// any ill effects.
+		CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q), params.q);
+		return new ElGamalProofKnowDiscLogC(a, c, r, v);
 	}
 
 	@Override
@@ -992,18 +982,13 @@ public class CryptoFactoryC implements CryptoFactory {
 		if (c instanceof ElGamalCiphertextC
 				&& keyShare.privKey instanceof ElGamalPrivateKeyC
 				&& keyShare.privKey.getParams() instanceof ElGamalParametersC) {
-			try {
-				numElGamalDecShare++;
-				ElGamalCiphertextC mc = (ElGamalCiphertextC) c;
-				ElGamalPrivateKeyC priv = (ElGamalPrivateKeyC) keyShare.privKey;
-				ElGamalParametersC params = (ElGamalParametersC) priv.getParams();
-				CivitasBigInteger ai = mc.a.modPow(priv.x, params.p);
-				return new ElGamalDecryptionShareC(ai, ElGamalProofDiscLogEqualityC
-						.constructProof(params, mc.a, params.g, priv.x));
-			} catch (RuntimeException e) {
-				if (DEBUG)
-					e.printStackTrace(System.err);
-			}
+			numElGamalDecShare++;
+			ElGamalCiphertextC mc = (ElGamalCiphertextC) c;
+			ElGamalPrivateKeyC priv = (ElGamalPrivateKeyC) keyShare.privKey;
+			ElGamalParametersC params = (ElGamalParametersC) priv.getParams();
+			CivitasBigInteger ai = mc.a.modPow(priv.x, params.p);
+			return new ElGamalDecryptionShareC(ai, ElGamalProofDiscLogEqualityC
+					.constructProof(params, mc.a, params.g, priv.x));
 		}
 		return null;
 	}

@@ -15,6 +15,7 @@ import civitas.common.Util;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ElGamalParameters;
+import civitas.crypto.Encoder;
 import civitas.util.CivitasBigInteger;
 
 /**
@@ -62,10 +63,10 @@ class ElGamalParametersC implements ElGamalParameters {
 		SchnorrPrime sp;
 		if (groupLength == keyLength + 1) {
 			sp = CryptoAlgs.safePrime(keyLength);
-			encoder = new SafePrimeEncoder();
+			encoder = new SafePrimeEncoder(this);
 		} else {
 			sp = CryptoAlgs.schnorrPrime(keyLength, groupLength);
-			encoder = new SchnorrPrimeEncoder();
+			encoder = new SchnorrPrimeEncoder(this);
 		}
 		p = sp.p;
 		q = sp.q;
@@ -79,9 +80,9 @@ class ElGamalParametersC implements ElGamalParameters {
 		this.g = g;
 		if (p
 				.equals(q.multiply(CivitasBigInteger.TWO).add(CivitasBigInteger.ONE))) {
-			encoder = new SafePrimeEncoder();
+			encoder = new SafePrimeEncoder(this);
 		} else {
-			encoder = new SchnorrPrimeEncoder();
+			encoder = new SchnorrPrimeEncoder(this);
 		}
 		checkGroup();
 	}
@@ -153,55 +154,6 @@ class ElGamalParametersC implements ElGamalParameters {
 	@Override
 	public int hashCode() {
 		return p.hashCode() ^ q.hashCode() ^ g.hashCode();
-	}
-
-	static interface Encoder {
-		CivitasBigInteger encodePlaintext(CivitasBigInteger p)
-				throws CryptoException;
-
-		CivitasBigInteger decodeMessage(CivitasBigInteger m) throws CryptoException;
-	}
-
-	class SchnorrPrimeEncoder implements Encoder {
-		@Override
-		public CivitasBigInteger encodePlaintext(CivitasBigInteger x)
-				throws CryptoException {
-			if (x.compareTo(q) > 0) {
-				throw new CryptoException("Message is too large for parameters");
-			}
-			return g.modPow(x, p);
-		}
-
-		@Override
-		public CivitasBigInteger decodeMessage(CivitasBigInteger m)
-				throws CryptoException {
-			throw new CryptoException(
-					"Decoding is not supported for Schnorr prime groups.");
-		}
-	}
-
-	class SafePrimeEncoder implements Encoder {
-		@Override
-		public CivitasBigInteger encodePlaintext(CivitasBigInteger x)
-				throws CryptoException {
-			CivitasBigInteger encoding = x;
-			if (CryptoAlgs.legendreSymbol(encoding, p, q) == -1) {
-				encoding = p.subtract(encoding); // encoding = -m
-			}
-			return encoding;
-		}
-
-		@Override
-		public CivitasBigInteger decodeMessage(CivitasBigInteger i)
-				throws CryptoException {
-			if (i.compareTo(p) > 0) {
-				throw new CryptoException("Message is too large for parameters");
-			}
-			if (i.compareTo(q) > 0) {
-				i = p.subtract(i); // i = -i
-			}
-			return i;
-		}
 	}
 
 	public CivitasBigInteger decodeMessage(CivitasBigInteger m)

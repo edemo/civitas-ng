@@ -30,6 +30,7 @@ public class MessageDigestC implements MessageDigest {
 	}
 
 	@Override
+	@Deprecated
 	public void update(byte[] bs, boolean constArray) {
 		if (bs == null)
 			return;

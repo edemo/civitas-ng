@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringWriter;
-import java.security.Principal;
 
 import civitas.common.Util;
 import civitas.crypto.ElGamalAbstractKey;
@@ -65,26 +64,16 @@ public class ElGamalPublicKeyC extends ElGamalAbstractKey
 		return new ElGamalPublicKeyC(CryptoFactoryC.stringToBigInt(y), params);
 	}
 
-	public boolean delegatesTo(Principal p) {
+	public boolean isAuthorized(Object prf) {
+		// check if prf is the matching ElGamalPrivateKey
+		if (prf instanceof ElGamalPrivateKeyC) {
+			ElGamalPrivateKeyC k = (ElGamalPrivateKeyC) prf;
+			ElGamalParametersC param = (ElGamalParametersC) this.params;
+			return y.equals(param.g.modPow(k.x, param.p));
+		}
 		return false;
 	}
 
-	public boolean equals(Principal p) {
-		return equals((Object) p);
-	}
-
-	/*
-	 * public ActsForProof findProofDownto(Principal p, Object q) { return null; }
-	 * 
-	 * public ActsForProof findProofUpto(Principal p, Object q) { return null; }
-	 * 
-	 * public boolean isAuthorized(Object prf, Closure c, Label l, boolean
-	 * executeNow) { // check if prf is the matching ElGamalPrivateKey if (prf
-	 * instanceof ElGamalPrivateKeyC) { ElGamalPrivateKeyC k =
-	 * (ElGamalPrivateKeyC) prf; ElGamalParametersC param = (ElGamalParametersC)
-	 * this.params; return y.equals(param.g.modPow(k.x, param.p)); } return false;
-	 * }
-	 */
 	public String name() {
 		return "ElGamalPublicKey-" + CryptoFactoryC.bigIntToString(y);
 	}

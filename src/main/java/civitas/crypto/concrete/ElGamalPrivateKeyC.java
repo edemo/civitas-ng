@@ -60,4 +60,14 @@ public class ElGamalPrivateKeyC extends ElGamalAbstractKey
 		Util.swallowEndTag(r, "elGamalPrivateKey");
 		return new ElGamalPrivateKeyC(CryptoFactoryC.stringToBigInt(x), params);
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (!super.equals(o))
+			return false;
+
+		ElGamalPrivateKeyC k = (ElGamalPrivateKeyC) o;
+		return this.x.equals(k.x);
+	}
+
 }

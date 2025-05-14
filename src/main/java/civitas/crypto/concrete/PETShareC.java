@@ -93,10 +93,10 @@ class PETShareC implements PETShare {
 			return;
 		sb.append("<petShare>");
 		if (this.ciphertext1 != null) {
-			this.ciphertext1.toUnsignedCiphertextXML(sb);
+			this.ciphertext1.toXML(sb);
 		}
 		if (this.ciphertext2 != null) {
-			this.ciphertext2.toUnsignedCiphertextXML(sb);
+			this.ciphertext2.toXML(sb);
 		}
 		if (this.exponent != null) {
 			sb.append("<exponent>");
