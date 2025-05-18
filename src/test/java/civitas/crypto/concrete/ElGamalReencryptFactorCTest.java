@@ -6,11 +6,13 @@ import java.io.IOException;
 import java.io.StringReader;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class ElGamalReencryptFactorCTest extends ConcreteTestBase {
 
 	@Test
+	@Tag("functional")
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
 		assertEquals(ELGAMAL_REENCRYPT_FACTOR_XML,
@@ -18,6 +20,7 @@ public class ElGamalReencryptFactorCTest extends ConcreteTestBase {
 	}
 
 	@Test
+	@Tag("functional")
 	@DisplayName("constructor parameter can be null")
 	void test1() {
 		assertEquals(ELGAMAL_REENCRYPT_FACTOR_NULL_XML,
@@ -25,6 +28,7 @@ public class ElGamalReencryptFactorCTest extends ConcreteTestBase {
 	}
 
 	@Test
+	@Tag("functional")
 	@DisplayName("fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
 		ElGamalReencryptFactorC a = (ElGamalReencryptFactorC) ElGamalReencryptFactorC

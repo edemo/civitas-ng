@@ -1,0 +1,71 @@
+package civitas.crypto.concrete;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.IOException;
+import java.io.StringReader;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import civitas.util.CivitasBigInteger;
+
+public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase {
+
+	@Test
+	@DisplayName("constructor and toXML works as expected")
+	void test() {
+
+		assertEquals(ELGAMAL_PROOF_KNOWN_DISC_LOG_XML,
+				new ElGamalProofKnowDiscLogC(ELGAMAL_PROOF_KNOWN_DISC_LOG_A,
+						ELGAMAL_PROOF_KNOWN_DISC_LOG_C, ELGAMAL_PROOF_KNOWN_DISC_LOG_R,
+						PUBLICIZED_BIGINT_A).toXML());
+	}
+
+	@Test
+	@DisplayName("verify checks that g^r = av^c (mod p)")
+	void verifyTest() {
+
+		CivitasBigInteger key = ELGAMAL_PRIVATE_KEY.x;
+		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
+		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
+		CivitasBigInteger q = EL_GAMAL_PARAMETERS.q;
+
+		CivitasBigInteger v = g.modPow(key, p);
+		CivitasBigInteger z = CivitasBigInteger.valueOf(SOME_POSITIVE_INTEGER);
+		CivitasBigInteger a = g.modPow(z, p);
+		CivitasBigInteger c = factory.hash(v, a).mod(q);
+		CivitasBigInteger r = z.add(c.modMultiply(key, q));
+		assertTrue(
+				new ElGamalProofKnowDiscLogC(a, c, r, v).verify(EL_GAMAL_PARAMETERS));
+	}
+
+	@Test
+	@DisplayName("constructor accepts nulls and toXML represents them as empty strings")
+	void test1() {
+
+		assertEquals(ELGAMAL_PROOF_KNOWN_DISC_LOG_NULL_XML,
+				new ElGamalProofKnowDiscLogC(null, null, null, null).toXML());
+	}
+
+	@Test
+	@DisplayName("fromXml works as expected")
+	void test2() throws IllegalArgumentException, IOException {
+		ElGamalProofKnowDiscLogC actual = ElGamalProofKnowDiscLogC
+				.fromXML(new StringReader(ELGAMAL_PROOF_KNOWN_DISC_LOG_XML));
+		assertEquals(ELGAMAL_PROOF_KNOWN_DISC_LOG_A, actual.a);
+		assertEquals(ELGAMAL_PROOF_KNOWN_DISC_LOG_C, actual.c);
+		assertEquals(ELGAMAL_PROOF_KNOWN_DISC_LOG_R, actual.r);
+		assertEquals(PUBLICIZED_BIGINT_A, actual.v);
+	}
+
+	@Test
+	@DisplayName("fromXml throws NumberFormatException for empty values")
+	void test3() throws IllegalArgumentException, IOException {
+		assertThrows(NumberFormatException.class, () -> ElGamalProofKnowDiscLogC
+				.fromXML(new StringReader(ELGAMAL_PROOF_KNOWN_DISC_LOG_NULL_XML)));
+	}
+
+}

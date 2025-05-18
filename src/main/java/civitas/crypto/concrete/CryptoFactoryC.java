@@ -78,17 +78,15 @@ import civitas.crypto.SharedKeyMsg;
 import civitas.crypto.Signature;
 import civitas.crypto.VoteCapability;
 import civitas.crypto.VoteCapabilityShare;
+import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
 import civitas.util.CivitasBigInteger;
+import civitas.util.DI;
+import civitas.util.Use;
 
 public class CryptoFactoryC implements CryptoFactory {
-	private final boolean DEBUG = false;
 
-	private final int BIT_SECURITY_80 = 1;
-	private final int BIT_SECURITY_112 = 2;
-	private final int BIT_SECURITY_128 = 3;
-	private final int BIT_SECURITY_CCS07 = 0;
-
-	private final int BIT_SECURITY = BIT_SECURITY_80;
+	@Use
+	private static ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
 
 	/*
 	 * The following constants define the algorithms and providers to use.
@@ -107,8 +105,8 @@ public class CryptoFactoryC implements CryptoFactory {
 	private final String PUBLIC_KEY_SIGNATURE_ALG = "SHA512WithRSAEncryption";
 	private final String PUBLIC_KEY_PROVIDER = "BC";
 
-	private int EL_GAMAL_GROUP_LENGTH; // size in bits for p
-	private int EL_GAMAL_KEY_LENGTH; // size in bits for q
+	public static final int EL_GAMAL_GROUP_LENGTH = 3072; // size in bits for p
+	public static final int EL_GAMAL_KEY_LENGTH = 256; // size in bits for q
 
 	private Map<String, KeyGenerator> sharedKeyGenerators = new HashMap<String, KeyGenerator>();
 	private Map<String, KeyPairGenerator> publicKeyGenerators = new HashMap<String, KeyPairGenerator>();
@@ -146,14 +144,17 @@ public class CryptoFactoryC implements CryptoFactory {
 //      }
 	}
 
-	private static final CryptoFactoryC singleton = new CryptoFactoryC();
+	private static CryptoFactoryC singleton;
 
 	public static CryptoFactoryC singleton() {
+		if (null == singleton) {
+			singleton = DI.get(CryptoFactoryC.class);
+		}
+
 		return singleton;
 	}
 
 	private CryptoFactoryC() {
-		setBitSecurity();
 		initializeCryptoProviders();
 	}
 
@@ -161,45 +162,8 @@ public class CryptoFactoryC implements CryptoFactory {
 	 * Initialize the fields of this class that define bit security. I.e., the
 	 * sizes of keys and nonces.
 	 */
+	@Deprecated
 	private void setBitSecurity() {
-		// TODO: need to initialize nonce sizes too.
-
-		switch (BIT_SECURITY) {
-		/*
-		 * Original CCS submission values. Not a consistent level of security.
-		 */
-		case BIT_SECURITY_CCS07:
-			EL_GAMAL_KEY_LENGTH = 1024;
-			EL_GAMAL_GROUP_LENGTH = 1025; // not originally used
-			break;
-
-		/*
-		 * Note: the remaining cases set the shared key length to 128. This is
-		 * generally higher than the bits of security would suggest. The code does
-		 * this because 128 is the minimum size for AES, which is the assumed shared
-		 * key cipher. For 80 bits of security, e.g., it would be possible to
-		 * instead use 3DES.
-		 */
-
-		/* 80 bits of security - NIST says use 2007 to 2010 */
-		case BIT_SECURITY_80:
-		default:
-			EL_GAMAL_KEY_LENGTH = 160;
-			EL_GAMAL_GROUP_LENGTH = 1024;
-			break;
-
-		/* 112 bits of security - NIST says use 2011 to 2030 */
-		case BIT_SECURITY_112:
-			EL_GAMAL_KEY_LENGTH = 224;
-			EL_GAMAL_GROUP_LENGTH = 2048;
-			break;
-
-		/* 128 bits of security - NIST says use > 2030 */
-		case BIT_SECURITY_128:
-			EL_GAMAL_KEY_LENGTH = 256;
-			EL_GAMAL_GROUP_LENGTH = 3072;
-			break;
-		}
 	}
 
 	/**
@@ -216,14 +180,8 @@ public class CryptoFactoryC implements CryptoFactory {
 			g.initialize(keyLength);
 			publicKeyGenerators.put(genKey, g);
 			return g;
-		} catch (NoSuchAlgorithmException e) {
-			throw new CryptoError(
-					"Cannot find public key algorithm " + PUBLIC_KEY_ALG);
-		} catch (NoSuchProviderException e) {
-			throw new CryptoError("Cannot find provider " + PUBLIC_KEY_PROVIDER, e);
-		} catch (RuntimeException e) {
-			throw new CryptoError("Cannot create key pair generator and/or factory",
-					e);
+		} catch (Exception impossible) {
+			throw new Error(impossible);
 		}
 	}
 
@@ -235,20 +193,14 @@ public class CryptoFactoryC implements CryptoFactory {
 		KeyGenerator g = sharedKeyGenerators.get(genKey);
 		if (g != null)
 			return g;
-		// need to create the shared key generator
 		try {
 			g = KeyGenerator.getInstance(SHARED_KEY_ALG, SHARED_KEY_PROVIDER);
-			g.init(keyLength);
-			sharedKeyGenerators.put(genKey, g);
-			return g;
-		} catch (NoSuchAlgorithmException e) {
-			throw new CryptoError(
-					"Cannot find shared key algorithm " + SHARED_KEY_ALG, e);
-		} catch (NoSuchProviderException e) {
-			throw new CryptoError("Cannot find provider " + SHARED_KEY_PROVIDER, e);
-		} catch (RuntimeException e) {
-			throw new CryptoError("Cannot create key generator", e);
+		} catch (Exception e) {
+			throw new Error(e);
 		}
+		g.init(keyLength);
+		sharedKeyGenerators.put(genKey, g);
+		return g;
 	}
 
 	/**
@@ -256,38 +208,14 @@ public class CryptoFactoryC implements CryptoFactory {
 	 *
 	 */
 	private void initializeCryptoProviders() {
-		SecretKeyFactory skf;
 		try {
-			skf = SecretKeyFactory.getInstance(SHARED_KEY_ALG, SHARED_KEY_PROVIDER);
-		} catch (NoSuchAlgorithmException e) {
-			// this secret key alg does not need a key factory.
-			skf = null;
-		} catch (NoSuchProviderException e) {
-			throw new CryptoError("Cannot find provider " + SHARED_KEY_PROVIDER, e);
-		} catch (RuntimeException e) {
-			throw new CryptoError("Cannot create key factory", e);
-		}
-		sharedKeyFactory = skf;
-
-		try {
+			sharedKeyFactory = SecretKeyFactory.getInstance(SHARED_KEY_ALG,
+					SHARED_KEY_PROVIDER);
 			publicKeyFactory = KeyFactory.getInstance(PUBLIC_KEY_ALG,
 					PUBLIC_KEY_PROVIDER);
-		} catch (NoSuchAlgorithmException e) {
-			throw new CryptoError(
-					"Cannot find public key algorithm " + PUBLIC_KEY_ALG);
-		} catch (NoSuchProviderException e) {
-			throw new CryptoError("Cannot find provider " + PUBLIC_KEY_PROVIDER, e);
-		} catch (RuntimeException e) {
-			throw new CryptoError("Cannot create key pair generator and/or factory",
-					e);
+		} catch (NoSuchAlgorithmException | NoSuchProviderException impossible) {
+			throw new Error(impossible);
 		}
-	}
-
-	/*
-	 * The following methods must return implementation specific KeySpecs.
-	 */
-	private SecretKeySpec secretKeyAlgKeySpec(byte[] bs) {
-		return new SecretKeySpec(bs, SHARED_KEY_ALG);
 	}
 
 	@Override
@@ -309,20 +237,21 @@ public class CryptoFactoryC implements CryptoFactory {
 
 	/** Generate a Schnorr prime group */
 	@Override
+	@Deprecated
 	public ElGamalParameters generateElGamalParameters(int keyLength,
 			int groupLength) {
 		return new ElGamalParametersC(keyLength, groupLength);
 	}
 
 	/** Generate a safe prime group */
+	@Deprecated
 	public ElGamalParameters generateElGamalParameters(int keyLength) {
 		return new ElGamalParametersC(keyLength, keyLength + 1);
 	}
 
 	@Override
 	public ElGamalParameters generateElGamalParameters() {
-		return generateElGamalParameters(EL_GAMAL_KEY_LENGTH,
-				EL_GAMAL_GROUP_LENGTH);
+		return new ElGamalParametersC(EL_GAMAL_KEY_LENGTH, EL_GAMAL_GROUP_LENGTH);
 	}
 
 	@Override
@@ -629,7 +558,7 @@ public class CryptoFactoryC implements CryptoFactory {
 	 * Convert a hash (or rather, an arbitrary byte array) to an element from the
 	 * group defined by the El Gamal parameters.
 	 */
-	CivitasBigInteger hashToBigInt(byte[] hash) {
+	public CivitasBigInteger hashToBigInt(byte[] hash) {
 		// Force the hash to be positive.
 		CivitasBigInteger x = new CivitasBigInteger(1, hash);
 		return x;
@@ -638,7 +567,7 @@ public class CryptoFactoryC implements CryptoFactory {
 	/**
 	 * Compute a hash over a list of CivitasBigIntegers.
 	 */
-	byte[] hash(List<CivitasBigInteger> l) {
+	public byte[] hash(List<CivitasBigInteger> l) {
 		// Compute the hash by updating a message digest
 		// with the byte representation of the big ints.
 		MessageDigest md = messageDigest();
@@ -805,14 +734,8 @@ public class CryptoFactoryC implements CryptoFactory {
 		ElGamalCiphertextC ac = (ElGamalCiphertextC) a;
 		ElGamalCiphertextC bc = (ElGamalCiphertextC) b;
 
-		try {
-			CivitasBigInteger z = CryptoAlgs.randomElement(params.q);
-			return new PETShareC(ac, bc, z);
-		} catch (RuntimeException e) {
-			if (DEBUG)
-				e.printStackTrace();
-			return null;
-		}
+		CivitasBigInteger z = CryptoAlgs.randomElement(params.q);
+		return new PETShareC(ac, bc, z);
 	}
 
 	public ElGamalMsg elGamalMsg(CivitasBigInteger m, ElGamalParameters params)
@@ -987,8 +910,9 @@ public class CryptoFactoryC implements CryptoFactory {
 			ElGamalPrivateKeyC priv = (ElGamalPrivateKeyC) keyShare.privKey;
 			ElGamalParametersC params = (ElGamalParametersC) priv.getParams();
 			CivitasBigInteger ai = mc.a.modPow(priv.x, params.p);
-			return new ElGamalDecryptionShareC(ai, ElGamalProofDiscLogEqualityC
-					.constructProof(params, mc.a, params.g, priv.x));
+			return new ElGamalDecryptionShareC(ai,
+					constructElGamalDiscLogEqualityProof.constructProof(params, mc.a,
+							params.g, priv.x));
 		}
 		return null;
 	}
@@ -1186,9 +1110,7 @@ public class CryptoFactoryC implements CryptoFactory {
 			return new ElGamalKeyShareC((ElGamalPublicKeyC) K,
 					(ElGamalProofKnowDiscLogC) proof);
 		}
-		if (DEBUG)
-			Thread.dumpStack();
-		return null;
+		throw new Error("problem with parameters");
 	}
 
 	@Override
@@ -1376,16 +1298,13 @@ public class CryptoFactoryC implements CryptoFactory {
 		return output;
 	}
 
+	@Deprecated
 	public byte[] sharedKeyToBytes(SecretKey k) {
 		return k.getEncoded();
 	}
 
 	public SecretKey sharedKeyFromBytes(byte[] bs) {
-		SecretKeySpec skeySpec = secretKeyAlgKeySpec(bs);
-		if (sharedKeyFactory == null) {
-			// no factory needed
-			return skeySpec;
-		}
+		SecretKeySpec skeySpec = new SecretKeySpec(bs, SHARED_KEY_ALG);
 		try {
 			return sharedKeyFactory.generateSecret(skeySpec);
 		} catch (InvalidKeySpecException e) {

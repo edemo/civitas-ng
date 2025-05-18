@@ -10,13 +10,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import civitas.common.Util;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.ElGamalProofDiscLogEquality;
+import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 /**
  * To prove that log v = log w, where v = g_1^x and w = g_2^x, let: z = random
@@ -27,6 +27,8 @@ import civitas.util.CivitasBigInteger;
 public class ElGamalProofDiscLogEqualityC
 		implements ElGamalProofDiscLogEquality {
 
+	@Use
+	private static ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
 	public final CivitasBigInteger g1;
 	public final CivitasBigInteger g2;
 
@@ -50,31 +52,6 @@ public class ElGamalProofDiscLogEqualityC
 		this.b = b;
 		this.c = c;
 		this.r = r;
-	}
-
-	public static ElGamalProofDiscLogEqualityC constructProof(
-			ElGamalParametersC params, CivitasBigInteger g1, CivitasBigInteger g2,
-			CivitasBigInteger x) {
-
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-
-		CivitasBigInteger v = g1.modPow(x, params.p);
-		CivitasBigInteger w = g2.modPow(x, params.p);
-
-		CivitasBigInteger z = CryptoAlgs.randomElement(params.q);
-		CivitasBigInteger a = g1.modPow(z, params.p);
-		CivitasBigInteger b = g2.modPow(z, params.p);
-
-		List<CivitasBigInteger> l = new ArrayList<CivitasBigInteger>();
-		l.add(v);
-		l.add(w);
-		l.add(a);
-		l.add(b);
-		CivitasBigInteger c = factory.hashToBigInt(factory.hash(l)).mod(params.q);
-
-		CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q), params.q);
-
-		return new ElGamalProofDiscLogEqualityC(g1, g2, a, v, w, b, c, r);
 	}
 
 	@Override

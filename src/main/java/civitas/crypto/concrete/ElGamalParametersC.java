@@ -22,22 +22,22 @@ import civitas.util.CivitasBigInteger;
  * The ElGamal cryptosystem defined by these parameters is over the unique order
  * q subgroup of Z*p, where p = 2kq + 1, and p and q are prime
  */
-class ElGamalParametersC implements ElGamalParameters {
+public class ElGamalParametersC implements ElGamalParameters {
 
 	/**
 	 * A prime such that p = 2kq + 1 for some k.
 	 */
-	protected final CivitasBigInteger p;
+	public final CivitasBigInteger p;
 
 	/**
 	 * A large prime.
 	 */
-	protected final CivitasBigInteger q;
+	public final CivitasBigInteger q;
 
 	/**
 	 * A generator of the order q subgroup of Z*p.
 	 */
-	protected final CivitasBigInteger g;
+	public final CivitasBigInteger g;
 
 	/**
 	 * A helper object to encode plaintexts into messages, and also decode
@@ -88,17 +88,18 @@ class ElGamalParametersC implements ElGamalParameters {
 	}
 
 	private void checkGroup() {
+		if (!CryptoAlgs.isProbablePrime(p))
+			throw new CryptoError("p is not prime");
+		if (!CryptoAlgs.isProbablePrime(q))
+			throw new CryptoError("q is not prime");
 		if (!p.subtract(CivitasBigInteger.ONE).mod(q)
 				.equals(CivitasBigInteger.ZERO)) {
 			throw new CryptoError("q does not divide p-1");
 		}
-		if (!p.subtract(CivitasBigInteger.ONE).mod(CivitasBigInteger.TWO)
-				.equals(CivitasBigInteger.ZERO)) {
-			throw new CryptoError("2 does not divide p-1");
-		}
 		if (!g.modPow(q, p).equals(CivitasBigInteger.ONE)) {
 			throw new CryptoError("g is not order q");
 		}
+
 	}
 
 	public String toXML() {
@@ -112,16 +113,13 @@ class ElGamalParametersC implements ElGamalParameters {
 		s.print("<elGamalParameters>");
 
 		s.print("<p>");
-		if (this.p != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.p), s);
+		Util.escapeString(CryptoFactoryC.bigIntToString(this.p), s);
 		s.print("</p>");
 		s.print("<q>");
-		if (this.q != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.q), s);
+		Util.escapeString(CryptoFactoryC.bigIntToString(this.q), s);
 		s.print("</q>");
 		s.print("<g>");
-		if (this.g != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.g), s);
+		Util.escapeString(CryptoFactoryC.bigIntToString(this.g), s);
 		s.print("</g>");
 
 		s.print("</elGamalParameters>");
@@ -148,7 +146,7 @@ class ElGamalParametersC implements ElGamalParameters {
 
 		ElGamalParametersC x = (ElGamalParametersC) o;
 
-		return p.equals(x.p) && q.equals(x.q) && g.equals(x.g);
+		return q.equals(x.q) && p.equals(x.p) && g.equals(x.g);
 	}
 
 	@Override
@@ -171,6 +169,7 @@ class ElGamalParametersC implements ElGamalParameters {
 	 * 
 	 * @return If m does not decode to an integer i such that 1 <= i <= L.
 	 */
+	@Deprecated
 	public int bruteForceDecode(CivitasBigInteger m, int L)
 			throws CryptoException {
 		// first, try doing this the nice way

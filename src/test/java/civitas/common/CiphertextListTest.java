@@ -21,16 +21,10 @@ import org.mockito.stubbing.Answer;
 
 import civitas.crypto.CryptoFactory;
 import civitas.crypto.ElGamalCiphertext;
+import civitas.crypto.concrete.ConcreteTestBase;
 
-public class CiphertextListTest {
+public class CiphertextListTest extends ConcreteTestBase {
 
-	private static final String EL_GAMAL_CIPHERTEXT = "<elGamalCiphertext><a>42</a><b>24</b></elGamalCiphertext>";
-	private static final String CIPHERTEXT_LIST_AS_XML = "<ciphertextList>"
-			+ "<size>1</size>" + EL_GAMAL_CIPHERTEXT + "</ciphertextList>";
-	private static final String EMPTY_CIPHERTEXT_LIST_AS_XML = "<ciphertextList>"
-			+ "<size>0</size></ciphertextList>";
-	private static final String CIPHERTEXT_LIST_XML_WITH_NEGATIVE_LENGTH = "<ciphertextList>"
-			+ "<size>-1</size></ciphertextList>";
 	CryptoFactory mockFactory = mock(CryptoFactory.class);
 	CiphertextList zerosized = new CiphertextList(null);
 	CiphertextList nullInside = new CiphertextList(null, true);
@@ -47,7 +41,7 @@ public class CiphertextListTest {
 			@Override
 			public Void answer(InvocationOnMock invocation) {
 				PrintWriter printWriter = (PrintWriter) invocation.getArguments()[0];
-				printWriter.append(EL_GAMAL_CIPHERTEXT);
+				printWriter.append(EL_GAMAL_CIPHERTEXT_NAIVE_XML);
 				return null;
 			}
 		}).when(ciphertext).toXML(argument.capture());
@@ -63,7 +57,7 @@ public class CiphertextListTest {
 			public ElGamalCiphertext answer(InvocationOnMock invocation)
 					throws IOException {
 				Reader reader = (Reader) invocation.getArguments()[0];
-				reader.skip(EL_GAMAL_CIPHERTEXT.length());
+				reader.skip(EL_GAMAL_CIPHERTEXT_NAIVE_XML.length());
 				return ciphertext;
 			}
 		}).when(factory).elGamalCiphertextFromXML(readerArgument.capture());

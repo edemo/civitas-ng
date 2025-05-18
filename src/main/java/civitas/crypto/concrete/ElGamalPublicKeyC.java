@@ -78,4 +78,15 @@ public class ElGamalPublicKeyC extends ElGamalAbstractKey
 		return "ElGamalPublicKey-" + CryptoFactoryC.bigIntToString(y);
 	}
 
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof ElGamalPublicKeyC)) {
+			return false;
+		}
+		ElGamalPublicKeyC o = (ElGamalPublicKeyC) other;
+		if (!y.equals(o.y))
+			return false;
+		return super.equals(o);
+	}
+
 }

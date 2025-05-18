@@ -81,4 +81,12 @@ public class ElGamalPublicKeyCTest extends ConcreteTestBase {
 				.isAuthorized(new ElGamalPrivateKeyC(null, EL_GAMAL_PARAMETERS)));
 	}
 
+	@Test
+	@DisplayName("not equals to other key with different y but same parameters "
+			+ "FIXME original code did not test for y")
+	void equalsTest2() throws IllegalArgumentException, IOException {
+		assertFalse(EL_GAMAL_PUBLIC_KEY
+				.equals(new ElGamalPublicKeyC(BIGINT_B, EL_GAMAL_PARAMETERS)));
+	}
+
 }

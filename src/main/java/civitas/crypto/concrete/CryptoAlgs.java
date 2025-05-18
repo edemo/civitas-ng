@@ -12,7 +12,7 @@ import java.util.Random;
 import civitas.crypto.CryptoError;
 import civitas.util.CivitasBigInteger;
 
-class CryptoAlgs {
+public class CryptoAlgs {
 	protected final static CivitasBigInteger ZERO = CivitasBigInteger.ZERO;
 	protected final static CivitasBigInteger ONE = CivitasBigInteger.ONE;
 	protected final static CivitasBigInteger TWO = CivitasBigInteger.valueOf(2);
@@ -70,7 +70,8 @@ class CryptoAlgs {
 
 				/* Round p-1 down to a multiple of 2q */
 				CivitasBigInteger m = p.mod(q.multiply(TWO)); // m = p mod 2q
-				p = p.subtract(m).add(ONE); // p = 1 (mod 2q)
+				p = p.subtract(m).add(ONE); // p = 1 (mod 2q)A random Schnorr prime
+																		// p=2kq+1
 
 				/* Rounding may have made p too small */
 				if (p.bitLength() == pLength) {
@@ -133,7 +134,7 @@ class CryptoAlgs {
 	 * @return A random element from Z*_n, where n is prime, or equivalently from
 	 *         [1..n-1].
 	 */
-	protected static CivitasBigInteger randomElement(CivitasBigInteger n) {
+	public static CivitasBigInteger randomElement(CivitasBigInteger n) {
 		CivitasBigInteger r = null;
 		do {
 			r = new CivitasBigInteger(n.bitLength(), rng());

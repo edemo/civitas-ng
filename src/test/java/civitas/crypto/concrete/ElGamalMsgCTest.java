@@ -3,6 +3,7 @@ package civitas.crypto.concrete;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.CryptoException;
+import civitas.crypto.ElGamalMsg;
 
 public class ElGamalMsgCTest extends ConcreteTestBase {
 
@@ -93,11 +95,10 @@ public class ElGamalMsgCTest extends ConcreteTestBase {
 		assertEquals(SOMESTRING_BASE64, new ElGamalMsgC(BIGINT_A).toString());
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	@DisplayName("does not equal anything not ElGamalMsgC")
 	void test11() throws NumberFormatException, CryptoException {
-		assertFalse(message.equals(BIGINT_A_ENCRYPTED_SAFE));
+		assertFalse(message.equals(mock(ElGamalMsg.class)));
 	}
 
 	@Test

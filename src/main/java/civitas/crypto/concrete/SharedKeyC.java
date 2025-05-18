@@ -46,8 +46,7 @@ public class SharedKeyC implements SharedKey {
 		s.print(name);
 		s.print("</n>");
 		s.print("<k>");
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-		byte[] bs = factory.sharedKeyToBytes(k);
+		byte[] bs = k.getEncoded();
 		Util.escapeString(Base64.getEncoder().encodeToString(bs), s);
 		s.print("</k>");
 		s.print("</");
@@ -59,11 +58,9 @@ public class SharedKeyC implements SharedKey {
 	public void toWire(PrintWriter s) {
 		s.print(name);
 		s.print('\n');
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-		byte[] bs = factory.sharedKeyToBytes(k);
-		s.print(Base64.getEncoder().encode(bs));
-		// FIXME s.print(Base64.encodeBytes(bs, Base64.DONT_BREAK_LINES |
-		// Base64.GZIP));
+		byte[] bs = k.getEncoded();
+		String base64 = Base64.getEncoder().encodeToString(bs);
+		s.print(base64);
 		s.print('\n');
 	}
 

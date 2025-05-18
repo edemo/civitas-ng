@@ -9,17 +9,24 @@ package civitas.crypto.concrete;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.io.StringWriter;
 
 import civitas.common.Util;
 import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalParameters;
-import civitas.crypto.ElGamalProofDiscLogEquality;
 import civitas.crypto.PETCommitment;
 import civitas.crypto.PETDecommitment;
 import civitas.crypto.PETShare;
+import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
 import civitas.util.CivitasBigInteger;
+import civitas.util.DI;
+import civitas.util.Use;
 
 class PETShareC implements PETShare {
+	@Use
+	private static ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof = DI
+			.get(ConstructElGamalDiscLogEqualityProof.class);
+
 	protected final ElGamalCiphertextC ciphertext1;
 	protected final ElGamalCiphertextC ciphertext2;
 
@@ -30,6 +37,7 @@ class PETShareC implements PETShare {
 		this.ciphertext1 = ciphertext1;
 		this.ciphertext2 = ciphertext2;
 		this.exponent = exponent;
+		DI.fill(this);
 	}
 
 	@Override
@@ -40,6 +48,20 @@ class PETShareC implements PETShare {
 	@Override
 	public ElGamalCiphertext ciphertext2() {
 		return ciphertext2;
+	}
+
+	@Deprecated
+	public ElGamalCiphertext ciphertextA() {
+		return ciphertext1;
+	}
+
+	@Deprecated
+	public ElGamalCiphertext ciphertextB() {
+		return ciphertext2;
+	}
+
+	public CivitasBigInteger exponent() {
+		return exponent;
 	}
 
 	// return a hash of the ciphertexts and exponent
@@ -75,16 +97,18 @@ class PETShareC implements PETShare {
 			CivitasBigInteger di = d.modPow(zi, params.p);
 			CivitasBigInteger ei = e.modPow(zi, params.p);
 
-			return new PETDecommitmentC(di, ei, decommitmentProof(params, d, e, zi));
+			ElGamalProofDiscLogEqualityC proof = constructElGamalDiscLogEqualityProof
+					.constructProof(params, d, e, zi);
+			return new PETDecommitmentC(di, ei, proof);
 		} catch (ClassCastException e) {
 			return null;
 		}
 	}
 
-	private static ElGamalProofDiscLogEquality decommitmentProof(
-			ElGamalParametersC params, CivitasBigInteger g1, CivitasBigInteger g2,
-			CivitasBigInteger x) {
-		return ElGamalProofDiscLogEqualityC.constructProof(params, g1, g2, x);
+	public String toXML() {
+		StringWriter sb = new StringWriter();
+		toXML(new PrintWriter(sb));
+		return sb.toString();
 	}
 
 	@Override
@@ -123,15 +147,4 @@ class PETShareC implements PETShare {
 		return new PETShareC(ciphertext1, ciphertext2, exponent);
 	}
 
-	public ElGamalCiphertext ciphertextA() {
-		return ciphertext1;
-	}
-
-	public ElGamalCiphertext ciphertextB() {
-		return ciphertext2;
-	}
-
-	public CivitasBigInteger exponent() {
-		return exponent;
-	}
 }
