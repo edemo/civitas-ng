@@ -159,14 +159,6 @@ public class CryptoFactoryC implements CryptoFactory {
 	}
 
 	/**
-	 * Initialize the fields of this class that define bit security. I.e., the
-	 * sizes of keys and nonces.
-	 */
-	@Deprecated
-	private void setBitSecurity() {
-	}
-
-	/**
 	 * Get an appropriate public key generator, creating one if necessary.
 	 */
 	protected KeyPairGenerator publicKeyGenerator(int keyLength) {
@@ -911,8 +903,8 @@ public class CryptoFactoryC implements CryptoFactory {
 			ElGamalParametersC params = (ElGamalParametersC) priv.getParams();
 			CivitasBigInteger ai = mc.a.modPow(priv.x, params.p);
 			return new ElGamalDecryptionShareC(ai,
-					constructElGamalDiscLogEqualityProof.constructProof(params, mc.a,
-							params.g, priv.x));
+					constructElGamalDiscLogEqualityProof.apply(params, mc.a, params.g,
+							priv.x));
 		}
 		return null;
 	}

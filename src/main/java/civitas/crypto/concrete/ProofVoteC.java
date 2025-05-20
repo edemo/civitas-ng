@@ -53,6 +53,7 @@ class ProofVoteC implements ProofVote {
 	ProofVoteC(ElGamalParametersC params, ElGamalCiphertextC encCapability,
 			ElGamalCiphertextC encChoice, String context,
 			ElGamalReencryptFactorC alpha1, ElGamalReencryptFactorC alpha2) {
+
 		CryptoFactoryC factory = CryptoFactoryC.singleton();
 
 		CivitasBigInteger r1 = CryptoAlgs.randomElement(params.q);
@@ -62,16 +63,10 @@ class ProofVoteC implements ProofVote {
 				context);
 		E.add(params.g.modPow(r1, params.p));
 		E.add(params.g.modPow(r2, params.p));
-//      System.err.println("Adding more");
-//      System.err.println("   " + params.g.modPow(r1, params.p));
-//      System.err.println("   " + params.g.modPow(r2, params.p));
 
 		c = factory.hashToBigInt(factory.hash(E)).mod(params.q);
 		s1 = r1.modSubtract(c.modMultiply(alpha1.r, params.q), params.q);
 		s2 = r2.modSubtract(c.modMultiply(alpha2.r, params.q), params.q);
-//      System.err.println(" c =  " + c);
-//      System.err.println(" s1=  " + s1);
-//      System.err.println(" s2=  " + s2);
 	}
 
 	List<CivitasBigInteger> proofEnv(ElGamalParametersC params,
@@ -86,13 +81,6 @@ class ProofVoteC implements ProofVote {
 		E.add(encChoice.b);
 		E.add(factory.hashToBigInt(factory.messageDigest(context.getBytes())));
 
-//      System.err.println("Constructing proof env");
-//      System.err.println("   " + params.g);
-//      System.err.println("   " + encCapability.a);
-//      System.err.println("   " + encCapability.b);
-//      System.err.println("   " + encChoice.a);
-//      System.err.println("   " + encChoice.b);
-//      System.err.println("   " + factory.hashToBigInt(factory.messageDigest(context)));
 		return E;
 	}
 
@@ -114,14 +102,8 @@ class ProofVoteC implements ProofVote {
 					context);
 			E.add(paramsC.g.modPow(this.s1, p).modMultiply(a1.modPow(this.c, p), p));
 			E.add(paramsC.g.modPow(this.s2, p).modMultiply(a2.modPow(this.c, p), p));
-//          System.err.println("Adding more");
-//          System.err.println("   " + paramsC.g.modPow(this.s1, p).multiply(a1.modPow(this.c, p)).mod(p));
-//          System.err.println("   " + paramsC.g.modPow(this.s2, p).multiply(a2.modPow(this.c, p)).mod(p));
-
-			// c =? hash(E, g^s1 * a1^c, g^s2 * a2^c)
 			CivitasBigInteger x = factory.hashToBigInt(factory.hash(E)).mod(q);
 			boolean ret = c.equals(x);
-//          System.err.println("ret is " + ret);
 			return ret;
 		} catch (ClassCastException e) {
 			e.printStackTrace();
@@ -160,7 +142,8 @@ class ProofVoteC implements ProofVote {
 		if (p instanceof ProofVoteC) {
 			ProofVoteC that = (ProofVoteC) p;
 			try {
-				return this.c.equals(that.c) && this.s1.equals(that.s1)
+				return this.c.equals(that.c) //
+						&& this.s1.equals(that.s1) //
 						&& this.s2.equals(that.s2);
 			} catch (NullPointerException e) {
 				return false;

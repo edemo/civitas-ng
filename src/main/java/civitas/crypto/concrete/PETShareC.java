@@ -24,8 +24,7 @@ import civitas.util.Use;
 
 class PETShareC implements PETShare {
 	@Use
-	private static ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof = DI
-			.get(ConstructElGamalDiscLogEqualityProof.class);
+	ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
 
 	protected final ElGamalCiphertextC ciphertext1;
 	protected final ElGamalCiphertextC ciphertext2;
@@ -98,7 +97,7 @@ class PETShareC implements PETShare {
 			CivitasBigInteger ei = e.modPow(zi, params.p);
 
 			ElGamalProofDiscLogEqualityC proof = constructElGamalDiscLogEqualityProof
-					.constructProof(params, d, e, zi);
+					.apply(params, d, e, zi);
 			return new PETDecommitmentC(di, ei, proof);
 		} catch (ClassCastException e) {
 			return null;

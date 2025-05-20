@@ -14,9 +14,7 @@ import java.io.StringWriter;
 import civitas.common.Util;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.ElGamalProofDiscLogEquality;
-import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
 /**
  * To prove that log v = log w, where v = g_1^x and w = g_2^x, let: z = random
@@ -27,8 +25,6 @@ import civitas.util.Use;
 public class ElGamalProofDiscLogEqualityC
 		implements ElGamalProofDiscLogEquality {
 
-	@Use
-	private static ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
 	public final CivitasBigInteger g1;
 	public final CivitasBigInteger g2;
 

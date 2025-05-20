@@ -1,10 +1,5 @@
 package civitas.crypto.concrete;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.withSettings;
-
 import java.io.StringReader;
 import java.math.BigInteger;
 import java.security.KeyFactory;
@@ -12,17 +7,16 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.SecureRandom;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
 import civitas.common.CiphertextList;
 import civitas.util.CivitasBigInteger;
@@ -47,6 +41,26 @@ public class ConcreteTestData {
 			(byte) 0xbe,
 			(byte) 0xad,
 			(byte) 0xde };
+
+	public static final List<String> RANDOMS_BASE64 = Arrays.asList(
+			"JY+s34cV7ybeZLEpACLziJ3ZTb5fiCoGkx7duQSKvms=",
+			"POILzE0M8iAYB1dCQW44j2oeofu6U7JMxnxoboocpBI=",
+			"N8WtyRCrye3u8iDSDnKjAob9Wr/fMDqx3x3FE+OyDkM=",
+			"AI6ANU43FzgU0jNSTA/2scyoriAcKi+nHxPt1XBf8i9w",
+			"FWuS+OV8XlmHhhSkQlmUEh8WqQKXtGe2ZXrCQYdlWSc=");
+
+	public static final List<CivitasBigInteger> RANDOMS = RANDOMS_BASE64.stream()
+			.map((s) -> new CivitasBigInteger(Base64.getDecoder().decode(s)))
+			.collect(Collectors.toList());
+
+	public static final CivitasBigInteger RANDOMS_0 = RANDOMS.get(0);
+	public static final String RANDOMS_0_BASE64 = RANDOMS_BASE64.get(0);
+
+	public static final CivitasBigInteger RANDOMS_1 = RANDOMS.get(1);
+	public static final String RANDOMS_1_BASE64 = RANDOMS_BASE64.get(1);
+
+	public static final CivitasBigInteger RANDOMS_2 = RANDOMS.get(2);
+	public static final String RANDOMS_2_BASE64 = RANDOMS_BASE64.get(2);
 
 	public static final int NO_OF_WELL_KNOWN_CIPHERTEXTS = 10;
 	public static final int MY_CHOICE = 2;
@@ -74,6 +88,9 @@ public class ConcreteTestData {
 	public static final String BIGINT_G_BASE64 = "az5EMeordK3a0VbjoUsKeo/++OHFs5WaRLw6hW8Ezu7D1Egid0U3Obtzpn0GG8UHQjJnHINqwK6bX6RXBlVfsDmiKS2lgvWrL53vSPXtZfFIC/307vWLV2RymA9TQaGZ5d4q7O7l2KHNUx+ecK6QVqKqj46IXjwaYzKQXNg2NfwQGfj7dBTaoGHE401pdoHfyLfluAF3k4ZT6imEoIbe4Ar7ybYdI5eJYn96/hoyLouux8jI1LE+Oe7+eI1M5WK30TPbGKVaon4KPnfLYp8+HTloYb/jlNFLckqdZchKa765pBRjvNu+7MmYpHmqBlLuCLd4sBbD//Sy/aHPnxyccZM0MMwRPSSM0NKO8UuXkCEmRSI6gvdwyIk6FwsB8bF4ksvBAMSfN8gJd7rv1t9B46OByCs8YNuL1eJH1wJThwpUf1iAXPjFCkvrR4fm+lOeIYCGhBkEO1pB2sRzTulRVEadM6bFwo2N5eZb3ymPfERXogTVmljtdzxlAao9vBgk";
 	public static final CivitasBigInteger BIGINT_G = new CivitasBigInteger(
 			Base64.getDecoder().decode(BIGINT_G_BASE64));
+
+	public static final CivitasBigInteger RANDOMS_0_PUBLISHED = BIGINT_G
+			.modPow(RANDOMS_0, BIGINT_P);
 
 	public static final String P_OTHER_BASE64 = "AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf8tZIaH63gtefkwkLYnCdtF2sMI5MRddL3IgM7SZK+auYCtQitiTHGI0TF8xu5lDM7bV4GvZA6tTBEaKS9EMxD34H+5xFtBtRqWuCI6XMPEMJg71eqhVT3M5yEqwA1wJXXvD/oKs6nlx+MxcEzb9kQweaVE6aOa/9hPMFdU0wL2ZatNOJfN2+CmsweXdC/gnZSX4ySmWAGP4JTHq4abv1SN4JwkUzgsrWownWy2Pzm5fiCeQBc0yn70GTSdIxuDnfX9em+ORiSXhlh7+ddNcgvC35wkHmfjWELTBhUDUh1L8gQWWEQsq2m56u2cv6sdY6FYo2GuxzASJ9vIWQBDS1Et9AJzs3dVN4PjdKWt2peAKGb1Gl5rcBEmM5b3oYhWzSLSu8axcU2dqP0FNvPpkrD98hEAvWyW2sU/xdk4wwGSw==";
 
@@ -229,8 +246,8 @@ public class ConcreteTestData {
 
 	public static final String EL_GAMAL_CIPHERTEXT_NAIVE_XML = "<elGamalCiphertext><a>42</a><b>24</b></elGamalCiphertext>";
 
-	public static final String EL_GAMAL_CIPHERTEXT_A_XML = "<elGamalCiphertext><a>OV06eyWps23y8EllxzjMvP1rt5qpLb4hF4C7Ov/edEbbkNvzAI2Uf4gB70IF0N5NGLo8lPLKUzIiyNVw4EXChSNVUoMMj2m2RGBWNLp0eAkVEy6a+g1X63LobizYHctc44ZqvH08ZmhcQ+RxoD6bhWZA3qxLUrGO1QTmbzO58vgus3U1H7DS5qqNPI6fLbs/xpRMC8vwRi9wVB4sok8+nX4oPP5b0Xhht1nVFz8iP7sxESECxxhea8BOaGGqe/1pB9TMzG30lER0RGoS5Zki0SXEO0TT7ulqvEThyz1aEIz3nPGlc/1Y4rwM43jiSpPHVauvgRC5ltBHcQfl9qH2M4t/F9TaXshOyCu1UL2q+TCcR6ERA7M76BmYBagzfIBc1SzVNKv3uTBVCpXQajq+RBz/1bX7vuSVuAR410yX741dQsDaUQ/uXuq9RcZFPRDxybEyyFzqjY9fJjTmwa7urHVIpObjFHiMbdv7aLv7Rq7li9UJD5MNDzsZ7WbE574B</a><b>IC3774r8d/p1p/HU+G3M1rccmOSgR1o2eCNC1JLy/TMpkBQ3nTOa3xf6VgpUR7pptFfOCPwANSiK+PEI5KCdoWhat9VLGkcipRkFdZUEyevwSi9uodb36roJWu6RHZ/YbGpMvp9MnJlDzos20fpLi5q52T3cco1vXfTBGWaLsEy/ptxFsutVlTNc+V/JOdTPGvynJvZcDcNP7zMfv90iuMj9OnEsi1EcS4AIZDOKbs/py9k3vHpNcWllz2hJs4S7TQnTwbkiG/CISnE9LJLe36+n2013guXMSRw6PnrDT1E6OnPZRzVWmQFa2kvipDifiPlNo7l/YB7Rh4ssSswTVPSXpmNqp5rWYmIYxyKK+1fRbe3lC8geXfSMJDVWklIu6NlAPKwkaavyj2VfOEYBReqACwwOjrGihEveNwwDD3rg8tWqaA8wRuBQY7F6mhbWa2YMoqjvBJXb3bTAjf9WcJj4izY95IDI0N2lckXRNh/f01q03xMpAw8cdCboM46j</b></elGamalCiphertext>";
-	public static final String EL_GAMAL_CIPHERTEXT_B_XML = "<elGamalCiphertext><a>Xj3axcYXaDSCgtPeL4j0kt4sjD607TMKU8db1sUOKNd7kLpTaMLul6UqLWonsX1bQVefMuSaB0RlIqvRvPXiCaEIydtaKi78JsdqggnUh0nSx+AXpc28zXIil3cBQVvxAVoaTTeeHc+umzfdgArhpZKKKQeq9t2lJ+2HaVYhfqPuPn6DQbyROjMVKyEJj8BkAPKo6MeDR0GZkdAKTEkdr8u9TeuBntbvVNo3MxnvkbMc0BXLxop/YUHVnVNM4iqEDVFqe1gH9Stgs4Raq+8V+l9j7FgulRNJJc+ILZPBCUCmWai3PBIlsvcMAuC+k8RwtXcbV0y+yh3DxvcUkEuCZB/6gUbM2BdM58es1hNclZ5krQy4LJOBeK5YbwmLE+tMInLypHPNNexGmOkjREDno2efpYp7d83Ge8bMpipPr9MDDQRDvFBQKBukfvpqX+ynSp4KIYKWx+0yuYW+UgtTEzAI3jHblk8dQxrl+qkAekmCY6cwEXmfnRbWkmoDKYyd</a><b>eCeftF5UPY+fKTNuHf2cpiI8vu+6hmPjwFNeJAPWMkvmRjWJItCRf200bqnGfY5OfFSFfLcdbV1Ig86OY1aMU+pitrkUZhtFu9Hiz+LVDbUjHSyZPxPZxe0J6qUOQdMXHPj0xI2s5ilulSZWlHa4fAMyspQbqKZOiHxY10pad5X0OOZyPkH5IK5ZTkyYFtnYaesbDFia4OEsV/xe0lN9iZ/wy8tQn2Xkvbhu+AutiUyrEAQx9JFtE3BXHHziwpRCD0jIwu0evfiHfTrR8ZyCC/lv8ZPTG8wW+z+vqG+QWEuAm2+JeJSKMGgcOHWyJ18rH1/yyJtD5ViLCuSewmxp3lI4PjUSqzpEe4HFTgpNXbt/2i1wUVfmddwxpwJIZmQOC+mL0b/+WLX/cJQEWj3z3x2QA+a4+88hGsgGarIVcXl0/rkPgRAc/UVv1oNOtBWcW86mCOXEWSG8qCbcVPNMHPukUDsXlyjuikFoJgtWFzrbHTmNk1Dy65AttoOnErEU</b></elGamalCiphertext>";
+	public static final String EL_GAMAL_CIPHERTEXT_A_XML = "<elGamalCiphertext><a>aHyajDBKPVjLQxSlx21hl1GeVCkrfvctLo4aiwJmas8q20tfehNBRA/O9q1vZhaO2boKwwcEPb0IzIMGgtVUx5UpKQhL8AM6ogZlsuQrHpw5KzdQzyoB/9MPCanfYmdeSRJWkQCYl3dbRiAbp8wTrw9Ft8xooZq0TKPJriBzs1h0i5aUjVzlqrF6T72MDOjem6bS8hFJeqflm8x74e89r+hUeNr/RGGRBbygufzeFTeESJLMfXq1U9aLAszKj4LK21leO9B0nusszhRg8Bz3EcHc6dbGh+2qxMpccvYkG6nxnWq5fEdEpY4+z7YhalrQ8r/JODe2vq5UcIQDnW2toPqD5gKWMRU31V0jrlVKq1phCEvsU5fDDpmE41bOmRoozxN/eJbnAO0Ks+rZzUxXSlYTHiZZ9hfFcZ4uLJbxLXWztBvMJbhlAR1on240A+YSxOHnpzFJGA9TykeD103kJnUJaBmCstYmBIC3g6TDt/4/kbKWD6yiUNj3OnOADbJF</a><b>D7HknJmoALCBli6uEl1zUAMJfcK17oLQwBkEXjCKDsnJZrOJyWbgkBb1SC31VdONSUyqyjfPa682mlcT1vTHfOBJd7wGqWgDe+ESmx+p+ajCK88uXNCNWQRr8zkThLM0a/rGQzB5rBBqg861ntaJTBFGxgEf55nsp+MpQT3XuckNLQwpxH2750x+fvbdbxDoSRMHyApgBdS0eYq+Hg61eW93AdOcRAPpXPP0kUpsKNVDe8YDRkBcWD3x81lcwJdRfQaWVld0CK4AIqLeKcD9k08LQmVVEKXq/FArU5I/AkTHKb3Nj1zK6Xkc2o+Oa1/rjdXH4NGT6iZJ/umUECHg7Nmi6e47JsQOFAbPY2SRrbK6YKTXGCMb1SQLmuaQV6ABqV08heMLoTereu4R/gqPr2f0MjE8o455sq3vRo/OrkHgnEN9lIWVxEjSETf3ddjhTT5QPkhN/dIr90s8TQG5KhYQR5jG+qdC2R0iN+434LH7oc1mrcnY/dk10fDPzjAm</b></elGamalCiphertext>";
+	public static final String EL_GAMAL_CIPHERTEXT_B_XML = "<elGamalCiphertext><a>EPb0xRW2twSd/AlN4BzDzAe2XS2c9VlqT1bLu5wKm1hdyIYhxePJtBlAt/bpDPnssOZ9sE6zS+DpuGuY73yfQBUhHWv8/V/GUM0Xhgfo6dq2PbzXthQbzjQ7f6tKLRUYPp8fAcN8NpEa6seTdn00Ep+lwU35qIICfed4ovRSKo8jxjA3z7HJQOrtq9D4QDCC3ugW3nXxAqa0s8MCR3xKNc59bbXqFWTZi+eC180q4b9GPJqc/fCby2uznJwjm4I/0G8JC2BbjhT/PRxbfrMGZm8dzkDWr8fpUD1plqYpV+pioyDwvNjuzjWS7w1UYRCi8SZ8zyFou/LW7vAotsj/08X8YSjnIV/CJka59jpgJGP5hWSPX1yfBVQeKm7aIfY2zqDQpd9LbrfApM/bSvFnIviStBps6RD3c8RajzSx6jR7j6xVo+b31pZ3fCgTu5n1niwKRUHgnyImg4d3VDAcDh8LKj2cbmTcPRy2jaKe0XQwewYS3rza2vmoc7X8M1LJ</a><b>Frns4N1ve8I2rNBMAqVLSLEyE7KfjPe00W4/+O2+65VvuKXrhqmHjweV1RvASArlZkyVeb0hG6caIIaH8k0FNavCyO6HgIgqa75BV51on+OGO/RTs+D5N0R4/GuRQIkNg4P+nVYCdqFIXEgIFcB++5RoO2WfgrSydzkzLbFq5y++pZ3mYDfOr44nFZ+hGJVSdoD7TBm8ywlTgRKZNbOZITOnfjJ7Oe2wiG18X7Ht4KDMgrpigg6fhrlHhzSfloFsLwHZ3b0i6BrYoymWwVT1t4yp4Athx8nbdqS1yWpDzow3Vm/gcLWmmKVliYlc2ukvvPsg7LcfvKgUEhjTflDWmKXuUSj/oahq+ZHuvBk+VE6GEl7P2zcuYPlxxcfQwxh6olc0d2ijr3Mj9QxmmsgQYWpqfpeeYNKPNOIRtupjoHq7X17GT0hma7F3jR4jrmC4i7SR2kgZONBFeb01bK1VdGhEXFIXGERNLXExycHGS6vqGwDhoKxFbjfdr7Nwi50z</b></elGamalCiphertext>";
 
 	public static final String PET_SHARE_XML = "<petShare>"
 			+ EL_GAMAL_CIPHERTEXT_A_XML + EL_GAMAL_CIPHERTEXT_B_XML + "<exponent>"
@@ -270,8 +287,26 @@ public class ConcreteTestData {
 	public static final ElGamalReencryptFactorC ENCRYPT_FACTOR_ZERO = new ElGamalReencryptFactorC(
 			CivitasBigInteger.ZERO);
 
-	public static final SecureRandom RANDOM_GENERATOR_FAKE_ORDER;
-	public static final SecureRandom RANDOM_GENERATOR_FAKE_BIGINT_A;
+	public static final ElGamalReencryptFactorC ENCRYPT_FACTOR_C = new ElGamalReencryptFactorC(
+			BIGINT_C);
+
+	public static final ElGamalReencryptFactorC ENCRYPT_FACTOR_D = new ElGamalReencryptFactorC(
+			BIGINT_D);
+
+	private static final String PROOF_VOTE_C_BASE64 = "JLjaqZUzF9Ja/0klrpAtIPe2sETCRf+0OlWeiI1TV/M=";
+	private static final String PROOF_VOTE_S1_BASE64 = "S/9gPijKaeaDapS+YtHnBzKupvsiFDWRIaO5r1t1Ja8=";
+	private static final String PROOF_VOTE_S2_BASE64 = "RpmdQslm/BT1fr9Bf2NsCdPMiY+ch4reYv+bEaa/RMo=";
+	public static final String PROOF_VOTE_XML = "<elGamalProofVote><c>"
+			+ PROOF_VOTE_C_BASE64 + "</c><s1>" + PROOF_VOTE_S1_BASE64 + "</s1><s2>"
+			+ PROOF_VOTE_S2_BASE64 + "</s2></elGamalProofVote>";
+	public static final String PROOF_VOTE_NULL_XML = "<elGamalProofVote><c></c><s1></s1><s2></s2></elGamalProofVote>";
+
+	public static final CivitasBigInteger PROOF_VOTE_C = new CivitasBigInteger(
+			Base64.getDecoder().decode(PROOF_VOTE_C_BASE64));
+	public static final CivitasBigInteger PROOF_VOTE_S1 = new CivitasBigInteger(
+			Base64.getDecoder().decode(PROOF_VOTE_S1_BASE64));
+	public static final CivitasBigInteger PROOF_VOTE_S2 = new CivitasBigInteger(
+			Base64.getDecoder().decode(PROOF_VOTE_S2_BASE64));
 
 	public static final java.security.PrivateKey PRIVATE_KEY;
 	public static final java.security.PublicKey PUBLIC_KEY;
@@ -297,6 +332,7 @@ public class ConcreteTestData {
 
 	static {
 		try {
+
 			EL_GAMAL_PARAMETERS = ElGamalParametersC
 					.fromXML(new StringReader(ELGAMAL_PARAMETERS_XML));
 			EL_GAMAL_PARAMETERS_SAFE = ElGamalParametersC
@@ -347,37 +383,6 @@ public class ConcreteTestData {
 
 			PUBLIC_KEY2 = keyFactory.generatePublic(new X509EncodedKeySpec(
 					Base64.getDecoder().decode(PUBLIC_KEY2_BASE64)));
-
-			RANDOM_GENERATOR_FAKE_ORDER = mock(SecureRandom.class,
-					withSettings().withoutAnnotations());
-			doAnswer(new Answer<Void>() {
-				@Override
-				public Void answer(InvocationOnMock invocation) {
-					byte[] array = invocation.getArgument(0);
-					java.util.Arrays.fill(array, (byte) 0);
-					byte[] aBytes = BigInteger.valueOf(SOME_POSITIVE_INTEGER)
-							.toByteArray();
-					for (int i = array.length - aBytes.length; i < array.length; i++) {
-						array[i] = aBytes[i - (array.length - aBytes.length)];
-					}
-					return null;
-				}
-			}).when(RANDOM_GENERATOR_FAKE_ORDER).nextBytes(any());
-
-			RANDOM_GENERATOR_FAKE_BIGINT_A = mock(SecureRandom.class,
-					withSettings().withoutAnnotations());
-			doAnswer(new Answer<Void>() {
-				@Override
-				public Void answer(InvocationOnMock invocation) {
-					byte[] array = invocation.getArgument(0);
-					java.util.Arrays.fill(array, (byte) 0);
-					byte[] aBytes = BIGINT_A.toByteArray();
-					for (int i = array.length - aBytes.length; i < array.length; i++) {
-						array[i] = aBytes[i - (array.length - aBytes.length)];
-					}
-					return null;
-				}
-			}).when(RANDOM_GENERATOR_FAKE_BIGINT_A).nextBytes(any());
 
 			EL_GAMAL_1_OF_L_REENCRYPTION = (ElGamal1OfLReencryptionC) ElGamal1OfLReencryptionC
 					.fromXML(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML));

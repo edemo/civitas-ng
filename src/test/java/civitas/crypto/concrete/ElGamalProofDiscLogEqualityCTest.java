@@ -8,11 +8,11 @@ import static org.mockito.Mockito.mock;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Arrays;
-import java.util.Random;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.common.TestUtil;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
 import civitas.util.CivitasBigInteger;
@@ -47,7 +47,7 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase {
 		CivitasBigInteger x = BIGINT_B;
 		CivitasBigInteger v = g1.modPow(x, BIGINT_P);
 		CivitasBigInteger w = g2.modPow(x, BIGINT_P);
-		CivitasBigInteger z = BIGINT_A;
+		CivitasBigInteger z = RANDOMS_0;
 		CivitasBigInteger a = g1.modPow(z, BIGINT_P);
 		CivitasBigInteger b = g2.modPow(z, BIGINT_P);
 		CivitasBigInteger c = factory
@@ -56,12 +56,10 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase {
 
 		ElGamalParametersC params = EL_GAMAL_PARAMETERS;
 
-		Random oldRng = CryptoAlgs.randomGenerator;
-		CryptoAlgs.randomGenerator = RANDOM_GENERATOR_FAKE_BIGINT_A;
+		TestUtil.setUpFakeRandom();
 
 		ElGamalProofDiscLogEqualityC proof = constructElGamalDiscLogEqualityProof
-				.constructProof(params, g1, g2, x);
-		CryptoAlgs.randomGenerator = oldRng;
+				.apply(params, g1, g2, x);
 		assertEquals(g1, proof.g1);
 		assertEquals(g2, proof.g2);
 		assertEquals(v, proof.v);
@@ -70,6 +68,8 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase {
 		assertEquals(b, proof.b);
 		assertEquals(c, proof.c);
 		assertEquals(r, proof.r);
+
+		TestUtil.tearDownFakeRandom();
 
 	}
 

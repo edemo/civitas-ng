@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class CivitasBigInteger {
 
-	private final BigInteger i;
+	public final BigInteger i;
 
 	public static final CivitasBigInteger ZERO = CivitasBigInteger.valueOf(0);
 	public static final CivitasBigInteger ONE = CivitasBigInteger.valueOf(1);

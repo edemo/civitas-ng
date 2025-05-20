@@ -10,7 +10,7 @@ import civitas.crypto.concrete.ElGamalProofDiscLogEqualityC;
 import civitas.util.CivitasBigInteger;
 
 public class ConstructElGamalDiscLogEqualityProof {
-	public ElGamalProofDiscLogEqualityC constructProof(ElGamalParametersC params,
+	public ElGamalProofDiscLogEqualityC apply(ElGamalParametersC params,
 			CivitasBigInteger g1, CivitasBigInteger g2, CivitasBigInteger x) {
 
 		CryptoFactoryC factory = CryptoFactoryC.singleton();

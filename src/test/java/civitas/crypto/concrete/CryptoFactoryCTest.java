@@ -10,7 +10,6 @@ import static org.mockito.Mockito.mock;
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Arrays;
-import java.util.Random;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
@@ -18,6 +17,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.common.TestUtil;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalKeyPair;
@@ -46,11 +46,9 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 	@Test
 	@DisplayName("elGamalEncrypt with a random factor works as expected")
 	void test0_1() throws Exception {
-		Random oldRng = CryptoAlgs.randomGenerator;
-		CryptoAlgs.randomGenerator = RANDOM_GENERATOR_FAKE_ORDER;
+		TestUtil.setUpFakeRandom();
 
-		CivitasBigInteger y = CivitasBigInteger.valueOf(SOME_POSITIVE_INTEGER);
-
+		CivitasBigInteger y = RANDOMS_0;
 		ElGamalMsgC msg = new ElGamalMsgC(BIGINT_B, EL_GAMAL_PARAMETERS);
 		CivitasBigInteger h = EL_GAMAL_PUBLIC_KEY.y;
 		CivitasBigInteger c1 = BIGINT_G.modPow(y, BIGINT_P);
@@ -60,7 +58,7 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 				.elGamalEncrypt(EL_GAMAL_PUBLIC_KEY, msg);
 		assertEquals(c1, encrypt.a);
 		assertEquals(c2, encrypt.b);
-		CryptoAlgs.randomGenerator = oldRng;
+		TestUtil.tearDownFakeRandom();
 
 	}
 
@@ -82,13 +80,11 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 	@DisplayName("elGamalReencrypt works as expected: "
 			+ "c1:=c1*g^y, c2:=c2*m^y, where y is random, all mod p")
 	void test1() throws Exception {
-
-		Random oldRng = CryptoAlgs.randomGenerator;
-		CryptoAlgs.randomGenerator = RANDOM_GENERATOR_FAKE_ORDER;
+		TestUtil.setUpFakeRandom();
 
 		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
 		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
-		CivitasBigInteger y = CivitasBigInteger.valueOf(SOME_POSITIVE_INTEGER);
+		CivitasBigInteger y = RANDOMS_0;
 		CivitasBigInteger m = EL_GAMAL_PUBLIC_KEY.y;
 		CivitasBigInteger c1 = BIGINT_A;
 		CivitasBigInteger c2 = BIGINT_B;
@@ -101,7 +97,7 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 		assertEquals(new ElGamalCiphertextC(c1, c2),
 				factory.elGamalReencrypt(EL_GAMAL_PUBLIC_KEY, cipherText));
 
-		CryptoAlgs.randomGenerator = oldRng;
+		TestUtil.tearDownFakeRandom();
 	}
 
 	@Test
@@ -130,17 +126,15 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 	@DisplayName("generateElGamalKeyPair works as expected"
 			+ "x := random, h:=g^x (mod p). x is the private, h is the public key")
 	void generateElGamalKeyPairtest() {
-		Random oldRng = CryptoAlgs.randomGenerator;
-		CryptoAlgs.randomGenerator = RANDOM_GENERATOR_FAKE_BIGINT_A;
-
+		TestUtil.setUpFakeRandom();
 		ElGamalKeyPair keyPair = factory
 				.generateElGamalKeyPair(EL_GAMAL_PARAMETERS);
 
-		assertEquals(BIGINT_A, ((ElGamalPrivateKeyC) keyPair.privateKey()).x);
-		assertEquals(PUBLICIZED_BIGINT_A,
+		assertEquals(RANDOMS_0, ((ElGamalPrivateKeyC) keyPair.privateKey()).x);
+		assertEquals(RANDOMS_0_PUBLISHED,
 				((ElGamalPublicKeyC) keyPair.publicKey()).y);
 
-		CryptoAlgs.randomGenerator = oldRng;
+		TestUtil.tearDownFakeRandom();
 
 	}
 
@@ -148,16 +142,15 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 	@DisplayName("generateKeyPairShare works as expected"
 			+ "x := random, h:=g^x (mod p). x is the private, h is the public key")
 	void generateKeyPairShareTest() {
-		Random oldRng = CryptoAlgs.randomGenerator;
-		CryptoAlgs.randomGenerator = RANDOM_GENERATOR_FAKE_BIGINT_A;
+		TestUtil.setUpFakeRandom();
 
 		ElGamalKeyPairShare keyPair = factory
 				.generateKeyPairShare(EL_GAMAL_PARAMETERS);
 
-		assertEquals(BIGINT_A, ((ElGamalPrivateKeyC) keyPair.privKey).x);
-		assertEquals(PUBLICIZED_BIGINT_A, ((ElGamalPublicKeyC) keyPair.pubKey).y);
+		assertEquals(RANDOMS_0, ((ElGamalPrivateKeyC) keyPair.privKey).x);
+		assertEquals(RANDOMS_0_PUBLISHED, ((ElGamalPublicKeyC) keyPair.pubKey).y);
 
-		CryptoAlgs.randomGenerator = oldRng;
+		TestUtil.tearDownFakeRandom();
 
 	}
 
@@ -167,10 +160,9 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 			+ "c:=hash(g^s,a,b,env) % q, " + "d:=s+c*y (mod q)")
 	void elGamalSignedEncryptTest() throws Exception {
 
-		Random oldRng = CryptoAlgs.randomGenerator;
-		CryptoAlgs.randomGenerator = RANDOM_GENERATOR_FAKE_ORDER;
+		TestUtil.setUpFakeRandom();
 
-		CivitasBigInteger s = CivitasBigInteger.valueOf(SOME_POSITIVE_INTEGER);
+		CivitasBigInteger s = RANDOMS_0;
 		CivitasBigInteger y = SOME_INT_BIG;
 		ElGamalMsgC msg = new ElGamalMsgC(BIGINT_B, EL_GAMAL_PARAMETERS);
 		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
@@ -193,7 +185,7 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 		assertEquals(c, encrypt.c);
 		assertEquals(d, encrypt.d);
 
-		CryptoAlgs.randomGenerator = oldRng;
+		TestUtil.tearDownFakeRandom();
 	}
 
 	@Test
@@ -275,8 +267,7 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 			+ "c:=hash(v,a)%q, " + "r:=z+c*key (mod q)")
 	void constructProofKnowDiscLogTest() throws Exception {
 
-		Random oldRng = CryptoAlgs.randomGenerator;
-		CryptoAlgs.randomGenerator = RANDOM_GENERATOR_FAKE_ORDER;
+		TestUtil.setUpFakeRandom();
 
 		CivitasBigInteger key = ELGAMAL_PRIVATE_KEY.x;
 		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
@@ -284,10 +275,10 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 		CivitasBigInteger q = EL_GAMAL_PARAMETERS.q;
 
 		CivitasBigInteger v = g.modPow(key, p);
-		CivitasBigInteger z = CivitasBigInteger.valueOf(SOME_POSITIVE_INTEGER);
+		CivitasBigInteger z = RANDOMS_0;
 		CivitasBigInteger a = g.modPow(z, p);
 		CivitasBigInteger c = factory.hash(v, a).mod(q);
-		CivitasBigInteger r = z.add(c.modMultiply(key, q));
+		CivitasBigInteger r = z.modAdd(c.modMultiply(key, q), q);
 
 		ElGamalProofKnowDiscLogC expected = new ElGamalProofKnowDiscLogC(a, c, r,
 				v);
@@ -296,7 +287,7 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 				.constructProofKnowDiscLog(EL_GAMAL_PARAMETERS, ELGAMAL_PRIVATE_KEY);
 
 		assertEquals(expected.toXML(), proof.toXML());
-		CryptoAlgs.randomGenerator = oldRng;
+		TestUtil.setUpFakeRandom();
 
 	}
 
@@ -347,8 +338,7 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 		ElGamalCiphertextC encrypted = (ElGamalCiphertextC) factory.elGamalEncrypt(
 				EL_GAMAL_PUBLIC_KEY, msg, new ElGamalReencryptFactorC(SOME_INT_BIG));
 
-		Random oldRng = CryptoAlgs.randomGenerator;
-		CryptoAlgs.randomGenerator = RANDOM_GENERATOR_FAKE_ORDER;
+		TestUtil.setUpFakeRandom();
 
 		CivitasBigInteger key = ELGAMAL_PRIVATE_KEY.x;
 		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
@@ -361,7 +351,7 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 		CivitasBigInteger g2 = g;
 		CivitasBigInteger v = g1.modPow(key, p);
 		CivitasBigInteger w = g2.modPow(key, p);
-		CivitasBigInteger z = CivitasBigInteger.valueOf(SOME_POSITIVE_INTEGER);
+		CivitasBigInteger z = RANDOMS_0;
 		CivitasBigInteger a = g1.modPow(z, p);
 		CivitasBigInteger b = g2.modPow(z, p);
 		CivitasBigInteger c = factory
@@ -386,7 +376,7 @@ public class CryptoFactoryCTest extends ConcreteTestBase {
 		assertEquals(w, actual.proof.w);
 		assertEquals(r, actual.proof.r);
 
-		CryptoAlgs.randomGenerator = oldRng;
+		TestUtil.tearDownFakeRandom();
 
 	}
 
