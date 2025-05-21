@@ -33,11 +33,6 @@ public class ElGamalDecryptionShareC implements ElGamalDecryptionShare {
 		return proof;
 	}
 
-	/**
-	 * 
-	 * @param m the ciphertext being decrypted
-	 * @return
-	 */
 	@Override
 	public boolean verify(ElGamalCiphertext c, ElGamalPublicKey K) {
 		if (proof != null) {
@@ -46,31 +41,14 @@ public class ElGamalDecryptionShareC implements ElGamalDecryptionShare {
 				ElGamalPublicKeyC KC = (ElGamalPublicKeyC) K;
 				ElGamalParametersC params = (ElGamalParametersC) K.getParams();
 
-				// check that
-				// proof.g1 = m.a and
-				// proof.g2 == params.g and
-				// proof.v == ai
-				// proof.w == yi == public key and
 				if (proof.g1.equals(cipher.a) && proof.g2.equals(params.g)
 						&& proof.v.equals(ai) && proof.w.equals(KC.y)) {
 					return proof.verify(params);
-				} else {
-					// failed verification
-					System.err.println("proof.g1 = " + proof.g1);
-					System.err.println("    mc.a = " + cipher.a);
-					System.err.println("proof.g2 = " + proof.g2);
-					System.err.println("params.g = " + params.g);
-					System.err.println("       v = " + proof.v);
-					System.err.println("      ai = " + ai);
-					System.err.println("    kc.y = " + KC.y);
-					System.err.println("       w = " + proof.w);
 				}
 			} catch (NullPointerException e) {
-				e.printStackTrace();
-				return false;
+				throw new Error(e);
 			} catch (ClassCastException e) {
-				e.printStackTrace();
-				return false;
+				throw new Error(e);
 			}
 		}
 

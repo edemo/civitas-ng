@@ -41,6 +41,7 @@ public class ElGamalProofDVRC implements ElGamalProofDVR {
 	public static ElGamalProofDVRC constructProof(ElGamalCiphertextC e,
 			ElGamalCiphertextC eprime, ElGamalPublicKeyC key,
 			ElGamalPublicKeyC verifierKey, CivitasBigInteger zeta) {
+
 		CryptoFactoryC factory = CryptoFactoryC.singleton();
 
 		// check that the inputs are correct

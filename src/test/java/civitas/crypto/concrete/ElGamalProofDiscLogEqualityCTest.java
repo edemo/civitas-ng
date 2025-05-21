@@ -42,9 +42,9 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase {
 			+ "let: z = random in Z_q, a = g_1^z b = g_2^z c = hash(v,w,a,b) "
 			+ "r = (z + cx) mod q		  The proof is (a,b,c,r). ")
 	void construcProofTest() {
-		CivitasBigInteger g1 = BIGINT_G;
-		CivitasBigInteger g2 = GENERATOR_OTHER;
-		CivitasBigInteger x = BIGINT_B;
+		CivitasBigInteger g1 = PUBKEY_VALUE_OTHER_GENERATOR_RANDOM1_FACTOR;
+		CivitasBigInteger g2 = BIGINT_G;
+		CivitasBigInteger x = BIGINT_A;
 		CivitasBigInteger v = g1.modPow(x, BIGINT_P);
 		CivitasBigInteger w = g2.modPow(x, BIGINT_P);
 		CivitasBigInteger z = RANDOMS_0;
@@ -54,12 +54,10 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase {
 				.hashToBigInt(factory.hash(Arrays.asList(v, w, a, b))).mod(BIGINT_Q);
 		CivitasBigInteger r = z.modAdd(c.modMultiply(x, BIGINT_Q), BIGINT_Q);
 
-		ElGamalParametersC params = EL_GAMAL_PARAMETERS;
-
 		TestUtil.setUpFakeRandom();
 
 		ElGamalProofDiscLogEqualityC proof = constructElGamalDiscLogEqualityProof
-				.apply(params, g1, g2, x);
+				.apply(EL_GAMAL_PARAMETERS_GENERATOR_OTHER, g1, g2, x);
 		assertEquals(g1, proof.g1);
 		assertEquals(g2, proof.g2);
 		assertEquals(v, proof.v);
@@ -68,6 +66,7 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase {
 		assertEquals(b, proof.b);
 		assertEquals(c, proof.c);
 		assertEquals(r, proof.r);
+		assertEquals(EL_GAMAL_PROOF_DISC_LOG_EQUALITY_XML, proof.toXML());
 
 		TestUtil.tearDownFakeRandom();
 
