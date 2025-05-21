@@ -15,8 +15,8 @@ import java.util.Random;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
+import civitas.crypto.algorithms.Constants;
 import civitas.crypto.concrete.ConcreteTestData;
-import civitas.crypto.concrete.CryptoAlgs;
 import civitas.util.CivitasBigInteger;
 
 public class TestUtil {
@@ -44,10 +44,10 @@ public class TestUtil {
 	public static void setUpFakeRandom() {
 		try {
 			Field field;
-			field = CryptoAlgs.class.getDeclaredField("randomGenerator");
+			field = Constants.class.getDeclaredField("RANDOM_GENERATOR");
 			field.setAccessible(true);
 
-			oldRng = (Random) field.get(CryptoAlgs.class);
+			oldRng = (Random) field.get(Constants.class);
 
 			SecureRandom RANDOM_GENERATOR_FAKE_SERIES = mock(SecureRandom.class,
 					withSettings().withoutAnnotations());
@@ -63,7 +63,7 @@ public class TestUtil {
 				}
 			}).when(RANDOM_GENERATOR_FAKE_SERIES).nextBytes(any());
 
-			field.set(CryptoAlgs.class, RANDOM_GENERATOR_FAKE_SERIES);
+			field.set(Constants.class, RANDOM_GENERATOR_FAKE_SERIES);
 		} catch (Exception e) {
 			throw new Error(e);
 		}
@@ -73,10 +73,10 @@ public class TestUtil {
 	public static void tearDownFakeRandom() {
 		try {
 			Field field;
-			field = CryptoAlgs.class.getDeclaredField("randomGenerator");
+			field = Constants.class.getDeclaredField("RANDOM_GENERATOR");
 			field.setAccessible(true);
 
-			field.set(CryptoAlgs.class, oldRng);
+			field.set(Constants.class, oldRng);
 		} catch (Exception e) {
 			throw new Error(e);
 		}

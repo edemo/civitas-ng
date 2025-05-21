@@ -18,9 +18,14 @@ import civitas.common.Util;
 import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalProof1OfL;
 import civitas.crypto.ElGamalPublicKey;
+import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 public class ElGamalProof1OfLC implements ElGamalProof1OfL {
+	@Use
+	private static GenerateRandomElement generateRandomElement;
+
 	final int L;
 	final CivitasBigInteger[] dvs;
 	final CivitasBigInteger[] rvs;
@@ -54,8 +59,8 @@ public class ElGamalProof1OfLC implements ElGamalProof1OfL {
 		CivitasBigInteger[] ds = new CivitasBigInteger[L];
 		CivitasBigInteger[] rs = new CivitasBigInteger[L];
 		for (int i = 0; i < L; i++) {
-			ds[i] = CryptoAlgs.randomElement(ps.q);
-			rs[i] = CryptoAlgs.randomElement(ps.q);
+			ds[i] = generateRandomElement.apply(ps.q);
+			rs[i] = generateRandomElement.apply(ps.q);
 		}
 
 		// compute a_i's and b_i's

@@ -17,9 +17,16 @@ import civitas.common.Util;
 import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalProofDVR;
 import civitas.crypto.ElGamalPublicKey;
+import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.util.CivitasBigInteger;
+import civitas.util.DI;
+import civitas.util.Use;
 
 public class ElGamalProofDVRC implements ElGamalProofDVR {
+	@Use
+	private static GenerateRandomElement generateRandomElement = DI
+			.get(GenerateRandomElement.class);
+
 	private final ElGamalCiphertextC e;
 	private final ElGamalCiphertextC eprime;
 	public final CivitasBigInteger c;
@@ -50,9 +57,9 @@ public class ElGamalProofDVRC implements ElGamalProofDVR {
 //        }
 
 		ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
-		CivitasBigInteger d = CryptoAlgs.randomElement(ps.q);
-		CivitasBigInteger w = CryptoAlgs.randomElement(ps.q);
-		CivitasBigInteger r = CryptoAlgs.randomElement(ps.q);
+		CivitasBigInteger d = generateRandomElement.apply(ps.q);
+		CivitasBigInteger w = generateRandomElement.apply(ps.q);
+		CivitasBigInteger r = generateRandomElement.apply(ps.q);
 		CivitasBigInteger h = key.y;
 		CivitasBigInteger hv = verifierKey.y;
 		CivitasBigInteger a = ps.g.modPow(d, ps.p);
@@ -99,9 +106,9 @@ public class ElGamalProofDVRC implements ElGamalProofDVR {
 		 * (\beta - w~)/(z_v) (mod q) (c~, w~, r~, u~) will verify as a proof for
 		 * E~.
 		 */
-		CivitasBigInteger alpha = CryptoAlgs.randomElement(ps.q);
-		CivitasBigInteger beta = CryptoAlgs.randomElement(ps.q);
-		CivitasBigInteger ut = CryptoAlgs.randomElement(ps.q);
+		CivitasBigInteger alpha = generateRandomElement.apply(ps.q);
+		CivitasBigInteger beta = generateRandomElement.apply(ps.q);
+		CivitasBigInteger ut = generateRandomElement.apply(ps.q);
 
 		CivitasBigInteger at = ps.g.modPow(ut, ps.p)
 				.modDivide(xt.modDivide(x, ps.p).modPow(alpha, ps.p), ps.p);

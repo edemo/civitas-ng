@@ -2,9 +2,14 @@ package civitas.crypto.concrete;
 
 import civitas.crypto.CryptoException;
 import civitas.crypto.Encoder;
+import civitas.crypto.algorithms.LegendreSymbol;
 import civitas.util.CivitasBigInteger;
+import civitas.util.DI;
 
 class SafePrimeEncoder implements Encoder {
+
+	LegendreSymbol legendreSymbol = DI.get(LegendreSymbol.class);
+
 	/**
 	 * 
 	 */
@@ -21,7 +26,8 @@ class SafePrimeEncoder implements Encoder {
 	public CivitasBigInteger encodePlaintext(CivitasBigInteger x)
 			throws CryptoException {
 		CivitasBigInteger encoding = x;
-		if (CryptoAlgs.legendreSymbol(encoding, elGamalParameters.p, elGamalParameters.q) == -1) {
+		if (legendreSymbol.apply(encoding, elGamalParameters.p,
+				elGamalParameters.q) == -1) {
 			encoding = elGamalParameters.p.subtract(encoding); // encoding = -m
 		}
 		return encoding;

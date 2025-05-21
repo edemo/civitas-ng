@@ -13,9 +13,14 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.CryptoError;
 import civitas.crypto.ElGamalParameters;
+import civitas.crypto.SchnorrPrime;
+import civitas.crypto.algorithms.FindGenerator;
 import civitas.util.CivitasBigInteger;
+import civitas.util.DI;
 
 public class ElGamalParametersCTest extends ConcreteTestBase {
+
+	FindGenerator findGenerator = DI.get(FindGenerator.class);
 
 	@Test
 	@DisplayName("storing constructor and toXML works as expected")
@@ -79,7 +84,7 @@ public class ElGamalParametersCTest extends ConcreteTestBase {
 		CivitasBigInteger p;
 		p = BIGINT_Q.multiply(CivitasBigInteger.valueOf(2))
 				.add(CivitasBigInteger.ONE);
-		CivitasBigInteger g = CryptoAlgs.generator(new SchnorrPrime(p, BIGINT_Q));
+		CivitasBigInteger g = findGenerator.apply(new SchnorrPrime(p, BIGINT_Q));
 		CryptoError t = assertThrows(CryptoError.class, () -> {
 			new ElGamalParametersC(p, BIGINT_Q, g);
 		});
@@ -109,7 +114,7 @@ public class ElGamalParametersCTest extends ConcreteTestBase {
 		CivitasBigInteger q = BIGINT_A;
 		CivitasBigInteger p = q.multiply(CivitasBigInteger.TWO)
 				.add(CivitasBigInteger.ONE);
-		CivitasBigInteger g = CryptoAlgs.generator(new SchnorrPrime(p, q));
+		CivitasBigInteger g = findGenerator.apply(new SchnorrPrime(p, q));
 
 		CryptoError t = assertThrows(CryptoError.class,
 				() -> new ElGamalParametersC(p, q, g));

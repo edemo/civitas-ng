@@ -79,6 +79,8 @@ import civitas.crypto.Signature;
 import civitas.crypto.VoteCapability;
 import civitas.crypto.VoteCapabilityShare;
 import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
+import civitas.crypto.algorithms.Constants;
+import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
 import civitas.util.Use;
@@ -87,6 +89,8 @@ public class CryptoFactoryC implements CryptoFactory {
 
 	@Use
 	private static ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
+	@Use
+	private static GenerateRandomElement generateRandomElement;
 
 	/*
 	 * The following constants define the algorithms and providers to use.
@@ -249,7 +253,7 @@ public class CryptoFactoryC implements CryptoFactory {
 	@Override
 	public ElGamalKeyPair generateElGamalKeyPair(ElGamalParameters p) {
 		ElGamalParametersC ps = (ElGamalParametersC) p;
-		CivitasBigInteger x = CryptoAlgs.randomElement(ps.q);
+		CivitasBigInteger x = generateRandomElement.apply(ps.q);
 		CivitasBigInteger y = ps.g.modPow(x, ps.p);
 		ElGamalPrivateKeyC k = new ElGamalPrivateKeyC(x, ps);
 		ElGamalPublicKeyC K = new ElGamalPublicKeyC(y, ps);
@@ -273,7 +277,7 @@ public class CryptoFactoryC implements CryptoFactory {
 		ElGamalParametersC ps = (ElGamalParametersC) params;
 
 		// choose x in Z_q at random. This is the share of the private key.
-		CivitasBigInteger x = CryptoAlgs.randomElement(ps.q);
+		CivitasBigInteger x = generateRandomElement.apply(ps.q);
 		// the public part of the key is y
 		CivitasBigInteger y = ps.g.modPow(x, ps.p);
 
@@ -285,7 +289,7 @@ public class CryptoFactoryC implements CryptoFactory {
 	@Override
 	public VoteCapabilityShare generateVoteCapabilityShare(ElGamalParameters p) {
 		ElGamalParametersC ps = (ElGamalParametersC) p;
-		CivitasBigInteger x = CryptoAlgs.randomElement(ps.q);
+		CivitasBigInteger x = generateRandomElement.apply(ps.q);
 		try {
 			return new VoteCapabilityShareC(x, ps);
 		} catch (CryptoException imposs) {
@@ -401,7 +405,7 @@ public class CryptoFactoryC implements CryptoFactory {
 			ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
 			ElGamalPublicKeyC k = (ElGamalPublicKeyC) key;
 			CivitasBigInteger m = ((ElGamalMsgC) msg).bigIntValue();
-			CivitasBigInteger r = CryptoAlgs.randomElement(ps.q);
+			CivitasBigInteger r = generateRandomElement.apply(ps.q);
 			CivitasBigInteger a = ps.g.modPow(r, ps.p);
 			CivitasBigInteger b = m.modMultiply(k.y.modPow(r, ps.p), ps.p);
 			return new ElGamalCiphertextC(a, b);
@@ -437,7 +441,7 @@ public class CryptoFactoryC implements CryptoFactory {
 			ElGamalCiphertextC c = (ElGamalCiphertextC) ciphertext;
 			CivitasBigInteger c1 = c.a;
 			CivitasBigInteger c2 = c.b;
-			CivitasBigInteger y = CryptoAlgs.randomElement(ps.q);
+			CivitasBigInteger y = generateRandomElement.apply(ps.q);
 			c1 = c1.modMultiply(ps.g.modPow(y, ps.p), ps.p);
 			c2 = c2.modMultiply(k.y.modPow(y, ps.p), ps.p);
 			return new ElGamalCiphertextC(c1, c2);
@@ -451,7 +455,7 @@ public class CryptoFactoryC implements CryptoFactory {
 			ElGamalParameters params) {
 		try {
 			ElGamalParametersC ps = (ElGamalParametersC) params;
-			return new ElGamalReencryptFactorC(CryptoAlgs.randomElement(ps.q));
+			return new ElGamalReencryptFactorC(generateRandomElement.apply(ps.q));
 		} catch (ClassCastException e) {
 			throw new CryptoError(e);
 		}
@@ -617,7 +621,7 @@ public class CryptoFactoryC implements CryptoFactory {
 			ElGamalPublicKeyC k = (ElGamalPublicKeyC) key;
 			CivitasBigInteger m = ((ElGamalMsgC) msg).bigIntValue();
 			CivitasBigInteger rr = ((ElGamalReencryptFactorC) r).r;
-			CivitasBigInteger s = CryptoAlgs.randomElement(ps.q);
+			CivitasBigInteger s = generateRandomElement.apply(ps.q);
 			CivitasBigInteger a = ps.g.modPow(rr, ps.p);
 			CivitasBigInteger b = m.modMultiply(k.y.modPow(rr, ps.p), ps.p);
 
@@ -705,7 +709,7 @@ public class CryptoFactoryC implements CryptoFactory {
 		ElGamalParametersC params = (ElGamalParametersC) prms;
 		CivitasBigInteger x = ((ElGamalPrivateKeyC) k).x;
 		CivitasBigInteger v = params.g.modPow(x, params.p);
-		CivitasBigInteger z = CryptoAlgs.randomElement(params.q);
+		CivitasBigInteger z = generateRandomElement.apply(params.q);
 		CivitasBigInteger a = params.g.modPow(z, params.p);
 		CivitasBigInteger c = hash(v, a).mod(params.q); // can take mod q without
 																										// any ill effects.
@@ -726,7 +730,7 @@ public class CryptoFactoryC implements CryptoFactory {
 		ElGamalCiphertextC ac = (ElGamalCiphertextC) a;
 		ElGamalCiphertextC bc = (ElGamalCiphertextC) b;
 
-		CivitasBigInteger z = CryptoAlgs.randomElement(params.q);
+		CivitasBigInteger z = generateRandomElement.apply(params.q);
 		return new PETShareC(ac, bc, z);
 	}
 
@@ -1111,7 +1115,7 @@ public class CryptoFactoryC implements CryptoFactory {
 		if (bitlength % 8 != 0)
 			bytelength++;
 		byte[] bs = new byte[bytelength];
-		CryptoAlgs.rng().nextBytes(bs);
+		Constants.RANDOM_GENERATOR.nextBytes(bs);
 		return bs;
 	}
 
@@ -1170,7 +1174,7 @@ public class CryptoFactoryC implements CryptoFactory {
 	public int randomInt(int n) {
 		if (n <= 0)
 			return 0;
-		return CryptoAlgs.rng().nextInt(n);
+		return Constants.RANDOM_GENERATOR.nextInt(n);
 	}
 
 	@Override

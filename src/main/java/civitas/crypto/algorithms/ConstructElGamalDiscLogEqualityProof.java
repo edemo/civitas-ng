@@ -3,13 +3,16 @@ package civitas.crypto.algorithms;
 import java.util.ArrayList;
 import java.util.List;
 
-import civitas.crypto.concrete.CryptoAlgs;
 import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalParametersC;
 import civitas.crypto.concrete.ElGamalProofDiscLogEqualityC;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 public class ConstructElGamalDiscLogEqualityProof {
+	@Use
+	GenerateRandomElement generateRandomElement;
+
 	public ElGamalProofDiscLogEqualityC apply(ElGamalParametersC params,
 			CivitasBigInteger g1, CivitasBigInteger g2, CivitasBigInteger x) {
 
@@ -18,7 +21,7 @@ public class ConstructElGamalDiscLogEqualityProof {
 		CivitasBigInteger v = g1.modPow(x, params.p);
 		CivitasBigInteger w = g2.modPow(x, params.p);
 
-		CivitasBigInteger z = CryptoAlgs.randomElement(params.q);
+		CivitasBigInteger z = generateRandomElement.apply(params.q);
 		CivitasBigInteger a = g1.modPow(z, params.p);
 		CivitasBigInteger b = g2.modPow(z, params.p);
 

@@ -17,7 +17,10 @@ import civitas.common.Util;
 import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.ProofVote;
+import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.util.CivitasBigInteger;
+import civitas.util.DI;
+import civitas.util.Use;
 
 /**
  * This is a "non-malleable" (in some informal sense), NIZK proof of knowledge
@@ -28,6 +31,10 @@ import civitas.util.CivitasBigInteger;
  * Efficient Group Signatures for Large Groups.]
  */
 class ProofVoteC implements ProofVote {
+	@Use
+	private static GenerateRandomElement generateRandomElement = DI
+			.get(GenerateRandomElement.class);
+
 	/*
 	 * Public inputs o ElGamal parameters (p,g) o Encrypted capability = (a1,b1) o
 	 * Encrypted choice = (a2,b2) o Vote context ctx o Let proof environment E =
@@ -56,8 +63,8 @@ class ProofVoteC implements ProofVote {
 
 		CryptoFactoryC factory = CryptoFactoryC.singleton();
 
-		CivitasBigInteger r1 = CryptoAlgs.randomElement(params.q);
-		CivitasBigInteger r2 = CryptoAlgs.randomElement(params.q);
+		CivitasBigInteger r1 = generateRandomElement.apply(params.q);
+		CivitasBigInteger r2 = generateRandomElement.apply(params.q);
 
 		List<CivitasBigInteger> E = proofEnv(params, encCapability, encChoice,
 				context);
