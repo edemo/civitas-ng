@@ -13,6 +13,7 @@ public interface ElGamalCiphertext {
 
 	public void toXML(PrintWriter sb);
 
+	@Deprecated
 	public void toUnsignedCiphertextXML(PrintWriter sb);
 
 	public boolean equals(ElGamalCiphertext o);

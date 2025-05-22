@@ -8,7 +8,8 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PETCommitmentCTest extends ConcreteTestBase {
+public class PETCommitmentCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")

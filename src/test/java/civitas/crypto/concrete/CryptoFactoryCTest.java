@@ -26,7 +26,8 @@ import civitas.crypto.ElGamalParameters;
 import civitas.crypto.ElGamalPrivateKey;
 import civitas.util.CivitasBigInteger;
 
-public class CryptoFactoryCTest extends ConcreteTestBase {
+public class CryptoFactoryCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	@Test
 	@DisplayName("elGamalEncrypt with a factor works as expected:"

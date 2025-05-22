@@ -19,11 +19,14 @@ import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
 import civitas.util.Use;
 
-public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase {
+public class ElGamalProofDiscLogEqualityCTest
+		implements ElGamalProofDiscLogEqualityCTestData {
 
 	@Use
 	private static ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof = DI
 			.get(ConstructElGamalDiscLogEqualityProof.class);
+
+	CryptoFactoryC factory = CryptoFactoryC.singleton();
 
 	@Test
 	@DisplayName("constructor and toXML works as expected ")

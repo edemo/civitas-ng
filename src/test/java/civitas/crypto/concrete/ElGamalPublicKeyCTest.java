@@ -17,7 +17,8 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 
-public class ElGamalPublicKeyCTest extends ConcreteTestBase {
+public class ElGamalPublicKeyCTest extends ConcreteTestBase
+		implements ElGamalPublicKeyCTestData {
 
 	ElGamalPublicKeyC elGamalPublicKeyC;
 

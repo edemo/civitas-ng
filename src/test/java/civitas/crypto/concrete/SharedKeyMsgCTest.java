@@ -6,7 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class SharedKeyMsgCTest extends ConcreteTestBase {
+public class SharedKeyMsgCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	@Test
 	@DisplayName("byte array based constructor and toString works as expected")

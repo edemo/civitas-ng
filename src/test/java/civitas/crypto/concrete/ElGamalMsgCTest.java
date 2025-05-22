@@ -15,7 +15,8 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ElGamalMsg;
 
-public class ElGamalMsgCTest extends ConcreteTestBase {
+public class ElGamalMsgCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	ElGamalMsgC message;
 

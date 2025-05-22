@@ -10,7 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.CryptoException;
 
-public class SchnorrPrimeEncoderTest extends ConcreteTestBase {
+public class SchnorrPrimeEncoderTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	SchnorrPrimeEncoder encoder = new SchnorrPrimeEncoder(EL_GAMAL_PARAMETERS);
 

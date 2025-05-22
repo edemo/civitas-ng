@@ -14,11 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamalCiphertext;
 
-public class ElGamalDecryptionShareCTest extends ConcreteTestBase {
-
-	private static final ElGamalDecryptionShareC EL_GAMAL_DECRYPTION_SHARE = new ElGamalDecryptionShareC(
-			PUBKEY_VALUE_OTHER_GENERATOR_RANDOM1_FACTOR_POW_A,
-			EL_GAMAL_PROOF_DISC_LOG_EQUALITY);
+public class ElGamalDecryptionShareCTest extends ConcreteTestBase
+		implements ElGamalDecryptionShareTestData, ElGamalPrivateKeyCTestData,
+		ElGamalPublicKeyCTestData, ElGamalCiphertextCTestData {
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")

@@ -13,7 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamalPrivateKey;
 
-public class ElGamalPrivateKeyCTest extends ConcreteTestBase {
+public class ElGamalPrivateKeyCTest extends ConcreteTestBase
+		implements ElGamalPrivateKeyCTestData {
 
 	@Test
 	@DisplayName("constructor with key and params works")

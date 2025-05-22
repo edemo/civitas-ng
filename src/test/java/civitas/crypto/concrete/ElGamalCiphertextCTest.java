@@ -15,7 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamalCiphertext;
 
-public class ElGamalCiphertextCTest extends ConcreteTestBase {
+public class ElGamalCiphertextCTest extends ConcreteTestBase
+		implements ElGamalCiphertextCTestData {
 
 	@Test
 	@DisplayName("toXML converts it to xml representation")

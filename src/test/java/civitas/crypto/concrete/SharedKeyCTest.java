@@ -14,7 +14,8 @@ import javax.crypto.spec.SecretKeySpec;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class SharedKeyCTest extends ConcreteTestBase {
+public class SharedKeyCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	SharedKeyC SHARED_KEY_C = new SharedKeyC(
 			new SecretKeySpec(Base64.getDecoder().decode(SHARED_KEY_BASE64), "AES"),

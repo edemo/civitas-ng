@@ -19,7 +19,8 @@ import civitas.common.TestUtil;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ProofVote;
 
-public class ProofVoteCTest extends ConcreteTestBase {
+public class ProofVoteCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	private static final ProofVoteC PROOF_VOTE = new ProofVoteC(PROOF_VOTE_C,
 			PROOF_VOTE_S1, PROOF_VOTE_S2);

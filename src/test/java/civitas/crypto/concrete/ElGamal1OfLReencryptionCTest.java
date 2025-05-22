@@ -13,7 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamal1OfLReencryption;
 
-public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase {
+public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	@Test
 	@DisplayName("constructor accepts nulls")

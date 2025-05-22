@@ -15,7 +15,8 @@ import civitas.crypto.CryptoError;
 import civitas.crypto.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 
-public class ElGamalParametersCTest extends ConcreteTestBase {
+public class ElGamalParametersCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	@Test
 	@DisplayName("storing constructor and toXML works as expected")

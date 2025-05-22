@@ -16,7 +16,8 @@ import civitas.crypto.ElGamalParameters;
 import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
 import civitas.util.CivitasBigInteger;
 
-public class PETShareCTest extends ConcreteTestBase {
+public class PETShareCTest extends ConcreteTestBase
+		implements ConcreteTestData, PETDecommitmentCTestData {
 
 	private static final PETShareC PET_SHARE_C = new PETShareC(
 			EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B, BIGINT_C);
@@ -97,8 +98,6 @@ public class PETShareCTest extends ConcreteTestBase {
 		ConstructElGamalDiscLogEqualityProof mock = mock(
 				ConstructElGamalDiscLogEqualityProof.class);
 		PET_SHARE_C.constructElGamalDiscLogEqualityProof = mock;
-		ElGamalProofDiscLogEqualityC mockedProof = mock(
-				ElGamalProofDiscLogEqualityC.class);
 		ElGamalCiphertextC c1 = PET_SHARE_C.ciphertext1;
 		ElGamalCiphertextC c2 = PET_SHARE_C.ciphertext2;
 		CivitasBigInteger exponent = PET_SHARE_C.exponent;
@@ -110,11 +109,12 @@ public class PETShareCTest extends ConcreteTestBase {
 		CivitasBigInteger ei = e.modPow(exponent, BIGINT_P);
 
 		when(mock.apply(EL_GAMAL_PARAMETERS, d, e, exponent))
-				.thenReturn(mockedProof);
+				.thenReturn(EL_GAMAL_DISC_LOG_EQUALITY_PROOF);
 
 		PETDecommitmentC decommitment = (PETDecommitmentC) PET_SHARE_C
 				.decommitment(EL_GAMAL_PARAMETERS);
-		assertEquals(mockedProof, decommitment.proof);
+		assertEquals(PET_DECOMMITMENT_XML, decommitment.toXML());
+		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_PROOF, decommitment.proof);
 		assertEquals(di, decommitment.di);
 		assertEquals(ei, decommitment.ei);
 

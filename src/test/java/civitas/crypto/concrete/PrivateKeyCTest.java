@@ -7,7 +7,8 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PrivateKeyCTest extends ConcreteTestBase {
+public class PrivateKeyCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")

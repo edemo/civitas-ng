@@ -11,7 +11,8 @@ import java.io.StringWriter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class SharedKeyCiphertextCTest extends ConcreteTestBase {
+public class SharedKeyCiphertextCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")

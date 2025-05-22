@@ -15,7 +15,8 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 
-public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase {
+public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")

@@ -16,7 +16,8 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.CryptoException;
 import civitas.crypto.VoteCapability;
 
-public class VoteCapabilityCTest extends ConcreteTestBase {
+public class VoteCapabilityCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	@Test
 	@DisplayName("BigInteger+parameter constructor and toXML works as expected")

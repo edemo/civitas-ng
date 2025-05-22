@@ -23,8 +23,7 @@ public class SafePrimeEncoder implements Encoder {
 	}
 
 	@Override
-	public CivitasBigInteger encodePlaintext(CivitasBigInteger x)
-			throws CryptoException {
+	public CivitasBigInteger encodePlaintext(CivitasBigInteger x) {
 		CivitasBigInteger encoding = x;
 		if (legendreSymbol.apply(encoding, elGamalParameters.p,
 				elGamalParameters.q) == -1) {

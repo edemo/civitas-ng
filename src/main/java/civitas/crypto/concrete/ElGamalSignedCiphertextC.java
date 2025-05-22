@@ -88,6 +88,7 @@ public class ElGamalSignedCiphertextC extends ElGamalCiphertextC
 	}
 
 	@Override
+	@Deprecated
 	public void toUnsignedCiphertextXML(PrintWriter sb) {
 		super.toXML(sb);
 	}

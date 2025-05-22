@@ -17,7 +17,8 @@ import civitas.crypto.algorithms.LegendreSymbol;
 import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
 
-public class CryptoAlgsTest extends ConcreteTestBase {
+public class CryptoAlgsTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	GenerateSafePrime generateSafePrime = DI.get(GenerateSafePrime.class);
 	GenerateSchnorrPrime generateSchnorrPrime = DI

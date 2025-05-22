@@ -9,7 +9,8 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class SignatureCTest extends ConcreteTestBase {
+public class SignatureCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	private static final String SIGNATURE_XML = "<signature>dGVzdGRhdGE=</signature>";
 

@@ -9,7 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-public class ElGamalReencryptFactorCTest extends ConcreteTestBase {
+public class ElGamalReencryptFactorCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	@Test
 	@Tag("functional")

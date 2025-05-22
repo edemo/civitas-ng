@@ -22,8 +22,10 @@ import org.mockito.stubbing.Answer;
 import civitas.crypto.CryptoFactory;
 import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.concrete.ConcreteTestBase;
+import civitas.crypto.concrete.ConcreteTestData;
 
-public class CiphertextListTest extends ConcreteTestBase {
+public class CiphertextListTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	CryptoFactory mockFactory = mock(CryptoFactory.class);
 	CiphertextList zerosized = new CiphertextList(null);

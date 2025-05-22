@@ -13,7 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.PrivateKey;
 
-public class PublicKeyCTest extends ConcreteTestBase {
+public class PublicKeyCTest extends ConcreteTestBase
+		implements ConcreteTestData {
 
 	private static final PublicKeyC PUBLIC_KEY_C = new PublicKeyC(PUBLIC_KEY,
 			PUBLIC_KEY_NAME);
