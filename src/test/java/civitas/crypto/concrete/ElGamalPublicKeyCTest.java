@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 
 public class ElGamalPublicKeyCTest extends ConcreteTestBase {
@@ -87,6 +89,12 @@ public class ElGamalPublicKeyCTest extends ConcreteTestBase {
 	void equalsTest2() throws IllegalArgumentException, IOException {
 		assertFalse(EL_GAMAL_PUBLIC_KEY
 				.equals(new ElGamalPublicKeyC(BIGINT_B, EL_GAMAL_PARAMETERS)));
+	}
+
+	@Test
+	@DisplayName("not equals to anything not ElGamalPublicKeyC")
+	void equalsTest3() throws IllegalArgumentException, IOException {
+		assertFalse(EL_GAMAL_PUBLIC_KEY.equals(mock(ElGamalPublicKey.class)));
 	}
 
 }

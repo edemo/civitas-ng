@@ -78,8 +78,9 @@ import civitas.crypto.SharedKeyMsg;
 import civitas.crypto.Signature;
 import civitas.crypto.VoteCapability;
 import civitas.crypto.VoteCapabilityShare;
-import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
 import civitas.crypto.algorithms.Constants;
+import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
+import civitas.crypto.algorithms.GenerateElGamalParameters;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
@@ -91,6 +92,8 @@ public class CryptoFactoryC implements CryptoFactory {
 	private static ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
 	@Use
 	private static GenerateRandomElement generateRandomElement;
+	@Use
+	private static GenerateElGamalParameters generateElGamalParameters;
 
 	/*
 	 * The following constants define the algorithms and providers to use.
@@ -236,18 +239,19 @@ public class CryptoFactoryC implements CryptoFactory {
 	@Deprecated
 	public ElGamalParameters generateElGamalParameters(int keyLength,
 			int groupLength) {
-		return new ElGamalParametersC(keyLength, groupLength);
+		return generateElGamalParameters.apply(keyLength, groupLength);
 	}
 
 	/** Generate a safe prime group */
 	@Deprecated
 	public ElGamalParameters generateElGamalParameters(int keyLength) {
-		return new ElGamalParametersC(keyLength, keyLength + 1);
+		return generateElGamalParameters.apply(keyLength, keyLength + 1);
 	}
 
 	@Override
 	public ElGamalParameters generateElGamalParameters() {
-		return new ElGamalParametersC(EL_GAMAL_KEY_LENGTH, EL_GAMAL_GROUP_LENGTH);
+		return generateElGamalParameters.apply(EL_GAMAL_KEY_LENGTH,
+				EL_GAMAL_GROUP_LENGTH);
 	}
 
 	@Override

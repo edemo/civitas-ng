@@ -6,7 +6,7 @@ import civitas.util.Use;
 
 public class FindGenerator {
 	@Use
-	private static GenerateRandomElement generateRandomElement;
+	GenerateRandomElement generateRandomElement;
 
 	public CivitasBigInteger apply(SchnorrPrime sp) {
 		// Implementation of step 3 of Algorithm 11.54 from Handbook of Applied

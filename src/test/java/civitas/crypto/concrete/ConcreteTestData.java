@@ -1,27 +1,15 @@
 package civitas.crypto.concrete;
 
-import java.io.StringReader;
 import java.math.BigInteger;
-import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.SecretKeySpec;
-
-import civitas.common.CiphertextList;
+import civitas.crypto.algorithms.GenerateElGamalParametersTestData;
 import civitas.util.CivitasBigInteger;
 
-public class ConcreteTestData {
+public interface ConcreteTestData extends GenerateElGamalParametersTestData {
 	public static final String SOMESTRING = "testdata";
 	public static final String SOMESTRING_BASE64 = "dGVzdGRhdGE=";
 	public static final String SOMESTRING_EXTENDED = "exttestdatawas";
@@ -79,16 +67,6 @@ public class ConcreteTestData {
 	public static final CivitasBigInteger BIGINT_D = new CivitasBigInteger(
 			new BigInteger("8712678906543219345").toByteArray());
 
-	public static final String BIGINT_P_BASE64 = "AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ0gWk4zQiy9p87hS+sgNkxYr5okLM6HhXFTu2eUFgf5BQjju2YsvFhOXce4yJ00rsGSGeZAg5bT1Z45SdexGMevXEdCZrADRdikYU0ZLFTN7UWopWgLXd3DBfu3CY2fzwYzq0YWS0bzJ3cQA4fSAyFdU+Tekcd3vwQlkthh7WJW0VCYF1hGFdiGt9/aDQ7cDrW+fqbg4xrUN+wKoFbEHNHomUkGMaXsGyM9vyLCjtp9Jf/UXQSU9X+jAJS+Y7VXyEa9/ifHxsjAExE5RYpNWzqgjJRoiADVL1XeoqvdL/ltcEhAeq3TnhHNIi7cEGQZSGCvSVMiDPn2JBUeY8AswihwZhI7IiqroysQy6UcsZ45oACaVH0ZYSMSIvuGimPhqv0OVbR95lXipxaoHlygq8pLWJWlgVj9KIQQG1wTnD80liudqIdQ+/yuo10YxtGacmC7YxB/atrTgbJ8V/wRDRQw==";
-	public static final CivitasBigInteger BIGINT_P = new CivitasBigInteger(
-			Base64.getDecoder().decode(BIGINT_P_BASE64));
-	public static final String BIGINT_Q_BASE64 = "ALEbdrNCujCQI0Y4f38yusJkfR1nVqT95/P/H2z28zIH";
-	public static final CivitasBigInteger BIGINT_Q = new CivitasBigInteger(
-			Base64.getDecoder().decode(BIGINT_Q_BASE64));
-	public static final String BIGINT_G_BASE64 = "az5EMeordK3a0VbjoUsKeo/++OHFs5WaRLw6hW8Ezu7D1Egid0U3Obtzpn0GG8UHQjJnHINqwK6bX6RXBlVfsDmiKS2lgvWrL53vSPXtZfFIC/307vWLV2RymA9TQaGZ5d4q7O7l2KHNUx+ecK6QVqKqj46IXjwaYzKQXNg2NfwQGfj7dBTaoGHE401pdoHfyLfluAF3k4ZT6imEoIbe4Ar7ybYdI5eJYn96/hoyLouux8jI1LE+Oe7+eI1M5WK30TPbGKVaon4KPnfLYp8+HTloYb/jlNFLckqdZchKa765pBRjvNu+7MmYpHmqBlLuCLd4sBbD//Sy/aHPnxyccZM0MMwRPSSM0NKO8UuXkCEmRSI6gvdwyIk6FwsB8bF4ksvBAMSfN8gJd7rv1t9B46OByCs8YNuL1eJH1wJThwpUf1iAXPjFCkvrR4fm+lOeIYCGhBkEO1pB2sRzTulRVEadM6bFwo2N5eZb3ymPfERXogTVmljtdzxlAao9vBgk";
-	public static final CivitasBigInteger BIGINT_G = new CivitasBigInteger(
-			Base64.getDecoder().decode(BIGINT_G_BASE64));
-
 	public static final String P_OTHER_BASE64 = "AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf8tZIaH63gtefkwkLYnCdtF2sMI5MRddL3IgM7SZK+auYCtQitiTHGI0TF8xu5lDM7bV4GvZA6tTBEaKS9EMxD34H+5xFtBtRqWuCI6XMPEMJg71eqhVT3M5yEqwA1wJXXvD/oKs6nlx+MxcEzb9kQweaVE6aOa/9hPMFdU0wL2ZatNOJfN2+CmsweXdC/gnZSX4ySmWAGP4JTHq4abv1SN4JwkUzgsrWownWy2Pzm5fiCeQBc0yn70GTSdIxuDnfX9em+ORiSXhlh7+ddNcgvC35wkHmfjWELTBhUDUh1L8gQWWEQsq2m56u2cv6sdY6FYo2GuxzASJ9vIWQBDS1Et9AJzs3dVN4PjdKWt2peAKGb1Gl5rcBEmM5b3oYhWzSLSu8axcU2dqP0FNvPpkrD98hEAvWyW2sU/xdk4wwGSw==";
 
 	public static final String G_OTHER_BASE64 = "UVvkQGS9ULYLZfgomIk1JPAkhBjF3FJJf2v/BESOIa0GSawzuu8+UJ3AhsmgF+bb8jhqfUq/UTqyBTR2IFKyItkUrb/B1UoK/wvaw0kbKyfjUrCGXnXOHnIE8bu/6Drjj2QzDy69kKJP37PGhd/jaRxdqGiSoEy1TAD1a/mjkjhmJmUSk4FZdtXUW6rwlq40C63dlKW2pWru+B6XRjtURM1RP4w7joKvcV2N4x3OAQs3/skjmUXyRQoU1k23eoNCee4wYadG+fne2+4MTvr/Qb6JIG4TOEmGmWO3ADHdwOHQxy515OTMP+DoffBMHFZKy7OZnC4G7q/+qHzVbVAJc8iwLVy73zDt21g7PgvEUB+ndESkhWUmVTNBtWANLGgDswoyvZXX8wu1JC5lI485dm8ux8VP5k/4j9TYIA9PzDRxs8M6ykF5ej4XAaa80Yuzpbxw7Eex2rZHiys79Hn3jiM5vhOTND8hdb4Qexhqu5jQw4rwj0j094M921WrScq6";
@@ -103,6 +81,15 @@ public class ConcreteTestData {
 	public static final String GENERATOR_OTHER_BASE64 = "B8Ewf1Z2BaJYadh/hzQ2kjNGPmYWBIvA6ZxHSpVpB/Sw4m40L8qWkwsNrfUh87L8GIJM0QZ4tHgYCdduHUjiWmcStRTh+2RvNoinIrK5QnxaW3g6Y2G32rxutDlOKwaoMMbrut50O8XN12mD4wR15inhh4+QVyzeobFVSPnpgheb2gt9i5pTKJY6JQkpcZnD4bHF+i7MGelqeoyGmLGqZu98ODsSxn2HfmMniV+p+aaTYJV8niINbYlvvz2BSwf86YdlQOa5WfzzPGSltmt5v5ACs135JCIw3kRzepRzjWGAINHv+SgPcBVSVTwtuBoykYhxzT03CWWo5WwZ+NzdmgDih7RheaQpMlIfSxP/5ZJVukgDxJv4v70F3KRwJ5V5jY26sjETz2Kayn6y38EfDuQjeOAUOamGYcHpdqKdPySJWTK0o6sfKIQ2etMZG0fUFEEt3CdsoGOUi31saXFDK4pkHqu+jQMzCg2Z5EsXwVgZ6J0SD1Nq/DDGvAU2lQdU";
 	public static final CivitasBigInteger GENERATOR_OTHER = new CivitasBigInteger(
 			Base64.getDecoder().decode(GENERATOR_OTHER_BASE64));
+
+	public static final CivitasBigInteger GENERATOR_FOR_UNPRIME_P = new CivitasBigInteger(
+			Base64.getDecoder()
+					.decode("APPuKv0SXyLaZklKlEiPMfeSkEfsEfdN24AXL3NrYBKG"));
+	public static final CivitasBigInteger GENERATOR_FOR_UNPRIME_Q = new CivitasBigInteger(
+			Base64.getDecoder().decode("SlVGgqFXxlg="));
+
+	public static final CivitasBigInteger D_EXP_TWOK_FROMP = BIGINT_D.modPow(
+			BIGINT_P.subtract(CivitasBigInteger.ONE).divide(BIGINT_Q), BIGINT_P);
 
 	public static final ElGamalParametersC EL_GAMAL_PARAMETERS_Q_SAME = new ElGamalParametersC(
 			BIGINT_P_OTHER, BIGINT_Q, BIGINT_G_OTHER);
@@ -127,7 +114,9 @@ public class ConcreteTestData {
 			+ "</x></elGamalPrivateKey>";
 	public static final String EL_GAMAL_PRIVATE_KEY_NULL_XML = "<elGamalPrivateKey><params></params><x></x></elGamalPrivateKey>";
 
-	public static final String EL_GAMAL_PARAMETERS_SAFE_XML = "<elGamalParameters><p>ASvIFyEHZA21reK32LTtYEwJG4GSW8Xzrl83llQSdjcztgsIJeyQm0ZZ36vG4aTVYjtADzV9J6xJ5RJ2U9QDfV8=</p><q>AJXkC5CDsgba1vFb7Fp2sCYEjcDJLeL51y+byyoJOxuZ2wWEEvZITaMs79XjcNJqsR2gB5q+k9Yk8ok7KeoBvq8=</q><g>AKhY5FkyO989WVWT54UIYi29aZjUfx1XD0xlcF13Y7nGa7itniOZIj36m+m8XHW9VN0bzCgLh4btlHBQ8AY3dMo=</g></elGamalParameters>";
+	public static final String EL_GAMAL_PARAMETERS_SAFE_XML = "<elGamalParameters><p>"
+			+ SAFE_P_BASE64 + "</p><q>" + SAFE_Q_BASE64 + "</q><g>" + SAFE_G_BASE64
+			+ "</g></elGamalParameters>";
 	public static final ElGamalReencryptFactorC REENCRYPT_FACTOR_RANDOMS_1 = new ElGamalReencryptFactorC(
 			RANDOMS_1);
 	public static final CivitasBigInteger PUBKEY_VALUE_OTHER_GENERATOR_RANDOM1_FACTOR = GENERATOR_OTHER
@@ -250,12 +239,14 @@ public class ConcreteTestData {
 
 	public static final CryptoFactoryC factory = CryptoFactoryC.singleton();
 
-	public static final CiphertextList CIPHERTEXT_LIST;
 	public static final String EL_GAMAL_CIPHERTEXT_1_OF_L_XML = "<elGamalCiphertext><a>"
 			+ PUBLICIZED_BIGINT_A_BASE64 + "</a><b>"
 			+ "VFv/czKkqNzSiah+WxzVEAgZO9hVVhnCjqRH66PFZ3e1y1eWvCjP/SDbmuMFQLfSHzheGmtp3bGwvayVIIV5HnrWyQN8YMF5LM7QxX4rUcYDuC2wG3G+wszjbNIJhyWy2ejltNQFiv71cI0bTU5P9YhgNiuXsq0C1tAWdt6c6lqBW2Oof/g+2VSBHw/gJ+/spR6sf+H6hew4Y/szHEkuNIDBr3gkcpJE2dAk2RV6lr9Xx/Xy7eignXkeXqkpSzXK+qlX6u3gQbCwXIpmls57CAT/J4hBSbbXQbJPxMRfMemZm4hLSiHP70v2g1IYxoydNwL/sUPraXXgoiDFFqsxOSWeN9l3RysnsQUKC1GKON0YvUDNf5WqEQrxdPC/F4q0azNxC2Q3dgznC0oYYlBlaS3uDkTxi2tKSFiu6+mM6YUxKd04pplRtUPeqTLiFK5Q0giqkKP5mK4DLiKhdfJkOdkuS6YEzGiYzLRVuuYFWXx352e3Vcqbp8DpKsphFsnV"
 			+ "</b></elGamalCiphertext>";
 	public static final String EL_GAMAL_PROOF_1_OF_L_XML = "<elGamalProof1OfL><size>10</size><dv>awmfhAU6U7Wcz5kPkg5cqncO4Tz5tmc4ZtqoiRtyLpA=</dv><dv>R2yN/mgDmwcpUg+ZVUEstEySVXankjgvA95fa5wHGXQ=</dv><dv>AICmwameAGKMoXXKbfljqrBm+JOmPzS2klx8m1EZk9uz</dv><dv>QIj/R6x31/E8wqRzm9XbPb9DiYt2mScs4FhE+2wz4go=</dv><dv>ft13WHaYq8xNHO/24hSt4nlTjH7CKN5hhD5shAoDHm8=</dv><dv>DD5VVJY1BonuOc8nJe5xfYy3wf9kQya9U+sJaDbAQ3k=</dv><dv>AJXL5ONmIuoyvK94CcuoRB2bAdiq8Ok3Gr++iTDqsWeX</dv><dv>axVSQ9fOAIElaqV6wJS1pFT2wu9STftaKfcZkAc2tkM=</dv><dv>Lk+xgoUCqFz/JbQzwDXgbLh1v/HxaijFEZIO1U8q1as=</dv><dv>faC93a1h3ET+0Hzb+tvwUHHQZx9QurDrjq9lYXr5Nec=</dv><rv>LH3xOock3kMSCTC0JfaD/qWoikvKsCwYU4CZmDfyWsg=</rv><rv>AIRo36+ex/i5zY2YDDuGtxDmPoGIH/7M1XhL625qqBFz</rv><rv>CibppMYGZsz37KkI95Z2IStd6/wc3w1QxKyIiKz6dNc=</rv><rv>fgOK4diBwxwnJg1WGwQr5REV1psJa7Zm3PoQZWMImsQ=</rv><rv>ALAooPo4bF254BxADYvC6uOQyhPJOEJAKCk43DwzOdwX</rv><rv>Jzbj2o69WCs46w7Yqli6mBcbvN8t3MNhecxtjN1nmxc=</rv><rv>GZzjyxNJ+2MKQP7SoMOloMF1h7Wyv5//5wCTE3s5Ytk=</rv><rv>RHEFyxQhAgAcSsKqe1WkyzGvAzeVgaiYWs9JcPiSLfA=</rv><rv>bOSCz15zVkOFXQ+fH1sSTgsy305V8yvypIndB2vaJBw=</rv><rv>Ijx1dyYqyhR+v0QiPqTXl49sM5k0wp5DHmMsujVP6x4=</rv></elGamalProof1OfL>";
+	public static final String EL_GAMAL_PROOF_1_OF_L_BAD_XML = "<elGamalProof1OfL><size>10</size><dv>"
+			+ "R2yN/mgDmwcpUg+ZVUEstEySVXankjgvA95fa5wHGXQ="
+			+ "</dv><dv>R2yN/mgDmwcpUg+ZVUEstEySVXankjgvA95fa5wHGXQ=</dv><dv>AICmwameAGKMoXXKbfljqrBm+JOmPzS2klx8m1EZk9uz</dv><dv>QIj/R6x31/E8wqRzm9XbPb9DiYt2mScs4FhE+2wz4go=</dv><dv>ft13WHaYq8xNHO/24hSt4nlTjH7CKN5hhD5shAoDHm8=</dv><dv>DD5VVJY1BonuOc8nJe5xfYy3wf9kQya9U+sJaDbAQ3k=</dv><dv>AJXL5ONmIuoyvK94CcuoRB2bAdiq8Ok3Gr++iTDqsWeX</dv><dv>axVSQ9fOAIElaqV6wJS1pFT2wu9STftaKfcZkAc2tkM=</dv><dv>Lk+xgoUCqFz/JbQzwDXgbLh1v/HxaijFEZIO1U8q1as=</dv><dv>faC93a1h3ET+0Hzb+tvwUHHQZx9QurDrjq9lYXr5Nec=</dv><rv>LH3xOock3kMSCTC0JfaD/qWoikvKsCwYU4CZmDfyWsg=</rv><rv>AIRo36+ex/i5zY2YDDuGtxDmPoGIH/7M1XhL625qqBFz</rv><rv>CibppMYGZsz37KkI95Z2IStd6/wc3w1QxKyIiKz6dNc=</rv><rv>fgOK4diBwxwnJg1WGwQr5REV1psJa7Zm3PoQZWMImsQ=</rv><rv>ALAooPo4bF254BxADYvC6uOQyhPJOEJAKCk43DwzOdwX</rv><rv>Jzbj2o69WCs46w7Yqli6mBcbvN8t3MNhecxtjN1nmxc=</rv><rv>GZzjyxNJ+2MKQP7SoMOloMF1h7Wyv5//5wCTE3s5Ytk=</rv><rv>RHEFyxQhAgAcSsKqe1WkyzGvAzeVgaiYWs9JcPiSLfA=</rv><rv>bOSCz15zVkOFXQ+fH1sSTgsy305V8yvypIndB2vaJBw=</rv><rv>Ijx1dyYqyhR+v0QiPqTXl49sM5k0wp5DHmMsujVP6x4=</rv></elGamalProof1OfL>";
 
 	public static final String EL_GAMAL_1_OF_L_REENCRYPTION_XML = "<elGamal1OfLReencryption>"
 			+ EL_GAMAL_CIPHERTEXT_1_OF_L_XML + EL_GAMAL_PROOF_1_OF_L_XML
@@ -305,9 +296,6 @@ public class ConcreteTestData {
 
 	public static final CivitasBigInteger BIGINT_A_ENCRYPTED_SAFE = new CivitasBigInteger(
 			Base64.getDecoder().decode(BIGINT_A_ENCRYPTED_SAFE_BASE64));
-	public static final ElGamalProofDiscLogEqualityC EL_GAMAL_PROOF_DISC_LOG_EQUALITY;
-
-	public static final ElGamal1OfLReencryptionC EL_GAMAL_1_OF_L_REENCRYPTION;
 
 	public static final ElGamalReencryptFactorC ENCRYPT_FACTOR_ZERO = new ElGamalReencryptFactorC(
 			CivitasBigInteger.ZERO);
@@ -318,9 +306,9 @@ public class ConcreteTestData {
 	public static final ElGamalReencryptFactorC ENCRYPT_FACTOR_D = new ElGamalReencryptFactorC(
 			BIGINT_D);
 
-	private static final String PROOF_VOTE_C_BASE64 = "JLjaqZUzF9Ja/0klrpAtIPe2sETCRf+0OlWeiI1TV/M=";
-	private static final String PROOF_VOTE_S1_BASE64 = "S/9gPijKaeaDapS+YtHnBzKupvsiFDWRIaO5r1t1Ja8=";
-	private static final String PROOF_VOTE_S2_BASE64 = "RpmdQslm/BT1fr9Bf2NsCdPMiY+ch4reYv+bEaa/RMo=";
+	public static final String PROOF_VOTE_C_BASE64 = "JLjaqZUzF9Ja/0klrpAtIPe2sETCRf+0OlWeiI1TV/M=";
+	public static final String PROOF_VOTE_S1_BASE64 = "S/9gPijKaeaDapS+YtHnBzKupvsiFDWRIaO5r1t1Ja8=";
+	public static final String PROOF_VOTE_S2_BASE64 = "RpmdQslm/BT1fr9Bf2NsCdPMiY+ch4reYv+bEaa/RMo=";
 	public static final String PROOF_VOTE_XML = "<elGamalProofVote><c>"
 			+ PROOF_VOTE_C_BASE64 + "</c><s1>" + PROOF_VOTE_S1_BASE64 + "</s1><s2>"
 			+ PROOF_VOTE_S2_BASE64 + "</s2></elGamalProofVote>";
@@ -345,120 +333,5 @@ public class ConcreteTestData {
 			Base64.getDecoder().decode(DVR_C_BASE64));
 	public static final CivitasBigInteger DVR_U = new CivitasBigInteger(
 			Base64.getDecoder().decode(DVR_U_BASE64));
-	public static final ElGamalCiphertextC EL_GAMAL_CIPHERTEXT_E;
-	public static final ElGamalCiphertextC EL_GAMAL_CIPHERTEXT_EPRIME;
-
-	public static final java.security.PrivateKey PRIVATE_KEY;
-	public static final java.security.PublicKey PUBLIC_KEY;
-	public static final java.security.PrivateKey PRIVATE_KEY2;
-	public static final java.security.PublicKey PUBLIC_KEY2;
-
-	public static final ElGamalParametersC EL_GAMAL_PARAMETERS;
-	public static final ElGamalParametersC EL_GAMAL_PARAMETERS_OTHER;
-	public static final ElGamalPrivateKeyC ELGAMAL_PRIVATE_KEY;
-	public static final ElGamalPrivateKeyC ELGAMAL_PRIVATE_KEY2;
-	public static final VoteCapabilityShareC VOTE_CAPABILITY_SHARE;
-	public static final VoteCapabilityShareC VOTE_CAPABILITY_SHARE_JUST_BIGINT;
-	public static final ElGamalParametersC EL_GAMAL_PARAMETERS_SAFE;
-	public static final CivitasBigInteger SOME_INT_ENCRYPTED_SAFE;
-	public static final VoteCapabilityC VOTE_CAPABILITY;
-	public static final VoteCapabilityC VOTE_CAPABILITY_JUST_BIGINT;
-
-	public static final ElGamalPublicKeyC EL_GAMAL_PUBLIC_KEY;
-	public static final ElGamalPublicKeyC EL_GAMAL_PUBLIC_KEY2;
-	public static final ElGamalPublicKeyC EL_GAMAL_PUBLIC_KEY_OTHER;
-	public static final ElGamalProofKnowDiscLogC ELGAMAL_PROOF_KNOWN_DISC_LOG;
-	public static final ElGamalKeyShareC EL_GAMAL_KEY_SHARE_C;
-
-	public static final ElGamalCiphertextC EL_GAMAL_CIPHERTEXT_A;
-	public static final ElGamalCiphertextC EL_GAMAL_CIPHERTEXT_B;
-
-	static {
-		try {
-
-			EL_GAMAL_PARAMETERS = ElGamalParametersC
-					.fromXML(new StringReader(ELGAMAL_PARAMETERS_XML));
-			EL_GAMAL_PARAMETERS_SAFE = ElGamalParametersC
-					.fromXML(new StringReader(EL_GAMAL_PARAMETERS_SAFE_XML));
-			EL_GAMAL_PARAMETERS_OTHER = ElGamalParametersC
-					.fromXML(new StringReader(ELGAMAL_PARAMETERS_OTHER_XML));
-			ELGAMAL_PRIVATE_KEY = new ElGamalPrivateKeyC(BIGINT_A,
-					EL_GAMAL_PARAMETERS);
-			EL_GAMAL_PUBLIC_KEY = new ElGamalPublicKeyC(PUBLICIZED_BIGINT_A,
-					EL_GAMAL_PARAMETERS);
-			EL_GAMAL_PUBLIC_KEY2 = new ElGamalPublicKeyC(
-					BIGINT_G.modPow(BIGINT_B, BIGINT_P), EL_GAMAL_PARAMETERS);
-			ELGAMAL_PRIVATE_KEY2 = new ElGamalPrivateKeyC(BIGINT_B,
-					EL_GAMAL_PARAMETERS);
-			EL_GAMAL_PUBLIC_KEY_OTHER = new ElGamalPublicKeyC(
-					BIGINT_G_OTHER.modPow(BIGINT_A, BIGINT_P), EL_GAMAL_PARAMETERS_OTHER);
-			VOTE_CAPABILITY_SHARE = new VoteCapabilityShareC(BIGINT_A,
-					EL_GAMAL_PARAMETERS);
-			VOTE_CAPABILITY_SHARE_JUST_BIGINT = new VoteCapabilityShareC(BIGINT_A);
-			VOTE_CAPABILITY = new VoteCapabilityC(BIGINT_A, EL_GAMAL_PARAMETERS);
-			VOTE_CAPABILITY_JUST_BIGINT = new VoteCapabilityC(BIGINT_A);
-
-			SOME_INT_ENCRYPTED_SAFE = EL_GAMAL_PARAMETERS_SAFE
-					.encodePlaintext(SOME_INT_BIG);
-
-			boolean doGenerate = false;
-			if (doGenerate) {
-				KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA", "BC");
-				generator.initialize(2048);
-				KeyPair pair = generator.generateKeyPair();
-				PublicKey pub = pair.getPublic();
-				PrivateKey priv = pair.getPrivate();
-				System.out
-						.println(Base64.getEncoder().encodeToString(pub.getEncoded()));
-				System.out
-						.println(Base64.getEncoder().encodeToString(priv.getEncoded()));
-
-				SecretKeySpec skeySpec = new SecretKeySpec(BYTES, "AES");
-				SecretKeyFactory shkf = SecretKeyFactory.getInstance("AES", "BC");
-				SecretKey skey = shkf.generateSecret(skeySpec);
-				System.out
-						.println(Base64.getEncoder().encodeToString(skey.getEncoded()));
-			}
-			KeyFactory keyFactory = KeyFactory.getInstance("RSA", "BC");
-
-			PRIVATE_KEY = keyFactory.generatePrivate(new PKCS8EncodedKeySpec(
-					Base64.getDecoder().decode(PRIVATE_KEY_BASE64)));
-
-			PUBLIC_KEY = keyFactory.generatePublic(new X509EncodedKeySpec(
-					Base64.getDecoder().decode(PUBLIC_KEY_BASE64)));
-
-			PRIVATE_KEY2 = keyFactory.generatePrivate(new PKCS8EncodedKeySpec(
-					Base64.getDecoder().decode(PRIVATE_KEY2_BASE64)));
-
-			PUBLIC_KEY2 = keyFactory.generatePublic(new X509EncodedKeySpec(
-					Base64.getDecoder().decode(PUBLIC_KEY2_BASE64)));
-
-			EL_GAMAL_1_OF_L_REENCRYPTION = (ElGamal1OfLReencryptionC) ElGamal1OfLReencryptionC
-					.fromXML(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML));
-			CIPHERTEXT_LIST = new CiphertextList(
-					factory.constructWellKnownCiphertexts(EL_GAMAL_PUBLIC_KEY,
-							NO_OF_WELL_KNOWN_CIPHERTEXTS));
-			ELGAMAL_PROOF_KNOWN_DISC_LOG = ElGamalProofKnowDiscLogC
-					.fromXML(new StringReader(ELGAMAL_PROOF_KNOWN_DISC_LOG_XML));
-
-			EL_GAMAL_KEY_SHARE_C = new ElGamalKeyShareC(EL_GAMAL_PUBLIC_KEY,
-					ELGAMAL_PROOF_KNOWN_DISC_LOG);
-
-			EL_GAMAL_PROOF_DISC_LOG_EQUALITY = (ElGamalProofDiscLogEqualityC) ElGamalProofDiscLogEqualityC
-					.fromXML(new StringReader(EL_GAMAL_PROOF_DISC_LOG_EQUALITY_XML));
-
-			EL_GAMAL_CIPHERTEXT_A = ElGamalCiphertextC
-					.fromXML(new StringReader(EL_GAMAL_CIPHERTEXT_A_XML));
-			EL_GAMAL_CIPHERTEXT_B = ElGamalCiphertextC
-					.fromXML(new StringReader(EL_GAMAL_CIPHERTEXT_B_XML));
-			EL_GAMAL_CIPHERTEXT_E = ElGamalCiphertextC
-					.fromXML(new StringReader(EL_GAMAL_CIPHERTEXT_E_XML));
-			EL_GAMAL_CIPHERTEXT_EPRIME = ElGamalCiphertextC
-					.fromXML(new StringReader(EL_GAMAL_CIPHERTEXT_EPRIME_XML));
-
-		} catch (Exception e) {
-			throw new Error(e);
-		}
-	}
 
 }

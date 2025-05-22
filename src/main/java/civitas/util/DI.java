@@ -2,6 +2,7 @@ package civitas.util;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,6 +40,34 @@ public class DI {
 				}
 			}
 		}
-
 	}
+
+	public static void stubUp(Object test) {
+		try {
+			for (Field objField : test.getClass().getDeclaredFields()) {
+				if (objField.isAnnotationPresent(Tested.class)) {
+
+					Class<?> type = objField.getType();
+					Constructor<?> constructor = type.getDeclaredConstructor();
+					constructor.setAccessible(true);
+					Object instance = constructor.newInstance();
+					objField.setAccessible(true);
+					objField.set(test, instance);
+					for (Field field : type.getDeclaredFields()) {
+						if (field.isAnnotationPresent(Use.class)) {
+							String stubName = field.getType().getName() + "Stub";
+							Class<?> stub = Class.forName(stubName);
+							Method method = stub.getDeclaredMethod("stub", null);
+							Object value = method.invoke(null, null);
+							field.setAccessible(true);
+							field.set(instance, value);
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			throw new Error(e);
+		}
+	}
+
 }

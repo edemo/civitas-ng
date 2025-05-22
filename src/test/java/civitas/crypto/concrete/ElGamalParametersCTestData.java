@@ -1,0 +1,18 @@
+package civitas.crypto.concrete;
+
+import java.util.Base64;
+
+import civitas.util.CivitasBigInteger;
+
+public interface ElGamalParametersCTestData {
+	public static final String BIGINT_P_BASE64 = "AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ0gWk4zQiy9p87hS+sgNkxYr5okLM6HhXFTu2eUFgf5BQjju2YsvFhOXce4yJ00rsGSGeZAg5bT1Z45SdexGMevXEdCZrADRdikYU0ZLFTN7UWopWgLXd3DBfu3CY2fzwYzq0YWS0bzJ3cQA4fSAyFdU+Tekcd3vwQlkthh7WJW0VCYF1hGFdiGt9/aDQ7cDrW+fqbg4xrUN+wKoFbEHNHomUkGMaXsGyM9vyLCjtp9Jf/UXQSU9X+jAJS+Y7VXyEa9/ifHxsjAExE5RYpNWzqgjJRoiADVL1XeoqvdL/ltcEhAeq3TnhHNIi7cEGQZSGCvSVMiDPn2JBUeY8AswihwZhI7IiqroysQy6UcsZ45oACaVH0ZYSMSIvuGimPhqv0OVbR95lXipxaoHlygq8pLWJWlgVj9KIQQG1wTnD80liudqIdQ+/yuo10YxtGacmC7YxB/atrTgbJ8V/wRDRQw==";
+	public static final CivitasBigInteger BIGINT_P = new CivitasBigInteger(
+			Base64.getDecoder().decode(BIGINT_P_BASE64));
+	public static final String BIGINT_Q_BASE64 = "ALEbdrNCujCQI0Y4f38yusJkfR1nVqT95/P/H2z28zIH";
+	public static final CivitasBigInteger BIGINT_Q = new CivitasBigInteger(
+			Base64.getDecoder().decode(BIGINT_Q_BASE64));
+	public static final String BIGINT_G_BASE64 = "az5EMeordK3a0VbjoUsKeo/++OHFs5WaRLw6hW8Ezu7D1Egid0U3Obtzpn0GG8UHQjJnHINqwK6bX6RXBlVfsDmiKS2lgvWrL53vSPXtZfFIC/307vWLV2RymA9TQaGZ5d4q7O7l2KHNUx+ecK6QVqKqj46IXjwaYzKQXNg2NfwQGfj7dBTaoGHE401pdoHfyLfluAF3k4ZT6imEoIbe4Ar7ybYdI5eJYn96/hoyLouux8jI1LE+Oe7+eI1M5WK30TPbGKVaon4KPnfLYp8+HTloYb/jlNFLckqdZchKa765pBRjvNu+7MmYpHmqBlLuCLd4sBbD//Sy/aHPnxyccZM0MMwRPSSM0NKO8UuXkCEmRSI6gvdwyIk6FwsB8bF4ksvBAMSfN8gJd7rv1t9B46OByCs8YNuL1eJH1wJThwpUf1iAXPjFCkvrR4fm+lOeIYCGhBkEO1pB2sRzTulRVEadM6bFwo2N5eZb3ymPfERXogTVmljtdzxlAao9vBgk";
+	public static final CivitasBigInteger BIGINT_G = new CivitasBigInteger(
+			Base64.getDecoder().decode(BIGINT_G_BASE64));
+
+}

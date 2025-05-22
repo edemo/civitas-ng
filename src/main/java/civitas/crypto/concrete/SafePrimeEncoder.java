@@ -6,7 +6,7 @@ import civitas.crypto.algorithms.LegendreSymbol;
 import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
 
-class SafePrimeEncoder implements Encoder {
+public class SafePrimeEncoder implements Encoder {
 
 	LegendreSymbol legendreSymbol = DI.get(LegendreSymbol.class);
 

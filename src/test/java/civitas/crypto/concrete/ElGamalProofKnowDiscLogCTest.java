@@ -1,8 +1,10 @@
 package civitas.crypto.concrete;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -10,6 +12,7 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 
 public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase {
@@ -40,6 +43,14 @@ public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase {
 		CivitasBigInteger r = z.add(c.modMultiply(key, q));
 		assertTrue(
 				new ElGamalProofKnowDiscLogC(a, c, r, v).verify(EL_GAMAL_PARAMETERS));
+	}
+
+	@Test
+	@DisplayName("verify fails if parameters are not of type ElGamalParametersC")
+	void verifyTest1() {
+		assertFalse(new ElGamalProofKnowDiscLogC(ELGAMAL_PROOF_KNOWN_DISC_LOG_A,
+				ELGAMAL_PROOF_KNOWN_DISC_LOG_C, ELGAMAL_PROOF_KNOWN_DISC_LOG_R,
+				PUBLICIZED_BIGINT_A).verify(mock(ElGamalParameters.class)));
 	}
 
 	@Test

@@ -16,13 +16,11 @@ import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.Encoder;
-import civitas.crypto.SchnorrPrime;
 import civitas.crypto.algorithms.Constants;
 import civitas.crypto.algorithms.FindGenerator;
 import civitas.crypto.algorithms.GenerateSafePrime;
 import civitas.crypto.algorithms.GenerateSchnorrPrime;
 import civitas.util.CivitasBigInteger;
-import civitas.util.DI;
 import civitas.util.Use;
 
 /**
@@ -63,28 +61,6 @@ public class ElGamalParametersC implements ElGamalParameters {
 	 */
 	protected ElGamalParametersC() {
 		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Constructs a Schnorr prime group where p = 2kq + 1. If groupLength =
-	 * keyLength + 1, this is a safe prime group.
-	 * 
-	 * @param keyLength   The number of bits of q.
-	 * @param groupLength The number of bits of p.
-	 */
-	protected ElGamalParametersC(int keyLength, int groupLength) {
-		DI.fill(this);
-		SchnorrPrime sp;
-		if (groupLength == keyLength + 1) {
-			sp = generateSafePrime.apply(keyLength);
-			encoder = new SafePrimeEncoder(this);
-		} else {
-			sp = generateSchnorrPrime.apply(keyLength, groupLength);
-			encoder = new SchnorrPrimeEncoder(this);
-		}
-		p = sp.p;
-		q = sp.q;
-		g = findGenerator.apply(sp);
 	}
 
 	public ElGamalParametersC(CivitasBigInteger p, CivitasBigInteger q,

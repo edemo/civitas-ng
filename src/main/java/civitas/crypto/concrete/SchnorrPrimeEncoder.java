@@ -4,7 +4,7 @@ import civitas.crypto.CryptoException;
 import civitas.crypto.Encoder;
 import civitas.util.CivitasBigInteger;
 
-class SchnorrPrimeEncoder implements Encoder {
+public class SchnorrPrimeEncoder implements Encoder {
 	/**
 	 * 
 	 */

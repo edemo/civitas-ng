@@ -59,12 +59,37 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase {
 	}
 
 	@Test
-	@DisplayName("equals when the message and the proof are the same "
-			+ "FIXME: test difference for message and proof")
+	@DisplayName("equals when the message and the proof are the same ")
 	void testEquals() throws IllegalArgumentException, IOException {
 		assertTrue(ElGamal1OfLReencryptionC
 				.fromXML(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
 				.equals(EL_GAMAL_1_OF_L_REENCRYPTION));
+	}
+
+	@Test
+	@DisplayName("not equals when the message is different")
+	void testEquals_1() throws IllegalArgumentException, IOException {
+
+		assertFalse(ElGamal1OfLReencryptionC
+				.fromXML(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
+				.equals(new ElGamal1OfLReencryptionC(
+						ElGamalCiphertextC
+								.fromXML(new StringReader(EL_GAMAL_CIPHERTEXT_NAIVE_XML)),
+						ElGamalProof1OfLC
+								.fromXML(new StringReader(EL_GAMAL_PROOF_1_OF_L_XML)))));
+	}
+
+	@Test
+	@DisplayName("not equals when the proof is different")
+	void testEquals_2() throws IllegalArgumentException, IOException {
+
+		assertFalse(ElGamal1OfLReencryptionC
+				.fromXML(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
+				.equals(new ElGamal1OfLReencryptionC(
+						ElGamalCiphertextC
+								.fromXML(new StringReader(EL_GAMAL_CIPHERTEXT_1_OF_L_XML)),
+						ElGamalProof1OfLC
+								.fromXML(new StringReader(EL_GAMAL_PROOF_1_OF_L_BAD_XML)))));
 	}
 
 	@Test
