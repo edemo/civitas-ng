@@ -17,12 +17,16 @@ import civitas.crypto.ElGamalParameters;
 import civitas.crypto.ElGamalProofDiscLogEquality;
 import civitas.crypto.PETCommitment;
 import civitas.crypto.PETDecommitment;
+import civitas.crypto.algorithms.VerifyPETDecommitment;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 /**
  * A server's decommitment for a PET share
  */
 public class PETDecommitmentC implements PETDecommitment {
+	@Use
+	VerifyPETDecommitment verifyPETDecommitment;
 	public final CivitasBigInteger di;
 	public final CivitasBigInteger ei;
 	public final ElGamalProofDiscLogEquality proof;
@@ -38,32 +42,6 @@ public class PETDecommitmentC implements PETDecommitment {
 	@Override
 	public ElGamalProofDiscLogEquality proof() {
 		return proof;
-	}
-
-	@Override
-	public boolean verify(PETCommitment c, ElGamalParameters params,
-			ElGamalCiphertext ciphertext1, ElGamalCiphertext ciphertext2) {
-		if (!(c instanceof PETCommitmentC)) {
-			return false;
-		}
-		ElGamalProofDiscLogEqualityC prf = (ElGamalProofDiscLogEqualityC) proof;
-		ElGamalParametersC ps = (ElGamalParametersC) params;
-		PETCommitmentC com = (PETCommitmentC) c;
-		ElGamalCiphertextC m1 = (ElGamalCiphertextC) ciphertext1;
-		ElGamalCiphertextC m2 = (ElGamalCiphertextC) ciphertext2;
-
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-
-		CivitasBigInteger d = m1.a.modDivide(m2.a, ps.p);
-		CivitasBigInteger e = m1.b.modDivide(m2.b, ps.p);
-
-		// check that it's a proof of the correct thing.
-		if (di == null || ei == null)
-			return false;
-		if (!d.equals(prf.g1) || !e.equals(prf.g2))
-			return false;
-
-		return com.hash.equals(factory.hash(di, ei)) && prf.verify(params);
 	}
 
 	public String toXML() {
@@ -104,6 +82,14 @@ public class PETDecommitmentC implements PETDecommitment {
 		Util.swallowEndTag(r, OPENING_TAG);
 		return new PETDecommitmentC(CryptoFactoryC.stringToBigInt(d),
 				CryptoFactoryC.stringToBigInt(e), proof);
+	}
+
+	@Override
+	@Deprecated
+	public boolean verify(PETCommitment c, ElGamalParameters params,
+			ElGamalCiphertext ciphertext1, ElGamalCiphertext ciphertext2) {
+		return verifyPETDecommitment.apply(this, c, params, ciphertext1,
+				ciphertext2);
 	}
 
 }

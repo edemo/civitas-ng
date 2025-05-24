@@ -12,6 +12,8 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.util.Base64;
 
+import civitas.util.CivitasBigInteger;
+
 /**
  * Some miscellaneous utility functions.
  */
@@ -429,6 +431,14 @@ public class Util {
 			return null;
 
 		return Base64.getEncoder().encodeToString(bs);
+	}
+
+	public static CivitasBigInteger asBigint(String s) {
+		return new CivitasBigInteger(Base64.getDecoder().decode(s));
+	}
+
+	public static String fromBigInt(CivitasBigInteger a) {
+		return Base64.getEncoder().encodeToString(a.toByteArray());
 	}
 
 	/**

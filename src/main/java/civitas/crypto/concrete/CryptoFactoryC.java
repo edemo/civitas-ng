@@ -80,6 +80,7 @@ import civitas.crypto.VoteCapability;
 import civitas.crypto.VoteCapabilityShare;
 import civitas.crypto.algorithms.Constants;
 import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
+import civitas.crypto.algorithms.ConstructElGamalProof1OfL;
 import civitas.crypto.algorithms.GenerateElGamalParameters;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.util.CivitasBigInteger;
@@ -94,6 +95,8 @@ public class CryptoFactoryC implements CryptoFactory {
 	private static GenerateRandomElement generateRandomElement;
 	@Use
 	private static GenerateElGamalParameters generateElGamalParameters;
+	@Use
+	private static ConstructElGamalProof1OfL constructElGamalProof1OfL;
 
 	/*
 	 * The following constants define the algorithms and providers to use.
@@ -499,10 +502,10 @@ public class CryptoFactoryC implements CryptoFactory {
 		return new ElGamal1OfLReencryptionC(m, proof);
 	}
 
-	private ElGamalProof1OfLC constructElGamalProof1OfL(ElGamalPublicKeyC key,
+	public ElGamalProof1OfLC constructElGamalProof1OfL(ElGamalPublicKeyC key,
 			ElGamalCiphertext[] ciphertexts, int L, int choice, ElGamalCiphertextC m,
 			ElGamalReencryptFactorC factor) {
-		return ElGamalProof1OfLC.constructProof(key, ciphertexts, L, choice, m,
+		return constructElGamalProof1OfL.apply(key, ciphertexts, L, choice, m,
 				factor);
 	}
 
@@ -578,7 +581,7 @@ public class CryptoFactoryC implements CryptoFactory {
 		return md.digest();
 	}
 
-	CivitasBigInteger hash(CivitasBigInteger a, CivitasBigInteger b) {
+	public CivitasBigInteger hash(CivitasBigInteger a, CivitasBigInteger b) {
 		return hash(a, b, null);
 	}
 

@@ -16,7 +16,7 @@ import civitas.crypto.ElGamalReencryptFactor;
 import civitas.util.CivitasBigInteger;
 
 public class ElGamalReencryptFactorC implements ElGamalReencryptFactor {
-	protected final CivitasBigInteger r;
+	public final CivitasBigInteger r;
 
 	public ElGamalReencryptFactorC(CivitasBigInteger r) {
 		this.r = r;

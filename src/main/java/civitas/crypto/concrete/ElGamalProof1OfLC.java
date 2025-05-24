@@ -10,25 +10,23 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import civitas.common.CiphertextList;
 import civitas.common.Util;
 import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalProof1OfL;
 import civitas.crypto.ElGamalPublicKey;
-import civitas.crypto.algorithms.GenerateRandomElement;
+import civitas.crypto.algorithms.VerifyElGamalProof1OfLC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
 public class ElGamalProof1OfLC implements ElGamalProof1OfL {
 	@Use
-	private static GenerateRandomElement generateRandomElement;
+	VerifyElGamalProof1OfLC verifyElGamalProof1OfLC;
 
-	final int L;
-	final CivitasBigInteger[] dvs;
-	final CivitasBigInteger[] rvs;
+	public final int L;
+	public final CivitasBigInteger[] dvs;
+	public final CivitasBigInteger[] rvs;
 
 	public ElGamalProof1OfLC(int L, CivitasBigInteger[] dvs,
 			CivitasBigInteger[] rvs) {
@@ -38,117 +36,6 @@ public class ElGamalProof1OfLC implements ElGamalProof1OfL {
 		if (dvs == null || rvs == null || dvs.length != L || rvs.length != L) {
 			throw new IllegalArgumentException("Bad args");
 		}
-	}
-
-	public static ElGamalProof1OfLC constructProof(ElGamalPublicKeyC key,
-			ElGamalCiphertext[] ciphertexts, int L, int choice, ElGamalCiphertextC m,
-			ElGamalReencryptFactorC factor) {
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-
-		ElGamalParametersC ps = (ElGamalParametersC) key.params;
-		CivitasBigInteger u = m.a;
-		CivitasBigInteger v = m.b;
-		CivitasBigInteger r = factor.r;
-
-		ElGamalCiphertextC[] ms = new ElGamalCiphertextC[L];
-		for (int i = 0; i < L; i++) {
-			ms[i] = (ElGamalCiphertextC) ciphertexts[i];
-		}
-
-		// choose d1 .. dL, and r1 ... rL at random.
-		CivitasBigInteger[] ds = new CivitasBigInteger[L];
-		CivitasBigInteger[] rs = new CivitasBigInteger[L];
-		for (int i = 0; i < L; i++) {
-			ds[i] = generateRandomElement.apply(ps.q);
-			rs[i] = generateRandomElement.apply(ps.q);
-		}
-
-		// compute a_i's and b_i's
-		CivitasBigInteger[] as = new CivitasBigInteger[L];
-		CivitasBigInteger[] bs = new CivitasBigInteger[L];
-		for (int i = 0; i < L; i++) {
-			as[i] = ms[i].a.modDivide(u, ps.p).modPow(ds[i], ps.p)
-					.modMultiply(ps.g.modPow(rs[i], ps.p), ps.p).mod(ps.p);
-			bs[i] = ms[i].b.modDivide(v, ps.p).modPow(ds[i], ps.p)
-					.modMultiply(key.y.modPow(rs[i], ps.p), ps.p).mod(ps.p);
-		}
-
-		List<CivitasBigInteger> env = new ArrayList<CivitasBigInteger>(2 + 4 * L);
-		env.add(u);
-		env.add(v);
-		for (int i = 0; i < L; i++) {
-			env.add(ms[i].a);
-			env.add(ms[i].b);
-			env.add(as[i]);
-			env.add(bs[i]);
-		}
-		CivitasBigInteger c = factory.hashToBigInt(factory.hash(env)).mod(ps.q);
-		CivitasBigInteger w = (r.modNegate(ps.q).modMultiply(ds[choice], ps.q))
-				.modAdd(rs[choice], ps.q);
-		CivitasBigInteger sum = CivitasBigInteger.ZERO;
-		for (int i = 0; i < L; i++) {
-			if (i != choice) {
-				sum = sum.modAdd(ds[i], ps.q);
-			}
-		}
-		CivitasBigInteger dprimet = c.modSubtract(sum, ps.q);
-		CivitasBigInteger rprimet = w.modAdd(r.modMultiply(dprimet, ps.q), ps.q);
-
-		CivitasBigInteger[] dvs = new CivitasBigInteger[L];
-		CivitasBigInteger[] rvs = new CivitasBigInteger[L];
-		for (int i = 0; i < L; i++) {
-			if (i != choice) {
-				dvs[i] = ds[i];
-				rvs[i] = rs[i];
-			} else {
-				dvs[i] = dprimet;
-				rvs[i] = rprimet;
-			}
-		}
-
-		return new ElGamalProof1OfLC(L, dvs, rvs);
-	}
-
-	@Override
-	public boolean verify(ElGamalPublicKey pubKey, CiphertextList ciphertexts,
-			int L, ElGamalCiphertext msg) {
-		if (this.L != L)
-			return false;
-		ElGamalCiphertextC m = (ElGamalCiphertextC) msg;
-		CivitasBigInteger u = m.a;
-		CivitasBigInteger v = m.b;
-		ElGamalPublicKeyC key = (ElGamalPublicKeyC) pubKey;
-		ElGamalParametersC ps = (ElGamalParametersC) key.params;
-		ElGamalCiphertextC[] ms = new ElGamalCiphertextC[L];
-
-		for (int i = 0; i < L; i++) {
-			ms[i] = (ElGamalCiphertextC) ciphertexts.get(i);
-		}
-
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-		CivitasBigInteger[] as = new CivitasBigInteger[L];
-		CivitasBigInteger[] bs = new CivitasBigInteger[L];
-		CivitasBigInteger sum = CivitasBigInteger.ZERO;
-		for (int i = 0; i < L; i++) {
-			as[i] = (ms[i].a.modDivide(u, ps.p)).modPow(dvs[i], ps.p)
-					.modMultiply(ps.g.modPow(rvs[i], ps.p), ps.p);
-			bs[i] = (ms[i].b.modDivide(v, ps.p)).modPow(dvs[i], ps.p)
-					.modMultiply(key.y.modPow(rvs[i], ps.p), ps.p);
-			sum = sum.modAdd(dvs[i], ps.q);
-		}
-
-		// construct the hash of the environment
-		List<CivitasBigInteger> env = new ArrayList<CivitasBigInteger>(2 + 4 * L);
-		env.add(u);
-		env.add(v);
-		for (int i = 0; i < L; i++) {
-			env.add(ms[i].a);
-			env.add(ms[i].b);
-			env.add(as[i]);
-			env.add(bs[i]);
-		}
-		CivitasBigInteger c = factory.hashToBigInt(factory.hash(env)).mod(ps.q);
-		return sum.equals(c);
 	}
 
 	public String toXML() {
@@ -217,6 +104,13 @@ public class ElGamalProof1OfLC implements ElGamalProof1OfL {
 
 		Util.swallowEndTag(r, "elGamalProof1OfL");
 		return new ElGamalProof1OfLC(L, dvs, rvs);
+	}
+
+	@Override
+	@Deprecated
+	public boolean verify(ElGamalPublicKey pubKey, CiphertextList ciphertexts,
+			int L, ElGamalCiphertext msg) {
+		return verifyElGamalProof1OfLC.apply(this, pubKey, ciphertexts, L, msg);
 	}
 
 }

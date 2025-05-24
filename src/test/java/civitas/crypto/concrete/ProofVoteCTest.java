@@ -7,10 +7,6 @@ import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +16,7 @@ import civitas.crypto.CryptoException;
 import civitas.crypto.ProofVote;
 
 public class ProofVoteCTest extends ConcreteTestBase
-		implements ConcreteTestData {
+		implements ConcreteTestData, ElGamalCiphertextCTestData {
 
 	private static final ProofVoteC PROOF_VOTE = new ProofVoteC(PROOF_VOTE_C,
 			PROOF_VOTE_S1, PROOF_VOTE_S2);
@@ -29,19 +25,6 @@ public class ProofVoteCTest extends ConcreteTestBase
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
 		assertEquals(PROOF_VOTE_XML, PROOF_VOTE.toXML());
-	}
-
-	BigInteger hash(BigInteger a, BigInteger b, BigInteger c)
-			throws NoSuchAlgorithmException {
-		MessageDigest digest = MessageDigest.getInstance("SHA-256");
-		digest.update(a.toByteArray());
-		digest.update(b.toByteArray());
-		digest.update(c.toByteArray());
-		return new BigInteger(digest.digest());
-	}
-
-	BigInteger fromBase64(String base64) {
-		return new BigInteger(Base64.getDecoder().decode(base64));
 	}
 
 	@Test

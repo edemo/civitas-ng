@@ -15,6 +15,7 @@ import civitas.common.CiphertextList;
  * ciphertexts of size L.
  */
 public interface ElGamalProof1OfL {
+	@Deprecated
 	public boolean verify(ElGamalPublicKey pubKey, CiphertextList ciphertexts,
 			int L, ElGamalCiphertext msg);
 

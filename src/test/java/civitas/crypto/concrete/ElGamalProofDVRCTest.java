@@ -14,7 +14,7 @@ import civitas.crypto.ElGamalReencryptFactor;
 import civitas.util.CivitasBigInteger;
 
 public class ElGamalProofDVRCTest extends ConcreteTestBase
-		implements ConcreteTestData {
+		implements ConcreteTestData, ElGamalReencryptFactorCTestData {
 
 	ElGamalProofDVRC EL_GAMAL_PROOF_DVR = new ElGamalProofDVRC(
 			EL_GAMAL_CIPHERTEXT_E, EL_GAMAL_CIPHERTEXT_EPRIME, DVR_C, RANDOMS_1,

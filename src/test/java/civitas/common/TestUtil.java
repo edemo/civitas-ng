@@ -21,13 +21,14 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Random;
+import java.util.function.Function;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import civitas.crypto.algorithms.Constants;
-import civitas.crypto.concrete.ConcreteTestData;
+import civitas.crypto.concrete.BasicValuesTestData;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalProof1OfLC;
 import civitas.util.CivitasBigInteger;
@@ -46,8 +47,13 @@ public class TestUtil {
 		byte[] array = invocation.getArgument(0);
 		java.util.Arrays.fill(array, (byte) 0);
 		byte[] aBytes = random.toByteArray();
-		for (int i = array.length - aBytes.length; i < array.length; i++) {
-			array[i] = aBytes[i - (array.length - aBytes.length)];
+		int diff = aBytes.length - array.length;
+		for (int i = diff; i < array.length; i++) {
+			try {
+				array[i] = aBytes[i + diff];
+			} catch (ArrayIndexOutOfBoundsException e) {
+				throw e;
+			}
 		}
 	}
 
@@ -70,7 +76,7 @@ public class TestUtil {
 				@Override
 				public Void answer(InvocationOnMock invocation) {
 					TestUtil.fakeRandomToArray(invocation,
-							ConcreteTestData.RANDOMS.get(step));
+							BasicValuesTestData.RANDOMS.get(step));
 					step++;
 					return null;
 				}
@@ -146,14 +152,6 @@ public class TestUtil {
 		}
 	}
 
-	public static CivitasBigInteger asBigint(String s) {
-		return new CivitasBigInteger(Base64.getDecoder().decode(s));
-	}
-
-	public static String fromBigInt(CivitasBigInteger a) {
-		return Base64.getEncoder().encodeToString(a.toByteArray());
-	}
-
 	public static ElGamalProof1OfLC elGamalProof1OfLCFromXML(String aa) {
 		try {
 			return ElGamalProof1OfLC.fromXML(new StringReader(aa));
@@ -169,4 +167,17 @@ public class TestUtil {
 			throw new Error(e);
 		}
 	}
+
+	static int n = 0;
+
+	public static Function<CivitasBigInteger, CivitasBigInteger> pick(int mod) {
+		n = 0;
+		return (s) -> {
+			if (n < 8 && mod == n++ % 2) {
+				return s;
+			} else
+				return null;
+		};
+	}
+
 }

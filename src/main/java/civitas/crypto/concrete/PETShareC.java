@@ -18,16 +18,19 @@ import civitas.crypto.PETCommitment;
 import civitas.crypto.PETDecommitment;
 import civitas.crypto.PETShare;
 import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
+import civitas.crypto.algorithms.ConstructPETDecommitment;
 import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
 import civitas.util.Use;
 
-class PETShareC implements PETShare {
+public class PETShareC implements PETShare {
 	@Use
 	ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
+	@Use
+	ConstructPETDecommitment constructPETDecommitment;
 
-	protected final ElGamalCiphertextC ciphertext1;
-	protected final ElGamalCiphertextC ciphertext2;
+	public final ElGamalCiphertextC ciphertext1;
+	public final ElGamalCiphertextC ciphertext2;
 
 	public final CivitasBigInteger exponent;
 
@@ -83,27 +86,6 @@ class PETShareC implements PETShare {
 		}
 	}
 
-	// return the pair (d_i, e_i)
-	@Override
-	public PETDecommitment decommitment(ElGamalParameters p) {
-		try {
-			ElGamalParametersC params = (ElGamalParametersC) p;
-
-			CivitasBigInteger zi = exponent;
-			CivitasBigInteger d = ciphertext1.a.modDivide(ciphertext2.a, params.p);
-			CivitasBigInteger e = ciphertext1.b.modDivide(ciphertext2.b, params.p);
-
-			CivitasBigInteger di = d.modPow(zi, params.p);
-			CivitasBigInteger ei = e.modPow(zi, params.p);
-
-			ElGamalProofDiscLogEqualityC proof = constructElGamalDiscLogEqualityProof
-					.apply(params, d, e, zi);
-			return new PETDecommitmentC(di, ei, proof);
-		} catch (ClassCastException e) {
-			return null;
-		}
-	}
-
 	public String toXML() {
 		StringWriter sb = new StringWriter();
 		toXML(new PrintWriter(sb));
@@ -144,6 +126,13 @@ class PETShareC implements PETShare {
 		Util.swallowEndTag(r, "petShare");
 
 		return new PETShareC(ciphertext1, ciphertext2, exponent);
+	}
+
+	@Override
+	@Deprecated
+	public PETDecommitment decommitment(ElGamalParameters params) {
+		return constructPETDecommitment.apply(params, exponent, ciphertext1,
+				ciphertext2);
 	}
 
 }

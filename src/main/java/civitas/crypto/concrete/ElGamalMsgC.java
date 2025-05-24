@@ -18,7 +18,7 @@ import civitas.util.CivitasBigInteger;
  * multiplicative group over which DDH is believed to hold, and thus over which
  * ElGamal can be implemented.
  */
-class ElGamalMsgC implements ElGamalMsg {
+public class ElGamalMsgC implements ElGamalMsg {
 
 	/**
 	 * The character set used to encode strings into integers.
@@ -38,7 +38,7 @@ class ElGamalMsgC implements ElGamalMsg {
 	 * @throws CryptoException Unless plaintext can be converted to a valid
 	 *                         message in the message space defined by params.
 	 */
-	protected ElGamalMsgC(CivitasBigInteger plaintext, ElGamalParametersC params)
+	public ElGamalMsgC(CivitasBigInteger plaintext, ElGamalParametersC params)
 			throws CryptoException {
 		this.m = params.encodePlaintext(plaintext);
 	}

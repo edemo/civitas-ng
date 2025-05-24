@@ -18,6 +18,7 @@ public interface PETDecommitment {
 	/**
 	 * Verify that the decommitment and the commitment agree
 	 */
-	public boolean verify(PETCommitment c, ElGamalParameters params, ElGamalCiphertext ciphertext1,
-			ElGamalCiphertext ciphertext2);
+	@Deprecated
+	public boolean verify(PETCommitment c, ElGamalParameters params,
+			ElGamalCiphertext ciphertext1, ElGamalCiphertext ciphertext2);
 }

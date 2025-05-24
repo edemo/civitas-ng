@@ -9,12 +9,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PETCommitmentCTest extends ConcreteTestBase
-		implements ConcreteTestData {
+		implements PETCommitmentCTestData {
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
-		assertEquals(PET_C_XML, new PETCommitmentC(BIGINT_A).toXML());
+		assertEquals(PET_C_XML, PET_COMMITMENT.toXML());
 	}
 
 	@Test
