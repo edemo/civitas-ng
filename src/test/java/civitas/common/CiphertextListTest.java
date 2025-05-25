@@ -43,7 +43,7 @@ public class CiphertextListTest extends ConcreteTestBase
 			@Override
 			public Void answer(InvocationOnMock invocation) {
 				PrintWriter printWriter = (PrintWriter) invocation.getArguments()[0];
-				printWriter.append(EL_GAMAL_CIPHERTEXT_NAIVE_XML);
+				printWriter.append(EL_GAMAL_CIPHERTEXT_A_XML);
 				return null;
 			}
 		}).when(ciphertext).toXML(argument.capture());
@@ -59,7 +59,7 @@ public class CiphertextListTest extends ConcreteTestBase
 			public ElGamalCiphertext answer(InvocationOnMock invocation)
 					throws IOException {
 				Reader reader = (Reader) invocation.getArguments()[0];
-				reader.skip(EL_GAMAL_CIPHERTEXT_NAIVE_XML.length());
+				reader.skip(EL_GAMAL_CIPHERTEXT_A_XML.length());
 				return ciphertext;
 			}
 		}).when(factory).elGamalCiphertextFromXML(readerArgument.capture());

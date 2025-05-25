@@ -9,8 +9,6 @@ public interface ElGamalPublicKeyCTestData extends ElGamalPrivateKeyCTestData {
 
 	public static final CivitasBigInteger PUBLICIZED_BIGINT_A = BIGINT_G
 			.modPow(BIGINT_A, BIGINT_P);
-//	public static CivitasBigInteger PUBLICIZED_BIGINT_A = new CivitasBigInteger(
-//			Base64.getDecoder().decode(PUBLICIZED_BIGINT_A_BASE64));
 
 	public static final String PUBLICIZED_BIGINT_B_BASE64 = "d9AUMsYNk5ZQ+ZbjfZz7UgyjyklNj+gwz/MjRyrlLjWVnK/ghtTfAv4qIisD407XCf8Whv+2Us9JcXDuh2ptfNIWJibe2RX6ivjBH/1VyaOylbJ4BGfLFcyNiPxrjAPzJ1LdlSHjkXII3VrmyD72hF4gnzrKExGmDyi9tffhcfZoZvTgxzeVdjvR2PKK/k4Ug0zqjyQyKJUnDP3RB1q+31/RB3S6E+LMyr9ToxQWRS7IymyzsQXV6smygtzZKE+PBU+gIJjxQ6ALt3/VImxazonOPhO9VCSoNfTVwAVvK5FdXvS6utK0GHTnHx0U/D/4W880NWwbB7DIxdvpYnjpK45MxVvoGelhUqMMPOjMM+7cn3o6QLATVB1QHbo7w7yH2P+Q0tcr9itruIjI2sajoZkEMG5n6DJunwqHVZx38BScxUlmKb8rKW8+AhOC3BXBe5biUDReBdRtpSkOFi5as1mWxsIH2EvGAG2bPUtIZuCn0phLG37M32XyhDiOEehm";
 	public static final String PUBLICIZED_SAFE_LEGENDRE_BASE64 = "ASvIFyEHZA21reK32LTtYEwJG4GSW8Xzrl83llQSdjcztgsIJeyQm0ZZ36vG4aTVYjtADzV9J6xJ5RJ2U9P/qG4=";

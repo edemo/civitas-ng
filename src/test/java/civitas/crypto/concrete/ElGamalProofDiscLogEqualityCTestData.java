@@ -4,10 +4,9 @@ import civitas.common.Util;
 import civitas.util.CivitasBigInteger;
 
 public interface ElGamalProofDiscLogEqualityCTestData
-		extends ElGamalParametersCTestData, BasicValuesTestData {
+		extends ElGamalParametersCTestData, ElGamalReencryptFactorCTestData,
+		ElGamalPublicKeyCTestData {
 
-	public static final ElGamalReencryptFactorC REENCRYPT_FACTOR_RANDOMS_1 = new ElGamalReencryptFactorC(
-			RANDOMS_1);
 	public static final CivitasBigInteger PUBKEY_VALUE_OTHER_GENERATOR_RANDOM1_FACTOR = GENERATOR_OTHER
 			.modPow(REENCRYPT_FACTOR_RANDOMS_1.r, BIGINT_P);
 	String PUBKEY_VALUE_OTHER_GENERATOR_RANDOM1_FACTOR_BASE64 = Util
@@ -18,15 +17,12 @@ public interface ElGamalProofDiscLogEqualityCTestData
 			.fromBigInt(PUBKEY_VALUE_OTHER_GENERATOR_RANDOM1_FACTOR_POW_A);
 
 	public static final String EL_GAMAL_PROOF_DISC_LOG_EQUALITY_V_BASE64 = "LD3Xb9CI+9aPuf4txqHYiDyOL4PcF2RAzcOndY4FeWBOlj7K44vApsoEVdM7NORPAyWFgD5ZukhP101ovmQuCzS0cvlrRdhDCEnItsZTIgJihXa6AO9iYj5Xt9WfIxnTK6awTfsqQG6Mikhxdgj0qtJcJGzr9pVECZYWtjl5j8zwVnglqnes8NEAPCqaFRiHlYI2yepb6qSHjJAcRNZJ6vaMAtg3og9f1tdNGE332/2uglZ+zI+lOnyvnJCTMriC4qFPsgdfZop24YvnJQTEdpx1KdcTA5sBFxiYxRWtBDUS8eRKLv2l6G7aIOdrWBmvIjFcMqBmyOiT9bDl4DwZE+Y/UKV7y3mx2HIJ/ofI1SBbAOE11s3cCoeXboi2LbOQ7BE4L15owPKtZliKhBFwhqJ3cz3L4gZUQ2EqV7nc6S4aC7YYIoVRzqA8juLClg51k7KTZYrcmWw8DR0fH7iNJBPmGqnCqYnFuSzch+0SmJGAQCA9RwEiYSafncM5IO1S";
-	public static final String EL_GAMAL_PROOF_DISC_LOG_EQUALITY_W_BASE64 = "bYNRiWtK8H8jaehxs1S+YKemiiip2QacwnwcQqKHsPBE1KzsZEBVquxOmPa8FGLV4hUd5okpWdQImk9ntTNCKC3q9yq7Grr7xUAoS3QMwQ0N4B18eENIjUO9eACm6IcPf+3tK87fp7h35ZQHA0XJJNxSVRz97ARYjIcXg9x/jBPbsHqXDfkrAhfneWqBajxu5+8kygrp3pS/DVZI9cB/WUvfS5idySJ/YLQKzcXxlqSPeRdHN3vNyE/DaJ2MGHqiEJE1qo2p3kc5R31gceixV9WQFQn7PJ9RrrZ1Isvar+zpsStQdH92Kr0KU+3d/fxuJnpxToA0J8J/mpIat7uj9jugW5qCJ1ERRarjcbjtpi1jZKaDB28704VzudfgAQq5U3O+0MsWRgJ6MClQvWWwXiPK9xAmm7u3b6tvUBemAQhvAbpYgoCmyuq8UiDo7H7EiAB27OcpfrjbprUlEkux7DapIW+X6V85qqZX/myyjnO7kS9l2ju3JYUGOA2A0IlM";
 	public static final String EL_GAMAL_PROOF_DISC_LOG_EQUALITY_A_BASE64 = "Rv8nzR8sePqrFAUcQpTG1wp/ppOvVKX2Gc4C3rpPbpQu5si1p9EvgjNSn3eTwwzMeoz0KpuZn1ccs0pMaFqAUW8WcUz80Hh+w4FMvM7yinmZAAzO+W8eEvQ4dNAR1aopWAbDcJDEj6+sq/3Esz9LZr5OEfbeUlzy8u3fIsfqhIsTyMnV3bfMC2sbv7i1Bz7udFa2uBCm6eHgqobZmVWxLFw5jloe1oJapQxjx8lHcatzTmdox0VrChF61On7k0gdWMTL1hffiMnNFaCWT5A3lv+YJ378Xc5cpN0eY5BXnSJ804qdXshg5+fRTukbizmQj6l9nuKp/HwmHL6IbUO651EoYEc1KDNfogQH2Lt4QhQ4RpO5qDjjqOviPLj/+0uR8/FFVzyNSxJUv2K/+UIZ//4JwlEAtczX/eD+bIkodzFOF6U5REo0o3Vn8+b7rgbhvyasLTuHj8v/xApSNd+Xxm1fPg7F/dBfUu+7LBdC7XqEYj59PctCU3a/JeEdqaVA";
 	public static final String EL_GAMAL_PROOF_DISC_LOG_EQUALITY_B_BASE64 = "cZP5shp3SOALmUwEY6Zj6crdGhQzIB7fkbIS9sLCUzI4tZDlzROdfCm6EHz1sd5ekqrVwzRfwKBBuOrGeoujtfXJ7e1U5nxgCzcXTJAwhIsuM0KVyvgPV8krRzzRf1/hP7hSwzh4eWCpWKmzfREuoJBe0RKnrv+jBi0U46tSRRgz9qg5x3K92fTEtiCWQnLb5JlA+VWbJNxsdGm99o2t4wcmRdK2ZmOYFPdxmpCLLV5eCWCHCO/rZxBtWwhKScvwhjjbcnSlefNb4MXjEwk3j97Uulz7rt35KKDUMmcxDjpwHbkoAl7lbhtXNPgaPIrcIM60DDdclM8cwXz1ItvUbOzlprPLgjyskGj4g0Kmz+K6v/NfFRCKM2FA9QKlMSlpGWGsQt68+EYAvgTNAdoiSNdoDP+YBY1B6ITg384VcHOIzBhORrLupPR9iPUoIvU0GelBNciOhXjnFUjuWTSpsoCj47N9GBq9GGsYXpTBuXTMI/9wIsqUPT+sjOrvQERl";
 	public static final String EL_GAMAL_PROOF_DISC_LOG_EQUALITY_C_BASE64 = "B28X8Z/5mPsYbQ1KMeM9pw1+kCL641p4IKzGdYRBKcs=";
 	public static final String EL_GAMAL_PROOF_DISC_LOG_EQUALITY_R_BASE64 = "fjFmifAPnCcEJRCG8Xu51T0ATrAJ+IxsaIoJGh8iLts=";
 	public static final CivitasBigInteger EL_GAMAL_PROOF_DISC_LOG_EQUALITY_V = Util
 			.asBigint(EL_GAMAL_PROOF_DISC_LOG_EQUALITY_V_BASE64);
-	public static final CivitasBigInteger EL_GAMAL_PROOF_DISC_LOG_EQUALITY_W = Util
-			.asBigint(EL_GAMAL_PROOF_DISC_LOG_EQUALITY_W_BASE64);
 	public static final CivitasBigInteger EL_GAMAL_PROOF_DISC_LOG_EQUALITY_A = Util
 			.asBigint(EL_GAMAL_PROOF_DISC_LOG_EQUALITY_A_BASE64);
 	public static final CivitasBigInteger EL_GAMAL_PROOF_DISC_LOG_EQUALITY_B = Util
@@ -38,7 +34,7 @@ public interface ElGamalProofDiscLogEqualityCTestData
 	public static final String EL_GAMAL_PROOF_DISC_LOG_EQUALITY_XML = "<egPrfKnwDscLog><g1>"
 			+ PUBKEY_VALUE_OTHER_GENERATOR_RANDOM1_FACTOR_BASE64 + "</g1><g2>"
 			+ BIGINT_G_BASE64 + "</g2><v>" + EL_GAMAL_PROOF_DISC_LOG_EQUALITY_V_BASE64
-			+ "</v><w>" + EL_GAMAL_PROOF_DISC_LOG_EQUALITY_W_BASE64 + "</w><a>"
+			+ "</v><w>" + PUBLICIZED_BIGINT_A_BASE64 + "</w><a>"
 			+ EL_GAMAL_PROOF_DISC_LOG_EQUALITY_A_BASE64 + "</a><b>"
 			+ EL_GAMAL_PROOF_DISC_LOG_EQUALITY_B_BASE64 + "</b><c>"
 			+ EL_GAMAL_PROOF_DISC_LOG_EQUALITY_C_BASE64 + "</c><r>"
@@ -46,7 +42,7 @@ public interface ElGamalProofDiscLogEqualityCTestData
 	public static final ElGamalProofDiscLogEqualityC EL_GAMAL_PROOF_DISC_LOG_EQUALITY = new ElGamalProofDiscLogEqualityC(
 			PUBKEY_VALUE_OTHER_GENERATOR_RANDOM1_FACTOR, BIGINT_G,
 			EL_GAMAL_PROOF_DISC_LOG_EQUALITY_A, EL_GAMAL_PROOF_DISC_LOG_EQUALITY_V,
-			EL_GAMAL_PROOF_DISC_LOG_EQUALITY_W, EL_GAMAL_PROOF_DISC_LOG_EQUALITY_B,
+			PUBLICIZED_BIGINT_A, EL_GAMAL_PROOF_DISC_LOG_EQUALITY_B,
 			EL_GAMAL_PROOF_DISC_LOG_EQUALITY_C, EL_GAMAL_PROOF_DISC_LOG_EQUALITY_R);
 
 	public static final String EL_GAMAL_PROOF_DISC_LOG_EQUALITY_BAD_W_XML = "<egPrfKnwDscLog><g1>"

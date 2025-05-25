@@ -4,7 +4,7 @@ import civitas.crypto.SchnorrPrime;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
-public class FindGenerator {
+public class FindGenerator implements Constants {
 	@Use
 	GenerateRandomElement generateRandomElement;
 
@@ -14,14 +14,14 @@ public class FindGenerator {
 		CivitasBigInteger g = null;
 		boolean reject = false;
 		CivitasBigInteger p = sp.p;
-		CivitasBigInteger negONE = p.subtract(CivitasBigInteger.ONE); // -1 mod p
-		CivitasBigInteger twoK = p.subtract(CivitasBigInteger.ONE).divide(sp.q); // (p-1)/q
-																																							// =
-																																							// 2k
+		CivitasBigInteger negONE = p.subtract(ONE); // -1 mod p
+		CivitasBigInteger twoK = p.subtract(ONE).divide(sp.q); // (p-1)/q
+																														// =
+																														// 2k
 		do {
 			g = generateRandomElement.apply(p);
 			g = g.modPow(twoK, p);
-			reject = g.equals(CivitasBigInteger.ONE) || g.equals(negONE);
+			reject = g.equals(ONE) || g.equals(negONE);
 		} while (reject);
 
 		return g;

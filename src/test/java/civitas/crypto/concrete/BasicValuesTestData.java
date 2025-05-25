@@ -27,7 +27,6 @@ public interface BasicValuesTestData {
 			(byte) 0xbe,
 			(byte) 0xad,
 			(byte) 0xde };
-
 	public static final List<String> RANDOMS_BASE64 = Arrays.asList(
 			"JY+s34cV7ybeZLEpACLziJ3ZTb5fiCoGkx7duQSKvms=",
 			"POILzE0M8iAYB1dCQW44j2oeofu6U7JMxnxoboocpBI=",

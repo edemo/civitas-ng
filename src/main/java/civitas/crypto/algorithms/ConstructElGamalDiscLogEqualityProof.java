@@ -12,6 +12,8 @@ import civitas.util.Use;
 public class ConstructElGamalDiscLogEqualityProof {
 	@Use
 	GenerateRandomElement generateRandomElement;
+	@Use
+	CryptoHash cryptoHash;
 
 	public ElGamalProofDiscLogEqualityC apply(ElGamalParametersC params,
 			CivitasBigInteger g1, CivitasBigInteger g2, CivitasBigInteger x) {
@@ -30,7 +32,8 @@ public class ConstructElGamalDiscLogEqualityProof {
 		l.add(w);
 		l.add(a);
 		l.add(b);
-		CivitasBigInteger c = factory.hashToBigInt(factory.hash(l)).mod(params.q);
+		CivitasBigInteger c = factory.hashToBigInt(cryptoHash.apply(l))
+				.mod(params.q);
 
 		CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q), params.q);
 

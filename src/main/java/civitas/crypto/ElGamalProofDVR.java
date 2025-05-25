@@ -12,6 +12,7 @@ import java.io.PrintWriter;
  * Designated Verifier Re-encryption Proof
  */
 public interface ElGamalProofDVR {
+	@Deprecated
 	public boolean verify(ElGamalPublicKey K, ElGamalPublicKey verifierKey);
 
 	// getters

@@ -13,7 +13,7 @@ import civitas.crypto.MessageDigest;
 public class MessageDigestC implements MessageDigest {
 	private final java.security.MessageDigest md;
 
-	MessageDigestC(java.security.MessageDigest md) {
+	public MessageDigestC(java.security.MessageDigest md) {
 		this.md = md;
 	}
 

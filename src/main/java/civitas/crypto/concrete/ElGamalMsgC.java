@@ -28,7 +28,7 @@ public class ElGamalMsgC implements ElGamalMsg {
 	/**
 	 * The message. It is an element of a multiplicative group.
 	 */
-	protected final CivitasBigInteger m;
+	public final CivitasBigInteger m;
 
 	/**
 	 * @param plaintext A plaintext. This is not the same as a message. A

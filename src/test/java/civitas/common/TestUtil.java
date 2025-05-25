@@ -1,34 +1,23 @@
 package civitas.common;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.withSettings;
-
 import java.io.IOException;
 import java.io.StringReader;
-import java.lang.reflect.Field;
 import java.security.KeyFactory;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.SecureRandom;
 import java.security.Security;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Arrays;
 import java.util.Base64;
-import java.util.Random;
 import java.util.function.Function;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
-import civitas.crypto.algorithms.Constants;
-import civitas.crypto.concrete.BasicValuesTestData;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalProof1OfLC;
 import civitas.util.CivitasBigInteger;
@@ -54,50 +43,6 @@ public class TestUtil {
 			} catch (ArrayIndexOutOfBoundsException e) {
 				throw e;
 			}
-		}
-	}
-
-	static int step;
-	static Random oldRng;
-
-	public static void setUpFakeRandom() {
-		try {
-			Field field;
-			field = Constants.class.getDeclaredField("RANDOM_GENERATOR");
-			field.setAccessible(true);
-
-			oldRng = (Random) field.get(Constants.class);
-
-			SecureRandom RANDOM_GENERATOR_FAKE_SERIES = mock(SecureRandom.class,
-					withSettings().withoutAnnotations());
-			step = 0;
-			doAnswer(new Answer<Void>() {
-
-				@Override
-				public Void answer(InvocationOnMock invocation) {
-					TestUtil.fakeRandomToArray(invocation,
-							BasicValuesTestData.RANDOMS.get(step));
-					step++;
-					return null;
-				}
-			}).when(RANDOM_GENERATOR_FAKE_SERIES).nextBytes(any());
-
-			field.set(Constants.class, RANDOM_GENERATOR_FAKE_SERIES);
-		} catch (Exception e) {
-			throw new Error(e);
-		}
-
-	}
-
-	public static void tearDownFakeRandom() {
-		try {
-			Field field;
-			field = Constants.class.getDeclaredField("RANDOM_GENERATOR");
-			field.setAccessible(true);
-
-			field.set(Constants.class, oldRng);
-		} catch (Exception e) {
-			throw new Error(e);
 		}
 	}
 

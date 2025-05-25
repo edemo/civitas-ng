@@ -12,10 +12,15 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.CryptoException;
 import civitas.crypto.ElGamalParameters;
+import civitas.crypto.algorithms.CryptoHash;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 public class PETShareCTest extends ConcreteTestBase
 		implements ConcreteTestData, PETDecommitmentCTestData, PETShareCTestData {
+
+	@Use
+	CryptoHash hash;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
@@ -67,11 +72,11 @@ public class PETShareCTest extends ConcreteTestBase
 		ElGamalCiphertextC c2 = PET_SHARE_C.ciphertext2;
 		CivitasBigInteger exponent = PET_SHARE_C.exponent;
 
-		CivitasBigInteger hash = factory.hash(
+		CivitasBigInteger hashe = hash.apply(
 				c1.a.modDivide(c2.a, BIGINT_P).modPow(exponent, BIGINT_P),
 				c1.b.modDivide(c2.b, BIGINT_P).modPow(exponent, BIGINT_P));
 
-		assertEquals(hash,
+		assertEquals(hashe,
 				((PETCommitmentC) PET_SHARE_C.commitment(EL_GAMAL_PARAMETERS)).hash);
 	}
 

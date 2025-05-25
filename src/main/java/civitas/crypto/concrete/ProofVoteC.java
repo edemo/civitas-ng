@@ -10,17 +10,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringWriter;
-import java.util.LinkedList;
-import java.util.List;
 
 import civitas.common.Util;
 import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.ProofVote;
-import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.util.CivitasBigInteger;
-import civitas.util.DI;
-import civitas.util.Use;
 
 /**
  * This is a "non-malleable" (in some informal sense), NIZK proof of knowledge
@@ -30,10 +25,7 @@ import civitas.util.Use;
  * signatures. The basic design is due to [Jan Camenisch and Markus Stadler.
  * Efficient Group Signatures for Large Groups.]
  */
-class ProofVoteC implements ProofVote {
-	@Use
-	private static GenerateRandomElement generateRandomElement = DI
-			.get(GenerateRandomElement.class);
+public class ProofVoteC implements ProofVote {
 
 	/*
 	 * Public inputs o ElGamal parameters (p,g) o Encrypted capability = (a1,b1) o
@@ -46,76 +38,15 @@ class ProofVoteC implements ProofVote {
 	 * 
 	 */
 
-	final CivitasBigInteger c;
-	final CivitasBigInteger s1;
-	final CivitasBigInteger s2;
+	public final CivitasBigInteger c;
+	public final CivitasBigInteger s1;
+	public final CivitasBigInteger s2;
 
-	ProofVoteC(final CivitasBigInteger c, final CivitasBigInteger s1,
+	public ProofVoteC(final CivitasBigInteger c, final CivitasBigInteger s1,
 			final CivitasBigInteger s2) {
 		this.c = c;
 		this.s1 = s1;
 		this.s2 = s2;
-	}
-
-	ProofVoteC(ElGamalParametersC params, ElGamalCiphertextC encCapability,
-			ElGamalCiphertextC encChoice, String context,
-			ElGamalReencryptFactorC alpha1, ElGamalReencryptFactorC alpha2) {
-
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-
-		CivitasBigInteger r1 = generateRandomElement.apply(params.q);
-		CivitasBigInteger r2 = generateRandomElement.apply(params.q);
-
-		List<CivitasBigInteger> E = proofEnv(params, encCapability, encChoice,
-				context);
-		E.add(params.g.modPow(r1, params.p));
-		E.add(params.g.modPow(r2, params.p));
-
-		c = factory.hashToBigInt(factory.hash(E)).mod(params.q);
-		s1 = r1.modSubtract(c.modMultiply(alpha1.r, params.q), params.q);
-		s2 = r2.modSubtract(c.modMultiply(alpha2.r, params.q), params.q);
-	}
-
-	List<CivitasBigInteger> proofEnv(ElGamalParametersC params,
-			ElGamalCiphertextC encCapability, ElGamalCiphertextC encChoice,
-			String context) {
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-		List<CivitasBigInteger> E = new LinkedList<CivitasBigInteger>();
-		E.add(params.g);
-		E.add(encCapability.a);
-		E.add(encCapability.b);
-		E.add(encChoice.a);
-		E.add(encChoice.b);
-		E.add(factory.hashToBigInt(factory.messageDigest(context.getBytes())));
-
-		return E;
-	}
-
-	@Override
-	public boolean verify(ElGamalParameters params,
-			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
-			String context) {
-		try {
-			CryptoFactoryC factory = CryptoFactoryC.singleton();
-			ElGamalParametersC paramsC = (ElGamalParametersC) params;
-			ElGamalCiphertextC encCapabilityC = (ElGamalCiphertextC) encCapability;
-			ElGamalCiphertextC encChoiceC = (ElGamalCiphertextC) encChoice;
-			CivitasBigInteger a1 = encCapabilityC.a;
-			CivitasBigInteger a2 = encChoiceC.a;
-			CivitasBigInteger p = paramsC.p;
-			CivitasBigInteger q = paramsC.q;
-
-			List<CivitasBigInteger> E = proofEnv(paramsC, encCapabilityC, encChoiceC,
-					context);
-			E.add(paramsC.g.modPow(this.s1, p).modMultiply(a1.modPow(this.c, p), p));
-			E.add(paramsC.g.modPow(this.s2, p).modMultiply(a2.modPow(this.c, p), p));
-			CivitasBigInteger x = factory.hashToBigInt(factory.hash(E)).mod(q);
-			boolean ret = c.equals(x);
-			return ret;
-		} catch (ClassCastException e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 
 	public String toXML() {
@@ -169,5 +100,12 @@ class ProofVoteC implements ProofVote {
 		Util.swallowEndTag(r, "elGamalProofVote");
 		return new ProofVoteC(CryptoFactoryC.stringToBigInt(c),
 				CryptoFactoryC.stringToBigInt(s1), CryptoFactoryC.stringToBigInt(s2));
+	}
+
+	@Override
+	public boolean verify(ElGamalParameters params,
+			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
+			String context) {
+		throw new UnsupportedOperationException("use VerifyProofVote");
 	}
 }

@@ -53,21 +53,34 @@ public class DI {
 					Object instance = constructor.newInstance();
 					objField.setAccessible(true);
 					objField.set(test, instance);
-					for (Field field : type.getDeclaredFields()) {
-						if (field.isAnnotationPresent(Use.class)) {
-							String stubName = field.getType().getName() + "Stub";
-							Class<?> stub = Class.forName(stubName);
-							Method method = stub.getDeclaredMethod("stub", null);
-							Object value = method.invoke(null, null);
-							field.setAccessible(true);
-							field.set(instance, value);
-						}
-					}
+					stubFill(instance);
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new Error(e);
 		}
 	}
 
+	public static void stubFill(Object instance) {
+		Class<? extends Object> type = instance.getClass();
+		try {
+			for (Field field : type.getDeclaredFields()) {
+				if (field.isAnnotationPresent(Use.class)) {
+					String stubName = field.getType().getName() + "Stub";
+					Class<?> stub;
+					stub = Class.forName(stubName);
+					Method method = stub.getDeclaredMethod("stub");
+					if (null == method)
+						throw new Error(stubName + " does not have stub");
+					Object value = method.invoke(null);
+					field.setAccessible(true);
+					field.set(instance, value);
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

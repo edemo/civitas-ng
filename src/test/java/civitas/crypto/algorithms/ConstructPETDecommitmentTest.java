@@ -7,17 +7,13 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.common.TestUtil;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.ConcreteTestData;
 import civitas.crypto.concrete.ElGamalCiphertextC;
-import civitas.crypto.concrete.ElGamalProofDiscLogEqualityC;
 import civitas.crypto.concrete.PETDecommitmentC;
 import civitas.crypto.concrete.PETDecommitmentCTestData;
 import civitas.crypto.concrete.PETShareCTestData;
 import civitas.util.CivitasBigInteger;
-import civitas.util.DI;
 import civitas.util.Tested;
 
 public class ConstructPETDecommitmentTest extends ConcreteTestBase
@@ -48,13 +44,6 @@ public class ConstructPETDecommitmentTest extends ConcreteTestBase
 		assertEquals(PET_DECOMMITMENT_XML, decommitment.toXML());
 		verify(constructPETDecommitment.constructElGamalDiscLogEqualityProof)
 				.apply(EL_GAMAL_PARAMETERS, d, e, exponent);
-		TestUtil.setUpFakeRandom();
-		ElGamalProofDiscLogEqualityC realProof = DI
-				.get(ConstructElGamalDiscLogEqualityProof.class)
-				.apply(EL_GAMAL_PARAMETERS, d, e, exponent);
-		TestUtil.tearDownFakeRandom();
-		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_PROOF_XML, realProof.toXML());
-		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_PROOF, decommitment.proof);
 		assertEquals(di, decommitment.di);
 		assertEquals(ei, decommitment.ei);
 

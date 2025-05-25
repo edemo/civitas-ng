@@ -9,13 +9,11 @@ package civitas.util;
 import java.math.BigInteger;
 import java.util.Random;
 
-public class CivitasBigInteger {
+import civitas.crypto.algorithms.Constants;
+
+public class CivitasBigInteger implements Constants {
 
 	public final BigInteger i;
-
-	public static final CivitasBigInteger ZERO = CivitasBigInteger.valueOf(0);
-	public static final CivitasBigInteger ONE = CivitasBigInteger.valueOf(1);
-	public static final CivitasBigInteger TWO = CivitasBigInteger.valueOf(2);
 
 	public CivitasBigInteger(byte[] bytes) {
 		i = new BigInteger(bytes);

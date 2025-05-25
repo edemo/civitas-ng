@@ -11,50 +11,15 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.common.TestUtil;
-import civitas.crypto.CryptoException;
 import civitas.crypto.ProofVote;
 
 public class ProofVoteCTest extends ConcreteTestBase
-		implements ConcreteTestData, ElGamalCiphertextCTestData {
-
-	private static final ProofVoteC PROOF_VOTE = new ProofVoteC(PROOF_VOTE_C,
-			PROOF_VOTE_S1, PROOF_VOTE_S2);
+		implements ProofVoteTestData, ElGamalCiphertextCTestData {
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
 		assertEquals(PROOF_VOTE_XML, PROOF_VOTE.toXML());
-	}
-
-	@Test
-	@DisplayName("constructor with vote constructs the proof"
-			+ "		 r1 = random in Z_q,                          "
-			+ "		 r2 = random in Z_q,                           "
-			+ "		 a = g^r1,                                      "
-			+ "		 b = g^r2,                           "
-			+ "		 c = hash(params, encCapability, encChoice, context,a,b) mod q, "
-			+ "		 s1 = r1-c*alpha1 (mod q),                           "
-			+ "		 s2 = r2-c*alpha2 (mod q) ")
-	void test2() throws CryptoException {
-
-		TestUtil.setUpFakeRandom();
-		ProofVoteC proof = new ProofVoteC(EL_GAMAL_PARAMETERS,
-				EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B, SOMESTRING_EXTENDED,
-				ENCRYPT_FACTOR_C, ENCRYPT_FACTOR_D);
-		assertEquals(PROOF_VOTE_XML, proof.toXML());
-		TestUtil.tearDownFakeRandom();
-	}
-
-	@Test
-	@DisplayName("verify checks if c equals "
-			+ "	 hash(params, encCapability, encChoice, context,"
-			+ "	   g^s1*encCapability.a^c (mod p),"
-			+ "	   g^s2*encChoice.a^c (mod p))")
-	void test2_1() {
-
-		assertTrue(PROOF_VOTE.verify(EL_GAMAL_PARAMETERS, EL_GAMAL_CIPHERTEXT_A,
-				EL_GAMAL_CIPHERTEXT_B, SOMESTRING_EXTENDED));
 	}
 
 	@Test

@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 import org.junit.jupiter.api.BeforeEach;
 
+import civitas.common.RandomAnswer;
 import civitas.crypto.CryptoException;
 import civitas.util.DI;
 
@@ -14,6 +15,8 @@ public class ConcreteTestBase {
 	void setUp() throws NoSuchAlgorithmException, IllegalArgumentException,
 			IOException, CryptoException {
 		DI.stubUp(this);
+		DI.fill(this);
+		RandomAnswer.step = 0;
 
 	}
 

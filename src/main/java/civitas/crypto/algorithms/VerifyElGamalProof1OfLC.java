@@ -12,8 +12,12 @@ import civitas.crypto.concrete.ElGamalParametersC;
 import civitas.crypto.concrete.ElGamalProof1OfLC;
 import civitas.crypto.concrete.ElGamalPublicKeyC;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 public class VerifyElGamalProof1OfLC {
+	@Use
+	CryptoHash cryptoHash;
+
 	public boolean apply(ElGamalProof1OfLC self, ElGamalPublicKey pubKey,
 			CiphertextList ciphertexts, int L, ElGamalCiphertext msg) {
 		if (self.L != L)
@@ -51,7 +55,7 @@ public class VerifyElGamalProof1OfLC {
 			env.add(as[i]);
 			env.add(bs[i]);
 		}
-		CivitasBigInteger c = factory.hashToBigInt(factory.hash(env)).mod(ps.q);
+		CivitasBigInteger c = factory.hashToBigInt(cryptoHash.apply(env)).mod(ps.q);
 		return sum.equals(c);
 	}
 

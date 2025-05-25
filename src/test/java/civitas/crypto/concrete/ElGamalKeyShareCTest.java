@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ElGamalKeyShare;
 
 public class ElGamalKeyShareCTest extends ConcreteTestBase
-		implements ConcreteTestData {
+		implements ElGamalKeyShareTestData {
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")

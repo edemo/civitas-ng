@@ -13,10 +13,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamalParameters;
+import civitas.crypto.algorithms.CryptoHash;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase
-		implements ConcreteTestData {
+		implements ProofKnowDiscLogTestData {
+
+	@Use
+	CryptoHash hash;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
@@ -38,9 +43,9 @@ public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase
 		CivitasBigInteger q = EL_GAMAL_PARAMETERS.q;
 
 		CivitasBigInteger v = g.modPow(key, p);
-		CivitasBigInteger z = CivitasBigInteger.valueOf(SOME_POSITIVE_INTEGER);
+		CivitasBigInteger z = RANDOMS_0;
 		CivitasBigInteger a = g.modPow(z, p);
-		CivitasBigInteger c = factory.hash(v, a).mod(q);
+		CivitasBigInteger c = hash.apply(v, a).mod(q);
 		CivitasBigInteger r = z.add(c.modMultiply(key, q));
 		assertTrue(
 				new ElGamalProofKnowDiscLogC(a, c, r, v).verify(EL_GAMAL_PARAMETERS));

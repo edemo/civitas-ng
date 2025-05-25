@@ -13,9 +13,11 @@ import civitas.crypto.concrete.ElGamalReencryptFactorC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
-public class ConstructElGamalProof1OfL {
+public class ConstructElGamalProof1OfL implements Constants {
 	@Use
-	private static GenerateRandomElement generateRandomElement;
+	public GenerateRandomElement generateRandomElement;
+	@Use
+	CryptoHash cryptoHash;
 
 	public ElGamalProof1OfLC apply(ElGamalPublicKeyC key,
 			ElGamalCiphertext[] ciphertexts, int L, int choice, ElGamalCiphertextC m,
@@ -60,10 +62,10 @@ public class ConstructElGamalProof1OfL {
 			env.add(bs[i]);
 		}
 
-		CivitasBigInteger c = factory.hashToBigInt(factory.hash(env)).mod(ps.q);
+		CivitasBigInteger c = factory.hashToBigInt(cryptoHash.apply(env)).mod(ps.q);
 		CivitasBigInteger w = (r.modNegate(ps.q).modMultiply(ds[choice], ps.q))
 				.modAdd(rs[choice], ps.q);
-		CivitasBigInteger sum = CivitasBigInteger.ZERO;
+		CivitasBigInteger sum = ZERO;
 		for (int i = 0; i < L; i++) {
 			if (i != choice) {
 				sum = sum.modAdd(ds[i], ps.q);

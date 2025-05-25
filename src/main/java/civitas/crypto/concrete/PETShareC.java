@@ -19,6 +19,7 @@ import civitas.crypto.PETDecommitment;
 import civitas.crypto.PETShare;
 import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
 import civitas.crypto.algorithms.ConstructPETDecommitment;
+import civitas.crypto.algorithms.CryptoHash;
 import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
 import civitas.util.Use;
@@ -28,6 +29,9 @@ public class PETShareC implements PETShare {
 	ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
 	@Use
 	ConstructPETDecommitment constructPETDecommitment;
+
+	@Use
+	CryptoHash hash;
 
 	public final ElGamalCiphertextC ciphertext1;
 	public final ElGamalCiphertextC ciphertext2;
@@ -80,7 +84,7 @@ public class PETShareC implements PETShare {
 			CivitasBigInteger di = d.modPow(zi, ps.p);
 			CivitasBigInteger ei = e.modPow(zi, ps.p);
 
-			return new PETCommitmentC(factory.hash(di, ei));
+			return new PETCommitmentC(hash.apply(di, ei));
 		} catch (ClassCastException e) {
 			return null;
 		}

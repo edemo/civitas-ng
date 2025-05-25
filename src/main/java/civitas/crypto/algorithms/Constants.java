@@ -9,14 +9,40 @@ package civitas.crypto.algorithms;
 import java.security.SecureRandom;
 import java.util.Random;
 
-public class Constants {
+import civitas.util.CivitasBigInteger;
+
+public interface Constants {
 	/**
 	 * 2^-CERTAINTY is false positive rate for probablePrime.
 	 */
 	public final static int CERTAINTY = 80; // 2^80 recommended by FIPS 186.
 
-	// TODO: should we be requesting a specific RNG algorithm in the constructor
-	// call?
-	public static Random RANDOM_GENERATOR = new SecureRandom();
+	public static final CivitasBigInteger ZERO = CivitasBigInteger.valueOf(0);
+	public static final CivitasBigInteger ONE = CivitasBigInteger.valueOf(1);
+	public static final CivitasBigInteger TWO = CivitasBigInteger.valueOf(2);
+
+//TODO: should we be requesting a specific RNG algorithm in the constructor
+//call?
+	public static final Random RANDOM = new SecureRandom();
+
+	/*
+	 * The following constants define the algorithms and providers to use.
+	 */
+	public final String MESSAGE_DIGEST_ALG = "SHA-256";
+	public final String MESSAGE_DIGEST_PROVIDER = null; // use any provider
+
+	public final String SHARED_KEY_ALG = "AES";
+	public final String SHARED_KEY_CIPHER_ALG = "AES"; // "AES/CBC/PKCS7Padding";
+	public final String SHARED_KEY_PROVIDER = "BC";
+
+	public final String PUBLIC_KEY_ALG = "RSA";
+
+	public final String PUBLIC_KEY_CIPHER_ALG = "RSA/ECB/PKCS1Padding";
+//  public final String PUBLIC_KEY_CIPHER_ALG = "RSA/NONE/OAEPPADDING";
+	public final String PUBLIC_KEY_SIGNATURE_ALG = "SHA512WithRSAEncryption";
+	public final String PUBLIC_KEY_PROVIDER = "BC";
+
+	public static final int EL_GAMAL_GROUP_LENGTH = 3072; // size in bits for p
+	public static final int EL_GAMAL_KEY_LENGTH = 256; // size in bits for q
 
 }

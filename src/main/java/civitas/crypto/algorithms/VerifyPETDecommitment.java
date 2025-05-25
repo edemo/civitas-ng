@@ -10,8 +10,12 @@ import civitas.crypto.concrete.ElGamalProofDiscLogEqualityC;
 import civitas.crypto.concrete.PETCommitmentC;
 import civitas.crypto.concrete.PETDecommitmentC;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 public class VerifyPETDecommitment {
+
+	@Use
+	CryptoHash cryptoHash;
 
 	public boolean apply(PETDecommitmentC self, PETCommitment c,
 			ElGamalParameters params, ElGamalCiphertext ciphertext1,
@@ -35,7 +39,7 @@ public class VerifyPETDecommitment {
 			return false;
 		if (!d.equals(prf.g1) || !e.equals(prf.g2))
 			return false;
-		return com.hash.equals(factory.hash(self.di, self.ei))
+		return com.hash.equals(cryptoHash.apply(self.di, self.ei))
 				&& prf.verify(params);
 	}
 

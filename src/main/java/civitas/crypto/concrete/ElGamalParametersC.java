@@ -27,7 +27,7 @@ import civitas.util.Use;
  * The ElGamal cryptosystem defined by these parameters is over the unique order
  * q subgroup of Z*p, where p = 2kq + 1, and p and q are prime
  */
-public class ElGamalParametersC implements ElGamalParameters {
+public class ElGamalParametersC implements ElGamalParameters, Constants {
 
 	@Use
 	GenerateSafePrime generateSafePrime;
@@ -68,8 +68,7 @@ public class ElGamalParametersC implements ElGamalParameters {
 		this.p = p;
 		this.q = q;
 		this.g = g;
-		if (p
-				.equals(q.multiply(CivitasBigInteger.TWO).add(CivitasBigInteger.ONE))) {
+		if (p.equals(q.multiply(TWO).add(ONE))) {
 			encoder = new SafePrimeEncoder(this);
 		} else {
 			encoder = new SchnorrPrimeEncoder(this);
@@ -78,15 +77,14 @@ public class ElGamalParametersC implements ElGamalParameters {
 	}
 
 	private void checkGroup() {
-		if (!p.isProbablePrime(Constants.CERTAINTY))
+		if (!p.isProbablePrime(CERTAINTY))
 			throw new CryptoError("p is not prime");
-		if (!q.isProbablePrime(Constants.CERTAINTY))
+		if (!q.isProbablePrime(CERTAINTY))
 			throw new CryptoError("q is not prime");
-		if (!p.subtract(CivitasBigInteger.ONE).mod(q)
-				.equals(CivitasBigInteger.ZERO)) {
+		if (!p.subtract(ONE).mod(q).equals(ZERO)) {
 			throw new CryptoError("q does not divide p-1");
 		}
-		if (!g.modPow(q, p).equals(CivitasBigInteger.ONE)) {
+		if (!g.modPow(q, p).equals(ONE)) {
 			throw new CryptoError("g is not order q");
 		}
 

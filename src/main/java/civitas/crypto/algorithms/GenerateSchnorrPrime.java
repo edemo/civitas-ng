@@ -4,20 +4,21 @@ import civitas.crypto.SchnorrPrime;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
-public class GenerateSchnorrPrime {
+public class GenerateSchnorrPrime implements Constants {
 	@Use
 	private static GenerateRandomElement generateRandomElement;
+	@Use
+	GetRandomGenerator getRandomGenerator;
 
 	public SchnorrPrime apply(int qLength, int pLength) {
 		CivitasBigInteger p, q;
 
 		final int NUM_P_TESTS = numPrimeTests(pLength);
-		CivitasBigInteger l = CivitasBigInteger.TWO.pow(pLength); // l = 2^pLength
+		CivitasBigInteger l = TWO.pow(pLength); // l = 2^pLength
 		boolean done = false;
 
 		do {
-			q = new CivitasBigInteger(qLength, Constants.CERTAINTY,
-					Constants.RANDOM_GENERATOR);
+			q = new CivitasBigInteger(qLength, CERTAINTY, getRandomGenerator.apply());
 
 			int nP = 0;
 			do {
@@ -28,16 +29,16 @@ public class GenerateSchnorrPrime {
 				p.add(l); // l < p < 2l
 
 				/* Round p-1 down to a multiple of 2q */
-				CivitasBigInteger m = p.mod(q.multiply(CivitasBigInteger.TWO)); // m = p
-																																				// mod
-																																				// 2q
-				p = p.subtract(m).add(CivitasBigInteger.ONE); // p = 1 (mod 2q)A random
-																											// Schnorr prime
+				CivitasBigInteger m = p.mod(q.multiply(TWO)); // m = p
+																											// mod
+																											// 2q
+				p = p.subtract(m).add(ONE); // p = 1 (mod 2q)A random
+																		// Schnorr prime
 				// p=2kq+1
 
 				/* Rounding may have made p too small */
 				if (p.bitLength() == pLength) {
-					if (p.isProbablePrime(Constants.CERTAINTY)) {
+					if (p.isProbablePrime(CERTAINTY)) {
 						done = true;
 					}
 				}

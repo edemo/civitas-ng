@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import civitas.common.Util;
 import civitas.crypto.PETCommitment;
 import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalCiphertextCTestData;
 import civitas.crypto.concrete.ElGamalProofDiscLogEqualityC;
 import civitas.crypto.concrete.PETCommitmentCTestData;
@@ -20,6 +19,7 @@ import civitas.crypto.concrete.PETDecommitmentCTestData;
 import civitas.crypto.concrete.PETShareCTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
+import civitas.util.Use;
 
 public class VerifyPETDecommitmentTest extends ConcreteTestBase
 		implements PETDecommitmentCTestData, PETCommitmentCTestData,
@@ -27,6 +27,8 @@ public class VerifyPETDecommitmentTest extends ConcreteTestBase
 
 	@Tested
 	VerifyPETDecommitment verifyPETDecommitment;
+	@Use
+	CryptoHash cryptoHash;
 
 	@Test
 	@DisplayName("correct decommitment passes "
@@ -47,9 +49,8 @@ public class VerifyPETDecommitmentTest extends ConcreteTestBase
 
 		assertEquals(proof.g1, d);
 		assertEquals(proof.g2, e);
-		assertEquals(Util.fromBigInt(PET_COMMITMENT.hash),
-				Util.fromBigInt(CryptoFactoryC.singleton().hash(PET_DECOMMITMENT.di,
-						PET_DECOMMITMENT.ei)));
+		assertEquals(Util.fromBigInt(PET_COMMITMENT.hash), Util.fromBigInt(
+				cryptoHash.apply(PET_DECOMMITMENT.di, PET_DECOMMITMENT.ei)));
 		// exponent: BIGINT_C
 		assertTrue(verifyPETDecommitment.apply(PET_DECOMMITMENT, PET_COMMITMENT,
 				EL_GAMAL_PARAMETERS, EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B));

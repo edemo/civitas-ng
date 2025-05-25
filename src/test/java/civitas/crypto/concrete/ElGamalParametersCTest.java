@@ -78,8 +78,7 @@ public class ElGamalParametersCTest extends ConcreteTestBase
 	@DisplayName("checkGroup throws CryptoException if p is not prime")
 	void checkGroupTest1() {
 		CivitasBigInteger p;
-		p = BIGINT_Q.multiply(CivitasBigInteger.valueOf(2))
-				.add(CivitasBigInteger.ONE);
+		p = BIGINT_Q.multiply(CivitasBigInteger.valueOf(2)).add(ONE);
 		CryptoError t = assertThrows(CryptoError.class, () -> {
 			new ElGamalParametersC(p, BIGINT_Q, GENERATOR_FOR_UNPRIME_P);
 		});
@@ -107,8 +106,7 @@ public class ElGamalParametersCTest extends ConcreteTestBase
 	@DisplayName("checkGroup throws CryptoException if q is not prime")
 	void checkGroupTest3() {
 		CivitasBigInteger q = BIGINT_A;
-		CivitasBigInteger p = q.multiply(CivitasBigInteger.TWO)
-				.add(CivitasBigInteger.ONE);
+		CivitasBigInteger p = q.multiply(TWO).add(ONE);
 
 		CryptoError t = assertThrows(CryptoError.class,
 				() -> new ElGamalParametersC(p, q, GENERATOR_FOR_UNPRIME_Q));

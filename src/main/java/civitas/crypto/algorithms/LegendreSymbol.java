@@ -3,16 +3,16 @@ package civitas.crypto.algorithms;
 import civitas.crypto.CryptoError;
 import civitas.util.CivitasBigInteger;
 
-public class LegendreSymbol {
+public class LegendreSymbol implements Constants {
 
 	public int apply(CivitasBigInteger a, CivitasBigInteger p,
 			CivitasBigInteger q) {
 		CivitasBigInteger j = a.modPow(q, p);
-		if (j.equals(CivitasBigInteger.ONE)) {
+		if (j.equals(ONE)) {
 			return 1;
-		} else if (j.equals(p.subtract(CivitasBigInteger.ONE))) {
+		} else if (j.equals(p.subtract(ONE))) {
 			return -1;
-		} else if (j.equals(CivitasBigInteger.ZERO)) {
+		} else if (j.equals(ZERO)) {
 			return 0;
 		} else {
 			throw new CryptoError("Impossible Legendre symbol");

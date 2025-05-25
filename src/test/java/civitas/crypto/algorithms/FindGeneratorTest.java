@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.SchnorrPrime;
 import civitas.crypto.concrete.ConcreteTestBase;
 import civitas.crypto.concrete.ConcreteTestData;
-import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
 
 public class FindGeneratorTest extends ConcreteTestBase
@@ -24,8 +23,8 @@ public class FindGeneratorTest extends ConcreteTestBase
 	void test() {
 
 		findGenerator.generateRandomElement = mock(GenerateRandomElement.class);
-		when(findGenerator.generateRandomElement.apply(any()))
-				.thenReturn(CivitasBigInteger.ONE).thenReturn(BIGINT_D);
+		when(findGenerator.generateRandomElement.apply(any())).thenReturn(ONE)
+				.thenReturn(BIGINT_D);
 
 		assertEquals(D_EXP_TWOK_FROMP,
 				findGenerator.apply(new SchnorrPrime(BIGINT_P, BIGINT_Q)));
@@ -37,8 +36,7 @@ public class FindGeneratorTest extends ConcreteTestBase
 
 		findGenerator.generateRandomElement = mock(GenerateRandomElement.class);
 		when(findGenerator.generateRandomElement.apply(any()))
-				.thenReturn(BIGINT_P.subtract(CivitasBigInteger.ONE))
-				.thenReturn(BIGINT_D);
+				.thenReturn(BIGINT_P.subtract(ONE)).thenReturn(BIGINT_D);
 
 		assertEquals(D_EXP_TWOK_FROMP,
 				findGenerator.apply(new SchnorrPrime(BIGINT_P, BIGINT_Q)));
