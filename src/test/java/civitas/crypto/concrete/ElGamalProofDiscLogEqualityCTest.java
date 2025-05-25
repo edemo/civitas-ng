@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
 import civitas.crypto.algorithms.CryptoHash;
+import civitas.crypto.importing.ElGamalProofDiscLogEqualityFromXML;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
@@ -27,6 +28,8 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase
 
 	@Use
 	CryptoHash hash;
+	@Use
+	ElGamalProofDiscLogEqualityFromXML elGamalProofDiscLogEqualityFromXML;
 
 	CryptoFactoryC factory = CryptoFactoryC.singleton();
 
@@ -91,9 +94,11 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("verify is false for a bad proof (other branch)")
 	void test0_3() throws IllegalArgumentException, IOException {
-		assertFalse(((ElGamalProofDiscLogEqualityC) ElGamalProofDiscLogEqualityC
-				.fromXML(new StringReader(EL_GAMAL_PROOF_DISC_LOG_EQUALITY_BAD_W_XML)))
-				.verify(EL_GAMAL_PARAMETERS));
+		assertFalse(
+				((ElGamalProofDiscLogEqualityC) elGamalProofDiscLogEqualityFromXML
+						.apply(
+								new StringReader(EL_GAMAL_PROOF_DISC_LOG_EQUALITY_BAD_W_XML)))
+						.verify(EL_GAMAL_PARAMETERS));
 	}
 
 	@Test

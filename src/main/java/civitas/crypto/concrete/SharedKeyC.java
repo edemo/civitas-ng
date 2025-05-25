@@ -6,10 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 import java.util.Base64;
 
@@ -62,27 +59,6 @@ public class SharedKeyC implements SharedKey {
 		String base64 = Base64.getEncoder().encodeToString(bs);
 		s.print(base64);
 		s.print('\n');
-	}
-
-	public static SharedKey fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		Util.swallowTag(r, OPENING_TAG);
-		String name = Util.readSimpleTag(r, "n");
-		String s = Util.unescapeString(Util.readSimpleTag(r, "k"));
-		Util.swallowEndTag(r, OPENING_TAG);
-
-		byte[] bs = Base64.getDecoder().decode(s);
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-		return new SharedKeyC(factory.sharedKeyFromBytes(bs), name);
-	}
-
-	public static SharedKey fromWire(BufferedReader r)
-			throws IllegalArgumentException, IOException {
-		String name = r.readLine();
-		String s = r.readLine();
-		byte[] bs = Base64.getDecoder().decode(s);
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-		return new SharedKeyC(factory.sharedKeyFromBytes(bs), name);
 	}
 
 }

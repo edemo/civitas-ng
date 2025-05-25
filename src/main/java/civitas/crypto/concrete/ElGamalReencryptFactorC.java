@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
 import civitas.common.Util;
@@ -34,12 +32,6 @@ public class ElGamalReencryptFactorC implements ElGamalReencryptFactor {
 		if (this.r != null)
 			Util.escapeString(CryptoFactoryC.bigIntToString(this.r), s);
 		s.print("</r>");
-	}
-
-	public static ElGamalReencryptFactor fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		String s = Util.unescapeString(Util.readSimpleTag(r, "r"));
-		return new ElGamalReencryptFactorC(CryptoFactoryC.stringToBigInt(s));
 	}
 
 }

@@ -6,23 +6,12 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.util.Base64;
-
-import civitas.common.Util;
 import civitas.crypto.SharedKeyCiphertext;
 
 public class SharedKeyCiphertextC extends KeyCiphertextC
 		implements SharedKeyCiphertext {
 	public SharedKeyCiphertextC(byte[] encrypted) {
 		super(encrypted);
-	}
-
-	public static SharedKeyCiphertext fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		String s = Util.unescapeString(Util.readSimpleTag(r, OPENING_TAG));
-		return new SharedKeyCiphertextC(Base64.getDecoder().decode(s));
 	}
 
 	@Override

@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.CryptoException;
 import civitas.crypto.VoteCapabilityShare;
+import civitas.crypto.importing.VoteCapabilityShareFromXML;
+import civitas.util.Use;
 
 public class VoteCapabilityShareCTest extends ConcreteTestBase
 		implements ConcreteTestData {
@@ -55,12 +57,15 @@ public class VoteCapabilityShareCTest extends ConcreteTestBase
 		assertEquals(VOTE_CAPABILITY_SHARE_NULL_XML, s.toString());
 	}
 
+	@Use
+	VoteCapabilityShareFromXML voteCapabilityShareFromXML;
+
 	@Test
 	@DisplayName("fromXML and equals works as expected")
 	void test3() throws IllegalArgumentException, IOException {
 
-		assertTrue(VoteCapabilityShareC
-				.fromXML(new StringReader(VOTE_CAPABILITY_SHARE_XML))
+		assertTrue(voteCapabilityShareFromXML
+				.apply(new StringReader(VOTE_CAPABILITY_SHARE_XML))
 				.equals(VOTE_CAPABILITY_SHARE));
 	}
 

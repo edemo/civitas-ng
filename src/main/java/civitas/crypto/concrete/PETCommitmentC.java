@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
 import civitas.common.Util;
@@ -40,12 +38,6 @@ public class PETCommitmentC implements PETCommitment {
 		s.print("</");
 		s.print(OPENING_TAG);
 		s.print('>');
-	}
-
-	public static PETCommitmentC fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		String d = Util.unescapeString(Util.readSimpleTag(r, OPENING_TAG));
-		return new PETCommitmentC(CryptoFactoryC.stringToBigInt(d));
 	}
 
 }

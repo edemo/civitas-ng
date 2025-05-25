@@ -9,8 +9,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.importing.ElGamalReencryptFactorFromXML;
+import civitas.util.Use;
+
 public class ElGamalReencryptFactorCTest extends ConcreteTestBase
 		implements ElGamalReencryptFactorCTestData {
+	@Use
+	ElGamalReencryptFactorFromXML elGamalReencryptFactorFromXML;
 
 	@Test
 	@Tag("functional")
@@ -32,8 +37,8 @@ public class ElGamalReencryptFactorCTest extends ConcreteTestBase
 	@Tag("functional")
 	@DisplayName("fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
-		ElGamalReencryptFactorC a = (ElGamalReencryptFactorC) ElGamalReencryptFactorC
-				.fromXML(new StringReader(ELGAMAL_REENCRYPT_FACTOR_XML));
+		ElGamalReencryptFactorC a = (ElGamalReencryptFactorC) elGamalReencryptFactorFromXML
+				.apply(new StringReader(ELGAMAL_REENCRYPT_FACTOR_XML));
 		assertEquals(ELGAMAL_REENCRYPT_FACTOR_XML, a.toXML());
 	}
 

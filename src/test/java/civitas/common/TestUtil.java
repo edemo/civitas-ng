@@ -18,7 +18,6 @@ import java.util.function.Function;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.mockito.invocation.InvocationOnMock;
 
-import civitas.crypto.concrete.ElGamalProof1OfLC;
 import civitas.util.CivitasBigInteger;
 
 public class TestUtil {
@@ -93,14 +92,6 @@ public class TestUtil {
 			return java.security.MessageDigest.getInstance("SHA-256");
 		} catch (NoSuchAlgorithmException e) {
 			throw new Error();
-		}
-	}
-
-	public static ElGamalProof1OfLC elGamalProof1OfLCFromXML(String aa) {
-		try {
-			return ElGamalProof1OfLC.fromXML(new StringReader(aa));
-		} catch (Exception e) {
-			throw new Error(e);
 		}
 	}
 

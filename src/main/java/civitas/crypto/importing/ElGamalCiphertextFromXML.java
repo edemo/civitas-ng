@@ -1,4 +1,4 @@
-package civitas.crypto.algorithms;
+package civitas.crypto.importing;
 
 import java.io.IOException;
 import java.io.Reader;

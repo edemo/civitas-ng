@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
 import civitas.common.Util;
@@ -69,19 +67,6 @@ public class PETDecommitmentC implements PETDecommitment {
 		s.print("</");
 		s.print(OPENING_TAG);
 		s.print('>');
-	}
-
-	public static PETDecommitmentC fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		Util.swallowTag(r, OPENING_TAG);
-		String d = Util.unescapeString(Util.readSimpleTag(r, "d"));
-		String e = Util.unescapeString(Util.readSimpleTag(r, "e"));
-		Util.swallowTag(r, "prf");
-		ElGamalProofDiscLogEquality proof = ElGamalProofDiscLogEqualityC.fromXML(r);
-		Util.swallowEndTag(r, "prf");
-		Util.swallowEndTag(r, OPENING_TAG);
-		return new PETDecommitmentC(CryptoFactoryC.stringToBigInt(d),
-				CryptoFactoryC.stringToBigInt(e), proof);
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.algorithms.ElGamalSignedCiphertextFromXML;
+import civitas.crypto.importing.ElGamalSignedCiphertextFromXML;
 import civitas.util.Use;
 
 public class ElGamalSignedCiphertextCTest extends ConcreteTestBase

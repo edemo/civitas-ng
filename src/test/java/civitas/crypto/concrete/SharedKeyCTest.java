@@ -14,8 +14,17 @@ import javax.crypto.spec.SecretKeySpec;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.importing.SharedKeyFromWire;
+import civitas.crypto.importing.SharedKeyFromXML;
+import civitas.util.Use;
+
 public class SharedKeyCTest extends ConcreteTestBase
 		implements ConcreteTestData {
+
+	@Use
+	SharedKeyFromWire sharedKeyFromWire;
+	@Use
+	SharedKeyFromXML sharedKeyFromXML;
 
 	SharedKeyC SHARED_KEY_C = new SharedKeyC(
 			new SecretKeySpec(Base64.getDecoder().decode(SHARED_KEY_BASE64), "AES"),
@@ -41,7 +50,7 @@ public class SharedKeyCTest extends ConcreteTestBase
 	void test3() throws IllegalArgumentException, IOException {
 		StringReader sr = new StringReader(SHARED_KEY_ON_WIRE);
 		BufferedReader br = new BufferedReader(sr);
-		SharedKeyC fromWire = (SharedKeyC) SharedKeyC.fromWire(br);
+		SharedKeyC fromWire = (SharedKeyC) sharedKeyFromWire.apply(br);
 		assertEquals(SHARED_KEY_XML, fromWire.toXML());
 	}
 
@@ -55,7 +64,7 @@ public class SharedKeyCTest extends ConcreteTestBase
 	@DisplayName("fromXML works as expected")
 	void test1() throws IllegalArgumentException, IOException {
 		assertEquals(SHARED_KEY_XML,
-				((SharedKeyC) SharedKeyC.fromXML(new StringReader(SHARED_KEY_XML)))
+				((SharedKeyC) sharedKeyFromXML.apply(new StringReader(SHARED_KEY_XML)))
 						.toXML());
 	}
 

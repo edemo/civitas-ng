@@ -9,8 +9,14 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.importing.PetDecommitmentFromXML;
+import civitas.util.Use;
+
 public class PETDecommitmentCTest extends ConcreteTestBase
 		implements PETDecommitmentCTestData, ElGamalParametersCTestData {
+
+	@Use
+	PetDecommitmentFromXML petDecommitmentFromXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
@@ -37,8 +43,8 @@ public class PETDecommitmentCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test3() throws IllegalArgumentException, IOException {
-		assertEquals(PET_DECOMMITMENT_XML, PETDecommitmentC
-				.fromXML(new StringReader(PET_DECOMMITMENT_XML)).toXML());
+		assertEquals(PET_DECOMMITMENT_XML, petDecommitmentFromXML
+				.apply(new StringReader(PET_DECOMMITMENT_XML)).toXML());
 	}
 
 	@Test

@@ -6,13 +6,10 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
 import civitas.common.CiphertextList;
-import civitas.common.Util;
 import civitas.crypto.ElGamal1OfLReencryption;
 import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalProof1OfL;
@@ -52,16 +49,6 @@ public class ElGamal1OfLReencryptionC implements ElGamal1OfLReencryption {
 		if (proof != null)
 			this.proof.toXML(s);
 		s.print("</elGamal1OfLReencryption>");
-	}
-
-	public static ElGamal1OfLReencryption fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		Util.swallowTag(r, "elGamal1OfLReencryption");
-		ElGamalCiphertextC m = (ElGamalCiphertextC) CryptoFactoryC.singleton()
-				.elGamalCiphertextFromXML(r);
-		ElGamalProof1OfLC proof = ElGamalProof1OfLC.fromXML(r);
-		Util.swallowEndTag(r, "elGamal1OfLReencryption");
-		return new ElGamal1OfLReencryptionC(m, proof);
 	}
 
 	@Override

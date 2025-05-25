@@ -13,10 +13,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamalCiphertext;
+import civitas.crypto.algorithms.ElGamalDecryptionShareFromXML;
+import civitas.util.Use;
 
 public class ElGamalDecryptionShareCTest extends ConcreteTestBase
 		implements ElGamalDecryptionShareTestData, ElGamalPrivateKeyCTestData,
 		ElGamalPublicKeyCTestData, ElGamalCiphertextCTestData {
+
+	@Use
+	ElGamalDecryptionShareFromXML elGamalDecryptionShareFromXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
@@ -35,8 +40,8 @@ public class ElGamalDecryptionShareCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMAL_DECRYPTION_SHARE_XML, ElGamalDecryptionShareC
-				.fromXML(new StringReader(EL_GAMAL_DECRYPTION_SHARE_XML)).toXML());
+		assertEquals(EL_GAMAL_DECRYPTION_SHARE_XML, elGamalDecryptionShareFromXML
+				.apply(new StringReader(EL_GAMAL_DECRYPTION_SHARE_XML)).toXML());
 	}
 
 	@Test

@@ -14,7 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamalCiphertext;
-import civitas.crypto.algorithms.ElGamalCiphertextFromXML;
+import civitas.crypto.importing.ElGamalCiphertextFromXML;
 import civitas.util.Use;
 
 public class ElGamalCiphertextCTest extends ConcreteTestBase

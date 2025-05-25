@@ -15,9 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.CryptoException;
 import civitas.crypto.VoteCapability;
+import civitas.crypto.importing.VoteCapabilityFromXML;
+import civitas.util.Use;
 
 public class VoteCapabilityCTest extends ConcreteTestBase
 		implements ConcreteTestData {
+	@Use
+	VoteCapabilityFromXML voteCapabilityFromXML;
 
 	@Test
 	@DisplayName("BigInteger+parameter constructor and toXML works as expected")
@@ -59,8 +63,8 @@ public class VoteCapabilityCTest extends ConcreteTestBase
 	@DisplayName("fromXML and equals works as expected")
 	void test3() throws IllegalArgumentException, IOException {
 
-		assertTrue(VoteCapabilityC.fromXML(new StringReader(VOTE_CAPABILITY_XML))
-				.equals(VOTE_CAPABILITY));
+		assertTrue(voteCapabilityFromXML
+				.apply(new StringReader(VOTE_CAPABILITY_XML)).equals(VOTE_CAPABILITY));
 	}
 
 	@Test

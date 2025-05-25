@@ -12,7 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ProofVote;
-import civitas.crypto.algorithms.ProofVoteFromXML;
+import civitas.crypto.importing.ProofVoteFromXML;
 import civitas.util.Use;
 
 public class ProofVoteCTest extends ConcreteTestBase

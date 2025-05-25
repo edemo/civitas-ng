@@ -6,11 +6,6 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.util.Base64;
-
-import civitas.common.Util;
 import civitas.crypto.PublicKeyCiphertext;
 
 public class PublicKeyCiphertextC extends KeyCiphertextC
@@ -19,12 +14,7 @@ public class PublicKeyCiphertextC extends KeyCiphertextC
 		super(encrypted);
 	}
 
-	public static PublicKeyCiphertext fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		String s = Util.unescapeString(Util.readSimpleTag(r, OPENING_TAG));
-		return new PublicKeyCiphertextC(Base64.getDecoder().decode(s));
-	}
-
+	@Override
 	String openingTag() {
 		return OPENING_TAG;
 	}

@@ -12,7 +12,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamal1OfLReencryption;
-import civitas.crypto.algorithms.ElGamalCiphertextFromXML;
+import civitas.crypto.importing.ElGamal1OfLReencryptionFromXML;
+import civitas.crypto.importing.ElGamalCiphertextFromXML;
+import civitas.crypto.importing.ElGamalProof1OfLFromXML;
 import civitas.util.Use;
 
 public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
@@ -20,6 +22,8 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 
 	@Use
 	ElGamalCiphertextFromXML elGamalCiphertextFromXML;
+	@Use
+	ElGamal1OfLReencryptionFromXML elGamal1OfLReencryptionFromXML;
 
 	@Test
 	@DisplayName("constructor accepts nulls")
@@ -53,30 +57,33 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("equals when the message and the proof are the same ")
 	void testEquals() throws IllegalArgumentException, IOException {
-		assertTrue(ElGamal1OfLReencryptionC
-				.fromXML(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
+		assertTrue(elGamal1OfLReencryptionFromXML
+				.apply(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
 				.equals(EL_GAMAL_1_OF_L_REENCRYPTION));
 	}
+
+	@Use
+	ElGamalProof1OfLFromXML elGamalProof1OfLFromXML;
 
 	@Test
 	@DisplayName("not equals when the message is different")
 	void testEquals_1() throws IllegalArgumentException, IOException {
 
-		assertFalse(ElGamal1OfLReencryptionC
-				.fromXML(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
+		assertFalse(elGamal1OfLReencryptionFromXML
+				.apply(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
 				.equals(new ElGamal1OfLReencryptionC(
 						elGamalCiphertextFromXML
 								.apply(new StringReader(EL_GAMAL_CIPHERTEXT_NAIVE_XML)),
-						ElGamalProof1OfLC
-								.fromXML(new StringReader(EL_GAMAL_PROOF_1_OF_L_XML)))));
+						elGamalProof1OfLFromXML
+								.apply(new StringReader(EL_GAMAL_PROOF_1_OF_L_XML)))));
 	}
 
 	@Test
 	@DisplayName("not equals when the proof is different")
 	void testEquals_2() throws IllegalArgumentException, IOException {
 
-		assertFalse(ElGamal1OfLReencryptionC
-				.fromXML(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
+		assertFalse(elGamal1OfLReencryptionFromXML
+				.apply(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
 				.equals(new ElGamal1OfLReencryptionC(EL_GAMAL_CIPHERTEXT_1_OF_L,
 						EL_GAMAL_PROOF_1_OF_L_BAD)));
 	}

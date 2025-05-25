@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 
 import civitas.common.Util;
 import civitas.crypto.CryptoException;
@@ -52,12 +50,6 @@ public class VoteCapabilityShareC extends ElGamalMsgC
 		s.print("</");
 		s.print(OPENING_TAG);
 		s.print('>');
-	}
-
-	public static VoteCapabilityShare fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		String s = Util.unescapeString(Util.readSimpleTag(r, OPENING_TAG));
-		return new VoteCapabilityShareC(CryptoFactoryC.stringToBigInt(s));
 	}
 
 	public int intValue() throws NumberFormatException {

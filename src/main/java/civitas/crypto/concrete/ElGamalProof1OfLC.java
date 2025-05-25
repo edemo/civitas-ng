@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
 import civitas.common.CiphertextList;
@@ -85,25 +83,6 @@ public class ElGamalProof1OfLC implements ElGamalProof1OfL {
 			return true;
 		}
 		return false;
-	}
-
-	public static ElGamalProof1OfLC fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		Util.swallowTag(r, "elGamalProof1OfL");
-		int L = Util.readSimpleIntTag(r, "size");
-		CivitasBigInteger[] dvs = new CivitasBigInteger[L];
-		CivitasBigInteger[] rvs = new CivitasBigInteger[L];
-		for (int i = 0; i < L; i++) {
-			dvs[i] = CryptoFactoryC
-					.stringToBigInt(Util.unescapeString(Util.readSimpleTag(r, "dv")));
-		}
-		for (int i = 0; i < L; i++) {
-			rvs[i] = CryptoFactoryC
-					.stringToBigInt(Util.unescapeString(Util.readSimpleTag(r, "rv")));
-		}
-
-		Util.swallowEndTag(r, "elGamalProof1OfL");
-		return new ElGamalProof1OfLC(L, dvs, rvs);
 	}
 
 	@Override

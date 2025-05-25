@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
 import civitas.common.Util;
@@ -20,7 +18,7 @@ import civitas.crypto.PETShare;
 import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
 import civitas.crypto.algorithms.ConstructPETDecommitment;
 import civitas.crypto.algorithms.CryptoHash;
-import civitas.crypto.algorithms.ElGamalCiphertextFromXML;
+import civitas.crypto.importing.ElGamalCiphertextFromXML;
 import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
 import civitas.util.Use;
@@ -114,23 +112,6 @@ public class PETShareC implements PETShare {
 			sb.append("</exponent>");
 		}
 		sb.append("</petShare>");
-	}
-
-	public static PETShareC fromXML(Reader r) throws IOException {
-		Util.swallowTag(r, "petShare");
-
-		ElGamalCiphertextC ciphertext1 = null;
-		ElGamalCiphertextC ciphertext2 = null;
-
-		ciphertext1 = elGamalCiphertextFromXML.apply(r);
-		ciphertext2 = elGamalCiphertextFromXML.apply(r);
-
-		CivitasBigInteger exponent = CryptoFactoryC
-				.stringToBigInt(Util.unescapeString(Util.readSimpleTag(r, "exponent")));
-
-		Util.swallowEndTag(r, "petShare");
-
-		return new PETShareC(ciphertext1, ciphertext2, exponent);
 	}
 
 	@Override

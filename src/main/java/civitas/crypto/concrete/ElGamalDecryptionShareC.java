@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
 import civitas.common.Util;
@@ -77,17 +75,4 @@ public class ElGamalDecryptionShareC implements ElGamalDecryptionShare {
 		s.print('>');
 	}
 
-	public static ElGamalDecryptionShareC fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		Util.swallowTag(r, OPENING_TAG);
-
-		String sa = Util.unescapeString(Util.readSimpleTag(r, "ai"));
-		CivitasBigInteger ai = CryptoFactoryC.stringToBigInt(sa);
-
-		ElGamalProofDiscLogEqualityC proof = (ElGamalProofDiscLogEqualityC) CryptoFactoryC
-				.singleton().elGamalProofDiscLogEqualityFromXML(r);
-
-		Util.swallowEndTag(r, OPENING_TAG);
-		return new ElGamalDecryptionShareC(ai, proof/* , params */);
-	}
 }

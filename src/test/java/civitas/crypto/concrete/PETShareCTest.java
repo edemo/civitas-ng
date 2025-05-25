@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.algorithms.CryptoHash;
+import civitas.crypto.importing.PetShareFromXML;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -21,6 +22,8 @@ public class PETShareCTest extends ConcreteTestBase
 
 	@Use
 	CryptoHash hash;
+	@Use
+	PetShareFromXML petShareFromXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
@@ -44,7 +47,7 @@ public class PETShareCTest extends ConcreteTestBase
 	@DisplayName("fromXML works as expected")
 	void test3() throws IOException {
 		assertEquals(PET_SHARE_XML,
-				PETShareC.fromXML(new StringReader(PET_SHARE_XML)).toXML());
+				petShareFromXML.apply(new StringReader(PET_SHARE_XML)).toXML());
 	}
 
 	@Test

@@ -8,8 +8,13 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.importing.PetCommitmentFromXML;
+import civitas.util.Use;
+
 public class PETCommitmentCTest extends ConcreteTestBase
 		implements PETCommitmentCTestData {
+	@Use
+	PetCommitmentFromXML petCommitmentFromXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
@@ -27,7 +32,7 @@ public class PETCommitmentCTest extends ConcreteTestBase
 	@DisplayName("fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
 		assertEquals(PET_C_XML,
-				PETCommitmentC.fromXML(new StringReader(PET_C_XML)).toXML());
+				petCommitmentFromXML.apply(new StringReader(PET_C_XML)).toXML());
 	}
 
 }

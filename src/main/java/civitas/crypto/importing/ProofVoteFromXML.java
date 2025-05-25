@@ -1,9 +1,10 @@
-package civitas.crypto.algorithms;
+package civitas.crypto.importing;
 
 import java.io.IOException;
 import java.io.Reader;
 
 import civitas.common.Util;
+import civitas.crypto.algorithms.ConvertToBigInt;
 import civitas.crypto.concrete.ProofVoteC;
 import civitas.util.Use;
 

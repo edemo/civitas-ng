@@ -11,8 +11,13 @@ import java.io.StringWriter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.importing.SharedKeyCiphertextFromXML;
+import civitas.util.Use;
+
 public class SharedKeyCiphertextCTest extends ConcreteTestBase
 		implements ConcreteTestData {
+	@Use
+	SharedKeyCiphertextFromXML sharedKeyCiphertextFromXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
@@ -26,8 +31,8 @@ public class SharedKeyCiphertextCTest extends ConcreteTestBase
 	void test1() throws IllegalArgumentException, IOException {
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
-		SharedKeyCiphertextC.fromXML(new StringReader(SHARED_KEY_CIPHERTEXT_XML))
-				.toXML(printWriter);
+		sharedKeyCiphertextFromXML
+				.apply(new StringReader(SHARED_KEY_CIPHERTEXT_XML)).toXML(printWriter);
 		assertEquals(SHARED_KEY_CIPHERTEXT_XML, stringWriter.toString());
 	}
 
