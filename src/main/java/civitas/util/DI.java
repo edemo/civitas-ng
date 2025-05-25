@@ -80,8 +80,7 @@ public class DI {
 				}
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new Error(e);
 		}
 	}
 }
