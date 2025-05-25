@@ -11,12 +11,13 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.SchnorrPrime;
 import civitas.crypto.concrete.ConcreteTestBase;
 import civitas.crypto.concrete.ConcreteTestData;
-import civitas.util.DI;
+import civitas.util.Tested;
 
 public class FindGeneratorTest extends ConcreteTestBase
 		implements ConcreteTestData {
 
-	FindGenerator findGenerator = DI.get(FindGenerator.class);
+	@Tested
+	FindGenerator findGenerator;
 
 	@Test
 	@DisplayName("generator with value 1 is rejected")

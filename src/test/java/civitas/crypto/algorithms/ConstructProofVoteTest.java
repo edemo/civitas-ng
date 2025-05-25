@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.common.Util;
 import civitas.crypto.CryptoException;
 import civitas.crypto.MessageDigest;
 import civitas.crypto.concrete.ConcreteTestBase;
@@ -62,7 +61,6 @@ public class ConstructProofVoteTest extends ConcreteTestBase
 		CivitasBigInteger s2 = r2.modSubtract(
 				c.modMultiply(ELGAMAL_REENCRYPT_FACTOR_D.r, EL_GAMAL_PARAMETERS.q),
 				EL_GAMAL_PARAMETERS.q);
-		System.out.println(Util.fromBigInt(ELGAMAL_REENCRYPT_FACTOR_C.r));
 
 		ProofVoteC proof = constructProofVote.apply(EL_GAMAL_PARAMETERS,
 				EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B, SOMESTRING_EXTENDED,

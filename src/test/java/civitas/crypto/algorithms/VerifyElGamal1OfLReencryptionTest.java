@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.concrete.ConcreteTestBase;
 import civitas.crypto.concrete.ElGamal1OfLReencryptionC;
 import civitas.crypto.concrete.ElGamal1OfLReencryptionCTestData;
-import civitas.util.DI;
 import civitas.util.Tested;
 
 public class VerifyElGamal1OfLReencryptionTest extends ConcreteTestBase
@@ -23,8 +22,6 @@ public class VerifyElGamal1OfLReencryptionTest extends ConcreteTestBase
 	@Test
 	@DisplayName("verify works as expected")
 	void test2() throws IllegalArgumentException, IOException {
-		DI.fill(EL_GAMAL_1_OF_L_REENCRYPTION);// FIXME
-		DI.fill(EL_GAMAL_1_OF_L_REENCRYPTION.proof);// FIXME
 
 		assertTrue(verifyElGamal1OfLReencryption.apply(EL_GAMAL_1_OF_L_REENCRYPTION,
 				EL_GAMAL_PUBLIC_KEY, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));

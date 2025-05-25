@@ -4,9 +4,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import civitas.crypto.concrete.CryptoFactoryC;
+import civitas.crypto.concrete.ElGamalParametersCTestData;
 
-public class GenerateSchnorrPrimeStub
-		implements GenerateElGamalParametersTestData {
+public class GenerateSchnorrPrimeStub implements ElGamalParametersCTestData {
 
 	public static GenerateSchnorrPrime stub() {
 		GenerateSchnorrPrime generateSchnorrPrime = mock(

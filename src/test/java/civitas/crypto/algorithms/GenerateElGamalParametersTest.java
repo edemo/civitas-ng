@@ -7,10 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.concrete.ConcreteTestBase;
 import civitas.crypto.concrete.CryptoFactoryC;
+import civitas.crypto.concrete.ElGamalParametersCTestData;
 import civitas.util.Tested;
 
 public class GenerateElGamalParametersTest extends ConcreteTestBase
-		implements GenerateElGamalParametersTestData {
+		implements ElGamalParametersCTestData {
 
 	@Tested
 	GenerateElGamalParameters generateElGamalParameters = new GenerateElGamalParameters();

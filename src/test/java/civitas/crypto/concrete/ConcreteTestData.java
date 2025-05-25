@@ -4,11 +4,10 @@ import java.security.MessageDigest;
 
 import civitas.common.TestUtil;
 import civitas.crypto.algorithms.Constants;
-import civitas.crypto.algorithms.GenerateElGamalParametersTestData;
 import civitas.util.CivitasBigInteger;
 
-public interface ConcreteTestData extends GenerateElGamalParametersTestData,
-		ElGamalParametersCTestData, BasicValuesTestData,
+public interface ConcreteTestData
+		extends ElGamalParametersCTestData, BasicValuesTestData,
 		ElGamalDecryptionShareTestData, ElGamalPublicKeyCTestData,
 		ElGamalCiphertextCTestData, ElGamal1OfLReencryptionCTestData, Constants {
 
@@ -53,15 +52,12 @@ public interface ConcreteTestData extends GenerateElGamalParametersTestData,
 			+ SHARED_KEY_BASE64 + "\n";
 
 	public static final int SOME_POSITIVE_INTEGER = 0x1eadbeef;
-	public static final int KEYSIZE = 1024;
 
 	public static final VoteCapabilityShareC VOTE_CAPABILITY_SHARE = TestUtil
 			.construct(VoteCapabilityShareC.class, BIGINT_A, EL_GAMAL_PARAMETERS);
 	public static final VoteCapabilityShareC VOTE_CAPABILITY_SHARE_JUST_BIGINT = TestUtil
 			.construct(VoteCapabilityShareC.class, BIGINT_A);
 
-	public static final ElGamalParametersC EL_GAMAL_PARAMETERS_SAFE = new ElGamalParametersC(
-			SAFE_P, SAFE_Q, SAFE_G);
 	public static final VoteCapabilityC VOTE_CAPABILITY = TestUtil
 			.construct(VoteCapabilityC.class, BIGINT_A, EL_GAMAL_PARAMETERS);
 	public static final VoteCapabilityC VOTE_CAPABILITY_JUST_BIGINT = TestUtil
