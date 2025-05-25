@@ -12,9 +12,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamalPrivateKey;
+import civitas.crypto.importing.ElGamalPrivateKeyFromXML;
+import civitas.util.Use;
 
 public class ElGamalPrivateKeyCTest extends ConcreteTestBase
 		implements ElGamalPrivateKeyCTestData {
+	@Use
+	ElGamalPrivateKeyFromXML elGamalPrivateKeyFromXML;
 
 	@Test
 	@DisplayName("constructor with key and params works")
@@ -54,8 +58,8 @@ public class ElGamalPrivateKeyCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("fromXML returns the private key")
 	void test1() throws IllegalArgumentException, IOException {
-		assertEquals(ELGAMAL_PRIVATE_KEY,
-				ElGamalPrivateKeyC.fromXML(new StringReader(ELGAMAL_PRIVATE_KEY_XML)));
+		assertEquals(ELGAMAL_PRIVATE_KEY, elGamalPrivateKeyFromXML
+				.apply(new StringReader(ELGAMAL_PRIVATE_KEY_XML)));
 	}
 
 	@Test

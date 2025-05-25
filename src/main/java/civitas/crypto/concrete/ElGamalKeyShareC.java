@@ -6,17 +6,14 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
-import civitas.common.Util;
 import civitas.crypto.ElGamalAbstractKeyShare;
 
-class ElGamalKeyShareC extends ElGamalAbstractKeyShare {
+public class ElGamalKeyShareC extends ElGamalAbstractKeyShare {
 
-	protected ElGamalKeyShareC(ElGamalPublicKeyC pubKey,
+	public ElGamalKeyShareC(ElGamalPublicKeyC pubKey,
 			ElGamalProofKnowDiscLogC proof) {
 		super(pubKey, proof);
 	}
@@ -52,16 +49,4 @@ class ElGamalKeyShareC extends ElGamalAbstractKeyShare {
 		s.print("</elGamalKeyShare>");
 	}
 
-	public static ElGamalKeyShareC fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		Util.swallowTag(r, "elGamalKeyShare");
-		Util.swallowTag(r, "pubKey");
-		ElGamalPublicKeyC pubKey = ElGamalPublicKeyC.fromXML(r);
-		Util.swallowEndTag(r, "pubKey");
-		Util.swallowTag(r, "proof");
-		ElGamalProofKnowDiscLogC proof = ElGamalProofKnowDiscLogC.fromXML(r);
-		Util.swallowEndTag(r, "proof");
-		Util.swallowEndTag(r, "elGamalKeyShare");
-		return new ElGamalKeyShareC(pubKey, proof);
-	}
 }

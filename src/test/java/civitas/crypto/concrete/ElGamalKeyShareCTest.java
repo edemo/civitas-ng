@@ -12,9 +12,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamalKeyShare;
+import civitas.crypto.importing.ElGamalKeyShareFromXML;
+import civitas.util.Use;
 
 public class ElGamalKeyShareCTest extends ConcreteTestBase
 		implements ElGamalKeyShareTestData {
+	@Use
+	ElGamalKeyShareFromXML elGamalKeyShareFromXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
@@ -32,16 +36,16 @@ public class ElGamalKeyShareCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("fromXML works")
 	void test_fromXML() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMAL_KEY_SHARE_XML, ElGamalKeyShareC
-				.fromXML(new StringReader(EL_GAMAL_KEY_SHARE_XML)).toXML());
+		assertEquals(EL_GAMAL_KEY_SHARE_XML, elGamalKeyShareFromXML
+				.apply(new StringReader(EL_GAMAL_KEY_SHARE_XML)).toXML());
 	}
 
 	@Test
 	@DisplayName("two instances are not equal if the instance of the proof is different with the same data"
 			+ "FIXME: equals for ElGamalProofKnowDiscLogC is not overriden")
 	void testEquals() throws IllegalArgumentException, IOException {
-		assertFalse(EL_GAMAL_KEY_SHARE_C.equals(
-				ElGamalKeyShareC.fromXML(new StringReader(EL_GAMAL_KEY_SHARE_XML))));
+		assertFalse(EL_GAMAL_KEY_SHARE_C.equals(elGamalKeyShareFromXML
+				.apply(new StringReader(EL_GAMAL_KEY_SHARE_XML))));
 	}
 
 	@Test

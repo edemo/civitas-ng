@@ -8,28 +8,36 @@ import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.CryptoException;
 import civitas.crypto.ElGamalPublicKey;
+import civitas.crypto.importing.ElGamalPublicKeyFromXML;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 public class ElGamalPublicKeyCTest extends ConcreteTestBase
 		implements ElGamalPublicKeyCTestData {
 
 	ElGamalPublicKeyC elGamalPublicKeyC;
 
+	@Use
+	ElGamalPublicKeyFromXML elGamalPublicKeyFromXML;
+
 	@Override
 	@BeforeEach
-	public void setUp() {
+	public void setUp() throws NoSuchAlgorithmException, IllegalArgumentException,
+			IOException, CryptoException {
+		super.setUp();
 		elGamalPublicKeyC = new ElGamalPublicKeyC(
 				new CivitasBigInteger(
 						Base64.getDecoder().decode(PUBLICIZED_BIGINT_A_BASE64)),
 				EL_GAMAL_PARAMETERS);
-
 	}
 
 	@Test
@@ -48,8 +56,8 @@ public class ElGamalPublicKeyCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test1() throws IllegalArgumentException, IOException {
-		assertEquals(elGamalPublicKeyC,
-				ElGamalPublicKeyC.fromXML(new StringReader(EL_GAMAL_PUBLIC_KEY_XML)));
+		assertEquals(elGamalPublicKeyC, elGamalPublicKeyFromXML
+				.apply(new StringReader(EL_GAMAL_PUBLIC_KEY_XML)));
 	}
 
 	@Test

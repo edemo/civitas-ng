@@ -13,10 +13,14 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.CryptoError;
 import civitas.crypto.ElGamalParameters;
+import civitas.crypto.importing.ElGamalParametersFromXML;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 public class ElGamalParametersCTest extends ConcreteTestBase
 		implements ConcreteTestData {
+	@Use
+	ElGamalParametersFromXML elGamalParametersFromXML;
 
 	@Test
 	@DisplayName("storing constructor and toXML works as expected")
@@ -36,14 +40,15 @@ public class ElGamalParametersCTest extends ConcreteTestBase
 	@DisplayName("equals and fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
 		assertEquals(new ElGamalParametersC(BIGINT_P, BIGINT_Q, BIGINT_G),
-				ElGamalParametersC.fromXML(new StringReader(ELGAMAL_PARAMETERS_XML)));
+				elGamalParametersFromXML
+						.apply(new StringReader(ELGAMAL_PARAMETERS_XML)));
 	}
 
 	@Test
 	@DisplayName("fromXML throws CryptoError if group check fails")
 	void test4() throws Exception {
-		assertThrows(CryptoError.class, () -> ElGamalParametersC
-				.fromXML(new StringReader(ELGAMAL_PARAMETERS_NOGROUP_XML)));
+		assertThrows(CryptoError.class, () -> elGamalParametersFromXML
+				.apply(new StringReader(ELGAMAL_PARAMETERS_NOGROUP_XML)));
 	}
 
 	@Test

@@ -9,9 +9,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.algorithms.ElGamalProofDVRCTestData;
+import civitas.crypto.importing.ElGamalProofDVRFromXML;
+import civitas.util.Use;
 
 public class ElGamalProofDVRCTest extends ConcreteTestBase
 		implements ElGamalProofDVRCTestData {
+	@Use
+	ElGamalProofDVRFromXML elGamalProofDVRFromXML;
 
 	@Test
 	@DisplayName("constructor and toXML works")
@@ -28,14 +32,16 @@ public class ElGamalProofDVRCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("getEprime works")
 	void getEprimeTest() {
-		assertEquals(EL_GAMAL_CIPHERTEXT_A_ENCRYPTED_WITH_FACTOR_A, EL_GAMAL_PROOF_DVR.getEprime());
+		assertEquals(EL_GAMAL_CIPHERTEXT_A_ENCRYPTED_WITH_FACTOR_A,
+				EL_GAMAL_PROOF_DVR.getEprime());
 	}
 
 	@Test
 	@DisplayName("fromXML works")
 	void fromXMLTest() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMAL_PROOF_DVR_XML, ((ElGamalProofDVRC) ElGamalProofDVRC
-				.fromXML(new StringReader(EL_GAMAL_PROOF_DVR_XML))).toXML());
+		assertEquals(EL_GAMAL_PROOF_DVR_XML,
+				((ElGamalProofDVRC) elGamalProofDVRFromXML
+						.apply(new StringReader(EL_GAMAL_PROOF_DVR_XML))).toXML());
 	}
 
 }

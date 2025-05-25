@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
 import civitas.common.Util;
@@ -111,19 +109,6 @@ public class ElGamalParametersC implements ElGamalParameters, Constants {
 		s.print("</g>");
 
 		s.print("</elGamalParameters>");
-	}
-
-	public static ElGamalParametersC fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		Util.swallowTag(r, "elGamalParameters");
-		String sp = Util.unescapeString(Util.readSimpleTag(r, "p"));
-		String sq = Util.unescapeString(Util.readSimpleTag(r, "q"));
-		String sg = Util.unescapeString(Util.readSimpleTag(r, "g"));
-		Util.swallowEndTag(r, "elGamalParameters");
-		CivitasBigInteger p = CryptoFactoryC.stringToBigInt(sp);
-		CivitasBigInteger q = CryptoFactoryC.stringToBigInt(sq);
-		CivitasBigInteger g = CryptoFactoryC.stringToBigInt(sg);
-		return new ElGamalParametersC(p, q, g);
 	}
 
 	@Override

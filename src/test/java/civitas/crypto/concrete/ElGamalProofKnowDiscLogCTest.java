@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.algorithms.CryptoHash;
+import civitas.crypto.importing.ElGamalProofKnowDiscLogFromXML;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -22,6 +23,8 @@ public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase
 
 	@Use
 	CryptoHash hash;
+	@Use
+	ElGamalProofKnowDiscLogFromXML elGamalProofKnowDiscLogFromXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
@@ -70,8 +73,8 @@ public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("fromXml works as expected")
 	void test2() throws IllegalArgumentException, IOException {
-		ElGamalProofKnowDiscLogC actual = ElGamalProofKnowDiscLogC
-				.fromXML(new StringReader(ELGAMAL_PROOF_KNOWN_DISC_LOG_XML));
+		ElGamalProofKnowDiscLogC actual = elGamalProofKnowDiscLogFromXML
+				.apply(new StringReader(ELGAMAL_PROOF_KNOWN_DISC_LOG_XML));
 		assertEquals(ELGAMAL_PROOF_KNOWN_DISC_LOG_A, actual.a);
 		assertEquals(ELGAMAL_PROOF_KNOWN_DISC_LOG_C, actual.c);
 		assertEquals(ELGAMAL_PROOF_KNOWN_DISC_LOG_R, actual.r);
@@ -81,8 +84,9 @@ public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("fromXml throws NumberFormatException for empty values")
 	void test3() throws IllegalArgumentException, IOException {
-		assertThrows(NumberFormatException.class, () -> ElGamalProofKnowDiscLogC
-				.fromXML(new StringReader(ELGAMAL_PROOF_KNOWN_DISC_LOG_NULL_XML)));
+		assertThrows(NumberFormatException.class,
+				() -> elGamalProofKnowDiscLogFromXML
+						.apply(new StringReader(ELGAMAL_PROOF_KNOWN_DISC_LOG_NULL_XML)));
 	}
 
 }

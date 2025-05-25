@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
 import civitas.common.Util;
@@ -51,17 +49,6 @@ public class ElGamalPublicKeyC extends ElGamalAbstractKey
 		s.print("</");
 		s.print(EG_OPENING_TAG);
 		s.print('>');
-	}
-
-	public static ElGamalPublicKeyC fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		Util.swallowTag(r, EG_OPENING_TAG);
-		Util.swallowTag(r, "params");
-		ElGamalParameters params = ElGamalParametersC.fromXML(r);
-		Util.swallowEndTag(r, "params");
-		String y = Util.unescapeString(Util.readSimpleTag(r, "y"));
-		Util.swallowEndTag(r, EG_OPENING_TAG);
-		return new ElGamalPublicKeyC(CryptoFactoryC.stringToBigInt(y), params);
 	}
 
 	public boolean isAuthorized(Object prf) {

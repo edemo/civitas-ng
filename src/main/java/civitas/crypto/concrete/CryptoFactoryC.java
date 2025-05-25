@@ -111,8 +111,15 @@ import civitas.crypto.algorithms.SignAndEncrypt;
 import civitas.crypto.algorithms.VerifyElGamalSignature;
 import civitas.crypto.importing.ElGamal1OfLReencryptionFromXML;
 import civitas.crypto.importing.ElGamalCiphertextFromXML;
+import civitas.crypto.importing.ElGamalKeyShareFromXML;
+import civitas.crypto.importing.ElGamalParametersFromXML;
+import civitas.crypto.importing.ElGamalPrivateKeyFromFile;
+import civitas.crypto.importing.ElGamalPrivateKeyFromXML;
 import civitas.crypto.importing.ElGamalProof1OfLFromXML;
+import civitas.crypto.importing.ElGamalProofDVRFromXML;
 import civitas.crypto.importing.ElGamalProofDiscLogEqualityFromXML;
+import civitas.crypto.importing.ElGamalProofKnowDiscLogFromXML;
+import civitas.crypto.importing.ElGamalPublicKeyFromXML;
 import civitas.crypto.importing.ElGamalReencryptFactorFromXML;
 import civitas.crypto.importing.ElGamalSignedCiphertextFromXML;
 import civitas.crypto.importing.PetCommitmentFromXML;
@@ -209,6 +216,44 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	static ConvertToBigInt convertToBigInt;
 	@Use
 	ProofVoteFromXML proofVoteFromXML;
+	@Use
+	CombineDecryptionShares combineDecryptionShares;
+	@Use
+	PetShareFromXML petShareFromXML;
+	@Use
+	ElGamalProof1OfLFromXML elGamalProof1OfLFromXML;
+	@Use
+	ElGamal1OfLReencryptionFromXML elGamal1OfLReencryptionFromXML;
+	@Use
+	VoteCapabilityShareFromXML voteCapabilityShareFromXML;
+	@Use
+	VoteCapabilityFromXML voteCapabilityFromXML;
+	@Use
+	ElGamalProofDiscLogEqualityFromXML elGamalProofDiscLogEqualityFromXML;
+	@Use
+	PetDecommitmentFromXML petDecommitmentFromXML;
+	@Use
+	PetCommitmentFromXML petCommitmentFromXML;
+	@Use
+	SharedKeyFromWire sharedKeyFromWire;
+	@Use
+	SharedKeyFromXML sharedKeyFromXML;
+	@Use
+	SharedKeyCiphertextFromXML sharedKeyCiphertextFromXML;
+	@Use
+	PublicKeyCiphertextFromXML publicKeyCiphertextFromXML;
+	@Use
+	ElGamalReencryptFactorFromXML elGamalReencryptFactorFromXML;
+	@Use
+	ElGamalDecryptionShareFromXML decryptionShareFromXML;
+	@Use
+	IsPetResult isPetResult;
+	@Use
+	CombinePETShareDecommitments combinePETShareDecommitments;
+	@Use
+	ElGamalPrivateKeyFromXML ElGamalPrivateKeyFromXML;
+	@Use
+	ElGamalParametersFromXML elGamalParametersFromXML;
 
 	private SecretKeyFactory sharedKeyFactory;
 	private KeyFactory publicKeyFactory;
@@ -481,25 +526,31 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public ElGamalParameters elGamalParametersFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		return ElGamalParametersC.fromXML(r);
+		return elGamalParametersFromXML.apply(r);
 	}
 
 	@Override
 	public ElGamalPrivateKey elGamalPrivateKeyFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		return ElGamalPrivateKeyC.fromXML(r);
+		return ElGamalPrivateKeyFromXML.apply(r);
 	}
+
+	@Use
+	ElGamalProofKnowDiscLogFromXML elGamalProofKnowDiscLogFromXML;
 
 	@Override
 	public ElGamalProofKnowDiscLog elGamalProofKnowDiscLogFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		return ElGamalProofKnowDiscLogC.fromXML(r);
+		return elGamalProofKnowDiscLogFromXML.apply(r);
 	}
+
+	@Use
+	ElGamalPublicKeyFromXML elGamalPublicKeyFromXML;
 
 	@Override
 	public ElGamalPublicKey elGamalPublicKeyFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		return ElGamalPublicKeyC.fromXML(r);
+		return elGamalPublicKeyFromXML.apply(r);
 	}
 
 	@Override
@@ -508,17 +559,11 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return elGamalSignedCiphertextFromXML.apply(r);
 	}
 
-	@Use
-	PetCommitmentFromXML petCommitmentFromXML;
-
 	@Override
 	public PETCommitment petCommitmentFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
 		return petCommitmentFromXML.apply(r);
 	}
-
-	@Use
-	PetDecommitmentFromXML petDecommitmentFromXML;
 
 	@Override
 	public PETDecommitment petDecommitmentFromXML(Reader r)
@@ -526,17 +571,11 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return petDecommitmentFromXML.apply(r);
 	}
 
-	@Use
-	ElGamalProofDiscLogEqualityFromXML elGamalProofDiscLogEqualityFromXML;
-
 	@Override
 	public ElGamalProofDiscLogEquality elGamalProofDiscLogEqualityFromXML(
 			Reader r) throws IllegalArgumentException, IOException {
 		return elGamalProofDiscLogEqualityFromXML.apply(r);
 	}
-
-	@Use
-	VoteCapabilityFromXML voteCapabilityFromXML;
 
 	@Override
 	public VoteCapability voteCapabilityFromXML(Reader r)
@@ -544,17 +583,11 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return voteCapabilityFromXML.apply(r);
 	}
 
-	@Use
-	VoteCapabilityShareFromXML voteCapabilityShareFromXML;
-
 	@Override
 	public VoteCapabilityShare voteCapabilityShareFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
 		return voteCapabilityShareFromXML.apply(r);
 	}
-
-	@Use
-	ElGamal1OfLReencryptionFromXML elGamal1OfLReencryptionFromXML;
 
 	@Override
 	public ElGamal1OfLReencryption elGamal1OfLReencryptionFromXML(Reader r)
@@ -562,26 +595,17 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return elGamal1OfLReencryptionFromXML.apply(r);
 	}
 
-	@Use
-	ElGamalProof1OfLFromXML elGamalProof1OfLFromXML;
-
 	@Override
 	public ElGamalProof1OfL elGamalProof1OfLFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
 		return elGamalProof1OfLFromXML.apply(r);
 	}
 
-	@Use
-	PetShareFromXML petShareFromXML;
-
 	@Override
 	public PETShare petShareFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
 		return petShareFromXML.apply(r);
 	}
-
-	@Use
-	CombineDecryptionShares combineDecryptionShares;
 
 	@Override
 	public ElGamalMsg combineDecryptionShares(ElGamalCiphertext c,
@@ -590,18 +614,12 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return combineDecryptionShares.apply(c, shares, params);
 	}
 
-	@Use
-	CombinePETShareDecommitments combinePETShareDecommitments;
-
 	@Override
 	public ElGamalCiphertext combinePETShareDecommitments(PETDecommitment[] decs,
 			ElGamalParameters params) throws CryptoException {
 		CivitasBigInteger d = ONE;
 		return combinePETShareDecommitments.apply(decs, params, d);
 	}
-
-	@Use
-	IsPetResult isPetResult;
 
 	@Override
 	public boolean petResult(ElGamalMsg petResult) {
@@ -614,17 +632,11 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return constructElGamalDecryptionShare.apply(c, keyShare);
 	}
 
-	@Use
-	ElGamalDecryptionShareFromXML decryptionShareFromXML;
-
 	@Override
 	public ElGamalDecryptionShare decryptionShareFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
 		return decryptionShareFromXML.apply(r);
 	}
-
-	@Use
-	ElGamalReencryptFactorFromXML elGamalReencryptFactorFromXML;
 
 	@Override
 	public ElGamalReencryptFactor elGamalReencryptFactorFromXML(Reader r)
@@ -632,17 +644,11 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return elGamalReencryptFactorFromXML.apply(r);
 	}
 
-	@Use
-	PublicKeyCiphertextFromXML publicKeyCiphertextFromXML;
-
 	@Override
 	public PublicKeyCiphertext publicKeyCiphertextFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		return publicKeyCiphertextFromXML(r);
+		return publicKeyCiphertextFromXML.apply(r);
 	}
-
-	@Use
-	SharedKeyCiphertextFromXML sharedKeyCiphertextFromXML;
 
 	@Override
 	public SharedKeyCiphertext sharedKeyCiphertextFromXML(Reader r)
@@ -650,17 +656,11 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return sharedKeyCiphertextFromXML.apply(r);
 	}
 
-	@Use
-	SharedKeyFromXML sharedKeyFromXML;
-
 	@Override
 	public SharedKey sharedKeyFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
 		return sharedKeyFromXML.apply(r);
 	}
-
-	@Use
-	SharedKeyFromWire sharedKeyFromWire;
 
 	@Override
 	public SharedKey sharedKeyFromWire(Reader r)
@@ -668,23 +668,29 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return sharedKeyFromWire.apply(r);
 	}
 
+	@Use
+	ElGamalProofDVRFromXML elGamalProofDVRFromXML;
+
 	@Override
 	public ElGamalProofDVR elGamalProofDVRFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		return ElGamalProofDVRC.fromXML(r);
+		return elGamalProofDVRFromXML.apply(r);
 	}
+
+	@Use
+	ElGamalPrivateKeyFromFile elGamalPrivateKeyFromFile;
 
 	@Override
 	public ElGamalPrivateKey egPrivKeyFromFile(String keyFile)
 			throws IllegalArgumentException, FileNotFoundException, IOException {
-		return elGamalPrivateKeyFromXML(
-				new BufferedReader(new FileReader(keyFile)));
+		return elGamalPrivateKeyFromFile.apply(keyFile);
 	}
 
 	@Override
 	public ElGamalPublicKey egPubKeyFromFile(String keyFile)
 			throws IllegalArgumentException, FileNotFoundException, IOException {
-		return elGamalPublicKeyFromXML(new BufferedReader(new FileReader(keyFile)));
+		return elGamalPublicKeyFromXML
+				.apply(new BufferedReader(new FileReader(keyFile)));
 	}
 
 	@Override
@@ -699,10 +705,13 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return publicKeyFromXML(new BufferedReader(new FileReader(keyFile)));
 	}
 
+	@Use
+	ElGamalKeyShareFromXML elGamalKeyShareFromXML;
+
 	@Override
 	public ElGamalKeyShare elGamalKeyShareFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		return ElGamalKeyShareC.fromXML(r);
+		return elGamalKeyShareFromXML.apply(r);
 	}
 
 	@Override

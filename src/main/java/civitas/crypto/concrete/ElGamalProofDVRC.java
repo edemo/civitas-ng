@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
 import civitas.common.Util;
@@ -71,26 +69,6 @@ public class ElGamalProofDVRC implements ElGamalProofDVR {
 		Util.escapeString(CryptoFactoryC.bigIntToString(u), s);
 		s.print("</u>");
 		s.print("</elGamalProofDVR>");
-	}
-
-	public static ElGamalProofDVR fromXML(Reader reader)
-			throws IllegalArgumentException, IOException {
-		Util.swallowTag(reader, "elGamalProofDVR");
-		ElGamalCiphertextC e = (ElGamalCiphertextC) CryptoFactoryC.singleton()
-				.elGamalCiphertextFromXML(reader);
-		ElGamalCiphertextC eprime = (ElGamalCiphertextC) CryptoFactoryC.singleton()
-				.elGamalCiphertextFromXML(reader);
-		CivitasBigInteger c = CryptoFactoryC
-				.stringToBigInt(Util.unescapeString(Util.readSimpleTag(reader, "c")));
-		CivitasBigInteger w = CryptoFactoryC
-				.stringToBigInt(Util.unescapeString(Util.readSimpleTag(reader, "w")));
-		CivitasBigInteger r = CryptoFactoryC
-				.stringToBigInt(Util.unescapeString(Util.readSimpleTag(reader, "r")));
-		CivitasBigInteger u = CryptoFactoryC
-				.stringToBigInt(Util.unescapeString(Util.readSimpleTag(reader, "u")));
-
-		Util.swallowEndTag(reader, "elGamalProofDVR");
-		return new ElGamalProofDVRC(e, eprime, c, w, r, u);
 	}
 
 	@Override
