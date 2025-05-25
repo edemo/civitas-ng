@@ -22,7 +22,7 @@ public class ElGamalMsgCTest extends ConcreteTestBase
 
 	@Override
 	@BeforeEach
-	void setUp() throws NoSuchAlgorithmException, IllegalArgumentException,
+	public void setUp() throws NoSuchAlgorithmException, IllegalArgumentException,
 			IOException, CryptoException {
 		super.setUp();
 		message = new ElGamalMsgC(BIGINT_A, EL_GAMAL_PARAMETERS_SAFE);

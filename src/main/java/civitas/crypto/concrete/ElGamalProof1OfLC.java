@@ -110,7 +110,7 @@ public class ElGamalProof1OfLC implements ElGamalProof1OfL {
 	@Deprecated
 	public boolean verify(ElGamalPublicKey pubKey, CiphertextList ciphertexts,
 			int L, ElGamalCiphertext msg) {
-		return verifyElGamalProof1OfLC.apply(this, pubKey, ciphertexts, L, msg);
+		throw new UnsupportedOperationException("use VerifyElGamalProof1OfLC");
 	}
 
 }

@@ -24,7 +24,7 @@ public class ElGamalPublicKeyCTest extends ConcreteTestBase
 
 	@Override
 	@BeforeEach
-	void setUp() {
+	public void setUp() {
 		elGamalPublicKeyC = new ElGamalPublicKeyC(
 				new CivitasBigInteger(
 						Base64.getDecoder().decode(PUBLICIZED_BIGINT_A_BASE64)),

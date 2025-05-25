@@ -274,18 +274,15 @@ public class Util {
 					StringBuffer received = new StringBuffer();
 					received.append(s.substring(0, i));
 					received.append((char) ch);
-					try {
-						int count = 10;
-						while (count-- > 0) {
-							ch = r.read();
-							received.append((char) ch);
-							if (ch == '>')
-								break;
-						}
-					} finally {
-						throw new IOException(
-								"Expecting " + s + " got " + received.toString());
+					int count = 10;
+					while (count-- > 0) {
+						ch = r.read();
+						received.append((char) ch);
+						if (ch == '>')
+							break;
 					}
+					throw new IOException(
+							"Expecting " + s + " got " + received.toString());
 				}
 			} catch (StringIndexOutOfBoundsException imposs) {
 			}

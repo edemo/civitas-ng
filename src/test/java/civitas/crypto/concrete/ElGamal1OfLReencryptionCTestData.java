@@ -48,7 +48,7 @@ public interface ElGamal1OfLReencryptionCTestData
 	}).get();
 
 	public static final List<CivitasBigInteger> DVS_BAD = ((Supplier<List<CivitasBigInteger>>) () -> {
-		List<CivitasBigInteger> d = new ArrayList(DVS);
+		List<CivitasBigInteger> d = new ArrayList<>(DVS);
 		d.set(3, BIGINT_D);
 		return d;
 	}).get();

@@ -75,7 +75,6 @@ public class PETShareC implements PETShare {
 	public PETCommitment commitment(ElGamalParameters params) {
 		try {
 			ElGamalParametersC ps = (ElGamalParametersC) params;
-			CryptoFactoryC factory = CryptoFactoryC.singleton();
 
 			CivitasBigInteger zi = exponent;
 			CivitasBigInteger d = ciphertext1.a.modDivide(ciphertext2.a, ps.p);

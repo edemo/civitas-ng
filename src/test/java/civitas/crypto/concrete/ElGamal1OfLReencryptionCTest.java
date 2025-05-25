@@ -12,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamal1OfLReencryption;
-import civitas.util.DI;
 
 public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 		implements ElGamal1OfLReencryptionCTestData {
@@ -44,24 +43,6 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 	void toXMLTest() {
 		assertEquals(EL_GAMAL_1_OF_L_REENCRYPTION_XML,
 				EL_GAMAL_1_OF_L_REENCRYPTION.toXML());
-	}
-
-	@Test
-	@DisplayName("verify works as expected")
-	void test2() throws IllegalArgumentException, IOException {
-		DI.fill(EL_GAMAL_1_OF_L_REENCRYPTION);// FIXME
-		DI.fill(EL_GAMAL_1_OF_L_REENCRYPTION.proof);// FIXME
-
-		assertTrue(EL_GAMAL_1_OF_L_REENCRYPTION.verify(EL_GAMAL_PUBLIC_KEY,
-				CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
-	}
-
-	@Test
-	@DisplayName("verify for null proof is false")
-	void test2_1() throws IllegalArgumentException, IOException {
-		assertFalse(new ElGamal1OfLReencryptionC(EL_GAMAL_CIPHERTEXT_1_OF_L, null)
-				.verify(EL_GAMAL_PUBLIC_KEY, CIPHERTEXT_LIST,
-						NO_OF_WELL_KNOWN_CIPHERTEXTS));
 	}
 
 	@Test

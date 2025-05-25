@@ -10,6 +10,7 @@ public class DI {
 
 	private static Map<Class<?>, Object> instances = new HashMap<Class<?>, Object>();
 
+	@SuppressWarnings("unchecked")
 	public static <T> T get(Class<T> klass) {
 		if (instances.containsKey(klass)) {
 			return (T) instances.get(klass);

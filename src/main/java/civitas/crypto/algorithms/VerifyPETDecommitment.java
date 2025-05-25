@@ -3,7 +3,6 @@ package civitas.crypto.algorithms;
 import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.PETCommitment;
-import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalParametersC;
 import civitas.crypto.concrete.ElGamalProofDiscLogEqualityC;
@@ -28,8 +27,6 @@ public class VerifyPETDecommitment {
 		PETCommitmentC com = (PETCommitmentC) c;
 		ElGamalCiphertextC m1 = (ElGamalCiphertextC) ciphertext1;
 		ElGamalCiphertextC m2 = (ElGamalCiphertextC) ciphertext2;
-
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
 
 		CivitasBigInteger d = m1.a.modDivide(m2.a, ps.p);
 		CivitasBigInteger e = m1.b.modDivide(m2.b, ps.p);

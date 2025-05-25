@@ -12,7 +12,7 @@ import civitas.util.DI;
 public class ConcreteTestBase {
 
 	@BeforeEach
-	void setUp() throws NoSuchAlgorithmException, IllegalArgumentException,
+	public void setUp() throws NoSuchAlgorithmException, IllegalArgumentException,
 			IOException, CryptoException {
 		DI.stubUp(this);
 		DI.fill(this);

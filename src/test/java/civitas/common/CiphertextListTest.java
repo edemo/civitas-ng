@@ -36,7 +36,7 @@ public class CiphertextListTest extends ConcreteTestBase
 			new ElGamalCiphertext[] { ciphertext });
 
 	@BeforeEach
-	void setUp() throws IllegalArgumentException, IOException {
+	public void setUp() throws IllegalArgumentException, IOException {
 		ArgumentCaptor<PrintWriter> argument = ArgumentCaptor
 				.forClass(PrintWriter.class);
 		doAnswer(new Answer<Void>() {

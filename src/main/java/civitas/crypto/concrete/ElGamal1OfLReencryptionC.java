@@ -65,12 +65,11 @@ public class ElGamal1OfLReencryptionC implements ElGamal1OfLReencryption {
 	}
 
 	@Override
+	@Deprecated
 	public boolean verify(ElGamalPublicKey pubKey, CiphertextList ciphertexts,
 			int L) {
-		if (proof == null)
-			return false;
-		// check the proof is consistent
-		return proof.verify(pubKey, ciphertexts, L, m);
+		throw new UnsupportedOperationException(
+				"use VerifyElGamal1OfLReencryption");
 	}
 
 	@Override
