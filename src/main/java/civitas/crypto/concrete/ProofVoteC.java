@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
 import civitas.common.Util;
@@ -88,18 +86,6 @@ public class ProofVoteC implements ProofVote {
 			}
 		}
 		return false;
-	}
-
-	public static ProofVoteC fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		Util.swallowTag(r, "elGamalProofVote");
-		String c = Util.unescapeString(Util.readSimpleTag(r, "c"));
-		String s1 = Util.unescapeString(Util.readSimpleTag(r, "s1"));
-		String s2 = Util.unescapeString(Util.readSimpleTag(r, "s2"));
-
-		Util.swallowEndTag(r, "elGamalProofVote");
-		return new ProofVoteC(CryptoFactoryC.stringToBigInt(c),
-				CryptoFactoryC.stringToBigInt(s1), CryptoFactoryC.stringToBigInt(s2));
 	}
 
 	@Override

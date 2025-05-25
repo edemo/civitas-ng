@@ -9,12 +9,13 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.CryptoError;
 import civitas.crypto.concrete.ConcreteTestBase;
 import civitas.crypto.concrete.ElGamalParametersCTestData;
-import civitas.util.DI;
+import civitas.util.Tested;
 
 public class LegendreSymbolTest extends ConcreteTestBase
 		implements Constants, ElGamalParametersCTestData {
 
-	LegendreSymbol legendreSymbol = DI.get(LegendreSymbol.class);
+	@Tested
+	LegendreSymbol legendreSymbol;
 
 	@Test
 	@DisplayName("legendreSymbol returns 1 if a is quadratic residue mod p"

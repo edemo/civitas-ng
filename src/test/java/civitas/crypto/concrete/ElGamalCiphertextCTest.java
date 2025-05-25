@@ -14,9 +14,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamalCiphertext;
+import civitas.crypto.algorithms.ElGamalCiphertextFromXML;
+import civitas.util.Use;
 
 public class ElGamalCiphertextCTest extends ConcreteTestBase
 		implements ElGamalCiphertextCTestData {
+
+	@Use
+	ElGamalCiphertextFromXML elGamalCiphertextFromXML;
 
 	@Test
 	@DisplayName("toXML converts it to xml representation")
@@ -43,7 +48,7 @@ public class ElGamalCiphertextCTest extends ConcreteTestBase
 	@DisplayName("fromXML creates a new ElGamalCiphertextC")
 	void test3() throws IllegalArgumentException, IOException {
 		Reader r = new StringReader(XML_ELGAMALCIPHERTEXT_);
-		ElGamalCiphertextC el = ElGamalCiphertextC.fromXML(r);
+		ElGamalCiphertextC el = elGamalCiphertextFromXML.apply(r);
 		assertEquals(new ElGamalCiphertextC(BIGINT_A, BIGINT_B), el);
 	}
 
@@ -52,7 +57,7 @@ public class ElGamalCiphertextCTest extends ConcreteTestBase
 			+ "FIXME: equals blows on nulls in the original implementation")
 	void test3_1() throws IllegalArgumentException, IOException {
 		Reader r = new StringReader(XML_ELGAMALCIPHERTEXT_ANULL);
-		ElGamalCiphertextC el = ElGamalCiphertextC.fromXML(r);
+		ElGamalCiphertextC el = elGamalCiphertextFromXML.apply(r);
 		assertEquals(new ElGamalCiphertextC(null, BIGINT_B), el);
 	}
 
@@ -60,7 +65,7 @@ public class ElGamalCiphertextCTest extends ConcreteTestBase
 	@DisplayName("fromXML leaves b as null if it is the empty string in the xml")
 	void test3_2() throws IllegalArgumentException, IOException {
 		Reader r = new StringReader(XML_ELGAMALCIPHERTEXT_BNULL);
-		ElGamalCiphertextC el = ElGamalCiphertextC.fromXML(r);
+		ElGamalCiphertextC el = elGamalCiphertextFromXML.apply(r);
 		assertEquals(new ElGamalCiphertextC(BIGINT_B, null), el);
 	}
 
@@ -68,14 +73,14 @@ public class ElGamalCiphertextCTest extends ConcreteTestBase
 	@DisplayName("fromXML with reader null throws IllegalArgumentException")
 	void test4() throws IllegalArgumentException, IOException {
 		assertThrows(IllegalArgumentException.class,
-				() -> ElGamalCiphertextC.fromXML(null));
+				() -> elGamalCiphertextFromXML.apply(null));
 	}
 
 	@Test
 	@DisplayName("fromXML with truncated xml null throws IOException")
 	void test5() throws IllegalArgumentException, IOException {
 		Reader r = new StringReader(XML_ELGAMALCIPHERTEXT_TRUNCATED);
-		assertThrows(IOException.class, () -> ElGamalCiphertextC.fromXML(r));
+		assertThrows(IOException.class, () -> elGamalCiphertextFromXML.apply(r));
 	}
 
 	@Test

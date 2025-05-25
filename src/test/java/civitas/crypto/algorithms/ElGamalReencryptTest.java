@@ -9,7 +9,6 @@ import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.concrete.ConcreteTestBase;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalPublicKeyCTestData;
-import civitas.crypto.concrete.ElGamalReencrypt;
 import civitas.crypto.concrete.ElGamalReencryptFactorC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;

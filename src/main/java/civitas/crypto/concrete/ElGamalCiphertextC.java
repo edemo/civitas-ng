@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 
 import civitas.common.Util;
@@ -46,25 +44,6 @@ public class ElGamalCiphertextC implements ElGamalCiphertext {
 		s.print("</");
 		s.print(OPENING_TAG);
 		s.print('>');
-	}
-
-	public static ElGamalCiphertextC fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		Util.swallowTag(r, OPENING_TAG);
-		CivitasBigInteger a = null;
-		String sa = Util.unescapeString(Util.readSimpleTag(r, "a"));
-		if (sa.length() > 0) {
-			a = CryptoFactoryC.stringToBigInt(sa);
-		}
-
-		CivitasBigInteger b = null;
-		String sb = Util.unescapeString(Util.readSimpleTag(r, "b"));
-		if (sb.length() > 0) {
-			b = CryptoFactoryC.stringToBigInt(sb);
-		}
-
-		Util.swallowEndTag(r, OPENING_TAG);
-		return new ElGamalCiphertextC(a, b);
 	}
 
 	@Override

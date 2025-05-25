@@ -28,7 +28,7 @@ public class ConstructElGamalProofDVRCTest extends ConcreteTestBase
 		CivitasBigInteger zeta = ((ElGamalReencryptFactorC) erPrime).r
 				.modSubtract(((ElGamalReencryptFactorC) er).r, BIGINT_Q);
 		ElGamalProofDVRC proof = constructElGamalProofDVRC.apply(
-				EL_GAMAL_CIPHERTEXT_E, EL_GAMAL_CIPHERTEXT_EPRIME, EL_GAMAL_PUBLIC_KEY,
+				EL_GAMAL_CIPHERTEXT_E, EL_GAMAL_CIPHERTEXT_A_ENCRYPTED_WITH_FACTOR_A, EL_GAMAL_PUBLIC_KEY,
 				EL_GAMAL_PUBLIC_KEY2, zeta);
 		assertEquals(EL_GAMAL_PROOF_DVR_XML, proof.toXML());
 	}

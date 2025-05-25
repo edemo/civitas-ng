@@ -22,7 +22,7 @@ public interface ElGamalProofDVRCTestData extends ElGamalCiphertextCTestData,
 			+ DVR_U_BASE64 + "</u></elGamalProofDVR>";
 
 	ElGamalProofDVRC EL_GAMAL_PROOF_DVR = new ElGamalProofDVRC(
-			EL_GAMAL_CIPHERTEXT_E, EL_GAMAL_CIPHERTEXT_EPRIME, DVR_C, RANDOMS_1,
+			EL_GAMAL_CIPHERTEXT_E, EL_GAMAL_CIPHERTEXT_A_ENCRYPTED_WITH_FACTOR_A, DVR_C, RANDOMS_1,
 			RANDOMS_2, DVR_U);
 
 }

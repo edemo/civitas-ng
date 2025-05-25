@@ -20,6 +20,7 @@ import civitas.crypto.PETShare;
 import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
 import civitas.crypto.algorithms.ConstructPETDecommitment;
 import civitas.crypto.algorithms.CryptoHash;
+import civitas.crypto.algorithms.ElGamalCiphertextFromXML;
 import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
 import civitas.util.Use;
@@ -29,9 +30,10 @@ public class PETShareC implements PETShare {
 	ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
 	@Use
 	ConstructPETDecommitment constructPETDecommitment;
-
 	@Use
 	CryptoHash hash;
+	@Use
+	static ElGamalCiphertextFromXML elGamalCiphertextFromXML;
 
 	public final ElGamalCiphertextC ciphertext1;
 	public final ElGamalCiphertextC ciphertext2;
@@ -120,8 +122,8 @@ public class PETShareC implements PETShare {
 		ElGamalCiphertextC ciphertext1 = null;
 		ElGamalCiphertextC ciphertext2 = null;
 
-		ciphertext1 = ElGamalCiphertextC.fromXML(r);
-		ciphertext2 = ElGamalCiphertextC.fromXML(r);
+		ciphertext1 = elGamalCiphertextFromXML.apply(r);
+		ciphertext2 = elGamalCiphertextFromXML.apply(r);
 
 		CivitasBigInteger exponent = CryptoFactoryC
 				.stringToBigInt(Util.unescapeString(Util.readSimpleTag(r, "exponent")));

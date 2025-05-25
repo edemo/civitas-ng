@@ -19,6 +19,8 @@ public class SignAndEncrypt {
 	GenerateRandomElement generateRandomElement;
 	@Use
 	CryptoHash cryptoHash;
+	@Use
+	ElGamalReencrypt elGamalReencrypt;
 
 	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg,
 			ElGamalReencryptFactor r, byte[] additionalEnv) throws CryptoError {
@@ -38,6 +40,11 @@ public class SignAndEncrypt {
 		} catch (ClassCastException e) {
 			throw new CryptoError(e);
 		}
+	}
+
+	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg)
+			throws CryptoError {
+		return apply(key, msg, elGamalReencrypt.apply(key.getParams()), null);
 	}
 
 }

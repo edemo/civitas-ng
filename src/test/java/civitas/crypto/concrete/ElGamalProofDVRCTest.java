@@ -28,7 +28,7 @@ public class ElGamalProofDVRCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("getEprime works")
 	void getEprimeTest() {
-		assertEquals(EL_GAMAL_CIPHERTEXT_EPRIME, EL_GAMAL_PROOF_DVR.getEprime());
+		assertEquals(EL_GAMAL_CIPHERTEXT_A_ENCRYPTED_WITH_FACTOR_A, EL_GAMAL_PROOF_DVR.getEprime());
 	}
 
 	@Test

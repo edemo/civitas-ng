@@ -9,8 +9,14 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.algorithms.ElGamalSignedCiphertextFromXML;
+import civitas.util.Use;
+
 public class ElGamalSignedCiphertextCTest extends ConcreteTestBase
 		implements ElGamalSignedCiphertextCTestData {
+
+	@Use
+	ElGamalSignedCiphertextFromXML elGamalSignedCiphertextFromXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
@@ -29,8 +35,8 @@ public class ElGamalSignedCiphertextCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test1() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMAL_SIGNED_CIPHERTEXT, ElGamalSignedCiphertextC
-				.fromXMLsub(new StringReader(EL_GAMAL_SIGNED_CIPHERTEXT_XML)));
+		assertEquals(EL_GAMAL_SIGNED_CIPHERTEXT, elGamalSignedCiphertextFromXML
+				.apply(new StringReader(EL_GAMAL_SIGNED_CIPHERTEXT_XML)));
 
 	}
 
@@ -38,8 +44,8 @@ public class ElGamalSignedCiphertextCTest extends ConcreteTestBase
 	@DisplayName("fromXML with null parameters results in null parameters")
 	void test3() throws IllegalArgumentException, IOException {
 		assertTrue(new ElGamalSignedCiphertextC(null, null, null, null)
-				.equals(ElGamalSignedCiphertextC.fromXMLsub(
-						new StringReader(EL_GAMAL_SIGNED_CIPHERTEXT_NULL_XML))));
+				.equals(elGamalSignedCiphertextFromXML
+						.apply(new StringReader(EL_GAMAL_SIGNED_CIPHERTEXT_NULL_XML))));
 
 	}
 

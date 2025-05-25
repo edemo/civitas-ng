@@ -48,7 +48,7 @@ public class ElGamalMsgC implements ElGamalMsg {
 	 *                verification that the element corresponds to any particular
 	 *                group.
 	 */
-	protected ElGamalMsgC(CivitasBigInteger message) {
+	public ElGamalMsgC(CivitasBigInteger message) {
 		this.m = message;
 	}
 
@@ -56,8 +56,7 @@ public class ElGamalMsgC implements ElGamalMsg {
 	 * @throws CryptoException Unless i can be converted to a valid message in the
 	 *                         message space defined by params.
 	 */
-	protected ElGamalMsgC(int i, ElGamalParametersC params)
-			throws CryptoException {
+	public ElGamalMsgC(int i, ElGamalParametersC params) throws CryptoException {
 		this(CivitasBigInteger.valueOf(i), params);
 	}
 

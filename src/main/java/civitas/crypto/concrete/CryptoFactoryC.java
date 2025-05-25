@@ -14,7 +14,6 @@ import java.io.Reader;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.KeyFactory;
-import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.Security;
@@ -23,16 +22,10 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -40,7 +33,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-import civitas.common.Util;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.CryptoFactory;
@@ -76,23 +68,46 @@ import civitas.crypto.SharedKeyMsg;
 import civitas.crypto.Signature;
 import civitas.crypto.VoteCapability;
 import civitas.crypto.VoteCapabilityShare;
+import civitas.crypto.algorithms.CombineKeyShares;
+import civitas.crypto.algorithms.CombineVoteCapabilityShares;
 import civitas.crypto.algorithms.Constants;
+import civitas.crypto.algorithms.ConstructElGamal1OfLReencryption;
 import civitas.crypto.algorithms.ConstructElGamalDecryptionShare;
 import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
 import civitas.crypto.algorithms.ConstructElGamalProof1OfL;
 import civitas.crypto.algorithms.ConstructElGamalProofDVRC;
+import civitas.crypto.algorithms.ConstructPETShare;
 import civitas.crypto.algorithms.ConstructProofKnowDiscLog;
 import civitas.crypto.algorithms.ConstructProofVote;
+import civitas.crypto.algorithms.ConstructWellKnownCiphertexts;
+import civitas.crypto.algorithms.ConvertHashToBigInt;
+import civitas.crypto.algorithms.ConvertToBase64;
+import civitas.crypto.algorithms.ConvertToBigInt;
+import civitas.crypto.algorithms.CreateFreshNonce;
+import civitas.crypto.algorithms.CreateFreshNonceBase64;
+import civitas.crypto.algorithms.CreatePermutation;
 import civitas.crypto.algorithms.CryptoHash;
+import civitas.crypto.algorithms.DecryptElGamalMessage;
+import civitas.crypto.algorithms.ElGamalCiphertextFromXML;
 import civitas.crypto.algorithms.ElGamalEncrypt;
+import civitas.crypto.algorithms.ElGamalReencrypt;
+import civitas.crypto.algorithms.ElGamalSignedCiphertextFromXML;
 import civitas.crypto.algorithms.FakeElGamalProofDVRC;
 import civitas.crypto.algorithms.GenerateElGamalKeyPair;
 import civitas.crypto.algorithms.GenerateElGamalParameters;
+import civitas.crypto.algorithms.GenerateKeyPair;
 import civitas.crypto.algorithms.GenerateKeyPairShare;
 import civitas.crypto.algorithms.GenerateRandomElement;
+import civitas.crypto.algorithms.GenerateRandomInt;
+import civitas.crypto.algorithms.GenerateVoteCapabilityShare;
+import civitas.crypto.algorithms.GetPublicKeyGenerator;
 import civitas.crypto.algorithms.GetRandomGenerator;
+import civitas.crypto.algorithms.GetSharedKeyGenerator;
+import civitas.crypto.algorithms.MultiplyCiphertexts;
 import civitas.crypto.algorithms.ObtainMessageDigest;
+import civitas.crypto.algorithms.ProofVoteFromXML;
 import civitas.crypto.algorithms.SignAndEncrypt;
+import civitas.crypto.algorithms.VerifyElGamalSignature;
 import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
 import civitas.util.Use;
@@ -133,25 +148,53 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	ElGamalReencrypt elGamalReencrypt;
 	@Use
 	GenerateKeyPairShare generateKeyPairShare;
+	@Use
+	GetSharedKeyGenerator getSharedKeyGenerator;
+	@Use
+	CreatePermutation createPermutation;
+	@Use
+	GenerateRandomInt generateRandomInt;
+	@Use
+	GetPublicKeyGenerator getPublicKeyGenerator;
+	@Use
+	GenerateKeyPair generateKeyPair;
+	@Use
+	CreateFreshNonce createFreshNonce;
+	@Use
+	CreateFreshNonceBase64 createFreshNonceBase64;
+	@Use
+	static ConvertToBase64 convertToBase64;
+	@Use
+	GenerateVoteCapabilityShare generateVoteCapabilityShare;
+	@Use
+	CombineVoteCapabilityShares combineVoteCapabilityShares;
+	@Use
+	MultiplyCiphertexts multiplyCiphertexts;
+	@Use
+	CombineKeyShares combineKeyShares;
+	@Use
+	ConstructElGamal1OfLReencryption constructElGamal1OfLReencryption;
+	@Use
+	ConstructWellKnownCiphertexts constructWellKnownCiphertexts;
+	@Use
+	ConvertHashToBigInt convertHashToBigInt;
+	@Use
+	VerifyElGamalSignature verifyElGamalSignature;
+	@Use
+	DecryptElGamalMessage decryptElGamalMessage;
+	@Use
+	ConstructPETShare constructPETShare;
+	@Use
+	ElGamalCiphertextFromXML elGamalCiphertextFromXML;
+	@Use
+	ElGamalSignedCiphertextFromXML elGamalSignedCiphertextFromXML;
+	@Use
+	static ConvertToBigInt convertToBigInt;
+	@Use
+	ProofVoteFromXML proofVoteFromXML;
 
-	private Map<String, KeyGenerator> sharedKeyGenerators = new HashMap<String, KeyGenerator>();
-	private Map<String, KeyPairGenerator> publicKeyGenerators = new HashMap<String, KeyPairGenerator>();
 	private SecretKeyFactory sharedKeyFactory;
 	private KeyFactory publicKeyFactory;
-
-	// count the number of operations
-	private static long numPublicKeyEncs = 0;
-	private static long numPublicKeyDecs = 0;
-	private static long numPublicKeySign = 0;
-	private static long numPublicKeyVerifySig = 0;
-	private static long numSharedKeyEncs = 0;
-	private static long numSharedKeyDecs = 0;
-	private static long numElGamalEncs = 0;
-	private static long numElGamalReencs = 0;
-	private static long numElGamalDecs = 0;
-	private static long numElGamalDecShare = 0;
-	private static long numElGamalSignedEncs = 0;
-	private static long numElGamalVerifies = 0;
 
 	static {
 		BouncyCastleProvider bc = new BouncyCastleProvider();
@@ -185,43 +228,6 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	/**
-	 * Get an appropriate public key generator, creating one if necessary.
-	 */
-	protected KeyPairGenerator publicKeyGenerator(int keyLength) {
-		String genKey = String.valueOf(keyLength);
-		KeyPairGenerator g = publicKeyGenerators.get(genKey);
-		if (g != null)
-			return g;
-		// need to create the public key generator
-		try {
-			g = KeyPairGenerator.getInstance(PUBLIC_KEY_ALG, PUBLIC_KEY_PROVIDER);
-			g.initialize(keyLength);
-			publicKeyGenerators.put(genKey, g);
-			return g;
-		} catch (Exception impossible) {
-			throw new Error(impossible);
-		}
-	}
-
-	/**
-	 * Get an appropriate shared key generator, creating one if necessary.
-	 */
-	protected KeyGenerator sharedKeyGenerator(int keyLength) {
-		String genKey = String.valueOf(keyLength);
-		KeyGenerator g = sharedKeyGenerators.get(genKey);
-		if (g != null)
-			return g;
-		try {
-			g = KeyGenerator.getInstance(SHARED_KEY_ALG, SHARED_KEY_PROVIDER);
-		} catch (Exception e) {
-			throw new Error(e);
-		}
-		g.init(keyLength);
-		sharedKeyGenerators.put(genKey, g);
-		return g;
-	}
-
-	/**
 	 * Initialize the crypto providers.
 	 *
 	 */
@@ -238,22 +244,9 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public int[] createPermutation(int size) {
-		List<Integer> l = new LinkedList<Integer>();
-		for (int i = 0; i < size; i++) {
-			l.add(Integer.valueOf(i));
-		}
-
-		// now select and remove elements at random from the list.
-		int[] perm = new int[size];
-		for (int i = 0; i < size; i++) {
-			int j = randomInt(l.size());
-			perm[i] = l.remove(j).intValue();
-		}
-
-		return perm;
+		return createPermutation.apply(size);
 	}
 
-	/** Generate a Schnorr prime group */
 	@Override
 	@Deprecated
 	public ElGamalParameters generateElGamalParameters(int keyLength,
@@ -261,7 +254,6 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return generateElGamalParameters.apply(keyLength, groupLength);
 	}
 
-	/** Generate a safe prime group */
 	@Deprecated
 	public ElGamalParameters generateElGamalParameters(int keyLength) {
 		return generateElGamalParameters.apply(keyLength, keyLength + 1);
@@ -280,12 +272,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public KeyPair generateKeyPair(int keyLength) {
-		java.security.KeyPair kp = publicKeyGenerator(keyLength).generateKeyPair();
-		java.security.PublicKey pubk = kp.getPublic();
-		java.security.PrivateKey prvk = kp.getPrivate();
-
-		return new KeyPair(new PublicKeyC(pubk, "keypair-" + freshNonceBase64(64)),
-				new PrivateKeyC(prvk));
+		return generateKeyPair.apply(keyLength);
 	}
 
 	@Override
@@ -295,113 +282,25 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public VoteCapabilityShare generateVoteCapabilityShare(ElGamalParameters p) {
-		ElGamalParametersC ps = (ElGamalParametersC) p;
-		CivitasBigInteger x = generateRandomElement.apply(ps.q);
-		try {
-			return new VoteCapabilityShareC(x, ps);
-		} catch (CryptoException imposs) {
-			throw new CryptoError(imposs);
-		}
+		return generateVoteCapabilityShare.apply(p);
 	}
 
 	@Override
 	public VoteCapability[] combineVoteCapabilityShares(
 			VoteCapabilityShare[][] shares, ElGamalParameters p) {
-		if (shares == null)
-			return null;
-		try {
-			ElGamalParametersC params = (ElGamalParametersC) p;
-			// multiply all the shares together
-			CivitasBigInteger[] accum = new CivitasBigInteger[shares[0].length];
-			for (int i = 0; i < shares.length; i++) {
-				for (int j = 0; j < shares[i].length; j++) {
-					VoteCapabilityShareC s = (VoteCapabilityShareC) shares[i][j];
-					if (accum[j] == null) {
-						accum[j] = s.m;
-					} else {
-						accum[j] = accum[j].modMultiply(s.m, params.p);
-					}
-				}
-			}
-			VoteCapability[] ret = new VoteCapability[accum.length];
-			for (int j = 0; j < accum.length; j++) {
-				ret[j] = new VoteCapabilityC(accum[j]);
-			}
-			return ret;
-
-		} catch (NullPointerException e) {
-			return null;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return null;
-		} catch (ClassCastException e) {
-			return null;
-		}
+		return combineVoteCapabilityShares.apply(shares, p);
 	}
 
 	@Override
 	public ElGamalCiphertext[] multiplyCiphertexts(
 			ElGamalSignedCiphertext[][] ciphertexts, ElGamalParameters p) {
-		if (ciphertexts == null)
-			return null;
-		try {
-			ElGamalParametersC params = (ElGamalParametersC) p;
-			// multiply all the shares together
-			CivitasBigInteger[] aAccum = new CivitasBigInteger[ciphertexts[0].length];
-			CivitasBigInteger[] bAccum = new CivitasBigInteger[ciphertexts[0].length];
-			for (int i = 0; i < ciphertexts.length; i++) {
-				for (int j = 0; j < ciphertexts[i].length; j++) {
-					ElGamalCiphertextC s = (ElGamalCiphertextC) ciphertexts[i][j];
-					if (aAccum[j] == null) {
-						aAccum[j] = s.a;
-						bAccum[j] = s.b;
-					} else {
-						aAccum[j] = aAccum[j].modMultiply(s.a, params.p);
-						bAccum[j] = bAccum[j].modMultiply(s.b, params.p);
-					}
-				}
-			}
-			ElGamalCiphertext[] ret = new ElGamalCiphertext[aAccum.length];
-			for (int j = 0; j < aAccum.length; j++) {
-				ret[j] = new ElGamalCiphertextC(aAccum[j], bAccum[j]);
-			}
-			return ret;
-
-		} catch (NullPointerException e) {
-			return null;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return null;
-		} catch (ClassCastException e) {
-			return null;
-		}
+		return multiplyCiphertexts.apply(ciphertexts, p);
 	}
 
 	@Override
 	public ElGamalPublicKey combineKeyShares(ElGamalKeyShare[] shares)
 			throws CryptoException {
-		if (shares == null)
-			return null;
-		CivitasBigInteger accum = ONE;
-		ElGamalParameters params = null;
-		for (int i = 0; i < shares.length; i++) {
-			ElGamalKeyShare s = shares[i];
-
-			// Check the proofs that this is a valid share
-			try {
-				if (params == null) {
-					params = s.pubKey().getParams();
-				}
-				if (!s.verify()) {
-					throw new CryptoException("Invalid share");
-				}
-			} catch (NullPointerException e) {
-				throw new CryptoException("Invalid share or proof");
-			}
-			// accumulate the keys..
-			if (s.pubKey() instanceof ElGamalPublicKeyC) {
-				accum = accum.multiply(((ElGamalPublicKeyC) s.pubKey()).y);
-			}
-		}
-		return new ElGamalPublicKeyC(accum, params);
+		return combineKeyShares.apply(shares);
 	}
 
 	@Override
@@ -439,14 +338,8 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	public ElGamal1OfLReencryption elGamal1OfLReencrypt(ElGamalPublicKey key,
 			ElGamalCiphertext[] ciphertexts, int L, int choice,
 			ElGamalReencryptFactor factor) {
-		if (ciphertexts == null || choice >= L || L > ciphertexts.length) {
-			return null;
-		}
-		ElGamalCiphertextC m = (ElGamalCiphertextC) elGamalReencrypt(key,
-				ciphertexts[choice], factor);
-		ElGamalProof1OfLC proof = constructElGamalProof1OfL((ElGamalPublicKeyC) key,
-				ciphertexts, L, choice, m, (ElGamalReencryptFactorC) factor);
-		return new ElGamal1OfLReencryptionC(m, proof);
+		return constructElGamal1OfLReencryption.apply(key, ciphertexts, L, choice,
+				factor);
 	}
 
 	public ElGamalProof1OfLC constructElGamalProof1OfL(ElGamalPublicKeyC key,
@@ -462,6 +355,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	 *                         <= i <= L.
 	 */
 	@Override
+	@Deprecated
 	public int elGamal1OfLValue(ElGamalMsg m, int L, ElGamalParameters params)
 			throws CryptoException {
 		ElGamalMsgC mc = (ElGamalMsgC) m;
@@ -479,51 +373,23 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public ElGamalCiphertext[] constructWellKnownCiphertexts(ElGamalPublicKey key,
 			int count) {
-		if (count < 0 || key == null)
-			return null;
-		ElGamalCiphertext[] cs = new ElGamalCiphertext[count];
-
-		// Note: the well known ciphertexts MUST be the encryptions of 1,2,3,...
-		// using the encryption factor 0. This is assumed by some of the
-		// zero knowledge proofs.
-		ElGamalReencryptFactor factor = new ElGamalReencryptFactorC(ZERO);
-		try {
-			ElGamalParametersC params = (ElGamalParametersC) key.getParams();
-			for (int i = 0; i < count; i++) {
-				// encrypt (i+1);
-				try {
-					cs[i] = elGamalEncrypt(key, new ElGamalMsgC(i + 1, params), factor);
-				} catch (CryptoException imposs) {
-					throw new CryptoError(imposs);
-				}
-			}
-		} catch (ClassCastException e) {
-			return null;
-		}
-		return cs;
+		return constructWellKnownCiphertexts.apply(key, count);
 	}
 
-	/**
-	 * Convert a hash (or rather, an arbitrary byte array) to an element from the
-	 * group defined by the El Gamal parameters.
-	 */
 	public CivitasBigInteger hashToBigInt(byte[] hash) {
-		// Force the hash to be positive.
-		CivitasBigInteger x = new CivitasBigInteger(1, hash);
-		return x;
+		return convertHashToBigInt.apply(hash);
 	}
 
 	@Override
 	public ElGamalSignedCiphertext elGamalSignedEncrypt(ElGamalPublicKey key,
 			ElGamalMsg msg) {
-		return elGamalSignedEncrypt(key, msg,
-				this.generateElGamalReencryptFactor(key.getParams()));
+		return signAndEncrypt.apply(key, msg);
 	}
 
 	@Override
 	public ElGamalSignedCiphertext elGamalSignedEncrypt(ElGamalPublicKey key,
 			ElGamalMsg msg, ElGamalReencryptFactor r) {
-		return elGamalSignedEncrypt(key, msg, r, null);
+		return signAndEncrypt.apply(key, msg, r, null);
 	}
 
 	@Override
@@ -535,65 +401,26 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public boolean elGamalVerify(ElGamalParameters params,
 			ElGamalSignedCiphertext ciphertext) {
-		return elGamalVerify(params, ciphertext, null);
+		return verifyElGamalSignature.apply(params, ciphertext, null);
 	}
 
 	@Override
 	public boolean elGamalVerify(ElGamalParameters params,
 			ElGamalSignedCiphertext ciphertext, byte[] additionalEnv) {
-		try {
-			numElGamalVerifies++;
-			ElGamalParametersC ps = (ElGamalParametersC) params;
-			ElGamalSignedCiphertextC cc = (ElGamalSignedCiphertextC) ciphertext;
-			// to verify, check that c == h(g^d * a^(-c), a, b)
-			CivitasBigInteger x = ps.g.modPow(cc.d.mod(ps.q), ps.p)
-					.modMultiply(cc.a.modPow(cc.c.modNegate(ps.q), ps.p), ps.p);
-			CivitasBigInteger v = cryptoHash.apply(x, cc.a, cc.b, additionalEnv)
-					.mod(ps.q);
-			return cc.c.equals(v);
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
-		}
+		return verifyElGamalSignature.apply(params, ciphertext, additionalEnv);
 	}
 
 	@Override
 	public ElGamalMsg elGamalDecrypt(ElGamalPrivateKey key,
 			ElGamalSignedCiphertext ciphertext, byte[] additionalEnv)
 			throws CryptoException {
-		return elGamalDecryptImpl(key, ciphertext, additionalEnv);
+		return decryptElGamalMessage.apply(key, ciphertext, additionalEnv);
 	}
 
 	@Override
 	public ElGamalMsg elGamalDecrypt(ElGamalPrivateKey key,
 			ElGamalCiphertext ciphertext) throws CryptoException {
-		return elGamalDecryptImpl(key, ciphertext, (byte[]) null);
-	}
-
-	private ElGamalMsg elGamalDecryptImpl(ElGamalPrivateKey key,
-			ElGamalCiphertext ciphertext, byte[] additionalEnv)
-			throws CryptoException {
-		try {
-			numElGamalDecs++;
-			ElGamalPrivateKeyC k = (ElGamalPrivateKeyC) key;
-			ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
-
-			if (ciphertext instanceof ElGamalSignedCiphertext) {
-				if (!elGamalVerify(ps, (ElGamalSignedCiphertext) ciphertext,
-						additionalEnv)) {
-					throw new CryptoException("Ciphertext failed verification");
-				}
-			}
-			ElGamalCiphertextC c = (ElGamalCiphertextC) ciphertext;
-			CivitasBigInteger a = c.a;
-			CivitasBigInteger b = c.b;
-			CivitasBigInteger m = b.modDivide(a.modPow(k.x, ps.p), ps.p);
-			return new ElGamalMsgC(m);
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
-		} catch (NullPointerException e) {
-			throw new CryptoError(e);
-		}
-
+		return decryptElGamalMessage.apply(key, ciphertext, (byte[]) null);
 	}
 
 	@Override
@@ -605,57 +432,33 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public PETShare constructPETShare(ElGamalParameters prms, ElGamalCiphertext a,
 			ElGamalCiphertext b) {
-		if (a == null || !(a instanceof ElGamalCiphertextC))
-			return null;
-		if (b == null || !(b instanceof ElGamalCiphertextC))
-			return null;
-		if (prms == null || !(prms instanceof ElGamalParametersC))
-			return null;
-		ElGamalParametersC params = (ElGamalParametersC) prms;
-		ElGamalCiphertextC ac = (ElGamalCiphertextC) a;
-		ElGamalCiphertextC bc = (ElGamalCiphertextC) b;
-
-		CivitasBigInteger z = generateRandomElement.apply(params.q);
-		return new PETShareC(ac, bc, z);
+		return constructPETShare.apply(prms, a, b);
 	}
 
+	@Deprecated
 	public ElGamalMsg elGamalMsg(CivitasBigInteger m, ElGamalParameters params)
 			throws CryptoException {
-		try {
-			return new ElGamalMsgC(m, (ElGamalParametersC) params);
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
-		}
+		throw new UnsupportedOperationException("use constructor");
 	}
 
 	@Override
+	@Deprecated
 	public ElGamalMsg elGamalMsg(int m, ElGamalParameters params)
 			throws CryptoException {
-		try {
-			return new ElGamalMsgC(m, (ElGamalParametersC) params);
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
-		}
+		throw new UnsupportedOperationException("use constructor");
 	}
 
 	@Override
+	@Deprecated
 	public ElGamalMsg elGamalMsg(String m, ElGamalParameters params)
 			throws CryptoException {
-		try {
-			return new ElGamalMsgC(m, (ElGamalParametersC) params);
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
-		}
+		throw new UnsupportedOperationException("use constructor");
 	}
 
 	@Override
 	public ElGamalCiphertext elGamalCiphertextFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		if (Util.isNextTag(r, ElGamalCiphertext.OPENING_TAG)) {
-			return ElGamalCiphertextC.fromXML(r);
-		} else {
-			return elGamalSignedCiphertextFromXML(r);
-		}
+		return elGamalCiphertextFromXML.apply(r);
 	}
 
 	@Override
@@ -685,7 +488,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public ElGamalSignedCiphertext elGamalSignedCiphertextFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		return ElGamalSignedCiphertextC.fromXMLsub(r);
+		return elGamalSignedCiphertextFromXML.apply(r);
 	}
 
 	@Override
@@ -877,7 +680,6 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public Signature signature(PrivateKey k, byte[] bytes) {
 		try {
-			numPublicKeySign++;
 			java.security.Signature sig = java.security.Signature
 					.getInstance(PUBLIC_KEY_SIGNATURE_ALG, PUBLIC_KEY_PROVIDER);
 			PrivateKeyC kc = (PrivateKeyC) k;
@@ -913,7 +715,6 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	public boolean publicKeyVerifySignature(PublicKey K, Signature s,
 			byte[] bytes) {
 		try {
-			numPublicKeyVerifySig++;
 			java.security.Signature sig = java.security.Signature
 					.getInstance(PUBLIC_KEY_SIGNATURE_ALG, PUBLIC_KEY_PROVIDER);
 			PublicKeyC Kc = (PublicKeyC) K;
@@ -984,12 +785,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public byte[] freshNonce(int bitlength) {
-		int bytelength = bitlength / 8;
-		if (bitlength % 8 != 0)
-			bytelength++;
-		byte[] bs = new byte[bytelength];
-		getRandomGenerator.apply().nextBytes(bs);
-		return bs;
+		return createFreshNonce.apply(bitlength);
 	}
 
 	@Override
@@ -1031,9 +827,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public int randomInt(int n) {
-		if (n <= 0)
-			return 0;
-		return getRandomGenerator.apply().nextInt(n);
+		return generateRandomInt.apply(n);
 	}
 
 	@Override
@@ -1069,7 +863,6 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public PublicKeyCiphertext publicKeyEncrypt(PublicKey key, PublicKeyMsg msg) {
-		numPublicKeyEncs++;
 		PublicKeyC keyc = (PublicKeyC) key;
 		PublicKeyMsgC msgc = (PublicKeyMsgC) msg;
 		byte[] encrypted = jseCrypt(PUBLIC_KEY_CIPHER_ALG, PUBLIC_KEY_PROVIDER,
@@ -1080,7 +873,6 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public PublicKeyMsg publicKeyDecrypt(PrivateKey key,
 			PublicKeyCiphertext ciphertext) throws CryptoException {
-		numPublicKeyDecs++;
 		PrivateKeyC keyc = (PrivateKeyC) key;
 		PublicKeyCiphertextC ciphertextc = (PublicKeyCiphertextC) ciphertext;
 		byte[] plaintext = jseCrypt(PUBLIC_KEY_CIPHER_ALG, PUBLIC_KEY_PROVIDER,
@@ -1090,13 +882,12 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public SharedKey generateSharedKey(int keyLength) {
-		SecretKey k = sharedKeyGenerator(keyLength).generateKey();
+		SecretKey k = getSharedKeyGenerator.apply(keyLength).generateKey();
 		return new SharedKeyC(k, "sharedKey-civitas");
 	}
 
 	@Override
 	public SharedKeyCiphertext sharedKeyEncrypt(SharedKey key, SharedKeyMsg msg) {
-		numSharedKeyEncs++;
 		SharedKeyC keyc = (SharedKeyC) key;
 		SharedKeyMsgC msgc = (SharedKeyMsgC) msg;
 		byte[] encrypted = jseCrypt(SHARED_KEY_CIPHER_ALG, SHARED_KEY_PROVIDER,
@@ -1107,7 +898,6 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public SharedKeyMsg sharedKeyDecrypt(SharedKey key,
 			SharedKeyCiphertext ciphertext) throws CryptoException {
-		numSharedKeyDecs++;
 		SharedKeyC keyc = (SharedKeyC) key;
 		SharedKeyCiphertextC ciphertextc = (SharedKeyCiphertextC) ciphertext;
 		byte[] plaintext = jseCrypt(SHARED_KEY_CIPHER_ALG, SHARED_KEY_PROVIDER,
@@ -1196,17 +986,18 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public String freshNonceBase64(int bitlength) {
-		return bytesToBase64(freshNonce(bitlength));
+		return createFreshNonceBase64.apply(bitlength);
 	}
 
 	@Override
 	public String bytesToBase64(byte[] a) {
-		return Base64.getEncoder().encodeToString(a);
+		return convertToBase64.apply(a);
 	}
 
 	@Override
+	@Deprecated
 	public String constBytesToBase64(byte[] a) {
-		return Base64.getEncoder().encodeToString(a);
+		return convertToBase64.apply(a);
 	}
 
 	@Override
@@ -1220,11 +1011,11 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	public static String bigIntToString(CivitasBigInteger i) {
-		return Base64.getEncoder().encodeToString(i.toByteArray());
+		return convertToBase64.apply(i);
 	}
 
 	public static CivitasBigInteger stringToBigInt(String s) {
-		return new CivitasBigInteger(Base64.getDecoder().decode(s));
+		return convertToBigInt.apply(s);
 	}
 
 	@Override
@@ -1246,55 +1037,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public ProofVote proofVoteFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		return ProofVoteC.fromXML(r);
-	}
-
-	public static long numPublicKeyEncs() {
-		return numPublicKeyEncs;
-	}
-
-	public static long numPublicKeyDecs() {
-		return numPublicKeyDecs;
-	}
-
-	public static long numSharedKeyEncs() {
-		return numSharedKeyEncs;
-	}
-
-	public static long numSharedKeyDecs() {
-		return numSharedKeyDecs;
-	}
-
-	public static long numElGamalEncs() {
-		return numElGamalEncs;
-	}
-
-	public static long numElGamalDecs() {
-		return numElGamalDecs;
-	}
-
-	public static long numElGamalDecShare() {
-		return numElGamalDecShare;
-	}
-
-	public static long numPublicKeySign() {
-		return numPublicKeySign;
-	}
-
-	public static long numPublicKeyVerifySig() {
-		return numPublicKeyVerifySig;
-	}
-
-	public static long numElGamalReencs() {
-		return numElGamalReencs;
-	}
-
-	public static long numElGamalSignedEncs() {
-		return numElGamalSignedEncs;
-	}
-
-	public static long numElGamalVerifies() {
-		return numElGamalVerifies;
+		return proofVoteFromXML.apply(r);
 	}
 
 }

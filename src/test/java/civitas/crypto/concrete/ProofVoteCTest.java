@@ -12,9 +12,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ProofVote;
+import civitas.crypto.algorithms.ProofVoteFromXML;
+import civitas.util.Use;
 
 public class ProofVoteCTest extends ConcreteTestBase
 		implements ProofVoteTestData, ElGamalCiphertextCTestData {
+
+	@Use
+	ProofVoteFromXML proofVoteFromXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
@@ -27,7 +32,7 @@ public class ProofVoteCTest extends ConcreteTestBase
 	void test3() throws IllegalArgumentException, IOException {
 
 		assertTrue(PROOF_VOTE
-				.equals(ProofVoteC.fromXML(new StringReader(PROOF_VOTE_XML))));
+				.equals(proofVoteFromXML.apply(new StringReader(PROOF_VOTE_XML))));
 	}
 
 	@Test

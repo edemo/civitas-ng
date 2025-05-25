@@ -12,9 +12,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamal1OfLReencryption;
+import civitas.crypto.algorithms.ElGamalCiphertextFromXML;
+import civitas.util.Use;
 
 public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 		implements ElGamal1OfLReencryptionCTestData {
+
+	@Use
+	ElGamalCiphertextFromXML elGamalCiphertextFromXML;
 
 	@Test
 	@DisplayName("constructor accepts nulls")
@@ -60,8 +65,8 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 		assertFalse(ElGamal1OfLReencryptionC
 				.fromXML(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
 				.equals(new ElGamal1OfLReencryptionC(
-						ElGamalCiphertextC
-								.fromXML(new StringReader(EL_GAMAL_CIPHERTEXT_NAIVE_XML)),
+						elGamalCiphertextFromXML
+								.apply(new StringReader(EL_GAMAL_CIPHERTEXT_NAIVE_XML)),
 						ElGamalProof1OfLC
 								.fromXML(new StringReader(EL_GAMAL_PROOF_1_OF_L_XML)))));
 	}
