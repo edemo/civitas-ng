@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 import java.util.Base64;
 
@@ -16,8 +14,8 @@ import civitas.common.Util;
 import civitas.crypto.PrivateKey;
 
 public class PrivateKeyC implements PrivateKey {
-	private static final String OPENING_TAG = "privateKey";
-	final java.security.PrivateKey k;
+	public static final String OPENING_TAG = "privateKey";
+	public final java.security.PrivateKey k;
 
 	public PrivateKeyC(java.security.PrivateKey k) {
 		this.k = k;
@@ -41,12 +39,4 @@ public class PrivateKeyC implements PrivateKey {
 		s.print('>');
 	}
 
-	public static PrivateKey fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		String s = Util.unescapeString(Util.readSimpleTag(r, OPENING_TAG));
-		byte[] bs = Base64.getDecoder().decode(s);
-
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-		return new PrivateKeyC(factory.privateKeyFromBytes(bs));
-	}
 }

@@ -16,7 +16,7 @@ import civitas.common.Util;
 import civitas.crypto.SharedKey;
 
 public class SharedKeyC implements SharedKey {
-	final SecretKey k;
+	public final SecretKey k;
 	final String name;
 
 	public SharedKeyC(SecretKey k, String name) {

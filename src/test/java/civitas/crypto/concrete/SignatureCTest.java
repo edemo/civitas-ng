@@ -9,10 +9,15 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.importing.SignatureFromXML;
+import civitas.util.Use;
+
 public class SignatureCTest extends ConcreteTestBase
 		implements ConcreteTestData {
 
 	private static final String SIGNATURE_XML = "<signature>dGVzdGRhdGE=</signature>";
+	@Use
+	SignatureFromXML signatureFromXML;
 
 	@Test
 	@DisplayName("constructor and toXML wors as expected")
@@ -30,7 +35,7 @@ public class SignatureCTest extends ConcreteTestBase
 	@DisplayName("fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
 		assertEquals(SIGNATURE_XML,
-				((SignatureC) SignatureC.fromXML(new StringReader(SIGNATURE_XML)))
+				((SignatureC) signatureFromXML.apply(new StringReader(SIGNATURE_XML)))
 						.toXML());
 	}
 

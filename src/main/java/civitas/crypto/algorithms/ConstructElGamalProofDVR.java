@@ -3,20 +3,38 @@ package civitas.crypto.algorithms;
 import java.util.ArrayList;
 import java.util.List;
 
+import civitas.crypto.ElGamalCiphertext;
+import civitas.crypto.ElGamalProofDVR;
+import civitas.crypto.ElGamalPublicKey;
+import civitas.crypto.ElGamalReencryptFactor;
 import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalParametersC;
 import civitas.crypto.concrete.ElGamalProofDVRC;
 import civitas.crypto.concrete.ElGamalPublicKeyC;
+import civitas.crypto.concrete.ElGamalReencryptFactorC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
-public class ConstructElGamalProofDVRC {
-
+public class ConstructElGamalProofDVR {
 	@Use
 	private static GenerateRandomElement generateRandomElement;
 	@Use
 	CryptoHash cryptoHash;
+
+	public ElGamalProofDVR apply(ElGamalPublicKey k, ElGamalPublicKey verifierKey,
+			ElGamalCiphertext e, ElGamalCiphertext ePrime, ElGamalReencryptFactor er,
+			ElGamalReencryptFactor erPrime) {
+		try {
+			ElGamalParametersC ps = (ElGamalParametersC) k.getParams();
+			CivitasBigInteger zeta = ((ElGamalReencryptFactorC) erPrime).r
+					.modSubtract(((ElGamalReencryptFactorC) er).r, ps.q);
+			return apply((ElGamalCiphertextC) e, (ElGamalCiphertextC) ePrime,
+					(ElGamalPublicKeyC) k, (ElGamalPublicKeyC) verifierKey, zeta);
+		} catch (ClassCastException ex) {
+			return null;
+		}
+	}
 
 	public ElGamalProofDVRC apply(ElGamalCiphertextC e, ElGamalCiphertextC eprime,
 			ElGamalPublicKeyC key, ElGamalPublicKeyC verifierKey,

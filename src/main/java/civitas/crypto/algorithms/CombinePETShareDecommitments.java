@@ -23,4 +23,9 @@ public class CombinePETShareDecommitments implements Constants {
 		return new ElGamalCiphertextC(d, e);
 	}
 
+	public ElGamalCiphertext apply(PETDecommitment[] decs,
+			ElGamalParameters params) {
+		return apply(decs, params, ONE);
+	}
+
 }

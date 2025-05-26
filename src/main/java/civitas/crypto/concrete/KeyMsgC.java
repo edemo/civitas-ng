@@ -9,7 +9,7 @@ package civitas.crypto.concrete;
 import java.io.UnsupportedEncodingException;
 
 public abstract class KeyMsgC {
-	final String m;
+	public final String m;
 	public final String CHARSET_NAME = "UTF-8";
 
 	public KeyMsgC(String m) {

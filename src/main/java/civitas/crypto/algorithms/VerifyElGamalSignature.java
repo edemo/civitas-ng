@@ -29,4 +29,10 @@ public class VerifyElGamalSignature {
 		}
 	}
 
+	public boolean apply(ElGamalParameters params,
+			ElGamalSignedCiphertext ciphertext) throws CryptoError {
+		return apply(params, ciphertext, null);
+
+	}
+
 }

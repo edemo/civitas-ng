@@ -12,9 +12,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.PrivateKey;
+import civitas.crypto.importing.PublicKeyFromXML;
+import civitas.util.Use;
 
 public class PublicKeyCTest extends ConcreteTestBase
 		implements ConcreteTestData {
+
+	@Use
+	PublicKeyFromXML publicKeyFromXML;
 
 	private static final PublicKeyC PUBLIC_KEY_C = new PublicKeyC(PUBLIC_KEY,
 			PUBLIC_KEY_NAME);
@@ -53,8 +58,8 @@ public class PublicKeyCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test3() throws IllegalArgumentException, IOException {
-		PublicKeyC fromXML = (PublicKeyC) PublicKeyC
-				.fromXML(new StringReader(PUBLIC_KEY_XML));
+		PublicKeyC fromXML = (PublicKeyC) publicKeyFromXML
+				.apply(new StringReader(PUBLIC_KEY_XML));
 		assertEquals(PUBLIC_KEY_XML, fromXML.toXML());
 	}
 

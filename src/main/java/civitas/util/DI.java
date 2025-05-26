@@ -37,7 +37,7 @@ public class DI {
 				try {
 					field.set(o, instance);
 				} catch (Exception e) {
-					throw new Error(e);
+					throw new Error("field" + field, e);
 				}
 			}
 		}

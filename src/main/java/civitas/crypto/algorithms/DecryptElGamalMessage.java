@@ -42,4 +42,9 @@ public class DecryptElGamalMessage {
 		}
 	}
 
+	public ElGamalMsg apply(ElGamalPrivateKey key, ElGamalCiphertext ciphertext)
+			throws CryptoException, CryptoError {
+		return apply(key, ciphertext, null);
+	}
+
 }

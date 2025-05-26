@@ -3,6 +3,10 @@ package civitas.crypto.algorithms;
 import java.util.ArrayList;
 import java.util.List;
 
+import civitas.crypto.ElGamalCiphertext;
+import civitas.crypto.ElGamalPrivateKey;
+import civitas.crypto.ElGamalProofDVR;
+import civitas.crypto.ElGamalPublicKey;
 import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalParametersC;
@@ -67,6 +71,18 @@ public class FakeElGamalProofDVRC {
 
 		return new ElGamalProofDVRC(e, et, ct, wt, rt, ut);
 
+	}
+
+	public ElGamalProofDVR apply(ElGamalPublicKey k, ElGamalPublicKey verifierKey,
+			ElGamalPrivateKey verifierPrivKey, ElGamalCiphertext e,
+			ElGamalCiphertext ePrime) {
+		try {
+			return apply((ElGamalCiphertextC) e, (ElGamalCiphertextC) ePrime,
+					(ElGamalPublicKeyC) k, (ElGamalPublicKeyC) verifierKey,
+					(ElGamalPrivateKeyC) verifierPrivKey);
+		} catch (ClassCastException ex) {
+			return null;
+		}
 	}
 
 }

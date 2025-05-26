@@ -47,4 +47,9 @@ public class SignAndEncrypt {
 		return apply(key, msg, elGamalReencrypt.apply(key.getParams()), null);
 	}
 
+	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg,
+			ElGamalReencryptFactor r) throws CryptoError {
+		return apply(key, msg, r, null);
+	}
+
 }

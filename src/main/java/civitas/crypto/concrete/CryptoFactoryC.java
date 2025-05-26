@@ -6,34 +6,19 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.security.InvalidKeyException;
-import java.security.Key;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.Security;
-import java.security.SignatureException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.SecretKeySpec;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.CryptoFactory;
 import civitas.crypto.ElGamal1OfLReencryption;
@@ -72,12 +57,14 @@ import civitas.crypto.algorithms.CombineDecryptionShares;
 import civitas.crypto.algorithms.CombineKeyShares;
 import civitas.crypto.algorithms.CombinePETShareDecommitments;
 import civitas.crypto.algorithms.CombineVoteCapabilityShares;
+import civitas.crypto.algorithms.ComputeMessageDigest;
 import civitas.crypto.algorithms.Constants;
 import civitas.crypto.algorithms.ConstructElGamal1OfLReencryption;
 import civitas.crypto.algorithms.ConstructElGamalDecryptionShare;
 import civitas.crypto.algorithms.ConstructElGamalDiscLogEqualityProof;
+import civitas.crypto.algorithms.ConstructElGamalKeyShare;
 import civitas.crypto.algorithms.ConstructElGamalProof1OfL;
-import civitas.crypto.algorithms.ConstructElGamalProofDVRC;
+import civitas.crypto.algorithms.ConstructElGamalProofDVR;
 import civitas.crypto.algorithms.ConstructPETShare;
 import civitas.crypto.algorithms.ConstructProofKnowDiscLog;
 import civitas.crypto.algorithms.ConstructProofVote;
@@ -88,11 +75,19 @@ import civitas.crypto.algorithms.ConvertToBigInt;
 import civitas.crypto.algorithms.CreateFreshNonce;
 import civitas.crypto.algorithms.CreateFreshNonceBase64;
 import civitas.crypto.algorithms.CreatePermutation;
+import civitas.crypto.algorithms.CreatePrivateKeyFromBytes;
+import civitas.crypto.algorithms.CreatePublicKeyFromBytes;
+import civitas.crypto.algorithms.CreateSharedKeyFromBytes;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.DecryptElGamalMessage;
+import civitas.crypto.algorithms.DecryptPublic;
+import civitas.crypto.algorithms.DecryptShared;
+import civitas.crypto.algorithms.DoCrypto;
 import civitas.crypto.algorithms.ElGamalDecryptionShareFromXML;
 import civitas.crypto.algorithms.ElGamalEncrypt;
 import civitas.crypto.algorithms.ElGamalReencrypt;
+import civitas.crypto.algorithms.EncryptPublic;
+import civitas.crypto.algorithms.EncryptShared;
 import civitas.crypto.algorithms.FakeElGamalProofDVRC;
 import civitas.crypto.algorithms.GenerateElGamalKeyPair;
 import civitas.crypto.algorithms.GenerateElGamalParameters;
@@ -100,6 +95,7 @@ import civitas.crypto.algorithms.GenerateKeyPair;
 import civitas.crypto.algorithms.GenerateKeyPairShare;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.algorithms.GenerateRandomInt;
+import civitas.crypto.algorithms.GenerateSharedKey;
 import civitas.crypto.algorithms.GenerateVoteCapabilityShare;
 import civitas.crypto.algorithms.GetPublicKeyGenerator;
 import civitas.crypto.algorithms.GetRandomGenerator;
@@ -107,8 +103,12 @@ import civitas.crypto.algorithms.GetSharedKeyGenerator;
 import civitas.crypto.algorithms.IsPetResult;
 import civitas.crypto.algorithms.MultiplyCiphertexts;
 import civitas.crypto.algorithms.ObtainMessageDigest;
+import civitas.crypto.algorithms.PublicKeyFromFile;
 import civitas.crypto.algorithms.SignAndEncrypt;
+import civitas.crypto.algorithms.SignWithPublicKey;
 import civitas.crypto.algorithms.VerifyElGamalSignature;
+import civitas.crypto.algorithms.VerifyPublicKeySignature;
+import civitas.crypto.algorithms.VerifyPublicKeySignatureMsg;
 import civitas.crypto.importing.ElGamal1OfLReencryptionFromXML;
 import civitas.crypto.importing.ElGamalCiphertextFromXML;
 import civitas.crypto.importing.ElGamalKeyShareFromXML;
@@ -119,17 +119,22 @@ import civitas.crypto.importing.ElGamalProof1OfLFromXML;
 import civitas.crypto.importing.ElGamalProofDVRFromXML;
 import civitas.crypto.importing.ElGamalProofDiscLogEqualityFromXML;
 import civitas.crypto.importing.ElGamalProofKnowDiscLogFromXML;
+import civitas.crypto.importing.ElGamalPublicKeyFromFile;
 import civitas.crypto.importing.ElGamalPublicKeyFromXML;
 import civitas.crypto.importing.ElGamalReencryptFactorFromXML;
 import civitas.crypto.importing.ElGamalSignedCiphertextFromXML;
 import civitas.crypto.importing.PetCommitmentFromXML;
 import civitas.crypto.importing.PetDecommitmentFromXML;
 import civitas.crypto.importing.PetShareFromXML;
+import civitas.crypto.importing.PrivateKeyFromXML;
+import civitas.crypto.importing.PrivatekeyFromFile;
 import civitas.crypto.importing.ProofVoteFromXML;
 import civitas.crypto.importing.PublicKeyCiphertextFromXML;
+import civitas.crypto.importing.PublicKeyFromXML;
 import civitas.crypto.importing.SharedKeyCiphertextFromXML;
 import civitas.crypto.importing.SharedKeyFromWire;
 import civitas.crypto.importing.SharedKeyFromXML;
+import civitas.crypto.importing.SignatureFromXML;
 import civitas.crypto.importing.VoteCapabilityFromXML;
 import civitas.crypto.importing.VoteCapabilityShareFromXML;
 import civitas.util.CivitasBigInteger;
@@ -146,8 +151,6 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	GenerateElGamalParameters generateElGamalParameters;
 	@Use
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
-	@Use
-	ConstructElGamalProofDVRC constructElGamalProofDVRC;
 	@Use
 	FakeElGamalProofDVRC fakeElGamalProofDVRC;
 	@Use
@@ -254,9 +257,61 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	ElGamalPrivateKeyFromXML ElGamalPrivateKeyFromXML;
 	@Use
 	ElGamalParametersFromXML elGamalParametersFromXML;
+	@Use
+	ElGamalPrivateKeyFromFile elGamalPrivateKeyFromFile;
+	@Use
+	ElGamalProofDVRFromXML elGamalProofDVRFromXML;
+	@Use
+	PrivatekeyFromFile privatekeyFromFile;
+	@Use
+	PublicKeyFromFile publicKeyFromFile;
+	@Use
+	PublicKeyFromXML publicKeyFromXML;
+	@Use
+	ElGamalKeyShareFromXML elGamalKeyShareFromXML;
+	@Use
+	SignWithPublicKey signWithPublicKey;
+	@Use
+	ComputeMessageDigest computeMessageDigest;
+	@Use
+	DecryptPublic decryptPublic;
+	@Use
+	EncryptPublic encryptPublic;
+	@Use
+	DoCrypto doCrypto;
+	@Use
+	EncryptShared encryptShared;
+	@Use
+	DecryptShared decryptShared;
+	@Use
+	CreateSharedKeyFromBytes createSharedKeyFromBytes;
+	@Use
+	CreatePublicKeyFromBytes createPublicKeyFromBytes;
+	@Use
+	CreatePrivateKeyFromBytes createPrivateKeyFromBytes;
+	@Use
+	ElGamalPublicKeyFromXML elGamalPublicKeyFromXML;
+	@Use
+	SignatureFromXML signatureFromXML;
+	@Use
+	VerifyPublicKeySignature verifyPublicKeySignature;
+	@Use
+	VerifyPublicKeySignatureMsg verifyPublicKeySignatureMsg;
+	@Use
+	PrivateKeyFromXML privateKeyFromXML;
+	@Use
+	ConstructElGamalKeyShare constructElGamalKeyShare;
+	@Use
+	ConstructElGamalProofDVR constructElGamalProofDVR;
+	@Use
+	GenerateSharedKey generateSharedKey;
+	@Use
+	ElGamalPublicKeyFromFile elGamalPublicKeyFromFile;
+	@Use
+	ElGamalProofKnowDiscLogFromXML elGamalProofKnowDiscLogFromXML;
 
-	private SecretKeyFactory sharedKeyFactory;
-	private KeyFactory publicKeyFactory;
+	public static SecretKeyFactory sharedKeyFactory;
+	public static KeyFactory publicKeyFactory;
 
 	static {
 		BouncyCastleProvider bc = new BouncyCastleProvider();
@@ -323,8 +378,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public ElGamalParameters generateElGamalParameters() {
-		return generateElGamalParameters.apply(EL_GAMAL_KEY_LENGTH,
-				EL_GAMAL_GROUP_LENGTH);
+		return generateElGamalParameters.apply();
 	}
 
 	@Override
@@ -451,7 +505,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public ElGamalSignedCiphertext elGamalSignedEncrypt(ElGamalPublicKey key,
 			ElGamalMsg msg, ElGamalReencryptFactor r) {
-		return signAndEncrypt.apply(key, msg, r, null);
+		return signAndEncrypt.apply(key, msg, r);
 	}
 
 	@Override
@@ -463,7 +517,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public boolean elGamalVerify(ElGamalParameters params,
 			ElGamalSignedCiphertext ciphertext) {
-		return verifyElGamalSignature.apply(params, ciphertext, null);
+		return verifyElGamalSignature.apply(params, ciphertext);
 	}
 
 	@Override
@@ -482,7 +536,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public ElGamalMsg elGamalDecrypt(ElGamalPrivateKey key,
 			ElGamalCiphertext ciphertext) throws CryptoException {
-		return decryptElGamalMessage.apply(key, ciphertext, (byte[]) null);
+		return decryptElGamalMessage.apply(key, ciphertext);
 	}
 
 	@Override
@@ -535,17 +589,11 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return ElGamalPrivateKeyFromXML.apply(r);
 	}
 
-	@Use
-	ElGamalProofKnowDiscLogFromXML elGamalProofKnowDiscLogFromXML;
-
 	@Override
 	public ElGamalProofKnowDiscLog elGamalProofKnowDiscLogFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
 		return elGamalProofKnowDiscLogFromXML.apply(r);
 	}
-
-	@Use
-	ElGamalPublicKeyFromXML elGamalPublicKeyFromXML;
 
 	@Override
 	public ElGamalPublicKey elGamalPublicKeyFromXML(Reader r)
@@ -617,8 +665,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public ElGamalCiphertext combinePETShareDecommitments(PETDecommitment[] decs,
 			ElGamalParameters params) throws CryptoException {
-		CivitasBigInteger d = ONE;
-		return combinePETShareDecommitments.apply(decs, params, d);
+		return combinePETShareDecommitments.apply(decs, params);
 	}
 
 	@Override
@@ -668,17 +715,11 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return sharedKeyFromWire.apply(r);
 	}
 
-	@Use
-	ElGamalProofDVRFromXML elGamalProofDVRFromXML;
-
 	@Override
 	public ElGamalProofDVR elGamalProofDVRFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
 		return elGamalProofDVRFromXML.apply(r);
 	}
-
-	@Use
-	ElGamalPrivateKeyFromFile elGamalPrivateKeyFromFile;
 
 	@Override
 	public ElGamalPrivateKey egPrivKeyFromFile(String keyFile)
@@ -689,24 +730,20 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public ElGamalPublicKey egPubKeyFromFile(String keyFile)
 			throws IllegalArgumentException, FileNotFoundException, IOException {
-		return elGamalPublicKeyFromXML
-				.apply(new BufferedReader(new FileReader(keyFile)));
+		return elGamalPublicKeyFromFile.apply(keyFile);
 	}
 
 	@Override
 	public PrivateKey privateKeyFromFile(String keyFile)
 			throws IllegalArgumentException, FileNotFoundException, IOException {
-		return PrivateKeyC.fromXML(new BufferedReader(new FileReader(keyFile)));
+		return privatekeyFromFile.apply(keyFile);
 	}
 
 	@Override
 	public PublicKey publicKeyFromFile(String keyFile)
 			throws IllegalArgumentException, FileNotFoundException, IOException {
-		return publicKeyFromXML(new BufferedReader(new FileReader(keyFile)));
+		return publicKeyFromFile.apply(keyFile);
 	}
-
-	@Use
-	ElGamalKeyShareFromXML elGamalKeyShareFromXML;
 
 	@Override
 	public ElGamalKeyShare elGamalKeyShareFromXML(Reader r)
@@ -716,119 +753,60 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public Signature signature(PrivateKey k, PublicKeyMsg msg) {
-		try {
-			PublicKeyMsgC mc = (PublicKeyMsgC) msg;
-			byte[] bytes = messageDigest(mc.m.getBytes());
-			return signature(k, bytes);
-		} catch (RuntimeException e) {
-			throw new CryptoError("Cannot sign", e);
-		}
+		return signWithPublicKey.apply(k, msg);
 	}
 
 	@Override
 	public Signature signature(PrivateKey k, byte[] bytes) {
-		try {
-			java.security.Signature sig = java.security.Signature
-					.getInstance(PUBLIC_KEY_SIGNATURE_ALG, PUBLIC_KEY_PROVIDER);
-			PrivateKeyC kc = (PrivateKeyC) k;
-			sig.initSign(kc.k);
-			sig.update(bytes);
-			return new SignatureC(sig.sign());
-		} catch (InvalidKeyException e) {
-			throw new CryptoError(e);
-		} catch (SignatureException e) {
-			throw new CryptoError(e);
-		} catch (NoSuchAlgorithmException e) {
-			throw new CryptoError(e);
-		} catch (NoSuchProviderException e) {
-			throw new CryptoError(e);
-		} catch (RuntimeException e) {
-			throw new CryptoError("Cannot sign", e);
-		}
+		return signWithPublicKey.apply(k, bytes);
 	}
 
 	@Override
 	public boolean publicKeyVerifySignature(PublicKey K, Signature s,
 			PublicKeyMsg msg) {
-		try {
-			PublicKeyMsgC mc = (PublicKeyMsgC) msg;
-			byte[] bytes = messageDigest(mc.m.getBytes());
-			return publicKeyVerifySignature(K, s, bytes);
-		} catch (RuntimeException e) {
-			throw new CryptoError("Cannot verify signature", e);
-		}
+		return verifyPublicKeySignature.apply(K, s, msg);
 	}
 
 	@Override
 	public boolean publicKeyVerifySignature(PublicKey K, Signature s,
 			byte[] bytes) {
-		try {
-			java.security.Signature sig = java.security.Signature
-					.getInstance(PUBLIC_KEY_SIGNATURE_ALG, PUBLIC_KEY_PROVIDER);
-			PublicKeyC Kc = (PublicKeyC) K;
-			SignatureC sc = (SignatureC) s;
-			sig.initVerify(Kc.k);
-			sig.update(bytes);
-			return sig.verify(sc.signature);
-		} catch (InvalidKeyException e) {
-			throw new CryptoError(e);
-		} catch (SignatureException e) {
-			throw new CryptoError(e);
-		} catch (NoSuchAlgorithmException e) {
-			throw new CryptoError(e);
-		} catch (NoSuchProviderException e) {
-			throw new CryptoError(e);
-		} catch (RuntimeException e) {
-			throw new CryptoError("Cannot verify signature", e);
-		}
+		return verifyPublicKeySignature.apply(K, s, bytes);
 	}
 
 	@Override
+	@Deprecated
 	public PublicKeyMsg publicKeyVerifySignatureMsg(PublicKey K, Signature s,
 			PublicKeyMsg msg) {
-		if (publicKeyVerifySignature(K, s, msg)) {
-			return msg;
-		}
-		return null;
+		return verifyPublicKeySignatureMsg.apply(K, s, msg);
 	}
 
 	@Override
 	public Signature signatureFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		return SignatureC.fromXML(r);
+		return signatureFromXML.apply(r);
 	}
 
 	@Override
 	public PublicKey publicKeyFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		return PublicKeyC.fromXML(r);
+		return publicKeyFromXML.apply(r);
 	}
 
 	@Override
 	public PrivateKey privateKeyFromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		return PrivateKeyC.fromXML(r);
+		return privateKeyFromXML.apply(r);
 	}
 
 	@Override
 	public ElGamalKeyShare constructKeyShare(ElGamalKeyPairShare kps) {
-		ElGamalKeyShare egks = elGamalKeyShare(kps.pubKey,
-				constructProofKnowDiscLog(kps.pubKey.getParams(), kps.privKey));
-		if (!egks.verify()) {
-			throw new CryptoError("Cannot verify a newly created key share!");
-		}
-		return egks;
+		return constructElGamalKeyShare.apply(kps);
 	}
 
 	@Override
 	public ElGamalKeyShare elGamalKeyShare(ElGamalPublicKey K,
 			ElGamalProofKnowDiscLog proof) {
-		if (K instanceof ElGamalPublicKeyC
-				&& proof instanceof ElGamalProofKnowDiscLogC) {
-			return new ElGamalKeyShareC((ElGamalPublicKeyC) K,
-					(ElGamalProofKnowDiscLogC) proof);
-		}
-		throw new Error("problem with parameters");
+		return constructElGamalKeyShare.apply(K, proof);
 	}
 
 	@Override
@@ -843,34 +821,29 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public byte[] messageDigest(byte[] a) {
-		MessageDigest md = messageDigest();
-		md.update(a);
-		return md.digest();
+		return computeMessageDigest.apply(a);
 	}
 
 	@Override
+	@Deprecated
 	public byte[] messageDigest(byte[] a, boolean constArray) {
-		return messageDigest(a);
+		return computeMessageDigest.apply(a);
 	}
 
 	@Override
 	public byte[] messageDigest(byte[] a, int i) {
-		MessageDigest md = messageDigest();
-		md.update(a);
-		md.update(i);
-		return md.digest();
+		return computeMessageDigest.apply(a, i);
 	}
 
 	@Override
+	@Deprecated
 	public byte[] messageDigest(byte[] a, int i, boolean constArray) {
-		return messageDigest(a, i, constArray);
+		return computeMessageDigest.apply(a, i);
 	}
 
 	@Override
 	public byte[] messageDigest(String s) {
-		MessageDigest md = messageDigest();
-		md.update(s);
-		return md.digest();
+		return computeMessageDigest.apply(s);
 	}
 
 	@Override
@@ -883,112 +856,43 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 			ElGamalPublicKey verifierKey, ElGamalCiphertext e,
 			ElGamalCiphertext ePrime, ElGamalReencryptFactor er,
 			ElGamalReencryptFactor erPrime) {
-		try {
-			ElGamalParametersC ps = (ElGamalParametersC) k.getParams();
-			CivitasBigInteger zeta = ((ElGamalReencryptFactorC) erPrime).r
-					.modSubtract(((ElGamalReencryptFactorC) er).r, ps.q);
-			return constructElGamalProofDVRC.apply((ElGamalCiphertextC) e,
-					(ElGamalCiphertextC) ePrime, (ElGamalPublicKeyC) k,
-					(ElGamalPublicKeyC) verifierKey, zeta);
-		} catch (ClassCastException ex) {
-			return null;
-		}
+		return constructElGamalProofDVR.apply(k, verifierKey, e, ePrime, er,
+				erPrime);
 	}
 
 	@Override
 	public ElGamalProofDVR constructFakeElGamalProofDVR(ElGamalPublicKey k,
 			ElGamalPublicKey verifierKey, ElGamalPrivateKey verifierPrivKey,
 			ElGamalCiphertext e, ElGamalCiphertext ePrime) {
-		try {
-			return fakeElGamalProofDVRC.apply((ElGamalCiphertextC) e,
-					(ElGamalCiphertextC) ePrime, (ElGamalPublicKeyC) k,
-					(ElGamalPublicKeyC) verifierKey,
-					(ElGamalPrivateKeyC) verifierPrivKey);
-		} catch (ClassCastException ex) {
-			return null;
-		}
+		return fakeElGamalProofDVRC.apply(k, verifierKey, verifierPrivKey, e,
+				ePrime);
 	}
 
 	@Override
 	public PublicKeyCiphertext publicKeyEncrypt(PublicKey key, PublicKeyMsg msg) {
-		PublicKeyC keyc = (PublicKeyC) key;
-		PublicKeyMsgC msgc = (PublicKeyMsgC) msg;
-		byte[] encrypted = jseCrypt(PUBLIC_KEY_CIPHER_ALG, PUBLIC_KEY_PROVIDER,
-				keyc.k, Cipher.ENCRYPT_MODE, msgc.toBytes());
-		return new PublicKeyCiphertextC(encrypted);
+		return encryptPublic.apply(key, msg);
 	}
 
 	@Override
 	public PublicKeyMsg publicKeyDecrypt(PrivateKey key,
 			PublicKeyCiphertext ciphertext) throws CryptoException {
-		PrivateKeyC keyc = (PrivateKeyC) key;
-		PublicKeyCiphertextC ciphertextc = (PublicKeyCiphertextC) ciphertext;
-		byte[] plaintext = jseCrypt(PUBLIC_KEY_CIPHER_ALG, PUBLIC_KEY_PROVIDER,
-				keyc.k, Cipher.DECRYPT_MODE, ciphertextc.toBytes());
-		return new PublicKeyMsgC(plaintext);
+		return decryptPublic.apply(key, ciphertext);
 	}
 
 	@Override
 	public SharedKey generateSharedKey(int keyLength) {
-		SecretKey k = getSharedKeyGenerator.apply(keyLength).generateKey();
-		return new SharedKeyC(k, "sharedKey-civitas");
+		return generateSharedKey.apply(keyLength);
 	}
 
 	@Override
 	public SharedKeyCiphertext sharedKeyEncrypt(SharedKey key, SharedKeyMsg msg) {
-		SharedKeyC keyc = (SharedKeyC) key;
-		SharedKeyMsgC msgc = (SharedKeyMsgC) msg;
-		byte[] encrypted = jseCrypt(SHARED_KEY_CIPHER_ALG, SHARED_KEY_PROVIDER,
-				keyc.k, Cipher.ENCRYPT_MODE, msgc.toBytes());
-		return new SharedKeyCiphertextC(encrypted);
+		return encryptShared.apply(key, msg);
 	}
 
 	@Override
 	public SharedKeyMsg sharedKeyDecrypt(SharedKey key,
 			SharedKeyCiphertext ciphertext) throws CryptoException {
-		SharedKeyC keyc = (SharedKeyC) key;
-		SharedKeyCiphertextC ciphertextc = (SharedKeyCiphertextC) ciphertext;
-		byte[] plaintext = jseCrypt(SHARED_KEY_CIPHER_ALG, SHARED_KEY_PROVIDER,
-				keyc.k, Cipher.DECRYPT_MODE, ciphertextc.toBytes());
-		return new SharedKeyMsgC(plaintext);
-	}
-
-	private byte[] jseCrypt(String alg, String provider, Key skey, int mode,
-			byte[] input) {
-
-		// Instantiate the cipher
-		Cipher cipher;
-		try {
-			cipher = Cipher.getInstance(alg, provider);
-		} catch (NoSuchAlgorithmException e) {
-			throw new CryptoError("Cannot find algorithm " + alg, e);
-		} catch (NoSuchPaddingException e) {
-			throw new CryptoError("Cannot find algorithm " + alg, e);
-		} catch (NoSuchProviderException e) {
-			throw new CryptoError("Cannot find provider " + provider, e);
-		} catch (RuntimeException e) {
-			throw new CryptoError("Cannot create cipher", e);
-		}
-
-		try {
-			cipher.init(mode, skey);
-		} catch (InvalidKeyException e) {
-			throw new CryptoError(
-					"Invalid key.  May need to install unlimited strength crypto policies.",
-					e);
-		}
-
-		byte[] output;
-		try {
-			output = cipher.doFinal(input);
-		} catch (IllegalBlockSizeException e) {
-			throw new CryptoError("Illegal block size", e);
-		} catch (BadPaddingException e) {
-			throw new CryptoError("bad padding", e);
-		} catch (RuntimeException e) {
-			throw new CryptoError(e);
-		}
-		return output;
+		return decryptShared.apply(key, ciphertext);
 	}
 
 	@Deprecated
@@ -997,14 +901,10 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	public SecretKey sharedKeyFromBytes(byte[] bs) {
-		SecretKeySpec skeySpec = new SecretKeySpec(bs, SHARED_KEY_ALG);
-		try {
-			return sharedKeyFactory.generateSecret(skeySpec);
-		} catch (InvalidKeySpecException e) {
-			throw new CryptoError(e);
-		}
+		return createSharedKeyFromBytes.apply(bs);
 	}
 
+	@Deprecated
 	public byte[] publicKeyToBytes(java.security.PublicKey k) {
 		return k.getEncoded();
 	}
@@ -1015,21 +915,11 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	public java.security.PublicKey publicKeyFromBytes(byte[] bs) {
-		KeySpec keySpec = new X509EncodedKeySpec(bs);
-		try {
-			return publicKeyFactory.generatePublic(keySpec);
-		} catch (InvalidKeySpecException e) {
-			throw new CryptoError(e);
-		}
+		return createPublicKeyFromBytes.apply(bs);
 	}
 
 	public java.security.PrivateKey privateKeyFromBytes(byte[] bs) {
-		KeySpec keySpec = new PKCS8EncodedKeySpec(bs);
-		try {
-			return publicKeyFactory.generatePrivate(keySpec);
-		} catch (InvalidKeySpecException e) {
-			throw new CryptoError(e);
-		}
+		return createPrivateKeyFromBytes.apply(bs);
 	}
 
 	@Override
@@ -1049,13 +939,15 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	@Override
+	@Deprecated
 	public PublicKeyMsg publicKeyMsg(String m) throws CryptoException {
-		return new PublicKeyMsgC(m);
+		throw new UnsupportedOperationException("Use constructor");
 	}
 
 	@Override
+	@Deprecated
 	public SharedKeyMsg sharedKeyMsg(String m) throws CryptoException {
-		return new SharedKeyMsgC(m);
+		throw new UnsupportedOperationException("Use constructor");
 	}
 
 	public static String bigIntToString(CivitasBigInteger i) {
@@ -1071,15 +963,11 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 			ElGamalCiphertext encCapability, ElGamal1OfLReencryption encChoice,
 			String context, ElGamalReencryptFactor encCapabilityFactor,
 			ElGamalReencryptFactor encChoiceFactor) {
-		try {
-			return constructProofVote.apply((ElGamalParametersC) params,
-					(ElGamalCiphertextC) encCapability,
-					((ElGamal1OfLReencryptionC) encChoice).m, context,
-					(ElGamalReencryptFactorC) encCapabilityFactor,
-					(ElGamalReencryptFactorC) encChoiceFactor);
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
-		}
+		return constructProofVote.apply((ElGamalParametersC) params,
+				(ElGamalCiphertextC) encCapability,
+				((ElGamal1OfLReencryptionC) encChoice).m, context,
+				(ElGamalReencryptFactorC) encCapabilityFactor,
+				(ElGamalReencryptFactorC) encChoiceFactor);
 	}
 
 	@Override

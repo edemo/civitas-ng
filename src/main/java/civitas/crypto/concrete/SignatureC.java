@@ -6,9 +6,7 @@
  */
 package civitas.crypto.concrete;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 import java.util.Base64;
 
@@ -16,7 +14,7 @@ import civitas.common.Util;
 import civitas.crypto.Signature;
 
 public class SignatureC implements Signature {
-	final byte[] signature;
+	public final byte[] signature;
 
 	public SignatureC(byte[] signature) {
 		this.signature = signature;
@@ -43,9 +41,4 @@ public class SignatureC implements Signature {
 		s.print('>');
 	}
 
-	public static Signature fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		String s = Util.unescapeString(Util.readSimpleTag(r, OPENING_TAG));
-		return new SignatureC(Base64.getDecoder().decode(s));
-	}
 }
