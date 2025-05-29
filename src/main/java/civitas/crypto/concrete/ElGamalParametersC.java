@@ -99,13 +99,13 @@ public class ElGamalParametersC implements ElGamalParameters, Constants {
 		s.print("<elGamalParameters>");
 
 		s.print("<p>");
-		Util.escapeString(CryptoFactoryC.bigIntToString(this.p), s);
+		Util.escapeString(Util.fromBigInt(this.p), s);
 		s.print("</p>");
 		s.print("<q>");
-		Util.escapeString(CryptoFactoryC.bigIntToString(this.q), s);
+		Util.escapeString(Util.fromBigInt(this.q), s);
 		s.print("</q>");
 		s.print("<g>");
-		Util.escapeString(CryptoFactoryC.bigIntToString(this.g), s);
+		Util.escapeString(Util.fromBigInt(this.g), s);
 		s.print("</g>");
 
 		s.print("</elGamalParameters>");

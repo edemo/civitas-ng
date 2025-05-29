@@ -33,14 +33,14 @@ public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase
 		assertEquals(ELGAMAL_PROOF_KNOWN_DISC_LOG_XML,
 				new ElGamalProofKnowDiscLogC(ELGAMAL_PROOF_KNOWN_DISC_LOG_A,
 						ELGAMAL_PROOF_KNOWN_DISC_LOG_C, ELGAMAL_PROOF_KNOWN_DISC_LOG_R,
-						PUBLICIZED_BIGINT_A).toXML());
+						G_EXP_A).toXML());
 	}
 
 	@Test
 	@DisplayName("verify checks that g^r = av^c (mod p)")
 	void verifyTest() {
 
-		CivitasBigInteger key = ELGAMAL_PRIVATE_KEY.x;
+		CivitasBigInteger key = ELGAMAL_PRIVATE_KEY_E.x;
 		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
 		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
 		CivitasBigInteger q = EL_GAMAL_PARAMETERS.q;
@@ -59,7 +59,7 @@ public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase
 	void verifyTest1() {
 		assertFalse(new ElGamalProofKnowDiscLogC(ELGAMAL_PROOF_KNOWN_DISC_LOG_A,
 				ELGAMAL_PROOF_KNOWN_DISC_LOG_C, ELGAMAL_PROOF_KNOWN_DISC_LOG_R,
-				PUBLICIZED_BIGINT_A).verify(mock(ElGamalParameters.class)));
+				G_EXP_A).verify(mock(ElGamalParameters.class)));
 	}
 
 	@Test
@@ -78,7 +78,7 @@ public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase
 		assertEquals(ELGAMAL_PROOF_KNOWN_DISC_LOG_A, actual.a);
 		assertEquals(ELGAMAL_PROOF_KNOWN_DISC_LOG_C, actual.c);
 		assertEquals(ELGAMAL_PROOF_KNOWN_DISC_LOG_R, actual.r);
-		assertEquals(PUBLICIZED_BIGINT_A, actual.v);
+		assertEquals(G_EXP_A, actual.v);
 	}
 
 	@Test

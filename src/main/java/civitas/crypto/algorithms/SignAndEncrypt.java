@@ -32,7 +32,6 @@ public class SignAndEncrypt {
 			CivitasBigInteger s = generateRandomElement.apply(ps.q);
 			CivitasBigInteger a = ps.g.modPow(rr, ps.p);
 			CivitasBigInteger b = m.modMultiply(k.y.modPow(rr, ps.p), ps.p);
-
 			CivitasBigInteger c = cryptoHash
 					.apply(ps.g.modPow(s, ps.p), a, b, additionalEnv).mod(ps.q);
 			CivitasBigInteger d = s.modAdd(c.modMultiply(rr, ps.q), ps.q);

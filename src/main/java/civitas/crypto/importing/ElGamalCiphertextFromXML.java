@@ -5,7 +5,6 @@ import java.io.Reader;
 
 import civitas.common.Util;
 import civitas.crypto.ElGamalCiphertext;
-import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
@@ -21,13 +20,13 @@ public class ElGamalCiphertextFromXML {
 		CivitasBigInteger a = null;
 		String sa = Util.unescapeString(Util.readSimpleTag(r, "a"));
 		if (sa.length() > 0) {
-			a = CryptoFactoryC.stringToBigInt(sa);
+			a = Util.asBigint(sa);
 		}
 
 		CivitasBigInteger b = null;
 		String sb = Util.unescapeString(Util.readSimpleTag(r, "b"));
 		if (sb.length() > 0) {
-			b = CryptoFactoryC.stringToBigInt(sb);
+			b = Util.asBigint(sb);
 		}
 
 		Util.swallowEndTag(r, ElGamalCiphertext.OPENING_TAG);

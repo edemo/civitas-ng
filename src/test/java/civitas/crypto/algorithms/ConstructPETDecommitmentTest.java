@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.PETDecommitmentC;
 import civitas.crypto.concrete.PETDecommitmentCTestData;
 import civitas.crypto.concrete.PETShareCTestData;
@@ -29,23 +28,23 @@ public class ConstructPETDecommitmentTest extends ConcreteTestBase
 			+ "di = d^exponent (mod p), " + "ei = e^exponent (mod p), "
 			+ "returns PETDecommitment(di,ei,proof)")
 	void decommitmentTest() {
-		ElGamalCiphertextC c1 = PET_SHARE_C.ciphertext1;
-		ElGamalCiphertextC c2 = PET_SHARE_C.ciphertext2;
-		CivitasBigInteger exponent = PET_SHARE_C.exponent;
+		CivitasBigInteger exponent = FACTOR_E;
 
-		CivitasBigInteger d = c1.a.modDivide(c2.a, BIGINT_P);
-		CivitasBigInteger e = c1.b.modDivide(c2.b, BIGINT_P);
-
-		CivitasBigInteger di = d.modPow(exponent, BIGINT_P);
-		CivitasBigInteger ei = e.modPow(exponent, BIGINT_P);
+		CivitasBigInteger di = CIPHERTEXT_E_A
+				.modDivide(CIPHERTEXT_EPRIME_A, BIGINT_P).modPow(exponent, BIGINT_P);
+		CivitasBigInteger ei = CIPHERTEXT_E_B
+				.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P).modPow(exponent, BIGINT_P);
 
 		PETDecommitmentC decommitment = (PETDecommitmentC) constructPETDecommitment
-				.apply(EL_GAMAL_PARAMETERS, exponent, c1, c2);
-		assertEquals(PET_DECOMMITMENT_XML, decommitment.toXML());
-		verify(constructPETDecommitment.constructElGamalDiscLogEqualityProof)
-				.apply(EL_GAMAL_PARAMETERS, d, e, exponent);
+				.apply(EL_GAMAL_PARAMETERS, exponent, CIPHERTEXT_E, CIPHERTEXT_EPRIME);
 		assertEquals(di, decommitment.di);
 		assertEquals(ei, decommitment.ei);
+
+		verify(constructPETDecommitment.constructElGamalDiscLogEqualityProof).apply(
+				EL_GAMAL_PARAMETERS,
+				CIPHERTEXT_E_A.modDivide(CIPHERTEXT_EPRIME_A, BIGINT_P),
+				CIPHERTEXT_E_B.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P), FACTOR_E);
+		assertEquals(PET_DECOMMITMENT_XML, decommitment.toXML());
 
 	}
 

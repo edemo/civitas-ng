@@ -59,15 +59,15 @@ public class ProofVoteC implements ProofVote {
 
 		s.print("<c>");
 		if (this.c != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.c), s);
+			Util.escapeString(Util.fromBigInt(this.c), s);
 		s.print("</c>");
 		s.print("<s1>");
 		if (this.s1 != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.s1), s);
+			Util.escapeString(Util.fromBigInt(this.s1), s);
 		s.print("</s1>");
 		s.print("<s2>");
 		if (this.s2 != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.s2), s);
+			Util.escapeString(Util.fromBigInt(this.s2), s);
 		s.print("</s2>");
 
 		s.print("</elGamalProofVote>");

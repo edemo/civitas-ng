@@ -4,11 +4,15 @@ import java.io.IOException;
 import java.io.Reader;
 
 import civitas.common.Util;
-import civitas.crypto.concrete.CryptoFactoryC;
+import civitas.crypto.algorithms.ConvertToBigInt;
 import civitas.crypto.concrete.ElGamalProof1OfLC;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 public class ElGamalProof1OfLFromXML {
+
+	@Use
+	ConvertToBigInt convertToBigInt;
 
 	public ElGamalProof1OfLC apply(Reader r)
 			throws IllegalArgumentException, IOException {
@@ -17,12 +21,12 @@ public class ElGamalProof1OfLFromXML {
 		CivitasBigInteger[] dvs = new CivitasBigInteger[L];
 		CivitasBigInteger[] rvs = new CivitasBigInteger[L];
 		for (int i = 0; i < L; i++) {
-			dvs[i] = CryptoFactoryC
-					.stringToBigInt(Util.unescapeString(Util.readSimpleTag(r, "dv")));
+			dvs[i] = convertToBigInt
+					.apply(Util.unescapeString(Util.readSimpleTag(r, "dv")));
 		}
 		for (int i = 0; i < L; i++) {
-			rvs[i] = CryptoFactoryC
-					.stringToBigInt(Util.unescapeString(Util.readSimpleTag(r, "rv")));
+			rvs[i] = convertToBigInt
+					.apply(Util.unescapeString(Util.readSimpleTag(r, "rv")));
 		}
 
 		Util.swallowEndTag(r, "elGamalProof1OfL");

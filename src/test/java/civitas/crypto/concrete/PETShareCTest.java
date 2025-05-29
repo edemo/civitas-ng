@@ -53,19 +53,19 @@ public class PETShareCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("ciphertext1 returns the first ciphertext")
 	void test4() {
-		assertEquals(EL_GAMAL_CIPHERTEXT_A, PET_SHARE_C.ciphertext1());
+		assertEquals(CIPHERTEXT_E, PET_SHARE_C.ciphertext1());
 	}
 
 	@Test
 	@DisplayName("ciphertext2 returns the second ciphertext")
 	void test5() {
-		assertEquals(EL_GAMAL_CIPHERTEXT_B, PET_SHARE_C.ciphertext2());
+		assertEquals(CIPHERTEXT_EPRIME, PET_SHARE_C.ciphertext2());
 	}
 
 	@Test
 	@DisplayName("exponent returns the exponent")
 	void test5_1() {
-		assertEquals(BIGINT_C, PET_SHARE_C.exponent());
+		assertEquals(FACTOR_E, PET_SHARE_C.exponent());
 	}
 
 	@Test

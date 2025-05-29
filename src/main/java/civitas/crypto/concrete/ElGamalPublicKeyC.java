@@ -43,7 +43,7 @@ public class ElGamalPublicKeyC extends ElGamalAbstractKey
 		s.print("</params>");
 		s.print("<y>");
 		if (this.y != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.y), s);
+			Util.escapeString(Util.fromBigInt(this.y), s);
 		s.print("</y>");
 
 		s.print("</");
@@ -62,7 +62,7 @@ public class ElGamalPublicKeyC extends ElGamalAbstractKey
 	}
 
 	public String name() {
-		return "ElGamalPublicKey-" + CryptoFactoryC.bigIntToString(y);
+		return "ElGamalPublicKey-" + Util.fromBigInt(y);
 	}
 
 	@Override

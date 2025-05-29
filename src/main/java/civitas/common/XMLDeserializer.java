@@ -15,5 +15,6 @@ import java.io.Reader;
  * object.
  */
 public interface XMLDeserializer {
-	public XMLSerializable fromXML(Reader s) throws IllegalArgumentException, IOException;
+	public XMLSerializable fromXML(Reader s)
+			throws IllegalArgumentException, IOException;
 }

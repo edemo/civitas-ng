@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Reader;
 
 import civitas.common.Util;
-import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.PETShareC;
 import civitas.util.CivitasBigInteger;
@@ -24,8 +23,8 @@ public class PetShareFromXML {
 		ciphertext1 = elGamalCiphertextFromXML.apply(r);
 		ciphertext2 = elGamalCiphertextFromXML.apply(r);
 
-		CivitasBigInteger exponent = CryptoFactoryC
-				.stringToBigInt(Util.unescapeString(Util.readSimpleTag(r, "exponent")));
+		CivitasBigInteger exponent = Util
+				.asBigint(Util.unescapeString(Util.readSimpleTag(r, "exponent")));
 
 		Util.swallowEndTag(r, "petShare");
 

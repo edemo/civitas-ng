@@ -36,25 +36,22 @@ public class ConstructElGamalDecryptionShareTest extends ConcreteTestBase
 			+ "proof =  ElGamalDiscLogEqualityProof(params, ciphertext.a, params.g,priv.x)")
 	void constructDecryptionShareTest() throws Exception {
 
-		ElGamalCiphertextC encrypted = EL_GAMAL_CIPHERTEXT_A_ENCRYPTED_WITH_FACTOR_A;
-
-		CivitasBigInteger key = ELGAMAL_PRIVATE_KEY.x;
+		CivitasBigInteger key = ELGAMAL_PRIVATE_KEY_E.x;
 		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
-		CivitasBigInteger c1 = encrypted.a;
+		CivitasBigInteger c1 = CIPHERTEXT_E.a;
 
 		CivitasBigInteger ai = c1.modPow(key, p);
 
 		ElGamalKeyPairShare keyShare = new ElGamalKeyPairShare(EL_GAMAL_PARAMETERS,
-				EL_GAMAL_PUBLIC_KEY, ELGAMAL_PRIVATE_KEY);
+				EL_GAMAL_PUBLIC_KEY_E, ELGAMAL_PRIVATE_KEY_E);
 
 		ElGamalDecryptionShareC actual = (ElGamalDecryptionShareC) constructElGamalDecryptionShare
-				.apply(encrypted, keyShare);
-
+				.apply(CIPHERTEXT_E, keyShare);
 		verify(constructElGamalDecryptionShare.constructElGamalDiscLogEqualityProof)
-				.apply(EL_GAMAL_PARAMETERS, encrypted.a, BIGINT_G,
-						ELGAMAL_PRIVATE_KEY.x);
+				.apply(EL_GAMAL_PARAMETERS, CIPHERTEXT_E.a, BIGINT_G,
+						ELGAMAL_PRIVATE_KEY_E.x);
 		assertEquals(ai, actual.ai);
-		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_PROOF, actual.proof);
+		assertEquals(EL_GAMAL_DECRYPTION_SHARE_XML, actual.toXML());
 
 	}
 

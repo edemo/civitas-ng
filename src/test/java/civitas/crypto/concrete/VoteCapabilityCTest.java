@@ -19,7 +19,7 @@ import civitas.crypto.importing.VoteCapabilityFromXML;
 import civitas.util.Use;
 
 public class VoteCapabilityCTest extends ConcreteTestBase
-		implements ConcreteTestData {
+		implements VoteCapabilityShareTestData {
 	@Use
 	VoteCapabilityFromXML voteCapabilityFromXML;
 
@@ -28,7 +28,8 @@ public class VoteCapabilityCTest extends ConcreteTestBase
 	void test() throws CryptoException {
 		StringWriter s = new StringWriter();
 		PrintWriter p = new PrintWriter(s);
-		VOTE_CAPABILITY.toXML(p);
+		new VoteCapabilityC(MESSAGE_VOTE_CAPABILITY_SHARE, EL_GAMAL_PARAMETERS)
+				.toXML(p);
 		assertEquals(VOTE_CAPABILITY_XML, s.toString());
 	}
 
@@ -37,7 +38,7 @@ public class VoteCapabilityCTest extends ConcreteTestBase
 	void test1() throws CryptoException {
 		StringWriter s = new StringWriter();
 		PrintWriter p = new PrintWriter(s);
-		new VoteCapabilityC(SOMESTRING, EL_GAMAL_PARAMETERS).toXML(p);
+		new VoteCapabilityC(VOTE, EL_GAMAL_PARAMETERS).toXML(p);
 		assertEquals(VOTE_CAPABILITY_XML, s.toString());
 	}
 
@@ -46,8 +47,8 @@ public class VoteCapabilityCTest extends ConcreteTestBase
 	void test2() throws CryptoException {
 		StringWriter s = new StringWriter();
 		PrintWriter p = new PrintWriter(s);
-		VOTE_CAPABILITY_JUST_BIGINT.toXML(p);
-		assertEquals(VOTE_CAPABILITY_JUST_BIGINT_XML, s.toString());
+		VOTE_CAPABILITY.toXML(p);
+		assertEquals(VOTE_CAPABILITY_XML, s.toString());
 	}
 
 	@Test
@@ -78,7 +79,8 @@ public class VoteCapabilityCTest extends ConcreteTestBase
 	@DisplayName("intValue works as expected")
 	void test4() throws IllegalArgumentException, IOException {
 
-		assertEquals(VOTE_CAPABILITY_INTVALUE, VOTE_CAPABILITY.intValue());
+		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED.intValue(),
+				VOTE_CAPABILITY.intValue());
 	}
 
 }

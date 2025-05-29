@@ -37,19 +37,19 @@ public class ElGamalSignedCiphertextC extends ElGamalCiphertextC
 		s.print("<elGamalSignedCiphertext>");
 		s.print("<a>");
 		if (a != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.a), s);
+			Util.escapeString(Util.fromBigInt(this.a), s);
 		s.print("</a>");
 		s.print("<b>");
 		if (b != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.b), s);
+			Util.escapeString(Util.fromBigInt(this.b), s);
 		s.print("</b>");
 		s.print("<c>");
 		if (c != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.c), s);
+			Util.escapeString(Util.fromBigInt(this.c), s);
 		s.print("</c>");
 		s.print("<d>");
 		if (d != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.d), s);
+			Util.escapeString(Util.fromBigInt(this.d), s);
 		s.print("</d>");
 		s.print("</elGamalSignedCiphertext>");
 	}

@@ -51,13 +51,13 @@ public class ElGamalProof1OfLC implements ElGamalProof1OfL {
 		for (int i = 0; i < L; i++) {
 			s.print("<dv>");
 			if (dvs[i] != null)
-				Util.escapeString(CryptoFactoryC.bigIntToString(this.dvs[i]), s);
+				Util.escapeString(Util.fromBigInt(this.dvs[i]), s);
 			s.print("</dv>");
 		}
 		for (int i = 0; i < L; i++) {
 			s.print("<rv>");
 			if (rvs[i] != null)
-				Util.escapeString(CryptoFactoryC.bigIntToString(this.rvs[i]), s);
+				Util.escapeString(Util.fromBigInt(this.rvs[i]), s);
 			s.print("</rv>");
 		}
 		s.print("</elGamalProof1OfL>");

@@ -5,10 +5,14 @@ import java.io.Reader;
 
 import civitas.common.Util;
 import civitas.crypto.ElGamalProofDiscLogEquality;
-import civitas.crypto.concrete.CryptoFactoryC;
+import civitas.crypto.algorithms.ConvertToBigInt;
 import civitas.crypto.concrete.ElGamalProofDiscLogEqualityC;
+import civitas.util.Use;
 
 public class ElGamalProofDiscLogEqualityFromXML {
+
+	@Use
+	ConvertToBigInt convertToBigInt;
 
 	public ElGamalProofDiscLogEquality apply(Reader r)
 			throws IllegalArgumentException, IOException {
@@ -23,11 +27,11 @@ public class ElGamalProofDiscLogEqualityFromXML {
 		String rr = Util.unescapeString(Util.readSimpleTag(r, "r"));
 
 		Util.swallowEndTag(r, "egPrfKnwDscLog");
-		return new ElGamalProofDiscLogEqualityC(CryptoFactoryC.stringToBigInt(g1),
-				CryptoFactoryC.stringToBigInt(g2), CryptoFactoryC.stringToBigInt(a),
-				CryptoFactoryC.stringToBigInt(v), CryptoFactoryC.stringToBigInt(w),
-				CryptoFactoryC.stringToBigInt(b), CryptoFactoryC.stringToBigInt(c),
-				CryptoFactoryC.stringToBigInt(rr));
+		return new ElGamalProofDiscLogEqualityC(convertToBigInt.apply(g1),
+				convertToBigInt.apply(g2), convertToBigInt.apply(a),
+				convertToBigInt.apply(v), convertToBigInt.apply(w),
+				convertToBigInt.apply(b), convertToBigInt.apply(c),
+				convertToBigInt.apply(rr));
 	}
 
 }

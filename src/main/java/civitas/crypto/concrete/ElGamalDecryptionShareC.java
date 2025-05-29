@@ -10,10 +10,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import civitas.common.Util;
-import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalDecryptionShare;
 import civitas.crypto.ElGamalProofDiscLogEquality;
-import civitas.crypto.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 
 public class ElGamalDecryptionShareC implements ElGamalDecryptionShare {
@@ -31,28 +29,6 @@ public class ElGamalDecryptionShareC implements ElGamalDecryptionShare {
 		return proof;
 	}
 
-	@Override
-	public boolean verify(ElGamalCiphertext c, ElGamalPublicKey K) {
-		if (proof != null) {
-			try {
-				ElGamalCiphertextC cipher = (ElGamalCiphertextC) c;
-				ElGamalPublicKeyC KC = (ElGamalPublicKeyC) K;
-				ElGamalParametersC params = (ElGamalParametersC) K.getParams();
-
-				if (proof.g1.equals(cipher.a) && proof.g2.equals(params.g)
-						&& proof.v.equals(ai) && proof.w.equals(KC.y)) {
-					return proof.verify(params);
-				}
-			} catch (NullPointerException e) {
-				throw new Error(e);
-			} catch (ClassCastException e) {
-				throw new Error(e);
-			}
-		}
-
-		return false;
-	}
-
 	public String toXML() {
 		StringWriter sb = new StringWriter();
 		toXML(new PrintWriter(sb));
@@ -66,7 +42,7 @@ public class ElGamalDecryptionShareC implements ElGamalDecryptionShare {
 		s.print('>');
 		s.print("<ai>");
 		if (ai != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(ai), s);
+			Util.escapeString(Util.fromBigInt(ai), s);
 		s.print("</ai>");
 		if (proof != null)
 			this.proof.toXML(s);

@@ -67,19 +67,19 @@ public class ElGamalProofKnowDiscLogC implements ElGamalProofKnowDiscLog {
 
 		s.print("<a>");
 		if (this.a != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.a), s);
+			Util.escapeString(Util.fromBigInt(this.a), s);
 		s.print("</a>");
 		s.print("<c>");
 		if (this.c != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.c), s);
+			Util.escapeString(Util.fromBigInt(this.c), s);
 		s.print("</c>");
 		s.print("<r>");
 		if (this.r != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.r), s);
+			Util.escapeString(Util.fromBigInt(this.r), s);
 		s.print("</r>");
 		s.print("<v>");
 		if (this.v != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.v), s);
+			Util.escapeString(Util.fromBigInt(this.v), s);
 		s.print("</v>");
 
 		s.print("</elGamalProofKnowDiscLog>");

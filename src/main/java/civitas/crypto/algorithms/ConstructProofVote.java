@@ -2,7 +2,6 @@ package civitas.crypto.algorithms;
 
 import java.util.List;
 
-import civitas.common.Util;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalParametersC;
 import civitas.crypto.concrete.ElGamalReencryptFactorC;
@@ -25,7 +24,6 @@ public class ConstructProofVote {
 
 		CivitasBigInteger r1 = generateRandomElement.apply(params.q);
 		CivitasBigInteger r2 = generateRandomElement.apply(params.q);
-
 		List<CivitasBigInteger> E = calculateProofEnvironment.apply(params,
 				encCapability, encChoice, context);
 		E.add(params.g.modPow(r1, params.p));
@@ -35,7 +33,6 @@ public class ConstructProofVote {
 				.mod(params.q);
 		CivitasBigInteger s1 = r1.modSubtract(c.modMultiply(alpha1.r, params.q),
 				params.q);
-		System.out.println(Util.fromBigInt(alpha1.r));
 		CivitasBigInteger s2 = r2.modSubtract(c.modMultiply(alpha2.r, params.q),
 				params.q);
 		return new ProofVoteC(c, s1, s2);

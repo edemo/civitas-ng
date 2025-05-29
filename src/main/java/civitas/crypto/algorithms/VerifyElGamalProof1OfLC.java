@@ -6,7 +6,6 @@ import java.util.List;
 import civitas.common.CiphertextList;
 import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalPublicKey;
-import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalParametersC;
 import civitas.crypto.concrete.ElGamalProof1OfLC;
@@ -17,6 +16,8 @@ import civitas.util.Use;
 public class VerifyElGamalProof1OfLC {
 	@Use
 	CryptoHash cryptoHash;
+	@Use
+	ConvertHashToBigInt convertHashToBigInt;
 
 	public boolean apply(ElGamalProof1OfLC self, ElGamalPublicKey pubKey,
 			CiphertextList ciphertexts, int L, ElGamalCiphertext msg) {
@@ -33,7 +34,6 @@ public class VerifyElGamalProof1OfLC {
 			ms[i] = (ElGamalCiphertextC) ciphertexts.get(i);
 		}
 
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
 		CivitasBigInteger[] as = new CivitasBigInteger[L];
 		CivitasBigInteger[] bs = new CivitasBigInteger[L];
 		CivitasBigInteger sum = CivitasBigInteger.ZERO;
@@ -55,7 +55,9 @@ public class VerifyElGamalProof1OfLC {
 			env.add(as[i]);
 			env.add(bs[i]);
 		}
-		CivitasBigInteger c = factory.hashToBigInt(cryptoHash.apply(env)).mod(ps.q);
+
+		CivitasBigInteger c = convertHashToBigInt.apply(cryptoHash.apply(env))
+				.mod(ps.q);
 		return sum.equals(c);
 	}
 

@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.io.Reader;
 
 import civitas.common.Util;
-import civitas.crypto.concrete.CryptoFactoryC;
+import civitas.crypto.algorithms.ConvertToBigInt;
 import civitas.crypto.concrete.ElGamalProofKnowDiscLogC;
+import civitas.util.Use;
 
 public class ElGamalProofKnowDiscLogFromXML {
+
+	@Use
+	ConvertToBigInt convertToBigInt;
 
 	public ElGamalProofKnowDiscLogC apply(Reader r)
 			throws IllegalArgumentException, IOException {
@@ -18,9 +22,9 @@ public class ElGamalProofKnowDiscLogFromXML {
 		String v = Util.unescapeString(Util.readSimpleTag(r, "v"));
 
 		Util.swallowEndTag(r, "elGamalProofKnowDiscLog");
-		return new ElGamalProofKnowDiscLogC(CryptoFactoryC.stringToBigInt(a),
-				CryptoFactoryC.stringToBigInt(c), CryptoFactoryC.stringToBigInt(rr),
-				CryptoFactoryC.stringToBigInt(v));
+		return new ElGamalProofKnowDiscLogC(convertToBigInt.apply(a),
+				convertToBigInt.apply(c), convertToBigInt.apply(rr),
+				convertToBigInt.apply(v));
 	}
 
 }

@@ -24,7 +24,7 @@ public interface ElGamalDecryptionShare {
 	 * @param K the public key for decrypting the ciphertext
 	 * @return
 	 */
-	public boolean verify(ElGamalCiphertext m, ElGamalPublicKey K);
+//	public boolean verify(ElGamalCiphertext m, ElGamalPublicKey K);
 //    public ElGamalParameters  getParams();
 
 	public void toXML(PrintWriter sb);

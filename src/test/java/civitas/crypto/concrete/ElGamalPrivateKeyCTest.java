@@ -23,7 +23,7 @@ public class ElGamalPrivateKeyCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("constructor with key and params works")
 	void test0() {
-		assertEquals(ELGAMAL_PRIVATE_KEY,
+		assertEquals(ELGAMAL_PRIVATE_KEY_E,
 				new ElGamalPrivateKeyC(BIGINT_A, EL_GAMAL_PARAMETERS));
 	}
 
@@ -38,40 +38,40 @@ public class ElGamalPrivateKeyCTest extends ConcreteTestBase
 	@DisplayName("Equals takes x into account"
 			+ "FIXME: equals do not take x into account in original code (no override)")
 	void test0_0() {
-		assertNotEquals(ELGAMAL_PRIVATE_KEY,
+		assertNotEquals(ELGAMAL_PRIVATE_KEY_E,
 				new ElGamalPrivateKeyC(BIGINT_C, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("Equals takes parameters into account")
 	void test0_1() {
-		assertNotEquals(ELGAMAL_PRIVATE_KEY,
+		assertNotEquals(ELGAMAL_PRIVATE_KEY_E,
 				new ElGamalPrivateKeyC(BIGINT_D, EL_GAMAL_PARAMETERS_OTHER));
 	}
 
 	@Test
 	@DisplayName("toXML returns an XML representation")
 	void test() {
-		assertEquals(ELGAMAL_PRIVATE_KEY_XML, ELGAMAL_PRIVATE_KEY.toXML());
+		assertEquals(ELGAMAL_PRIVATE_KEY_XML, ELGAMAL_PRIVATE_KEY_E.toXML());
 	}
 
 	@Test
 	@DisplayName("fromXML returns the private key")
 	void test1() throws IllegalArgumentException, IOException {
-		assertEquals(ELGAMAL_PRIVATE_KEY, elGamalPrivateKeyFromXML
+		assertEquals(ELGAMAL_PRIVATE_KEY_E, elGamalPrivateKeyFromXML
 				.apply(new StringReader(ELGAMAL_PRIVATE_KEY_XML)));
 	}
 
 	@Test
 	@DisplayName("getParams gets the parameters")
 	void test2() {
-		assertEquals(EL_GAMAL_PARAMETERS, ELGAMAL_PRIVATE_KEY.getParams());
+		assertEquals(EL_GAMAL_PARAMETERS, ELGAMAL_PRIVATE_KEY_E.getParams());
 	}
 
 	@Test
 	@DisplayName("does not equal anything which is not ElGamalPrivateKeyC")
 	void test3() {
-		assertFalse(ELGAMAL_PRIVATE_KEY.equals(mock(ElGamalPrivateKey.class)));
+		assertFalse(ELGAMAL_PRIVATE_KEY_E.equals(mock(ElGamalPrivateKey.class)));
 	}
 
 }

@@ -15,6 +15,8 @@ public class VerifyPETDecommitment {
 
 	@Use
 	CryptoHash cryptoHash;
+	@Use
+	VerifyElGamalProofDiscLogEquality verifyElGamalProofDiscLogEquality;
 
 	public boolean apply(PETDecommitmentC self, PETCommitment c,
 			ElGamalParameters params, ElGamalCiphertext ciphertext1,
@@ -37,7 +39,7 @@ public class VerifyPETDecommitment {
 		if (!d.equals(prf.g1) || !e.equals(prf.g2))
 			return false;
 		return com.hash.equals(cryptoHash.apply(self.di, self.ei))
-				&& prf.verify(params);
+				&& verifyElGamalProofDiscLogEquality.apply(prf, params);
 	}
 
 }

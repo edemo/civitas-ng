@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import civitas.common.Util;
+import civitas.crypto.algorithms.Constants;
 import civitas.util.CivitasBigInteger;
 
-public interface BasicValuesTestData {
+public interface BasicValuesTestData extends Constants {
 	public static final String SOMESTRING = "testdata";
 	public static final String SOMESTRING_BASE64 = "dGVzdGRhdGE=";
 	public static final String SOMESTRING_EXTENDED = "exttestdatawas";
@@ -73,9 +74,9 @@ public interface BasicValuesTestData {
 	public static final CivitasBigInteger BIGINT_A = new CivitasBigInteger(
 			SOMESTRING.getBytes());
 	public static final String BIGINT_A_BASE64 = SOMESTRING_BASE64;
-	public static final String BIGINT_A_ENCRYPTED_SAFE_BASE64 = "ASvIFyEHZA21reK32LTtYEwJG4GSW8Xzrl83llQSdjcztgsIJeyQm0ZZ36vG4aTVYjtADzV9J6xJcK0C32+iCP4=";
-	public static final CivitasBigInteger BIGINT_A_ENCRYPTED_SAFE = Util
-			.asBigint(BIGINT_A_ENCRYPTED_SAFE_BASE64);
+	public static final String SAFE_P_MINUS_A_BASE64 = "ASvIFyEHZA21reK32LTtYEwJG4GSW8Xzrl83llQSdjcztgsIJeyQm0ZZ36vG4aTVYjtADzV9J6xJcK0C32+iCP4=";
+	public static final CivitasBigInteger SAFE_P_MINUS_A = Util
+			.asBigint(SAFE_P_MINUS_A_BASE64);
 
 	public static final String BIGINT_B_BASE64 = "Xje5W2KfxNk=";
 	public static final CivitasBigInteger BIGINT_B = Util

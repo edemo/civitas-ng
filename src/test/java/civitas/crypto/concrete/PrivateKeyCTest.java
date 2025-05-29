@@ -11,7 +11,7 @@ import civitas.crypto.importing.PrivateKeyFromXML;
 import civitas.util.Use;
 
 public class PrivateKeyCTest extends ConcreteTestBase
-		implements ConcreteTestData {
+		implements PrivateKeyTestData {
 	@Use
 	PrivateKeyFromXML privateKeyFromXML;
 

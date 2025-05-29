@@ -6,13 +6,15 @@ import java.io.Reader;
 import civitas.common.Util;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.ElGamalPublicKey;
-import civitas.crypto.concrete.CryptoFactoryC;
+import civitas.crypto.algorithms.ConvertToBigInt;
 import civitas.crypto.concrete.ElGamalPublicKeyC;
 import civitas.util.Use;
 
 public class ElGamalPublicKeyFromXML {
 	@Use
 	ElGamalParametersFromXML elGamalParametersFromXML;
+	@Use
+	ConvertToBigInt convertToBigInt;
 
 	public ElGamalPublicKeyC apply(Reader r)
 			throws IllegalArgumentException, IOException {
@@ -22,7 +24,7 @@ public class ElGamalPublicKeyFromXML {
 		Util.swallowEndTag(r, "params");
 		String y = Util.unescapeString(Util.readSimpleTag(r, "y"));
 		Util.swallowEndTag(r, ElGamalPublicKey.EG_OPENING_TAG);
-		return new ElGamalPublicKeyC(CryptoFactoryC.stringToBigInt(y), params);
+		return new ElGamalPublicKeyC(convertToBigInt.apply(y), params);
 	}
 
 }

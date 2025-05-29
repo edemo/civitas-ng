@@ -8,6 +8,7 @@ package civitas.crypto.concrete;
 
 import java.io.UnsupportedEncodingException;
 
+import civitas.common.Util;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ElGamalMsg;
@@ -111,7 +112,7 @@ public class ElGamalMsgC implements ElGamalMsg {
 
 	@Override
 	public String toString() {
-		return CryptoFactoryC.bigIntToString(m);
+		return Util.fromBigInt(m);
 	}
 
 	@Override

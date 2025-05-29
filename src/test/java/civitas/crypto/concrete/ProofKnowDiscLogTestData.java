@@ -20,12 +20,12 @@ public interface ProofKnowDiscLogTestData extends ElGamalPublicKeyCTestData {
 			+ ELGAMAL_PROOF_KNOWN_DISC_LOG_A_BASE64 + "</a><c>"
 			+ ELGAMAL_PROOF_KNOWN_DISC_LOG_C_BASE64 + "</c><r>"
 			+ ELGAMAL_PROOF_KNOWN_DISC_LOG_R_BASE64 + "</r><v>"
-			+ PUBLICIZED_BIGINT_A_BASE64 + "</v></elGamalProofKnowDiscLog>";
+			+ G_EXP_A_BASE64 + "</v></elGamalProofKnowDiscLog>";
 	public static final String ELGAMAL_PROOF_KNOWN_DISC_LOG_NULL_XML = "<elGamalProofKnowDiscLog><a>"
 			+ "</a><c>" + "</c><r>" + "</r><v>" + "</v></elGamalProofKnowDiscLog>";
 
 	public static final ElGamalProofKnowDiscLogC ELGAMAL_PROOF_KNOWN_DISC_LOG = new ElGamalProofKnowDiscLogC(
 			ELGAMAL_PROOF_KNOWN_DISC_LOG_A, ELGAMAL_PROOF_KNOWN_DISC_LOG_C,
-			ELGAMAL_PROOF_KNOWN_DISC_LOG_R, PUBLICIZED_BIGINT_A);
+			ELGAMAL_PROOF_KNOWN_DISC_LOG_R, G_EXP_A);
 
 }

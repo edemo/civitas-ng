@@ -45,7 +45,7 @@ public class ElGamalMsgCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("constructor with String parameter stores the message encrypted")
 	void test1_1() throws NumberFormatException, CryptoException {
-		assertEquals(BIGINT_A_ENCRYPTED_SAFE,
+		assertEquals(SAFE_P_MINUS_A,
 				new ElGamalMsgC(SOMESTRING, EL_GAMAL_PARAMETERS_SAFE).m);
 	}
 
@@ -59,7 +59,7 @@ public class ElGamalMsgCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("constructor with BigInt parameter stores the message encrypted")
 	void test1_2() throws NumberFormatException, CryptoException {
-		assertEquals(BIGINT_A_ENCRYPTED_SAFE,
+		assertEquals(SAFE_P_MINUS_A,
 				new ElGamalMsgC(BIGINT_A, EL_GAMAL_PARAMETERS_SAFE).m);
 	}
 

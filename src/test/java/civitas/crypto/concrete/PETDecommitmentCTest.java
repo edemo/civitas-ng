@@ -28,7 +28,7 @@ public class PETDecommitmentCTest extends ConcreteTestBase
 	@DisplayName("constructor arguments di, ei can be null")
 	void test1() {
 		assertEquals(PET_DECOMMITMENT_NULL_XML,
-				new PETDecommitmentC(null, null, EL_GAMAL_DISC_LOG_EQUALITY_PROOF)
+				new PETDecommitmentC(null, null, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT)
 						.toXML());
 	}
 
@@ -50,7 +50,7 @@ public class PETDecommitmentCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("proof returns the proof")
 	void test4() {
-		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_PROOF, PET_DECOMMITMENT.proof());
+		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT, PET_DECOMMITMENT.proof());
 	}
 
 }

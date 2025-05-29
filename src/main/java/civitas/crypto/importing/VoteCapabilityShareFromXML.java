@@ -5,7 +5,6 @@ import java.io.Reader;
 
 import civitas.common.Util;
 import civitas.crypto.VoteCapabilityShare;
-import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.VoteCapabilityShareC;
 
 public class VoteCapabilityShareFromXML {
@@ -14,7 +13,7 @@ public class VoteCapabilityShareFromXML {
 			throws IllegalArgumentException, IOException {
 		String s = Util
 				.unescapeString(Util.readSimpleTag(r, VoteCapabilityShare.OPENING_TAG));
-		return new VoteCapabilityShareC(CryptoFactoryC.stringToBigInt(s));
+		return new VoteCapabilityShareC(Util.asBigint(s));
 	}
 
 }

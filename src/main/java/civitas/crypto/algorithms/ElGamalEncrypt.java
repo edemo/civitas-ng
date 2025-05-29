@@ -19,32 +19,25 @@ public class ElGamalEncrypt {
 
 	public ElGamalCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg)
 			throws CryptoError {
-		try {
-			ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
-			ElGamalPublicKeyC k = (ElGamalPublicKeyC) key;
-			CivitasBigInteger m = ((ElGamalMsgC) msg).bigIntValue();
-			CivitasBigInteger r = generateRandomElement.apply(ps.q);
-			CivitasBigInteger a = ps.g.modPow(r, ps.p);
-			CivitasBigInteger b = m.modMultiply(k.y.modPow(r, ps.p), ps.p);
-			return new ElGamalCiphertextC(a, b);
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
-		}
+		ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
+		ElGamalPublicKeyC k = (ElGamalPublicKeyC) key;
+		CivitasBigInteger m = ((ElGamalMsgC) msg).bigIntValue();
+		CivitasBigInteger r = generateRandomElement.apply(ps.q);
+		CivitasBigInteger a = ps.g.modPow(r, ps.p);
+		CivitasBigInteger b = m.modMultiply(k.y.modPow(r, ps.p), ps.p);
+		return new ElGamalCiphertextC(a, b);
 	}
 
 	public ElGamalCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg,
 			ElGamalReencryptFactor encryptFactor) throws CryptoError {
-		try {
-			ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
-			ElGamalPublicKeyC k = (ElGamalPublicKeyC) key;
-			CivitasBigInteger r = ((ElGamalReencryptFactorC) encryptFactor).r;
-			CivitasBigInteger m = ((ElGamalMsgC) msg).bigIntValue();
-			CivitasBigInteger a = ps.g.modPow(r, ps.p);
-			CivitasBigInteger b = m.modMultiply(k.y.modPow(r, ps.p), ps.p);
-			return new ElGamalCiphertextC(a, b);
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
-		}
+		ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
+		ElGamalPublicKeyC k = (ElGamalPublicKeyC) key;
+		CivitasBigInteger r = ((ElGamalReencryptFactorC) encryptFactor).r;
+		CivitasBigInteger m = ((ElGamalMsgC) msg).bigIntValue();
+		CivitasBigInteger a = ps.g.modPow(r, ps.p);
+		CivitasBigInteger s = k.y.modPow(r, ps.p);
+		CivitasBigInteger b = m.modMultiply(s, ps.p);
+		return new ElGamalCiphertextC(a, b);
 	}
 
 }

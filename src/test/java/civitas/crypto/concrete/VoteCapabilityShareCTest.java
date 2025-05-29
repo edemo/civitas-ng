@@ -19,7 +19,7 @@ import civitas.crypto.importing.VoteCapabilityShareFromXML;
 import civitas.util.Use;
 
 public class VoteCapabilityShareCTest extends ConcreteTestBase
-		implements ConcreteTestData {
+		implements VoteCapabilityShareTestData {
 
 	@Test
 	@DisplayName("BigInteger+parameter constructor and toXML works as expected")
@@ -35,7 +35,7 @@ public class VoteCapabilityShareCTest extends ConcreteTestBase
 	void test1() throws CryptoException {
 		StringWriter s = new StringWriter();
 		PrintWriter p = new PrintWriter(s);
-		new VoteCapabilityShareC(SOMESTRING, EL_GAMAL_PARAMETERS).toXML(p);
+		new VoteCapabilityShareC(VOTE, EL_GAMAL_PARAMETERS).toXML(p);
 		assertEquals(VOTE_CAPABILITY_SHARE_XML, s.toString());
 	}
 
@@ -44,8 +44,8 @@ public class VoteCapabilityShareCTest extends ConcreteTestBase
 	void test2() throws CryptoException {
 		StringWriter s = new StringWriter();
 		PrintWriter p = new PrintWriter(s);
-		VOTE_CAPABILITY_SHARE_JUST_BIGINT.toXML(p);
-		assertEquals(VOTE_CAPABILITY_SHARE_JUST_BIGINT_XML, s.toString());
+		VOTE_CAPABILITY_SHARE.toXML(p);
+		assertEquals(VOTE_CAPABILITY_SHARE_XML, s.toString());
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class VoteCapabilityShareCTest extends ConcreteTestBase
 	@DisplayName("intValue works as expected")
 	void test4() throws IllegalArgumentException, IOException {
 
-		assertEquals(VOTE_CAPABILITY_SHARE_INTVALUE,
+		assertEquals(VOTE_CAPABILITY_SHARE.intValue(),
 				VOTE_CAPABILITY_SHARE.intValue());
 	}
 

@@ -44,7 +44,7 @@ public class VoteCapabilityC extends ElGamalMsgC implements VoteCapability {
 		s.print(OPENING_TAG);
 		s.print('>');
 		if (this.m != null) {
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.m), s);
+			Util.escapeString(Util.fromBigInt(this.m), s);
 		}
 		s.print("</");
 		s.print(OPENING_TAG);

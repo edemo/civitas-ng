@@ -21,23 +21,22 @@ public class SafePrimeEncoderTest extends ConcreteTestBase
 	@Test
 	@DisplayName("encoder works as expected")
 	void test() throws CryptoException, IllegalArgumentException, IOException {
-		assertEquals(PUBLICIZED_SAFE_BIGINT_A_BASE64, Base64.getEncoder()
+		assertEquals(SAFE_P_MINUS_A_BASE64, Base64.getEncoder()
 				.encodeToString(encoder.encodePlaintext(BIGINT_A).toByteArray()));
 	}
 
 	@Test
 	@DisplayName("encoder works as expected when the plaintext's Legendre symbol is -1")
 	void test2() throws CryptoException, IllegalArgumentException, IOException {
-		assertEquals(PUBLICIZED_SAFE_LEGENDRE_BASE64,
-				Base64.getEncoder().encodeToString(encoder
-						.encodePlaintext(PLAINTEXT_WITH_LEGENDRE_MINUS_ONE).toByteArray()));
+		assertEquals(PUBLICIZED_SAFE_LEGENDRE,
+				encoder.encodePlaintext(PLAINTEXT_WITH_LEGENDRE_MINUS_ONE));
 	}
 
 	@Test
 	@DisplayName("decoder works as expected")
 	void test3() throws CryptoException, IllegalArgumentException, IOException {
 		assertEquals(BIGINT_A, encoder.decodeMessage(new CivitasBigInteger(
-				Base64.getDecoder().decode(PUBLICIZED_SAFE_BIGINT_A_BASE64))));
+				Base64.getDecoder().decode(SAFE_P_MINUS_A_BASE64))));
 	}
 
 	@Test

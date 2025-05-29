@@ -6,12 +6,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.ElGamalCiphertextCTestData;
+import civitas.crypto.concrete.ProofVoteC;
 import civitas.crypto.concrete.ProofVoteTestData;
+import civitas.crypto.concrete.VoteCapabilityShareTestData;
 import civitas.util.Tested;
 
 public class VerifyProofVoteTest extends ConcreteTestBase
-		implements ElGamalCiphertextCTestData, ProofVoteTestData {
+		implements VoteCapabilityShareTestData, ProofVoteTestData {
 
 	@Tested
 	VerifyProofVote verifyProofVote;
@@ -23,8 +24,9 @@ public class VerifyProofVoteTest extends ConcreteTestBase
 			+ "	   g^s2*encChoice.a^c (mod p))")
 	void test2_1() {
 
-		assertTrue(verifyProofVote.apply(PROOF_VOTE, EL_GAMAL_PARAMETERS,
-				EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B, SOMESTRING_EXTENDED));
+		ProofVoteC proofVote = PROOF_VOTE;
+		assertTrue(verifyProofVote.apply(proofVote, EL_GAMAL_PARAMETERS,
+				CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE, ADDITIONALENV));
 	}
 
 }

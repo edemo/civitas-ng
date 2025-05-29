@@ -42,18 +42,18 @@ public class VerifyPETDecommitmentTest extends ConcreteTestBase
 
 		ElGamalProofDiscLogEqualityC proof = (ElGamalProofDiscLogEqualityC) PET_DECOMMITMENT.proof;
 
-		CivitasBigInteger d = EL_GAMAL_CIPHERTEXT_A.a
-				.modDivide(EL_GAMAL_CIPHERTEXT_B.a, BIGINT_P);
-		CivitasBigInteger e = EL_GAMAL_CIPHERTEXT_A.b
-				.modDivide(EL_GAMAL_CIPHERTEXT_B.b, BIGINT_P);
+		CivitasBigInteger d = CIPHERTEXT_E.a.modDivide(CIPHERTEXT_EPRIME.a,
+				BIGINT_P);
+		CivitasBigInteger e = CIPHERTEXT_E.b.modDivide(CIPHERTEXT_EPRIME.b,
+				BIGINT_P);
 
 		assertEquals(proof.g1, d);
 		assertEquals(proof.g2, e);
-		assertEquals(Util.fromBigInt(PET_COMMITMENT.hash), Util.fromBigInt(
+		assertEquals(PET_COMMITMENT_HASH_BASE64, Util.fromBigInt(
 				cryptoHash.apply(PET_DECOMMITMENT.di, PET_DECOMMITMENT.ei)));
 		// exponent: BIGINT_C
 		assertTrue(verifyPETDecommitment.apply(PET_DECOMMITMENT, PET_COMMITMENT,
-				EL_GAMAL_PARAMETERS, EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B));
+				EL_GAMAL_PARAMETERS, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 	}
 
 	@Test
@@ -61,7 +61,7 @@ public class VerifyPETDecommitmentTest extends ConcreteTestBase
 	public void test1() {
 		assertFalse(
 				verifyPETDecommitment.apply(PET_DECOMMITMENT, mock(PETCommitment.class),
-						EL_GAMAL_PARAMETERS, EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B));
+						EL_GAMAL_PARAMETERS, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 
 	}
 
@@ -69,20 +69,20 @@ public class VerifyPETDecommitmentTest extends ConcreteTestBase
 	@DisplayName("if di of the decommitment is null, the verification fails")
 	public void test2() {
 		PETDecommitmentC petDecommitment = new PETDecommitmentC(null,
-				PET_DECOMMITMENT_E, EL_GAMAL_DISC_LOG_EQUALITY_PROOF);
+				PET_DECOMMITMENT_E, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT);
 
 		assertFalse(verifyPETDecommitment.apply(petDecommitment, PET_COMMITMENT,
-				EL_GAMAL_PARAMETERS, EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B));
+				EL_GAMAL_PARAMETERS, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 	}
 
 	@Test
 	@DisplayName("if ei of the decommitment is null, the verification fails")
 	public void test3() {
 		PETDecommitmentC petDecommitment = new PETDecommitmentC(PET_DECOMMITMENT_D,
-				null, EL_GAMAL_DISC_LOG_EQUALITY_PROOF);
+				null, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT);
 
 		assertFalse(verifyPETDecommitment.apply(petDecommitment, PET_COMMITMENT,
-				EL_GAMAL_PARAMETERS, EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B));
+				EL_GAMAL_PARAMETERS, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 	}
 
 	@Test
@@ -90,13 +90,14 @@ public class VerifyPETDecommitmentTest extends ConcreteTestBase
 	public void test4() {
 		PETDecommitmentC petDecommitment = new PETDecommitmentC(PET_DECOMMITMENT_D,
 				PET_DECOMMITMENT_E,
-				new ElGamalProofDiscLogEqualityC(BIGINT_A, EL_GAMAL_DISC_LOG_EQUALITY_E,
-						EL_GAMAL_DISC_LOG_EQUALITY_A, EL_GAMAL_DISC_LOG_EQUALITY_V,
-						EL_GAMAL_DISC_LOG_EQUALITY_W, EL_GAMAL_DISC_LOG_EQUALITY_B,
-						EL_GAMAL_DISC_LOG_EQUALITY_C, EL_GAMAL_DISC_LOG_EQUALITY_R));
+				new ElGamalProofDiscLogEqualityC(BIGINT_A,
+						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G2, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_A,
+						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_V, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_W,
+						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_B, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C,
+						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R));
 
 		assertFalse(verifyPETDecommitment.apply(petDecommitment, PET_COMMITMENT,
-				EL_GAMAL_PARAMETERS, EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B));
+				EL_GAMAL_PARAMETERS, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 	}
 
 	@Test
@@ -104,13 +105,14 @@ public class VerifyPETDecommitmentTest extends ConcreteTestBase
 	public void test5() {
 		PETDecommitmentC petDecommitment = new PETDecommitmentC(PET_DECOMMITMENT_D,
 				PET_DECOMMITMENT_E,
-				new ElGamalProofDiscLogEqualityC(EL_GAMAL_DISC_LOG_EQUALITY_D, BIGINT_A,
-						EL_GAMAL_DISC_LOG_EQUALITY_A, EL_GAMAL_DISC_LOG_EQUALITY_V,
-						EL_GAMAL_DISC_LOG_EQUALITY_W, EL_GAMAL_DISC_LOG_EQUALITY_B,
-						EL_GAMAL_DISC_LOG_EQUALITY_C, EL_GAMAL_DISC_LOG_EQUALITY_R));
+				new ElGamalProofDiscLogEqualityC(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G1,
+						BIGINT_A, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_A,
+						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_V, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_W,
+						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_B, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C,
+						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R));
 
 		assertFalse(verifyPETDecommitment.apply(petDecommitment, PET_COMMITMENT,
-				EL_GAMAL_PARAMETERS, EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B));
+				EL_GAMAL_PARAMETERS, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 	}
 
 	@Test
@@ -119,22 +121,21 @@ public class VerifyPETDecommitmentTest extends ConcreteTestBase
 
 		assertFalse(
 				verifyPETDecommitment.apply(PET_DECOMMITMENT, PET_COMMITMENT_BAD_HASH,
-						EL_GAMAL_PARAMETERS, EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B));
+						EL_GAMAL_PARAMETERS, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 	}
 
 	@Test
 	@DisplayName("if the proof does not verify the verification fails")
 	public void test7() {
 		ElGamalProofDiscLogEqualityC proof = new ElGamalProofDiscLogEqualityC(
-				EL_GAMAL_DISC_LOG_EQUALITY_D, EL_GAMAL_DISC_LOG_EQUALITY_E, BIGINT_A,
-				EL_GAMAL_DISC_LOG_EQUALITY_V, EL_GAMAL_DISC_LOG_EQUALITY_W, BIGINT_A,
-				EL_GAMAL_DISC_LOG_EQUALITY_C, EL_GAMAL_DISC_LOG_EQUALITY_R);
-		assertFalse(proof.verify(EL_GAMAL_PARAMETERS));
+				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G1, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G2, BIGINT_A,
+				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_V, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_W, BIGINT_A,
+				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R);
 		PETDecommitmentC petDecommitment = new PETDecommitmentC(PET_DECOMMITMENT_D,
 				PET_DECOMMITMENT_E, proof);
 
 		assertFalse(verifyPETDecommitment.apply(petDecommitment, PET_COMMITMENT,
-				EL_GAMAL_PARAMETERS, EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B));
+				EL_GAMAL_PARAMETERS, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 	}
 
 }

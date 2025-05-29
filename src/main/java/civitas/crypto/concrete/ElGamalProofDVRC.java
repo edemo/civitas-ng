@@ -57,16 +57,16 @@ public class ElGamalProofDVRC implements ElGamalProofDVR {
 		e.toXML(s);
 		eprime.toXML(s);
 		s.print("<c>");
-		Util.escapeString(CryptoFactoryC.bigIntToString(c), s);
+		Util.escapeString(Util.fromBigInt(c), s);
 		s.print("</c>");
 		s.print("<w>");
-		Util.escapeString(CryptoFactoryC.bigIntToString(w), s);
+		Util.escapeString(Util.fromBigInt(w), s);
 		s.print("</w>");
 		s.print("<r>");
-		Util.escapeString(CryptoFactoryC.bigIntToString(r), s);
+		Util.escapeString(Util.fromBigInt(r), s);
 		s.print("</r>");
 		s.print("<u>");
-		Util.escapeString(CryptoFactoryC.bigIntToString(u), s);
+		Util.escapeString(Util.fromBigInt(u), s);
 		s.print("</u>");
 		s.print("</elGamalProofDVR>");
 	}

@@ -35,11 +35,11 @@ public class ElGamalCiphertextC implements ElGamalCiphertext {
 		s.print('>');
 		s.print("<a>");
 		if (a != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.a), s);
+			Util.escapeString(Util.fromBigInt(this.a), s);
 		s.print("</a>");
 		s.print("<b>");
 		if (b != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.b), s);
+			Util.escapeString(Util.fromBigInt(this.b), s);
 		s.print("</b>");
 		s.print("</");
 		s.print(OPENING_TAG);

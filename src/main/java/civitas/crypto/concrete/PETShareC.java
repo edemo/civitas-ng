@@ -108,7 +108,7 @@ public class PETShareC implements PETShare {
 		}
 		if (this.exponent != null) {
 			sb.append("<exponent>");
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.exponent), sb);
+			Util.escapeString(Util.fromBigInt(this.exponent), sb);
 			sb.append("</exponent>");
 		}
 		sb.append("</petShare>");

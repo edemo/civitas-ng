@@ -12,7 +12,8 @@ import java.io.PrintWriter;
  * The NIZK proof that accompanies a vote when posted on a BB.
  */
 public interface ProofVote {
-	public boolean verify(ElGamalParameters params, ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
+	public boolean verify(ElGamalParameters params,
+			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
 			String context);
 
 	public void toXML(PrintWriter sb);

@@ -42,7 +42,7 @@ public class ElGamalPrivateKeyC extends ElGamalAbstractKey
 		s.print("</params>");
 		s.print("<x>");
 		if (this.x != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(x), s);
+			Util.escapeString(Util.fromBigInt(x), s);
 		s.print("</x>");
 
 		s.print("</elGamalPrivateKey>");

@@ -27,7 +27,7 @@ public class ElGamalReencryptTest extends ConcreteTestBase
 		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
 		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
 		CivitasBigInteger y = RANDOMS_0;
-		CivitasBigInteger m = EL_GAMAL_PUBLIC_KEY.y;
+		CivitasBigInteger m = EL_GAMAL_PUBLIC_KEY_EPRIME.y;
 		CivitasBigInteger c1 = BIGINT_A;
 		CivitasBigInteger c2 = BIGINT_B;
 
@@ -37,7 +37,7 @@ public class ElGamalReencryptTest extends ConcreteTestBase
 		c2 = c2.modMultiply(m.modPow(y, p), p);
 
 		assertEquals(new ElGamalCiphertextC(c1, c2),
-				elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY, cipherText));
+				elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, cipherText));
 
 	}
 
@@ -49,7 +49,7 @@ public class ElGamalReencryptTest extends ConcreteTestBase
 		CivitasBigInteger y = RANDOMS_0;
 		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
 		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
-		CivitasBigInteger m = EL_GAMAL_PUBLIC_KEY.y;
+		CivitasBigInteger m = EL_GAMAL_PUBLIC_KEY_EPRIME.y;
 
 		CivitasBigInteger c1 = BIGINT_A;
 		CivitasBigInteger c2 = BIGINT_B;
@@ -59,7 +59,7 @@ public class ElGamalReencryptTest extends ConcreteTestBase
 		c2 = c2.modMultiply(m.modPow(y, p), p);
 
 		assertEquals(new ElGamalCiphertextC(c1, c2), elGamalReencrypt.apply(
-				EL_GAMAL_PUBLIC_KEY, cipherText, new ElGamalReencryptFactorC(y)));
+				EL_GAMAL_PUBLIC_KEY_EPRIME, cipherText, new ElGamalReencryptFactorC(y)));
 
 	}
 

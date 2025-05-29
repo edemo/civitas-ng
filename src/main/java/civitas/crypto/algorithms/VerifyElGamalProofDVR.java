@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import civitas.crypto.ElGamalPublicKey;
-import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalParametersC;
 import civitas.crypto.concrete.ElGamalProofDVRC;
 import civitas.crypto.concrete.ElGamalPublicKeyC;
@@ -15,10 +14,11 @@ public class VerifyElGamalProofDVR {
 
 	@Use
 	CryptoHash cryptoHash;
+	@Use
+	ConvertHashToBigInt convertHashToBigInt;
 
 	public boolean apply(ElGamalProofDVRC that, ElGamalPublicKey K,
 			ElGamalPublicKey verifierKey) {
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
 
 		ElGamalParametersC ps = (ElGamalParametersC) K.getParams();
 		ElGamalPublicKeyC key = (ElGamalPublicKeyC) K;
@@ -50,7 +50,8 @@ public class VerifyElGamalProofDVR {
 		l.add(ap);
 		l.add(bp);
 		l.add(sp);
-		CivitasBigInteger cp = factory.hashToBigInt(cryptoHash.apply(l)).mod(ps.q);
+		CivitasBigInteger cp = convertHashToBigInt.apply(cryptoHash.apply(l))
+				.mod(ps.q);
 
 		return cp.equals(that.c);
 	}

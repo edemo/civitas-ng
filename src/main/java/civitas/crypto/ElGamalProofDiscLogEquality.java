@@ -12,7 +12,7 @@ import java.io.PrintWriter;
  * Proof that log_{g_1} v = log_{g_2} w. That is, that v = g_1^x and w = g_2^x
  */
 public interface ElGamalProofDiscLogEquality {
-	public boolean verify(ElGamalParameters params);
+//	public boolean verify(ElGamalParameters params);
 
 	public void toXML(PrintWriter sb);
 }

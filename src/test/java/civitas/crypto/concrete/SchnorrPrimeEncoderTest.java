@@ -18,7 +18,7 @@ public class SchnorrPrimeEncoderTest extends ConcreteTestBase
 	@Test
 	@DisplayName("encode works as expected")
 	void test() throws CryptoException {
-		assertEquals(PUBLICIZED_BIGINT_A_BASE64, Base64.getEncoder()
+		assertEquals(G_EXP_A_BASE64, Base64.getEncoder()
 				.encodeToString(encoder.encodePlaintext(BIGINT_A).toByteArray()));
 	}
 

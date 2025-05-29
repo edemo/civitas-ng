@@ -25,7 +25,7 @@ public class ElGamalParametersCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("storing constructor and toXML works as expected")
 	void test() {
-		assertEquals(ELGAMAL_PARAMETERS_XML,
+		assertEquals(EL_GAMAL_PARAMETERS_XML,
 				new ElGamalParametersC(BIGINT_P, BIGINT_Q, BIGINT_G).toXML());
 	}
 
@@ -41,7 +41,7 @@ public class ElGamalParametersCTest extends ConcreteTestBase
 	void test2() throws IllegalArgumentException, IOException {
 		assertEquals(new ElGamalParametersC(BIGINT_P, BIGINT_Q, BIGINT_G),
 				elGamalParametersFromXML
-						.apply(new StringReader(ELGAMAL_PARAMETERS_XML)));
+						.apply(new StringReader(EL_GAMAL_PARAMETERS_XML)));
 	}
 
 	@Test

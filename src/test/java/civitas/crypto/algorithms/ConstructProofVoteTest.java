@@ -2,14 +2,14 @@ package civitas.crypto.algorithms;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import civitas.common.Util;
 import civitas.crypto.CryptoException;
-import civitas.crypto.MessageDigest;
 import civitas.crypto.concrete.ConcreteTestBase;
 import civitas.crypto.concrete.ElGamalCiphertextCTestData;
 import civitas.crypto.concrete.ElGamalReencryptFactorCTestData;
@@ -25,14 +25,15 @@ public class ConstructProofVoteTest extends ConcreteTestBase
 
 	@Tested
 	ConstructProofVote constructProofVote;
-
+	@Use
+	CalculateProofEnvironment calculateProofEnvironment;
 	@Use
 	CryptoHash cryptoHash;
 	@Use
 	ObtainMessageDigest obtainMessageDigest;
 
 	@Test
-	@DisplayName("constructor with vote constructs the proof"
+	@DisplayName("constructs a proof that the vote data is correct"
 			+ "		 r1 = random in Z_q,                          "
 			+ "		 r2 = random in Z_q,                           "
 			+ "		 a = g^r1,                                      "
@@ -41,34 +42,29 @@ public class ConstructProofVoteTest extends ConcreteTestBase
 			+ "		 s1 = r1-c*alpha1 (mod q),                           "
 			+ "		 s2 = r2-c*alpha2 (mod q) ")
 	void test2() throws CryptoException {
+
+		ProofVoteC proofVote = constructProofVote.apply(EL_GAMAL_PARAMETERS,
+				CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE, ADDITIONALENV,
+				ELGAMAL_REENCRYPT_FACTOR_EPRIME, ELGAMAL_REENCRYPT_FACTOR_E);
+		assertEquals(PROOF_VOTE_XML, proofVote.toXML());
+	}
+
+	@Test
+	@Tag("testdata")
+	@DisplayName("PROOF_VOTE_C_BASE64")
+	void testData() {
 		CivitasBigInteger r1 = RANDOMS_0;
 		CivitasBigInteger r2 = RANDOMS_1;
-		CivitasBigInteger a = BIGINT_G.modPow(r1, BIGINT_P);
-		CivitasBigInteger b = BIGINT_G.modPow(r2, BIGINT_P);
-		MessageDigest md = obtainMessageDigest.apply();
-		md.update(SOMESTRING_EXTENDED.getBytes());
-		CivitasBigInteger somestringDigest = new CivitasBigInteger(1, md.digest());
-		List<CivitasBigInteger> proofEnv = Arrays.asList(BIGINT_G,
-				EL_GAMAL_CIPHERTEXT_A.a, EL_GAMAL_CIPHERTEXT_A.b,
-				EL_GAMAL_CIPHERTEXT_B.a, EL_GAMAL_CIPHERTEXT_B.b, somestringDigest, a,
-				b);
+		List<CivitasBigInteger> E = calculateProofEnvironment.apply(
+				EL_GAMAL_PARAMETERS, CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE,
+				ADDITIONALENV);
+		E.add(BIGINT_G.modPow(r1, BIGINT_P));
+		E.add(BIGINT_G.modPow(r2, BIGINT_P));
 
-		CivitasBigInteger c = new CivitasBigInteger(1, cryptoHash.apply(proofEnv))
-				.mod(BIGINT_Q);
-		CivitasBigInteger s1 = r1.modSubtract(
-				c.modMultiply(ELGAMAL_REENCRYPT_FACTOR_C.r, EL_GAMAL_PARAMETERS.q),
-				EL_GAMAL_PARAMETERS.q);
-		CivitasBigInteger s2 = r2.modSubtract(
-				c.modMultiply(ELGAMAL_REENCRYPT_FACTOR_D.r, EL_GAMAL_PARAMETERS.q),
-				EL_GAMAL_PARAMETERS.q);
+		CivitasBigInteger PROOF_VOTE_C = new CivitasBigInteger(1,
+				cryptoHash.apply(E)).mod(BIGINT_Q);
+		assertEquals(PROOF_VOTE_C_BASE64, Util.fromBigInt(PROOF_VOTE_C));
 
-		ProofVoteC proof = constructProofVote.apply(EL_GAMAL_PARAMETERS,
-				EL_GAMAL_CIPHERTEXT_A, EL_GAMAL_CIPHERTEXT_B, SOMESTRING_EXTENDED,
-				ELGAMAL_REENCRYPT_FACTOR_C, ELGAMAL_REENCRYPT_FACTOR_D);
-		assertEquals(proof.c, c);
-		assertEquals(proof.s1, s1);
-		assertEquals(proof.s2, s2);
-		assertEquals(PROOF_VOTE_XML, proof.toXML());
 	}
 
 }

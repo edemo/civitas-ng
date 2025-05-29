@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.StringReader;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.importing.PublicKeyCiphertextFromXML;
@@ -18,7 +17,6 @@ public class PublicKeyCiphertextCTest extends ConcreteTestBase
 	PublicKeyCiphertextFromXML publicKeyCiphertextFromXML;
 
 	@Test
-	@Tag("functional")
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
 		assertEquals(PUBLIC_KEY_CIPHERTEXT_XML,
@@ -26,7 +24,6 @@ public class PublicKeyCiphertextCTest extends ConcreteTestBase
 	}
 
 	@Test
-	@Tag("functional")
 	@DisplayName("fromXML works as expected")
 	void test1() throws IllegalArgumentException, IOException {
 

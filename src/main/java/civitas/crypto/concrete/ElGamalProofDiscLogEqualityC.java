@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import civitas.common.Util;
-import civitas.crypto.ElGamalParameters;
 import civitas.crypto.ElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
 
@@ -48,25 +47,6 @@ public class ElGamalProofDiscLogEqualityC
 		this.r = r;
 	}
 
-	@Override
-	public boolean verify(ElGamalParameters prms) {
-		if (!(prms instanceof ElGamalParametersC))
-			return false;
-		ElGamalParametersC params = (ElGamalParametersC) prms;
-
-		try {
-			// To verify, check that g_1^r = av^c (mod p) and g_2^r = bw^c (mod p)
-			return g1.modPow(r, params.p)
-					.equals(a.modMultiply(v.modPow(c, params.p), params.p))
-					&& g2.modPow(r, params.p)
-							.equals(b.modMultiply(w.modPow(c, params.p), params.p));
-		} catch (NullPointerException e) {
-			return false;
-		} catch (ArithmeticException e) {
-			return false;
-		}
-	}
-
 	public String toXML() {
 		StringWriter sb = new StringWriter();
 		toXML(new PrintWriter(sb));
@@ -79,35 +59,35 @@ public class ElGamalProofDiscLogEqualityC
 
 		s.print("<g1>");
 		if (this.g1 != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.g1), s);
+			Util.escapeString(Util.fromBigInt(this.g1), s);
 		s.print("</g1>");
 		s.print("<g2>");
 		if (this.g2 != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.g2), s);
+			Util.escapeString(Util.fromBigInt(this.g2), s);
 		s.print("</g2>");
 		s.print("<v>");
 		if (this.v != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.v), s);
+			Util.escapeString(Util.fromBigInt(this.v), s);
 		s.print("</v>");
 		s.print("<w>");
 		if (this.w != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.w), s);
+			Util.escapeString(Util.fromBigInt(this.w), s);
 		s.print("</w>");
 		s.print("<a>");
 		if (this.a != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.a), s);
+			Util.escapeString(Util.fromBigInt(this.a), s);
 		s.print("</a>");
 		s.print("<b>");
 		if (this.b != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.b), s);
+			Util.escapeString(Util.fromBigInt(this.b), s);
 		s.print("</b>");
 		s.print("<c>");
 		if (this.c != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.c), s);
+			Util.escapeString(Util.fromBigInt(this.c), s);
 		s.print("</c>");
 		s.print("<r>");
 		if (this.r != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.r), s);
+			Util.escapeString(Util.fromBigInt(this.r), s);
 		s.print("</r>");
 
 		s.print("</egPrfKnwDscLog>");

@@ -7,7 +7,6 @@ import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalPrivateKey;
 import civitas.crypto.ElGamalProofDVR;
 import civitas.crypto.ElGamalPublicKey;
-import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalParametersC;
 import civitas.crypto.concrete.ElGamalPrivateKeyC;
@@ -22,11 +21,12 @@ public class FakeElGamalProofDVRC {
 	private static GenerateRandomElement generateRandomElement;
 	@Use
 	CryptoHash cryptoHash;
+	@Use
+	ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProofDVRC apply(ElGamalCiphertextC e, ElGamalCiphertextC et,
 			ElGamalPublicKeyC key, ElGamalPublicKeyC verifierKey,
 			ElGamalPrivateKeyC verifierPrivKey) {
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
 
 		ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
 		// CivitasBigInteger hv = verifierKey.y;
@@ -64,7 +64,8 @@ public class FakeElGamalProofDVRC {
 		l.add(at);
 		l.add(bt);
 		l.add(st);
-		CivitasBigInteger ct = factory.hashToBigInt(cryptoHash.apply(l)).mod(ps.q);
+		CivitasBigInteger ct = convertHashToBigInt.apply(cryptoHash.apply(l))
+				.mod(ps.q);
 
 		CivitasBigInteger wt = alpha.modSubtract(ct, ps.q);
 		CivitasBigInteger rt = beta.modSubtract(wt, ps.q).modDivide(zv, ps.q);

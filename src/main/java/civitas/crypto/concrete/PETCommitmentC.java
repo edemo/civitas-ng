@@ -33,7 +33,7 @@ public class PETCommitmentC implements PETCommitment {
 		s.print('>');
 
 		if (hash != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.hash), s);
+			Util.escapeString(Util.fromBigInt(this.hash), s);
 
 		s.print("</");
 		s.print(OPENING_TAG);

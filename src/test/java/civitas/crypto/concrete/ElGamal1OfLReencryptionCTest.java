@@ -35,7 +35,7 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("getCyphertext works as expected")
 	void test() {
-		assertEquals(EL_GAMAL_CIPHERTEXT_1_OF_L_XML,
+		assertEquals(EL_GAMAL_CIPHERTEXT_E_XML,
 				((ElGamalCiphertextC) EL_GAMAL_1_OF_L_REENCRYPTION.getCiphertext())
 						.toXML());
 	}
@@ -84,7 +84,7 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 
 		assertFalse(elGamal1OfLReencryptionFromXML
 				.apply(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
-				.equals(new ElGamal1OfLReencryptionC(EL_GAMAL_CIPHERTEXT_1_OF_L,
+				.equals(new ElGamal1OfLReencryptionC(CIPHERTEXT_E,
 						EL_GAMAL_PROOF_1_OF_L_BAD)));
 	}
 

@@ -30,7 +30,7 @@ public class ElGamalReencryptFactorC implements ElGamalReencryptFactor {
 	public void toXML(PrintWriter s) {
 		s.print("<r>");
 		if (this.r != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.r), s);
+			Util.escapeString(Util.fromBigInt(this.r), s);
 		s.print("</r>");
 	}
 

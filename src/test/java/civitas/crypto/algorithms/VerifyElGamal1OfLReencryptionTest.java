@@ -24,15 +24,15 @@ public class VerifyElGamal1OfLReencryptionTest extends ConcreteTestBase
 	void test2() throws IllegalArgumentException, IOException {
 
 		assertTrue(verifyElGamal1OfLReencryption.apply(EL_GAMAL_1_OF_L_REENCRYPTION,
-				EL_GAMAL_PUBLIC_KEY, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
+				EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
 	}
 
 	@Test
 	@DisplayName("verify for null proof is false")
 	void test2_1() throws IllegalArgumentException, IOException {
 		assertFalse(verifyElGamal1OfLReencryption.apply(
-				new ElGamal1OfLReencryptionC(EL_GAMAL_CIPHERTEXT_1_OF_L, null),
-				EL_GAMAL_PUBLIC_KEY, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
+				new ElGamal1OfLReencryptionC(CIPHERTEXT_E, null),
+				EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
 	}
 
 }

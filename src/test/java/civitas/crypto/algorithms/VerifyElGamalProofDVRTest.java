@@ -18,7 +18,8 @@ public class VerifyElGamalProofDVRTest extends ConcreteTestBase
 	@DisplayName("verify works")
 	void test2() {
 		assertTrue(verifyElGamalProofDVR.apply(EL_GAMAL_PROOF_DVR,
-				EL_GAMAL_PUBLIC_KEY, EL_GAMAL_PUBLIC_KEY2));
+				EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME));
+
 	}
 
 }

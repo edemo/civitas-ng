@@ -4,7 +4,6 @@ import java.util.List;
 
 import civitas.crypto.ElGamalCiphertext;
 import civitas.crypto.ElGamalParameters;
-import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalParametersC;
 import civitas.crypto.concrete.ProofVoteC;
@@ -19,12 +18,13 @@ public class VerifyProofVote {
 	CryptoHash cryptoHash;
 	@Use
 	CalculateProofEnvironment calculateProofEnvironment;
+	@Use
+	ConvertHashToBigInt convertHashToBigInt;
 
 	public boolean apply(ProofVoteC that, ElGamalParameters params,
 			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
 			String context) {
 		try {
-			CryptoFactoryC factory = CryptoFactoryC.singleton();
 			ElGamalParametersC paramsC = (ElGamalParametersC) params;
 			ElGamalCiphertextC encCapabilityC = (ElGamalCiphertextC) encCapability;
 			ElGamalCiphertextC encChoiceC = (ElGamalCiphertextC) encChoice;
@@ -37,7 +37,8 @@ public class VerifyProofVote {
 					encCapabilityC, encChoiceC, context);
 			E.add(paramsC.g.modPow(that.s1, p).modMultiply(a1.modPow(that.c, p), p));
 			E.add(paramsC.g.modPow(that.s2, p).modMultiply(a2.modPow(that.c, p), p));
-			CivitasBigInteger x = factory.hashToBigInt(cryptoHash.apply(E)).mod(q);
+			CivitasBigInteger x = convertHashToBigInt.apply(cryptoHash.apply(E))
+					.mod(q);
 			boolean ret = that.c.equals(x);
 			return ret;
 		} catch (ClassCastException e) {

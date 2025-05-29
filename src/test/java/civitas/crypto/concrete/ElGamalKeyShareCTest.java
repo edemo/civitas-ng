@@ -58,7 +58,8 @@ public class ElGamalKeyShareCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("verify is false if the proof is null")
 	void test1_1() throws IllegalArgumentException, IOException {
-		assertFalse(new ElGamalKeyShareC(EL_GAMAL_PUBLIC_KEY, null).verify());
+		assertFalse(
+				new ElGamalKeyShareC(EL_GAMAL_PUBLIC_KEY_EPRIME, null).verify());
 	}
 
 	@Test
@@ -79,7 +80,7 @@ public class ElGamalKeyShareCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("pubKey returns the public key")
 	void pubKeyTest() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMAL_PUBLIC_KEY, EL_GAMAL_KEY_SHARE_C.pubKey());
+		assertEquals(EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_KEY_SHARE_C.pubKey());
 	}
 
 	@Test
@@ -92,7 +93,7 @@ public class ElGamalKeyShareCTest extends ConcreteTestBase
 	@DisplayName("equals to other keyshare with same key and proof")
 	void equalsTest() throws IllegalArgumentException, IOException {
 		assertTrue(EL_GAMAL_KEY_SHARE_C.equals(new ElGamalKeyShareC(
-				EL_GAMAL_PUBLIC_KEY, ELGAMAL_PROOF_KNOWN_DISC_LOG)));
+				EL_GAMAL_PUBLIC_KEY_E, ELGAMAL_PROOF_KNOWN_DISC_LOG)));
 	}
 
 	@Test
@@ -106,10 +107,10 @@ public class ElGamalKeyShareCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("not equals to other keyshare with different proof")
 	void equalsTest2() throws IllegalArgumentException, IOException {
-		assertFalse(
-				EL_GAMAL_KEY_SHARE_C.equals(new ElGamalKeyShareC(EL_GAMAL_PUBLIC_KEY,
+		assertFalse(EL_GAMAL_KEY_SHARE_C
+				.equals(new ElGamalKeyShareC(EL_GAMAL_PUBLIC_KEY_EPRIME,
 						new ElGamalProofKnowDiscLogC(ELGAMAL_PROOF_KNOWN_DISC_LOG_A,
-								BIGINT_C, BIGINT_A_ENCRYPTED_SAFE, BIGINT_A))));
+								BIGINT_C, SAFE_P_MINUS_A, BIGINT_A))));
 	}
 
 	@Test

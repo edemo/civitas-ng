@@ -3,7 +3,6 @@ package civitas.crypto.algorithms;
 import java.util.ArrayList;
 import java.util.List;
 
-import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalParametersC;
 import civitas.crypto.concrete.ElGamalProofDiscLogEqualityC;
 import civitas.util.CivitasBigInteger;
@@ -14,11 +13,11 @@ public class ConstructElGamalDiscLogEqualityProof {
 	GenerateRandomElement generateRandomElement;
 	@Use
 	CryptoHash cryptoHash;
+	@Use
+	ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProofDiscLogEqualityC apply(ElGamalParametersC params,
 			CivitasBigInteger g1, CivitasBigInteger g2, CivitasBigInteger x) {
-
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
 
 		CivitasBigInteger v = g1.modPow(x, params.p);
 		CivitasBigInteger w = g2.modPow(x, params.p);
@@ -32,7 +31,7 @@ public class ConstructElGamalDiscLogEqualityProof {
 		l.add(w);
 		l.add(a);
 		l.add(b);
-		CivitasBigInteger c = factory.hashToBigInt(cryptoHash.apply(l))
+		CivitasBigInteger c = convertHashToBigInt.apply(cryptoHash.apply(l))
 				.mod(params.q);
 
 		CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q), params.q);

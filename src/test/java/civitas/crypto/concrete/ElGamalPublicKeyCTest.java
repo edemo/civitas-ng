@@ -36,7 +36,7 @@ public class ElGamalPublicKeyCTest extends ConcreteTestBase
 		super.setUp();
 		elGamalPublicKeyC = new ElGamalPublicKeyC(
 				new CivitasBigInteger(
-						Base64.getDecoder().decode(PUBLICIZED_BIGINT_A_BASE64)),
+						Base64.getDecoder().decode(G_EXP_A_BASE64)),
 				EL_GAMAL_PARAMETERS);
 	}
 
@@ -69,7 +69,7 @@ public class ElGamalPublicKeyCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("isAuthorized checks if the proof is the private key for this")
 	void test3() throws IllegalArgumentException, IOException {
-		assertTrue(elGamalPublicKeyC.isAuthorized(ELGAMAL_PRIVATE_KEY));
+		assertTrue(elGamalPublicKeyC.isAuthorized(ELGAMAL_PRIVATE_KEY_E));
 	}
 
 	@Test
@@ -96,14 +96,14 @@ public class ElGamalPublicKeyCTest extends ConcreteTestBase
 	@DisplayName("not equals to other key with different y but same parameters "
 			+ "FIXME original code did not test for y")
 	void equalsTest2() throws IllegalArgumentException, IOException {
-		assertFalse(EL_GAMAL_PUBLIC_KEY
+		assertFalse(EL_GAMAL_PUBLIC_KEY_EPRIME
 				.equals(new ElGamalPublicKeyC(BIGINT_B, EL_GAMAL_PARAMETERS)));
 	}
 
 	@Test
 	@DisplayName("not equals to anything not ElGamalPublicKeyC")
 	void equalsTest3() throws IllegalArgumentException, IOException {
-		assertFalse(EL_GAMAL_PUBLIC_KEY.equals(mock(ElGamalPublicKey.class)));
+		assertFalse(EL_GAMAL_PUBLIC_KEY_EPRIME.equals(mock(ElGamalPublicKey.class)));
 	}
 
 }

@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.SchnorrPrime;
 import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.ElGamalPrivateKeyCTestData;
+import civitas.crypto.concrete.PrivateKeyTestData;
 import civitas.util.Tested;
 
 public class GenerateSafePrimeTest extends ConcreteTestBase
-		implements Constants, ElGamalPrivateKeyCTestData {
+		implements Constants, PrivateKeyTestData {
 
 	@Tested
 	GenerateSafePrime generateSafePrime;

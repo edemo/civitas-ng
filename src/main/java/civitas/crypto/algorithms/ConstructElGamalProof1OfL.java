@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import civitas.crypto.ElGamalCiphertext;
-import civitas.crypto.concrete.CryptoFactoryC;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalParametersC;
 import civitas.crypto.concrete.ElGamalProof1OfLC;
@@ -18,11 +17,12 @@ public class ConstructElGamalProof1OfL implements Constants {
 	public GenerateRandomElement generateRandomElement;
 	@Use
 	CryptoHash cryptoHash;
+	@Use
+	private ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProof1OfLC apply(ElGamalPublicKeyC key,
 			ElGamalCiphertext[] ciphertexts, int L, int choice, ElGamalCiphertextC m,
 			ElGamalReencryptFactorC factor) {
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
 
 		ElGamalParametersC ps = (ElGamalParametersC) key.params;
 		CivitasBigInteger u = m.a;
@@ -36,9 +36,11 @@ public class ConstructElGamalProof1OfL implements Constants {
 
 		// choose d1 .. dL, and r1 ... rL at random.
 		CivitasBigInteger[] ds = new CivitasBigInteger[L];
-		CivitasBigInteger[] rs = new CivitasBigInteger[L];
 		for (int i = 0; i < L; i++) {
 			ds[i] = generateRandomElement.apply(ps.q);
+		}
+		CivitasBigInteger[] rs = new CivitasBigInteger[L];
+		for (int i = 0; i < L; i++) {
 			rs[i] = generateRandomElement.apply(ps.q);
 		}
 
@@ -61,8 +63,8 @@ public class ConstructElGamalProof1OfL implements Constants {
 			env.add(as[i]);
 			env.add(bs[i]);
 		}
-
-		CivitasBigInteger c = factory.hashToBigInt(cryptoHash.apply(env)).mod(ps.q);
+		CivitasBigInteger c = convertHashToBigInt.apply(cryptoHash.apply(env))
+				.mod(ps.q);
 		CivitasBigInteger w = (r.modNegate(ps.q).modMultiply(ds[choice], ps.q))
 				.modAdd(rs[choice], ps.q);
 		CivitasBigInteger sum = ZERO;
@@ -71,6 +73,7 @@ public class ConstructElGamalProof1OfL implements Constants {
 				sum = sum.modAdd(ds[i], ps.q);
 			}
 		}
+
 		CivitasBigInteger dprimet = c.modSubtract(sum, ps.q);
 		CivitasBigInteger rprimet = w.modAdd(r.modMultiply(dprimet, ps.q), ps.q);
 

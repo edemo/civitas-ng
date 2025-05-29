@@ -7,6 +7,7 @@ import civitas.crypto.SchnorrPrime;
 import civitas.util.CivitasBigInteger;
 
 public interface ElGamalParametersCTestData extends BasicValuesTestData {
+
 	public static final String BIGINT_P_BASE64 = "AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ0gWk4zQiy9p87hS+sgNkxYr5okLM6HhXFTu2eUFgf5BQjju2YsvFhOXce4yJ00rsGSGeZAg5bT1Z45SdexGMevXEdCZrADRdikYU0ZLFTN7UWopWgLXd3DBfu3CY2fzwYzq0YWS0bzJ3cQA4fSAyFdU+Tekcd3vwQlkthh7WJW0VCYF1hGFdiGt9/aDQ7cDrW+fqbg4xrUN+wKoFbEHNHomUkGMaXsGyM9vyLCjtp9Jf/UXQSU9X+jAJS+Y7VXyEa9/ifHxsjAExE5RYpNWzqgjJRoiADVL1XeoqvdL/ltcEhAeq3TnhHNIi7cEGQZSGCvSVMiDPn2JBUeY8AswihwZhI7IiqroysQy6UcsZ45oACaVH0ZYSMSIvuGimPhqv0OVbR95lXipxaoHlygq8pLWJWlgVj9KIQQG1wTnD80liudqIdQ+/yuo10YxtGacmC7YxB/atrTgbJ8V/wRDRQw==";
 	public static final CivitasBigInteger BIGINT_P = new CivitasBigInteger(
 			Base64.getDecoder().decode(BIGINT_P_BASE64));
@@ -16,6 +17,15 @@ public interface ElGamalParametersCTestData extends BasicValuesTestData {
 	public static final String BIGINT_G_BASE64 = "az5EMeordK3a0VbjoUsKeo/++OHFs5WaRLw6hW8Ezu7D1Egid0U3Obtzpn0GG8UHQjJnHINqwK6bX6RXBlVfsDmiKS2lgvWrL53vSPXtZfFIC/307vWLV2RymA9TQaGZ5d4q7O7l2KHNUx+ecK6QVqKqj46IXjwaYzKQXNg2NfwQGfj7dBTaoGHE401pdoHfyLfluAF3k4ZT6imEoIbe4Ar7ybYdI5eJYn96/hoyLouux8jI1LE+Oe7+eI1M5WK30TPbGKVaon4KPnfLYp8+HTloYb/jlNFLckqdZchKa765pBRjvNu+7MmYpHmqBlLuCLd4sBbD//Sy/aHPnxyccZM0MMwRPSSM0NKO8UuXkCEmRSI6gvdwyIk6FwsB8bF4ksvBAMSfN8gJd7rv1t9B46OByCs8YNuL1eJH1wJThwpUf1iAXPjFCkvrR4fm+lOeIYCGhBkEO1pB2sRzTulRVEadM6bFwo2N5eZb3ymPfERXogTVmljtdzxlAao9vBgk";
 	public static final CivitasBigInteger BIGINT_G = new CivitasBigInteger(
 			Base64.getDecoder().decode(BIGINT_G_BASE64));
+	public static final CivitasBigInteger G_EXP_A = BIGINT_G.modPow(BIGINT_A,
+			BIGINT_P);
+	public static final String G_EXP_A_BASE64 = Util.fromBigInt(G_EXP_A);
+	public static final CivitasBigInteger G_EXP_B = BIGINT_G.modPow(BIGINT_B,
+			BIGINT_P);
+	public static final String G_EXP_B_BASE64 = Util.fromBigInt(G_EXP_B);
+	public static final CivitasBigInteger G_EXP_C = BIGINT_G.modPow(BIGINT_C,
+			BIGINT_P);
+	public static final String G_EXP_C_BASE64 = Util.fromBigInt(G_EXP_C);
 	public static final CivitasBigInteger G_EXP_D = BIGINT_G.modPow(BIGINT_D,
 			BIGINT_P);
 	public static final String G_EXP_D_BASE64 = Util.fromBigInt(G_EXP_D);
@@ -37,6 +47,10 @@ public interface ElGamalParametersCTestData extends BasicValuesTestData {
 	public static final String GENERATOR_OTHER_BASE64 = "B8Ewf1Z2BaJYadh/hzQ2kjNGPmYWBIvA6ZxHSpVpB/Sw4m40L8qWkwsNrfUh87L8GIJM0QZ4tHgYCdduHUjiWmcStRTh+2RvNoinIrK5QnxaW3g6Y2G32rxutDlOKwaoMMbrut50O8XN12mD4wR15inhh4+QVyzeobFVSPnpgheb2gt9i5pTKJY6JQkpcZnD4bHF+i7MGelqeoyGmLGqZu98ODsSxn2HfmMniV+p+aaTYJV8niINbYlvvz2BSwf86YdlQOa5WfzzPGSltmt5v5ACs135JCIw3kRzepRzjWGAINHv+SgPcBVSVTwtuBoykYhxzT03CWWo5WwZ+NzdmgDih7RheaQpMlIfSxP/5ZJVukgDxJv4v70F3KRwJ5V5jY26sjETz2Kayn6y38EfDuQjeOAUOamGYcHpdqKdPySJWTK0o6sfKIQ2etMZG0fUFEEt3CdsoGOUi31saXFDK4pkHqu+jQMzCg2Z5EsXwVgZ6J0SD1Nq/DDGvAU2lQdU";
 	public static final CivitasBigInteger GENERATOR_OTHER = Util
 			.asBigint(GENERATOR_OTHER_BASE64);
+	public static final CivitasBigInteger GENERATOR_OTHER_POW_R1 = GENERATOR_OTHER
+			.modPow(RANDOMS_1, BIGINT_P);
+	public static final String GENERATOR_OTHER__POW_R1_BASE64 = Util
+			.fromBigInt(GENERATOR_OTHER_POW_R1);
 
 	public static final CivitasBigInteger GENERATOR_FOR_UNPRIME_P = Util
 			.asBigint("APPuKv0SXyLaZklKlEiPMfeSkEfsEfdN24AXL3NrYBKG");
@@ -54,7 +68,7 @@ public interface ElGamalParametersCTestData extends BasicValuesTestData {
 	public static final ElGamalParametersC EL_GAMAL_PARAMETERS_GENERATOR_OTHER = new ElGamalParametersC(
 			BIGINT_P, BIGINT_Q, GENERATOR_OTHER);
 
-	public static final String ELGAMAL_PARAMETERS_XML = "<elGamalParameters><p>"
+	public static final String EL_GAMAL_PARAMETERS_XML = "<elGamalParameters><p>"
 			+ BIGINT_P_BASE64 + "</p><q>" + BIGINT_Q_BASE64 + "</q><g>"
 			+ BIGINT_G_BASE64 + "</g></elGamalParameters>";
 	public static final String ELGAMAL_PARAMETERS_NOGROUP_XML = "<elGamalParameters><p>"
@@ -67,10 +81,9 @@ public interface ElGamalParametersCTestData extends BasicValuesTestData {
 	public static final CivitasBigInteger RANDOMS_0_PUBLISHED = BIGINT_G
 			.modPow(RANDOMS_0, BIGINT_P);
 	public static final String ELGAMAL_PRIVATE_KEY_XML = "<elGamalPrivateKey><params>"
-			+ ELGAMAL_PARAMETERS_XML + "</params><x>" + SOMESTRING_BASE64
+			+ EL_GAMAL_PARAMETERS_XML + "</params><x>" + SOMESTRING_BASE64
 			+ "</x></elGamalPrivateKey>";
-	public static final int SAFE_KEY_LENGTH = CryptoFactoryC.EL_GAMAL_GROUP_LENGTH
-			- 1;
+	public static final int SAFE_KEY_LENGTH = EL_GAMAL_GROUP_LENGTH - 1;
 	public static final String SAFE_P_BASE64 = "ASvIFyEHZA21reK32LTtYEwJG4GSW8Xzrl83llQSdjcztgsIJeyQm0ZZ36vG4aTVYjtADzV9J6xJ5RJ2U9QDfV8=";
 	public static final String SAFE_Q_BASE64 = "AJXkC5CDsgba1vFb7Fp2sCYEjcDJLeL51y+byyoJOxuZ2wWEEvZITaMs79XjcNJqsR2gB5q+k9Yk8ok7KeoBvq8=";
 	public static final String SAFE_G_BASE64 = "AKhY5FkyO989WVWT54UIYi29aZjUfx1XD0xlcF13Y7nGa7itniOZIj36m+m8XHW9VN0bzCgLh4btlHBQ8AY3dMo=";
@@ -88,5 +101,10 @@ public interface ElGamalParametersCTestData extends BasicValuesTestData {
 
 	public static final ElGamalParametersC EL_GAMAL_PARAMETERS_SAFE = new ElGamalParametersC(
 			SAFE_P, SAFE_Q, SAFE_G);
+
+	public CivitasBigInteger PLAINTEXT_WITH_LEGENDRE_MINUS_ONE = CivitasBigInteger
+			.valueOf(251121);
+	public CivitasBigInteger PUBLICIZED_SAFE_LEGENDRE = SAFE_P
+			.subtract(PLAINTEXT_WITH_LEGENDRE_MINUS_ONE);
 
 }

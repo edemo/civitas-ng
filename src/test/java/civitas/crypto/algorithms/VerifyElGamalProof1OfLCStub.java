@@ -11,8 +11,8 @@ public class VerifyElGamalProof1OfLCStub
 	public static VerifyElGamalProof1OfLC stub() {
 		VerifyElGamalProof1OfLC mock = mock(VerifyElGamalProof1OfLC.class);
 
-		when(mock.apply(EL_GAMAL_PROOF_1_OF_L, EL_GAMAL_PUBLIC_KEY, CIPHERTEXT_LIST,
-				NO_OF_WELL_KNOWN_CIPHERTEXTS, EL_GAMAL_CIPHERTEXT_1_OF_L))
+		when(mock.apply(EL_GAMAL_PROOF_1_OF_L, EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_LIST,
+				NO_OF_WELL_KNOWN_CIPHERTEXTS, CIPHERTEXT_E))
 				.thenReturn(true);
 		return mock;
 	}

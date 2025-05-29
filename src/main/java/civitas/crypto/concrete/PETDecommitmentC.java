@@ -55,11 +55,11 @@ public class PETDecommitmentC implements PETDecommitment {
 		s.print('>');
 		s.print("<d>");
 		if (di != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.di), s);
+			Util.escapeString(Util.fromBigInt(this.di), s);
 		s.print("</d>");
 		s.print("<e>");
 		if (ei != null)
-			Util.escapeString(CryptoFactoryC.bigIntToString(this.ei), s);
+			Util.escapeString(Util.fromBigInt(this.ei), s);
 		s.print("</e>");
 		s.print("<prf>");
 		proof.toXML(s);
