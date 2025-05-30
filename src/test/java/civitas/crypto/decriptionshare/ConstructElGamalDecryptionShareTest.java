@@ -23,6 +23,8 @@ public class ConstructElGamalDecryptionShareTest extends ConcreteTestBase
 	CryptoHash hash;
 	@Use
 	ElGamalEncryptTest elGamalEncrypt;
+	@Use
+	ElGamalDecryptionShareToXML elGamalDecryptionShareToXML;
 
 	@Test
 	@DisplayName("constructDecryptionShare works as expected: "
@@ -36,13 +38,14 @@ public class ConstructElGamalDecryptionShareTest extends ConcreteTestBase
 
 		CivitasBigInteger ai = c1.modPow(key, p);
 
-		ElGamalDecryptionShareC actual = (ElGamalDecryptionShareC) constructElGamalDecryptionShare
+		ElGamalDecryptionShare actual = constructElGamalDecryptionShare
 				.apply(CIPHERTEXT_E, EL_GAMAL_KEYPAIR_SHARE_NO_PROOF);
 		verify(constructElGamalDecryptionShare.constructElGamalDiscLogEqualityProof)
 				.apply(EL_GAMAL_PARAMETERS, CIPHERTEXT_E.a, BIGINT_G,
 						ELGAMAL_PRIVATE_KEY_E.x);
 		assertEquals(ai, actual.ai);
-		assertEquals(EL_GAMAL_DECRYPTION_SHARE_XML, actual.toXML());
+		assertEquals(EL_GAMAL_DECRYPTION_SHARE_XML,
+				elGamalDecryptionShareToXML.apply(actual));
 
 	}
 

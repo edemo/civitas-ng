@@ -22,7 +22,7 @@ public class CombineDecryptionSharesTest extends ConcreteTestBase
 			+ "		prod = prod(ai[i] i= 1..n) (mod p)\n" + "		m = c.b/prod (mod p)\n")
 	void test() {
 
-		ElGamalDecryptionShareC[] shares = new ElGamalDecryptionShareC[] {
+		ElGamalDecryptionShare[] shares = new ElGamalDecryptionShare[] {
 				EL_GAMAL_DECRYPTION_SHARE,
 				EL_GAMAL_DECRYPTION_SHARE_NULLPROOF };
 

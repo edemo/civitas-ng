@@ -23,33 +23,36 @@ public class ElGamalDecryptionShareCTest extends ConcreteTestBase
 
 	@Use
 	ElGamalDecryptionShareFromXML elGamalDecryptionShareFromXML;
+	@Use
+	ElGamalDecryptionShareToXML elGamalDecryptionShareToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
 		assertEquals(EL_GAMAL_DECRYPTION_SHARE_XML,
-				EL_GAMAL_DECRYPTION_SHARE.toXML());
+				elGamalDecryptionShareToXML.apply(EL_GAMAL_DECRYPTION_SHARE));
 	}
 
 	@Test
 	@DisplayName("constructor accepts nulls")
 	void test1() {
-		assertEquals(EL_GAMAL_DECRYPTION_SHARE_NULL_XML,
-				new ElGamalDecryptionShareC(null, null).toXML());
+		assertEquals(EL_GAMAL_DECRYPTION_SHARE_NULL_XML, elGamalDecryptionShareToXML
+				.apply(new ElGamalDecryptionShare(null, null)));
 	}
 
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMAL_DECRYPTION_SHARE_XML, elGamalDecryptionShareFromXML
-				.apply(new StringReader(EL_GAMAL_DECRYPTION_SHARE_XML)).toXML());
+		assertEquals(EL_GAMAL_DECRYPTION_SHARE_XML,
+				elGamalDecryptionShareToXML.apply(elGamalDecryptionShareFromXML
+						.apply(new StringReader(EL_GAMAL_DECRYPTION_SHARE_XML))));
 	}
 
 	@Test
 	@DisplayName("getProof gets the proof")
 	void test3() {
 		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE,
-				EL_GAMAL_DECRYPTION_SHARE.getProof());
+				EL_GAMAL_DECRYPTION_SHARE.proof);
 	}
 
 	@Tested
@@ -76,7 +79,7 @@ public class ElGamalDecryptionShareCTest extends ConcreteTestBase
 	@DisplayName("verify is false if the proof is null")
 	void test4_1() {
 		assertFalse(verifyElGamalDecryptionShare.apply(
-				new ElGamalDecryptionShareC(null, null), EL_GAMAL_CIPHERTEXT,
+				new ElGamalDecryptionShare(null, null), EL_GAMAL_CIPHERTEXT,
 				EL_GAMAL_PUBLIC_KEY_EPRIME));
 	}
 
@@ -115,7 +118,7 @@ public class ElGamalDecryptionShareCTest extends ConcreteTestBase
 	@DisplayName("verify is false if  ai != v")
 	void test4_7() {
 		assertFalse(verifyElGamalDecryptionShare.apply(
-				new ElGamalDecryptionShareC(BIGINT_A,
+				new ElGamalDecryptionShare(BIGINT_A,
 						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT),
 				EL_GAMAL_CIPHERTEXT,
 				new ElGamalPublicKeyC(BIGINT_A, EL_GAMAL_PARAMETERS)));

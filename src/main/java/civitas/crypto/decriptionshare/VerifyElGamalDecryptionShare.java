@@ -12,7 +12,7 @@ public class VerifyElGamalDecryptionShare {
 	@Use
 	public VerifyElGamalProofDiscLogEquality verifyElGamalProofDiscLogEquality;
 
-	public boolean apply(ElGamalDecryptionShareC that, ElGamalCiphertext c,
+	public boolean apply(ElGamalDecryptionShare that, ElGamalCiphertext c,
 			ElGamalPublicKey K) throws Error {
 		if (that.proof != null) {
 			try {

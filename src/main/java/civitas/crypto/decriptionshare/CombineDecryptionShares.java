@@ -17,7 +17,7 @@ public class CombineDecryptionShares implements Constants {
 		ElGamalCiphertext cipher = (ElGamalCiphertext) c;
 		ElGamalParametersC ps = (ElGamalParametersC) params;
 		for (ElGamalDecryptionShare share2 : shares) {
-			ElGamalDecryptionShareC share = (ElGamalDecryptionShareC) share2;
+			ElGamalDecryptionShare share = (ElGamalDecryptionShare) share2;
 			prod = prod.modMultiply(share.ai, ps.p);
 		}
 		CivitasBigInteger m = cipher.b.modDivide(prod, ps.p);

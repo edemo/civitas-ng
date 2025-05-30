@@ -10,11 +10,11 @@ public interface ElGamalDecryptionShareTestData
 
 	CivitasBigInteger EL_GAMAL_DECRYPTION_SHARE_AI = CIPHERTEXT_E_A
 			.modPow(PRIVKEY_E, BIGINT_P);
-	public static final ElGamalDecryptionShareC EL_GAMAL_DECRYPTION_SHARE = new ElGamalDecryptionShareC(
+	public static final ElGamalDecryptionShare EL_GAMAL_DECRYPTION_SHARE = new ElGamalDecryptionShare(
 			EL_GAMAL_DECRYPTION_SHARE_AI,
 			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE);
 
-	public static final ElGamalDecryptionShareC EL_GAMAL_DECRYPTION_SHARE_NULLPROOF = new ElGamalDecryptionShareC(
+	public static final ElGamalDecryptionShare EL_GAMAL_DECRYPTION_SHARE_NULLPROOF = new ElGamalDecryptionShare(
 			RANDOMS_1, null);
 	String EL_GAMAL_DECRYPTION_SHARE_AI_BASE64 = Util
 			.fromBigInt(EL_GAMAL_DECRYPTION_SHARE_AI);

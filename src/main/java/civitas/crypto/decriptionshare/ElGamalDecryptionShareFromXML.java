@@ -16,7 +16,7 @@ public class ElGamalDecryptionShareFromXML {
 	@Use
 	ElGamalProofDiscLogEqualityFromXML elGamalProofDiscLogEqualityFromXML;
 
-	public ElGamalDecryptionShareC apply(Reader r)
+	public ElGamalDecryptionShare apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, ElGamalDecryptionShare.OPENING_TAG);
 
@@ -27,7 +27,7 @@ public class ElGamalDecryptionShareFromXML {
 				.apply(r);
 
 		Util.swallowEndTag(r, ElGamalDecryptionShare.OPENING_TAG);
-		return new ElGamalDecryptionShareC(ai, proof/* , params */);
+		return new ElGamalDecryptionShare(ai, proof/* , params */);
 	}
 
 }

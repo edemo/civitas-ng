@@ -6,28 +6,19 @@
  */
 package civitas.crypto.decriptionshare;
 
-import java.io.PrintWriter;
+import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityC;
+import civitas.util.CivitasBigInteger;
 
-import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
-
-/**
- * A teller's share of a decryption. This is used for distributed non-threshold
- * ElGamal.
- */
-public interface ElGamalDecryptionShare {
+public class ElGamalDecryptionShare {
 	public final static String OPENING_TAG = "elGamalDecryptionShare";
 
-	public ElGamalProofDiscLogEquality getProof();
+	public final CivitasBigInteger ai;
+	public final ElGamalProofDiscLogEqualityC proof;
 
-	/**
-	 * Verify the decryption share
-	 *
-	 * @param m the ciphertext being decrypted
-	 * @param K the public key for decrypting the ciphertext
-	 * @return
-	 */
-//	public boolean verify(ElGamalCiphertext m, ElGamalPublicKey K);
-//    public ElGamalParameters  getParams();
+	public ElGamalDecryptionShare(CivitasBigInteger ai,
+			ElGamalProofDiscLogEqualityC proof) {
+		this.ai = ai;
+		this.proof = proof;
+	}
 
-	public void toXML(PrintWriter sb);
 }

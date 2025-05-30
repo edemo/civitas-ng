@@ -22,7 +22,7 @@ public class ConstructElGamalDecryptionShare {
 			ElGamalPrivateKeyC priv = (ElGamalPrivateKeyC) keyShare.privKey;
 			ElGamalParametersC params = (ElGamalParametersC) priv.getParams();
 			CivitasBigInteger ai = mc.a.modPow(priv.x, params.p);
-			return new ElGamalDecryptionShareC(ai,
+			return new ElGamalDecryptionShare(ai,
 					constructElGamalDiscLogEqualityProof.apply(params, mc.a, params.g,
 							priv.x));
 		}
