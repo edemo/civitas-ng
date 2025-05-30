@@ -20,12 +20,14 @@ public class SharedKeyCiphertextCTest extends ConcreteTestBase
 		implements ElGamalCiphertextCTestData {
 	@Use
 	SharedKeyCiphertextFromXML sharedKeyCiphertextFromXML;
+	@Use
+	SharedKeyCiphertextToXML sharedKeyCiphertextToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
-		SharedKeyCiphertextC t = new SharedKeyCiphertextC(BYTES);
-		assertEquals(SHARED_KEY_CIPHERTEXT_XML, t.toXML());
+		SharedKeyCiphertext t = new SharedKeyCiphertext(BYTES);
+		assertEquals(SHARED_KEY_CIPHERTEXT_XML, sharedKeyCiphertextToXML.apply(t));
 	}
 
 	@Test
@@ -33,8 +35,8 @@ public class SharedKeyCiphertextCTest extends ConcreteTestBase
 	void test1() throws IllegalArgumentException, IOException {
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
-		sharedKeyCiphertextFromXML
-				.apply(new StringReader(SHARED_KEY_CIPHERTEXT_XML)).toXML(printWriter);
+		sharedKeyCiphertextToXML.apply(sharedKeyCiphertextFromXML
+				.apply(new StringReader(SHARED_KEY_CIPHERTEXT_XML)), printWriter);
 		assertEquals(SHARED_KEY_CIPHERTEXT_XML, stringWriter.toString());
 	}
 
@@ -42,8 +44,8 @@ public class SharedKeyCiphertextCTest extends ConcreteTestBase
 	@DisplayName("toBytes returns the bytes")
 	void test2() {
 		byte[] bytes2 = BIGINT_D_BASE64.getBytes();
-		SharedKeyCiphertextC t = new SharedKeyCiphertextC(bytes2);
-		assertArrayEquals(bytes2, t.toBytes());
+		SharedKeyCiphertext t = new SharedKeyCiphertext(bytes2);
+		assertArrayEquals(bytes2, t.encryptedBytes);
 	}
 
 }

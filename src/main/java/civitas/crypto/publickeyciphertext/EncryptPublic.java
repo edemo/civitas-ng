@@ -19,7 +19,7 @@ public class EncryptPublic implements Constants {
 		PublicKeyMsgC msgc = (PublicKeyMsgC) msg;
 		byte[] encrypted = doCrypto.apply(PUBLIC_KEY_CIPHER_ALG,
 				PUBLIC_KEY_PROVIDER, keyc.k, Cipher.ENCRYPT_MODE, msgc.toBytes());
-		return new PublicKeyCiphertextC(encrypted);
+		return new PublicKeyCiphertext(encrypted);
 	}
 
 }

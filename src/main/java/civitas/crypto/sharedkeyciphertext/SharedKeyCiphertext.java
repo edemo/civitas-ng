@@ -6,10 +6,12 @@
  */
 package civitas.crypto.sharedkeyciphertext;
 
-import java.io.PrintWriter;
-
-public interface SharedKeyCiphertext {
+public class SharedKeyCiphertext {
 	public static final String OPENING_TAG = "sharedKeyCiphertext";
+	public final byte[] encryptedBytes;
 
-	public void toXML(PrintWriter sb);
+	public SharedKeyCiphertext(byte[] encrypted) {
+		this.encryptedBytes = encrypted;
+	}
+
 }

@@ -6,10 +6,13 @@
  */
 package civitas.crypto.publickeyciphertext;
 
-import java.io.PrintWriter;
-
-public interface PublicKeyCiphertext {
+public class PublicKeyCiphertext {
 	public static final String OPENING_TAG = "publicKeyCiphertext";
 
-	public void toXML(PrintWriter sb);
+	public final byte[] encryptedBytes;
+
+	public PublicKeyCiphertext(byte[] encrypted) {
+		this.encryptedBytes = encrypted;
+	}
+
 }

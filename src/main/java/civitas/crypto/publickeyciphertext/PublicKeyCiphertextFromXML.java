@@ -12,7 +12,7 @@ public class PublicKeyCiphertextFromXML {
 			throws IllegalArgumentException, IOException {
 		String s = Util
 				.unescapeString(Util.readSimpleTag(r, PublicKeyCiphertext.OPENING_TAG));
-		return new PublicKeyCiphertextC(Base64.getDecoder().decode(s));
+		return new PublicKeyCiphertext(Base64.getDecoder().decode(s));
 	}
 
 }

@@ -6,7 +6,7 @@ import java.util.Base64;
 
 import civitas.common.Util;
 import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertext;
-import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertextC;
+import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertext;
 
 public class SharedKeyCiphertextFromXML {
 
@@ -14,7 +14,7 @@ public class SharedKeyCiphertextFromXML {
 			throws IllegalArgumentException, IOException {
 		String s = Util
 				.unescapeString(Util.readSimpleTag(r, SharedKeyCiphertext.OPENING_TAG));
-		return new SharedKeyCiphertextC(Base64.getDecoder().decode(s));
+		return new SharedKeyCiphertext(Base64.getDecoder().decode(s));
 	}
 
 }

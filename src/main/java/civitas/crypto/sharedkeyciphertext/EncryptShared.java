@@ -21,7 +21,7 @@ public class EncryptShared implements Constants {
 		SharedKeyMsgC msgc = (SharedKeyMsgC) msg;
 		byte[] encrypted = doCrypto.apply(SHARED_KEY_CIPHER_ALG,
 				SHARED_KEY_PROVIDER, keyc.k, Cipher.ENCRYPT_MODE, msgc.toBytes());
-		return new SharedKeyCiphertextC(encrypted);
+		return new SharedKeyCiphertext(encrypted);
 	}
 
 }
