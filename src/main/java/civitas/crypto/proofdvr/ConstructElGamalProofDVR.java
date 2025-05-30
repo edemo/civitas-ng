@@ -9,7 +9,6 @@ import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.publickey.ElGamalPublicKeyC;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
 import civitas.util.CivitasBigInteger;
@@ -27,18 +26,17 @@ public class ConstructElGamalProofDVR {
 			ElGamalCiphertext e, ElGamalCiphertext ePrime, ElGamalReencryptFactor er,
 			ElGamalReencryptFactor erPrime) {
 		try {
-			ElGamalParametersC ps = (ElGamalParametersC) k.getParams();
+			ElGamalParametersC ps = (ElGamalParametersC) k.params;
 			CivitasBigInteger zeta = ((ElGamalReencryptFactorC) erPrime).r
 					.modSubtract(((ElGamalReencryptFactorC) er).r, ps.q);
-			return apply((ElGamalCiphertext) e, (ElGamalCiphertext) ePrime,
-					(ElGamalPublicKeyC) k, (ElGamalPublicKeyC) verifierKey, zeta);
+			return apply(e, ePrime, k, verifierKey, zeta);
 		} catch (ClassCastException ex) {
 			return null;
 		}
 	}
 
 	public ElGamalProofDVRC apply(ElGamalCiphertext e, ElGamalCiphertext eprime,
-			ElGamalPublicKeyC key, ElGamalPublicKeyC verifierKey,
+			ElGamalPublicKey key, ElGamalPublicKey verifierKey,
 			CivitasBigInteger zeta) {
 
 // check that the inputs are correct
@@ -46,7 +44,7 @@ public class ConstructElGamalProofDVR {
 //            throw new CryptoError("Incorrect value for zeta passed in");
 //        }
 
-		ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
+		ElGamalParametersC ps = (ElGamalParametersC) key.params;
 		CivitasBigInteger d = generateRandomElement.apply(ps.q);
 		CivitasBigInteger w = generateRandomElement.apply(ps.q);
 		CivitasBigInteger r = generateRandomElement.apply(ps.q);

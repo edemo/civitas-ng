@@ -210,7 +210,7 @@ public class CondorcetBallotDesign extends BallotDesign {
 				try {
 					int choice = cbMatrix[position(i, j, cb.k)];
 					encChoiceFactor = CryptoUtil.factory()
-							.generateElGamalReencryptFactor(key.getParams());
+							.generateElGamalReencryptFactor(key.params);
 					encChoice = CryptoUtil.factory().elGamal1OfLReencrypt(key,
 							ciphertexts, 4, choice, encChoiceFactor);
 				} catch (NullPointerException imposs) {
@@ -238,9 +238,9 @@ public class CondorcetBallotDesign extends BallotDesign {
 				ProofVote proofVote = null;
 				try {
 					encCapFactor = CryptoUtil.factory()
-							.generateElGamalReencryptFactor(key.getParams());
+							.generateElGamalReencryptFactor(key.params);
 					encCap = CryptoUtil.factory().elGamalEncrypt(key, c, encCapFactor);
-					proofVote = CryptoUtil.factory().constructProofVote(key.getParams(),
+					proofVote = CryptoUtil.factory().constructProofVote(key.params,
 							encCap, encChoice, desiredContext, encCapFactor, encChoiceFactor);
 				} catch (NullPointerException imposs) {
 				}

@@ -6,7 +6,6 @@ import civitas.crypto.proofknowndisclog.ConstructProofKnowDiscLog;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLogC;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.publickey.ElGamalPublicKeyC;
 import civitas.util.Use;
 
 public class ConstructElGamalKeyShare {
@@ -17,8 +16,8 @@ public class ConstructElGamalKeyShare {
 
 	public ElGamalKeyShare apply(ElGamalKeyPairShare kps) throws CryptoError {
 		ElGamalKeyShare egks = apply(kps.pubKey,
-				constructProofKnowDiscLog.apply(kps.pubKey.getParams(), kps.privKey));
-		if (!verifyElGamalKeyShare.apply((ElGamalKeyShareC) egks)) {
+				constructProofKnowDiscLog.apply(kps.pubKey.params, kps.privKey));
+		if (!verifyElGamalKeyShare.apply(egks)) {
 			throw new CryptoError("Cannot verify a newly created key share!");
 		}
 		return egks;
@@ -26,10 +25,9 @@ public class ConstructElGamalKeyShare {
 
 	public ElGamalKeyShare apply(ElGamalPublicKey K,
 			ElGamalProofKnowDiscLog proof) throws Error {
-		if (K instanceof ElGamalPublicKeyC
+		if (K instanceof ElGamalPublicKey
 				&& proof instanceof ElGamalProofKnowDiscLogC) {
-			return new ElGamalKeyShareC((ElGamalPublicKeyC) K,
-					(ElGamalProofKnowDiscLogC) proof);
+			return new ElGamalKeyShare(K, proof);
 		}
 		throw new CryptoError("problem with parameters");
 	}

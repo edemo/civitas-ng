@@ -5,7 +5,6 @@ import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.publickey.ElGamalPublicKeyC;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
 import civitas.util.CivitasBigInteger;
@@ -19,9 +18,9 @@ public class ElGamalReencrypt {
 	public ElGamalCiphertext apply(ElGamalPublicKey key,
 			ElGamalCiphertext ciphertext) throws CryptoError {
 		try {
-			ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
-			ElGamalPublicKeyC k = (ElGamalPublicKeyC) key;
-			ElGamalCiphertext c = (ElGamalCiphertext) ciphertext;
+			ElGamalParametersC ps = (ElGamalParametersC) key.params;
+			ElGamalPublicKey k = key;
+			ElGamalCiphertext c = ciphertext;
 			CivitasBigInteger c1 = c.a;
 			CivitasBigInteger c2 = c.b;
 			CivitasBigInteger y = generateRandomElement.apply(ps.q);
@@ -47,9 +46,9 @@ public class ElGamalReencrypt {
 			ElGamalCiphertext ciphertext, ElGamalReencryptFactor factor)
 			throws CryptoError {
 		try {
-			ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
-			ElGamalPublicKeyC k = (ElGamalPublicKeyC) key;
-			ElGamalCiphertext c = (ElGamalCiphertext) ciphertext;
+			ElGamalParametersC ps = (ElGamalParametersC) key.params;
+			ElGamalPublicKey k = key;
+			ElGamalCiphertext c = ciphertext;
 			CivitasBigInteger a = c.a;
 			CivitasBigInteger b = c.b;
 			CivitasBigInteger r = ((ElGamalReencryptFactorC) factor).r;

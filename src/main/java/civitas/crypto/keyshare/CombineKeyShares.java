@@ -4,7 +4,6 @@ import civitas.crypto.Constants;
 import civitas.crypto.CryptoException;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.publickey.ElGamalPublicKeyC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -24,18 +23,18 @@ public class CombineKeyShares implements Constants {
 			// Check the proofs that this is a valid share
 			try {
 				if (params == null) {
-					params = s.pubKey().getParams();
+					params = s.pubKey.params;
 				}
-				if (!verifyElGamalKeyShare.apply((ElGamalKeyShareC) s)) {
+				if (!verifyElGamalKeyShare.apply(s)) {
 					throw new CryptoException("Invalid share");
 				}
 				// accumulate the keys..
-				accum = accum.multiply(((ElGamalPublicKeyC) s.pubKey()).y);
+				accum = accum.multiply(s.pubKey.y);
 			} catch (NullPointerException e) {
 				throw new CryptoException("Invalid share or proof", e);
 			}
 		}
-		return new ElGamalPublicKeyC(accum, params);
+		return new ElGamalPublicKey(accum, params);
 	}
 
 }

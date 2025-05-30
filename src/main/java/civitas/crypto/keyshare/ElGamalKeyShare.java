@@ -6,21 +6,23 @@
  */
 package civitas.crypto.keyshare;
 
-import java.io.PrintWriter;
-
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.publickey.ElGamalPublicKey;
+import civitas.util.Use;
+import lombok.EqualsAndHashCode;
 
-/**
- * A teller's share of a public key. Note that a ElGamalKeyPairShare does not
- * contain the proof objects, and does contain the private key share too.
- */
-public interface ElGamalKeyShare {
-	public void toXML(PrintWriter sb);
+@EqualsAndHashCode
+public class ElGamalKeyShare {
 
-	ElGamalPublicKey pubKey();
+	@Use
+	VerifyElGamalKeyShare verifyElGamalKeyShare;
+	public final ElGamalPublicKey pubKey;
+	public final ElGamalProofKnowDiscLog proof;
 
-	ElGamalProofKnowDiscLog proof();
+	public ElGamalKeyShare(ElGamalPublicKey pubKey,
+			ElGamalProofKnowDiscLog proof) {
+		this.pubKey = pubKey;
+		this.proof = proof;
+	}
 
-	boolean verify();
 }

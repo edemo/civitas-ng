@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.keys.ElGamalKeyShareTestData;
-import civitas.crypto.publickey.ElGamalPublicKeyC;
+import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Tested;
 
 public class CombineKeySharesTest extends ConcreteTestBase
@@ -23,7 +23,7 @@ public class CombineKeySharesTest extends ConcreteTestBase
 	@DisplayName("combines an array of key shares to one "
 			+ "by multiplying the public keys")
 	void test() throws CryptoException {
-		ElGamalPublicKeyC actual = (ElGamalPublicKeyC) combineKeyShares
+		ElGamalPublicKey actual = (ElGamalPublicKey) combineKeyShares
 				.apply(KEY_SHARES);
 		assertEquals(EL_GAMAL_PUBLIC_KEY_E.y.multiply(EL_GAMAL_PUBLIC_KEY_EPRIME.y),
 				actual.y);
@@ -48,14 +48,14 @@ public class CombineKeySharesTest extends ConcreteTestBase
 	@DisplayName("if a key share does not verify, throws CryptoException")
 	void test2() throws CryptoException {
 		assertThrows(CryptoException.class, () -> combineKeyShares
-				.apply(new ElGamalKeyShareC[] { EL_GAMAL_KEY_SHARE_NULLPROOF }));
+				.apply(new ElGamalKeyShare[] { EL_GAMAL_KEY_SHARE_NULLPROOF }));
 	}
 
 	@Test
 	@DisplayName("if a key share is invalid throws CryptoException")
 	void test3() throws CryptoException {
 		assertThrows(CryptoException.class,
-				() -> combineKeyShares.apply(new ElGamalKeyShareC[] { null }));
+				() -> combineKeyShares.apply(new ElGamalKeyShare[] { null }));
 	}
 
 }

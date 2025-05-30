@@ -12,13 +12,13 @@ public interface ElGamalPublicKeyCTestData
 	String PUBKEY_EPRIME_BASE64 = Util.fromBigInt(PUBKEY_EPRIME);
 	CivitasBigInteger PUBKEY_E = BIGINT_G.modPow(PRIVKEY_E, BIGINT_P);
 	String PUBKEY_E_BASE64 = Util.fromBigInt(PUBKEY_E);
-	public static final ElGamalPublicKeyC EL_GAMAL_PUBLIC_KEY_EPRIME = new ElGamalPublicKeyC(
+	public static final ElGamalPublicKey EL_GAMAL_PUBLIC_KEY_EPRIME = new ElGamalPublicKey(
 			PUBKEY_EPRIME, EL_GAMAL_PARAMETERS);
-	public static final ElGamalPublicKeyC EL_GAMAL_PUBLIC_KEY_E = new ElGamalPublicKeyC(
+	public static final ElGamalPublicKey EL_GAMAL_PUBLIC_KEY_E = new ElGamalPublicKey(
 			PUBKEY_E, EL_GAMAL_PARAMETERS);
-	public static final ElGamalPublicKeyC EL_GAMAL_PUBLIC_KEY_A_USING_G_OTHER = new ElGamalPublicKeyC(
+	public static final ElGamalPublicKey EL_GAMAL_PUBLIC_KEY_A_USING_G_OTHER = new ElGamalPublicKey(
 			BIGINT_G_OTHER.modPow(BIGINT_A, BIGINT_P), EL_GAMAL_PARAMETERS_OTHER);
-	ElGamalPublicKeyC EL_GAMAL_PUBLIC_KEY_NULL = new ElGamalPublicKeyC(null,
+	ElGamalPublicKey EL_GAMAL_PUBLIC_KEY_NULL = new ElGamalPublicKey(null,
 			null);
 
 	String EL_GAMAL_PUBLIC_KEY_EPRIME_XML = "<elGamalPublicKey>" + "<params>"

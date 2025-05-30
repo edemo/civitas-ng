@@ -6,15 +6,16 @@
  */
 package civitas.crypto.keypairshare;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 
-import civitas.common.Util;
-import civitas.crypto.CryptoUtil;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
+import civitas.crypto.privatekey.ElGamalPrivateKey;
+import civitas.crypto.privatekey.ElGamalPrivateKeyToXML;
 import civitas.crypto.publickey.ElGamalPublicKey;
+import civitas.crypto.publickey.ElGamalPublicKey;
+import civitas.crypto.publickey.ElGamalPublicKeyToXML;
+import civitas.util.Use;
 
 public class ElGamalKeyPairShare {
 	public final ElGamalParameters params;
@@ -28,35 +29,24 @@ public class ElGamalKeyPairShare {
 		this.privKey = privKey;
 	}
 
+	@Use
+	ElGamalPublicKeyToXML elGamalPublicKeyToXML;
+	@Use
+	ElGamalPrivateKeyToXML elGamalPrivateKeyToXML;
+
 	public void toXML(PrintWriter sb) {
 		if (sb == null)
 			return;
 		sb.print("<elGamalKeyPairShare>");
 
 		if (this.pubKey != null) {
-			this.pubKey.toXML(sb);
+			elGamalPublicKeyToXML.apply((ElGamalPublicKey) this.pubKey, sb);
 		}
 		if (this.privKey != null) {
-			this.privKey.toXML(sb);
+			elGamalPrivateKeyToXML.apply((ElGamalPrivateKey) this.privKey, sb);
 		}
 
 		sb.print("</elGamalKeyPairShare>");
-	}
-
-	public static ElGamalKeyPairShare fromXML(Reader r)
-			throws IllegalArgumentException, IOException {
-		try {
-			Util.swallowTag(r, "elGamalKeyPairShare");
-			ElGamalPublicKey pubKey = CryptoUtil.factory().elGamalPublicKeyFromXML(r);
-			ElGamalPrivateKey privKey = CryptoUtil.factory()
-					.elGamalPrivateKeyFromXML(r);
-			Util.swallowEndTag(r, "elGamalKeyPairShare");
-
-			ElGamalParameters params = pubKey == null ? null : pubKey.getParams();
-			return new ElGamalKeyPairShare(params, pubKey, privKey);
-		} catch (NullPointerException e) {
-			throw new IllegalArgumentException();
-		}
 	}
 
 }

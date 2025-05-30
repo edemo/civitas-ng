@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.keys.ElGamalKeyShareTestData;
-import civitas.crypto.publickey.ElGamalPublicKeyC;
+import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Tested;
 
 public class VerifyElGamalKeyShareTest extends ConcreteTestBase
@@ -21,7 +21,7 @@ public class VerifyElGamalKeyShareTest extends ConcreteTestBase
 	@Test
 	@DisplayName("verify is true for a correctly constructed one")
 	void test1() throws IllegalArgumentException, IOException {
-		ElGamalKeyShareC share = EL_GAMAL_KEY_SHARE_E;
+		ElGamalKeyShare share = EL_GAMAL_KEY_SHARE_E;
 		assertTrue(verifyElGamalKeyShare.apply(share));
 	}
 
@@ -29,21 +29,21 @@ public class VerifyElGamalKeyShareTest extends ConcreteTestBase
 	@DisplayName("verify is false if the proof is null")
 	void test1_1() throws IllegalArgumentException, IOException {
 		assertFalse(verifyElGamalKeyShare
-				.apply(new ElGamalKeyShareC(EL_GAMAL_PUBLIC_KEY_EPRIME, null)));
+				.apply(new ElGamalKeyShare(EL_GAMAL_PUBLIC_KEY_EPRIME, null)));
 	}
 
 	@Test
 	@DisplayName("verify is false if the key is null")
 	void test1_2() throws IllegalArgumentException, IOException {
 		assertFalse(verifyElGamalKeyShare
-				.apply(new ElGamalKeyShareC(null, EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
+				.apply(new ElGamalKeyShare(null, EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
 	}
 
 	@Test
 	@DisplayName("verify is false if the key is not for the proof")
 	void test1_3() throws IllegalArgumentException, IOException {
-		assertFalse(verifyElGamalKeyShare.apply(new ElGamalKeyShareC(
-				new ElGamalPublicKeyC(BIGINT_B, EL_GAMAL_PARAMETERS),
+		assertFalse(verifyElGamalKeyShare.apply(new ElGamalKeyShare(
+				new ElGamalPublicKey(BIGINT_B, EL_GAMAL_PARAMETERS),
 				EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
 	}
 

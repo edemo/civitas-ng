@@ -8,7 +8,6 @@ import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.msg.ElGamalMsgC;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.publickey.ElGamalPublicKeyC;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
 import civitas.util.CivitasBigInteger;
@@ -26,8 +25,8 @@ public class SignAndEncrypt {
 	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg,
 			ElGamalReencryptFactor r, byte[] additionalEnv) throws CryptoError {
 		try {
-			ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
-			ElGamalPublicKeyC k = (ElGamalPublicKeyC) key;
+			ElGamalParametersC ps = (ElGamalParametersC) key.params;
+			ElGamalPublicKey k = key;
 			CivitasBigInteger m = ((ElGamalMsgC) msg).bigIntValue();
 			CivitasBigInteger rr = ((ElGamalReencryptFactorC) r).r;
 			CivitasBigInteger s = generateRandomElement.apply(ps.q);
@@ -44,7 +43,7 @@ public class SignAndEncrypt {
 
 	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg)
 			throws CryptoError {
-		return apply(key, msg, elGamalReencrypt.apply(key.getParams()), null);
+		return apply(key, msg, elGamalReencrypt.apply(key.params), null);
 	}
 
 	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg,

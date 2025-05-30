@@ -17,14 +17,14 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
-import civitas.crypto.privatekey.ElGamalPrivateKeyC;
+import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
 public class ElGamalPublicKeyCTest extends ConcreteTestBase
 		implements ElGamalPublicKeyCTestData {
 
-	ElGamalPublicKeyC elGamalPublicKeyC;
+	ElGamalPublicKey elGamalPublicKeyC;
 
 	@Use
 	ElGamalPublicKeyFromXML elGamalPublicKeyFromXML;
@@ -34,22 +34,26 @@ public class ElGamalPublicKeyCTest extends ConcreteTestBase
 	public void setUp() throws NoSuchAlgorithmException, IllegalArgumentException,
 			IOException, CryptoException {
 		super.setUp();
-		elGamalPublicKeyC = new ElGamalPublicKeyC(
+		elGamalPublicKeyC = new ElGamalPublicKey(
 				new CivitasBigInteger(Base64.getDecoder().decode(G_EXP_A_BASE64)),
 				EL_GAMAL_PARAMETERS);
 	}
 
+	@Use
+	ElGamalPublicKeyToXML elGamalPublicKeyToXML;
+
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
-		assertEquals(EL_GAMAL_PUBLIC_KEY_XML, elGamalPublicKeyC.toXML());
+		assertEquals(EL_GAMAL_PUBLIC_KEY_XML,
+				elGamalPublicKeyToXML.apply(elGamalPublicKeyC));
 	}
 
 	@Test
 	@DisplayName("constructor works with any parameter as null")
 	void test0() {
 		assertEquals(EL_GAMAL_PUBLIC_KEY_NULL_XML,
-				new ElGamalPublicKeyC(null, null).toXML());
+				elGamalPublicKeyToXML.apply(new ElGamalPublicKey(null, null)));
 	}
 
 	@Test
@@ -81,14 +85,14 @@ public class ElGamalPublicKeyCTest extends ConcreteTestBase
 	@DisplayName("isAuthorized is false for bad secret")
 	void test5() throws IllegalArgumentException, IOException {
 		assertFalse(elGamalPublicKeyC
-				.isAuthorized(new ElGamalPrivateKeyC(BIGINT_B, EL_GAMAL_PARAMETERS)));
+				.isAuthorized(new ElGamalPrivateKey(BIGINT_B, EL_GAMAL_PARAMETERS)));
 	}
 
 	@Test
 	@DisplayName("isAuthorized throws NullPointerException for a private key with null")
 	void test6() throws IllegalArgumentException, IOException {
 		assertThrows(NullPointerException.class, () -> elGamalPublicKeyC
-				.isAuthorized(new ElGamalPrivateKeyC(null, EL_GAMAL_PARAMETERS)));
+				.isAuthorized(new ElGamalPrivateKey(null, EL_GAMAL_PARAMETERS)));
 	}
 
 	@Test
@@ -96,7 +100,7 @@ public class ElGamalPublicKeyCTest extends ConcreteTestBase
 			+ "FIXME original code did not test for y")
 	void equalsTest2() throws IllegalArgumentException, IOException {
 		assertFalse(EL_GAMAL_PUBLIC_KEY_EPRIME
-				.equals(new ElGamalPublicKeyC(BIGINT_B, EL_GAMAL_PARAMETERS)));
+				.equals(new ElGamalPublicKey(BIGINT_B, EL_GAMAL_PARAMETERS)));
 	}
 
 	@Test

@@ -4,7 +4,6 @@ import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.proofdisclog.VerifyElGamalProofDiscLogEquality;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.publickey.ElGamalPublicKeyC;
 import civitas.util.Use;
 
 public class VerifyElGamalDecryptionShare {
@@ -16,9 +15,9 @@ public class VerifyElGamalDecryptionShare {
 			ElGamalPublicKey K) throws Error {
 		if (that.proof != null) {
 			try {
-				ElGamalCiphertext cipher = (ElGamalCiphertext) c;
-				ElGamalPublicKeyC KC = (ElGamalPublicKeyC) K;
-				ElGamalParametersC params = (ElGamalParametersC) K.getParams();
+				ElGamalCiphertext cipher = c;
+				ElGamalPublicKey KC = K;
+				ElGamalParametersC params = (ElGamalParametersC) K.params;
 				if (that.proof.g1.equals(cipher.a) && that.proof.g2.equals(params.g)
 						&& that.proof.v.equals(that.ai) && that.proof.w.equals(KC.y)) {
 					return verifyElGamalProofDiscLogEquality.apply(that.proof, params);

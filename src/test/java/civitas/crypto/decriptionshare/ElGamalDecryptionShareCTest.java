@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.publickey.ElGamalPublicKeyC;
+import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Tested;
 import civitas.util.Use;
 
@@ -103,7 +103,7 @@ public class ElGamalDecryptionShareCTest extends ConcreteTestBase
 	void test4_5() {
 		assertFalse(verifyElGamalDecryptionShare.apply(EL_GAMAL_DECRYPTION_SHARE,
 				EL_GAMAL_CIPHERTEXT,
-				new ElGamalPublicKeyC(G_EXP_A, EL_GAMAL_PARAMETERS_GENERATOR_OTHER)));
+				new ElGamalPublicKey(G_EXP_A, EL_GAMAL_PARAMETERS_GENERATOR_OTHER)));
 	}
 
 	@Test
@@ -111,7 +111,7 @@ public class ElGamalDecryptionShareCTest extends ConcreteTestBase
 	void test4_6() {
 		assertFalse(verifyElGamalDecryptionShare.apply(EL_GAMAL_DECRYPTION_SHARE,
 				EL_GAMAL_CIPHERTEXT,
-				new ElGamalPublicKeyC(BIGINT_A, EL_GAMAL_PARAMETERS)));
+				new ElGamalPublicKey(BIGINT_A, EL_GAMAL_PARAMETERS)));
 	}
 
 	@Test
@@ -121,7 +121,7 @@ public class ElGamalDecryptionShareCTest extends ConcreteTestBase
 				new ElGamalDecryptionShare(BIGINT_A,
 						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT),
 				EL_GAMAL_CIPHERTEXT,
-				new ElGamalPublicKeyC(BIGINT_A, EL_GAMAL_PARAMETERS)));
+				new ElGamalPublicKey(BIGINT_A, EL_GAMAL_PARAMETERS)));
 	}
 
 }

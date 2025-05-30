@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.util.Tested;
 import civitas.util.Use;
 
@@ -43,15 +42,6 @@ public class ConstructProofKnowDiscLogTest extends ConcreteTestBase
 	void constructProofKnowDiscLogTest1() throws Exception {
 
 		assertNull(constructProofKnowDiscLog.apply(EL_GAMAL_PARAMETERS, null));
-
-	}
-
-	@Test
-	@DisplayName("constructProofKnowDiscLog returns null if the key is not ElGamalPrivateKeyC")
-	void constructProofKnowDiscLogTest2() throws Exception {
-
-		assertNull(constructProofKnowDiscLog.apply(EL_GAMAL_PARAMETERS,
-				mock(ElGamalPrivateKey.class)));
 
 	}
 

@@ -13,7 +13,6 @@ import civitas.crypto.CryptoError;
 import civitas.crypto.keypairshare.ElGamalKeyPairShareTestData;
 import civitas.crypto.keys.ElGamalKeyShareTestData;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
-import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Tested;
 
 public class ConstructElGamalKeyShareTest extends ConcreteTestBase
@@ -43,13 +42,6 @@ public class ConstructElGamalKeyShareTest extends ConcreteTestBase
 	void test_2() {
 		assertThrows(CryptoError.class, () -> constructElGamalKeyShare
 				.apply(EL_GAMAL_KEYPAIR_SHARE_BAD_PROOF_GENERATED));
-	}
-
-	@Test
-	@DisplayName("throws CryptoError if the pubkey is not of type ElGamalPublicKeyC")
-	void test2() {
-		assertThrows(CryptoError.class, () -> constructElGamalKeyShare
-				.apply(mock(ElGamalPublicKey.class), EL_GAMAL_PROOF_KNOWN_DISC_LOG));
 	}
 
 	@Test

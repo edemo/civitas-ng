@@ -14,32 +14,37 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.keys.ElGamalKeyShareTestData;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLogC;
-import civitas.crypto.publickey.ElGamalPublicKeyC;
+import civitas.crypto.publickey.ElGamalPublicKey;
+import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Use;
 
 public class ElGamalKeyShareCTest extends ConcreteTestBase
 		implements ElGamalKeyShareTestData {
 	@Use
 	ElGamalKeyShareFromXML elGamalKeyShareFromXML;
+	@Use
+	ElGamalKeyShareToXML elGamalKeyShareToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMAL_KEY_SHARE_XML, EL_GAMAL_KEY_SHARE_E.toXML());
+		assertEquals(EL_GAMAL_KEY_SHARE_XML,
+				elGamalKeyShareToXML.apply(EL_GAMAL_KEY_SHARE_E));
 	}
 
 	@Test
 	@DisplayName("constructor with nulls work and can be an XML made of")
 	void test_null() throws IllegalArgumentException, IOException {
 		assertEquals(EL_GAMAL_KEY_SHARE_NULL_XML,
-				new ElGamalKeyShareC(null, null).toXML());
+				elGamalKeyShareToXML.apply(new ElGamalKeyShare(null, null)));
 	}
 
 	@Test
 	@DisplayName("fromXML works")
 	void test_fromXML() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMAL_KEY_SHARE_XML, elGamalKeyShareFromXML
-				.apply(new StringReader(EL_GAMAL_KEY_SHARE_XML)).toXML());
+		assertEquals(EL_GAMAL_KEY_SHARE_XML,
+				elGamalKeyShareToXML.apply(elGamalKeyShareFromXML
+						.apply(new StringReader(EL_GAMAL_KEY_SHARE_XML))));
 	}
 
 	@Test
@@ -53,35 +58,36 @@ public class ElGamalKeyShareCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("pubKey returns the public key")
 	void pubKeyTest() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_KEY_SHARE_E.pubKey());
+		assertEquals(EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_KEY_SHARE_E.pubKey);
 	}
 
 	@Test
 	@DisplayName("proof returns the proof")
 	void proofTest() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMAL_PROOF_KNOWN_DISC_LOG, EL_GAMAL_KEY_SHARE_E.proof());
+		assertEquals(EL_GAMAL_PROOF_KNOWN_DISC_LOG, EL_GAMAL_KEY_SHARE_E.proof);
 	}
 
 	@Test
 	@DisplayName("equals to other keyshare with same key and proof")
 	void equalsTest() throws IllegalArgumentException, IOException {
-		assertTrue(EL_GAMAL_KEY_SHARE_E.equals(new ElGamalKeyShareC(
-				EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
+		assertTrue(EL_GAMAL_KEY_SHARE_E
+				.equals(new ElGamalKeyShare((ElGamalPublicKey) EL_GAMAL_PUBLIC_KEY_E,
+						EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
 	}
 
 	@Test
 	@DisplayName("not equals to other keyshare with different key")
 	void equalsTest1() throws IllegalArgumentException, IOException {
-		assertFalse(EL_GAMAL_KEY_SHARE_E.equals(new ElGamalKeyShareC(
-				new ElGamalPublicKeyC(BIGINT_A, EL_GAMAL_PARAMETERS),
+		assertFalse(EL_GAMAL_KEY_SHARE_E.equals(new ElGamalKeyShare(
+				(ElGamalPublicKey) new ElGamalPublicKey(BIGINT_A, EL_GAMAL_PARAMETERS),
 				EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
 	}
 
 	@Test
 	@DisplayName("not equals to other keyshare with different proof")
 	void equalsTest2() throws IllegalArgumentException, IOException {
-		assertFalse(EL_GAMAL_KEY_SHARE_E
-				.equals(new ElGamalKeyShareC(EL_GAMAL_PUBLIC_KEY_EPRIME,
+		assertFalse(EL_GAMAL_KEY_SHARE_E.equals(
+				new ElGamalKeyShare((ElGamalPublicKey) EL_GAMAL_PUBLIC_KEY_EPRIME,
 						new ElGamalProofKnowDiscLogC(EL_GAMAL_PROOF_KNOWN_DISC_LOG_A,
 								BIGINT_C, SAFE_P_MINUS_A, BIGINT_A))));
 	}

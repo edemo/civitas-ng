@@ -23,14 +23,14 @@ public class ElGamalPrivateKeyCTest extends ConcreteTestBase
 	@DisplayName("constructor with key and params works")
 	void test0() {
 		assertEquals(ELGAMAL_PRIVATE_KEY_E,
-				new ElGamalPrivateKeyC(BIGINT_A, EL_GAMAL_PARAMETERS));
+				new ElGamalPrivateKey(BIGINT_A, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("toXML skips null key and params")
 	void test00() {
 		assertEquals(EL_GAMAL_PRIVATE_KEY_NULL_XML,
-				new ElGamalPrivateKeyC(null, null).toXML());
+				new ElGamalPrivateKey(null, null).toXML());
 	}
 
 	@Test
@@ -38,14 +38,14 @@ public class ElGamalPrivateKeyCTest extends ConcreteTestBase
 			+ "FIXME: equals do not take x into account in original code (no override)")
 	void test0_0() {
 		assertNotEquals(ELGAMAL_PRIVATE_KEY_E,
-				new ElGamalPrivateKeyC(BIGINT_C, EL_GAMAL_PARAMETERS));
+				new ElGamalPrivateKey(BIGINT_C, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("Equals takes parameters into account")
 	void test0_1() {
 		assertNotEquals(ELGAMAL_PRIVATE_KEY_E,
-				new ElGamalPrivateKeyC(BIGINT_D, EL_GAMAL_PARAMETERS_OTHER));
+				new ElGamalPrivateKey(BIGINT_D, EL_GAMAL_PARAMETERS_OTHER));
 	}
 
 	@Test
@@ -64,7 +64,7 @@ public class ElGamalPrivateKeyCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("getParams gets the parameters")
 	void test2() {
-		assertEquals(EL_GAMAL_PARAMETERS, ELGAMAL_PRIVATE_KEY_E.getParams());
+		assertEquals(EL_GAMAL_PARAMETERS, ELGAMAL_PRIVATE_KEY_E.params);
 	}
 
 	@Test

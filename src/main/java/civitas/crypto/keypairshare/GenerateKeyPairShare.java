@@ -4,9 +4,9 @@ import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
-import civitas.crypto.privatekey.ElGamalPrivateKeyC;
+import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.publickey.ElGamalPublicKeyC;
+import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -25,8 +25,8 @@ public class GenerateKeyPairShare {
 		// the public part of the key is y
 		CivitasBigInteger y = ps.g.modPow(x, ps.p);
 
-		ElGamalPublicKey pub = new ElGamalPublicKeyC(y, params);
-		ElGamalPrivateKey priv = new ElGamalPrivateKeyC(x, params);
+		ElGamalPublicKey pub = new ElGamalPublicKey(y, params);
+		ElGamalPrivateKey priv = new ElGamalPrivateKey(x, params);
 		return new ElGamalKeyPairShare(params, pub, priv);
 	}
 

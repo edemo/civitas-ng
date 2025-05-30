@@ -77,7 +77,7 @@ public class VerifiableVote {
 		if (proofVote == null || encChoice == null || (pubKey == null))
 			return false;
 		return (encChoice.verify(pubKey, ciphertexts, L) && proofVote.verify(
-				pubKey.getParams(), encCapability, encChoice.getCiphertext(), context));
+				pubKey.params, encCapability, encChoice.getCiphertext(), context));
 	}
 
 	public static VerifiableVote fromXML(Reader r)

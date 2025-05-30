@@ -6,8 +6,46 @@
  */
 package civitas.crypto.privatekey;
 
-import civitas.crypto.key.ElGamalKey;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
-public interface ElGamalPrivateKey extends ElGamalKey {
+import civitas.common.Util;
+import civitas.crypto.parameters.ElGamalParameters;
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
+public class ElGamalPrivateKey {
+
+	public final CivitasBigInteger x;
+
+	public final ElGamalParameters params;
+
+	public ElGamalPrivateKey(CivitasBigInteger x, ElGamalParameters params) {
+		this.x = x;
+		this.params = params;
+	}
+
+	public String toXML() {
+		StringWriter sb = new StringWriter();
+		toXML(new PrintWriter(sb));
+		return sb.toString();
+	}
+
+	public void toXML(PrintWriter s) {
+		s.print("<elGamalPrivateKey>");
+
+		s.print("<params>");
+		if (this.params != null) {
+			this.params.toXML(s);
+		}
+		s.print("</params>");
+		s.print("<x>");
+		if (this.x != null)
+			Util.escapeString(Util.fromBigInt(x), s);
+		s.print("</x>");
+
+		s.print("</elGamalPrivateKey>");
+	}
 
 }

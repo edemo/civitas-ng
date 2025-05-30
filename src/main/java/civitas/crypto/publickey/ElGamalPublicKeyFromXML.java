@@ -15,7 +15,7 @@ public class ElGamalPublicKeyFromXML {
 	@Use
 	ConvertToBigInt convertToBigInt;
 
-	public ElGamalPublicKeyC apply(Reader r)
+	public ElGamalPublicKey apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, ElGamalPublicKey.EG_OPENING_TAG);
 		Util.swallowTag(r, "params");
@@ -23,7 +23,7 @@ public class ElGamalPublicKeyFromXML {
 		Util.swallowEndTag(r, "params");
 		String y = Util.unescapeString(Util.readSimpleTag(r, "y"));
 		Util.swallowEndTag(r, ElGamalPublicKey.EG_OPENING_TAG);
-		return new ElGamalPublicKeyC(convertToBigInt.apply(y), params);
+		return new ElGamalPublicKey(convertToBigInt.apply(y), params);
 	}
 
 }
