@@ -1,7 +1,7 @@
 package civitas.crypto.algorithms;
 
-import civitas.crypto.ElGamalMsg;
-import civitas.crypto.concrete.ElGamalMsgC;
+import civitas.crypto.msg.ElGamalMsg;
+import civitas.crypto.msg.ElGamalMsgC;
 
 public class IsPetResult implements Constants {
 	public boolean apply(ElGamalMsg petResult) {

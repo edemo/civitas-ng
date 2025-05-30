@@ -3,13 +3,13 @@ package civitas.crypto.algorithms;
 import javax.crypto.Cipher;
 
 import civitas.crypto.CryptoError;
-import civitas.crypto.SharedKey;
-import civitas.crypto.SharedKeyCiphertext;
-import civitas.crypto.SharedKeyMsg;
-import civitas.crypto.concrete.SharedKeyC;
-import civitas.crypto.concrete.SharedKeyCiphertextC;
-import civitas.crypto.concrete.SharedKeyMsgC;
-import civitas.external.DoCrypto;
+import civitas.crypto.external.DoCrypto;
+import civitas.crypto.sharedkey.SharedKey;
+import civitas.crypto.sharedkey.SharedKeyC;
+import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertext;
+import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertextC;
+import civitas.crypto.sharedkeymsg.SharedKeyMsg;
+import civitas.crypto.sharedkeymsg.SharedKeyMsgC;
 import civitas.util.Use;
 
 public class EncryptShared implements Constants {

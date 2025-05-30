@@ -12,7 +12,7 @@ import java.io.Reader;
 
 import civitas.crypto.CryptoFactory;
 import civitas.crypto.CryptoUtil;
-import civitas.crypto.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertext;
 
 /**
  * A ciphertext list is just a list of ciphertexts.

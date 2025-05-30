@@ -7,10 +7,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.SchnorrPrime;
-import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.CryptoFactoryC;
-import civitas.crypto.concrete.ElGamalPrivateKeyCTestData;
+import civitas.crypto.privatekey.ElGamalPrivateKeyCTestData;
 import civitas.util.Use;
 
 public class GenerateSchnorrPrimeTest extends ConcreteTestBase
@@ -26,13 +25,13 @@ public class GenerateSchnorrPrimeTest extends ConcreteTestBase
 			+ "FIXME: uses random, must make a multirun verification test")
 	void schnorrPrimeTest() {
 		SchnorrPrime sp = generateSchnorrPrime.apply(
-				CryptoFactoryC.EL_GAMAL_KEY_LENGTH,
-				CryptoFactoryC.EL_GAMAL_GROUP_LENGTH);
+				Constants.EL_GAMAL_KEY_LENGTH,
+				Constants.EL_GAMAL_GROUP_LENGTH);
 		assertTrue(sp.p.isProbablePrime(CERTAINTY));
 		assertTrue(sp.q.isProbablePrime(CERTAINTY));
 		assertEquals(ZERO, sp.p.subtract(ONE).mod(sp.q));
-		assertEquals(CryptoFactoryC.EL_GAMAL_GROUP_LENGTH, sp.p.bitLength());
-		assertEquals(CryptoFactoryC.EL_GAMAL_KEY_LENGTH, sp.q.bitLength());
+		assertEquals(Constants.EL_GAMAL_GROUP_LENGTH, sp.p.bitLength());
+		assertEquals(Constants.EL_GAMAL_KEY_LENGTH, sp.q.bitLength());
 	}
 
 }

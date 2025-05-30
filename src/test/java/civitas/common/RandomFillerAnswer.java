@@ -3,7 +3,7 @@ package civitas.common;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-import civitas.crypto.concrete.BasicValuesTestData;
+import civitas.crypto.BasicValuesTestData;
 
 public class RandomFillerAnswer implements Answer<Void> {
 

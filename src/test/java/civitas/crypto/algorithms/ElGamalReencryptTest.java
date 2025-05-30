@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ElGamalCiphertext;
-import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.ElGamalCiphertextC;
-import civitas.crypto.concrete.ElGamalPublicKeyCTestData;
-import civitas.crypto.concrete.ElGamalReencryptFactorC;
+import civitas.crypto.ConcreteTestBase;
+import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.publickey.ElGamalPublicKeyCTestData;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 
@@ -58,8 +58,9 @@ public class ElGamalReencryptTest extends ConcreteTestBase
 		c1 = c1.modMultiply(g.modPow(y, p), p);
 		c2 = c2.modMultiply(m.modPow(y, p), p);
 
-		assertEquals(new ElGamalCiphertextC(c1, c2), elGamalReencrypt.apply(
-				EL_GAMAL_PUBLIC_KEY_EPRIME, cipherText, new ElGamalReencryptFactorC(y)));
+		assertEquals(new ElGamalCiphertextC(c1, c2),
+				elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, cipherText,
+						new ElGamalReencryptFactorC(y)));
 
 	}
 

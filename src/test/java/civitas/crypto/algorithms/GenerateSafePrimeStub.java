@@ -3,7 +3,7 @@ package civitas.crypto.algorithms;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import civitas.crypto.concrete.ElGamalParametersCTestData;
+import civitas.crypto.parameters.ElGamalParametersCTestData;
 
 public class GenerateSafePrimeStub implements ElGamalParametersCTestData {
 

@@ -10,6 +10,39 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 
+import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.decriptionshare.ElGamalDecryptionShare;
+import civitas.crypto.keypair.ElGamalKeyPair;
+import civitas.crypto.keypair.KeyPair;
+import civitas.crypto.keypairshare.ElGamalKeyPairShare;
+import civitas.crypto.keyshare.ElGamalKeyShare;
+import civitas.crypto.messagedigest.MessageDigest;
+import civitas.crypto.msg.ElGamalMsg;
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
+import civitas.crypto.parameters.ElGamalParameters;
+import civitas.crypto.petcommitment.PETCommitment;
+import civitas.crypto.petdecommitment.PETDecommitment;
+import civitas.crypto.petshare.PETShare;
+import civitas.crypto.privatekey.ElGamalPrivateKey;
+import civitas.crypto.privatekey.PrivateKey;
+import civitas.crypto.proof1ofl.ElGamalProof1OfL;
+import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
+import civitas.crypto.proofdvr.ElGamalProofDVR;
+import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
+import civitas.crypto.proofvote.ProofVote;
+import civitas.crypto.publickey.ElGamalPublicKey;
+import civitas.crypto.publickey.PublicKey;
+import civitas.crypto.publickeyciphertext.PublicKeyCiphertext;
+import civitas.crypto.publickeymsg.PublicKeyMsg;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
+import civitas.crypto.sharedkey.SharedKey;
+import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertext;
+import civitas.crypto.sharedkeymsg.SharedKeyMsg;
+import civitas.crypto.signature.Signature;
+import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
+import civitas.crypto.votecapability.VoteCapability;
+import civitas.crypto.votecapabilityshare.VoteCapabilityShare;
+
 public interface CryptoFactory {
 	/**
 	 * Returns an array of length size that is a permutation, i.e. i maps to j iff

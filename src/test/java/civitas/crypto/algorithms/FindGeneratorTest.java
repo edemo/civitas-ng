@@ -8,13 +8,13 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.SchnorrPrime;
-import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.ConcreteTestData;
+import civitas.crypto.parameters.ElGamalParametersCTestData;
 import civitas.util.Tested;
 
 public class FindGeneratorTest extends ConcreteTestBase
-		implements ConcreteTestData {
+		implements ElGamalParametersCTestData {
 
 	@Tested
 	FindGenerator findGenerator;

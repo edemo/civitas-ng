@@ -11,7 +11,7 @@ public class CreatePermutation {
 	GenerateRandomInt generateRandomInt;
 
 	public int[] apply(int size) {
-		List<Integer> l = new LinkedList<Integer>();
+		List<Integer> l = new LinkedList<>();
 		for (int i = 0; i < size; i++) {
 			l.add(Integer.valueOf(i));
 		}

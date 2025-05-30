@@ -1,0 +1,43 @@
+package civitas.crypto.ciphertext;
+
+import java.io.IOException;
+import java.io.Reader;
+
+import civitas.common.Util;
+import civitas.crypto.signedciphertext.ElGamalSignedCiphertextFromXML;
+import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
+
+public class ElGamalCiphertextFromXML {
+
+	@Use
+	ElGamalSignedCiphertextFromXML elGamalSignedCiphertextFromXML;
+
+	private ElGamalCiphertextC fromXML(Reader r)
+			throws IllegalArgumentException, IOException {
+		Util.swallowTag(r, ElGamalCiphertext.OPENING_TAG);
+		CivitasBigInteger a = null;
+		String sa = Util.unescapeString(Util.readSimpleTag(r, "a"));
+		if (sa.length() > 0) {
+			a = Util.asBigint(sa);
+		}
+
+		CivitasBigInteger b = null;
+		String sb = Util.unescapeString(Util.readSimpleTag(r, "b"));
+		if (sb.length() > 0) {
+			b = Util.asBigint(sb);
+		}
+
+		Util.swallowEndTag(r, ElGamalCiphertext.OPENING_TAG);
+		return new ElGamalCiphertextC(a, b);
+	}
+
+	public ElGamalCiphertextC apply(Reader r) throws IOException {
+		if (Util.isNextTag(r, ElGamalCiphertext.OPENING_TAG)) {
+			return fromXML(r);
+		} else {
+			return elGamalSignedCiphertextFromXML.apply(r);
+		}
+	}
+
+}

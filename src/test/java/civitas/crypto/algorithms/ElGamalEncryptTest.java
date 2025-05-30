@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.ElGamalCiphertextC;
-import civitas.crypto.concrete.ElGamalCiphertextCTestData;
-import civitas.crypto.concrete.ElGamalMsgC;
-import civitas.crypto.concrete.ElGamalReencryptFactorC;
-import civitas.crypto.concrete.ElGamalReencryptFactorCTestData;
+import civitas.crypto.ConcreteTestBase;
+import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
+import civitas.crypto.msg.ElGamalMsgC;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 

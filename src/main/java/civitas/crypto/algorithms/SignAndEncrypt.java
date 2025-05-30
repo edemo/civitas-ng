@@ -1,15 +1,15 @@
 package civitas.crypto.algorithms;
 
 import civitas.crypto.CryptoError;
-import civitas.crypto.ElGamalMsg;
-import civitas.crypto.ElGamalPublicKey;
-import civitas.crypto.ElGamalReencryptFactor;
-import civitas.crypto.ElGamalSignedCiphertext;
-import civitas.crypto.concrete.ElGamalMsgC;
-import civitas.crypto.concrete.ElGamalParametersC;
-import civitas.crypto.concrete.ElGamalPublicKeyC;
-import civitas.crypto.concrete.ElGamalReencryptFactorC;
-import civitas.crypto.concrete.ElGamalSignedCiphertextC;
+import civitas.crypto.msg.ElGamalMsg;
+import civitas.crypto.msg.ElGamalMsgC;
+import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.publickey.ElGamalPublicKey;
+import civitas.crypto.publickey.ElGamalPublicKeyC;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
+import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
+import civitas.crypto.signedciphertext.ElGamalSignedCiphertextC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 

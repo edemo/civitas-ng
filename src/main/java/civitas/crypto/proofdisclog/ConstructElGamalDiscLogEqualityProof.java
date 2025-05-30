@@ -1,0 +1,44 @@
+package civitas.crypto.proofdisclog;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import civitas.crypto.algorithms.ConvertHashToBigInt;
+import civitas.crypto.algorithms.CryptoHash;
+import civitas.crypto.algorithms.GenerateRandomElement;
+import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
+
+public class ConstructElGamalDiscLogEqualityProof {
+	@Use
+	GenerateRandomElement generateRandomElement;
+	@Use
+	CryptoHash cryptoHash;
+	@Use
+	ConvertHashToBigInt convertHashToBigInt;
+
+	public ElGamalProofDiscLogEqualityC apply(ElGamalParametersC params,
+			CivitasBigInteger g1, CivitasBigInteger g2, CivitasBigInteger x) {
+
+		CivitasBigInteger v = g1.modPow(x, params.p);
+		CivitasBigInteger w = g2.modPow(x, params.p);
+
+		CivitasBigInteger z = generateRandomElement.apply(params.q);
+		CivitasBigInteger a = g1.modPow(z, params.p);
+		CivitasBigInteger b = g2.modPow(z, params.p);
+
+		List<CivitasBigInteger> l = new ArrayList<>();
+		l.add(v);
+		l.add(w);
+		l.add(a);
+		l.add(b);
+		CivitasBigInteger c = convertHashToBigInt.apply(cryptoHash.apply(l))
+				.mod(params.q);
+
+		CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q), params.q);
+
+		return new ElGamalProofDiscLogEqualityC(g1, g2, a, v, w, b, c, r);
+	}
+
+}

@@ -7,9 +7,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.SchnorrPrime;
-import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.PrivateKeyTestData;
+import civitas.crypto.privatekey.PrivateKeyTestData;
 import civitas.util.Tested;
 
 public class GenerateSafePrimeTest extends ConcreteTestBase

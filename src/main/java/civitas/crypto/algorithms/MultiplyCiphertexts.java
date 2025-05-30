@@ -1,10 +1,10 @@
 package civitas.crypto.algorithms;
 
-import civitas.crypto.ElGamalCiphertext;
-import civitas.crypto.ElGamalParameters;
-import civitas.crypto.ElGamalSignedCiphertext;
-import civitas.crypto.concrete.ElGamalCiphertextC;
-import civitas.crypto.concrete.ElGamalParametersC;
+import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.parameters.ElGamalParameters;
+import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.util.CivitasBigInteger;
 
 public class MultiplyCiphertexts {
@@ -18,9 +18,9 @@ public class MultiplyCiphertexts {
 			// multiply all the shares together
 			CivitasBigInteger[] aAccum = new CivitasBigInteger[ciphertexts[0].length];
 			CivitasBigInteger[] bAccum = new CivitasBigInteger[ciphertexts[0].length];
-			for (int i = 0; i < ciphertexts.length; i++) {
-				for (int j = 0; j < ciphertexts[i].length; j++) {
-					ElGamalCiphertextC s = (ElGamalCiphertextC) ciphertexts[i][j];
+			for (ElGamalSignedCiphertext[] ciphertext : ciphertexts) {
+				for (int j = 0; j < ciphertext.length; j++) {
+					ElGamalCiphertextC s = (ElGamalCiphertextC) ciphertext[j];
 					if (aAccum[j] == null) {
 						aAccum[j] = s.a;
 						bAccum[j] = s.b;

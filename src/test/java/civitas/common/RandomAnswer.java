@@ -3,7 +3,7 @@ package civitas.common;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-import civitas.crypto.concrete.BasicValuesTestData;
+import civitas.crypto.BasicValuesTestData;
 import civitas.util.CivitasBigInteger;
 
 public class RandomAnswer implements Answer<CivitasBigInteger> {

@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class DI {
 
-	private static Map<Class<?>, Object> instances = new HashMap<Class<?>, Object>();
+	private static Map<Class<?>, Object> instances = new HashMap<>();
 
 	@SuppressWarnings("unchecked")
 	public static <T> T get(Class<T> klass) {

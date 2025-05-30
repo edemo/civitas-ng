@@ -1,0 +1,72 @@
+package civitas.crypto.petshare;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import civitas.crypto.ConcreteTestBase;
+import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.parameters.ElGamalParameters;
+import civitas.util.Use;
+
+public class ConstructPETShareTest extends ConcreteTestBase
+		implements PETShareTestData {
+
+	@Use
+	ConstructPETShare constructPETShare;
+
+	@Test
+	@DisplayName("constructs a pet share with the two ciphertexts and a random element")
+	void test() {
+		PETShareC actual = new PETShareC(CIPHERTEXT_E, CIPHERTEXT_EPRIME,
+				RANDOMS_0);
+		assertEquals(actual.ciphertext1, CIPHERTEXT_E);
+		assertEquals(actual.ciphertext2, CIPHERTEXT_EPRIME);
+		assertEquals(actual.exponent, RANDOMS_0);
+	}
+
+	@Test
+	@DisplayName("returns null if ciphertext a is null")
+	void test2() {
+		assertEquals(null,
+				constructPETShare.apply(EL_GAMAL_PARAMETERS, null, CIPHERTEXT_EPRIME));
+	}
+
+	@Test
+	@DisplayName("returns null if ciphertext b is null")
+	void test3() {
+		assertEquals(null,
+				constructPETShare.apply(EL_GAMAL_PARAMETERS, CIPHERTEXT_E, null));
+	}
+
+	@Test
+	@DisplayName("returns null if parameters is null")
+	void test4() {
+		assertEquals(null,
+				constructPETShare.apply(null, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
+	}
+
+	@Test
+	@DisplayName("returns null if ciphertext a is not of type ElGamalCiphertextC")
+	void test5() {
+		assertEquals(null, constructPETShare.apply(EL_GAMAL_PARAMETERS,
+				mock(ElGamalCiphertext.class), CIPHERTEXT_EPRIME));
+	}
+
+	@Test
+	@DisplayName("returns null if ciphertext b is not of type ElGamalCiphertextC")
+	void test6() {
+		assertEquals(null, constructPETShare.apply(EL_GAMAL_PARAMETERS,
+				CIPHERTEXT_E, mock(ElGamalCiphertext.class)));
+	}
+
+	@Test
+	@DisplayName("returns null if parameters is not of type ElGamalParametersC")
+	void test7() {
+		assertEquals(null, constructPETShare.apply(mock(ElGamalParameters.class),
+				CIPHERTEXT_E, CIPHERTEXT_EPRIME));
+	}
+
+}

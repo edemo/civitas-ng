@@ -1,13 +1,13 @@
 package civitas.crypto.algorithms;
 
 import civitas.crypto.CryptoError;
-import civitas.crypto.PrivateKey;
-import civitas.crypto.PublicKeyMsg;
-import civitas.crypto.Signature;
-import civitas.crypto.concrete.PrivateKeyC;
-import civitas.crypto.concrete.PublicKeyMsgC;
-import civitas.crypto.concrete.SignatureC;
-import civitas.external.ComputeMessageDigest;
+import civitas.crypto.external.ComputeMessageDigest;
+import civitas.crypto.msg.PublicKeyMsgC;
+import civitas.crypto.privatekey.PrivateKey;
+import civitas.crypto.privatekey.PrivateKeyC;
+import civitas.crypto.publickeymsg.PublicKeyMsg;
+import civitas.crypto.signature.Signature;
+import civitas.crypto.signature.SignatureC;
 import civitas.util.Use;
 
 public class SignWithPublicKey implements Constants {

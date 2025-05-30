@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.Util;
-import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.ElGamalCiphertextCTestData;
-import civitas.crypto.concrete.ElGamalSignedCiphertextC;
+import civitas.crypto.ConcreteTestBase;
+import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
+import civitas.crypto.signedciphertext.ElGamalSignedCiphertextC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;

@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class GetPublicKeyGenerator implements Constants {
 
-	private Map<String, KeyPairGenerator> publicKeyGenerators = new HashMap<String, KeyPairGenerator>();
+	private Map<String, KeyPairGenerator> publicKeyGenerators = new HashMap<>();
 
 	/**
 	 * Get an appropriate public key generator, creating one if necessary.

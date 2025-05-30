@@ -1,0 +1,98 @@
+package civitas.crypto.proof1ofl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import civitas.crypto.algorithms.Constants;
+import civitas.crypto.algorithms.ConvertHashToBigInt;
+import civitas.crypto.algorithms.CryptoHash;
+import civitas.crypto.algorithms.GenerateRandomElement;
+import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.publickey.ElGamalPublicKeyC;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
+import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
+
+public class ConstructElGamalProof1OfL implements Constants {
+	@Use
+	public GenerateRandomElement generateRandomElement;
+	@Use
+	CryptoHash cryptoHash;
+	@Use
+	private ConvertHashToBigInt convertHashToBigInt;
+
+	public ElGamalProof1OfLC apply(ElGamalPublicKeyC key,
+			ElGamalCiphertext[] ciphertexts, int L, int choice, ElGamalCiphertextC m,
+			ElGamalReencryptFactorC factor) {
+
+		ElGamalParametersC ps = (ElGamalParametersC) key.params;
+		CivitasBigInteger u = m.a;
+		CivitasBigInteger v = m.b;
+		CivitasBigInteger r = factor.r;
+
+		ElGamalCiphertextC[] ms = new ElGamalCiphertextC[L];
+		for (int i = 0; i < L; i++) {
+			ms[i] = (ElGamalCiphertextC) ciphertexts[i];
+		}
+
+		// choose d1 .. dL, and r1 ... rL at random.
+		CivitasBigInteger[] ds = new CivitasBigInteger[L];
+		for (int i = 0; i < L; i++) {
+			ds[i] = generateRandomElement.apply(ps.q);
+		}
+		CivitasBigInteger[] rs = new CivitasBigInteger[L];
+		for (int i = 0; i < L; i++) {
+			rs[i] = generateRandomElement.apply(ps.q);
+		}
+
+		// compute a_i's and b_i's
+		CivitasBigInteger[] as = new CivitasBigInteger[L];
+		CivitasBigInteger[] bs = new CivitasBigInteger[L];
+		for (int i = 0; i < L; i++) {
+			as[i] = ms[i].a.modDivide(u, ps.p).modPow(ds[i], ps.p)
+					.modMultiply(ps.g.modPow(rs[i], ps.p), ps.p).mod(ps.p);
+			bs[i] = ms[i].b.modDivide(v, ps.p).modPow(ds[i], ps.p)
+					.modMultiply(key.y.modPow(rs[i], ps.p), ps.p).mod(ps.p);
+		}
+
+		List<CivitasBigInteger> env = new ArrayList<>(2 + 4 * L);
+		env.add(u);
+		env.add(v);
+		for (int i = 0; i < L; i++) {
+			env.add(ms[i].a);
+			env.add(ms[i].b);
+			env.add(as[i]);
+			env.add(bs[i]);
+		}
+		CivitasBigInteger c = convertHashToBigInt.apply(cryptoHash.apply(env))
+				.mod(ps.q);
+		CivitasBigInteger w = (r.modNegate(ps.q).modMultiply(ds[choice], ps.q))
+				.modAdd(rs[choice], ps.q);
+		CivitasBigInteger sum = ZERO;
+		for (int i = 0; i < L; i++) {
+			if (i != choice) {
+				sum = sum.modAdd(ds[i], ps.q);
+			}
+		}
+
+		CivitasBigInteger dprimet = c.modSubtract(sum, ps.q);
+		CivitasBigInteger rprimet = w.modAdd(r.modMultiply(dprimet, ps.q), ps.q);
+
+		CivitasBigInteger[] dvs = new CivitasBigInteger[L];
+		CivitasBigInteger[] rvs = new CivitasBigInteger[L];
+		for (int i = 0; i < L; i++) {
+			if (i != choice) {
+				dvs[i] = ds[i];
+				rvs[i] = rs[i];
+			} else {
+				dvs[i] = dprimet;
+				rvs[i] = rprimet;
+			}
+		}
+
+		return new ElGamalProof1OfLC(L, dvs, rvs);
+	}
+
+}

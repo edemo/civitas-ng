@@ -1,10 +1,9 @@
 package civitas.crypto.algorithms;
 
-import java.util.Iterator;
 import java.util.List;
 
-import civitas.crypto.MessageDigest;
-import civitas.external.ObtainMessageDigest;
+import civitas.crypto.external.ObtainMessageDigest;
+import civitas.crypto.messagedigest.MessageDigest;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -20,8 +19,7 @@ public class CryptoHash {
 		// Compute the hash by updating a message digest
 		// with the byte representation of the big ints.
 		MessageDigest md = obtainMessageDigest.apply();
-		for (Iterator<CivitasBigInteger> iter = l.iterator(); iter.hasNext();) {
-			CivitasBigInteger i = iter.next();
+		for (CivitasBigInteger i : l) {
 			md.update(i.toByteArray());
 		}
 		return md.digest();

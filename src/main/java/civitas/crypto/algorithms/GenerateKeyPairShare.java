@@ -1,12 +1,12 @@
 package civitas.crypto.algorithms;
 
-import civitas.crypto.ElGamalKeyPairShare;
-import civitas.crypto.ElGamalParameters;
-import civitas.crypto.ElGamalPrivateKey;
-import civitas.crypto.ElGamalPublicKey;
-import civitas.crypto.concrete.ElGamalParametersC;
-import civitas.crypto.concrete.ElGamalPrivateKeyC;
-import civitas.crypto.concrete.ElGamalPublicKeyC;
+import civitas.crypto.keypairshare.ElGamalKeyPairShare;
+import civitas.crypto.parameters.ElGamalParameters;
+import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.privatekey.ElGamalPrivateKey;
+import civitas.crypto.privatekey.ElGamalPrivateKeyC;
+import civitas.crypto.publickey.ElGamalPublicKey;
+import civitas.crypto.publickey.ElGamalPublicKeyC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 

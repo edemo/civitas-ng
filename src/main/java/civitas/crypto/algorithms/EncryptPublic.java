@@ -2,13 +2,13 @@ package civitas.crypto.algorithms;
 
 import javax.crypto.Cipher;
 
-import civitas.crypto.PublicKey;
-import civitas.crypto.PublicKeyCiphertext;
-import civitas.crypto.PublicKeyMsg;
-import civitas.crypto.concrete.PublicKeyC;
-import civitas.crypto.concrete.PublicKeyCiphertextC;
-import civitas.crypto.concrete.PublicKeyMsgC;
-import civitas.external.DoCrypto;
+import civitas.crypto.external.DoCrypto;
+import civitas.crypto.msg.PublicKeyMsgC;
+import civitas.crypto.publickey.PublicKey;
+import civitas.crypto.publickey.PublicKeyC;
+import civitas.crypto.publickeyciphertext.PublicKeyCiphertext;
+import civitas.crypto.publickeyciphertext.PublicKeyCiphertextC;
+import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.util.Use;
 
 public class EncryptPublic implements Constants {

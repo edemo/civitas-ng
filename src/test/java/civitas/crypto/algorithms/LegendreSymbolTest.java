@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoError;
-import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.ElGamalParametersCTestData;
+import civitas.crypto.parameters.ElGamalParametersCTestData;
 import civitas.util.Tested;
 
 public class LegendreSymbolTest extends ConcreteTestBase

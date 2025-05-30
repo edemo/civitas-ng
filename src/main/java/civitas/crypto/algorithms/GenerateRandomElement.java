@@ -12,7 +12,7 @@ public class GenerateRandomElement {
 		CivitasBigInteger r = null;
 		do {
 			r = new CivitasBigInteger(n.bitLength(), getRandomGenerator.apply());
-		} while (r.equals(CivitasBigInteger.ZERO) || r.compareTo(n) >= 0);
+		} while (r.equals(Constants.ZERO) || r.compareTo(n) >= 0);
 		return r;
 	}
 

@@ -470,9 +470,7 @@ public class Util {
 	public static boolean equals(byte[] a, byte[] b) {
 		if (a == b)
 			return true;
-		if (a == null || b == null)
-			return false;
-		if (a.length != b.length)
+		if (a == null || b == null || (a.length != b.length))
 			return false;
 		for (int i = 0; i < a.length; i++) {
 			try {
@@ -488,9 +486,7 @@ public class Util {
 	public static boolean equals(byte[] a, byte[] b, boolean constArrays) {
 		if (a == b)
 			return true;
-		if (a == null || b == null)
-			return false;
-		if (a.length != b.length)
+		if (a == null || b == null || (a.length != b.length))
 			return false;
 		for (int i = 0; i < a.length; i++) {
 			try {

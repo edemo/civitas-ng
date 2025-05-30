@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.concrete.BasicValuesTestData;
-import civitas.crypto.concrete.ConcreteTestBase;
+import civitas.crypto.BasicValuesTestData;
+import civitas.crypto.ConcreteTestBase;
 import civitas.util.Tested;
 
 public class CreateFreshNonceTest extends ConcreteTestBase
