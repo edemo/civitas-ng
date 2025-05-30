@@ -7,6 +7,7 @@
 package civitas.crypto.publickey;
 
 import civitas.crypto.key.ElGamalKey;
+import civitas.crypto.rsapublickey.PublicKey;
 
 public interface ElGamalPublicKey extends PublicKey, ElGamalKey {
 	public final static String EG_OPENING_TAG = "elGamalPublicKey";

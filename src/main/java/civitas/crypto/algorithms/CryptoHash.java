@@ -2,8 +2,8 @@ package civitas.crypto.algorithms;
 
 import java.util.List;
 
-import civitas.crypto.external.ObtainMessageDigest;
 import civitas.crypto.messagedigest.MessageDigest;
+import civitas.crypto.messagedigest.ObtainMessageDigest;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 

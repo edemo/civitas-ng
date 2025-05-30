@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
-import civitas.crypto.algorithms.GenerateKeyPairShare;
 import civitas.crypto.parameters.ElGamalParametersCTestData;
 import civitas.crypto.privatekey.ElGamalPrivateKeyC;
 import civitas.crypto.publickey.ElGamalPublicKeyC;

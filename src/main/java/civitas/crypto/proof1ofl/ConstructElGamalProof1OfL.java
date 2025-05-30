@@ -3,7 +3,7 @@ package civitas.crypto.proof1ofl;
 import java.util.ArrayList;
 import java.util.List;
 
-import civitas.crypto.algorithms.Constants;
+import civitas.crypto.Constants;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;

@@ -4,7 +4,6 @@ import java.util.Base64;
 
 import civitas.common.Util;
 import civitas.crypto.BasicValuesTestData;
-import civitas.crypto.SchnorrPrime;
 import civitas.util.CivitasBigInteger;
 
 public interface ElGamalParametersCTestData extends BasicValuesTestData {
@@ -95,9 +94,9 @@ public interface ElGamalParametersCTestData extends BasicValuesTestData {
 	public static final CivitasBigInteger SAFE_G = new CivitasBigInteger(
 			Base64.getDecoder().decode(SAFE_G_BASE64));
 
-	public static final SchnorrPrime SAFE_PRIMES = new SchnorrPrime(SAFE_P,
+	public static final PrimePair SAFE_PRIMES = new PrimePair(SAFE_P,
 			SAFE_Q);
-	public static final SchnorrPrime SCHNORR_PRIMES = new SchnorrPrime(BIGINT_P,
+	public static final PrimePair SCHNORR_PRIMES = new PrimePair(BIGINT_P,
 			BIGINT_Q);
 
 	public static final ElGamalParametersC EL_GAMAL_PARAMETERS_SAFE = new ElGamalParametersC(

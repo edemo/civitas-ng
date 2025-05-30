@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import civitas.crypto.ciphertext.ElGamalCiphertextC;
-import civitas.crypto.external.ObtainMessageDigest;
 import civitas.crypto.messagedigest.MessageDigest;
+import civitas.crypto.messagedigest.ObtainMessageDigest;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;

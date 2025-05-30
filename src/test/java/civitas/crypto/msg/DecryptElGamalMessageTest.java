@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
-import civitas.crypto.algorithms.ElGamalEncrypt;
-import civitas.crypto.algorithms.SignAndEncrypt;
 import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
+import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextC;
+import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.Tested;
 import civitas.util.Use;
 

@@ -4,6 +4,8 @@ import java.security.KeyPairGenerator;
 import java.util.HashMap;
 import java.util.Map;
 
+import civitas.crypto.Constants;
+
 public class GetPublicKeyGenerator implements Constants {
 
 	private Map<String, KeyPairGenerator> publicKeyGenerators = new HashMap<>();

@@ -1,10 +1,10 @@
 package civitas.crypto.proof1ofl;
 
+import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
-import civitas.crypto.algorithms.Constants;
-import civitas.crypto.algorithms.ElGamalEncrypt;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.msg.ElGamalMsgC;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.publickey.ElGamalPublicKey;

@@ -1,8 +1,8 @@
 package civitas.crypto.oneoflreencryption;
 
-import civitas.crypto.algorithms.ElGamalReencrypt;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.proof1ofl.ConstructElGamalProof1OfL;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLC;
 import civitas.crypto.publickey.ElGamalPublicKey;

@@ -2,8 +2,8 @@ package civitas.crypto.sharedkey;
 
 import javax.crypto.Cipher;
 
+import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
-import civitas.crypto.algorithms.Constants;
 import civitas.crypto.external.DoCrypto;
 import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertext;
 import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertextC;

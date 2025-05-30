@@ -1,7 +1,7 @@
 package civitas.crypto.decriptionshare;
 
+import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
-import civitas.crypto.algorithms.Constants;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextC;
 import civitas.crypto.msg.ElGamalMsg;

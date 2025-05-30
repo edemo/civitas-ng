@@ -9,11 +9,10 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
-import civitas.crypto.algorithms.MultiplyCiphertexts;
-import civitas.crypto.algorithms.SignAndEncrypt;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextC;
+import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 

@@ -1,7 +1,7 @@
 package civitas.crypto.publickeymsg;
 
-import civitas.crypto.publickey.PublicKey;
-import civitas.crypto.publickey.VerifyPublicKeySignature;
+import civitas.crypto.rsapublickey.PublicKey;
+import civitas.crypto.rsapublickey.VerifyPublicKeySignature;
 import civitas.crypto.signature.Signature;
 import civitas.util.Use;
 

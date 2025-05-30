@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
-import civitas.crypto.algorithms.Constants;
+import civitas.crypto.Constants;
 import civitas.util.Tested;
 
 public class GenerateElGamalParametersTest extends ConcreteTestBase

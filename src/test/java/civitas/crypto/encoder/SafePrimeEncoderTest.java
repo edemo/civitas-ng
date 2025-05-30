@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
+import civitas.crypto.parameters.encoder.SafePrimeEncoder;
 import civitas.util.CivitasBigInteger;
 
 public class SafePrimeEncoderTest extends ConcreteTestBase

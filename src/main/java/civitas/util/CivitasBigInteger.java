@@ -9,7 +9,7 @@ package civitas.util;
 import java.math.BigInteger;
 import java.util.Random;
 
-import civitas.crypto.algorithms.Constants;
+import civitas.crypto.Constants;
 
 public class CivitasBigInteger implements Constants {
 

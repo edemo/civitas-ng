@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.crypto.KeyGenerator;
 
-import civitas.crypto.algorithms.Constants;
+import civitas.crypto.Constants;
 
 public class GetSharedKeyGenerator implements Constants {
 

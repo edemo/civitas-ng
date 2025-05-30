@@ -10,7 +10,7 @@ import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
-import civitas.crypto.algorithms.ElGamalReencrypt;
+import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionCTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
 import civitas.util.Tested;

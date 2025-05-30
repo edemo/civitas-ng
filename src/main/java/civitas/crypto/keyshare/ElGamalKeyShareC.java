@@ -9,7 +9,6 @@ package civitas.crypto.keyshare;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import civitas.crypto.ElGamalAbstractKeyShare;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLogC;
 import civitas.crypto.publickey.ElGamalPublicKeyC;
 import civitas.util.Use;

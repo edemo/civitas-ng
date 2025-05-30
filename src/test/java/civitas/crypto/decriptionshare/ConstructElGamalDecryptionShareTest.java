@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.algorithms.CryptoHash;
-import civitas.crypto.algorithms.ElGamalEncryptTest;
+import civitas.crypto.ciphertext.ElGamalEncryptTest;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;

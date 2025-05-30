@@ -10,15 +10,12 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import civitas.common.Util;
+import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
-import civitas.crypto.algorithms.Constants;
-import civitas.crypto.algorithms.FindGenerator;
-import civitas.crypto.algorithms.GenerateSafePrime;
-import civitas.crypto.algorithms.GenerateSchnorrPrime;
-import civitas.crypto.encoder.Encoder;
-import civitas.crypto.encoder.SafePrimeEncoder;
-import civitas.crypto.encoder.SchnorrPrimeEncoder;
+import civitas.crypto.parameters.encoder.Encoder;
+import civitas.crypto.parameters.encoder.SafePrimeEncoder;
+import civitas.crypto.parameters.encoder.SchnorrPrimeEncoder;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 

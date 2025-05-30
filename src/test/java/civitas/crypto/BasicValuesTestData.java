@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import civitas.common.Util;
-import civitas.crypto.algorithms.Constants;
 import civitas.util.CivitasBigInteger;
 
 public interface BasicValuesTestData extends Constants {

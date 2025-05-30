@@ -12,7 +12,7 @@ import civitas.common.Util;
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.algorithms.CryptoHash;
-import civitas.crypto.external.ObtainMessageDigest;
+import civitas.crypto.messagedigest.ObtainMessageDigest;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;

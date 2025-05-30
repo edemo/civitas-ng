@@ -1,7 +1,7 @@
 package civitas.crypto.keyshare;
 
+import civitas.crypto.Constants;
 import civitas.crypto.CryptoException;
-import civitas.crypto.algorithms.Constants;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.publickey.ElGamalPublicKeyC;

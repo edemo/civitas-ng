@@ -1,6 +1,6 @@
 package civitas.crypto.petcommitment;
 
-import civitas.crypto.algorithms.Constants;
+import civitas.crypto.Constants;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextC;
 import civitas.crypto.parameters.ElGamalParameters;

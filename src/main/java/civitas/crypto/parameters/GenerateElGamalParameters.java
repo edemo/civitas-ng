@@ -1,10 +1,6 @@
 package civitas.crypto.parameters;
 
-import civitas.crypto.SchnorrPrime;
-import civitas.crypto.algorithms.Constants;
-import civitas.crypto.algorithms.FindGenerator;
-import civitas.crypto.algorithms.GenerateSafePrime;
-import civitas.crypto.algorithms.GenerateSchnorrPrime;
+import civitas.crypto.Constants;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -18,7 +14,7 @@ public class GenerateElGamalParameters implements Constants {
 	FindGenerator findGenerator;
 
 	public ElGamalParametersC apply(int keyLength, int groupLength) {
-		SchnorrPrime sp;
+		PrimePair sp;
 		if (groupLength == keyLength + 1) {
 			sp = generateSafePrime.apply(keyLength);
 		} else {
