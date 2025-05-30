@@ -14,7 +14,7 @@ public class ElGamalCiphertextFromXML {
 	@Use
 	ElGamalSignedCiphertextFromXML elGamalSignedCiphertextFromXML;
 
-	public static ElGamalCiphertextC fromXML(Reader r)
+	private ElGamalCiphertextC fromXML(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, ElGamalCiphertext.OPENING_TAG);
 		CivitasBigInteger a = null;

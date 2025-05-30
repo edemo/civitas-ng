@@ -1,4 +1,4 @@
-package civitas.crypto.algorithms;
+package civitas.external;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

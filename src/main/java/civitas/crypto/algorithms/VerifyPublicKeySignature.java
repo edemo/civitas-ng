@@ -1,10 +1,5 @@
 package civitas.crypto.algorithms;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.SignatureException;
-
 import civitas.crypto.CryptoError;
 import civitas.crypto.PublicKey;
 import civitas.crypto.PublicKeyMsg;
@@ -40,16 +35,8 @@ public class VerifyPublicKeySignature implements Constants {
 			sig.initVerify(Kc.k);
 			sig.update(bytes);
 			return sig.verify(sc.signature);
-		} catch (InvalidKeyException e) {
+		} catch (Exception e) {
 			throw new CryptoError(e);
-		} catch (SignatureException e) {
-			throw new CryptoError(e);
-		} catch (NoSuchAlgorithmException e) {
-			throw new CryptoError(e);
-		} catch (NoSuchProviderException e) {
-			throw new CryptoError(e);
-		} catch (RuntimeException e) {
-			throw new CryptoError("Cannot verify signature", e);
 		}
 	}
 

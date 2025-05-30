@@ -1,4 +1,4 @@
-package civitas.crypto.algorithms;
+package civitas.external;
 
 import java.security.spec.InvalidKeySpecException;
 
@@ -6,6 +6,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import civitas.crypto.CryptoError;
+import civitas.crypto.algorithms.Constants;
 import civitas.crypto.concrete.CryptoFactoryC;
 
 public class CreateSharedKeyFromBytes implements Constants {

@@ -1,4 +1,4 @@
-package civitas.crypto.algorithms;
+package civitas.external;
 
 import civitas.external.ObtainMessageDigest;
 
