@@ -1,6 +1,8 @@
-package civitas.crypto.algorithms;
+package civitas.external;
 
 import civitas.crypto.KeyPair;
+import civitas.crypto.algorithms.CreateFreshNonceBase64;
+import civitas.crypto.algorithms.GetPublicKeyGenerator;
 import civitas.crypto.concrete.PrivateKeyC;
 import civitas.crypto.concrete.PublicKeyC;
 import civitas.util.Use;

@@ -1,4 +1,4 @@
-package civitas.crypto.algorithms;
+package civitas.external;
 
 import civitas.crypto.CryptoError;
 import civitas.crypto.MessageDigest;

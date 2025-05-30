@@ -43,10 +43,12 @@ public class VerifyElGamalProofKnowDiscLogTest extends ConcreteTestBase
 	@Test
 	@DisplayName("verify fails if parameters are not of type ElGamalParametersC")
 	void verifyTest1() {
-		assertFalse(verifyElGamalProofKnowDiscLog
-				.apply(new ElGamalProofKnowDiscLogC(ELGAMAL_PROOF_KNOWN_DISC_LOG_A,
-						ELGAMAL_PROOF_KNOWN_DISC_LOG_C, ELGAMAL_PROOF_KNOWN_DISC_LOG_R,
-						G_EXP_A), mock(ElGamalParameters.class)));
+		assertFalse(
+				verifyElGamalProofKnowDiscLog.apply(
+						new ElGamalProofKnowDiscLogC(EL_GAMAL_PROOF_KNOWN_DISC_LOG_A,
+								EL_GAMAL_PROOF_KNOWN_DISC_LOG_C,
+								EL_GAMAL_PROOF_KNOWN_DISC_LOG_R, G_EXP_A),
+						mock(ElGamalParameters.class)));
 	}
 
 }

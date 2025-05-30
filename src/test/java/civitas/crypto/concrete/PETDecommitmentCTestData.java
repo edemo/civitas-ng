@@ -1,6 +1,7 @@
 package civitas.crypto.concrete;
 
 import civitas.common.Util;
+import civitas.crypto.PETDecommitment;
 import civitas.util.CivitasBigInteger;
 
 public interface PETDecommitmentCTestData
@@ -15,12 +16,21 @@ public interface PETDecommitmentCTestData
 
 	public static final String PET_DECOMMITMENT_XML = "<petD><d>"
 			+ PET_DECOMMITMENT_D_BASE64 + "</d><e>" + PET_DECOMMITMENT_E_BASE64
-			+ "</e><prf>" + EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_PROOF_XML + "</prf></petD>";
+			+ "</e><prf>" + EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_PROOF_XML
+			+ "</prf></petD>";
 
 	public static final String PET_DECOMMITMENT_NULL_XML = "<petD><d>" + "</d><e>"
-			+ "</e><prf>" + EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_PROOF_XML + "</prf></petD>";
+			+ "</e><prf>" + EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_PROOF_XML
+			+ "</prf></petD>";
 
 	public static final PETDecommitmentC PET_DECOMMITMENT = new PETDecommitmentC(
-			PET_DECOMMITMENT_D, PET_DECOMMITMENT_E, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT);
+			PET_DECOMMITMENT_D, PET_DECOMMITMENT_E,
+			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT);
+	public static final PETDecommitmentC PET_DECOMMITMENT2 = new PETDecommitmentC(
+			BIGINT_A, BIGINT_B, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT);
+
+	PETDecommitment[] PET_DECOMMITMENTS = new PETDecommitment[] {
+			PET_DECOMMITMENT,
+			PET_DECOMMITMENT2 };
 
 }

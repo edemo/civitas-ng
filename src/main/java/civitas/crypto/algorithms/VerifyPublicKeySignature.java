@@ -12,6 +12,7 @@ import civitas.crypto.Signature;
 import civitas.crypto.concrete.PublicKeyC;
 import civitas.crypto.concrete.PublicKeyMsgC;
 import civitas.crypto.concrete.SignatureC;
+import civitas.external.ComputeMessageDigest;
 import civitas.util.Use;
 
 public class VerifyPublicKeySignature implements Constants {

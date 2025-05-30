@@ -6,20 +6,15 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ElGamalKeyPairShare;
 import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.ElGamalCiphertextCTestData;
 import civitas.crypto.concrete.ElGamalDecryptionShareC;
 import civitas.crypto.concrete.ElGamalDecryptionShareTestData;
-import civitas.crypto.concrete.ElGamalPrivateKeyCTestData;
-import civitas.crypto.concrete.ElGamalPublicKeyCTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
 
 public class ConstructElGamalDecryptionShareTest extends ConcreteTestBase
-		implements ElGamalDecryptionShareTestData, ElGamalPrivateKeyCTestData,
-		ElGamalPublicKeyCTestData, ElGamalCiphertextCTestData {
+		implements ElGamalDecryptionShareTestData {
 
 	@Tested
 	ConstructElGamalDecryptionShare constructElGamalDecryptionShare;
@@ -41,11 +36,8 @@ public class ConstructElGamalDecryptionShareTest extends ConcreteTestBase
 
 		CivitasBigInteger ai = c1.modPow(key, p);
 
-		ElGamalKeyPairShare keyShare = new ElGamalKeyPairShare(EL_GAMAL_PARAMETERS,
-				EL_GAMAL_PUBLIC_KEY_E, ELGAMAL_PRIVATE_KEY_E);
-
 		ElGamalDecryptionShareC actual = (ElGamalDecryptionShareC) constructElGamalDecryptionShare
-				.apply(CIPHERTEXT_E, keyShare);
+				.apply(CIPHERTEXT_E, EL_GAMAL_KEYPAIR_SHARE_NO_PROOF);
 		verify(constructElGamalDecryptionShare.constructElGamalDiscLogEqualityProof)
 				.apply(EL_GAMAL_PARAMETERS, CIPHERTEXT_E.a, BIGINT_G,
 						ELGAMAL_PRIVATE_KEY_E.x);

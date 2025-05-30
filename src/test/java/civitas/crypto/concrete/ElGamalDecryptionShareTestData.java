@@ -4,7 +4,8 @@ import civitas.common.Util;
 import civitas.util.CivitasBigInteger;
 
 public interface ElGamalDecryptionShareTestData
-		extends ElGamalProofDiscLogEqualityCTestData, ElGamalCiphertextCTestData {
+		extends ElGamalProofDiscLogEqualityCTestData, ElGamalCiphertextCTestData,
+		ElGamalKeyPairShareTestData {
 
 	CivitasBigInteger EL_GAMAL_DECRYPTION_SHARE_AI = CIPHERTEXT_E_A
 			.modPow(PRIVKEY_E, BIGINT_P);

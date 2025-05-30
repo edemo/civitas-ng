@@ -15,6 +15,7 @@ import civitas.crypto.concrete.ElGamalCiphertextCTestData;
 import civitas.crypto.concrete.ElGamalReencryptFactorCTestData;
 import civitas.crypto.concrete.ProofVoteC;
 import civitas.crypto.concrete.ProofVoteTestData;
+import civitas.external.ObtainMessageDigest;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;

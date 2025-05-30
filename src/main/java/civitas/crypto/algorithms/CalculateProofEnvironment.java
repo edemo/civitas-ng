@@ -6,6 +6,7 @@ import java.util.List;
 import civitas.crypto.MessageDigest;
 import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalParametersC;
+import civitas.external.ObtainMessageDigest;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 

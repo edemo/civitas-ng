@@ -47,13 +47,20 @@ public class ConstructElGamalProofDVRCTest extends ConcreteTestBase
 			+ "ElGamalProofDVRC(e, eprime, c, w, r, u)\n")
 	//@formatter:on
 	void test1() throws IllegalArgumentException, IOException {
-
 		ElGamalProofDVRC proof = constructElGamalProofDVR.apply(CIPHERTEXT_E,
 				CIPHERTEXT_EPRIME, EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME,
 				ZETA);
-
 		assertEquals(EL_GAMAL_PROOF_DVR_XML, proof.toXML());
+	}
 
+	@Test
+	@DisplayName("the version where factors are given computes zeta")
+	void test1_1() throws IllegalArgumentException, IOException {
+		ElGamalProofDVRC proof = (ElGamalProofDVRC) constructElGamalProofDVR.apply(
+				EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_E,
+				CIPHERTEXT_EPRIME, ELGAMAL_REENCRYPT_FACTOR_E,
+				ELGAMAL_REENCRYPT_FACTOR_EPRIME);
+		assertEquals(EL_GAMAL_PROOF_DVR_XML, proof.toXML());
 	}
 
 	@Test

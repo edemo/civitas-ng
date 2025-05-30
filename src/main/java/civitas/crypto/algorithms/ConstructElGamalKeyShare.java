@@ -13,11 +13,13 @@ import civitas.util.Use;
 public class ConstructElGamalKeyShare {
 	@Use
 	ConstructProofKnowDiscLog constructProofKnowDiscLog;
+	@Use
+	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
 	public ElGamalKeyShare apply(ElGamalKeyPairShare kps) throws CryptoError {
 		ElGamalKeyShare egks = apply(kps.pubKey,
 				constructProofKnowDiscLog.apply(kps.pubKey.getParams(), kps.privKey));
-		if (!egks.verify()) {
+		if (!verifyElGamalKeyShare.apply((ElGamalKeyShareC) egks)) {
 			throw new CryptoError("Cannot verify a newly created key share!");
 		}
 		return egks;
@@ -30,7 +32,7 @@ public class ConstructElGamalKeyShare {
 			return new ElGamalKeyShareC((ElGamalPublicKeyC) K,
 					(ElGamalProofKnowDiscLogC) proof);
 		}
-		throw new Error("problem with parameters");
+		throw new CryptoError("problem with parameters");
 	}
 
 }

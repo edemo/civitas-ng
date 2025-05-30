@@ -1,5 +1,7 @@
 package civitas.crypto.algorithms;
 
+import civitas.external.ObtainMessageDigest;
+
 public class ObtainMessageDigestStub {
 
 	public static ObtainMessageDigest stub() {

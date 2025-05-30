@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import civitas.crypto.MessageDigest;
+import civitas.external.ObtainMessageDigest;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 

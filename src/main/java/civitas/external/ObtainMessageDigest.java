@@ -1,10 +1,11 @@
-package civitas.crypto.algorithms;
+package civitas.external;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 
 import civitas.crypto.CryptoError;
 import civitas.crypto.MessageDigest;
+import civitas.crypto.algorithms.Constants;
 import civitas.crypto.concrete.MessageDigestC;
 
 public class ObtainMessageDigest implements Constants {

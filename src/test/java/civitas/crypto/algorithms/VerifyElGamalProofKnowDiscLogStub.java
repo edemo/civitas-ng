@@ -11,7 +11,7 @@ public class VerifyElGamalProofKnowDiscLogStub
 	public static VerifyElGamalProofKnowDiscLog stub() {
 		VerifyElGamalProofKnowDiscLog stub = mock(
 				VerifyElGamalProofKnowDiscLog.class);
-		when(stub.apply(ELGAMAL_PROOF_KNOWN_DISC_LOG, EL_GAMAL_PARAMETERS))
+		when(stub.apply(EL_GAMAL_PROOF_KNOWN_DISC_LOG, EL_GAMAL_PARAMETERS))
 				.thenReturn(true);
 		return stub;
 	}

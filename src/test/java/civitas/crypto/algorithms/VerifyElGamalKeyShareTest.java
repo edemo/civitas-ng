@@ -37,7 +37,7 @@ public class VerifyElGamalKeyShareTest extends ConcreteTestBase
 	@DisplayName("verify is false if the key is null")
 	void test1_2() throws IllegalArgumentException, IOException {
 		assertFalse(verifyElGamalKeyShare
-				.apply(new ElGamalKeyShareC(null, ELGAMAL_PROOF_KNOWN_DISC_LOG)));
+				.apply(new ElGamalKeyShareC(null, EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
 	}
 
 	@Test
@@ -45,7 +45,7 @@ public class VerifyElGamalKeyShareTest extends ConcreteTestBase
 	void test1_3() throws IllegalArgumentException, IOException {
 		assertFalse(verifyElGamalKeyShare.apply(new ElGamalKeyShareC(
 				new ElGamalPublicKeyC(BIGINT_B, EL_GAMAL_PARAMETERS),
-				ELGAMAL_PROOF_KNOWN_DISC_LOG)));
+				EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
 	}
 
 }
