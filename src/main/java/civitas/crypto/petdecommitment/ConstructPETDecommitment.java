@@ -1,6 +1,6 @@
 package civitas.crypto.petdecommitment;
 
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.proofdisclog.ConstructElGamalDiscLogEqualityProof;
@@ -14,7 +14,7 @@ public class ConstructPETDecommitment {
 	ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
 
 	public PETDecommitment apply(ElGamalParameters p, CivitasBigInteger exponent,
-			ElGamalCiphertextC ciphertext1, ElGamalCiphertextC ciphertext2) {
+			ElGamalCiphertext ciphertext1, ElGamalCiphertext ciphertext2) {
 		try {
 			ElGamalParametersC params = (ElGamalParametersC) p;
 

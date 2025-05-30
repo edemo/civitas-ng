@@ -1,11 +1,9 @@
-package civitas.crypto.vote;
+package civitas.crypto.votecapabilityshare;
 
 import java.io.IOException;
 import java.io.Reader;
 
 import civitas.common.Util;
-import civitas.crypto.votecapabilityshare.VoteCapabilityShare;
-import civitas.crypto.votecapabilityshare.VoteCapabilityShareC;
 
 public class VoteCapabilityShareFromXML {
 

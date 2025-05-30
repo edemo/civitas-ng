@@ -1,6 +1,5 @@
 package civitas.crypto.ciphertext;
 
-import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.util.DI;
 
 public class ElGamalReencryptStub {

@@ -7,7 +7,6 @@ import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.privatekey.ElGamalPrivateKeyC;
@@ -25,7 +24,7 @@ public class FakeElGamalProofDVRC {
 	@Use
 	ConvertHashToBigInt convertHashToBigInt;
 
-	public ElGamalProofDVRC apply(ElGamalCiphertextC e, ElGamalCiphertextC et,
+	public ElGamalProofDVRC apply(ElGamalCiphertext e, ElGamalCiphertext et,
 			ElGamalPublicKeyC key, ElGamalPublicKeyC verifierKey,
 			ElGamalPrivateKeyC verifierPrivKey) {
 
@@ -79,7 +78,7 @@ public class FakeElGamalProofDVRC {
 			ElGamalPrivateKey verifierPrivKey, ElGamalCiphertext e,
 			ElGamalCiphertext ePrime) {
 		try {
-			return apply((ElGamalCiphertextC) e, (ElGamalCiphertextC) ePrime,
+			return apply((ElGamalCiphertext) e, (ElGamalCiphertext) ePrime,
 					(ElGamalPublicKeyC) k, (ElGamalPublicKeyC) verifierKey,
 					(ElGamalPrivateKeyC) verifierPrivKey);
 		} catch (ClassCastException ex) {

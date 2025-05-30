@@ -6,10 +6,8 @@
  */
 package civitas.crypto.oneoflreencryption;
 
-import java.io.PrintWriter;
-
-import civitas.common.CiphertextList;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.proof1ofl.ElGamalProof1OfL;
 import civitas.crypto.publickey.ElGamalPublicKey;
 
@@ -24,8 +22,6 @@ public interface ElGamal1OfLReencryption {
 	public ElGamalCiphertext getCiphertext();
 
 	public ElGamalProof1OfL getProof();
-
-	public void toXML(PrintWriter sb);
 
 	public boolean equals(ElGamal1OfLReencryption r);
 }

@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 
+import civitas.util.Use;
+
 /**
  * A submission made by a voter to the ballot box. It is a collection of
  * VeriableVotes, and the voter block that the voter belings in.
@@ -89,6 +91,9 @@ public class VoterSubmission implements XMLSerializable {
 		return false;
 	}
 
+	@Use
+	VerifiableVoteToXML verifiableVoteToXML;
+
 	@Override
 	public void toXML(PrintWriter sb) {
 		if (sb == null)
@@ -107,7 +112,7 @@ public class VoterSubmission implements XMLSerializable {
 		sb.print("<votes>");
 		try {
 			for (VerifiableVote vote : votes) {
-				vote.toXML(sb);
+				verifiableVoteToXML.apply(vote, sb);
 			}
 		} catch (NullPointerException imposs) {
 		} catch (ArrayIndexOutOfBoundsException imposs) {

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 import civitas.common.Util;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextFromXML;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLC;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLFromXML;
@@ -20,7 +20,7 @@ public class ElGamal1OfLReencryptionFromXML {
 	public ElGamal1OfLReencryption apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, "elGamal1OfLReencryption");
-		ElGamalCiphertextC m = elGamalCiphertextFromXML.apply(r);
+		ElGamalCiphertext m = elGamalCiphertextFromXML.apply(r);
 		ElGamalProof1OfLC proof = elGamalProof1OfLFromXML.apply(r);
 		Util.swallowEndTag(r, "elGamal1OfLReencryption");
 		return new ElGamal1OfLReencryptionC(m, proof);

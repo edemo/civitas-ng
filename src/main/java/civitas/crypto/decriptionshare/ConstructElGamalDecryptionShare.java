@@ -1,7 +1,6 @@
 package civitas.crypto.decriptionshare;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
 import civitas.crypto.keypairshare.ElGamalKeyPairShare;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.privatekey.ElGamalPrivateKeyC;
@@ -16,10 +15,10 @@ public class ConstructElGamalDecryptionShare {
 
 	public ElGamalDecryptionShare apply(ElGamalCiphertext c,
 			ElGamalKeyPairShare keyShare) {
-		if (c instanceof ElGamalCiphertextC
+		if (c instanceof ElGamalCiphertext
 				&& keyShare.privKey instanceof ElGamalPrivateKeyC
 				&& keyShare.privKey.getParams() instanceof ElGamalParametersC) {
-			ElGamalCiphertextC mc = (ElGamalCiphertextC) c;
+			ElGamalCiphertext mc = (ElGamalCiphertext) c;
 			ElGamalPrivateKeyC priv = (ElGamalPrivateKeyC) keyShare.privKey;
 			ElGamalParametersC params = (ElGamalParametersC) priv.getParams();
 			CivitasBigInteger ai = mc.a.modPow(priv.x, params.p);

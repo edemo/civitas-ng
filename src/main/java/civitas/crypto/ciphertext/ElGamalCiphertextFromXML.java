@@ -13,7 +13,7 @@ public class ElGamalCiphertextFromXML {
 	@Use
 	ElGamalSignedCiphertextFromXML elGamalSignedCiphertextFromXML;
 
-	private ElGamalCiphertextC fromXML(Reader r)
+	private ElGamalCiphertext fromXML(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, ElGamalCiphertext.OPENING_TAG);
 		CivitasBigInteger a = null;
@@ -29,10 +29,10 @@ public class ElGamalCiphertextFromXML {
 		}
 
 		Util.swallowEndTag(r, ElGamalCiphertext.OPENING_TAG);
-		return new ElGamalCiphertextC(a, b);
+		return new ElGamalCiphertext(a, b);
 	}
 
-	public ElGamalCiphertextC apply(Reader r) throws IOException {
+	public ElGamalCiphertext apply(Reader r) throws IOException {
 		if (Util.isNextTag(r, ElGamalCiphertext.OPENING_TAG)) {
 			return fromXML(r);
 		} else {

@@ -15,11 +15,14 @@ public class ElGamalProofDVRCTest extends ConcreteTestBase
 		implements ElGamalProofDVRCTestData {
 	@Use
 	ElGamalProofDVRFromXML elGamalProofDVRFromXML;
+	@Use
+	ElGamalProofDVRToXML elGamalProofDVRToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works")
 	void test() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMAL_PROOF_DVR_XML, EL_GAMAL_PROOF_DVR.toXML());
+		assertEquals(EL_GAMAL_PROOF_DVR_XML,
+				elGamalProofDVRToXML.apply(EL_GAMAL_PROOF_DVR));
 	}
 
 	@Test
@@ -38,8 +41,8 @@ public class ElGamalProofDVRCTest extends ConcreteTestBase
 	@DisplayName("fromXML works")
 	void fromXMLTest() throws IllegalArgumentException, IOException {
 		assertEquals(EL_GAMAL_PROOF_DVR_XML,
-				((ElGamalProofDVRC) elGamalProofDVRFromXML
-						.apply(new StringReader(EL_GAMAL_PROOF_DVR_XML))).toXML());
+				elGamalProofDVRToXML.apply(((ElGamalProofDVRC) elGamalProofDVRFromXML
+						.apply(new StringReader(EL_GAMAL_PROOF_DVR_XML)))));
 	}
 
 }

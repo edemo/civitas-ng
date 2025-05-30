@@ -3,7 +3,6 @@ package civitas.crypto.decriptionshare;
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.msg.ElGamalMsgC;
 import civitas.crypto.parameters.ElGamalParameters;
@@ -15,7 +14,7 @@ public class CombineDecryptionShares implements Constants {
 	public ElGamalMsg apply(ElGamalCiphertext c, ElGamalDecryptionShare[] shares,
 			ElGamalParameters params) throws CryptoError {
 		CivitasBigInteger prod = ONE;
-		ElGamalCiphertextC cipher = (ElGamalCiphertextC) c;
+		ElGamalCiphertext cipher = (ElGamalCiphertext) c;
 		ElGamalParametersC ps = (ElGamalParametersC) params;
 		for (ElGamalDecryptionShare share2 : shares) {
 			ElGamalDecryptionShareC share = (ElGamalDecryptionShareC) share2;

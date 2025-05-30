@@ -9,9 +9,9 @@ package civitas.crypto.proof1ofl;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import civitas.common.CiphertextList;
 import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;

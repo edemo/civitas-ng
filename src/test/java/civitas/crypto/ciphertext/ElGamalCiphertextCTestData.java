@@ -1,8 +1,8 @@
 package civitas.crypto.ciphertext;
 
-import civitas.common.CiphertextList;
 import civitas.common.Util;
 import civitas.crypto.CryptoFactoryC;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.msg.ElgamalMessageTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextC;
 import civitas.util.CivitasBigInteger;
@@ -16,21 +16,21 @@ public interface ElGamalCiphertextCTestData extends ElgamalMessageTestData {
 	CivitasBigInteger CIPHERTEXT_E_A = BIGINT_G.modPow(FACTOR_E, BIGINT_P);
 	CivitasBigInteger CIPHERTEXT_E_B = MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED
 			.modMultiply(PUBKEY_E.modPow(FACTOR_E, BIGINT_P), BIGINT_P);
-	public static ElGamalCiphertextC CIPHERTEXT_E = new ElGamalCiphertextC(
+	public static ElGamalCiphertext CIPHERTEXT_E = new ElGamalCiphertext(
 			CIPHERTEXT_E_A, CIPHERTEXT_E_B);
 
 	CivitasBigInteger CIPHERTEXT_ENCCAP_A = BIGINT_G.modPow(FACTOR_EPRIME,
 			BIGINT_P);
 	CivitasBigInteger CIPHERTEXT_ENCCAP_B = MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED
 			.modMultiply(PUBKEY_E.modPow(FACTOR_EPRIME, BIGINT_P), BIGINT_P);
-	public static ElGamalCiphertextC CIPHERTEXT_ENCCAP = new ElGamalCiphertextC(
+	public static ElGamalCiphertext CIPHERTEXT_ENCCAP = new ElGamalCiphertext(
 			CIPHERTEXT_ENCCAP_A, CIPHERTEXT_ENCCAP_B);
 
 	CivitasBigInteger CIPHERTEXT_EPRIME_A = BIGINT_G.modPow(FACTOR_EPRIME,
 			BIGINT_P);
 	CivitasBigInteger CIPHERTEXT_EPRIME_B = MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED
 			.modMultiply(PUBKEY_E.modPow(FACTOR_EPRIME, BIGINT_P), BIGINT_P);
-	public static ElGamalCiphertextC CIPHERTEXT_EPRIME = new ElGamalCiphertextC(
+	public static ElGamalCiphertext CIPHERTEXT_EPRIME = new ElGamalCiphertext(
 			CIPHERTEXT_EPRIME_A, CIPHERTEXT_EPRIME_B);
 
 	String CIPHERTEXT_E_B_BASE64 = Util.fromBigInt(CIPHERTEXT_E_B);
@@ -56,13 +56,13 @@ public interface ElGamalCiphertextCTestData extends ElgamalMessageTestData {
 	public static final String PUBLIC_KEY_CIPHERTEXT_XML = "<publicKeyCiphertext>"
 			+ SOMESTRING_BASE64 + "</publicKeyCiphertext>";
 	public static final String EL_GAMAL_CIPHERTEXT_NAIVE_XML = "<elGamalCiphertext><a>42</a><b>24</b></elGamalCiphertext>";
-	public static final ElGamalCiphertextC EL_GAMAL_CIPHERTEXT = new ElGamalCiphertextC(
+	public static final ElGamalCiphertext EL_GAMAL_CIPHERTEXT = new ElGamalCiphertext(
 			GENERATOR_OTHER_POW_R1, BIGINT_D);
 	public static final String EL_GAMAL_CIPHERTEXT_XML = "<elGamalCiphertext><a>"
 			+ GENERATOR_OTHER__POW_R1_BASE64 + "</a><b>" + BIGINT_D_BASE64
 			+ "</b></elGamalCiphertext>";
 
-	public static final ElGamalCiphertextC ENCRYPTED_ZERO_FACTOR = new ElGamalCiphertextC(
+	public static final ElGamalCiphertext ENCRYPTED_ZERO_FACTOR = new ElGamalCiphertext(
 			ONE, G_EXP_B);
 	public static final String ENCRYPTED_ZERO_FACTOR_XML = "<elGamalCiphertext><a>"
 			+ ONE_BASE64 + "</a><b>" + G_EXP_B_BASE64 + "</b></elGamalCiphertext>";

@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
-import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.Use;
 
@@ -46,20 +45,6 @@ public class ConstructPETShareTest extends ConcreteTestBase
 	void test4() {
 		assertEquals(null,
 				constructPETShare.apply(null, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
-	}
-
-	@Test
-	@DisplayName("returns null if ciphertext a is not of type ElGamalCiphertextC")
-	void test5() {
-		assertEquals(null, constructPETShare.apply(EL_GAMAL_PARAMETERS,
-				mock(ElGamalCiphertext.class), CIPHERTEXT_EPRIME));
-	}
-
-	@Test
-	@DisplayName("returns null if ciphertext b is not of type ElGamalCiphertextC")
-	void test6() {
-		assertEquals(null, constructPETShare.apply(EL_GAMAL_PARAMETERS,
-				CIPHERTEXT_E, mock(ElGamalCiphertext.class)));
 	}
 
 	@Test

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;

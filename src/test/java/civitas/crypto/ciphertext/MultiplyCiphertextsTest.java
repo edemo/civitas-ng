@@ -32,13 +32,13 @@ public class MultiplyCiphertextsTest extends ConcreteTestBase
 		ElGamalCiphertext[] actual = multiplyCiphertexts.apply(CIPHERTEXT_MATRIX,
 				EL_GAMAL_PARAMETERS);
 		assertEquals(CivitasBigInteger.valueOf(2 * 11),
-				((ElGamalCiphertextC) actual[0]).a);
+				((ElGamalCiphertext) actual[0]).a);
 		assertEquals(CivitasBigInteger.valueOf(5 * 17),
-				((ElGamalCiphertextC) actual[1]).a);
+				((ElGamalCiphertext) actual[1]).a);
 		assertEquals(CivitasBigInteger.valueOf(3 * 13),
-				((ElGamalCiphertextC) actual[0]).b);
+				((ElGamalCiphertext) actual[0]).b);
 		assertEquals(CivitasBigInteger.valueOf(7 * 19),
-				((ElGamalCiphertextC) actual[1]).b);
+				((ElGamalCiphertext) actual[1]).b);
 	}
 
 	@Test

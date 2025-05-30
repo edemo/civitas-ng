@@ -6,8 +6,6 @@
  */
 package civitas.crypto.signedciphertext;
 
-import civitas.crypto.ciphertext.ElGamalCiphertext;
-
-public interface ElGamalSignedCiphertext extends ElGamalCiphertext {
+public interface ElGamalSignedCiphertext {
 
 }

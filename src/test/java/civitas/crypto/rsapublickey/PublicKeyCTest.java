@@ -14,8 +14,6 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.rsaprivatekey.PrivateKey;
 import civitas.crypto.rsaprivatekey.PrivateKeyC;
-import civitas.crypto.rsapublickey.PublicKeyC;
-import civitas.crypto.rsapublickey.PublicKeyFromXML;
 import civitas.util.Use;
 
 public class PublicKeyCTest extends ConcreteTestBase

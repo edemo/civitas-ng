@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.Constants;
-import civitas.crypto.parameters.GenerateSafePrime;
-import civitas.crypto.parameters.PrimePair;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 import civitas.util.Tested;
 

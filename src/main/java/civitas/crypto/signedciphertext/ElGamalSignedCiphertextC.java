@@ -10,10 +10,10 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import civitas.common.Util;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.util.CivitasBigInteger;
 
-public class ElGamalSignedCiphertextC extends ElGamalCiphertextC
+public class ElGamalSignedCiphertextC extends ElGamalCiphertext
 		implements ElGamalSignedCiphertext {
 	public final CivitasBigInteger c;
 	public final CivitasBigInteger d;
@@ -25,14 +25,12 @@ public class ElGamalSignedCiphertextC extends ElGamalCiphertextC
 		this.d = d;
 	}
 
-	@Override
 	public String toXML() {
 		StringWriter sb = new StringWriter();
 		toXML(new PrintWriter(sb));
 		return sb.toString();
 	}
 
-	@Override
 	public void toXML(PrintWriter s) {
 		s.print("<elGamalSignedCiphertext>");
 		s.print("<a>");
@@ -52,12 +50,6 @@ public class ElGamalSignedCiphertextC extends ElGamalCiphertextC
 			Util.escapeString(Util.fromBigInt(this.d), s);
 		s.print("</d>");
 		s.print("</elGamalSignedCiphertext>");
-	}
-
-	@Override
-	@Deprecated
-	public void toUnsignedCiphertextXML(PrintWriter sb) {
-		super.toXML(sb);
 	}
 
 }

@@ -6,8 +6,6 @@
  */
 package civitas.crypto.proofdvr;
 
-import java.io.PrintWriter;
-
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.publickey.ElGamalPublicKey;
 
@@ -23,5 +21,4 @@ public interface ElGamalProofDVR {
 
 	ElGamalCiphertext getEprime();
 
-	public void toXML(PrintWriter sb);
 }

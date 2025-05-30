@@ -27,9 +27,10 @@ public class ConstructElGamalProofDVRCTest extends ConcreteTestBase
 	ConvertHashToBigInt convertHashToBigInt;
 	@Use
 	CryptoHash cryptoHash;
-
 	@Use
 	VerifyElGamalProofDVR verifyElGamalProofDVR;
+	@Use
+	ElGamalProofDVRToXML elGamalProofDVRToXML;
 
 	//@formatter:off
 	@Test
@@ -51,7 +52,7 @@ public class ConstructElGamalProofDVRCTest extends ConcreteTestBase
 		ElGamalProofDVRC proof = constructElGamalProofDVR.apply(CIPHERTEXT_E,
 				CIPHERTEXT_EPRIME, EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME,
 				ZETA);
-		assertEquals(EL_GAMAL_PROOF_DVR_XML, proof.toXML());
+		assertEquals(EL_GAMAL_PROOF_DVR_XML, elGamalProofDVRToXML.apply(proof));
 	}
 
 	@Test
@@ -61,7 +62,7 @@ public class ConstructElGamalProofDVRCTest extends ConcreteTestBase
 				EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_E,
 				CIPHERTEXT_EPRIME, ELGAMAL_REENCRYPT_FACTOR_E,
 				ELGAMAL_REENCRYPT_FACTOR_EPRIME);
-		assertEquals(EL_GAMAL_PROOF_DVR_XML, proof.toXML());
+		assertEquals(EL_GAMAL_PROOF_DVR_XML, elGamalProofDVRToXML.apply(proof));
 	}
 
 	@Test

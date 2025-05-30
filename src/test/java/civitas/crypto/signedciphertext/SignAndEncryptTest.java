@@ -10,8 +10,6 @@ import civitas.common.Util;
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
-import civitas.crypto.signedciphertext.ElGamalSignedCiphertextC;
-import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;

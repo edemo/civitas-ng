@@ -6,18 +6,19 @@
  */
 package civitas.crypto.ciphertext;
 
-import java.io.PrintWriter;
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
 
-public interface ElGamalCiphertext {
+@EqualsAndHashCode
+public class ElGamalCiphertext {
 	public static final String OPENING_TAG = "elGamalCiphertext";
 
-	public void toXML(PrintWriter sb);
+	public final CivitasBigInteger a;
+	public final CivitasBigInteger b;
 
-	@Deprecated
-	public void toUnsignedCiphertextXML(PrintWriter sb);
+	public ElGamalCiphertext(CivitasBigInteger a, CivitasBigInteger b) {
+		this.a = a;
+		this.b = b;
+	}
 
-	public boolean equals(ElGamalCiphertext o);
-
-	@Override
-	public int hashCode();
 }

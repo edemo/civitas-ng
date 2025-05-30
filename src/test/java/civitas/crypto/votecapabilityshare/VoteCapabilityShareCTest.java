@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
-import civitas.crypto.vote.VoteCapabilityShareFromXML;
 import civitas.util.Use;
 
 public class VoteCapabilityShareCTest extends ConcreteTestBase

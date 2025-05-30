@@ -7,7 +7,6 @@ import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.publickey.ElGamalPublicKeyC;
@@ -31,14 +30,14 @@ public class ConstructElGamalProofDVR {
 			ElGamalParametersC ps = (ElGamalParametersC) k.getParams();
 			CivitasBigInteger zeta = ((ElGamalReencryptFactorC) erPrime).r
 					.modSubtract(((ElGamalReencryptFactorC) er).r, ps.q);
-			return apply((ElGamalCiphertextC) e, (ElGamalCiphertextC) ePrime,
+			return apply((ElGamalCiphertext) e, (ElGamalCiphertext) ePrime,
 					(ElGamalPublicKeyC) k, (ElGamalPublicKeyC) verifierKey, zeta);
 		} catch (ClassCastException ex) {
 			return null;
 		}
 	}
 
-	public ElGamalProofDVRC apply(ElGamalCiphertextC e, ElGamalCiphertextC eprime,
+	public ElGamalProofDVRC apply(ElGamalCiphertext e, ElGamalCiphertext eprime,
 			ElGamalPublicKeyC key, ElGamalPublicKeyC verifierKey,
 			CivitasBigInteger zeta) {
 

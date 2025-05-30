@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
-import civitas.crypto.parameters.LegendreSymbol;
 import civitas.util.Tested;
 
 public class LegendreSymbolTest extends ConcreteTestBase

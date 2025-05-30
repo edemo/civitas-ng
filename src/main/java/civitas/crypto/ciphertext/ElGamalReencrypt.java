@@ -21,13 +21,13 @@ public class ElGamalReencrypt {
 		try {
 			ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
 			ElGamalPublicKeyC k = (ElGamalPublicKeyC) key;
-			ElGamalCiphertextC c = (ElGamalCiphertextC) ciphertext;
+			ElGamalCiphertext c = (ElGamalCiphertext) ciphertext;
 			CivitasBigInteger c1 = c.a;
 			CivitasBigInteger c2 = c.b;
 			CivitasBigInteger y = generateRandomElement.apply(ps.q);
 			c1 = c1.modMultiply(ps.g.modPow(y, ps.p), ps.p);
 			c2 = c2.modMultiply(k.y.modPow(y, ps.p), ps.p);
-			return new ElGamalCiphertextC(c1, c2);
+			return new ElGamalCiphertext(c1, c2);
 		} catch (ClassCastException impossible) {
 			throw new CryptoError(impossible);
 		}
@@ -49,13 +49,13 @@ public class ElGamalReencrypt {
 		try {
 			ElGamalParametersC ps = (ElGamalParametersC) key.getParams();
 			ElGamalPublicKeyC k = (ElGamalPublicKeyC) key;
-			ElGamalCiphertextC c = (ElGamalCiphertextC) ciphertext;
+			ElGamalCiphertext c = (ElGamalCiphertext) ciphertext;
 			CivitasBigInteger a = c.a;
 			CivitasBigInteger b = c.b;
 			CivitasBigInteger r = ((ElGamalReencryptFactorC) factor).r;
 			a = a.modMultiply(ps.g.modPow(r, ps.p), ps.p);
 			b = b.modMultiply(k.y.modPow(r, ps.p), ps.p);
-			return new ElGamalCiphertextC(a, b);
+			return new ElGamalCiphertext(a, b);
 		} catch (ClassCastException e) {
 			throw new CryptoError(e);
 		}

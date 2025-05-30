@@ -3,7 +3,6 @@ package civitas.crypto.msg;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.privatekey.ElGamalPrivateKeyC;
@@ -29,7 +28,7 @@ public class DecryptElGamalMessage {
 					throw new CryptoException("Ciphertext failed verification");
 				}
 			}
-			ElGamalCiphertextC c = (ElGamalCiphertextC) ciphertext;
+			ElGamalCiphertext c = (ElGamalCiphertext) ciphertext;
 			CivitasBigInteger a = c.a;
 			CivitasBigInteger b = c.b;
 			CivitasBigInteger m = b.modDivide(a.modPow(k.x, ps.p), ps.p);

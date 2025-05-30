@@ -8,8 +8,8 @@ package civitas.crypto.proof1ofl;
 
 import java.io.PrintWriter;
 
-import civitas.common.CiphertextList;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.publickey.ElGamalPublicKey;
 
 /**

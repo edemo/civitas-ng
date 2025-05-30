@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 import civitas.common.Util;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextFromXML;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
@@ -17,8 +17,8 @@ public class PetShareFromXML {
 	public PETShareC apply(Reader r) throws IOException {
 		Util.swallowTag(r, "petShare");
 
-		ElGamalCiphertextC ciphertext1 = null;
-		ElGamalCiphertextC ciphertext2 = null;
+		ElGamalCiphertext ciphertext1 = null;
+		ElGamalCiphertext ciphertext2 = null;
 
 		ciphertext1 = elGamalCiphertextFromXML.apply(r);
 		ciphertext2 = elGamalCiphertextFromXML.apply(r);

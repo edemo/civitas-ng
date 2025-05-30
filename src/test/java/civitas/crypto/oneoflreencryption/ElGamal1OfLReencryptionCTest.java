@@ -12,8 +12,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
 import civitas.crypto.ciphertext.ElGamalCiphertextFromXML;
+import civitas.crypto.ciphertext.ElGamalCiphertextToXML;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLC;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLFromXML;
 import civitas.util.Use;
@@ -24,21 +24,25 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 	@Use
 	ElGamalCiphertextFromXML elGamalCiphertextFromXML;
 	@Use
+	ElGamalCiphertextToXML elGamalCiphertextToXML;
+	@Use
 	ElGamal1OfLReencryptionFromXML elGamal1OfLReencryptionFromXML;
+	@Use
+	ElGamal1OfLReencryptionToXML elGamal1OfLReencryptionToXML;
 
 	@Test
 	@DisplayName("constructor accepts nulls")
 	void test0() {
 		assertEquals(EL_GAMAL_1_OF_L_REENCRYPTION_NULL_XML,
-				new ElGamal1OfLReencryptionC(null, null).toXML());
+				elGamal1OfLReencryptionToXML
+						.apply(new ElGamal1OfLReencryptionC(null, null)));
 	}
 
 	@Test
 	@DisplayName("getCyphertext works as expected")
 	void test() {
-		assertEquals(EL_GAMAL_CIPHERTEXT_E_XML,
-				((ElGamalCiphertextC) EL_GAMAL_1_OF_L_REENCRYPTION.getCiphertext())
-						.toXML());
+		assertEquals(EL_GAMAL_CIPHERTEXT_E_XML, elGamalCiphertextToXML
+				.apply(EL_GAMAL_1_OF_L_REENCRYPTION.getCiphertext()));
 	}
 
 	@Test
@@ -52,7 +56,7 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 	@DisplayName("toXML works as expected")
 	void toXMLTest() {
 		assertEquals(EL_GAMAL_1_OF_L_REENCRYPTION_XML,
-				EL_GAMAL_1_OF_L_REENCRYPTION.toXML());
+				elGamal1OfLReencryptionToXML.apply(EL_GAMAL_1_OF_L_REENCRYPTION));
 	}
 
 	@Test

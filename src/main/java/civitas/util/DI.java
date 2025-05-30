@@ -21,8 +21,8 @@ public class DI {
 			constructor.setAccessible(true);
 			instance = constructor.newInstance();
 			fill(instance);
-		} catch (Exception e) {
-			throw new Error(e);
+		} catch (Throwable e) {
+			throw new Error("" + klass, e);
 		}
 		instances.put(klass, instance);
 		return (T) instance;

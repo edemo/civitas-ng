@@ -6,21 +6,17 @@
  */
 package civitas.crypto.oneoflreencryption;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
-import civitas.common.CiphertextList;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.proof1ofl.ElGamalProof1OfL;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLC;
 import civitas.crypto.publickey.ElGamalPublicKey;
 
 public class ElGamal1OfLReencryptionC implements ElGamal1OfLReencryption {
-	public final ElGamalCiphertextC m;
+	public final ElGamalCiphertext m;
 	public final ElGamalProof1OfLC proof;
 
-	public ElGamal1OfLReencryptionC(ElGamalCiphertextC m,
+	public ElGamal1OfLReencryptionC(ElGamalCiphertext m,
 			ElGamalProof1OfLC proof) {
 		this.m = m;
 		this.proof = proof;
@@ -34,22 +30,6 @@ public class ElGamal1OfLReencryptionC implements ElGamal1OfLReencryption {
 	@Override
 	public ElGamalProof1OfL getProof() {
 		return proof;
-	}
-
-	public String toXML() {
-		StringWriter sb = new StringWriter();
-		toXML(new PrintWriter(sb));
-		return sb.toString();
-	}
-
-	@Override
-	public void toXML(PrintWriter s) {
-		s.print("<elGamal1OfLReencryption>");
-		if (m != null)
-			this.m.toXML(s);
-		if (proof != null)
-			this.proof.toXML(s);
-		s.print("</elGamal1OfLReencryption>");
 	}
 
 	@Override

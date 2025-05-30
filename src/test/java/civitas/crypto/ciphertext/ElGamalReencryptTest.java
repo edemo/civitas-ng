@@ -6,9 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
-import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
-import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.publickey.ElGamalPublicKeyCTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
 import civitas.util.CivitasBigInteger;
@@ -32,12 +29,12 @@ public class ElGamalReencryptTest extends ConcreteTestBase
 		CivitasBigInteger c1 = BIGINT_A;
 		CivitasBigInteger c2 = BIGINT_B;
 
-		ElGamalCiphertext cipherText = new ElGamalCiphertextC(c1, c2);
+		ElGamalCiphertext cipherText = new ElGamalCiphertext(c1, c2);
 
 		c1 = c1.modMultiply(g.modPow(y, p), p);
 		c2 = c2.modMultiply(m.modPow(y, p), p);
 
-		assertEquals(new ElGamalCiphertextC(c1, c2),
+		assertEquals(new ElGamalCiphertext(c1, c2),
 				elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, cipherText));
 
 	}
@@ -54,12 +51,12 @@ public class ElGamalReencryptTest extends ConcreteTestBase
 
 		CivitasBigInteger c1 = BIGINT_A;
 		CivitasBigInteger c2 = BIGINT_B;
-		ElGamalCiphertext cipherText = new ElGamalCiphertextC(c1, c2);
+		ElGamalCiphertext cipherText = new ElGamalCiphertext(c1, c2);
 
 		c1 = c1.modMultiply(g.modPow(y, p), p);
 		c2 = c2.modMultiply(m.modPow(y, p), p);
 
-		assertEquals(new ElGamalCiphertextC(c1, c2),
+		assertEquals(new ElGamalCiphertext(c1, c2),
 				elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, cipherText,
 						new ElGamalReencryptFactorC(y)));
 

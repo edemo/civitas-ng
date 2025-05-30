@@ -5,7 +5,7 @@ import java.io.Reader;
 
 import civitas.common.Util;
 import civitas.crypto.algorithms.ConvertToBigInt;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextFromXML;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
@@ -19,8 +19,8 @@ public class ElGamalProofDVRFromXML {
 	public ElGamalProofDVR apply(Reader reader)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(reader, "elGamalProofDVR");
-		ElGamalCiphertextC e = elGamalCiphertextFromXML.apply(reader);
-		ElGamalCiphertextC eprime = elGamalCiphertextFromXML.apply(reader);
+		ElGamalCiphertext e = elGamalCiphertextFromXML.apply(reader);
+		ElGamalCiphertext eprime = elGamalCiphertextFromXML.apply(reader);
 		CivitasBigInteger c = convertToBigInt
 				.apply(Util.unescapeString(Util.readSimpleTag(reader, "c")));
 		CivitasBigInteger w = convertToBigInt

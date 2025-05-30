@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.Constants;
-import civitas.crypto.parameters.GenerateSchnorrPrime;
-import civitas.crypto.parameters.PrimePair;
 import civitas.crypto.privatekey.ElGamalPrivateKeyCTestData;
 import civitas.util.Use;
 

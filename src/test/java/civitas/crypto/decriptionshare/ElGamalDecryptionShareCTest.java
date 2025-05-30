@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
@@ -15,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
 import civitas.crypto.publickey.ElGamalPublicKeyC;
 import civitas.util.Tested;
 import civitas.util.Use;
@@ -90,19 +88,10 @@ public class ElGamalDecryptionShareCTest extends ConcreteTestBase
 	}
 
 	@Test
-	@DisplayName("verify throws Error if ciphertext is not of type ElGamalCiphertextC")
-	void test4_3() {
-		assertThrows(Error.class,
-				() -> assertFalse(
-						verifyElGamalDecryptionShare.apply(EL_GAMAL_DECRYPTION_SHARE,
-								mock(ElGamalCiphertext.class), EL_GAMAL_PUBLIC_KEY_EPRIME)));
-	}
-
-	@Test
 	@DisplayName("verify is false if ciphertext.a != g1")
 	void test4_4() {
 		assertFalse(verifyElGamalDecryptionShare.apply(EL_GAMAL_DECRYPTION_SHARE,
-				new ElGamalCiphertextC(RANDOMS_2, BIGINT_A),
+				new ElGamalCiphertext(RANDOMS_2, BIGINT_A),
 				EL_GAMAL_PUBLIC_KEY_EPRIME));
 	}
 

@@ -6,23 +6,13 @@
  */
 package civitas.crypto.petshare;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
-import civitas.common.Util;
-import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
 import civitas.crypto.ciphertext.ElGamalCiphertextFromXML;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParametersC;
-import civitas.crypto.petcommitment.PETCommitment;
-import civitas.crypto.petcommitment.PETCommitmentC;
 import civitas.crypto.petdecommitment.ConstructPETDecommitment;
 import civitas.crypto.petdecommitment.PETDecommitment;
 import civitas.crypto.proofdisclog.ConstructElGamalDiscLogEqualityProof;
 import civitas.util.CivitasBigInteger;
-import civitas.util.DI;
 import civitas.util.Use;
 
 public class PETShareC implements PETShare {
@@ -31,21 +21,18 @@ public class PETShareC implements PETShare {
 	@Use
 	ConstructPETDecommitment constructPETDecommitment;
 	@Use
-	CryptoHash hash;
-	@Use
 	static ElGamalCiphertextFromXML elGamalCiphertextFromXML;
 
-	public final ElGamalCiphertextC ciphertext1;
-	public final ElGamalCiphertextC ciphertext2;
+	public final ElGamalCiphertext ciphertext1;
+	public final ElGamalCiphertext ciphertext2;
 
 	public final CivitasBigInteger exponent;
 
-	public PETShareC(ElGamalCiphertextC ciphertext1,
-			ElGamalCiphertextC ciphertext2, CivitasBigInteger exponent) {
+	public PETShareC(ElGamalCiphertext ciphertext1, ElGamalCiphertext ciphertext2,
+			CivitasBigInteger exponent) {
 		this.ciphertext1 = ciphertext1;
 		this.ciphertext2 = ciphertext2;
 		this.exponent = exponent;
-		DI.fill(this);
 	}
 
 	@Override
@@ -70,50 +57,6 @@ public class PETShareC implements PETShare {
 
 	public CivitasBigInteger exponent() {
 		return exponent;
-	}
-
-	// return a hash of the ciphertexts and exponent
-	@Override
-	public PETCommitment commitment(ElGamalParameters params) {
-		try {
-			ElGamalParametersC ps = (ElGamalParametersC) params;
-
-			CivitasBigInteger zi = exponent;
-			CivitasBigInteger d = ciphertext1.a.modDivide(ciphertext2.a, ps.p);
-			CivitasBigInteger e = ciphertext1.b.modDivide(ciphertext2.b, ps.p);
-
-			CivitasBigInteger di = d.modPow(zi, ps.p);
-			CivitasBigInteger ei = e.modPow(zi, ps.p);
-
-			return new PETCommitmentC(hash.apply(di, ei));
-		} catch (ClassCastException e) {
-			return null;
-		}
-	}
-
-	public String toXML() {
-		StringWriter sb = new StringWriter();
-		toXML(new PrintWriter(sb));
-		return sb.toString();
-	}
-
-	@Override
-	public void toXML(PrintWriter sb) {
-		if (sb == null)
-			return;
-		sb.append("<petShare>");
-		if (this.ciphertext1 != null) {
-			this.ciphertext1.toXML(sb);
-		}
-		if (this.ciphertext2 != null) {
-			this.ciphertext2.toXML(sb);
-		}
-		if (this.exponent != null) {
-			sb.append("<exponent>");
-			Util.escapeString(Util.fromBigInt(this.exponent), sb);
-			sb.append("</exponent>");
-		}
-		sb.append("</petShare>");
 	}
 
 	@Override

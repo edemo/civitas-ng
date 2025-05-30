@@ -18,7 +18,7 @@ import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionCTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
 import civitas.util.CivitasBigInteger;
@@ -64,8 +64,8 @@ public class ConstructElGamalProof1OfLTest extends ConcreteTestBase implements
 		CivitasBigInteger ciphertextA = REENCRYPTED_WELL_KNOWN_CHOICE_A;
 		CivitasBigInteger ciphertextB = REENCRYPTED_WELL_KNOWN_CHOICE_B;
 		CivitasBigInteger pubkey = PUBKEY_E;
-		List<ElGamalCiphertextC> ms = Arrays.asList(CIPHERTEXT_LIST.ciphertexts)
-				.stream().map(x -> (ElGamalCiphertextC) x).collect(Collectors.toList());
+		List<ElGamalCiphertext> ms = Arrays.asList(CIPHERTEXT_LIST.ciphertexts)
+				.stream().map(x -> (ElGamalCiphertext) x).collect(Collectors.toList());
 		List<CivitasBigInteger> as = IntStream
 				.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS).mapToObj(i -> {
 					return ms.get(i).a.modDivide(ciphertextA, BIGINT_P)

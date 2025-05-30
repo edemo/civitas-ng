@@ -1,6 +1,6 @@
 package civitas.crypto.proof1ofl;
 
-import civitas.common.CiphertextList;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionC;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Use;

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.algorithms.GenerateRandomElement;
-import civitas.crypto.parameters.PrimePair;
 import civitas.util.Tested;
 
 public class FindGeneratorTest extends ConcreteTestBase

@@ -31,7 +31,6 @@ import civitas.crypto.algorithms.GenerateRandomInt;
 import civitas.crypto.algorithms.GetPublicKeyGenerator;
 import civitas.crypto.algorithms.GetRandomGenerator;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
 import civitas.crypto.ciphertext.ElGamalCiphertextFromXML;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
@@ -135,12 +134,12 @@ import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextFromXML;
 import civitas.crypto.signedciphertext.SharedKeyCiphertextFromXML;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
-import civitas.crypto.vote.VoteCapabilityShareFromXML;
 import civitas.crypto.votecapability.VoteCapability;
 import civitas.crypto.votecapability.VoteCapabilityFromXML;
 import civitas.crypto.votecapabilityshare.CombineVoteCapabilityShares;
 import civitas.crypto.votecapabilityshare.GenerateVoteCapabilityShare;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShare;
+import civitas.crypto.votecapabilityshare.VoteCapabilityShareFromXML;
 import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
 import civitas.util.Use;
@@ -463,7 +462,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	public ElGamalProof1OfLC constructElGamalProof1OfL(ElGamalPublicKeyC key,
-			ElGamalCiphertext[] ciphertexts, int L, int choice, ElGamalCiphertextC m,
+			ElGamalCiphertext[] ciphertexts, int L, int choice, ElGamalCiphertext m,
 			ElGamalReencryptFactorC factor) {
 		return constructElGamalProof1OfL.apply(key, ciphertexts, L, choice, m,
 				factor);
@@ -534,7 +533,8 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	public ElGamalMsg elGamalDecrypt(ElGamalPrivateKey key,
 			ElGamalSignedCiphertext ciphertext, byte[] additionalEnv)
 			throws CryptoException {
-		return decryptElGamalMessage.apply(key, ciphertext, additionalEnv);
+		return decryptElGamalMessage.apply(key, (ElGamalCiphertext) ciphertext,
+				additionalEnv);
 	}
 
 	@Override
@@ -967,8 +967,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 			ElGamalCiphertext encCapability, ElGamal1OfLReencryption encChoice,
 			String context, ElGamalReencryptFactor encCapabilityFactor,
 			ElGamalReencryptFactor encChoiceFactor) {
-		return constructProofVote.apply((ElGamalParametersC) params,
-				(ElGamalCiphertextC) encCapability,
+		return constructProofVote.apply((ElGamalParametersC) params, encCapability,
 				((ElGamal1OfLReencryptionC) encChoice).m, context,
 				(ElGamalReencryptFactorC) encCapabilityFactor,
 				(ElGamalReencryptFactorC) encChoiceFactor);

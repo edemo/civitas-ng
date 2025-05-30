@@ -6,25 +6,20 @@
  */
 package civitas.crypto.proofdvr;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
-import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 
 public class ElGamalProofDVRC implements ElGamalProofDVR {
 
-	public final ElGamalCiphertextC e;
-	public final ElGamalCiphertextC eprime;
+	public final ElGamalCiphertext e;
+	public final ElGamalCiphertext eprime;
 	public final CivitasBigInteger c;
 	public final CivitasBigInteger w;
 	public final CivitasBigInteger r;
 	public final CivitasBigInteger u;
 
-	public ElGamalProofDVRC(ElGamalCiphertextC e, ElGamalCiphertextC eprime,
+	public ElGamalProofDVRC(ElGamalCiphertext e, ElGamalCiphertext eprime,
 			CivitasBigInteger c, CivitasBigInteger w, CivitasBigInteger r,
 			CivitasBigInteger u) {
 		this.e = e;
@@ -43,32 +38,6 @@ public class ElGamalProofDVRC implements ElGamalProofDVR {
 	@Override
 	public ElGamalCiphertext getEprime() {
 		return eprime;
-	}
-
-	public String toXML() {
-		StringWriter sb = new StringWriter();
-		toXML(new PrintWriter(sb));
-		return sb.toString();
-	}
-
-	@Override
-	public void toXML(PrintWriter s) {
-		s.print("<elGamalProofDVR>");
-		e.toXML(s);
-		eprime.toXML(s);
-		s.print("<c>");
-		Util.escapeString(Util.fromBigInt(c), s);
-		s.print("</c>");
-		s.print("<w>");
-		Util.escapeString(Util.fromBigInt(w), s);
-		s.print("</w>");
-		s.print("<r>");
-		Util.escapeString(Util.fromBigInt(r), s);
-		s.print("</r>");
-		s.print("<u>");
-		Util.escapeString(Util.fromBigInt(u), s);
-		s.print("</u>");
-		s.print("</elGamalProofDVR>");
 	}
 
 	@Override

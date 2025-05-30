@@ -8,8 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
-import civitas.crypto.rsaprivatekey.PrivateKeyC;
-import civitas.crypto.rsaprivatekey.PrivateKeyFromXML;
 import civitas.util.Use;
 
 public class PrivateKeyCTest extends ConcreteTestBase

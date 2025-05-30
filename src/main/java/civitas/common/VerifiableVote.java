@@ -7,11 +7,11 @@
 package civitas.common;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Reader;
 
 import civitas.crypto.CryptoUtil;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.proofvote.ProofVote;
 import civitas.crypto.publickey.ElGamalPublicKey;
@@ -23,7 +23,7 @@ import civitas.crypto.publickey.ElGamalPublicKey;
  * proof, and change the capability to be malleable (for the re-encryption
  * mixes).
  */
-public class VerifiableVote implements XMLSerializable {
+public class VerifiableVote {
 	public static final String OPENING_TAG = "verifiableVote";
 
 	/**
@@ -78,35 +78,6 @@ public class VerifiableVote implements XMLSerializable {
 			return false;
 		return (encChoice.verify(pubKey, ciphertexts, L) && proofVote.verify(
 				pubKey.getParams(), encCapability, encChoice.getCiphertext(), context));
-	}
-
-	@Override
-	public void toXML(PrintWriter sb) {
-		if (sb == null)
-			return;
-		sb.print("<");
-		sb.print(OPENING_TAG);
-		sb.print(">");
-		sb.print("<context>");
-		Util.escapeString(this.context, sb);
-		sb.print("</context>");
-		sb.print("<encChoice>");
-		if (this.encChoice != null) {
-			this.encChoice.toXML(sb);
-		}
-		sb.print("</encChoice>");
-		sb.print("<encCapability>");
-		if (this.encCapability != null) {
-			this.encCapability.toXML(sb);
-		}
-		sb.print("</encCapability>");
-		sb.print("<proof>");
-		if (this.proofVote != null) {
-			this.proofVote.toXML(sb);
-		}
-		sb.print("</proof>");
-
-		sb.print("</" + OPENING_TAG + ">");
 	}
 
 	public static VerifiableVote fromXML(Reader r)

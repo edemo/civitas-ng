@@ -3,12 +3,11 @@ package civitas.crypto.proof1ofl;
 import java.util.ArrayList;
 import java.util.List;
 
-import civitas.common.CiphertextList;
 import civitas.crypto.Constants;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.publickey.ElGamalPublicKeyC;
@@ -25,15 +24,15 @@ public class VerifyElGamalProof1OfLC {
 			CiphertextList ciphertexts, int L, ElGamalCiphertext msg) {
 		if (self.L != L)
 			return false;
-		ElGamalCiphertextC m = (ElGamalCiphertextC) msg;
+		ElGamalCiphertext m = (ElGamalCiphertext) msg;
 		CivitasBigInteger u = m.a;
 		CivitasBigInteger v = m.b;
 		ElGamalPublicKeyC key = (ElGamalPublicKeyC) pubKey;
 		ElGamalParametersC ps = (ElGamalParametersC) key.params;
-		ElGamalCiphertextC[] ms = new ElGamalCiphertextC[L];
+		ElGamalCiphertext[] ms = new ElGamalCiphertext[L];
 
 		for (int i = 0; i < L; i++) {
-			ms[i] = (ElGamalCiphertextC) ciphertexts.get(i);
+			ms[i] = (ElGamalCiphertext) ciphertexts.get(i);
 		}
 
 		CivitasBigInteger[] as = new CivitasBigInteger[L];

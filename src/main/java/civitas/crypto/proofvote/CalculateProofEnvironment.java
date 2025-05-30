@@ -3,7 +3,7 @@ package civitas.crypto.proofvote;
 import java.util.LinkedList;
 import java.util.List;
 
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
+import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.messagedigest.MessageDigest;
 import civitas.crypto.messagedigest.ObtainMessageDigest;
 import civitas.crypto.parameters.ElGamalParametersC;
@@ -15,7 +15,7 @@ public class CalculateProofEnvironment {
 	ObtainMessageDigest obtainMessageDigest;
 
 	public List<CivitasBigInteger> apply(ElGamalParametersC params,
-			ElGamalCiphertextC encCapability, ElGamalCiphertextC encChoice,
+			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
 			String context) {
 		List<CivitasBigInteger> E = new LinkedList<>();
 		E.add(params.g);

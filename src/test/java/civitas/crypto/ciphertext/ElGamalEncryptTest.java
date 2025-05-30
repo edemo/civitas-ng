@@ -7,8 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
-import civitas.crypto.ciphertext.ElGamalCiphertextC;
-import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.msg.ElGamalMsgC;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
@@ -31,7 +29,7 @@ public class ElGamalEncryptTest extends ConcreteTestBase
 		CivitasBigInteger c1 = BIGINT_G.modPow(y, BIGINT_P);
 		CivitasBigInteger s = h.modPow(y, BIGINT_P);
 		CivitasBigInteger c2 = msg.m.modMultiply(s, BIGINT_P);
-		ElGamalCiphertextC encrypt = (ElGamalCiphertextC) elGamalEncrypt
+		ElGamalCiphertext encrypt = (ElGamalCiphertext) elGamalEncrypt
 				.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, msg);
 		assertEquals(c1, encrypt.a);
 		assertEquals(c2, encrypt.b);
@@ -46,10 +44,10 @@ public class ElGamalEncryptTest extends ConcreteTestBase
 		CivitasBigInteger s = PUBKEY_EPRIME.modPow(FACTOR_EPRIME, BIGINT_P);
 		CivitasBigInteger c2 = MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED.modMultiply(s,
 				BIGINT_P);
-		ElGamalCiphertextC actual = (ElGamalCiphertextC) elGamalEncrypt.apply(
+		ElGamalCiphertext actual = (ElGamalCiphertext) elGamalEncrypt.apply(
 				EL_GAMAL_PUBLIC_KEY_EPRIME, EL_GAMAL_MESSAGE_VOTE_CAPABILITY_SHARE,
 				new ElGamalReencryptFactorC(FACTOR_EPRIME));
-		ElGamalCiphertextC ciphertext = new ElGamalCiphertextC(c1, c2);
+		ElGamalCiphertext ciphertext = new ElGamalCiphertext(c1, c2);
 		assertTrue(ciphertext.equals(actual));
 	}
 

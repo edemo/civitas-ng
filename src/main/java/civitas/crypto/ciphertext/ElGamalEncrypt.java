@@ -24,7 +24,7 @@ public class ElGamalEncrypt {
 		CivitasBigInteger r = generateRandomElement.apply(ps.q);
 		CivitasBigInteger a = ps.g.modPow(r, ps.p);
 		CivitasBigInteger b = m.modMultiply(k.y.modPow(r, ps.p), ps.p);
-		return new ElGamalCiphertextC(a, b);
+		return new ElGamalCiphertext(a, b);
 	}
 
 	public ElGamalCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg,
@@ -36,7 +36,7 @@ public class ElGamalEncrypt {
 		CivitasBigInteger a = ps.g.modPow(r, ps.p);
 		CivitasBigInteger s = k.y.modPow(r, ps.p);
 		CivitasBigInteger b = m.modMultiply(s, ps.p);
-		return new ElGamalCiphertextC(a, b);
+		return new ElGamalCiphertext(a, b);
 	}
 
 }
