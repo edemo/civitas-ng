@@ -6,46 +6,19 @@
  */
 package civitas.crypto.privatekey;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
-import civitas.common.Util;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @EqualsAndHashCode
+@RequiredArgsConstructor
 public class ElGamalPrivateKey {
 
+	@NonNull
 	public final CivitasBigInteger x;
-
+	@NonNull
 	public final ElGamalParameters params;
-
-	public ElGamalPrivateKey(CivitasBigInteger x, ElGamalParameters params) {
-		this.x = x;
-		this.params = params;
-	}
-
-	public String toXML() {
-		StringWriter sb = new StringWriter();
-		toXML(new PrintWriter(sb));
-		return sb.toString();
-	}
-
-	public void toXML(PrintWriter s) {
-		s.print("<elGamalPrivateKey>");
-
-		s.print("<params>");
-		if (this.params != null) {
-			this.params.toXML(s);
-		}
-		s.print("</params>");
-		s.print("<x>");
-		if (this.x != null)
-			Util.escapeString(Util.fromBigInt(x), s);
-		s.print("</x>");
-
-		s.print("</elGamalPrivateKey>");
-	}
 
 }

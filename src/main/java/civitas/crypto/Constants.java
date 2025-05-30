@@ -45,4 +45,7 @@ public interface Constants {
 	public static final int EL_GAMAL_GROUP_LENGTH = 3072; // size in bits for p
 	public static final int EL_GAMAL_KEY_LENGTH = 256; // size in bits for q
 
+	public static final String ElGamalCiphertextOPENING_TAG = "elGamalCiphertext";
+	public final static String ElGamalDecryptionShareOPENING_TAG = "elGamalDecryptionShare";
+
 }

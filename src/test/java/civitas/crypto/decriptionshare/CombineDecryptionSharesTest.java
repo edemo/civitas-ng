@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
-import civitas.crypto.msg.ElGamalMsgC;
+import civitas.crypto.msg.ElGamalMsg;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 
@@ -24,14 +24,14 @@ public class CombineDecryptionSharesTest extends ConcreteTestBase
 
 		ElGamalDecryptionShare[] shares = new ElGamalDecryptionShare[] {
 				EL_GAMAL_DECRYPTION_SHARE,
-				EL_GAMAL_DECRYPTION_SHARE_NULLPROOF };
+				EL_GAMAL_DECRYPTION_SHARE_BADPROOF };
 
 		CivitasBigInteger m = CIPHERTEXT_E.b.modDivide(
 				EL_GAMAL_DECRYPTION_SHARE.ai.modMultiply(RANDOMS_1, BIGINT_P),
 				BIGINT_P);
 
-		ElGamalMsgC result = (ElGamalMsgC) combineDecryptionShares
-				.apply(CIPHERTEXT_E, shares, EL_GAMAL_PARAMETERS);
+		ElGamalMsg result = combineDecryptionShares.apply(CIPHERTEXT_E, shares,
+				EL_GAMAL_PARAMETERS);
 		assertEquals(m, result.m);
 	}
 }

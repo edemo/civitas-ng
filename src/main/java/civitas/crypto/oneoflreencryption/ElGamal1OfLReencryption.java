@@ -7,21 +7,19 @@
 package civitas.crypto.oneoflreencryption;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertextlist.CiphertextList;
-import civitas.crypto.proof1ofl.ElGamalProof1OfL;
-import civitas.crypto.publickey.ElGamalPublicKey;
+import civitas.crypto.proof1ofl.ElGamalProof1OfLC;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
-/**
- * Proof that a ciphertext is a re-encryption of some element from a set of
- * ciphertexts of size L.
- */
-public interface ElGamal1OfLReencryption {
-	public boolean verify(ElGamalPublicKey pubKey, CiphertextList ciphertexts,
-			int L);
+@RequiredArgsConstructor
+@EqualsAndHashCode
+@ToString
+public class ElGamal1OfLReencryption {
+	@NonNull
+	public final ElGamalCiphertext m;
+	@NonNull
+	public final ElGamalProof1OfLC proof;
 
-	public ElGamalCiphertext getCiphertext();
-
-	public ElGamalProof1OfL getProof();
-
-	public boolean equals(ElGamal1OfLReencryption r);
 }

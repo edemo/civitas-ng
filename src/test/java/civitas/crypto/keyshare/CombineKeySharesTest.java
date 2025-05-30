@@ -23,8 +23,7 @@ public class CombineKeySharesTest extends ConcreteTestBase
 	@DisplayName("combines an array of key shares to one "
 			+ "by multiplying the public keys")
 	void test() throws CryptoException {
-		ElGamalPublicKey actual = (ElGamalPublicKey) combineKeyShares
-				.apply(KEY_SHARES);
+		ElGamalPublicKey actual = combineKeyShares.apply(KEY_SHARES);
 		assertEquals(EL_GAMAL_PUBLIC_KEY_E.y.multiply(EL_GAMAL_PUBLIC_KEY_EPRIME.y),
 				actual.y);
 	}
@@ -47,8 +46,8 @@ public class CombineKeySharesTest extends ConcreteTestBase
 	@Test
 	@DisplayName("if a key share does not verify, throws CryptoException")
 	void test2() throws CryptoException {
-		assertThrows(CryptoException.class, () -> combineKeyShares
-				.apply(new ElGamalKeyShare[] { EL_GAMAL_KEY_SHARE_NULLPROOF }));
+		assertThrows(CryptoException.class, () -> combineKeyShares.apply(
+				new ElGamalKeyShare[] { EL_GAMAL_KEY_SHARE_NOT_GOOD_PUBKEY_TYPE }));
 	}
 
 	@Test

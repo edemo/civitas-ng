@@ -8,9 +8,7 @@ package civitas.crypto.votecapabilityshare;
 
 import java.io.PrintWriter;
 
-import civitas.crypto.msg.ElGamalMsg;
-
-public interface VoteCapabilityShare extends ElGamalMsg {
+public interface VoteCapabilityShare {
 	public static final String OPENING_TAG = "voteCapabilityShare";
 
 	public void toXML(PrintWriter sb);

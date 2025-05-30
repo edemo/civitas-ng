@@ -19,7 +19,7 @@ public class GenerateElGamalKeyPair {
 		CivitasBigInteger y = ps.g.modPow(x, ps.p);
 		ElGamalPrivateKey k = new ElGamalPrivateKey(x, ps);
 		ElGamalPublicKey K = new ElGamalPublicKey(y, ps);
-		return new ElGamalKeyPairImpl(K, k);
+		return new ElGamalKeyPair(K, k);
 	}
 
 }

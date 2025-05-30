@@ -94,14 +94,11 @@ public interface ElGamalParametersCTestData extends BasicValuesTestData {
 	public static final CivitasBigInteger SAFE_G = new CivitasBigInteger(
 			Base64.getDecoder().decode(SAFE_G_BASE64));
 
-	public static final PrimePair SAFE_PRIMES = new PrimePair(SAFE_P,
-			SAFE_Q);
+	public static final PrimePair SAFE_PRIMES = new PrimePair(SAFE_P, SAFE_Q);
 	public static final PrimePair SCHNORR_PRIMES = new PrimePair(BIGINT_P,
 			BIGINT_Q);
-
 	public static final ElGamalParametersC EL_GAMAL_PARAMETERS_SAFE = new ElGamalParametersC(
 			SAFE_P, SAFE_Q, SAFE_G);
-
 	public CivitasBigInteger PLAINTEXT_WITH_LEGENDRE_MINUS_ONE = CivitasBigInteger
 			.valueOf(251121);
 	public CivitasBigInteger PUBLICIZED_SAFE_LEGENDRE = SAFE_P

@@ -8,17 +8,17 @@ package civitas.crypto.decriptionshare;
 
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityC;
 import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
+@EqualsAndHashCode
 public class ElGamalDecryptionShare {
-	public final static String OPENING_TAG = "elGamalDecryptionShare";
 
+	@NonNull
 	public final CivitasBigInteger ai;
+	@NonNull
 	public final ElGamalProofDiscLogEqualityC proof;
-
-	public ElGamalDecryptionShare(CivitasBigInteger ai,
-			ElGamalProofDiscLogEqualityC proof) {
-		this.ai = ai;
-		this.proof = proof;
-	}
 
 }

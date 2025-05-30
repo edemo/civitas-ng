@@ -239,7 +239,8 @@ public class CondorcetBallotDesign extends BallotDesign {
 				try {
 					encCapFactor = CryptoUtil.factory()
 							.generateElGamalReencryptFactor(key.params);
-					encCap = CryptoUtil.factory().elGamalEncrypt(key, c, encCapFactor);
+					encCap = CryptoUtil.factory().elGamalEncrypt(key, (ElGamalMsg) c,
+							encCapFactor);
 					proofVote = CryptoUtil.factory().constructProofVote(key.params,
 							encCap, encChoice, desiredContext, encCapFactor, encChoiceFactor);
 				} catch (NullPointerException imposs) {

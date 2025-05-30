@@ -15,7 +15,9 @@ import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode
 public class ElGamalProof1OfLC implements ElGamalProof1OfL {
 	@Use
 	VerifyElGamalProof1OfLC verifyElGamalProof1OfLC;
@@ -59,26 +61,6 @@ public class ElGamalProof1OfLC implements ElGamalProof1OfL {
 			s.print("</rv>");
 		}
 		s.print("</elGamalProof1OfL>");
-	}
-
-	@Override
-	public boolean equals(ElGamalProof1OfL p) {
-		if (p instanceof ElGamalProof1OfLC) {
-			ElGamalProof1OfLC that = (ElGamalProof1OfLC) p;
-			if (this.L != that.L)
-				return false;
-
-			for (int i = 0; i < L; i++) {
-				try {
-					if (!dvs[i].equals(that.dvs[i]) || !rvs[i].equals(that.rvs[i]))
-						return false;
-				} catch (NullPointerException e) {
-					return false;
-				}
-			}
-			return true;
-		}
-		return false;
 	}
 
 	@Override

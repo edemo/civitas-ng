@@ -8,12 +8,10 @@ package civitas.crypto.votecapability;
 
 import java.io.PrintWriter;
 
-import civitas.crypto.msg.ElGamalMsg;
-
 /**
  * A capability that a voter uses to vote with.
  */
-public interface VoteCapability extends ElGamalMsg {
+public interface VoteCapability {
 	public static final String OPENING_TAG = "voteCapability";
 
 	public void toXML(PrintWriter sb);

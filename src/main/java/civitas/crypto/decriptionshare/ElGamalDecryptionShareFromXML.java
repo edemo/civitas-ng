@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 import civitas.common.Util;
+import civitas.crypto.Constants;
 import civitas.crypto.algorithms.ConvertToBigInt;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityC;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityFromXML;
@@ -18,7 +19,7 @@ public class ElGamalDecryptionShareFromXML {
 
 	public ElGamalDecryptionShare apply(Reader r)
 			throws IllegalArgumentException, IOException {
-		Util.swallowTag(r, ElGamalDecryptionShare.OPENING_TAG);
+		Util.swallowTag(r, Constants.ElGamalDecryptionShareOPENING_TAG);
 
 		String sa = Util.unescapeString(Util.readSimpleTag(r, "ai"));
 		CivitasBigInteger ai = convertToBigInt.apply(sa);
@@ -26,7 +27,7 @@ public class ElGamalDecryptionShareFromXML {
 		ElGamalProofDiscLogEqualityC proof = (ElGamalProofDiscLogEqualityC) elGamalProofDiscLogEqualityFromXML
 				.apply(r);
 
-		Util.swallowEndTag(r, ElGamalDecryptionShare.OPENING_TAG);
+		Util.swallowEndTag(r, Constants.ElGamalDecryptionShareOPENING_TAG);
 		return new ElGamalDecryptionShare(ai, proof/* , params */);
 	}
 

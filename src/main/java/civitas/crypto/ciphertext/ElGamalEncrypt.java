@@ -3,7 +3,7 @@ package civitas.crypto.ciphertext;
 import civitas.crypto.CryptoError;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.msg.ElGamalMsg;
-import civitas.crypto.msg.ElGamalMsgC;
+import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
@@ -19,7 +19,7 @@ public class ElGamalEncrypt {
 			throws CryptoError {
 		ElGamalParametersC ps = (ElGamalParametersC) key.params;
 		ElGamalPublicKey k = key;
-		CivitasBigInteger m = ((ElGamalMsgC) msg).bigIntValue();
+		CivitasBigInteger m = ((ElGamalMsg) msg).m;
 		CivitasBigInteger r = generateRandomElement.apply(ps.q);
 		CivitasBigInteger a = ps.g.modPow(r, ps.p);
 		CivitasBigInteger b = m.modMultiply(k.y.modPow(r, ps.p), ps.p);
@@ -31,7 +31,7 @@ public class ElGamalEncrypt {
 		ElGamalParametersC ps = (ElGamalParametersC) key.params;
 		ElGamalPublicKey k = key;
 		CivitasBigInteger r = ((ElGamalReencryptFactorC) encryptFactor).r;
-		CivitasBigInteger m = ((ElGamalMsgC) msg).bigIntValue();
+		CivitasBigInteger m = ((ElGamalMsg) msg).m;
 		CivitasBigInteger a = ps.g.modPow(r, ps.p);
 		CivitasBigInteger s = k.y.modPow(r, ps.p);
 		CivitasBigInteger b = m.modMultiply(s, ps.p);

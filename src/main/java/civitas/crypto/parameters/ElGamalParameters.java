@@ -6,8 +6,5 @@
  */
 package civitas.crypto.parameters;
 
-import java.io.PrintWriter;
-
 public interface ElGamalParameters {
-	public void toXML(PrintWriter sb);
 }

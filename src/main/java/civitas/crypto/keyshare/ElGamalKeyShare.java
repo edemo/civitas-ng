@@ -8,21 +8,17 @@ package civitas.crypto.keyshare;
 
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.util.Use;
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @EqualsAndHashCode
 public class ElGamalKeyShare {
 
-	@Use
-	VerifyElGamalKeyShare verifyElGamalKeyShare;
+	@NonNull
 	public final ElGamalPublicKey pubKey;
+	@NonNull
 	public final ElGamalProofKnowDiscLog proof;
-
-	public ElGamalKeyShare(ElGamalPublicKey pubKey,
-			ElGamalProofKnowDiscLog proof) {
-		this.pubKey = pubKey;
-		this.proof = proof;
-	}
 
 }

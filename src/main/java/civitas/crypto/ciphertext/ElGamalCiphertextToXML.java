@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import civitas.common.Util;
+import civitas.crypto.Constants;
 
 public class ElGamalCiphertextToXML {
 
@@ -15,7 +16,7 @@ public class ElGamalCiphertextToXML {
 
 	public void apply(ElGamalCiphertext that, PrintWriter s) {
 		s.print('<');
-		s.print(ElGamalCiphertext.OPENING_TAG);
+		s.print(Constants.ElGamalCiphertextOPENING_TAG);
 		s.print('>');
 		s.print("<a>");
 		if (that.a != null)
@@ -26,7 +27,7 @@ public class ElGamalCiphertextToXML {
 			Util.escapeString(Util.fromBigInt(that.b), s);
 		s.print("</b>");
 		s.print("</");
-		s.print(ElGamalCiphertext.OPENING_TAG);
+		s.print(Constants.ElGamalCiphertextOPENING_TAG);
 		s.print('>');
 	}
 

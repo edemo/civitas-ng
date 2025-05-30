@@ -8,9 +8,17 @@ package civitas.crypto.keypair;
 
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.publickey.ElGamalPublicKey;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-public interface ElGamalKeyPair {
-	public ElGamalPublicKey publicKey();
+@RequiredArgsConstructor
+@EqualsAndHashCode
 
-	public ElGamalPrivateKey privateKey();
+public class ElGamalKeyPair {
+	@NonNull
+	public final ElGamalPublicKey publicKey;
+	@NonNull
+	public final ElGamalPrivateKey privateKey;
+
 }

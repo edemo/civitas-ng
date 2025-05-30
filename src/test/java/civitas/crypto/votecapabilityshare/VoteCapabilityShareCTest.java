@@ -15,10 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
+import civitas.crypto.msg.EncodeMessage;
 import civitas.util.Use;
 
 public class VoteCapabilityShareCTest extends ConcreteTestBase
 		implements VoteCapabilityShareTestData {
+	@Use
+	EncodeMessage encodeMessage;
 
 	@Test
 	@DisplayName("BigInteger+parameter constructor and toXML works as expected")
@@ -34,7 +37,8 @@ public class VoteCapabilityShareCTest extends ConcreteTestBase
 	void test1() throws CryptoException {
 		StringWriter s = new StringWriter();
 		PrintWriter p = new PrintWriter(s);
-		new VoteCapabilityShareC(VOTE, EL_GAMAL_PARAMETERS).toXML(p);
+		new VoteCapabilityShareC(encodeMessage.apply(VOTE, EL_GAMAL_PARAMETERS))
+				.toXML(p);
 		assertEquals(VOTE_CAPABILITY_SHARE_XML, s.toString());
 	}
 
@@ -45,15 +49,6 @@ public class VoteCapabilityShareCTest extends ConcreteTestBase
 		PrintWriter p = new PrintWriter(s);
 		VOTE_CAPABILITY_SHARE.toXML(p);
 		assertEquals(VOTE_CAPABILITY_SHARE_XML, s.toString());
-	}
-
-	@Test
-	@DisplayName("BigInteger constructor accepts null")
-	void test2_() throws CryptoException {
-		StringWriter s = new StringWriter();
-		PrintWriter p = new PrintWriter(s);
-		new VoteCapabilityShareC(null).toXML(p);
-		assertEquals(VOTE_CAPABILITY_SHARE_NULL_XML, s.toString());
 	}
 
 	@Use

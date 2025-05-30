@@ -23,7 +23,7 @@ public class ElGamal1OfLReencryptionFromXML {
 		ElGamalCiphertext m = elGamalCiphertextFromXML.apply(r);
 		ElGamalProof1OfLC proof = elGamalProof1OfLFromXML.apply(r);
 		Util.swallowEndTag(r, "elGamal1OfLReencryption");
-		return new ElGamal1OfLReencryptionC(m, proof);
+		return new ElGamal1OfLReencryption(m, proof);
 	}
 
 }

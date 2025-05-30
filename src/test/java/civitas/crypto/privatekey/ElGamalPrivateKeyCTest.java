@@ -26,12 +26,8 @@ public class ElGamalPrivateKeyCTest extends ConcreteTestBase
 				new ElGamalPrivateKey(BIGINT_A, EL_GAMAL_PARAMETERS));
 	}
 
-	@Test
-	@DisplayName("toXML skips null key and params")
-	void test00() {
-		assertEquals(EL_GAMAL_PRIVATE_KEY_NULL_XML,
-				new ElGamalPrivateKey(null, null).toXML());
-	}
+	@Use
+	ElGamalPrivateKeyToXML elGamalPrivateKeyToXML;
 
 	@Test
 	@DisplayName("Equals takes x into account"
@@ -51,7 +47,8 @@ public class ElGamalPrivateKeyCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("toXML returns an XML representation")
 	void test() {
-		assertEquals(ELGAMAL_PRIVATE_KEY_XML, ELGAMAL_PRIVATE_KEY_E.toXML());
+		assertEquals(ELGAMAL_PRIVATE_KEY_XML,
+				elGamalPrivateKeyToXML.apply(ELGAMAL_PRIVATE_KEY_E));
 	}
 
 	@Test

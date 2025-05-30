@@ -29,7 +29,7 @@ public class ConstructElGamal1OfLReencryption {
 		ElGamalProof1OfLC proof = constructElGamalProof1OfL.apply(
 				(ElGamalPublicKey) key, ciphertexts, L, choice, m,
 				(ElGamalReencryptFactorC) factor);
-		return new ElGamal1OfLReencryptionC(m, proof);
+		return new ElGamal1OfLReencryption(m, proof);
 	}
 
 }

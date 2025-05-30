@@ -2,7 +2,6 @@ package civitas.crypto.oneoflreencryption;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertextFromXML;
 import civitas.crypto.ciphertext.ElGamalCiphertextToXML;
-import civitas.crypto.proof1ofl.ElGamalProof1OfLC;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLFromXML;
 import civitas.util.Use;
 
@@ -31,25 +29,17 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 	ElGamal1OfLReencryptionToXML elGamal1OfLReencryptionToXML;
 
 	@Test
-	@DisplayName("constructor accepts nulls")
-	void test0() {
-		assertEquals(EL_GAMAL_1_OF_L_REENCRYPTION_NULL_XML,
-				elGamal1OfLReencryptionToXML
-						.apply(new ElGamal1OfLReencryptionC(null, null)));
-	}
-
-	@Test
 	@DisplayName("getCyphertext works as expected")
 	void test() {
-		assertEquals(EL_GAMAL_CIPHERTEXT_E_XML, elGamalCiphertextToXML
-				.apply(EL_GAMAL_1_OF_L_REENCRYPTION.getCiphertext()));
+		assertEquals(EL_GAMAL_CIPHERTEXT_E_XML,
+				elGamalCiphertextToXML.apply(EL_GAMAL_1_OF_L_REENCRYPTION.m));
 	}
 
 	@Test
 	@DisplayName("getProof works as expected")
 	void getProofTest() {
 		assertEquals(EL_GAMAL_PROOF_1_OF_L_XML,
-				((ElGamalProof1OfLC) EL_GAMAL_1_OF_L_REENCRYPTION.getProof()).toXML());
+				EL_GAMAL_1_OF_L_REENCRYPTION.proof.toXML());
 	}
 
 	@Test
@@ -62,9 +52,10 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("equals when the message and the proof are the same ")
 	void testEquals() throws IllegalArgumentException, IOException {
-		assertTrue(elGamal1OfLReencryptionFromXML
-				.apply(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
-				.equals(EL_GAMAL_1_OF_L_REENCRYPTION));
+		assertEquals(
+				elGamal1OfLReencryptionFromXML
+						.apply(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML)),
+				EL_GAMAL_1_OF_L_REENCRYPTION);
 	}
 
 	@Use
@@ -76,7 +67,7 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 
 		assertFalse(elGamal1OfLReencryptionFromXML
 				.apply(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
-				.equals(new ElGamal1OfLReencryptionC(
+				.equals(new ElGamal1OfLReencryption(
 						elGamalCiphertextFromXML
 								.apply(new StringReader(EL_GAMAL_CIPHERTEXT_NAIVE_XML)),
 						elGamalProof1OfLFromXML
@@ -89,15 +80,8 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 
 		assertFalse(elGamal1OfLReencryptionFromXML
 				.apply(new StringReader(EL_GAMAL_1_OF_L_REENCRYPTION_XML))
-				.equals(new ElGamal1OfLReencryptionC(CIPHERTEXT_E,
+				.equals(new ElGamal1OfLReencryption(CIPHERTEXT_E,
 						EL_GAMAL_PROOF_1_OF_L_BAD)));
-	}
-
-	@Test
-	@DisplayName("reencryption containing null is not equal to anything")
-	void testEquals1() throws IllegalArgumentException, IOException {
-		assertFalse(new ElGamal1OfLReencryptionC(null, null)
-				.equals(new ElGamal1OfLReencryptionC(null, null)));
 	}
 
 	@Test

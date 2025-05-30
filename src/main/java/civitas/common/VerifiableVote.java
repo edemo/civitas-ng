@@ -13,8 +13,13 @@ import civitas.crypto.CryptoUtil;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
+import civitas.crypto.proof1ofl.VerifyElGamal1OfLReencryption;
 import civitas.crypto.proofvote.ProofVote;
+import civitas.crypto.proofvote.ProofVoteC;
+import civitas.crypto.proofvote.VerifyProofVote;
 import civitas.crypto.publickey.ElGamalPublicKey;
+import civitas.util.Use;
 
 /**
  * Similar to a <code>Vote</code>, but the capability is encrypted and signed,
@@ -26,6 +31,10 @@ import civitas.crypto.publickey.ElGamalPublicKey;
 public class VerifiableVote {
 	public static final String OPENING_TAG = "verifiableVote";
 
+	@Use
+	VerifyElGamal1OfLReencryption verifyElGamal1OfLReencryption;
+	@Use
+	VerifyProofVote verifyProofVote;
 	/**
 	 * Indicates the election and block that this vote belongs to.
 	 */
@@ -51,7 +60,7 @@ public class VerifiableVote {
 	public VerifiableVote(String context, ElGamal1OfLReencryption encChoice,
 			ElGamalCiphertext encCapability, ProofVote proofVote) {
 		this.context = context;
-		this.encChoice = encChoice;
+		this.encChoice = (ElGamal1OfLReencryption) encChoice;
 		this.encCapability = encCapability;
 		this.proofVote = proofVote;
 	}
@@ -76,8 +85,10 @@ public class VerifiableVote {
 			int L) {
 		if (proofVote == null || encChoice == null || (pubKey == null))
 			return false;
-		return (encChoice.verify(pubKey, ciphertexts, L) && proofVote.verify(
-				pubKey.params, encCapability, encChoice.getCiphertext(), context));
+		return verifyElGamal1OfLReencryption.apply(encChoice, pubKey, ciphertexts,
+				L)
+				&& verifyProofVote.apply((ProofVoteC) proofVote, pubKey.params,
+						encCapability, encChoice.m, context);
 	}
 
 	public static VerifiableVote fromXML(Reader r)

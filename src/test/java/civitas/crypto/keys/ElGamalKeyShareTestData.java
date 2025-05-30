@@ -9,14 +9,11 @@ public interface ElGamalKeyShareTestData
 	public static final String EL_GAMAL_KEY_SHARE_XML = "<elGamalKeyShare><pubKey>"
 			+ EL_GAMAL_PUBLIC_KEY_E_XML + "</pubKey><proof>"
 			+ EL_GAMAL_PROOF_KNOWN_DISC_LOG_XML + "</proof></elGamalKeyShare>";
-	public static final String EL_GAMAL_KEY_SHARE_NULL_XML = "<elGamalKeyShare><pubKey></pubKey><proof></proof></elGamalKeyShare>";
 
 	public static final ElGamalKeyShare EL_GAMAL_KEY_SHARE_E = new ElGamalKeyShare(
 			EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PROOF_KNOWN_DISC_LOG);
 	public static final ElGamalKeyShare EL_GAMAL_KEY_SHARE_EPRIME = new ElGamalKeyShare(
 			EL_GAMAL_PUBLIC_KEY_EPRIME, EL_GAMAL_PROOF_KNOWN_DISC_LOG);
-	public static final ElGamalKeyShare EL_GAMAL_KEY_SHARE_NULLPROOF = new ElGamalKeyShare(
-			EL_GAMAL_PUBLIC_KEY_E, null);
 	public static final ElGamalKeyShare EL_GAMAL_KEY_SHARE_NOT_GOOD_PUBKEY_TYPE = new ElGamalKeyShare(
 			EL_GAMAL_PUBLIC_KEY_NULL, EL_GAMAL_PROOF_KNOWN_DISC_LOG);
 

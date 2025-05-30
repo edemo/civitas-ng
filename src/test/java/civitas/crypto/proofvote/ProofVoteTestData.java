@@ -1,13 +1,13 @@
 package civitas.crypto.proofvote;
 
 import civitas.common.Util;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionC;
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionCTestData;
 import civitas.util.CivitasBigInteger;
 
 public interface ProofVoteTestData extends ElGamal1OfLReencryptionCTestData {
 
-	ElGamal1OfLReencryptionC ENCRYPTED_CHOICE = new ElGamal1OfLReencryptionC(
+	ElGamal1OfLReencryption ENCRYPTED_CHOICE = new ElGamal1OfLReencryption(
 			REENCRYPTED_WELL_KNOWN_CHOICE, EL_GAMAL_PROOF_1_OF_L);
 
 	public static final String PROOF_VOTE_C_BASE64 = "Y0o69XyW2yRes4idK+EEsiiVoRqNJEsZjXErAc6UfJY=";

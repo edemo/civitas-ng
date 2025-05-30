@@ -7,30 +7,35 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
-import civitas.crypto.msg.ElGamalMsgC;
+import civitas.crypto.msg.ElGamalMsg;
+import civitas.crypto.msg.EncodeMessage;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
+import civitas.util.Use;
 
 public class ElGamalEncryptTest extends ConcreteTestBase
 		implements ElGamalCiphertextCTestData, ElGamalReencryptFactorCTestData {
 
 	@Tested
 	ElGamalEncrypt elGamalEncrypt;
+	@Use
+	EncodeMessage encodeMessage;
 
 	@Test
 	@DisplayName("elGamalEncrypt with a random factor works as expected")
 	void test0_1() throws Exception {
 
 		CivitasBigInteger y = RANDOMS_0;
-		ElGamalMsgC msg = new ElGamalMsgC(BIGINT_B, EL_GAMAL_PARAMETERS);
+		ElGamalMsg msg = new ElGamalMsg(
+				encodeMessage.apply(BIGINT_B, EL_GAMAL_PARAMETERS));
 		CivitasBigInteger h = EL_GAMAL_PUBLIC_KEY_EPRIME.y;
 		CivitasBigInteger c1 = BIGINT_G.modPow(y, BIGINT_P);
 		CivitasBigInteger s = h.modPow(y, BIGINT_P);
 		CivitasBigInteger c2 = msg.m.modMultiply(s, BIGINT_P);
-		ElGamalCiphertext encrypt = (ElGamalCiphertext) elGamalEncrypt
-				.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, msg);
+		ElGamalCiphertext encrypt = elGamalEncrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME,
+				msg);
 		assertEquals(c1, encrypt.a);
 		assertEquals(c2, encrypt.b);
 
@@ -44,8 +49,8 @@ public class ElGamalEncryptTest extends ConcreteTestBase
 		CivitasBigInteger s = PUBKEY_EPRIME.modPow(FACTOR_EPRIME, BIGINT_P);
 		CivitasBigInteger c2 = MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED.modMultiply(s,
 				BIGINT_P);
-		ElGamalCiphertext actual = (ElGamalCiphertext) elGamalEncrypt.apply(
-				EL_GAMAL_PUBLIC_KEY_EPRIME, EL_GAMAL_MESSAGE_VOTE_CAPABILITY_SHARE,
+		ElGamalCiphertext actual = elGamalEncrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME,
+				EL_GAMAL_MESSAGE_VOTE_CAPABILITY_SHARE,
 				new ElGamalReencryptFactorC(FACTOR_EPRIME));
 		ElGamalCiphertext ciphertext = new ElGamalCiphertext(c1, c2);
 		assertTrue(ciphertext.equals(actual));
@@ -59,7 +64,8 @@ public class ElGamalEncryptTest extends ConcreteTestBase
 			+ "		// using the encryption factor 0. This is assumed by some of the\n"
 			+ "		// zero knowledge proofs.")
 	void test() throws Exception {
-		ElGamalMsgC msg = new ElGamalMsgC(BIGINT_B, EL_GAMAL_PARAMETERS);
+		ElGamalMsg msg = new ElGamalMsg(
+				encodeMessage.apply(BIGINT_B, EL_GAMAL_PARAMETERS));
 		assertEquals(ENCRYPTED_ZERO_FACTOR, (elGamalEncrypt
 				.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, msg, ENCRYPT_FACTOR_ZERO)));
 	}

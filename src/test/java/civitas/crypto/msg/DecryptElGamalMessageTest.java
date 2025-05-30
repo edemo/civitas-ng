@@ -27,6 +27,8 @@ public class DecryptElGamalMessageTest extends ConcreteTestBase
 
 	@Use
 	ElGamalEncrypt elGamalEncrypt;
+	@Use
+	EncodeMessage encodeMessage;
 
 	@Test
 	@DisplayName("elGamalDecrypt decrypts and verifies the siged cyphertext")
@@ -34,7 +36,7 @@ public class DecryptElGamalMessageTest extends ConcreteTestBase
 
 		ElGamalSignedCiphertextC encrypted = SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV;
 
-		ElGamalMsgC decrypted = (ElGamalMsgC) decryptElGamalMessage
+		ElGamalMsg decrypted = (ElGamalMsg) decryptElGamalMessage
 				.apply(ELGAMAL_PRIVATE_KEY_E, encrypted, ADDITIONALENV_BYTES);
 		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED, decrypted.m);
 
@@ -45,7 +47,8 @@ public class DecryptElGamalMessageTest extends ConcreteTestBase
 	void elGamalDecryptTest1() throws Exception {
 
 		byte[] env = SOMESTRING_EXTENDED.getBytes();
-		ElGamalMsgC msg = new ElGamalMsgC(BIGINT_A, EL_GAMAL_PARAMETERS);
+		ElGamalMsg msg = new ElGamalMsg(
+				encodeMessage.apply(BIGINT_A, EL_GAMAL_PARAMETERS));
 
 		ElGamalSignedCiphertextC encrypted = (ElGamalSignedCiphertextC) signAndEncrypt
 				.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, msg,
@@ -61,7 +64,7 @@ public class DecryptElGamalMessageTest extends ConcreteTestBase
 	void elGamalDecryptTest2() throws Exception {
 
 		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED,
-				((ElGamalMsgC) decryptElGamalMessage.apply(ELGAMAL_PRIVATE_KEY_E,
+				((ElGamalMsg) decryptElGamalMessage.apply(ELGAMAL_PRIVATE_KEY_E,
 						CIPHERTEXT_E)).m);
 
 	}

@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import civitas.common.Util;
+import civitas.crypto.Constants;
 
 public class ElGamalDecryptionShareToXML {
 
@@ -15,7 +16,7 @@ public class ElGamalDecryptionShareToXML {
 
 	public void apply(ElGamalDecryptionShare that, PrintWriter s) {
 		s.print('<');
-		s.print(ElGamalDecryptionShare.OPENING_TAG);
+		s.print(Constants.ElGamalDecryptionShareOPENING_TAG);
 		s.print('>');
 		s.print("<ai>");
 		if (that.ai != null)
@@ -24,7 +25,7 @@ public class ElGamalDecryptionShareToXML {
 		if (that.proof != null)
 			that.proof.toXML(s);
 		s.print("</");
-		s.print(ElGamalDecryptionShare.OPENING_TAG);
+		s.print(Constants.ElGamalDecryptionShareOPENING_TAG);
 		s.print('>');
 	}
 

@@ -23,5 +23,4 @@ public interface ElGamalProof1OfL {
 
 	public void toXML(PrintWriter sb);
 
-	public boolean equals(ElGamalProof1OfL p);
 }

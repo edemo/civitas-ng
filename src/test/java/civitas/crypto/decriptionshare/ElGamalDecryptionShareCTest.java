@@ -34,13 +34,6 @@ public class ElGamalDecryptionShareCTest extends ConcreteTestBase
 	}
 
 	@Test
-	@DisplayName("constructor accepts nulls")
-	void test1() {
-		assertEquals(EL_GAMAL_DECRYPTION_SHARE_NULL_XML, elGamalDecryptionShareToXML
-				.apply(new ElGamalDecryptionShare(null, null)));
-	}
-
-	@Test
 	@DisplayName("fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
 		assertEquals(EL_GAMAL_DECRYPTION_SHARE_XML,
@@ -73,14 +66,6 @@ public class ElGamalDecryptionShareCTest extends ConcreteTestBase
 				.apply(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE,
 						EL_GAMAL_PARAMETERS);
 		assertTrue(actual);
-	}
-
-	@Test
-	@DisplayName("verify is false if the proof is null")
-	void test4_1() {
-		assertFalse(verifyElGamalDecryptionShare.apply(
-				new ElGamalDecryptionShare(null, null), EL_GAMAL_CIPHERTEXT,
-				EL_GAMAL_PUBLIC_KEY_EPRIME));
 	}
 
 	@Test

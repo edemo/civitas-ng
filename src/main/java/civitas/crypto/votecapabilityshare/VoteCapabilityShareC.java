@@ -9,23 +9,11 @@ package civitas.crypto.votecapabilityshare;
 import java.io.PrintWriter;
 
 import civitas.common.Util;
-import civitas.crypto.CryptoException;
-import civitas.crypto.msg.ElGamalMsgC;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.msg.ElGamalMsg;
 import civitas.util.CivitasBigInteger;
 
-public class VoteCapabilityShareC extends ElGamalMsgC
+public class VoteCapabilityShareC extends ElGamalMsg
 		implements VoteCapabilityShare {
-
-	public VoteCapabilityShareC(CivitasBigInteger c, ElGamalParametersC params)
-			throws CryptoException {
-		super(c, params);
-	}
-
-	public VoteCapabilityShareC(String c, ElGamalParametersC params)
-			throws CryptoException {
-		super(c, params);
-	}
 
 	public VoteCapabilityShareC(CivitasBigInteger c) {
 		super(c);

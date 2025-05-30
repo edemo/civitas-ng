@@ -11,6 +11,8 @@ import civitas.util.Use;
 public class ElGamalParametersFromXML {
 	@Use
 	ConvertToBigInt convertToBigInt;
+	@Use
+	CheckGroup checkGroup;
 
 	public ElGamalParametersC apply(Reader r)
 			throws IllegalArgumentException, IOException {
@@ -22,7 +24,9 @@ public class ElGamalParametersFromXML {
 		CivitasBigInteger p = convertToBigInt.apply(sp);
 		CivitasBigInteger q = convertToBigInt.apply(sq);
 		CivitasBigInteger g = convertToBigInt.apply(sg);
-		return new ElGamalParametersC(p, q, g);
+		ElGamalParametersC params = new ElGamalParametersC(p, q, g);
+		checkGroup.apply(params);
+		return params;
 	}
 
 }

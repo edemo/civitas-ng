@@ -10,31 +10,39 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
+import civitas.crypto.parameters.encoder.SchnorrPrimeDecoder;
 import civitas.crypto.parameters.encoder.SchnorrPrimeEncoder;
+import civitas.util.Tested;
 
 public class SchnorrPrimeEncoderTest extends ConcreteTestBase
 		implements EncoderTestData {
 
-	SchnorrPrimeEncoder encoder = new SchnorrPrimeEncoder(EL_GAMAL_PARAMETERS);
+	@Tested
+	SchnorrPrimeEncoder schnorrPrimeEncoder;
+
+	@Tested
+	SchnorrPrimeDecoder schnorrPrimeDecoder;
 
 	@Test
 	@DisplayName("encode works as expected")
 	void test() throws CryptoException {
-		assertEquals(G_EXP_A_BASE64, Base64.getEncoder()
-				.encodeToString(encoder.encodePlaintext(BIGINT_A).toByteArray()));
+		assertEquals(G_EXP_A_BASE64,
+				Base64.getEncoder().encodeToString(schnorrPrimeEncoder
+						.apply(BIGINT_A, EL_GAMAL_PARAMETERS).toByteArray()));
 	}
 
 	@Test
 	@DisplayName("encode won't encode plaintext bigget than q")
 	void test1() throws CryptoException {
-		assertThrows(CryptoException.class,
-				() -> encoder.encodePlaintext(BIGINT_Q.add(BIGINT_A)).toString());
+		assertThrows(CryptoException.class, () -> schnorrPrimeEncoder
+				.apply(BIGINT_Q.add(BIGINT_A), EL_GAMAL_PARAMETERS).toString());
 	}
 
 	@Test
 	@DisplayName("no decoding for Schnorr primes")
 	void test2() throws CryptoException {
-		assertThrows(CryptoException.class, () -> encoder.decodeMessage(BIGINT_A));
+		assertThrows(CryptoException.class,
+				() -> schnorrPrimeDecoder.apply(BIGINT_A, EL_GAMAL_PARAMETERS));
 	}
 
 }

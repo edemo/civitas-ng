@@ -54,11 +54,10 @@ import civitas.crypto.messagedigest.MessageDigest;
 import civitas.crypto.messagedigest.ObtainMessageDigest;
 import civitas.crypto.msg.DecryptElGamalMessage;
 import civitas.crypto.msg.ElGamalMsg;
-import civitas.crypto.msg.ElGamalMsgC;
 import civitas.crypto.oneoflreencryption.ConstructElGamal1OfLReencryption;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionC;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionFromXML;
+import civitas.crypto.parameters.BruteForceDecode;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.parameters.ElGamalParametersFromXML;
@@ -93,7 +92,6 @@ import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLogFromXML;
 import civitas.crypto.proofvote.ConstructProofVote;
 import civitas.crypto.proofvote.ProofVote;
 import civitas.crypto.proofvote.ProofVoteFromXML;
-import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.publickey.ElGamalPublicKeyFromFile;
 import civitas.crypto.publickey.ElGamalPublicKeyFromXML;
@@ -469,6 +467,9 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 				factor);
 	}
 
+	@Use
+	BruteForceDecode bruteForceDecode;
+
 	/**
 	 * @return The decoding of message m to a plaintext.
 	 * @throws CryptoException If m does not decode to a plaintext i such that 1
@@ -478,11 +479,13 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Deprecated
 	public int elGamal1OfLValue(ElGamalMsg m, int L, ElGamalParameters params)
 			throws CryptoException {
-		ElGamalMsgC mc = (ElGamalMsgC) m;
+		// it seems the parameters are the same throughout the vote
+		// just make a list of the possible values and look it up
+		ElGamalMsg mc = m;
 		ElGamalParametersC paramsc = (ElGamalParametersC) params;
 		// return the int value minus 1, since the well-known ciphertext list is
 		// (1, 2, 3, ...), and we want to return the index of the value.
-		return paramsc.bruteForceDecode(mc.bigIntValue(), L) - 1;
+		return bruteForceDecode.apply(paramsc, mc.m, L) - 1;
 	}
 
 	/**
@@ -969,8 +972,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 			String context, ElGamalReencryptFactor encCapabilityFactor,
 			ElGamalReencryptFactor encChoiceFactor) {
 		return constructProofVote.apply((ElGamalParametersC) params, encCapability,
-				((ElGamal1OfLReencryptionC) encChoice).m, context,
-				(ElGamalReencryptFactorC) encCapabilityFactor,
+				encChoice.m, context, (ElGamalReencryptFactorC) encCapabilityFactor,
 				(ElGamalReencryptFactorC) encChoiceFactor);
 	}
 

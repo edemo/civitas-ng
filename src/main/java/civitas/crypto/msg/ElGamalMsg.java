@@ -6,6 +6,17 @@
  */
 package civitas.crypto.msg;
 
-public interface ElGamalMsg {
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
+@EqualsAndHashCode
+@ToString
+@RequiredArgsConstructor
+public class ElGamalMsg {
+	@NonNull
+	public final CivitasBigInteger m;
 
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 import civitas.common.Util;
+import civitas.crypto.Constants;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextFromXML;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
@@ -15,7 +16,7 @@ public class ElGamalCiphertextFromXML {
 
 	private ElGamalCiphertext fromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		Util.swallowTag(r, ElGamalCiphertext.OPENING_TAG);
+		Util.swallowTag(r, Constants.ElGamalCiphertextOPENING_TAG);
 		CivitasBigInteger a = null;
 		String sa = Util.unescapeString(Util.readSimpleTag(r, "a"));
 		if (sa.length() > 0) {
@@ -28,12 +29,12 @@ public class ElGamalCiphertextFromXML {
 			b = Util.asBigint(sb);
 		}
 
-		Util.swallowEndTag(r, ElGamalCiphertext.OPENING_TAG);
+		Util.swallowEndTag(r, Constants.ElGamalCiphertextOPENING_TAG);
 		return new ElGamalCiphertext(a, b);
 	}
 
 	public ElGamalCiphertext apply(Reader r) throws IOException {
-		if (Util.isNextTag(r, ElGamalCiphertext.OPENING_TAG)) {
+		if (Util.isNextTag(r, Constants.ElGamalCiphertextOPENING_TAG)) {
 			return fromXML(r);
 		} else {
 			return elGamalSignedCiphertextFromXML.apply(r);

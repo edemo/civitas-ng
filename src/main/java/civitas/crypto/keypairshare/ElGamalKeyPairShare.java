@@ -6,47 +6,21 @@
  */
 package civitas.crypto.keypairshare;
 
-import java.io.PrintWriter;
-
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
-import civitas.crypto.privatekey.ElGamalPrivateKey;
-import civitas.crypto.privatekey.ElGamalPrivateKeyToXML;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.publickey.ElGamalPublicKeyToXML;
-import civitas.util.Use;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
+@EqualsAndHashCode
 public class ElGamalKeyPairShare {
+	@NonNull
 	public final ElGamalParameters params;
+	@NonNull
 	public final ElGamalPublicKey pubKey;
+	@NonNull
 	public final ElGamalPrivateKey privKey;
-
-	public ElGamalKeyPairShare(ElGamalParameters params, ElGamalPublicKey pubKey,
-			ElGamalPrivateKey privKey) {
-		this.params = params;
-		this.pubKey = pubKey;
-		this.privKey = privKey;
-	}
-
-	@Use
-	ElGamalPublicKeyToXML elGamalPublicKeyToXML;
-	@Use
-	ElGamalPrivateKeyToXML elGamalPrivateKeyToXML;
-
-	public void toXML(PrintWriter sb) {
-		if (sb == null)
-			return;
-		sb.print("<elGamalKeyPairShare>");
-
-		if (this.pubKey != null) {
-			elGamalPublicKeyToXML.apply((ElGamalPublicKey) this.pubKey, sb);
-		}
-		if (this.privKey != null) {
-			elGamalPrivateKeyToXML.apply((ElGamalPrivateKey) this.privKey, sb);
-		}
-
-		sb.print("</elGamalKeyPairShare>");
-	}
 
 }

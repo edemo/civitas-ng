@@ -8,17 +8,15 @@ package civitas.crypto.ciphertext;
 
 import civitas.util.CivitasBigInteger;
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @EqualsAndHashCode
+@RequiredArgsConstructor
 public class ElGamalCiphertext {
-	public static final String OPENING_TAG = "elGamalCiphertext";
-
+	@NonNull
 	public final CivitasBigInteger a;
+	@NonNull
 	public final CivitasBigInteger b;
-
-	public ElGamalCiphertext(CivitasBigInteger a, CivitasBigInteger b) {
-		this.a = a;
-		this.b = b;
-	}
 
 }

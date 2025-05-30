@@ -4,8 +4,14 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import civitas.common.Util;
+import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParametersToXML;
+import civitas.util.Use;
 
 public class ElGamalPrivateKeyToXML {
+
+	@Use
+	ElGamalParametersToXML elGamalParametersToXML;
 
 	public String apply(ElGamalPrivateKey that) {
 		StringWriter sb = new StringWriter();
@@ -20,13 +26,13 @@ public class ElGamalPrivateKeyToXML {
 
 		s.print("<params>");
 		if (that.params != null) {
-			that.params.toXML(s);
+			elGamalParametersToXML.apply((ElGamalParametersC) that.params, s);
 		}
 		s.print("</params>");
-		s.print("<y>");
+		s.print("<x>");
 		if (that.x != null)
 			Util.escapeString(Util.fromBigInt(that.x), s);
-		s.print("</y>");
+		s.print("</x>");
 
 		s.print("</");
 		s.print("elGamalPrivateKey");

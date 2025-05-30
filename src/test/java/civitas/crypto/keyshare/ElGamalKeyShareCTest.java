@@ -15,7 +15,6 @@ import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.keys.ElGamalKeyShareTestData;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLogC;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Use;
 
 public class ElGamalKeyShareCTest extends ConcreteTestBase
@@ -30,13 +29,6 @@ public class ElGamalKeyShareCTest extends ConcreteTestBase
 	void test() throws IllegalArgumentException, IOException {
 		assertEquals(EL_GAMAL_KEY_SHARE_XML,
 				elGamalKeyShareToXML.apply(EL_GAMAL_KEY_SHARE_E));
-	}
-
-	@Test
-	@DisplayName("constructor with nulls work and can be an XML made of")
-	void test_null() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMAL_KEY_SHARE_NULL_XML,
-				elGamalKeyShareToXML.apply(new ElGamalKeyShare(null, null)));
 	}
 
 	@Test
@@ -70,24 +62,23 @@ public class ElGamalKeyShareCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("equals to other keyshare with same key and proof")
 	void equalsTest() throws IllegalArgumentException, IOException {
-		assertTrue(EL_GAMAL_KEY_SHARE_E
-				.equals(new ElGamalKeyShare((ElGamalPublicKey) EL_GAMAL_PUBLIC_KEY_E,
-						EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
+		assertTrue(EL_GAMAL_KEY_SHARE_E.equals(new ElGamalKeyShare(
+				EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
 	}
 
 	@Test
 	@DisplayName("not equals to other keyshare with different key")
 	void equalsTest1() throws IllegalArgumentException, IOException {
-		assertFalse(EL_GAMAL_KEY_SHARE_E.equals(new ElGamalKeyShare(
-				(ElGamalPublicKey) new ElGamalPublicKey(BIGINT_A, EL_GAMAL_PARAMETERS),
-				EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
+		assertFalse(EL_GAMAL_KEY_SHARE_E.equals(
+				new ElGamalKeyShare(new ElGamalPublicKey(BIGINT_A, EL_GAMAL_PARAMETERS),
+						EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
 	}
 
 	@Test
 	@DisplayName("not equals to other keyshare with different proof")
 	void equalsTest2() throws IllegalArgumentException, IOException {
-		assertFalse(EL_GAMAL_KEY_SHARE_E.equals(
-				new ElGamalKeyShare((ElGamalPublicKey) EL_GAMAL_PUBLIC_KEY_EPRIME,
+		assertFalse(EL_GAMAL_KEY_SHARE_E
+				.equals(new ElGamalKeyShare(EL_GAMAL_PUBLIC_KEY_EPRIME,
 						new ElGamalProofKnowDiscLogC(EL_GAMAL_PROOF_KNOWN_DISC_LOG_A,
 								BIGINT_C, SAFE_P_MINUS_A, BIGINT_A))));
 	}

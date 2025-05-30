@@ -31,7 +31,7 @@ public class DecryptElGamalMessage {
 			CivitasBigInteger a = c.a;
 			CivitasBigInteger b = c.b;
 			CivitasBigInteger m = b.modDivide(a.modPow(k.x, ps.p), ps.p);
-			return new ElGamalMsgC(m);
+			return new ElGamalMsg(m);
 		} catch (ClassCastException e) {
 			throw new CryptoError(e);
 		} catch (NullPointerException e) {

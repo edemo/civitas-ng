@@ -5,7 +5,7 @@ import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.msg.ElGamalMsg;
-import civitas.crypto.msg.ElGamalMsgC;
+import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
@@ -27,7 +27,7 @@ public class SignAndEncrypt {
 		try {
 			ElGamalParametersC ps = (ElGamalParametersC) key.params;
 			ElGamalPublicKey k = key;
-			CivitasBigInteger m = ((ElGamalMsgC) msg).bigIntValue();
+			CivitasBigInteger m = ((ElGamalMsg) msg).m;
 			CivitasBigInteger rr = ((ElGamalReencryptFactorC) r).r;
 			CivitasBigInteger s = generateRandomElement.apply(ps.q);
 			CivitasBigInteger a = ps.g.modPow(rr, ps.p);

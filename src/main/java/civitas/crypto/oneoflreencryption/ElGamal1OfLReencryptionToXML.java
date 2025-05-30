@@ -10,13 +10,13 @@ public class ElGamal1OfLReencryptionToXML {
 	@Use
 	ElGamalCiphertextToXML elGamalCiphertextToXML;
 
-	public String apply(ElGamal1OfLReencryptionC that) {
+	public String apply(ElGamal1OfLReencryption that) {
 		StringWriter sb = new StringWriter();
 		apply(that, new PrintWriter(sb));
 		return sb.toString();
 	}
 
-	public void apply(ElGamal1OfLReencryptionC that, PrintWriter s) {
+	public void apply(ElGamal1OfLReencryption that, PrintWriter s) {
 		s.print("<elGamal1OfLReencryption>");
 		if (that.m != null)
 			elGamalCiphertextToXML.apply(that.m, s);

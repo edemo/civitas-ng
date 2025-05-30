@@ -16,6 +16,7 @@ public interface BasicValuesTestData extends Constants {
 	public static final String SOMESTRING_BASE64 = "dGVzdGRhdGE=";
 	public static final String SOMESTRING_EXTENDED = "exttestdatawas";
 	public static final byte[] BYTES = SOMESTRING.getBytes();
+	CivitasBigInteger SOMESTRING_BIGINT = new CivitasBigInteger(BYTES);
 	public static final int SOME_INT = 0xdeadbeef;
 	public static final int SOME_SMALL_INT = 0xbeef;
 	public static final CivitasBigInteger SOME_INT_BIG = CivitasBigInteger

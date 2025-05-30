@@ -107,7 +107,7 @@ public interface ElGamal1OfLReencryptionCTestData
 			+ "</elGamal1OfLReencryption>";
 	public static final String EL_GAMAL_1_OF_L_REENCRYPTION_NULL_XML = "<elGamal1OfLReencryption></elGamal1OfLReencryption>";
 
-	public static final ElGamal1OfLReencryptionC EL_GAMAL_1_OF_L_REENCRYPTION = new ElGamal1OfLReencryptionC(
+	public static final ElGamal1OfLReencryption EL_GAMAL_1_OF_L_REENCRYPTION = new ElGamal1OfLReencryption(
 			CIPHERTEXT_E, EL_GAMAL_PROOF_1_OF_L);
 
 }

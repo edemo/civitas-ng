@@ -22,7 +22,6 @@ public class SafePrimeEncoder implements Encoder {
 		elGamalParameters = elGamalParametersC;
 	}
 
-	@Override
 	public CivitasBigInteger encodePlaintext(CivitasBigInteger x) {
 		CivitasBigInteger encoding = x;
 		if (legendreSymbol.apply(encoding, elGamalParameters.p,
@@ -32,7 +31,6 @@ public class SafePrimeEncoder implements Encoder {
 		return encoding;
 	}
 
-	@Override
 	public CivitasBigInteger decodeMessage(CivitasBigInteger i)
 			throws CryptoException {
 		if (i.compareTo(elGamalParameters.p) > 0) {
