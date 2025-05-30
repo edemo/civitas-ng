@@ -3,7 +3,6 @@ package civitas.crypto.proof1ofl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -50,9 +49,8 @@ public class ConstructElGamalProof1OfLTest extends ConcreteTestBase implements
 			+ "return dv, rv")
 	void test1() throws CryptoException {
 		ElGamalProof1OfLC proof = constructElGamalProof1OfL.apply(
-				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST.ciphertexts,
-				NO_OF_WELL_KNOWN_CIPHERTEXTS, MY_CHOICE, REENCRYPTED_WELL_KNOWN_CHOICE,
-				ELGAMAL_REENCRYPT_FACTOR_E);
+				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS,
+				MY_CHOICE, REENCRYPTED_WELL_KNOWN_CHOICE, ELGAMAL_REENCRYPT_FACTOR_E);
 
 		assertEquals(EL_GAMAL_PROOF_1_OF_L_XML, proof.toXML());
 	}
@@ -64,8 +62,8 @@ public class ConstructElGamalProof1OfLTest extends ConcreteTestBase implements
 		CivitasBigInteger ciphertextA = REENCRYPTED_WELL_KNOWN_CHOICE_A;
 		CivitasBigInteger ciphertextB = REENCRYPTED_WELL_KNOWN_CHOICE_B;
 		CivitasBigInteger pubkey = PUBKEY_E;
-		List<ElGamalCiphertext> ms = Arrays.asList(CIPHERTEXT_LIST.ciphertexts)
-				.stream().map(x -> (ElGamalCiphertext) x).collect(Collectors.toList());
+		List<ElGamalCiphertext> ms = CIPHERTEXT_LIST.stream().map(x -> x)
+				.collect(Collectors.toList());
 		List<CivitasBigInteger> as = IntStream
 				.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS).mapToObj(i -> {
 					return ms.get(i).a.modDivide(ciphertextA, BIGINT_P)

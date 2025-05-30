@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextC;
@@ -29,16 +30,12 @@ public class MultiplyCiphertextsTest extends ConcreteTestBase
 			+ "by multiplying a's and b's in each row\n"
 			+ "gives one ciphertext for each rows")
 	void test() throws CryptoError, CryptoException {
-		ElGamalCiphertext[] actual = multiplyCiphertexts.apply(CIPHERTEXT_MATRIX,
+		CiphertextList actual = multiplyCiphertexts.apply(CIPHERTEXT_MATRIX,
 				EL_GAMAL_PARAMETERS);
-		assertEquals(CivitasBigInteger.valueOf(2 * 11),
-				((ElGamalCiphertext) actual[0]).a);
-		assertEquals(CivitasBigInteger.valueOf(5 * 17),
-				((ElGamalCiphertext) actual[1]).a);
-		assertEquals(CivitasBigInteger.valueOf(3 * 13),
-				((ElGamalCiphertext) actual[0]).b);
-		assertEquals(CivitasBigInteger.valueOf(7 * 19),
-				((ElGamalCiphertext) actual[1]).b);
+		assertEquals(CivitasBigInteger.valueOf(2 * 11), actual.get(0).a);
+		assertEquals(CivitasBigInteger.valueOf(5 * 17), actual.get(1).a);
+		assertEquals(CivitasBigInteger.valueOf(3 * 13), actual.get(0).b);
+		assertEquals(CivitasBigInteger.valueOf(7 * 19), actual.get(1).b);
 	}
 
 	@Test

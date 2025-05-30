@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.decriptionshare.ElGamalDecryptionShare;
 import civitas.crypto.keypair.ElGamalKeyPair;
 import civitas.crypto.keypairshare.ElGamalKeyPairShare;
@@ -146,12 +147,10 @@ public interface CryptoFactory {
 	VoteCapability[] combineVoteCapabilityShares(VoteCapabilityShare[][] shares,
 			ElGamalParameters params);
 
-	ElGamalCiphertext[] multiplyCiphertexts(ElGamalSignedCiphertext[][] shares,
+	CiphertextList multiplyCiphertexts(ElGamalSignedCiphertext[][] shares,
 			ElGamalParameters params);
 
-	ElGamalCiphertext[]
-
-			constructWellKnownCiphertexts(ElGamalPublicKey key, int count);
+	CiphertextList constructWellKnownCiphertexts(ElGamalPublicKey key, int count);
 
 	ElGamalDecryptionShare constructDecryptionShare(ElGamalCiphertext c,
 			ElGamalKeyPairShare keyShare);
@@ -161,7 +160,7 @@ public interface CryptoFactory {
 			throws CryptoException;
 
 	ElGamal1OfLReencryption elGamal1OfLReencrypt(ElGamalPublicKey key,
-			ElGamalCiphertext[] ciphertexts, int L, int choice,
+			CiphertextList ciphertexts, int L, int choice,
 			ElGamalReencryptFactor reencryptFactor);
 
 	int elGamal1OfLValue(ElGamalMsg m, int L, ElGamalParameters params)

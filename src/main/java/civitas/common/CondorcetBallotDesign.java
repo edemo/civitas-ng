@@ -179,7 +179,7 @@ public class CondorcetBallotDesign extends BallotDesign {
 
 	@Override
 	public VoterSubmission decompose(Ballot ballot, int voterBlock,
-			ElGamalPublicKey key, ElGamalCiphertext[] ciphertexts, String context,
+			ElGamalPublicKey key, CiphertextList ciphertexts, String context,
 			Map capabilities) throws IllegalArgumentException {
 
 		if (!(ballot instanceof CondorcetBallot)) {

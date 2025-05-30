@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.ciphertextlist.CiphertextListToXML;
 import civitas.crypto.ciphertextlist.CiphertextListfromXML;
+import civitas.crypto.ciphertextlist.ConstructCiphertextList;
 import civitas.util.Use;
 
 public class CiphertextListTest extends ConcreteTestBase
@@ -24,24 +26,15 @@ public class CiphertextListTest extends ConcreteTestBase
 	CiphertextListfromXML ciphertextListfromXML;
 	@Use
 	CiphertextListToXML ciphertextListToXML;
+	@Use
+	ConstructCiphertextList constructCiphertextList;
 
-	CiphertextList zerosized = new CiphertextList(null);
-	CiphertextList nullInside = new CiphertextList(null, true);
+	CiphertextList zerosized = new CiphertextList();
+	CiphertextList nullInside = new CiphertextList(
+			Arrays.asList(new ElGamalCiphertext[] { null }));
 
 	CiphertextList oneInside = new CiphertextList(
-			new ElGamalCiphertext[] { CIPHERTEXT_E });
-
-	@Test
-	@DisplayName("in case of null argument the constructor creates a zero-length list")
-	void test() {
-		assertEquals(0, zerosized.size());
-	}
-
-	@Test
-	@DisplayName("in case of null argument the two-argument constructor creates a zero-length list")
-	void test2() {
-		assertEquals(0, nullInside.size());
-	}
+			Arrays.asList(new ElGamalCiphertext[] { CIPHERTEXT_E }));
 
 	@Test
 	@DisplayName("get(n) gets the nth cypertext")
@@ -53,12 +46,6 @@ public class CiphertextListTest extends ConcreteTestBase
 	@DisplayName("get(n) throws IndexOutOfBoundsException for out of bounds index")
 	void test4() {
 		assertThrows(IndexOutOfBoundsException.class, () -> oneInside.get(1));
-	}
-
-	@Test
-	@DisplayName("get(n) throws IndexOutOfBoundsException if the list is null inside")
-	void test5() {
-		assertThrows(IndexOutOfBoundsException.class, () -> nullInside.get(0));
 	}
 
 	@Test

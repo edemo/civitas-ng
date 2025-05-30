@@ -8,6 +8,7 @@ import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.publickey.ElGamalPublicKeyC;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
@@ -23,7 +24,7 @@ public class ConstructElGamalProof1OfL implements Constants {
 	private ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProof1OfLC apply(ElGamalPublicKeyC key,
-			ElGamalCiphertext[] ciphertexts, int L, int choice, ElGamalCiphertext m,
+			CiphertextList ciphertexts, int L, int choice, ElGamalCiphertext m,
 			ElGamalReencryptFactorC factor) {
 
 		ElGamalParametersC ps = (ElGamalParametersC) key.params;
@@ -33,7 +34,7 @@ public class ConstructElGamalProof1OfL implements Constants {
 
 		ElGamalCiphertext[] ms = new ElGamalCiphertext[L];
 		for (int i = 0; i < L; i++) {
-			ms[i] = (ElGamalCiphertext) ciphertexts[i];
+			ms[i] = ciphertexts.get(i);
 		}
 
 		// choose d1 .. dL, and r1 ... rL at random.

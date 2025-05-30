@@ -1,5 +1,6 @@
 package civitas.crypto.ciphertext;
 
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
@@ -7,7 +8,7 @@ import civitas.util.CivitasBigInteger;
 
 public class MultiplyCiphertexts {
 
-	public ElGamalCiphertext[] apply(ElGamalSignedCiphertext[][] ciphertexts,
+	public CiphertextList apply(ElGamalSignedCiphertext[][] ciphertexts,
 			ElGamalParameters p) {
 		if (ciphertexts == null)
 			return null;
@@ -28,9 +29,9 @@ public class MultiplyCiphertexts {
 					}
 				}
 			}
-			ElGamalCiphertext[] ret = new ElGamalCiphertext[aAccum.length];
+			CiphertextList ret = new CiphertextList();
 			for (int j = 0; j < aAccum.length; j++) {
-				ret[j] = new ElGamalCiphertext(aAccum[j], bAccum[j]);
+				ret.add(new ElGamalCiphertext(aAccum[j], bAccum[j]));
 			}
 			return ret;
 

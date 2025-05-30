@@ -11,6 +11,8 @@ import civitas.util.Use;
 public class CiphertextListfromXML {
 	@Use
 	ElGamalCiphertextFromXML elGamalCiphertextFromXML;
+	@Use
+	ConstructCiphertextList constructCiphertextList;
 
 	public CiphertextList apply(Reader r)
 			throws IllegalArgumentException, IOException {
@@ -25,7 +27,7 @@ public class CiphertextListfromXML {
 		}
 
 		Util.swallowEndTag(r, "ciphertextList");
-		CiphertextList cl = new CiphertextList(ciphertexts);
+		CiphertextList cl = constructCiphertextList.apply(ciphertexts);
 
 		return cl;
 	}

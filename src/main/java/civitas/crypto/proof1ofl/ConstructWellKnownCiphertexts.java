@@ -3,8 +3,8 @@ package civitas.crypto.proof1ofl;
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
-import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.msg.ElGamalMsgC;
 import civitas.crypto.parameters.ElGamalParametersC;
 import civitas.crypto.publickey.ElGamalPublicKey;
@@ -17,11 +17,11 @@ public class ConstructWellKnownCiphertexts implements Constants {
 	@Use
 	ElGamalEncrypt elGamalEncrypt;
 
-	public ElGamalCiphertext[] apply(ElGamalPublicKey key, int count)
+	public CiphertextList apply(ElGamalPublicKey key, int count)
 			throws CryptoError {
 		if (count < 0 || key == null)
 			return null;
-		ElGamalCiphertext[] cs = new ElGamalCiphertext[count];
+		CiphertextList cs = new CiphertextList();
 
 		// Note: the well known ciphertexts MUST be the encryptions of 1,2,3,...
 		// using the encryption factor 0. This is assumed by some of the
@@ -32,8 +32,8 @@ public class ConstructWellKnownCiphertexts implements Constants {
 			for (int i = 0; i < count; i++) {
 				// encrypt (i+1);
 				try {
-					cs[i] = elGamalEncrypt.apply(key, new ElGamalMsgC(i + 1, params),
-							factor);
+					cs.add(elGamalEncrypt.apply(key, new ElGamalMsgC(i + 1, params),
+							factor));
 				} catch (CryptoException imposs) {
 					throw new CryptoError(imposs);
 				}

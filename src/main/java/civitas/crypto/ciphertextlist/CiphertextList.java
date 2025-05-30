@@ -6,41 +6,20 @@
  */
 package civitas.crypto.ciphertextlist;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 
-/**
- * A ciphertext list is just a list of ciphertexts.
- */
-public class CiphertextList {
+public class CiphertextList extends ArrayList<ElGamalCiphertext> {
+	private static final long serialVersionUID = 1L;
 	public final static String META = "ciphertextList";
 
-	public final ElGamalCiphertext[] ciphertexts;
-
-	public CiphertextList(ElGamalCiphertext[] ciphertexts) {
-
-		ElGamalCiphertext[] cs;
-		if (ciphertexts != null) {
-			cs = ciphertexts.clone();
-		} else {
-			cs = new ElGamalCiphertext[0];
-		}
-		this.ciphertexts = cs;
+	public CiphertextList(List<ElGamalCiphertext> list) {
+		super(list);
 	}
 
-	public CiphertextList(ElGamalCiphertext[] ciphertexts, boolean dummy) {
-		this.ciphertexts = ciphertexts;
+	public CiphertextList() {
+		super();
 	}
-
-	public ElGamalCiphertext get(int i) throws IndexOutOfBoundsException {
-		try {
-			return ciphertexts[i];
-		} catch (NullPointerException e) {
-			throw new IndexOutOfBoundsException();
-		}
-	}
-
-	public int size() {
-		return ciphertexts == null ? 0 : ciphertexts.length;
-	}
-
 }

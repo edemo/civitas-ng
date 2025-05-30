@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.parameters.ElGamalParameters;
@@ -45,7 +44,7 @@ public abstract class BallotDesign implements XMLSerializable {
 	 * are insufficient capabilities.
 	 */
 	public abstract VoterSubmission decompose(Ballot ballot, int voterBlock,
-			ElGamalPublicKey key, ElGamalCiphertext[] ciphertexts, String context,
+			ElGamalPublicKey key, CiphertextList ciphertexts, String context,
 			Map capabilities) throws IllegalArgumentException;
 
 	/**

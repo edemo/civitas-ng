@@ -35,6 +35,7 @@ import civitas.crypto.ciphertext.ElGamalCiphertextFromXML;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.ciphertext.MultiplyCiphertexts;
+import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.decriptionshare.CombineDecryptionShares;
 import civitas.crypto.decriptionshare.ConstructElGamalDecryptionShare;
 import civitas.crypto.decriptionshare.ElGamalDecryptionShare;
@@ -411,7 +412,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	@Override
-	public ElGamalCiphertext[] multiplyCiphertexts(
+	public CiphertextList multiplyCiphertexts(
 			ElGamalSignedCiphertext[][] ciphertexts, ElGamalParameters p) {
 		return multiplyCiphertexts.apply(ciphertexts, p);
 	}
@@ -455,14 +456,14 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public ElGamal1OfLReencryption elGamal1OfLReencrypt(ElGamalPublicKey key,
-			ElGamalCiphertext[] ciphertexts, int L, int choice,
+			CiphertextList ciphertexts, int L, int choice,
 			ElGamalReencryptFactor factor) {
 		return constructElGamal1OfLReencryption.apply(key, ciphertexts, L, choice,
 				factor);
 	}
 
 	public ElGamalProof1OfLC constructElGamalProof1OfL(ElGamalPublicKeyC key,
-			ElGamalCiphertext[] ciphertexts, int L, int choice, ElGamalCiphertext m,
+			CiphertextList ciphertexts, int L, int choice, ElGamalCiphertext m,
 			ElGamalReencryptFactorC factor) {
 		return constructElGamalProof1OfL.apply(key, ciphertexts, L, choice, m,
 				factor);
@@ -490,7 +491,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	 * = enc(m)
 	 */
 	@Override
-	public ElGamalCiphertext[] constructWellKnownCiphertexts(ElGamalPublicKey key,
+	public CiphertextList constructWellKnownCiphertexts(ElGamalPublicKey key,
 			int count) {
 		return constructWellKnownCiphertexts.apply(key, count);
 	}

@@ -1,6 +1,8 @@
 package civitas.crypto.ciphertextlist;
 
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import civitas.crypto.ciphertext.ElGamalCiphertextToXML;
 import civitas.util.Use;
@@ -12,14 +14,17 @@ public class CiphertextListToXML {
 	public void apply(CiphertextList that, PrintWriter sb) {
 		if (sb == null)
 			return;
+		List<String> pieces = that.stream().map(ciphertext -> {
+			if (null != ciphertext)
+				return elGamalCiphertextToXML.apply(ciphertext);
+			return (String) null;
+		}).filter(x -> x != null).collect(Collectors.toList());
 		sb.print("<ciphertextList>");
 		sb.print("<size>");
-		int length = that.ciphertexts == null ? 0 : that.ciphertexts.length;
+		int length = pieces.size();
 		sb.print(length);
 		sb.print("</size>");
-		for (int i = 0; i < length; i++) {
-			elGamalCiphertextToXML.apply(that.ciphertexts[i], sb);
-		}
+		pieces.forEach(s -> sb.print(s));
 		sb.print("</ciphertextList>");
 	}
 
