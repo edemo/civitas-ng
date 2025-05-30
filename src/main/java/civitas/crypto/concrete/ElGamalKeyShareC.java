@@ -10,8 +10,13 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import civitas.crypto.ElGamalAbstractKeyShare;
+import civitas.crypto.algorithms.VerifyElGamalKeyShare;
+import civitas.util.Use;
 
 public class ElGamalKeyShareC extends ElGamalAbstractKeyShare {
+
+	@Use
+	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
 	public ElGamalKeyShareC(ElGamalPublicKeyC pubKey,
 			ElGamalProofKnowDiscLogC proof) {
@@ -20,13 +25,7 @@ public class ElGamalKeyShareC extends ElGamalAbstractKeyShare {
 
 	@Override
 	public boolean verify() {
-		ElGamalProofKnowDiscLogC prf = (ElGamalProofKnowDiscLogC) proof;
-		// the base of the prf is correct, as it is taken from params.
-		ElGamalPublicKeyC K = (ElGamalPublicKeyC) pubKey;
-		if (prf == null || K == null) {
-			return false;
-		}
-		return prf.v.equals(K.y) && prf.verify(pubKey.getParams());
+		return verifyElGamalKeyShare.apply(this);
 	}
 
 	public String toXML() {

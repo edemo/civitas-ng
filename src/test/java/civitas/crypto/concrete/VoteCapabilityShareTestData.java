@@ -1,5 +1,7 @@
 package civitas.crypto.concrete;
 
+import civitas.util.CivitasBigInteger;
+
 public interface VoteCapabilityShareTestData extends ElgamalMessageTestData {
 
 	VoteCapabilityC VOTE_CAPABILITY = new VoteCapabilityC(
@@ -15,5 +17,13 @@ public interface VoteCapabilityShareTestData extends ElgamalMessageTestData {
 			+ MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED_BASE64 + "</voteCapability>";
 	public static final String VOTE_CAPABILITY_NULL_XML = "<voteCapability>"
 			+ "</voteCapability>";
+
+	VoteCapabilityShareC[][] CAPABILITY_SHARE_MATRIX = new VoteCapabilityShareC[][] {
+			{
+					new VoteCapabilityShareC(CivitasBigInteger.valueOf(2)),
+					new VoteCapabilityShareC(CivitasBigInteger.valueOf(3)) },
+			{
+					new VoteCapabilityShareC(CivitasBigInteger.valueOf(5)),
+					new VoteCapabilityShareC(CivitasBigInteger.valueOf(7)) } };
 
 }

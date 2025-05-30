@@ -1,10 +1,7 @@
 package civitas.crypto.concrete;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -12,17 +9,15 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ElGamalParameters;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.importing.ElGamalProofKnowDiscLogFromXML;
-import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
 public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase
 		implements ProofKnowDiscLogTestData {
 
 	@Use
-	CryptoHash hash;
+	CryptoHash cryptoHash;
 	@Use
 	ElGamalProofKnowDiscLogFromXML elGamalProofKnowDiscLogFromXML;
 
@@ -34,32 +29,6 @@ public class ElGamalProofKnowDiscLogCTest extends ConcreteTestBase
 				new ElGamalProofKnowDiscLogC(ELGAMAL_PROOF_KNOWN_DISC_LOG_A,
 						ELGAMAL_PROOF_KNOWN_DISC_LOG_C, ELGAMAL_PROOF_KNOWN_DISC_LOG_R,
 						G_EXP_A).toXML());
-	}
-
-	@Test
-	@DisplayName("verify checks that g^r = av^c (mod p)")
-	void verifyTest() {
-
-		CivitasBigInteger key = ELGAMAL_PRIVATE_KEY_E.x;
-		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
-		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
-		CivitasBigInteger q = EL_GAMAL_PARAMETERS.q;
-
-		CivitasBigInteger v = g.modPow(key, p);
-		CivitasBigInteger z = RANDOMS_0;
-		CivitasBigInteger a = g.modPow(z, p);
-		CivitasBigInteger c = hash.apply(v, a).mod(q);
-		CivitasBigInteger r = z.add(c.modMultiply(key, q));
-		assertTrue(
-				new ElGamalProofKnowDiscLogC(a, c, r, v).verify(EL_GAMAL_PARAMETERS));
-	}
-
-	@Test
-	@DisplayName("verify fails if parameters are not of type ElGamalParametersC")
-	void verifyTest1() {
-		assertFalse(new ElGamalProofKnowDiscLogC(ELGAMAL_PROOF_KNOWN_DISC_LOG_A,
-				ELGAMAL_PROOF_KNOWN_DISC_LOG_C, ELGAMAL_PROOF_KNOWN_DISC_LOG_R,
-				G_EXP_A).verify(mock(ElGamalParameters.class)));
 	}
 
 	@Test

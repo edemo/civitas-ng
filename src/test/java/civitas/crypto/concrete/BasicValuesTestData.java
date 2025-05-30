@@ -9,6 +9,10 @@ import civitas.crypto.algorithms.Constants;
 import civitas.util.CivitasBigInteger;
 
 public interface BasicValuesTestData extends Constants {
+	int BYTELENGTH = 8;
+	int BITLENGTH = 64;
+	int RANDOM_RUNS = 1000;
+
 	public static final String SOMESTRING = "testdata";
 	public static final String SOMESTRING_BASE64 = "dGVzdGRhdGE=";
 	public static final String SOMESTRING_EXTENDED = "exttestdatawas";

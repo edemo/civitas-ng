@@ -7,8 +7,8 @@
 package civitas.crypto;
 
 public abstract class ElGamalAbstractKeyShare implements ElGamalKeyShare {
-	protected final ElGamalPublicKey pubKey;
-	protected final ElGamalProofKnowDiscLog proof;
+	public final ElGamalPublicKey pubKey;
+	public final ElGamalProofKnowDiscLog proof;
 
 	protected ElGamalAbstractKeyShare(ElGamalPublicKey pubKey,
 			ElGamalProofKnowDiscLog proof) {
@@ -16,16 +16,25 @@ public abstract class ElGamalAbstractKeyShare implements ElGamalKeyShare {
 		this.proof = proof;
 	}
 
+	@Override
 	public ElGamalPublicKey pubKey() {
 		return pubKey;
 	}
 
+	@Override
 	public ElGamalProofKnowDiscLog proof() {
 		return proof;
 	}
 
+	@Override
 	public boolean equals(Object o) {
 		if (!(o instanceof ElGamalAbstractKeyShare)) {
+			return false;
+		}
+		if (null == this.proof) {
+			return false;
+		}
+		if (null == this.pubKey) {
 			return false;
 		}
 

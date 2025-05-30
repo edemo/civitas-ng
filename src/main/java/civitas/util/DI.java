@@ -77,6 +77,7 @@ public class DI {
 						throw new Error(stubName + " does not have stub");
 					value = method.invoke(null);
 				} catch (Exception e) {
+					e.printStackTrace();
 					throw new Error("problem with stub " + stubName, e);
 				}
 				field.setAccessible(true);

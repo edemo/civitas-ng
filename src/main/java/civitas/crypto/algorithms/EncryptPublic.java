@@ -8,6 +8,7 @@ import civitas.crypto.PublicKeyMsg;
 import civitas.crypto.concrete.PublicKeyC;
 import civitas.crypto.concrete.PublicKeyCiphertextC;
 import civitas.crypto.concrete.PublicKeyMsgC;
+import civitas.external.DoCrypto;
 import civitas.util.Use;
 
 public class EncryptPublic implements Constants {

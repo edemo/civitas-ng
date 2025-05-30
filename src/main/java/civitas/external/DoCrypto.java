@@ -1,4 +1,4 @@
-package civitas.crypto.algorithms;
+package civitas.external;
 
 import java.security.InvalidKeyException;
 import java.security.Key;

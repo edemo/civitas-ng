@@ -9,6 +9,7 @@ import civitas.crypto.SharedKeyMsg;
 import civitas.crypto.concrete.SharedKeyC;
 import civitas.crypto.concrete.SharedKeyCiphertextC;
 import civitas.crypto.concrete.SharedKeyMsgC;
+import civitas.external.DoCrypto;
 import civitas.util.Use;
 
 public class EncryptShared implements Constants {

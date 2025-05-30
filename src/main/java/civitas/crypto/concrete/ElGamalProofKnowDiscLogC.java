@@ -12,7 +12,9 @@ import java.io.StringWriter;
 import civitas.common.Util;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.ElGamalProofKnowDiscLog;
+import civitas.crypto.algorithms.VerifyElGamalProofKnowDiscLog;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 /**
  * Proof that an entity knows x in v = g^x.
@@ -38,21 +40,12 @@ public class ElGamalProofKnowDiscLogC implements ElGamalProofKnowDiscLog {
 		this.v = v;
 	}
 
+	@Use
+	VerifyElGamalProofKnowDiscLog verifyElGamalProofKnowDiscLog;
+
 	@Override
 	public boolean verify(ElGamalParameters prms) {
-		if (!(prms instanceof ElGamalParametersC))
-			return false;
-		ElGamalParametersC params = (ElGamalParametersC) prms;
-		try {
-			CivitasBigInteger u = params.g.modPow(r, params.p);
-			CivitasBigInteger w = a.modMultiply(v.modPow(c, params.p), params.p);
-
-			return u.equals(w);
-		} catch (NullPointerException e) {
-			return false;
-		} catch (ArithmeticException e) {
-			return false;
-		}
+		return verifyElGamalProofKnowDiscLog.apply(this, prms);
 	}
 
 	public String toXML() {

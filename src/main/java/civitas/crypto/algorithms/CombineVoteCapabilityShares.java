@@ -36,8 +36,6 @@ public class CombineVoteCapabilityShares {
 
 		} catch (NullPointerException e) {
 			return null;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return null;
 		} catch (ClassCastException e) {
 			return null;
 		}

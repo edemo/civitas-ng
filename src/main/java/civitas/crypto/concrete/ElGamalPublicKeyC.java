@@ -70,6 +70,8 @@ public class ElGamalPublicKeyC extends ElGamalAbstractKey
 		if (!(other instanceof ElGamalPublicKeyC)) {
 			return false;
 		}
+		if (null == y)
+			return false;
 		ElGamalPublicKeyC o = (ElGamalPublicKeyC) other;
 		if (!y.equals(o.y))
 			return false;

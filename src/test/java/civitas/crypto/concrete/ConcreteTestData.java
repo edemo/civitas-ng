@@ -17,10 +17,6 @@ public interface ConcreteTestData
 	public static final CivitasBigInteger D_EXP_TWOK_FROMP = BIGINT_D
 			.modPow(BIGINT_P.subtract(ONE).divide(BIGINT_Q), BIGINT_P);
 
-	public static final String EL_GAMAL_PARAMETERS_SAFE_XML = "<elGamalParameters><p>"
-			+ SAFE_P_BASE64 + "</p><q>" + SAFE_Q_BASE64 + "</q><g>" + SAFE_G_BASE64
-			+ "</g></elGamalParameters>";
-
 	public static final String PLAINTEXT_OF_BIG_SECRET_BASE64 = "AJXkC5CDsgba1vFb7Fp2sCYEjcDJLeL51y+byyoJOxuZ2wWEEvZITaMs79XjcNJqsR2gB5q+k9YkfiPHtYWgSk8=";
 
 	public static final String SHARED_KEY_BASE64 = "dGVzdGRhdGE=";
@@ -29,16 +25,6 @@ public interface ConcreteTestData
 			+ "</n><k>" + SHARED_KEY_BASE64 + "</k></sharedKey>";
 	public static final String SHARED_KEY_ON_WIRE = SHARED_KEY_NAME + "\n"
 			+ SHARED_KEY_BASE64 + "\n";
-
-	public static final VoteCapabilityShareC VOTE_CAPABILITY_SHARE = TestUtil
-			.construct(VoteCapabilityShareC.class, BIGINT_A, EL_GAMAL_PARAMETERS);
-	public static final VoteCapabilityShareC VOTE_CAPABILITY_SHARE_JUST_BIGINT = TestUtil
-			.construct(VoteCapabilityShareC.class, BIGINT_A);
-
-	public static final VoteCapabilityC VOTE_CAPABILITY = TestUtil
-			.construct(VoteCapabilityC.class, BIGINT_A, EL_GAMAL_PARAMETERS);
-	public static final VoteCapabilityC VOTE_CAPABILITY_JUST_BIGINT = TestUtil
-			.construct(VoteCapabilityC.class, BIGINT_A);
 
 	public static final CivitasBigInteger SOME_INT_ENCRYPTED_SAFE = SOME_INT_BIG;
 

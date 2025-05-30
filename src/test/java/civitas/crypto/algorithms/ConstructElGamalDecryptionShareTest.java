@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ElGamalKeyPairShare;
 import civitas.crypto.concrete.ConcreteTestBase;
-import civitas.crypto.concrete.ElGamalCiphertextC;
 import civitas.crypto.concrete.ElGamalCiphertextCTestData;
 import civitas.crypto.concrete.ElGamalDecryptionShareC;
 import civitas.crypto.concrete.ElGamalDecryptionShareTestData;

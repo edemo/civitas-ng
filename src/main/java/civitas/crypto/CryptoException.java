@@ -16,4 +16,8 @@ public class CryptoException extends Exception {
 	public CryptoException(String m) {
 		super(m);
 	}
+
+	public CryptoException(String m, Exception e) {
+		super(m, e);
+	}
 }

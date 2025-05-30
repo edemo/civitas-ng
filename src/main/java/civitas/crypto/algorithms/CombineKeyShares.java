@@ -4,10 +4,14 @@ import civitas.crypto.CryptoException;
 import civitas.crypto.ElGamalKeyShare;
 import civitas.crypto.ElGamalParameters;
 import civitas.crypto.ElGamalPublicKey;
+import civitas.crypto.concrete.ElGamalKeyShareC;
 import civitas.crypto.concrete.ElGamalPublicKeyC;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 public class CombineKeyShares implements Constants {
+	@Use
+	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
 	public ElGamalPublicKey apply(ElGamalKeyShare[] shares)
 			throws CryptoException {
@@ -23,15 +27,13 @@ public class CombineKeyShares implements Constants {
 				if (params == null) {
 					params = s.pubKey().getParams();
 				}
-				if (!s.verify()) {
+				if (!verifyElGamalKeyShare.apply((ElGamalKeyShareC) s)) {
 					throw new CryptoException("Invalid share");
 				}
-			} catch (NullPointerException e) {
-				throw new CryptoException("Invalid share or proof");
-			}
-			// accumulate the keys..
-			if (s.pubKey() instanceof ElGamalPublicKeyC) {
+				// accumulate the keys..
 				accum = accum.multiply(((ElGamalPublicKeyC) s.pubKey()).y);
+			} catch (NullPointerException e) {
+				throw new CryptoException("Invalid share or proof", e);
 			}
 		}
 		return new ElGamalPublicKeyC(accum, params);
