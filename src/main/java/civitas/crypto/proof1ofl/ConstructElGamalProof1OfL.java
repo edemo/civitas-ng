@@ -23,7 +23,7 @@ public class ConstructElGamalProof1OfL implements Constants {
 	@Use
 	private ConvertHashToBigInt convertHashToBigInt;
 
-	public ElGamalProof1OfLC apply(ElGamalPublicKey key,
+	public ElGamalProof1OfL apply(ElGamalPublicKey key,
 			CiphertextList ciphertexts, int L, int choice, ElGamalCiphertext m,
 			ElGamalReencryptFactor factor) {
 
@@ -92,7 +92,7 @@ public class ConstructElGamalProof1OfL implements Constants {
 			}
 		}
 
-		return new ElGamalProof1OfLC(L, dvs, rvs);
+		return new ElGamalProof1OfL(L, dvs, rvs);
 	}
 
 }

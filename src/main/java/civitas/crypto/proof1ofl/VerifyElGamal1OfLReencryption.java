@@ -8,7 +8,7 @@ import civitas.util.Use;
 public class VerifyElGamal1OfLReencryption {
 
 	@Use
-	VerifyElGamalProof1OfLC verifyElGamalProof1OfLC;
+	VerifyElGamalProof1OfL verifyElGamalProof1OfLC;
 
 	public boolean apply(ElGamal1OfLReencryption that, ElGamalPublicKey pubKey,
 			CiphertextList ciphertexts, int L) {

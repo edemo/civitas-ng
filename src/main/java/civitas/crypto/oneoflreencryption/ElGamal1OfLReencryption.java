@@ -7,7 +7,7 @@
 package civitas.crypto.oneoflreencryption;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.proof1ofl.ElGamalProof1OfLC;
+import civitas.crypto.proof1ofl.ElGamalProof1OfL;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +20,6 @@ public class ElGamal1OfLReencryption {
 	@NonNull
 	public final ElGamalCiphertext m;
 	@NonNull
-	public final ElGamalProof1OfLC proof;
+	public final ElGamalProof1OfL proof;
 
 }

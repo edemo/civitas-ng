@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 
 import civitas.crypto.ciphertext.ElGamalCiphertextToXML;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionToXML;
-import civitas.crypto.proofvote.ProofVoteC;
+import civitas.crypto.proofvote.ProofVote;
 import civitas.crypto.proofvote.ProofVoteToXML;
 import civitas.util.Use;
 
@@ -37,7 +37,7 @@ public class VerifiableVoteToXML {
 		sb.print("</encCapability>");
 		sb.print("<proof>");
 		if (that.proofVote != null) {
-			proofVoteToXML.apply((ProofVoteC) that.proofVote, sb);
+			proofVoteToXML.apply((ProofVote) that.proofVote, sb);
 		}
 		sb.print("</proof>");
 

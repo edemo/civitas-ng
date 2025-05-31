@@ -22,7 +22,7 @@ public class VerifyProofVoteTest extends TestBase
 			+ "	   g^s2*encChoice.a^c (mod p))")
 	void test2_1() {
 
-		ProofVoteC proofVote = PROOF_VOTE;
+		ProofVote proofVote = PROOF_VOTE;
 		assertTrue(verifyProofVote.apply(proofVote, EL_GAMAL_PARAMETERS,
 				CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE, ADDITIONALENV));
 	}

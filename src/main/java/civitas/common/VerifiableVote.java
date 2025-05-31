@@ -15,7 +15,7 @@ import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.proof1ofl.VerifyElGamal1OfLReencryption;
 import civitas.crypto.proofvote.ProofVote;
-import civitas.crypto.proofvote.ProofVoteC;
+import civitas.crypto.proofvote.ProofVote;
 import civitas.crypto.proofvote.VerifyProofVote;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Use;
@@ -86,7 +86,7 @@ public class VerifiableVote {
 			return false;
 		return verifyElGamal1OfLReencryption.apply(encChoice, pubKey, ciphertexts,
 				L)
-				&& verifyProofVote.apply((ProofVoteC) proofVote, pubKey.params,
+				&& verifyProofVote.apply((ProofVote) proofVote, pubKey.params,
 						encCapability, encChoice.m, context);
 	}
 

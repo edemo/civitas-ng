@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.Base64;
-
-import javax.crypto.spec.SecretKeySpec;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,22 +14,21 @@ import org.junit.jupiter.api.Test;
 import civitas.common.TestBase;
 import civitas.util.Use;
 
-public class SharedKeyCTest extends TestBase
-		implements SharedKeyTestData {
+public class SharedKeyCTest extends TestBase implements SharedKeyTestData {
 
 	@Use
 	SharedKeyFromWire sharedKeyFromWire;
 	@Use
 	SharedKeyFromXML sharedKeyFromXML;
-
-	SharedKeyC SHARED_KEY_C = new SharedKeyC(
-			new SecretKeySpec(Base64.getDecoder().decode(SHARED_KEY_BASE64), "AES"),
-			SHARED_KEY_NAME);
+	@Use
+	SharedKeyToWire sharedKeyToWire;
+	@Use
+	SharedKeyToXML sharedKeyToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
-		assertEquals(SHARED_KEY_XML, SHARED_KEY_C.toXML());
+		assertEquals(SHARED_KEY_XML, sharedKeyToXML.apply(SHARED_KEY));
 	}
 
 	@Test
@@ -40,7 +36,7 @@ public class SharedKeyCTest extends TestBase
 	void test2() {
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
-		SHARED_KEY_C.toWire(pw);
+		sharedKeyToWire.apply(SHARED_KEY, pw);
 		assertEquals(SHARED_KEY_ON_WIRE, sw.toString());
 	}
 
@@ -50,21 +46,20 @@ public class SharedKeyCTest extends TestBase
 		StringReader sr = new StringReader(SHARED_KEY_ON_WIRE);
 		BufferedReader br = new BufferedReader(sr);
 		SharedKeyC fromWire = (SharedKeyC) sharedKeyFromWire.apply(br);
-		assertEquals(SHARED_KEY_XML, fromWire.toXML());
+		assertEquals(SHARED_KEY, fromWire);
 	}
 
 	@Test
 	@DisplayName("name returns the key name")
 	void test4() {
-		assertEquals(SHARED_KEY_NAME, SHARED_KEY_C.name());
+		assertEquals(SHARED_KEY_NAME, SHARED_KEY.name);
 	}
 
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test1() throws IllegalArgumentException, IOException {
-		assertEquals(SHARED_KEY_XML,
-				((SharedKeyC) sharedKeyFromXML.apply(new StringReader(SHARED_KEY_XML)))
-						.toXML());
+		assertEquals(SHARED_KEY,
+				(sharedKeyFromXML.apply(new StringReader(SHARED_KEY_XML))));
 	}
 
 }

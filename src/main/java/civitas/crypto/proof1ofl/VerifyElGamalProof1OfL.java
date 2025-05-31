@@ -13,13 +13,13 @@ import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
-public class VerifyElGamalProof1OfLC {
+public class VerifyElGamalProof1OfL {
 	@Use
 	CryptoHash cryptoHash;
 	@Use
 	ConvertHashToBigInt convertHashToBigInt;
 
-	public boolean apply(ElGamalProof1OfLC self, ElGamalPublicKey pubKey,
+	public boolean apply(ElGamalProof1OfL self, ElGamalPublicKey pubKey,
 			CiphertextList ciphertexts, int L, ElGamalCiphertext msg) {
 		if (self.L != L)
 			return false;

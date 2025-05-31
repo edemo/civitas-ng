@@ -28,7 +28,7 @@ public class PublicKeyCTest extends TestBase
 	IsPublicKeyAuthorized isPublicKeyAuthorized;
 
 	@Use
-	PublicKeyCToXML publicKeyCToXML;
+	PublicKeyToXML publicKeyCToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")

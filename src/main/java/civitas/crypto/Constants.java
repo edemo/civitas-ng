@@ -55,6 +55,7 @@ public interface Constants {
 	public static final String PublicKeyCiphertextOPENING_TAG = "publicKeyCiphertext";
 	public static final String PrivateKeyOPENING_TAG = "privateKey";
 	public final static String PublicKeyOPENING_TAG = "publicKey";
+	public final static String SharedKeyOPENING_TAG = "sharedKey";
 	public final String CHARSET_NAME = "UTF-8";
 
 }

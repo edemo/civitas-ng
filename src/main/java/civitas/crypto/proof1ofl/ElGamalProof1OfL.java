@@ -6,10 +6,16 @@
  */
 package civitas.crypto.proof1ofl;
 
-/**
- * Proof that a ciphertext is a re-encryption of some element from a set of
- * ciphertexts of size L.
- */
-public interface ElGamalProof1OfL {
+import civitas.util.CivitasBigInteger;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+
+@AllArgsConstructor()
+@EqualsAndHashCode
+public class ElGamalProof1OfL {
+
+	public final int L;
+	public final CivitasBigInteger[] dvs;
+	public final CivitasBigInteger[] rvs;
 
 }

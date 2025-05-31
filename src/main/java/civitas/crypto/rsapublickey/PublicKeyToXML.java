@@ -7,7 +7,7 @@ import java.util.Base64;
 import civitas.common.Util;
 import civitas.crypto.Constants;
 
-public class PublicKeyCToXML implements Constants {
+public class PublicKeyToXML implements Constants {
 
 	public String apply(PublicKey that) {
 		StringWriter sb = new StringWriter();

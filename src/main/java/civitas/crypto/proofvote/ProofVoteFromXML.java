@@ -12,7 +12,7 @@ public class ProofVoteFromXML {
 	@Use
 	ConvertToBigInt convertToBigInt;
 
-	public ProofVoteC apply(Reader r)
+	public ProofVote apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, "elGamalProofVote");
 		String c = Util.unescapeString(Util.readSimpleTag(r, "c"));
@@ -20,7 +20,7 @@ public class ProofVoteFromXML {
 		String s2 = Util.unescapeString(Util.readSimpleTag(r, "s2"));
 
 		Util.swallowEndTag(r, "elGamalProofVote");
-		return new ProofVoteC(convertToBigInt.apply(c), convertToBigInt.apply(s1),
+		return new ProofVote(convertToBigInt.apply(c), convertToBigInt.apply(s1),
 				convertToBigInt.apply(s2));
 	}
 

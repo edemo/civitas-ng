@@ -16,7 +16,7 @@ public class FakeElGamalProofDVRCTest extends TestBase
 		implements ElGamalProofDVRCTestData, ElGamalPrivateKeyCTestData {
 
 	@Tested
-	FakeElGamalProofDVRC fakeElGamalProofDVRC;
+	FakeElGamalProofDVR fakeElGamalProofDVRC;
 
 	@Use
 	VerifyElGamalProofDVR verifyElGamalProofDVR;

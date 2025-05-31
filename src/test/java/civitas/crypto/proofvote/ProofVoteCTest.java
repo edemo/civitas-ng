@@ -49,7 +49,7 @@ public class ProofVoteCTest extends TestBase
 	void test6() {
 
 		assertFalse(PROOF_VOTE
-				.equals(new ProofVoteC(BIGINT_P, PROOF_VOTE_S1, PROOF_VOTE_S2)));
+				.equals(new ProofVote(BIGINT_P, PROOF_VOTE_S1, PROOF_VOTE_S2)));
 	}
 
 	@Test
@@ -57,7 +57,7 @@ public class ProofVoteCTest extends TestBase
 	void test6_1() {
 
 		assertFalse(PROOF_VOTE
-				.equals(new ProofVoteC(PROOF_VOTE_C, BIGINT_P, PROOF_VOTE_S2)));
+				.equals(new ProofVote(PROOF_VOTE_C, BIGINT_P, PROOF_VOTE_S2)));
 	}
 
 	@Test
@@ -65,7 +65,7 @@ public class ProofVoteCTest extends TestBase
 	void test6_2() {
 
 		assertFalse(PROOF_VOTE
-				.equals(new ProofVoteC(PROOF_VOTE_C, PROOF_VOTE_S1, BIGINT_P)));
+				.equals(new ProofVote(PROOF_VOTE_C, PROOF_VOTE_S1, BIGINT_P)));
 	}
 
 }

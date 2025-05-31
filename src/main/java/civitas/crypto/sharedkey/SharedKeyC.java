@@ -6,58 +6,15 @@
  */
 package civitas.crypto.sharedkey;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.Base64;
-
 import javax.crypto.SecretKey;
 
-import civitas.common.Util;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 
+@AllArgsConstructor
+@EqualsAndHashCode
 public class SharedKeyC implements SharedKey {
 	public final SecretKey k;
 	final String name;
-
-	public SharedKeyC(SecretKey k, String name) {
-		this.k = k;
-		this.name = name;
-	}
-
-	public String name() {
-		return name;
-	}
-
-	public String toXML() {
-		StringWriter sb = new StringWriter();
-		toXML(new PrintWriter(sb));
-		return sb.toString();
-	}
-
-	@Override
-	public void toXML(PrintWriter s) {
-		s.print('<');
-		s.print(OPENING_TAG);
-		s.print('>');
-		s.print("<n>");
-		s.print(name);
-		s.print("</n>");
-		s.print("<k>");
-		byte[] bs = k.getEncoded();
-		Util.escapeString(Base64.getEncoder().encodeToString(bs), s);
-		s.print("</k>");
-		s.print("</");
-		s.print(OPENING_TAG);
-		s.print('>');
-	}
-
-	@Override
-	public void toWire(PrintWriter s) {
-		s.print(name);
-		s.print('\n');
-		byte[] bs = k.getEncoded();
-		String base64 = Base64.getEncoder().encodeToString(bs);
-		s.print(base64);
-		s.print('\n');
-	}
 
 }

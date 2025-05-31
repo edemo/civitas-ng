@@ -13,7 +13,7 @@ public class ElGamalProof1OfLFromXML {
 	@Use
 	ConvertToBigInt convertToBigInt;
 
-	public ElGamalProof1OfLC apply(Reader r)
+	public ElGamalProof1OfL apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, "elGamalProof1OfL");
 		int L = Util.readSimpleIntTag(r, "size");
@@ -29,7 +29,7 @@ public class ElGamalProof1OfLFromXML {
 		}
 
 		Util.swallowEndTag(r, "elGamalProof1OfL");
-		return new ElGamalProof1OfLC(L, dvs, rvs);
+		return new ElGamalProof1OfL(L, dvs, rvs);
 	}
 
 }

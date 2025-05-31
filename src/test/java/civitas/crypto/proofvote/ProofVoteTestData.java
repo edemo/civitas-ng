@@ -19,7 +19,7 @@ public interface ProofVoteTestData extends ElGamal1OfLReencryptionCTestData {
 	CivitasBigInteger PROOF_VOTE_S2 = RANDOMS_1.modSubtract(
 			PROOF_VOTE_C.modMultiply(ELGAMAL_REENCRYPT_FACTOR_E.r, BIGINT_Q),
 			BIGINT_Q);
-	public static final ProofVoteC PROOF_VOTE = new ProofVoteC(PROOF_VOTE_C,
+	public static final ProofVote PROOF_VOTE = new ProofVote(PROOF_VOTE_C,
 			PROOF_VOTE_S1, PROOF_VOTE_S2);
 
 	public static final String PROOF_VOTE_S1_BASE64 = Util

@@ -13,7 +13,7 @@ import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
-public class FakeElGamalProofDVRC {
+public class FakeElGamalProofDVR {
 
 	@Use
 	private static GenerateRandomElement generateRandomElement;

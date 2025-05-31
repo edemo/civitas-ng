@@ -7,13 +7,13 @@ import civitas.common.Util;
 
 public class ElGamalProof1OfLToXML {
 
-	public String apply(ElGamalProof1OfLC that) {
+	public String apply(ElGamalProof1OfL that) {
 		StringWriter sb = new StringWriter();
 		apply(that, new PrintWriter(sb));
 		return sb.toString();
 	}
 
-	public void apply(ElGamalProof1OfLC that, PrintWriter s) {
+	public void apply(ElGamalProof1OfL that, PrintWriter s) {
 		s.print("<elGamalProof1OfL>");
 		s.print("<size>");
 		s.print(that.L);

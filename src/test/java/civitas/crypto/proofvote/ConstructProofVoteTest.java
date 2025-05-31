@@ -40,7 +40,7 @@ public class ConstructProofVoteTest extends TestBase
 			+ "		 s2 = r2-c*alpha2 (mod q) ")
 	void test2() throws CryptoException {
 
-		ProofVoteC proofVote = constructProofVote.apply(EL_GAMAL_PARAMETERS,
+		ProofVote proofVote = constructProofVote.apply(EL_GAMAL_PARAMETERS,
 				CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE, ADDITIONALENV,
 				ELGAMAL_REENCRYPT_FACTOR_EPRIME, ELGAMAL_REENCRYPT_FACTOR_E);
 		assertEquals(PROOF_VOTE, proofVote);

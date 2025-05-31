@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
-import civitas.crypto.proof1ofl.ElGamalProof1OfLC;
+import civitas.crypto.proof1ofl.ElGamalProof1OfL;
 import civitas.util.CivitasBigInteger;
 
 public interface ElGamal1OfLReencryptionCTestData
@@ -65,12 +65,12 @@ public interface ElGamal1OfLReencryptionCTestData
 		return d;
 	}).get();
 
-	public static final ElGamalProof1OfLC EL_GAMAL_PROOF_1_OF_L = new ElGamalProof1OfLC(
+	public static final ElGamalProof1OfL EL_GAMAL_PROOF_1_OF_L = new ElGamalProof1OfL(
 			NO_OF_WELL_KNOWN_CIPHERTEXTS,
 			DVS.toArray(new CivitasBigInteger[NO_OF_WELL_KNOWN_CIPHERTEXTS]),
 			RVS.toArray(new CivitasBigInteger[NO_OF_WELL_KNOWN_CIPHERTEXTS]));
 
-	public static final ElGamalProof1OfLC EL_GAMAL_PROOF_1_OF_L_BAD = new ElGamalProof1OfLC(
+	public static final ElGamalProof1OfL EL_GAMAL_PROOF_1_OF_L_BAD = new ElGamalProof1OfL(
 			NO_OF_WELL_KNOWN_CIPHERTEXTS,
 			DVS_BAD.toArray(new CivitasBigInteger[NO_OF_WELL_KNOWN_CIPHERTEXTS]),
 			RVS.toArray(new CivitasBigInteger[NO_OF_WELL_KNOWN_CIPHERTEXTS]));

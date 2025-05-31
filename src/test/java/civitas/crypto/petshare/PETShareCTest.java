@@ -25,7 +25,7 @@ public class PETShareCTest extends TestBase
 	@Use
 	PetShareFromXML petShareFromXML;
 	@Use
-	PETShareCToXML pETShareCToXML;
+	PETShareToXML pETShareCToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")

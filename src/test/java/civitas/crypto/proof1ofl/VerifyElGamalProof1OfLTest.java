@@ -16,11 +16,11 @@ import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class VerifyElGamalProof1OfLCTest extends TestBase implements
+public class VerifyElGamalProof1OfLTest extends TestBase implements
 		ElGamal1OfLReencryptionCTestData, ElGamalReencryptFactorCTestData {
 
 	@Tested
-	VerifyElGamalProof1OfLC verifyElGamalProof1OfLC;
+	VerifyElGamalProof1OfL verifyElGamalProof1OfLC;
 	@Tested
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
 	@Use

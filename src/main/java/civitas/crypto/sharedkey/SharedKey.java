@@ -6,12 +6,5 @@
  */
 package civitas.crypto.sharedkey;
 
-import java.io.PrintWriter;
-
 public interface SharedKey {
-	public final static String OPENING_TAG = "sharedKey";
-
-	public void toXML(PrintWriter sb);
-
-	public void toWire(PrintWriter sb);
 }

@@ -18,7 +18,7 @@ public class ConstructProofVote {
 	@Use
 	CalculateProofEnvironment calculateProofEnvironment;
 
-	public ProofVoteC apply(ElGamalParameters params,
+	public ProofVote apply(ElGamalParameters params,
 			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
 			String context, ElGamalReencryptFactor alpha1,
 			ElGamalReencryptFactor alpha2) {
@@ -36,7 +36,7 @@ public class ConstructProofVote {
 				params.q);
 		CivitasBigInteger s2 = r2.modSubtract(c.modMultiply(alpha2.r, params.q),
 				params.q);
-		return new ProofVoteC(c, s1, s2);
+		return new ProofVote(c, s1, s2);
 	}
 
 }

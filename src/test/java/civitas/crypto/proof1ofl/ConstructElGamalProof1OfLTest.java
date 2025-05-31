@@ -50,7 +50,7 @@ public class ConstructElGamalProof1OfLTest extends TestBase implements
 			+ "rv_i = r_i for i != choice, and rprimet for r = choice\n"
 			+ "return dv, rv")
 	void test1() throws CryptoException {
-		ElGamalProof1OfLC proof = constructElGamalProof1OfL.apply(
+		ElGamalProof1OfL proof = constructElGamalProof1OfL.apply(
 				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS,
 				MY_CHOICE, REENCRYPTED_WELL_KNOWN_CHOICE, ELGAMAL_REENCRYPT_FACTOR_E);
 

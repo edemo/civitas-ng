@@ -6,5 +6,20 @@
  */
 package civitas.crypto.proofvote;
 
-public interface ProofVote {
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@EqualsAndHashCode
+public class ProofVote  {
+
+	@NonNull
+	public final CivitasBigInteger c;
+	@NonNull
+	public final CivitasBigInteger s1;
+	@NonNull
+	public final CivitasBigInteger s2;
+
 }

@@ -79,7 +79,7 @@ import civitas.crypto.privatekey.ElGamalPrivateKeyFromXML;
 import civitas.crypto.proof1ofl.ConstructElGamalProof1OfL;
 import civitas.crypto.proof1ofl.ConstructWellKnownCiphertexts;
 import civitas.crypto.proof1ofl.ElGamalProof1OfL;
-import civitas.crypto.proof1ofl.ElGamalProof1OfLC;
+import civitas.crypto.proof1ofl.ElGamalProof1OfL;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLFromXML;
 import civitas.crypto.proofdisclog.ConstructElGamalDiscLogEqualityProof;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
@@ -87,7 +87,7 @@ import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityFromXML;
 import civitas.crypto.proofdvr.ConstructElGamalProofDVR;
 import civitas.crypto.proofdvr.ElGamalProofDVR;
 import civitas.crypto.proofdvr.ElGamalProofDVRFromXML;
-import civitas.crypto.proofdvr.FakeElGamalProofDVRC;
+import civitas.crypto.proofdvr.FakeElGamalProofDVR;
 import civitas.crypto.proofknowndisclog.ConstructProofKnowDiscLog;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLogFromXML;
@@ -155,7 +155,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Use
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
 	@Use
-	FakeElGamalProofDVRC fakeElGamalProofDVRC;
+	FakeElGamalProofDVR fakeElGamalProofDVRC;
 	@Use
 	ConstructElGamalDecryptionShare constructElGamalDecryptionShare;
 	@Use
@@ -461,7 +461,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 				factor);
 	}
 
-	public ElGamalProof1OfLC constructElGamalProof1OfL(ElGamalPublicKey key,
+	public ElGamalProof1OfL constructElGamalProof1OfL(ElGamalPublicKey key,
 			CiphertextList ciphertexts, int L, int choice, ElGamalCiphertext m,
 			ElGamalReencryptFactor factor) {
 		return constructElGamalProof1OfL.apply(key, ciphertexts, L, choice, m,

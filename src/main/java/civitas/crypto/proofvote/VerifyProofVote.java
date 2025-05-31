@@ -21,7 +21,7 @@ public class VerifyProofVote {
 	@Use
 	ConvertHashToBigInt convertHashToBigInt;
 
-	public boolean apply(ProofVoteC that, ElGamalParameters params,
+	public boolean apply(ProofVote that, ElGamalParameters params,
 			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
 			String context) {
 		try {

@@ -7,7 +7,7 @@ import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertextToXML;
 import civitas.util.Use;
 
-public class PETShareCToXML {
+public class PETShareToXML {
 	@Use
 	static ElGamalCiphertextToXML elGamalCiphertextToXML;
 
