@@ -9,7 +9,6 @@ import civitas.crypto.CryptoError;
 import civitas.crypto.external.DoCrypto;
 import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertext;
 import civitas.crypto.sharedkeymsg.SharedKeyMsg;
-import civitas.crypto.sharedkeymsg.SharedKeyMsg;
 import civitas.util.Use;
 
 public class DecryptShared implements Constants {

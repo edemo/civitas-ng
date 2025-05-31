@@ -10,7 +10,6 @@ import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -24,15 +23,15 @@ public class VerifyElGamalProof1OfLC {
 			CiphertextList ciphertexts, int L, ElGamalCiphertext msg) {
 		if (self.L != L)
 			return false;
-		ElGamalCiphertext m = (ElGamalCiphertext) msg;
+		ElGamalCiphertext m = msg;
 		CivitasBigInteger u = m.a;
 		CivitasBigInteger v = m.b;
-		ElGamalPublicKey key = (ElGamalPublicKey) pubKey;
-		ElGamalParameters ps = (ElGamalParameters) key.params;
+		ElGamalPublicKey key = pubKey;
+		ElGamalParameters ps = key.params;
 		ElGamalCiphertext[] ms = new ElGamalCiphertext[L];
 
 		for (int i = 0; i < L; i++) {
-			ms[i] = (ElGamalCiphertext) ciphertexts.get(i);
+			ms[i] = ciphertexts.get(i);
 		}
 
 		CivitasBigInteger[] as = new CivitasBigInteger[L];

@@ -6,7 +6,6 @@ import java.util.Base64;
 
 import civitas.common.Util;
 import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertext;
-import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertext;
 
 public class SharedKeyCiphertextFromXML {
 

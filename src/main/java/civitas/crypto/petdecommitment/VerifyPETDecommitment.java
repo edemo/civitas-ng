@@ -4,7 +4,6 @@ import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.petcommitment.PETCommitment;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.crypto.proofdisclog.VerifyElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
@@ -23,11 +22,11 @@ public class VerifyPETDecommitment {
 		if (!(c instanceof PETCommitment)) {
 			return false;
 		}
-		ElGamalProofDiscLogEquality prf = (ElGamalProofDiscLogEquality) self.proof;
-		ElGamalParameters ps = (ElGamalParameters) params;
-		PETCommitment com = (PETCommitment) c;
-		ElGamalCiphertext m1 = (ElGamalCiphertext) ciphertext1;
-		ElGamalCiphertext m2 = (ElGamalCiphertext) ciphertext2;
+		ElGamalProofDiscLogEquality prf = self.proof;
+		ElGamalParameters ps = params;
+		PETCommitment com = c;
+		ElGamalCiphertext m1 = ciphertext1;
+		ElGamalCiphertext m2 = ciphertext2;
 
 		CivitasBigInteger d = m1.a.modDivide(m2.a, ps.p);
 		CivitasBigInteger e = m1.b.modDivide(m2.b, ps.p);

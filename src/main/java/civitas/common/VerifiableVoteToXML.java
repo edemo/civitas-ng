@@ -3,8 +3,9 @@ package civitas.common;
 import java.io.PrintWriter;
 
 import civitas.crypto.ciphertext.ElGamalCiphertextToXML;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionToXML;
+import civitas.crypto.proofvote.ProofVoteC;
+import civitas.crypto.proofvote.ProofVoteToXML;
 import civitas.util.Use;
 
 public class VerifiableVoteToXML {
@@ -12,6 +13,8 @@ public class VerifiableVoteToXML {
 	ElGamal1OfLReencryptionToXML elGamal1OfLReencryptionToXML;
 	@Use
 	ElGamalCiphertextToXML elGamalCiphertextToXML;
+	@Use
+	ProofVoteToXML proofVoteToXML;
 
 	public void apply(VerifiableVote that, PrintWriter sb) {
 		if (sb == null)
@@ -24,8 +27,7 @@ public class VerifiableVoteToXML {
 		sb.print("</context>");
 		sb.print("<encChoice>");
 		if (that.encChoice != null) {
-			elGamal1OfLReencryptionToXML
-					.apply((ElGamal1OfLReencryption) that.encChoice, sb);
+			elGamal1OfLReencryptionToXML.apply(that.encChoice, sb);
 		}
 		sb.print("</encChoice>");
 		sb.print("<encCapability>");
@@ -35,7 +37,7 @@ public class VerifiableVoteToXML {
 		sb.print("</encCapability>");
 		sb.print("<proof>");
 		if (that.proofVote != null) {
-			that.proofVote.toXML(sb);
+			proofVoteToXML.apply((ProofVoteC) that.proofVote, sb);
 		}
 		sb.print("</proof>");
 

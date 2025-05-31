@@ -9,7 +9,6 @@ import civitas.crypto.CryptoError;
 import civitas.crypto.external.DoCrypto;
 import civitas.crypto.publickeyciphertext.PublicKeyCiphertext;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
-import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.rsaprivatekey.PrivateKey;
 import civitas.crypto.rsaprivatekey.PrivateKeyC;
 import civitas.util.Use;

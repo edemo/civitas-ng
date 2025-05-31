@@ -7,7 +7,6 @@ import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -26,9 +25,9 @@ public class VerifyProofVote {
 			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
 			String context) {
 		try {
-			ElGamalParameters paramsC = (ElGamalParameters) params;
-			ElGamalCiphertext encCapabilityC = (ElGamalCiphertext) encCapability;
-			ElGamalCiphertext encChoiceC = (ElGamalCiphertext) encChoice;
+			ElGamalParameters paramsC = params;
+			ElGamalCiphertext encCapabilityC = encCapability;
+			ElGamalCiphertext encChoiceC = encChoice;
 			CivitasBigInteger a1 = encCapabilityC.a;
 			CivitasBigInteger a2 = encChoiceC.a;
 			CivitasBigInteger p = paramsC.p;

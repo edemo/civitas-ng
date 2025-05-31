@@ -13,7 +13,6 @@ import java.util.Base64;
 import civitas.common.Util;
 import civitas.crypto.CryptoFactoryC;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
-import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.rsaprivatekey.PrivateKeyC;
 import civitas.crypto.signature.Signature;
 

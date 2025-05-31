@@ -23,7 +23,7 @@ public class CombinePETShareDecommitmentsTest extends ConcreteTestBase
 	@Test
 	@DisplayName("multiplies di and ei fields")
 	void test() {
-		ElGamalCiphertext actual = (ElGamalCiphertext) combinePETShareDecommitments
+		ElGamalCiphertext actual = combinePETShareDecommitments
 				.apply(PET_DECOMMITMENTS, EL_GAMAL_PARAMETERS);
 		assertEquals(PET_DECOMMITMENT_D.modMultiply(BIGINT_A, BIGINT_P), actual.a);
 		assertEquals(PET_DECOMMITMENT_E.modMultiply(BIGINT_B, BIGINT_P), actual.b);
@@ -49,7 +49,7 @@ public class CombinePETShareDecommitmentsTest extends ConcreteTestBase
 	@Test
 	@DisplayName("the three parameter version uses d to multiply a of the ciphertext")
 	void test4() {
-		ElGamalCiphertext actual = (ElGamalCiphertext) combinePETShareDecommitments
+		ElGamalCiphertext actual = combinePETShareDecommitments
 				.apply(PET_DECOMMITMENTS, EL_GAMAL_PARAMETERS, TWO);
 		assertEquals(PET_DECOMMITMENT_D.modMultiply(BIGINT_A, BIGINT_P)
 				.modMultiply(TWO, BIGINT_P), actual.a);

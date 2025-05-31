@@ -43,7 +43,7 @@ public class ConstructProofVoteTest extends ConcreteTestBase
 		ProofVoteC proofVote = constructProofVote.apply(EL_GAMAL_PARAMETERS,
 				CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE, ADDITIONALENV,
 				ELGAMAL_REENCRYPT_FACTOR_EPRIME, ELGAMAL_REENCRYPT_FACTOR_E);
-		assertEquals(PROOF_VOTE_XML, proofVote.toXML());
+		assertEquals(PROOF_VOTE, proofVote);
 	}
 
 	@Test

@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import civitas.common.Util;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.parameters.ElGamalParametersToXML;
 import civitas.util.Use;
 
@@ -26,7 +25,7 @@ public class ElGamalPrivateKeyToXML {
 
 		s.print("<params>");
 		if (that.params != null) {
-			elGamalParametersToXML.apply((ElGamalParameters) that.params, s);
+			elGamalParametersToXML.apply(that.params, s);
 		}
 		s.print("</params>");
 		s.print("<x>");

@@ -18,7 +18,7 @@ public class ConstructElGamal1OfLReencryptionTest extends ConcreteTestBase
 	@DisplayName("constructs an encrypted choice,"
 			+ "containing the reencryption of the choosen vote and its proof ")
 	void test() {
-		ElGamal1OfLReencryption encChoice = (ElGamal1OfLReencryption) constructElGamal1OfLReencryption
+		ElGamal1OfLReencryption encChoice = constructElGamal1OfLReencryption
 				.apply(EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST,
 						NO_OF_WELL_KNOWN_CIPHERTEXTS, MY_CHOICE,
 						ELGAMAL_REENCRYPT_FACTOR_E);

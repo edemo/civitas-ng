@@ -25,7 +25,7 @@ public class ConstructProofKnowDiscLogTest extends ConcreteTestBase
 			+ "c:=hash(v,a)%q, " + "r:=z+c*key (mod q)")
 	void constructProofKnowDiscLogTest() throws Exception {
 
-		ElGamalProofKnowDiscLog proof = (ElGamalProofKnowDiscLog) constructProofKnowDiscLog
+		ElGamalProofKnowDiscLog proof = constructProofKnowDiscLog
 				.apply(EL_GAMAL_PARAMETERS, ELGAMAL_PRIVATE_KEY_E);
 
 		assertEquals(

@@ -20,7 +20,7 @@ public class VerifyElGamalProofDVR {
 	public boolean apply(ElGamalProofDVR that, ElGamalPublicKey K,
 			ElGamalPublicKey verifierKey) {
 
-		ElGamalParameters ps = (ElGamalParameters) K.params;
+		ElGamalParameters ps = K.params;
 		ElGamalPublicKey key = K;
 
 		CivitasBigInteger hv = verifierKey.y;

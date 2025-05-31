@@ -3,7 +3,6 @@ package civitas.crypto.keyshare;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLogToXML;
 import civitas.crypto.publickey.ElGamalPublicKeyToXML;
 import civitas.util.Use;
@@ -28,7 +27,7 @@ public class ElGamalKeyShareToXML {
 		s.print("</pubKey>");
 		s.print("<proof>");
 		if (that.proof != null)
-			elGamalProofKnowDiscLogToXML.apply((ElGamalProofKnowDiscLog) that.proof,
+			elGamalProofKnowDiscLogToXML.apply(that.proof,
 					s);
 		s.print("</proof>");
 		s.print("</elGamalKeyShare>");

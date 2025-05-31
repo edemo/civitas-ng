@@ -11,7 +11,7 @@ public class VerifyElGamalKeyShare {
 	VerifyElGamalProofKnowDiscLog verifyElGamalProofKnowDiscLog;
 
 	public boolean apply(ElGamalKeyShare that) {
-		ElGamalProofKnowDiscLog prf = (ElGamalProofKnowDiscLog) that.proof;
+		ElGamalProofKnowDiscLog prf = that.proof;
 		// the base of the prf is correct, as it is taken from params.
 		ElGamalPublicKey K = that.pubKey;
 		if (prf == null || K == null) {

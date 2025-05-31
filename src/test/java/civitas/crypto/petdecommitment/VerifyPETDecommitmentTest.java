@@ -37,7 +37,7 @@ public class VerifyPETDecommitmentTest extends ConcreteTestBase
 			+ "		// verify(proof)                \n")
 	public void test() {
 
-		ElGamalProofDiscLogEquality proof = (ElGamalProofDiscLogEquality) PET_DECOMMITMENT.proof;
+		ElGamalProofDiscLogEquality proof = PET_DECOMMITMENT.proof;
 
 		CivitasBigInteger d = CIPHERTEXT_E.a.modDivide(CIPHERTEXT_EPRIME.a,
 				BIGINT_P);

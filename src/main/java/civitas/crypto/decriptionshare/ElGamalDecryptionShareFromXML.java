@@ -24,7 +24,7 @@ public class ElGamalDecryptionShareFromXML {
 		String sa = Util.unescapeString(Util.readSimpleTag(r, "ai"));
 		CivitasBigInteger ai = convertToBigInt.apply(sa);
 
-		ElGamalProofDiscLogEquality proof = (ElGamalProofDiscLogEquality) elGamalProofDiscLogEqualityFromXML
+		ElGamalProofDiscLogEquality proof = elGamalProofDiscLogEqualityFromXML
 				.apply(r);
 
 		Util.swallowEndTag(r, Constants.ElGamalDecryptionShareOPENING_TAG);

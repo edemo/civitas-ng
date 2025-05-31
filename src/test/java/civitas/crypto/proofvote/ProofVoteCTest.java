@@ -20,11 +20,13 @@ public class ProofVoteCTest extends ConcreteTestBase
 
 	@Use
 	ProofVoteFromXML proofVoteFromXML;
+	@Use
+	ProofVoteToXML proofVoteToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
-		assertEquals(PROOF_VOTE_XML, PROOF_VOTE.toXML());
+		assertEquals(PROOF_VOTE_XML, proofVoteToXML.apply(PROOF_VOTE));
 	}
 
 	@Test
@@ -33,13 +35,6 @@ public class ProofVoteCTest extends ConcreteTestBase
 
 		assertTrue(PROOF_VOTE
 				.equals(proofVoteFromXML.apply(new StringReader(PROOF_VOTE_XML))));
-	}
-
-	@Test
-	@DisplayName("null ProofVote does not equal itself")
-	void test4() {
-		assertFalse(new ProofVoteC(null, null, null)
-				.equals(new ProofVoteC(null, null, null)));
 	}
 
 	@Test
@@ -71,12 +66,6 @@ public class ProofVoteCTest extends ConcreteTestBase
 
 		assertFalse(PROOF_VOTE
 				.equals(new ProofVoteC(PROOF_VOTE_C, PROOF_VOTE_S1, BIGINT_P)));
-	}
-
-	@Test
-	@DisplayName("constructor accepts nulls")
-	void test1() {
-		assertEquals(PROOF_VOTE_NULL_XML, new ProofVoteC(null, null, null).toXML());
 	}
 
 }

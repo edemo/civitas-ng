@@ -17,9 +17,7 @@ public class CombineKeyShares implements Constants {
 			return null;
 		CivitasBigInteger accum = ONE;
 		ElGamalParameters params = null;
-		for (int i = 0; i < shares.length; i++) {
-			ElGamalKeyShare s = shares[i];
-
+		for (ElGamalKeyShare s : shares) {
 			// Check the proofs that this is a valid share
 			try {
 				if (params == null) {

@@ -60,7 +60,6 @@ import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionFromXML;
 import civitas.crypto.parameters.BruteForceDecode;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.parameters.ElGamalParametersFromXML;
 import civitas.crypto.parameters.GenerateElGamalParameters;
 import civitas.crypto.petcommitment.CombinePETShareDecommitments;
@@ -483,7 +482,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		// it seems the parameters are the same throughout the vote
 		// just make a list of the possible values and look it up
 		ElGamalMsg mc = m;
-		ElGamalParameters paramsc = (ElGamalParameters) params;
+		ElGamalParameters paramsc = params;
 		// return the int value minus 1, since the well-known ciphertext list is
 		// (1, 2, 3, ...), and we want to return the index of the value.
 		return bruteForceDecode.apply(paramsc, mc.m, L) - 1;
@@ -974,7 +973,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 			ElGamalCiphertext encCapability, ElGamal1OfLReencryption encChoice,
 			String context, ElGamalReencryptFactor encCapabilityFactor,
 			ElGamalReencryptFactor encChoiceFactor) {
-		return constructProofVote.apply((ElGamalParameters) params, encCapability,
+		return constructProofVote.apply(params, encCapability,
 				encChoice.m, context, (ElGamalReencryptFactorC) encCapabilityFactor,
 				(ElGamalReencryptFactorC) encChoiceFactor);
 	}

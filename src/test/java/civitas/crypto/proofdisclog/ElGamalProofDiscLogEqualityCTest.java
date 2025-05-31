@@ -103,7 +103,7 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase
 	@DisplayName("verify is false for a bad proof (other branch)")
 	void test0_3() throws IllegalArgumentException, IOException {
 		assertFalse(verifyElGamalProofDiscLogEquality.apply(
-				((ElGamalProofDiscLogEquality) elGamalProofDiscLogEqualityFromXML
+				(elGamalProofDiscLogEqualityFromXML
 						.apply(
 								new StringReader(EL_GAMAL_PROOF_DISC_LOG_EQUALITY_BAD_W_XML))),
 				EL_GAMAL_PARAMETERS));

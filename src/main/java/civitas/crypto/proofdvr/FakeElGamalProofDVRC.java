@@ -26,7 +26,7 @@ public class FakeElGamalProofDVRC {
 			ElGamalPublicKey key, ElGamalPublicKey verifierKey,
 			ElGamalPrivateKey verifierPrivKey) {
 
-		ElGamalParameters ps = (ElGamalParameters) key.params;
+		ElGamalParameters ps = key.params;
 		// CivitasBigInteger hv = verifierKey.y;
 		CivitasBigInteger zv = verifierPrivKey.x;
 

@@ -4,7 +4,6 @@ import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.messagedigest.ComputeMessageDigest;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
-import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.rsaprivatekey.PrivateKey;
 import civitas.crypto.rsaprivatekey.PrivateKeyC;
 import civitas.util.Use;
@@ -15,7 +14,7 @@ public class SignWithPublicKey implements Constants {
 
 	public Signature apply(PrivateKey k, PublicKeyMsg msg) throws CryptoError {
 		try {
-			PublicKeyMsg mc = (PublicKeyMsg) msg;
+			PublicKeyMsg mc = msg;
 			byte[] bytes = computeMessageDigest.apply(mc.m.getBytes());
 			return apply(k, bytes);
 		} catch (RuntimeException e) {

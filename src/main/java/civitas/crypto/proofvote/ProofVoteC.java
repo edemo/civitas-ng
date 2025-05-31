@@ -6,91 +6,20 @@
  */
 package civitas.crypto.proofvote;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
-import civitas.common.Util;
-import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-/**
- * This is a "non-malleable" (in some informal sense), NIZK proof of knowledge
- * of the voter's vote, including its capability, choice, and context. The
- * prover here is the voter, and the verifier is any auditor (including
- * tabulation teller) of the BB. The core of it is a conjunction of two Schnorr
- * signatures. The basic design is due to [Jan Camenisch and Markus Stadler.
- * Efficient Group Signatures for Large Groups.]
- */
+@RequiredArgsConstructor
+@EqualsAndHashCode
 public class ProofVoteC implements ProofVote {
 
-	/*
-	 * Public inputs o ElGamal parameters (p,g) o Encrypted capability = (a1,b1) o
-	 * Encrypted choice = (a2,b2) o Vote context ctx o Let proof environment E =
-	 * (g,a1,b1,a2,b2,ctx) Prover private inputs: o alpha1, alpha2 s.t. ai =
-	 * g^{alphai} Prover: o Select r1,r2 at random from Z_q o Compute: + c =
-	 * hash(E,g^r1,g^r2) + s1 = r1 - c*alpha1 mod p + s2 = r2 - c*alpha2 mod p
-	 * Prover -> Verifier: (c,s1,s2) Verifier: o Check c = hash(E, g^s1 * a1^c,
-	 * g^s2 * a2^c)
-	 *
-	 */
-
+	@NonNull
 	public final CivitasBigInteger c;
+	@NonNull
 	public final CivitasBigInteger s1;
+	@NonNull
 	public final CivitasBigInteger s2;
 
-	public ProofVoteC(final CivitasBigInteger c, final CivitasBigInteger s1,
-			final CivitasBigInteger s2) {
-		this.c = c;
-		this.s1 = s1;
-		this.s2 = s2;
-	}
-
-	public String toXML() {
-		StringWriter sb = new StringWriter();
-		toXML(new PrintWriter(sb));
-		return sb.toString();
-	}
-
-	@Override
-	public void toXML(PrintWriter s) {
-		s.print("<elGamalProofVote>");
-
-		s.print("<c>");
-		if (this.c != null)
-			Util.escapeString(Util.fromBigInt(this.c), s);
-		s.print("</c>");
-		s.print("<s1>");
-		if (this.s1 != null)
-			Util.escapeString(Util.fromBigInt(this.s1), s);
-		s.print("</s1>");
-		s.print("<s2>");
-		if (this.s2 != null)
-			Util.escapeString(Util.fromBigInt(this.s2), s);
-		s.print("</s2>");
-
-		s.print("</elGamalProofVote>");
-	}
-
-	@Override
-	public boolean equals(ProofVote p) {
-		if (p instanceof ProofVoteC) {
-			ProofVoteC that = (ProofVoteC) p;
-			try {
-				return this.c.equals(that.c) //
-						&& this.s1.equals(that.s1) //
-						&& this.s2.equals(that.s2);
-			} catch (NullPointerException e) {
-				return false;
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean verify(ElGamalParameters params,
-			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
-			String context) {
-		throw new UnsupportedOperationException("use VerifyProofVote");
-	}
 }

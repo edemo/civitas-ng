@@ -28,11 +28,11 @@ public interface ElGamal1OfLReencryptionCTestData
 	String EL_GAMAL_PROOF_1_OF_L_HASH_BASE64 = "NuStU6Al5jmF55/oKAee88s4Zpv/jGxgxfoLGtq3s6w=";
 	CivitasBigInteger EL_GAMAL_PROOF_1_OF_L_HASH = Util
 			.asBigint(EL_GAMAL_PROOF_1_OF_L_HASH_BASE64);
-	CivitasBigInteger REENCRYPTED_WELL_KNOWN_CHOICE_A = ((ElGamalCiphertext) CIPHERTEXT_LIST
-			.get(MY_CHOICE)).a
+	CivitasBigInteger REENCRYPTED_WELL_KNOWN_CHOICE_A = CIPHERTEXT_LIST
+			.get(MY_CHOICE).a
 			.modMultiply(BIGINT_G.modPow(FACTOR_E, BIGINT_P), BIGINT_P);
-	CivitasBigInteger REENCRYPTED_WELL_KNOWN_CHOICE_B = ((ElGamalCiphertext) CIPHERTEXT_LIST
-			.get(MY_CHOICE)).b
+	CivitasBigInteger REENCRYPTED_WELL_KNOWN_CHOICE_B = CIPHERTEXT_LIST
+			.get(MY_CHOICE).b
 			.modMultiply(PUBKEY_E.modPow(FACTOR_E, BIGINT_P), BIGINT_P);
 
 	ElGamalCiphertext REENCRYPTED_WELL_KNOWN_CHOICE = new ElGamalCiphertext(

@@ -4,7 +4,6 @@ import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.messagedigest.ComputeMessageDigest;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
-import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.signature.Signature;
 import civitas.crypto.signature.SignatureC;
 import civitas.util.Use;
@@ -16,7 +15,7 @@ public class VerifyPublicKeySignature implements Constants {
 	public boolean apply(PublicKey K, Signature s, PublicKeyMsg msg)
 			throws CryptoError {
 		try {
-			PublicKeyMsg mc = (PublicKeyMsg) msg;
+			PublicKeyMsg mc = msg;
 			byte[] bytes = computeMessageDigest.apply(mc.m.getBytes());
 			return apply(K, s, bytes);
 		} catch (RuntimeException e) {

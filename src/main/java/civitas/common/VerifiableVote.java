@@ -13,7 +13,6 @@ import civitas.crypto.CryptoUtil;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.proof1ofl.VerifyElGamal1OfLReencryption;
 import civitas.crypto.proofvote.ProofVote;
 import civitas.crypto.proofvote.ProofVoteC;
@@ -60,7 +59,7 @@ public class VerifiableVote {
 	public VerifiableVote(String context, ElGamal1OfLReencryption encChoice,
 			ElGamalCiphertext encCapability, ProofVote proofVote) {
 		this.context = context;
-		this.encChoice = (ElGamal1OfLReencryption) encChoice;
+		this.encChoice = encChoice;
 		this.encCapability = encCapability;
 		this.proofVote = proofVote;
 	}

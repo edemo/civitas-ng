@@ -36,7 +36,7 @@ public class DecryptElGamalMessageTest extends ConcreteTestBase
 
 		ElGamalSignedCiphertextC encrypted = SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV;
 
-		ElGamalMsg decrypted = (ElGamalMsg) decryptElGamalMessage
+		ElGamalMsg decrypted = decryptElGamalMessage
 				.apply(ELGAMAL_PRIVATE_KEY_E, encrypted, ADDITIONALENV_BYTES);
 		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED, decrypted.m);
 
@@ -64,8 +64,8 @@ public class DecryptElGamalMessageTest extends ConcreteTestBase
 	void elGamalDecryptTest2() throws Exception {
 
 		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED,
-				((ElGamalMsg) decryptElGamalMessage.apply(ELGAMAL_PRIVATE_KEY_E,
-						CIPHERTEXT_E)).m);
+				decryptElGamalMessage.apply(ELGAMAL_PRIVATE_KEY_E,
+						CIPHERTEXT_E).m);
 
 	}
 

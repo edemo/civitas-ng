@@ -58,7 +58,7 @@ public class ConstructElGamalProofDVRCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("the version where factors are given computes zeta")
 	void test1_1() throws IllegalArgumentException, IOException {
-		ElGamalProofDVR proof = (ElGamalProofDVR) constructElGamalProofDVR.apply(
+		ElGamalProofDVR proof = constructElGamalProofDVR.apply(
 				EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_E,
 				CIPHERTEXT_EPRIME, ELGAMAL_REENCRYPT_FACTOR_E,
 				ELGAMAL_REENCRYPT_FACTOR_EPRIME);

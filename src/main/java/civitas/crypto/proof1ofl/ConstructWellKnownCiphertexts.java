@@ -31,7 +31,7 @@ public class ConstructWellKnownCiphertexts implements Constants {
 		// zero knowledge proofs.
 		ElGamalReencryptFactor factor = new ElGamalReencryptFactorC(ZERO);
 		try {
-			ElGamalParameters params = (ElGamalParameters) key.params;
+			ElGamalParameters params = key.params;
 			for (int i = 0; i < count; i++) {
 				// encrypt (i+1);
 				try {

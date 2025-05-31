@@ -27,7 +27,7 @@ public class ConstructElGamalProof1OfL implements Constants {
 			CiphertextList ciphertexts, int L, int choice, ElGamalCiphertext m,
 			ElGamalReencryptFactorC factor) {
 
-		ElGamalParameters ps = (ElGamalParameters) key.params;
+		ElGamalParameters ps = key.params;
 		CivitasBigInteger u = m.a;
 		CivitasBigInteger v = m.b;
 		CivitasBigInteger r = factor.r;

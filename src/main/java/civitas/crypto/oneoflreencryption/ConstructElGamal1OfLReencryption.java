@@ -6,7 +6,6 @@ import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.proof1ofl.ConstructElGamalProof1OfL;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLC;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
 import civitas.util.Use;
@@ -27,7 +26,7 @@ public class ConstructElGamal1OfLReencryption {
 		ElGamalCiphertext m = elGamalReencrypt.apply(key, ciphertexts.get(choice),
 				factor);
 		ElGamalProof1OfLC proof = constructElGamalProof1OfL.apply(
-				(ElGamalPublicKey) key, ciphertexts, L, choice, m,
+				key, ciphertexts, L, choice, m,
 				(ElGamalReencryptFactorC) factor);
 		return new ElGamal1OfLReencryption(m, proof);
 	}

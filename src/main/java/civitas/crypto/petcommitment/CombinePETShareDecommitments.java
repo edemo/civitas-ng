@@ -3,7 +3,6 @@ package civitas.crypto.petcommitment;
 import civitas.crypto.Constants;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.petdecommitment.PETDecommitment;
 import civitas.crypto.petdecommitment.PETDecommitmentC;
 import civitas.util.CivitasBigInteger;
@@ -13,7 +12,7 @@ public class CombinePETShareDecommitments implements Constants {
 	public ElGamalCiphertext apply(PETDecommitment[] decs,
 			ElGamalParameters params, CivitasBigInteger d) {
 		CivitasBigInteger e = ONE;
-		ElGamalParameters ps = (ElGamalParameters) params;
+		ElGamalParameters ps = params;
 
 		for (int i = 0; i < (decs == null ? 0 : decs.length); i++) {
 			PETDecommitmentC decom = (PETDecommitmentC) decs[i];

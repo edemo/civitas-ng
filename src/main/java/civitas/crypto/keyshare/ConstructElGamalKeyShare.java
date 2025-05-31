@@ -4,7 +4,6 @@ import civitas.crypto.CryptoError;
 import civitas.crypto.keypairshare.ElGamalKeyPairShare;
 import civitas.crypto.proofknowndisclog.ConstructProofKnowDiscLog;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
-import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Use;
 

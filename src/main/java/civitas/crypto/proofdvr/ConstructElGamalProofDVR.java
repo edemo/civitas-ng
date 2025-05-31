@@ -26,7 +26,7 @@ public class ConstructElGamalProofDVR {
 			ElGamalCiphertext e, ElGamalCiphertext ePrime, ElGamalReencryptFactor er,
 			ElGamalReencryptFactor erPrime) {
 		try {
-			ElGamalParameters ps = (ElGamalParameters) k.params;
+			ElGamalParameters ps = k.params;
 			CivitasBigInteger zeta = ((ElGamalReencryptFactorC) erPrime).r
 					.modSubtract(((ElGamalReencryptFactorC) er).r, ps.q);
 			return apply(e, ePrime, k, verifierKey, zeta);
@@ -44,7 +44,7 @@ public class ConstructElGamalProofDVR {
 //            throw new CryptoError("Incorrect value for zeta passed in");
 //        }
 
-		ElGamalParameters ps = (ElGamalParameters) key.params;
+		ElGamalParameters ps = key.params;
 		CivitasBigInteger d = generateRandomElement.apply(ps.q);
 		CivitasBigInteger w = generateRandomElement.apply(ps.q);
 		CivitasBigInteger r = generateRandomElement.apply(ps.q);

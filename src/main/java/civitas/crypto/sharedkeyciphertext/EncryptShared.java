@@ -8,7 +8,6 @@ import civitas.crypto.external.DoCrypto;
 import civitas.crypto.sharedkey.SharedKey;
 import civitas.crypto.sharedkey.SharedKeyC;
 import civitas.crypto.sharedkeymsg.SharedKeyMsg;
-import civitas.crypto.sharedkeymsg.SharedKeyMsg;
 import civitas.util.Use;
 
 public class EncryptShared implements Constants {
@@ -18,7 +17,7 @@ public class EncryptShared implements Constants {
 	public SharedKeyCiphertext apply(SharedKey key, SharedKeyMsg msg)
 			throws CryptoError {
 		SharedKeyC keyc = (SharedKeyC) key;
-		SharedKeyMsg msgc = (SharedKeyMsg) msg;
+		SharedKeyMsg msgc = msg;
 		byte[] encrypted = doCrypto.apply(SHARED_KEY_CIPHER_ALG,
 				SHARED_KEY_PROVIDER, keyc.k, Cipher.ENCRYPT_MODE, msgc.m.getBytes());
 		return new SharedKeyCiphertext(encrypted);

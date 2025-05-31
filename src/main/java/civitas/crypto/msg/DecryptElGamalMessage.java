@@ -19,7 +19,7 @@ public class DecryptElGamalMessage {
 			byte[] additionalEnv) throws CryptoException, CryptoError {
 		try {
 			ElGamalPrivateKey k = key;
-			ElGamalParameters ps = (ElGamalParameters) key.params;
+			ElGamalParameters ps = key.params;
 
 			if (ciphertext instanceof ElGamalSignedCiphertext) {
 				if (!verifyElGamalSignature.apply(ps,

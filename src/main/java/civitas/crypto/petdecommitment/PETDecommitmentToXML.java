@@ -5,7 +5,6 @@ import java.io.StringWriter;
 
 import civitas.common.Util;
 import civitas.crypto.Constants;
-import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityToXML;
 import civitas.util.Use;
 
@@ -33,7 +32,7 @@ public class PETDecommitmentToXML implements Constants {
 		s.print("</e>");
 		s.print("<prf>");
 		elGamalProofDiscLogEqualityToXML
-				.apply((ElGamalProofDiscLogEquality) that.proof, s);
+				.apply(that.proof, s);
 		s.print("</prf>");
 		s.print("</");
 		s.print(PETDecommitmentOPENING_TAG);

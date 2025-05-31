@@ -2,7 +2,6 @@ package civitas.crypto.ciphertext;
 
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.util.CivitasBigInteger;
 
@@ -13,7 +12,7 @@ public class MultiplyCiphertexts {
 		if (ciphertexts == null)
 			return null;
 		try {
-			ElGamalParameters params = (ElGamalParameters) p;
+			ElGamalParameters params = p;
 			// multiply all the shares together
 			CivitasBigInteger[] aAccum = new CivitasBigInteger[ciphertexts[0].length];
 			CivitasBigInteger[] bAccum = new CivitasBigInteger[ciphertexts[0].length];

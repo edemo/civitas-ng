@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import civitas.common.Util;
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.parameters.ElGamalParametersCTestData;
-import civitas.crypto.privatekey.ElGamalPrivateKey;
-import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Tested;
 
 public class GenerateElGamalKeyPairTest extends ConcreteTestBase
@@ -24,8 +22,8 @@ public class GenerateElGamalKeyPairTest extends ConcreteTestBase
 	void generateElGamalKeyPairtest() {
 		ElGamalKeyPair keyPair = generateElGamalKeyPair.apply(EL_GAMAL_PARAMETERS);
 		assertEquals(RANDOMS_0_BASE64,
-				Util.fromBigInt(((ElGamalPrivateKey) keyPair.privateKey).x));
-		assertEquals(RANDOMS_0_PUBLISHED, ((ElGamalPublicKey) keyPair.publicKey).y);
+				Util.fromBigInt(keyPair.privateKey.x));
+		assertEquals(RANDOMS_0_PUBLISHED, keyPair.publicKey.y);
 
 	}
 

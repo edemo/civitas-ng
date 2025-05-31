@@ -2,10 +2,7 @@ package civitas.crypto.keypairshare;
 
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
-import civitas.crypto.privatekey.ElGamalPrivateKey;
-import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
@@ -18,7 +15,7 @@ public class GenerateKeyPairShare {
 	public ElGamalKeyPairShare apply(ElGamalParameters params) {
 		// The zero knowledge proof is constructed later, in the call to
 		// constructKeyShare
-		ElGamalParameters ps = (ElGamalParameters) params;
+		ElGamalParameters ps = params;
 
 		// choose x in Z_q at random. This is the share of the private key.
 		CivitasBigInteger x = generateRandomElement.apply(ps.q);
