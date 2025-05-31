@@ -36,7 +36,7 @@ public class VerifyElGamalProofKnowDiscLogTest extends ConcreteTestBase
 		CivitasBigInteger c = cryptoHash.apply(v, a).mod(q);
 		CivitasBigInteger r = z.add(c.modMultiply(key, q));
 		assertTrue(verifyElGamalProofKnowDiscLog
-				.apply(new ElGamalProofKnowDiscLogC(a, c, r, v), EL_GAMAL_PARAMETERS));
+				.apply(new ElGamalProofKnowDiscLog(a, c, r, v), EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public class VerifyElGamalProofKnowDiscLogTest extends ConcreteTestBase
 	void verifyTest1() {
 		assertFalse(
 				verifyElGamalProofKnowDiscLog.apply(
-						new ElGamalProofKnowDiscLogC(EL_GAMAL_PROOF_KNOWN_DISC_LOG_A,
+						new ElGamalProofKnowDiscLog(EL_GAMAL_PROOF_KNOWN_DISC_LOG_A,
 								EL_GAMAL_PROOF_KNOWN_DISC_LOG_C,
 								EL_GAMAL_PROOF_KNOWN_DISC_LOG_R, G_EXP_A),
 						mock(ElGamalParameters.class)));

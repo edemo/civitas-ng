@@ -12,7 +12,7 @@ public class ElGamalProofKnowDiscLogFromXML {
 	@Use
 	ConvertToBigInt convertToBigInt;
 
-	public ElGamalProofKnowDiscLogC apply(Reader r)
+	public ElGamalProofKnowDiscLog apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, "elGamalProofKnowDiscLog");
 		String a = Util.unescapeString(Util.readSimpleTag(r, "a"));
@@ -21,7 +21,7 @@ public class ElGamalProofKnowDiscLogFromXML {
 		String v = Util.unescapeString(Util.readSimpleTag(r, "v"));
 
 		Util.swallowEndTag(r, "elGamalProofKnowDiscLog");
-		return new ElGamalProofKnowDiscLogC(convertToBigInt.apply(a),
+		return new ElGamalProofKnowDiscLog(convertToBigInt.apply(a),
 				convertToBigInt.apply(c), convertToBigInt.apply(rr),
 				convertToBigInt.apply(v));
 	}

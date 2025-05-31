@@ -6,15 +6,22 @@
  */
 package civitas.crypto.proofknowndisclog;
 
-import java.io.PrintWriter;
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-import civitas.crypto.parameters.ElGamalParameters;
+@RequiredArgsConstructor
+@EqualsAndHashCode
+public class ElGamalProofKnowDiscLog {
 
-/**
- * Proof that an entity knows x in v = g^x.
- */
-public interface ElGamalProofKnowDiscLog {
-	public boolean verify(ElGamalParameters params);
+	@NonNull
+	public final CivitasBigInteger a;
+	@NonNull
+	public final CivitasBigInteger c;
+	@NonNull
+	public final CivitasBigInteger r;
+	@NonNull
+	public final CivitasBigInteger v;
 
-	public void toXML(PrintWriter sb);
 }

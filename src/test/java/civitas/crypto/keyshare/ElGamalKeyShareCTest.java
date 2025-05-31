@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.keys.ElGamalKeyShareTestData;
-import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLogC;
+import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Use;
 
@@ -37,14 +37,6 @@ public class ElGamalKeyShareCTest extends ConcreteTestBase
 		assertEquals(EL_GAMAL_KEY_SHARE_XML,
 				elGamalKeyShareToXML.apply(elGamalKeyShareFromXML
 						.apply(new StringReader(EL_GAMAL_KEY_SHARE_XML))));
-	}
-
-	@Test
-	@DisplayName("two instances are not equal if the instance of the proof is different with the same data"
-			+ "FIXME: equals for ElGamalProofKnowDiscLogC is not overriden")
-	void testEquals() throws IllegalArgumentException, IOException {
-		assertFalse(EL_GAMAL_KEY_SHARE_E.equals(elGamalKeyShareFromXML
-				.apply(new StringReader(EL_GAMAL_KEY_SHARE_XML))));
 	}
 
 	@Test
@@ -79,7 +71,7 @@ public class ElGamalKeyShareCTest extends ConcreteTestBase
 	void equalsTest2() throws IllegalArgumentException, IOException {
 		assertFalse(EL_GAMAL_KEY_SHARE_E
 				.equals(new ElGamalKeyShare(EL_GAMAL_PUBLIC_KEY_EPRIME,
-						new ElGamalProofKnowDiscLogC(EL_GAMAL_PROOF_KNOWN_DISC_LOG_A,
+						new ElGamalProofKnowDiscLog(EL_GAMAL_PROOF_KNOWN_DISC_LOG_A,
 								BIGINT_C, SAFE_P_MINUS_A, BIGINT_A))));
 	}
 

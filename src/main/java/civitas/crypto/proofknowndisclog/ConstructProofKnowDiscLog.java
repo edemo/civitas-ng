@@ -30,7 +30,7 @@ public class ConstructProofKnowDiscLog {
 		// without
 		// any ill effects.
 		CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q), params.q);
-		return new ElGamalProofKnowDiscLogC(a, c, r, v);
+		return new ElGamalProofKnowDiscLog(a, c, r, v);
 	}
 
 }

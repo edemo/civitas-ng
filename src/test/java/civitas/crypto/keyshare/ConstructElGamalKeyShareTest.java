@@ -2,7 +2,6 @@ package civitas.crypto.keyshare;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +11,6 @@ import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoError;
 import civitas.crypto.keypairshare.ElGamalKeyPairShareTestData;
 import civitas.crypto.keys.ElGamalKeyShareTestData;
-import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.util.Tested;
 
 public class ConstructElGamalKeyShareTest extends ConcreteTestBase
@@ -42,13 +40,6 @@ public class ConstructElGamalKeyShareTest extends ConcreteTestBase
 	void test_2() {
 		assertThrows(CryptoError.class, () -> constructElGamalKeyShare
 				.apply(EL_GAMAL_KEYPAIR_SHARE_BAD_PROOF_GENERATED));
-	}
-
-	@Test
-	@DisplayName("throws CryptoError if the proof is not of type ElGamalProofKnowDiscLogC")
-	void test3() {
-		assertThrows(CryptoError.class, () -> constructElGamalKeyShare
-				.apply(EL_GAMAL_PUBLIC_KEY_E, mock(ElGamalProofKnowDiscLog.class)));
 	}
 
 }

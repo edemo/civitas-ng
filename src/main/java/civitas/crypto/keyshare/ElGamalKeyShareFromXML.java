@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 import civitas.common.Util;
-import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLogC;
+import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLogFromXML;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.publickey.ElGamalPublicKeyFromXML;
@@ -24,7 +24,7 @@ public class ElGamalKeyShareFromXML {
 		ElGamalPublicKey pubKey = elGamalPublicKeyFromXML.apply(r);
 		Util.swallowEndTag(r, "pubKey");
 		Util.swallowTag(r, "proof");
-		ElGamalProofKnowDiscLogC proof = elGamalProofKnowDiscLogFromXML.apply(r);
+		ElGamalProofKnowDiscLog proof = elGamalProofKnowDiscLogFromXML.apply(r);
 		Util.swallowEndTag(r, "proof");
 		Util.swallowEndTag(r, "elGamalKeyShare");
 		return new ElGamalKeyShare(pubKey, proof);

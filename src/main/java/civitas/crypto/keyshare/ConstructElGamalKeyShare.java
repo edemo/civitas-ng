@@ -4,7 +4,7 @@ import civitas.crypto.CryptoError;
 import civitas.crypto.keypairshare.ElGamalKeyPairShare;
 import civitas.crypto.proofknowndisclog.ConstructProofKnowDiscLog;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
-import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLogC;
+import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Use;
 
@@ -26,7 +26,7 @@ public class ConstructElGamalKeyShare {
 	public ElGamalKeyShare apply(ElGamalPublicKey K,
 			ElGamalProofKnowDiscLog proof) throws Error {
 		if (K instanceof ElGamalPublicKey
-				&& proof instanceof ElGamalProofKnowDiscLogC) {
+				&& proof instanceof ElGamalProofKnowDiscLog) {
 			return new ElGamalKeyShare(K, proof);
 		}
 		throw new CryptoError("problem with parameters");

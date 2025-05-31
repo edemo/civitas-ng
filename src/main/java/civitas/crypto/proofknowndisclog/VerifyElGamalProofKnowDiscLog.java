@@ -5,7 +5,7 @@ import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 
 public class VerifyElGamalProofKnowDiscLog {
-	public boolean apply(ElGamalProofKnowDiscLogC that, ElGamalParameters prms) {
+	public boolean apply(ElGamalProofKnowDiscLog that, ElGamalParameters prms) {
 		if (!(prms instanceof ElGamalParameters))
 			return false;
 		ElGamalParameters params = (ElGamalParameters) prms;
