@@ -10,8 +10,9 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import civitas.common.Util;
+import civitas.crypto.Constants;
 
-public class PublicKeyCiphertextToXML {
+public class PublicKeyCiphertextToXML implements Constants {
 
 	public String apply(PublicKeyCiphertext that) {
 		StringWriter sb = new StringWriter();
@@ -21,12 +22,12 @@ public class PublicKeyCiphertextToXML {
 
 	public void apply(PublicKeyCiphertext that, PrintWriter s) {
 		s.print('<');
-		s.print(PublicKeyCiphertext.OPENING_TAG);
+		s.print(PublicKeyCiphertextOPENING_TAG);
 		s.print('>');
 		Util.escapeString(
 				java.util.Base64.getEncoder().encodeToString(that.encryptedBytes), s);
 		s.print("</");
-		s.print(PublicKeyCiphertext.OPENING_TAG);
+		s.print(PublicKeyCiphertextOPENING_TAG);
 		s.print('>');
 	}
 

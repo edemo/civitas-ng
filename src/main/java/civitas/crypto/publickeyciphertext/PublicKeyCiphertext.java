@@ -6,13 +6,14 @@
  */
 package civitas.crypto.publickeyciphertext;
 
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@EqualsAndHashCode
 public class PublicKeyCiphertext {
-	public static final String OPENING_TAG = "publicKeyCiphertext";
-
+	@NonNull
 	public final byte[] encryptedBytes;
-
-	public PublicKeyCiphertext(byte[] encrypted) {
-		this.encryptedBytes = encrypted;
-	}
 
 }

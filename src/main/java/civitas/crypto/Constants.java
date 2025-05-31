@@ -50,6 +50,7 @@ public interface Constants {
 	public final static String PETCommitmentOPENING_TAG = "petC";
 	public final static String PETDecommitmentOPENING_TAG = "petD";
 	public final static String ElGamalPublicKeyOPENING_TAG = "elGamalPublicKey";
+	public static final String PublicKeyCiphertextOPENING_TAG = "publicKeyCiphertext";
 
 	public final String CHARSET_NAME = "UTF-8";
 
