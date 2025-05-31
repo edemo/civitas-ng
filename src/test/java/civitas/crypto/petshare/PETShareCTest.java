@@ -34,13 +34,6 @@ public class PETShareCTest extends ConcreteTestBase
 	}
 
 	@Test
-	@DisplayName("can be constructed with all nulls")
-	void test1() {
-		assertEquals(PET_SHARE_NULL_XML,
-				pETShareCToXML.apply(new PETShareC(null, null, null)));
-	}
-
-	@Test
 	@DisplayName("toXML does nothing with a null PrintWriter")
 	void test2() {
 		assertDoesNotThrow(() -> pETShareCToXML.apply(PET_SHARE_C, null));
@@ -54,21 +47,21 @@ public class PETShareCTest extends ConcreteTestBase
 	}
 
 	@Test
-	@DisplayName("ciphertext1 returns the first ciphertext")
+	@DisplayName("ciphertext1 contains the first ciphertext")
 	void test4() {
-		assertEquals(CIPHERTEXT_E, PET_SHARE_C.ciphertext1());
+		assertEquals(CIPHERTEXT_E, PET_SHARE_C.ciphertext1);
 	}
 
 	@Test
-	@DisplayName("ciphertext2 returns the second ciphertext")
+	@DisplayName("ciphertext2 contains the second ciphertext")
 	void test5() {
-		assertEquals(CIPHERTEXT_EPRIME, PET_SHARE_C.ciphertext2());
+		assertEquals(CIPHERTEXT_EPRIME, PET_SHARE_C.ciphertext2);
 	}
 
 	@Test
-	@DisplayName("exponent returns the exponent")
+	@DisplayName("exponent contains the exponent")
 	void test5_1() {
-		assertEquals(FACTOR_E, PET_SHARE_C.exponent());
+		assertEquals(FACTOR_E, PET_SHARE_C.exponent);
 	}
 
 	@Use
@@ -85,8 +78,8 @@ public class PETShareCTest extends ConcreteTestBase
 				c1.a.modDivide(c2.a, BIGINT_P).modPow(exponent, BIGINT_P),
 				c1.b.modDivide(c2.b, BIGINT_P).modPow(exponent, BIGINT_P));
 
-		assertEquals(hashe, constructPETCommitment
-				.apply(PET_SHARE_C, EL_GAMAL_PARAMETERS).hash);
+		assertEquals(hashe,
+				constructPETCommitment.apply(PET_SHARE_C, EL_GAMAL_PARAMETERS).hash);
 	}
 
 }

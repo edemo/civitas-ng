@@ -20,7 +20,7 @@ public class ConstructPETShare {
 		ElGamalCiphertext bc = b;
 
 		CivitasBigInteger z = generateRandomElement.apply(params.q);
-		return new PETShareC(ac, bc, z);
+		return new PETShare(ac, bc, z);
 	}
 
 }

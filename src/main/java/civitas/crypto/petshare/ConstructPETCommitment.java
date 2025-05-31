@@ -11,7 +11,7 @@ public class ConstructPETCommitment {
 	@Use
 	CryptoHash cryptoHash;
 
-	public PETCommitment apply(PETShareC that, ElGamalParameters params) {
+	public PETCommitment apply(PETShare that, ElGamalParameters params) {
 		try {
 			ElGamalParameters ps = params;
 

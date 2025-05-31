@@ -7,20 +7,20 @@
 package civitas.crypto.petshare;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.petdecommitment.PETDecommitment;
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-/**
- * A server's share of the info needed for a distrubted Plaintext Eqiuvalence
- * Test.
- */
-public interface PETShare {
+@RequiredArgsConstructor
+@EqualsAndHashCode
+public class PETShare {
 
-	ElGamalCiphertext ciphertext1();
-
-	ElGamalCiphertext ciphertext2();
-
-	@Deprecated
-	PETDecommitment decommitment(ElGamalParameters params);
+	@NonNull
+	public final ElGamalCiphertext ciphertext1;
+	@NonNull
+	public final ElGamalCiphertext ciphertext2;
+	@NonNull
+	public final CivitasBigInteger exponent;
 
 }

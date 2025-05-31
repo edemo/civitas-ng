@@ -14,7 +14,7 @@ public class PetShareFromXML {
 	@Use
 	ElGamalCiphertextFromXML elGamalCiphertextFromXML;
 
-	public PETShareC apply(Reader r) throws IOException {
+	public PETShare apply(Reader r) throws IOException {
 		Util.swallowTag(r, "petShare");
 
 		ElGamalCiphertext ciphertext1 = null;
@@ -28,7 +28,7 @@ public class PetShareFromXML {
 
 		Util.swallowEndTag(r, "petShare");
 
-		return new PETShareC(ciphertext1, ciphertext2, exponent);
+		return new PETShare(ciphertext1, ciphertext2, exponent);
 	}
 
 }

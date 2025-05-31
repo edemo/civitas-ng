@@ -17,7 +17,7 @@ public class ConstructPETShareTest extends ConcreteTestBase
 	@Test
 	@DisplayName("constructs a pet share with the two ciphertexts and a random element")
 	void test() {
-		PETShareC actual = new PETShareC(CIPHERTEXT_E, CIPHERTEXT_EPRIME,
+		PETShare actual = new PETShare(CIPHERTEXT_E, CIPHERTEXT_EPRIME,
 				RANDOMS_0);
 		assertEquals(actual.ciphertext1, CIPHERTEXT_E);
 		assertEquals(actual.ciphertext2, CIPHERTEXT_EPRIME);

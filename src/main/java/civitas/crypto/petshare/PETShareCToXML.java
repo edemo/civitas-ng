@@ -11,13 +11,13 @@ public class PETShareCToXML {
 	@Use
 	static ElGamalCiphertextToXML elGamalCiphertextToXML;
 
-	public String apply(PETShareC that) {
+	public String apply(PETShare that) {
 		StringWriter sb = new StringWriter();
 		apply(that, new PrintWriter(sb));
 		return sb.toString();
 	}
 
-	public void apply(PETShareC that, PrintWriter sb) {
+	public void apply(PETShare that, PrintWriter sb) {
 		if (sb == null)
 			return;
 		sb.append("<petShare>");
