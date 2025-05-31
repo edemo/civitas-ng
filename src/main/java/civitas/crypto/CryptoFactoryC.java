@@ -9,6 +9,7 @@ package civitas.crypto;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
@@ -59,7 +60,7 @@ import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionFromXML;
 import civitas.crypto.parameters.BruteForceDecode;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.parameters.ElGamalParametersFromXML;
 import civitas.crypto.parameters.GenerateElGamalParameters;
 import civitas.crypto.petcommitment.CombinePETShareDecommitments;
@@ -482,7 +483,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		// it seems the parameters are the same throughout the vote
 		// just make a list of the possible values and look it up
 		ElGamalMsg mc = m;
-		ElGamalParametersC paramsc = (ElGamalParametersC) params;
+		ElGamalParameters paramsc = (ElGamalParameters) params;
 		// return the int value minus 1, since the well-known ciphertext list is
 		// (1, 2, 3, ...), and we want to return the index of the value.
 		return bruteForceDecode.apply(paramsc, mc.m, L) - 1;
@@ -883,7 +884,8 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public PublicKeyMsg publicKeyDecrypt(PrivateKey key,
-			PublicKeyCiphertext ciphertext) throws CryptoException {
+			PublicKeyCiphertext ciphertext)
+			throws CryptoException, UnsupportedEncodingException, CryptoError {
 		return decryptPublic.apply(key, ciphertext);
 	}
 
@@ -899,7 +901,8 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public SharedKeyMsg sharedKeyDecrypt(SharedKey key,
-			SharedKeyCiphertext ciphertext) throws CryptoException {
+			SharedKeyCiphertext ciphertext)
+			throws CryptoException, UnsupportedEncodingException, CryptoError {
 		return decryptShared.apply(key, ciphertext);
 	}
 
@@ -971,7 +974,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 			ElGamalCiphertext encCapability, ElGamal1OfLReencryption encChoice,
 			String context, ElGamalReencryptFactor encCapabilityFactor,
 			ElGamalReencryptFactor encChoiceFactor) {
-		return constructProofVote.apply((ElGamalParametersC) params, encCapability,
+		return constructProofVote.apply((ElGamalParameters) params, encCapability,
 				encChoice.m, context, (ElGamalReencryptFactorC) encCapabilityFactor,
 				(ElGamalReencryptFactorC) encChoiceFactor);
 	}

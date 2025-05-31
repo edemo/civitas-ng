@@ -14,7 +14,7 @@ public class ElGamalParametersFromXML {
 	@Use
 	CheckGroup checkGroup;
 
-	public ElGamalParametersC apply(Reader r)
+	public ElGamalParameters apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, "elGamalParameters");
 		String sp = Util.unescapeString(Util.readSimpleTag(r, "p"));
@@ -24,7 +24,7 @@ public class ElGamalParametersFromXML {
 		CivitasBigInteger p = convertToBigInt.apply(sp);
 		CivitasBigInteger q = convertToBigInt.apply(sq);
 		CivitasBigInteger g = convertToBigInt.apply(sg);
-		ElGamalParametersC params = new ElGamalParametersC(p, q, g);
+		ElGamalParameters params = new ElGamalParameters(p, q, g);
 		checkGroup.apply(params);
 		return params;
 	}

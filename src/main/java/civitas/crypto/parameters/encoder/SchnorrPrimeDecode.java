@@ -1,12 +1,12 @@
 package civitas.crypto.parameters.encoder;
 
 import civitas.crypto.CryptoException;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 
-public class SchnorrPrimeDecoder {
+public class SchnorrPrimeDecode {
 	public CivitasBigInteger apply(CivitasBigInteger m,
-			ElGamalParametersC elGamalParameters) throws CryptoException {
+			ElGamalParameters elGamalParameters) throws CryptoException {
 		throw new CryptoException(
 				"Decoding is not supported for Schnorr prime groups.");
 	}

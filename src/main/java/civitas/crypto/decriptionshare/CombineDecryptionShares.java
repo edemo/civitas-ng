@@ -6,7 +6,7 @@ import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 
 public class CombineDecryptionShares implements Constants {
@@ -15,7 +15,7 @@ public class CombineDecryptionShares implements Constants {
 			ElGamalParameters params) throws CryptoError {
 		CivitasBigInteger prod = ONE;
 		ElGamalCiphertext cipher = (ElGamalCiphertext) c;
-		ElGamalParametersC ps = (ElGamalParametersC) params;
+		ElGamalParameters ps = (ElGamalParameters) params;
 		for (ElGamalDecryptionShare share2 : shares) {
 			ElGamalDecryptionShare share = (ElGamalDecryptionShare) share2;
 			prod = prod.modMultiply(share.ai, ps.p);

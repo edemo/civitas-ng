@@ -1,13 +1,11 @@
 package civitas.crypto.votecapabilityshare;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.votecapability.VoteCapability;
 import civitas.crypto.votecapability.VoteCapabilityC;
 import civitas.util.CivitasBigInteger;
@@ -42,13 +40,6 @@ public class CombineVoteCapabilitySharesTest extends ConcreteTestBase
 	void test2() {
 		assertEquals(null, combineVoteCapabilityShares
 				.apply(new VoteCapabilityShare[][] { null }, EL_GAMAL_PARAMETERS));
-	}
-
-	@Test
-	@DisplayName("returns null if the parameters are not castable to ElGamalParametersC")
-	void test3() {
-		assertEquals(null, combineVoteCapabilityShares
-				.apply(new VoteCapabilityShare[][] {}, mock(ElGamalParameters.class)));
 	}
 
 }

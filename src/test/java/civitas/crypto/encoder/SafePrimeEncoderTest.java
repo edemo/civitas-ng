@@ -11,34 +11,41 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
-import civitas.crypto.parameters.encoder.SafePrimeEncoder;
+import civitas.crypto.parameters.encoder.SafePrimeDecode;
+import civitas.crypto.parameters.encoder.SafePrimeEncode;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Tested;
 
 public class SafePrimeEncoderTest extends ConcreteTestBase
 		implements EncoderTestData {
 
-	private SafePrimeEncoder encoder = new SafePrimeEncoder(
-			EL_GAMAL_PARAMETERS_SAFE);
+	@Tested
+	private SafePrimeEncode encoder;
+	@Tested
+	private SafePrimeDecode decoder;
 
 	@Test
 	@DisplayName("encoder works as expected")
 	void test() throws CryptoException, IllegalArgumentException, IOException {
-		assertEquals(SAFE_P_MINUS_A_BASE64, Base64.getEncoder()
-				.encodeToString(encoder.encodePlaintext(BIGINT_A).toByteArray()));
+		assertEquals(SAFE_P_MINUS_A_BASE64, Base64.getEncoder().encodeToString(
+				encoder.apply(BIGINT_A, EL_GAMAL_PARAMETERS_SAFE).toByteArray()));
 	}
 
 	@Test
 	@DisplayName("encoder works as expected when the plaintext's Legendre symbol is -1")
 	void test2() throws CryptoException, IllegalArgumentException, IOException {
-		assertEquals(PUBLICIZED_SAFE_LEGENDRE,
-				encoder.encodePlaintext(PLAINTEXT_WITH_LEGENDRE_MINUS_ONE));
+		assertEquals(PUBLICIZED_SAFE_LEGENDRE, encoder
+				.apply(PLAINTEXT_WITH_LEGENDRE_MINUS_ONE, EL_GAMAL_PARAMETERS_SAFE));
 	}
 
 	@Test
 	@DisplayName("decoder works as expected")
 	void test3() throws CryptoException, IllegalArgumentException, IOException {
-		assertEquals(BIGINT_A, encoder.decodeMessage(new CivitasBigInteger(
-				Base64.getDecoder().decode(SAFE_P_MINUS_A_BASE64))));
+		assertEquals(BIGINT_A,
+				decoder.apply(
+						new CivitasBigInteger(
+								Base64.getDecoder().decode(SAFE_P_MINUS_A_BASE64)),
+						EL_GAMAL_PARAMETERS_SAFE));
 	}
 
 	@Test
@@ -46,15 +53,16 @@ public class SafePrimeEncoderTest extends ConcreteTestBase
 	void test3_1() throws CryptoException, IllegalArgumentException, IOException {
 		assertEquals(PLAINTEXT_OF_BIG_SECRET_BASE64,
 				Base64.getEncoder().encodeToString(
-						encoder.decodeMessage(EL_GAMAL_PARAMETERS_SAFE.q.add(BIGINT_A))
-								.toByteArray()));
+						decoder.apply(EL_GAMAL_PARAMETERS_SAFE.q.add(BIGINT_A),
+								EL_GAMAL_PARAMETERS_SAFE).toByteArray()));
 	}
 
 	@Test
 	@DisplayName("decoder cannot decode messages bigger than p")
 	void test4() throws CryptoException, IllegalArgumentException, IOException {
 		assertThrows(CryptoException.class,
-				() -> encoder.decodeMessage(EL_GAMAL_PARAMETERS_SAFE.p.add(BIGINT_A)));
+				() -> decoder.apply(EL_GAMAL_PARAMETERS_SAFE.p.add(BIGINT_A),
+						EL_GAMAL_PARAMETERS_SAFE));
 	}
 
 }

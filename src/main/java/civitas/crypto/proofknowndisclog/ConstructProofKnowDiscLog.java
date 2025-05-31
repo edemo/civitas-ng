@@ -3,7 +3,7 @@ package civitas.crypto.proofknowndisclog;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.util.CivitasBigInteger;
@@ -17,10 +17,10 @@ public class ConstructProofKnowDiscLog {
 
 	public ElGamalProofKnowDiscLog apply(ElGamalParameters prms,
 			ElGamalPrivateKey k) {
-		if (k == null || !(k instanceof ElGamalPrivateKey) || prms == null || !(prms instanceof ElGamalParametersC)) {
+		if (k == null || !(k instanceof ElGamalPrivateKey) || prms == null || !(prms instanceof ElGamalParameters)) {
 			return null;
 		}
-		ElGamalParametersC params = (ElGamalParametersC) prms;
+		ElGamalParameters params = (ElGamalParameters) prms;
 		CivitasBigInteger x = ((ElGamalPrivateKey) k).x;
 		CivitasBigInteger v = params.g.modPow(x, params.p);
 		CivitasBigInteger z = generateRandomElement.apply(params.q);

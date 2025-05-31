@@ -57,15 +57,15 @@ public interface ElGamalParametersCTestData extends BasicValuesTestData {
 	public static final CivitasBigInteger GENERATOR_FOR_UNPRIME_Q = Util
 			.asBigint("SlVGgqFXxlg=");
 
-	public static final ElGamalParametersC EL_GAMAL_PARAMETERS = new ElGamalParametersC(
+	public static final ElGamalParameters EL_GAMAL_PARAMETERS = new ElGamalParameters(
 			BIGINT_P, BIGINT_Q, BIGINT_G);
-	public static final ElGamalParametersC EL_GAMAL_PARAMETERS_OTHER = new ElGamalParametersC(
+	public static final ElGamalParameters EL_GAMAL_PARAMETERS_OTHER = new ElGamalParameters(
 			P2, Q2, G2);
 
-	public static final ElGamalParametersC EL_GAMAL_PARAMETERS_Q_SAME = new ElGamalParametersC(
+	public static final ElGamalParameters EL_GAMAL_PARAMETERS_Q_SAME = new ElGamalParameters(
 			BIGINT_P_OTHER, BIGINT_Q, BIGINT_G_OTHER);
 
-	public static final ElGamalParametersC EL_GAMAL_PARAMETERS_GENERATOR_OTHER = new ElGamalParametersC(
+	public static final ElGamalParameters EL_GAMAL_PARAMETERS_GENERATOR_OTHER = new ElGamalParameters(
 			BIGINT_P, BIGINT_Q, GENERATOR_OTHER);
 
 	public static final String EL_GAMAL_PARAMETERS_XML = "<elGamalParameters><p>"
@@ -97,7 +97,7 @@ public interface ElGamalParametersCTestData extends BasicValuesTestData {
 	public static final PrimePair SAFE_PRIMES = new PrimePair(SAFE_P, SAFE_Q);
 	public static final PrimePair SCHNORR_PRIMES = new PrimePair(BIGINT_P,
 			BIGINT_Q);
-	public static final ElGamalParametersC EL_GAMAL_PARAMETERS_SAFE = new ElGamalParametersC(
+	public static final ElGamalParameters EL_GAMAL_PARAMETERS_SAFE = new ElGamalParameters(
 			SAFE_P, SAFE_Q, SAFE_G);
 	public CivitasBigInteger PLAINTEXT_WITH_LEGENDRE_MINUS_ONE = CivitasBigInteger
 			.valueOf(251121);

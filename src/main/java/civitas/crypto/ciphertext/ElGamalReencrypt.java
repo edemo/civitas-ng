@@ -3,7 +3,7 @@ package civitas.crypto.ciphertext;
 import civitas.crypto.CryptoError;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
@@ -18,7 +18,7 @@ public class ElGamalReencrypt {
 	public ElGamalCiphertext apply(ElGamalPublicKey key,
 			ElGamalCiphertext ciphertext) throws CryptoError {
 		try {
-			ElGamalParametersC ps = (ElGamalParametersC) key.params;
+			ElGamalParameters ps = (ElGamalParameters) key.params;
 			ElGamalPublicKey k = key;
 			ElGamalCiphertext c = ciphertext;
 			CivitasBigInteger c1 = c.a;
@@ -35,7 +35,7 @@ public class ElGamalReencrypt {
 	public ElGamalReencryptFactor apply(ElGamalParameters params)
 			throws CryptoError {
 		try {
-			ElGamalParametersC ps = (ElGamalParametersC) params;
+			ElGamalParameters ps = (ElGamalParameters) params;
 			return new ElGamalReencryptFactorC(generateRandomElement.apply(ps.q));
 		} catch (ClassCastException e) {
 			throw new CryptoError(e);
@@ -46,7 +46,7 @@ public class ElGamalReencrypt {
 			ElGamalCiphertext ciphertext, ElGamalReencryptFactor factor)
 			throws CryptoError {
 		try {
-			ElGamalParametersC ps = (ElGamalParametersC) key.params;
+			ElGamalParameters ps = (ElGamalParameters) key.params;
 			ElGamalPublicKey k = key;
 			ElGamalCiphertext c = ciphertext;
 			CivitasBigInteger a = c.a;

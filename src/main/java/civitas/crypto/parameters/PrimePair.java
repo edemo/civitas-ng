@@ -7,17 +7,15 @@
 package civitas.crypto.parameters;
 
 import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-/**
- * A prime p of the form p = 2kq+1, where q is also prime.
- */
+@RequiredArgsConstructor
+@EqualsAndHashCode
 public class PrimePair {
+	@NonNull
 	public CivitasBigInteger p;
+	@NonNull
 	public CivitasBigInteger q;
-
-	public PrimePair(CivitasBigInteger p, CivitasBigInteger q) {
-		this.p = p;
-		this.q = q;
-	}
-
 }

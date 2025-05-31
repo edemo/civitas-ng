@@ -2,7 +2,7 @@ package civitas.crypto.petshare;
 
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.petcommitment.PETCommitment;
 import civitas.crypto.petcommitment.PETCommitmentC;
 import civitas.util.CivitasBigInteger;
@@ -15,7 +15,7 @@ public class ConstructPETCommitment {
 
 	public PETCommitment apply(PETShareC that, ElGamalParameters params) {
 		try {
-			ElGamalParametersC ps = (ElGamalParametersC) params;
+			ElGamalParameters ps = (ElGamalParameters) params;
 
 			CivitasBigInteger zi = that.exponent;
 			CivitasBigInteger d = that.ciphertext1.a.modDivide(that.ciphertext2.a,

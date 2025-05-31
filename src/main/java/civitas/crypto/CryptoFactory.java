@@ -9,6 +9,7 @@ package civitas.crypto;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertextlist.CiphertextList;
@@ -177,12 +178,12 @@ public interface CryptoFactory {
 	PublicKeyCiphertext publicKeyEncrypt(PublicKey key, PublicKeyMsg msg);
 
 	PublicKeyMsg publicKeyDecrypt(PrivateKey key, PublicKeyCiphertext ciphertext)
-			throws CryptoException;
+			throws CryptoException, UnsupportedEncodingException, CryptoError;
 
 	SharedKeyCiphertext sharedKeyEncrypt(SharedKey key, SharedKeyMsg msg);
 
 	SharedKeyMsg sharedKeyDecrypt(SharedKey key, SharedKeyCiphertext ciphertext)
-			throws CryptoException;
+			throws CryptoException, UnsupportedEncodingException, CryptoError;
 
 	SharedKey generateSharedKey(int keyLength);
 

@@ -2,14 +2,12 @@ package civitas.crypto.proofknowndisclog;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.algorithms.CryptoHash;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.Tested;
 import civitas.util.Use;
 
@@ -50,15 +48,6 @@ public class ConstructProofKnowDiscLogTest extends ConcreteTestBase
 	void constructProofKnowDiscLogTest3() throws Exception {
 
 		assertNull(constructProofKnowDiscLog.apply(null, ELGAMAL_PRIVATE_KEY_E));
-
-	}
-
-	@Test
-	@DisplayName("constructProofKnowDiscLog returns null if parameters are not ElGamalParametersC")
-	void constructProofKnowDiscLogTest4() throws Exception {
-
-		assertNull(constructProofKnowDiscLog.apply(mock(ElGamalParameters.class),
-				ELGAMAL_PRIVATE_KEY_E));
 
 	}
 

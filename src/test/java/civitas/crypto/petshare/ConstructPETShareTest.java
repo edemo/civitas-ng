@@ -1,13 +1,11 @@
 package civitas.crypto.petshare;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.Use;
 
 public class ConstructPETShareTest extends ConcreteTestBase
@@ -45,13 +43,6 @@ public class ConstructPETShareTest extends ConcreteTestBase
 	void test4() {
 		assertEquals(null,
 				constructPETShare.apply(null, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
-	}
-
-	@Test
-	@DisplayName("returns null if parameters is not of type ElGamalParametersC")
-	void test7() {
-		assertEquals(null, constructPETShare.apply(mock(ElGamalParameters.class),
-				CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 	}
 
 }

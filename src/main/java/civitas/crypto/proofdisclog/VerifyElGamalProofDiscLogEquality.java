@@ -1,15 +1,15 @@
 package civitas.crypto.proofdisclog;
 
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 
 public class VerifyElGamalProofDiscLogEquality {
 
 	public boolean apply(ElGamalProofDiscLogEqualityC that,
 			ElGamalParameters prms) {
-		if (!(prms instanceof ElGamalParametersC))
+		if (!(prms instanceof ElGamalParameters))
 			return false;
-		ElGamalParametersC params = (ElGamalParametersC) prms;
+		ElGamalParameters params = (ElGamalParameters) prms;
 
 		try {
 			// To verify, check that g_1^r = av^c (mod p) and g_2^r = bw^c (mod p)

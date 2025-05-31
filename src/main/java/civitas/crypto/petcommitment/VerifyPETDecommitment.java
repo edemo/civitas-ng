@@ -3,7 +3,7 @@ package civitas.crypto.petcommitment;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.petdecommitment.PETDecommitmentC;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityC;
 import civitas.crypto.proofdisclog.VerifyElGamalProofDiscLogEquality;
@@ -24,7 +24,7 @@ public class VerifyPETDecommitment {
 			return false;
 		}
 		ElGamalProofDiscLogEqualityC prf = (ElGamalProofDiscLogEqualityC) self.proof;
-		ElGamalParametersC ps = (ElGamalParametersC) params;
+		ElGamalParameters ps = (ElGamalParameters) params;
 		PETCommitmentC com = (PETCommitmentC) c;
 		ElGamalCiphertext m1 = (ElGamalCiphertext) ciphertext1;
 		ElGamalCiphertext m2 = (ElGamalCiphertext) ciphertext2;

@@ -10,7 +10,6 @@ import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertextlist.CiphertextList;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextC;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
@@ -61,10 +60,4 @@ public class MultiplyCiphertextsTest extends ConcreteTestBase
 						EL_GAMAL_PARAMETERS));
 	}
 
-	@Test
-	@DisplayName("returns null if the parameters are not castable to ElGamalParametersC")
-	void test5() {
-		assertEquals(null, multiplyCiphertexts.apply(
-				new ElGamalSignedCiphertext[][] {}, mock(ElGamalParameters.class)));
-	}
 }

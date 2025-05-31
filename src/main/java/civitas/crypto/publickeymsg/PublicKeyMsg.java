@@ -6,7 +6,14 @@
  */
 package civitas.crypto.publickeymsg;
 
-public interface PublicKeyMsg {
-	@Override
-	String toString();
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@EqualsAndHashCode
+public class PublicKeyMsg {
+	@NonNull
+	public final String m;
+
 }

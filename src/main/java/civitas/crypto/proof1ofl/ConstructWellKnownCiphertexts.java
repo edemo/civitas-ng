@@ -7,7 +7,7 @@ import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.msg.EncodeMessage;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
@@ -31,7 +31,7 @@ public class ConstructWellKnownCiphertexts implements Constants {
 		// zero knowledge proofs.
 		ElGamalReencryptFactor factor = new ElGamalReencryptFactorC(ZERO);
 		try {
-			ElGamalParametersC params = (ElGamalParametersC) key.params;
+			ElGamalParameters params = (ElGamalParameters) key.params;
 			for (int i = 0; i < count; i++) {
 				// encrypt (i+1);
 				try {

@@ -6,7 +6,14 @@
  */
 package civitas.crypto.sharedkeymsg;
 
-public interface SharedKeyMsg {
-	@Override
-	String toString();
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@EqualsAndHashCode
+public class SharedKeyMsg {
+	@NonNull
+	public final String m;
+
 }

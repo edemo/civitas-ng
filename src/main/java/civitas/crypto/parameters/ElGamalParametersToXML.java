@@ -6,13 +6,13 @@ import java.io.StringWriter;
 import civitas.common.Util;
 
 public class ElGamalParametersToXML {
-	public String apply(ElGamalParametersC that) {
+	public String apply(ElGamalParameters that) {
 		StringWriter sb = new StringWriter();
 		apply(that, new PrintWriter(sb));
 		return sb.toString();
 	}
 
-	public void apply(ElGamalParametersC that, PrintWriter s) {
+	public void apply(ElGamalParameters that, PrintWriter s) {
 		s.print("<elGamalParameters>");
 
 		s.print("<p>");

@@ -5,7 +5,7 @@ import java.util.List;
 
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
@@ -20,7 +20,7 @@ public class VerifyElGamalProofDVR {
 	public boolean apply(ElGamalProofDVRC that, ElGamalPublicKey K,
 			ElGamalPublicKey verifierKey) {
 
-		ElGamalParametersC ps = (ElGamalParametersC) K.params;
+		ElGamalParameters ps = (ElGamalParameters) K.params;
 		ElGamalPublicKey key = K;
 
 		CivitasBigInteger hv = verifierKey.y;

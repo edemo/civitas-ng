@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
-import civitas.crypto.parameters.encoder.SchnorrPrimeDecoder;
-import civitas.crypto.parameters.encoder.SchnorrPrimeEncoder;
+import civitas.crypto.parameters.encoder.SchnorrPrimeDecode;
+import civitas.crypto.parameters.encoder.SchnorrPrimeEncode;
 import civitas.util.Tested;
 
 public class SchnorrPrimeEncoderTest extends ConcreteTestBase
 		implements EncoderTestData {
 
 	@Tested
-	SchnorrPrimeEncoder schnorrPrimeEncoder;
+	SchnorrPrimeEncode schnorrPrimeEncoder;
 
 	@Tested
-	SchnorrPrimeDecoder schnorrPrimeDecoder;
+	SchnorrPrimeDecode schnorrPrimeDecoder;
 
 	@Test
 	@DisplayName("encode works as expected")

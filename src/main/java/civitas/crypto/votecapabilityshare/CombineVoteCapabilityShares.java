@@ -1,7 +1,7 @@
 package civitas.crypto.votecapabilityshare;
 
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.votecapability.VoteCapability;
 import civitas.crypto.votecapability.VoteCapabilityC;
 import civitas.util.CivitasBigInteger;
@@ -13,7 +13,7 @@ public class CombineVoteCapabilityShares {
 		if (shares == null)
 			return null;
 		try {
-			ElGamalParametersC params = (ElGamalParametersC) p;
+			ElGamalParameters params = (ElGamalParameters) p;
 			// multiply all the shares together
 			CivitasBigInteger[] accum = new CivitasBigInteger[shares[0].length];
 			for (VoteCapabilityShare[] share : shares) {

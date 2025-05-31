@@ -28,20 +28,20 @@ public class ElGamalParametersCTest extends ConcreteTestBase
 			+ "NOTE: the constructor does not check the group. Use checkgroup for that")
 	void test() {
 		assertEquals(EL_GAMAL_PARAMETERS_XML, elGamalParametersToXML
-				.apply(new ElGamalParametersC(BIGINT_P, BIGINT_Q, BIGINT_G)));
+				.apply(new ElGamalParameters(BIGINT_P, BIGINT_Q, BIGINT_G)));
 	}
 
 	@Test
 	@DisplayName("checkGroup throws CryptoError if parameters are not a group")
 	void test_1() throws Exception {
 		assertThrows(CryptoError.class, () -> checkGroup
-				.apply(new ElGamalParametersC(BIGINT_A, BIGINT_B, BIGINT_C)));
+				.apply(new ElGamalParameters(BIGINT_A, BIGINT_B, BIGINT_C)));
 	}
 
 	@Test
 	@DisplayName("equals and fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
-		assertEquals(new ElGamalParametersC(BIGINT_P, BIGINT_Q, BIGINT_G),
+		assertEquals(new ElGamalParameters(BIGINT_P, BIGINT_Q, BIGINT_G),
 				elGamalParametersFromXML
 						.apply(new StringReader(EL_GAMAL_PARAMETERS_XML)));
 	}
@@ -68,7 +68,7 @@ public class ElGamalParametersCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("equals is false if g differs")
 	void test3_2() {
-		ElGamalParametersC gen = new ElGamalParametersC(BIGINT_P, BIGINT_Q,
+		ElGamalParameters gen = new ElGamalParameters(BIGINT_P, BIGINT_Q,
 				GENERATOR_OTHER);
 		assertFalse(EL_GAMAL_PARAMETERS.equals(gen));
 	}
@@ -80,7 +80,7 @@ public class ElGamalParametersCTest extends ConcreteTestBase
 	@DisplayName("checkGroup throws CryptoException if q does not divide p-1")
 	void checkGroupTest() {
 		CryptoError t = assertThrows(CryptoError.class, () -> checkGroup
-				.apply(new ElGamalParametersC(BIGINT_P, BIGINT_P, GENERATOR_OTHER)));
+				.apply(new ElGamalParameters(BIGINT_P, BIGINT_P, GENERATOR_OTHER)));
 		assertEquals("q does not divide p-1", t.getMessage());
 	}
 
@@ -91,7 +91,7 @@ public class ElGamalParametersCTest extends ConcreteTestBase
 		p = BIGINT_Q.multiply(CivitasBigInteger.valueOf(2)).add(ONE);
 		CryptoError t = assertThrows(CryptoError.class, () -> {
 			checkGroup
-					.apply(new ElGamalParametersC(p, BIGINT_Q, GENERATOR_FOR_UNPRIME_P));
+					.apply(new ElGamalParameters(p, BIGINT_Q, GENERATOR_FOR_UNPRIME_P));
 		});
 		assertEquals("p is not prime", t.getMessage());
 	}
@@ -100,7 +100,7 @@ public class ElGamalParametersCTest extends ConcreteTestBase
 	@DisplayName("checkGroup throws CryptoException if q is not prime")
 	void checkGroupTest5() {
 		CryptoError t = assertThrows(CryptoError.class, () -> {
-			checkGroup.apply(new ElGamalParametersC(BIGINT_P, BIGINT_A, BIGINT_G));
+			checkGroup.apply(new ElGamalParameters(BIGINT_P, BIGINT_A, BIGINT_G));
 		});
 		assertEquals("q is not prime", t.getMessage());
 	}
@@ -109,7 +109,7 @@ public class ElGamalParametersCTest extends ConcreteTestBase
 	@DisplayName("checkGroup throws CryptoException if q is not generator")
 	void checkGroupTest2() {
 		CryptoError t = assertThrows(CryptoError.class, () -> checkGroup
-				.apply(new ElGamalParametersC(BIGINT_P, BIGINT_Q, BIGINT_A)));
+				.apply(new ElGamalParameters(BIGINT_P, BIGINT_Q, BIGINT_A)));
 		assertEquals("g is not order q", t.getMessage());
 	}
 
@@ -120,7 +120,7 @@ public class ElGamalParametersCTest extends ConcreteTestBase
 		CivitasBigInteger p = q.multiply(TWO).add(ONE);
 
 		CryptoError t = assertThrows(CryptoError.class, () -> checkGroup
-				.apply(new ElGamalParametersC(p, q, GENERATOR_FOR_UNPRIME_Q)));
+				.apply(new ElGamalParameters(p, q, GENERATOR_FOR_UNPRIME_Q)));
 		assertEquals("p is not prime", t.getMessage());
 	}
 

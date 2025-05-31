@@ -7,7 +7,7 @@ import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
@@ -26,7 +26,7 @@ public class FakeElGamalProofDVRC {
 			ElGamalPublicKey key, ElGamalPublicKey verifierKey,
 			ElGamalPrivateKey verifierPrivKey) {
 
-		ElGamalParametersC ps = (ElGamalParametersC) key.params;
+		ElGamalParameters ps = (ElGamalParameters) key.params;
 		// CivitasBigInteger hv = verifierKey.y;
 		CivitasBigInteger zv = verifierPrivKey.x;
 

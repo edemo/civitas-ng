@@ -12,7 +12,7 @@ import java.util.Base64;
 
 import civitas.common.Util;
 import civitas.crypto.CryptoFactoryC;
-import civitas.crypto.msg.PublicKeyMsgC;
+import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.rsaprivatekey.PrivateKeyC;
 import civitas.crypto.signature.Signature;
@@ -36,7 +36,7 @@ public class PublicKeyC implements PublicKey {
 			PrivateKeyC privKey = (PrivateKeyC) authPrf;
 			// check if privKey is the matching private key for this public key
 
-			PublicKeyMsg m = new PublicKeyMsgC(CryptoFactoryC.singleton()
+			PublicKeyMsg m = new PublicKeyMsg(CryptoFactoryC.singleton()
 					.freshNonceBase64(AUTHENTICATION_NONCE_LENGTH));
 			Signature sig = CryptoFactoryC.singleton().signature(privKey, m);
 			return CryptoFactoryC.singleton().publicKeyVerifySignature(this, sig, m);

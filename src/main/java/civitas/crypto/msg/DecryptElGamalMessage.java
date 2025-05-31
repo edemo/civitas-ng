@@ -3,7 +3,7 @@ package civitas.crypto.msg;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.signature.VerifyElGamalSignature;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
@@ -19,7 +19,7 @@ public class DecryptElGamalMessage {
 			byte[] additionalEnv) throws CryptoException, CryptoError {
 		try {
 			ElGamalPrivateKey k = key;
-			ElGamalParametersC ps = (ElGamalParametersC) key.params;
+			ElGamalParameters ps = (ElGamalParameters) key.params;
 
 			if (ciphertext instanceof ElGamalSignedCiphertext) {
 				if (!verifyElGamalSignature.apply(ps,

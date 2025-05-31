@@ -13,7 +13,7 @@ public class GenerateElGamalParameters implements Constants {
 	@Use
 	FindGenerator findGenerator;
 
-	public ElGamalParametersC apply(int keyLength, int groupLength) {
+	public ElGamalParameters apply(int keyLength, int groupLength) {
 		PrimePair sp;
 		if (groupLength == keyLength + 1) {
 			sp = generateSafePrime.apply(keyLength);
@@ -21,7 +21,7 @@ public class GenerateElGamalParameters implements Constants {
 			sp = generateSchnorrPrime.apply(keyLength, groupLength);
 		}
 		CivitasBigInteger g = findGenerator.apply(sp);
-		return new ElGamalParametersC(sp.p, sp.q, g);
+		return new ElGamalParameters(sp.p, sp.q, g);
 	}
 
 	public ElGamalParameters apply() {

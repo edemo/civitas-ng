@@ -6,5 +6,20 @@
  */
 package civitas.crypto.parameters;
 
-public interface ElGamalParameters {
+import civitas.util.CivitasBigInteger;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+
+@AllArgsConstructor
+@EqualsAndHashCode
+public class ElGamalParameters {
+
+	@NonNull
+	public final CivitasBigInteger p;
+	@NonNull
+	public final CivitasBigInteger q;
+	@NonNull
+	public final CivitasBigInteger g;
+
 }

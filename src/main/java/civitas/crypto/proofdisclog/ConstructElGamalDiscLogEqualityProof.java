@@ -6,7 +6,7 @@ import java.util.List;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -18,7 +18,7 @@ public class ConstructElGamalDiscLogEqualityProof {
 	@Use
 	ConvertHashToBigInt convertHashToBigInt;
 
-	public ElGamalProofDiscLogEqualityC apply(ElGamalParametersC params,
+	public ElGamalProofDiscLogEqualityC apply(ElGamalParameters params,
 			CivitasBigInteger g1, CivitasBigInteger g2, CivitasBigInteger x) {
 
 		CivitasBigInteger v = g1.modPow(x, params.p);

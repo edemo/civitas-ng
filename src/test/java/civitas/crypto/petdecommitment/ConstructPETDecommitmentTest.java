@@ -1,14 +1,12 @@
 package civitas.crypto.petdecommitment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.crypto.ConcreteTestBase;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.petshare.PETShareTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
@@ -44,15 +42,6 @@ public class ConstructPETDecommitmentTest extends ConcreteTestBase
 				CIPHERTEXT_E_B.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P), FACTOR_E);
 		assertEquals(PET_DECOMMITMENT_XML, decommitment.toXML());
 
-	}
-
-	@Test
-	@DisplayName("decommitment returns null if the parameters not of type ElGamalParametersC")
-	void decommitmentTest1() {
-		assertEquals(null,
-				constructPETDecommitment.apply(mock(ElGamalParameters.class),
-						PET_SHARE_C.exponent, PET_SHARE_C.ciphertext1,
-						PET_SHARE_C.ciphertext2));
 	}
 
 }

@@ -4,7 +4,7 @@ import civitas.crypto.CryptoError;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.msg.ElGamalMsg;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
@@ -17,7 +17,7 @@ public class ElGamalEncrypt {
 
 	public ElGamalCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg)
 			throws CryptoError {
-		ElGamalParametersC ps = (ElGamalParametersC) key.params;
+		ElGamalParameters ps = (ElGamalParameters) key.params;
 		ElGamalPublicKey k = key;
 		CivitasBigInteger m = ((ElGamalMsg) msg).m;
 		CivitasBigInteger r = generateRandomElement.apply(ps.q);
@@ -28,7 +28,7 @@ public class ElGamalEncrypt {
 
 	public ElGamalCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg,
 			ElGamalReencryptFactor encryptFactor) throws CryptoError {
-		ElGamalParametersC ps = (ElGamalParametersC) key.params;
+		ElGamalParameters ps = (ElGamalParameters) key.params;
 		ElGamalPublicKey k = key;
 		CivitasBigInteger r = ((ElGamalReencryptFactorC) encryptFactor).r;
 		CivitasBigInteger m = ((ElGamalMsg) msg).m;

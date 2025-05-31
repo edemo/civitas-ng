@@ -5,7 +5,7 @@ import java.util.List;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
@@ -18,7 +18,7 @@ public class ConstructProofVote {
 	@Use
 	CalculateProofEnvironment calculateProofEnvironment;
 
-	public ProofVoteC apply(ElGamalParametersC params,
+	public ProofVoteC apply(ElGamalParameters params,
 			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
 			String context, ElGamalReencryptFactorC alpha1,
 			ElGamalReencryptFactorC alpha2) {

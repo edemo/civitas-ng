@@ -7,7 +7,7 @@ import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
@@ -26,7 +26,7 @@ public class ConstructElGamalProofDVR {
 			ElGamalCiphertext e, ElGamalCiphertext ePrime, ElGamalReencryptFactor er,
 			ElGamalReencryptFactor erPrime) {
 		try {
-			ElGamalParametersC ps = (ElGamalParametersC) k.params;
+			ElGamalParameters ps = (ElGamalParameters) k.params;
 			CivitasBigInteger zeta = ((ElGamalReencryptFactorC) erPrime).r
 					.modSubtract(((ElGamalReencryptFactorC) er).r, ps.q);
 			return apply(e, ePrime, k, verifierKey, zeta);
@@ -44,7 +44,7 @@ public class ConstructElGamalProofDVR {
 //            throw new CryptoError("Incorrect value for zeta passed in");
 //        }
 
-		ElGamalParametersC ps = (ElGamalParametersC) key.params;
+		ElGamalParameters ps = (ElGamalParameters) key.params;
 		CivitasBigInteger d = generateRandomElement.apply(ps.q);
 		CivitasBigInteger w = generateRandomElement.apply(ps.q);
 		CivitasBigInteger r = generateRandomElement.apply(ps.q);

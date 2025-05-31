@@ -47,5 +47,6 @@ public interface Constants {
 
 	public static final String ElGamalCiphertextOPENING_TAG = "elGamalCiphertext";
 	public final static String ElGamalDecryptionShareOPENING_TAG = "elGamalDecryptionShare";
+	public final String CHARSET_NAME = "UTF-8";
 
 }

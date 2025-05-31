@@ -9,7 +9,7 @@ import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertextlist.CiphertextList;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
 import civitas.util.CivitasBigInteger;
@@ -27,7 +27,7 @@ public class ConstructElGamalProof1OfL implements Constants {
 			CiphertextList ciphertexts, int L, int choice, ElGamalCiphertext m,
 			ElGamalReencryptFactorC factor) {
 
-		ElGamalParametersC ps = (ElGamalParametersC) key.params;
+		ElGamalParameters ps = (ElGamalParameters) key.params;
 		CivitasBigInteger u = m.a;
 		CivitasBigInteger v = m.b;
 		CivitasBigInteger r = factor.r;

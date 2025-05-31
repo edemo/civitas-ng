@@ -8,7 +8,7 @@ package civitas.crypto.publickey;
 
 import civitas.common.Util;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.parameters.ElGamalParametersC;
+import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.util.CivitasBigInteger;
 import lombok.EqualsAndHashCode;
@@ -29,7 +29,7 @@ public class ElGamalPublicKey {
 		// check if prf is the matching ElGamalPrivateKey
 		if (prf instanceof ElGamalPrivateKey) {
 			ElGamalPrivateKey k = (ElGamalPrivateKey) prf;
-			ElGamalParametersC param = (ElGamalParametersC) this.params;
+			ElGamalParameters param = (ElGamalParameters) this.params;
 			return y.equals(param.g.modPow(k.x, param.p));
 		}
 		return false;

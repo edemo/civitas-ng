@@ -4,7 +4,7 @@ import civitas.crypto.CryptoException;
 import civitas.util.CivitasBigInteger;
 
 public class BruteForceDecode {
-	public int apply(ElGamalParametersC that, CivitasBigInteger m, int L)
+	public int apply(ElGamalParameters that, CivitasBigInteger m, int L)
 			throws CryptoException {
 		// FIXME look up in table
 		// now try brute force
