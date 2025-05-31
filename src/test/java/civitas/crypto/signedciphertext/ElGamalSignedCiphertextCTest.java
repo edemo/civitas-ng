@@ -16,12 +16,14 @@ public class ElGamalSignedCiphertextCTest extends TestBase
 
 	@Use
 	ElGamalSignedCiphertextFromXML elGamalSignedCiphertextFromXML;
+	@Use
+	ElGamalSignedCiphertextToXML elGamalSignedCiphertextToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
 		assertEquals(EL_GAMAL_SIGNED_CIPHERTEXT_XML,
-				EL_GAMAL_SIGNED_CIPHERTEXT.toXML());
+				elGamalSignedCiphertextToXML.apply(EL_GAMAL_SIGNED_CIPHERTEXT));
 	}
 
 	@Test

@@ -4,7 +4,7 @@ import civitas.common.Util;
 import civitas.crypto.CryptoFactoryC;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.msg.ElgamalMessageTestData;
-import civitas.crypto.signedciphertext.ElGamalSignedCiphertextC;
+import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.util.CivitasBigInteger;
 
 public interface ElGamalCiphertextCTestData extends ElgamalMessageTestData {
@@ -74,7 +74,7 @@ public interface ElGamalCiphertextCTestData extends ElgamalMessageTestData {
 					.modMultiply(FACTOR_E, BIGINT_Q),
 			BIGINT_Q);
 
-	ElGamalSignedCiphertextC SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV = new ElGamalSignedCiphertextC(
+	ElGamalSignedCiphertext SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV = new ElGamalSignedCiphertext(
 			CIPHERTEXT_E_A, CIPHERTEXT_E_B,
 			HASH_OF_G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR_ADDITIONALENV,
 			RANDOMS_0_PLUS_HASH_MUL_FACTOR);

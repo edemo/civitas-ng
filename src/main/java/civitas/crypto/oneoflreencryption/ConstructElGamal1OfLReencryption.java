@@ -24,9 +24,8 @@ public class ConstructElGamal1OfLReencryption {
 		}
 		ElGamalCiphertext m = elGamalReencrypt.apply(key, ciphertexts.get(choice),
 				factor);
-		ElGamalProof1OfL proof = constructElGamalProof1OfL.apply(
-				key, ciphertexts, L, choice, m,
-				factor);
+		ElGamalProof1OfL proof = constructElGamalProof1OfL.apply(key, ciphertexts,
+				L, choice, m, factor);
 		return new ElGamal1OfLReencryption(m, proof);
 	}
 

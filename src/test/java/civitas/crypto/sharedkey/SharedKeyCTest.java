@@ -45,7 +45,7 @@ public class SharedKeyCTest extends TestBase implements SharedKeyTestData {
 	void test3() throws IllegalArgumentException, IOException {
 		StringReader sr = new StringReader(SHARED_KEY_ON_WIRE);
 		BufferedReader br = new BufferedReader(sr);
-		SharedKeyC fromWire = (SharedKeyC) sharedKeyFromWire.apply(br);
+		SharedKey fromWire = sharedKeyFromWire.apply(br);
 		assertEquals(SHARED_KEY, fromWire);
 	}
 

@@ -6,6 +6,22 @@
  */
 package civitas.crypto.signedciphertext;
 
-public interface ElGamalSignedCiphertext {
+import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 
+@EqualsAndHashCode(callSuper = true)
+public class ElGamalSignedCiphertext extends ElGamalCiphertext {
+	@NonNull
+	public final CivitasBigInteger c;
+	@NonNull
+	public final CivitasBigInteger d;
+
+	public ElGamalSignedCiphertext(CivitasBigInteger a, CivitasBigInteger b,
+			CivitasBigInteger c, CivitasBigInteger d) {
+		super(a, b);
+		this.c = c;
+		this.d = d;
+	}
 }

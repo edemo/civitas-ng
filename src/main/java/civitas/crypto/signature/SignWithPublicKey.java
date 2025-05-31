@@ -31,7 +31,7 @@ public class SignWithPublicKey implements Constants {
 				.getInstance(PUBLIC_KEY_SIGNATURE_ALG, PUBLIC_KEY_PROVIDER);
 		sig.initSign(k.k);
 		sig.update(bytes);
-		return new SignatureC(sig.sign());
+		return new Signature(sig.sign());
 	}
 
 }

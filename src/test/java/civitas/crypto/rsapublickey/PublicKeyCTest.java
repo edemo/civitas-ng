@@ -18,8 +18,7 @@ import civitas.common.TestBase;
 import civitas.crypto.CryptoError;
 import civitas.util.Use;
 
-public class PublicKeyCTest extends TestBase
-		implements PublicKeyTestData {
+public class PublicKeyCTest extends TestBase implements PublicKeyTestData {
 
 	@Use
 	PublicKeyFromXML publicKeyFromXML;

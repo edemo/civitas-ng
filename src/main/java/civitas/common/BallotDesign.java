@@ -17,6 +17,7 @@ import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
+import civitas.crypto.votecapability.VoteCapability;
 
 /**
  * A BallotDesign describes a race. For example, in a "single choice" race,
@@ -45,7 +46,7 @@ public abstract class BallotDesign implements XMLSerializable {
 	 */
 	public abstract VoterSubmission decompose(Ballot ballot, int voterBlock,
 			ElGamalPublicKey key, CiphertextList ciphertexts, String context,
-			Map capabilities) throws IllegalArgumentException;
+			Map<String, VoteCapability> capabilities) throws IllegalArgumentException;
 
 	/**
 	 * Checks that the votes in VoterSubmission vs correspond to an acceptable
@@ -80,14 +81,14 @@ public abstract class BallotDesign implements XMLSerializable {
 	 * domain of the map capabilities given to the decompose method must contain
 	 * these strings.
 	 */
-	public List contextsNeeded(String baseContext)
+	public List<String> contextsNeeded(String baseContext)
 			throws IllegalArgumentException {
-		List l = new ArrayList();
+		List<String> l = new ArrayList<>();
 		contextsNeeded(l, baseContext);
 		return l;
 	}
 
-	public abstract void contextsNeeded(List l, String context)
+	public abstract void contextsNeeded(List<String> l, String context)
 			throws IllegalArgumentException;
 
 	public abstract String nthContext(int n);

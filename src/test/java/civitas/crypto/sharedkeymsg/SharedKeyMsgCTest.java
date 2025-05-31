@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import civitas.common.TestBase;
 import civitas.crypto.BasicValuesTestData;
 
-public class SharedKeyMsgCTest extends TestBase
-		implements BasicValuesTestData {
+public class SharedKeyMsgCTest extends TestBase implements BasicValuesTestData {
 
 	@Test
 	@DisplayName("string based constructor and toBytes works as expected")

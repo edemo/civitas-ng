@@ -17,7 +17,7 @@ public class DecryptShared implements Constants {
 
 	public SharedKeyMsg apply(SharedKey key, SharedKeyCiphertext ciphertext)
 			throws CryptoError, UnsupportedEncodingException {
-		SharedKeyC keyc = (SharedKeyC) key;
+		SharedKey keyc = key;
 		SharedKeyCiphertext ciphertextc = ciphertext;
 		byte[] plaintext = doCrypto.apply(SHARED_KEY_CIPHER_ALG,
 				SHARED_KEY_PROVIDER, keyc.k, Cipher.DECRYPT_MODE,

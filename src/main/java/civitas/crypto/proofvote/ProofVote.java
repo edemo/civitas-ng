@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @EqualsAndHashCode
-public class ProofVote  {
+public class ProofVote {
 
 	@NonNull
 	public final CivitasBigInteger c;

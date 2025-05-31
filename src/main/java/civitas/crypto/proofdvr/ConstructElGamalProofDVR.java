@@ -26,8 +26,7 @@ public class ConstructElGamalProofDVR {
 			ElGamalReencryptFactor erPrime) {
 		try {
 			ElGamalParameters ps = k.params;
-			CivitasBigInteger zeta = erPrime.r
-					.modSubtract(er.r, ps.q);
+			CivitasBigInteger zeta = erPrime.r.modSubtract(er.r, ps.q);
 			return apply(e, ePrime, k, verifierKey, zeta);
 		} catch (ClassCastException ex) {
 			return null;

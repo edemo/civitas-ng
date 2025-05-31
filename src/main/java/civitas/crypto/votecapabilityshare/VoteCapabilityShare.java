@@ -6,10 +6,15 @@
  */
 package civitas.crypto.votecapabilityshare;
 
-import java.io.PrintWriter;
+import civitas.crypto.msg.ElGamalMsg;
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
 
-public interface VoteCapabilityShare {
-	public static final String OPENING_TAG = "voteCapabilityShare";
+@EqualsAndHashCode(callSuper = true)
+public class VoteCapabilityShare extends ElGamalMsg {
 
-	public void toXML(PrintWriter sb);
+	public VoteCapabilityShare(CivitasBigInteger c) {
+		super(c);
+	}
+
 }

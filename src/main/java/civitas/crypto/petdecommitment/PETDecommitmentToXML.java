@@ -31,8 +31,7 @@ public class PETDecommitmentToXML implements Constants {
 			Util.escapeString(Util.fromBigInt(that.ei), s);
 		s.print("</e>");
 		s.print("<prf>");
-		elGamalProofDiscLogEqualityToXML
-				.apply(that.proof, s);
+		elGamalProofDiscLogEqualityToXML.apply(that.proof, s);
 		s.print("</prf>");
 		s.print("</");
 		s.print(PETDecommitmentOPENING_TAG);

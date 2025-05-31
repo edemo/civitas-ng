@@ -15,7 +15,8 @@ public class ConstructProofKnowDiscLog {
 
 	public ElGamalProofKnowDiscLog apply(ElGamalParameters prms,
 			ElGamalPrivateKey k) {
-		if (k == null || !(k instanceof ElGamalPrivateKey) || prms == null || !(prms instanceof ElGamalParameters)) {
+		if (k == null || !(k instanceof ElGamalPrivateKey) || prms == null
+				|| !(prms instanceof ElGamalParameters)) {
 			return null;
 		}
 		ElGamalParameters params = prms;

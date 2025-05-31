@@ -9,13 +9,13 @@ import civitas.crypto.Constants;
 
 public class SharedKeyToXML implements Constants {
 
-	public String apply(SharedKeyC that) {
+	public String apply(SharedKey that) {
 		StringWriter sb = new StringWriter();
 		apply(that, new PrintWriter(sb));
 		return sb.toString();
 	}
 
-	public void apply(SharedKeyC that, PrintWriter s) {
+	public void apply(SharedKey that, PrintWriter s) {
 		s.print('<');
 		s.print(SharedKeyOPENING_TAG);
 		s.print('>');

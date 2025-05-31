@@ -11,7 +11,7 @@ import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.crypto.signedciphertext.ElGamalSignedCiphertextC;
+import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.Tested;
 import civitas.util.Use;
@@ -34,10 +34,10 @@ public class DecryptElGamalMessageTest extends TestBase
 	@DisplayName("elGamalDecrypt decrypts and verifies the siged cyphertext")
 	void elGamalDecryptTest() throws Exception {
 
-		ElGamalSignedCiphertextC encrypted = SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV;
+		ElGamalSignedCiphertext encrypted = SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV;
 
-		ElGamalMsg decrypted = decryptElGamalMessage
-				.apply(ELGAMAL_PRIVATE_KEY_E, encrypted, ADDITIONALENV_BYTES);
+		ElGamalMsg decrypted = decryptElGamalMessage.apply(ELGAMAL_PRIVATE_KEY_E,
+				encrypted, ADDITIONALENV_BYTES);
 		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED, decrypted.m);
 
 	}
@@ -50,9 +50,9 @@ public class DecryptElGamalMessageTest extends TestBase
 		ElGamalMsg msg = new ElGamalMsg(
 				encodeMessage.apply(BIGINT_A, EL_GAMAL_PARAMETERS));
 
-		ElGamalSignedCiphertextC encrypted = (ElGamalSignedCiphertextC) signAndEncrypt
-				.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, msg,
-						new ElGamalReencryptFactor(SOME_INT_BIG), env);
+		ElGamalSignedCiphertext encrypted = signAndEncrypt.apply(
+				EL_GAMAL_PUBLIC_KEY_EPRIME, msg,
+				new ElGamalReencryptFactor(SOME_INT_BIG), env);
 
 		assertThrows(CryptoException.class, () -> decryptElGamalMessage
 				.apply(ELGAMAL_PRIVATE_KEY_E, encrypted, null));
@@ -64,8 +64,7 @@ public class DecryptElGamalMessageTest extends TestBase
 	void elGamalDecryptTest2() throws Exception {
 
 		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED,
-				decryptElGamalMessage.apply(ELGAMAL_PRIVATE_KEY_E,
-						CIPHERTEXT_E).m);
+				decryptElGamalMessage.apply(ELGAMAL_PRIVATE_KEY_E, CIPHERTEXT_E).m);
 
 	}
 

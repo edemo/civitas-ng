@@ -56,9 +56,8 @@ public class ElGamalReencryptTest extends TestBase
 		c1 = c1.modMultiply(g.modPow(y, p), p);
 		c2 = c2.modMultiply(m.modPow(y, p), p);
 
-		assertEquals(new ElGamalCiphertext(c1, c2),
-				elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, cipherText,
-						new ElGamalReencryptFactor(y)));
+		assertEquals(new ElGamalCiphertext(c1, c2), elGamalReencrypt.apply(
+				EL_GAMAL_PUBLIC_KEY_EPRIME, cipherText, new ElGamalReencryptFactor(y)));
 
 	}
 

@@ -5,7 +5,6 @@ import civitas.crypto.CryptoError;
 import civitas.crypto.messagedigest.ComputeMessageDigest;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.signature.Signature;
-import civitas.crypto.signature.SignatureC;
 import civitas.util.Use;
 
 public class VerifyPublicKeySignature implements Constants {
@@ -29,7 +28,7 @@ public class VerifyPublicKeySignature implements Constants {
 			java.security.Signature sig = java.security.Signature
 					.getInstance(PUBLIC_KEY_SIGNATURE_ALG, PUBLIC_KEY_PROVIDER);
 			PublicKey Kc = K;
-			SignatureC sc = (SignatureC) s;
+			Signature sc = s;
 			sig.initVerify(Kc.k);
 			sig.update(bytes);
 			return sig.verify(sc.signature);

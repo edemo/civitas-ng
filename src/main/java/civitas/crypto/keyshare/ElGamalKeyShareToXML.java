@@ -27,8 +27,7 @@ public class ElGamalKeyShareToXML {
 		s.print("</pubKey>");
 		s.print("<proof>");
 		if (that.proof != null)
-			elGamalProofKnowDiscLogToXML.apply(that.proof,
-					s);
+			elGamalProofKnowDiscLogToXML.apply(that.proof, s);
 		s.print("</proof>");
 		s.print("</elGamalKeyShare>");
 	}

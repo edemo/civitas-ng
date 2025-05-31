@@ -1,14 +1,14 @@
 package civitas.crypto.votecapabilityshare;
 
 import civitas.crypto.msg.ElgamalMessageTestData;
-import civitas.crypto.votecapability.VoteCapabilityC;
+import civitas.crypto.votecapability.VoteCapability;
 import civitas.util.CivitasBigInteger;
 
 public interface VoteCapabilityShareTestData extends ElgamalMessageTestData {
 
-	VoteCapabilityC VOTE_CAPABILITY = new VoteCapabilityC(
+	VoteCapability VOTE_CAPABILITY = new VoteCapability(
 			MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED);
-	VoteCapabilityShareC VOTE_CAPABILITY_SHARE = new VoteCapabilityShareC(
+	VoteCapabilityShare VOTE_CAPABILITY_SHARE = new VoteCapabilityShare(
 			MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED);
 
 	public static final String VOTE_CAPABILITY_SHARE_XML = "<voteCapabilityShare>"
@@ -20,12 +20,12 @@ public interface VoteCapabilityShareTestData extends ElgamalMessageTestData {
 	public static final String VOTE_CAPABILITY_NULL_XML = "<voteCapability>"
 			+ "</voteCapability>";
 
-	VoteCapabilityShareC[][] CAPABILITY_SHARE_MATRIX = new VoteCapabilityShareC[][] {
+	VoteCapabilityShare[][] CAPABILITY_SHARE_MATRIX = new VoteCapabilityShare[][] {
 			{
-					new VoteCapabilityShareC(CivitasBigInteger.valueOf(2)),
-					new VoteCapabilityShareC(CivitasBigInteger.valueOf(3)) },
+					new VoteCapabilityShare(CivitasBigInteger.valueOf(2)),
+					new VoteCapabilityShare(CivitasBigInteger.valueOf(3)) },
 			{
-					new VoteCapabilityShareC(CivitasBigInteger.valueOf(5)),
-					new VoteCapabilityShareC(CivitasBigInteger.valueOf(7)) } };
+					new VoteCapabilityShare(CivitasBigInteger.valueOf(5)),
+					new VoteCapabilityShare(CivitasBigInteger.valueOf(7)) } };
 
 }

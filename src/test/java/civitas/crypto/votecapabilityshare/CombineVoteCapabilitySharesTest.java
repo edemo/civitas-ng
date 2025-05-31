@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
 import civitas.crypto.votecapability.VoteCapability;
-import civitas.crypto.votecapability.VoteCapabilityC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 
@@ -22,10 +21,8 @@ public class CombineVoteCapabilitySharesTest extends TestBase
 	void test() {
 		VoteCapability[] actual = combineVoteCapabilityShares
 				.apply(CAPABILITY_SHARE_MATRIX, EL_GAMAL_PARAMETERS);
-		assertEquals(CivitasBigInteger.valueOf(2 * 5),
-				((VoteCapabilityC) actual[0]).m);
-		assertEquals(CivitasBigInteger.valueOf(3 * 7),
-				((VoteCapabilityC) actual[1]).m);
+		assertEquals(CivitasBigInteger.valueOf(2 * 5), actual[0].m);
+		assertEquals(CivitasBigInteger.valueOf(3 * 7), actual[1].m);
 	}
 
 	@Test

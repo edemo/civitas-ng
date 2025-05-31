@@ -10,8 +10,9 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import civitas.common.Util;
+import civitas.crypto.Constants;
 
-public class SharedKeyCiphertextToXML {
+public class SharedKeyCiphertextToXML implements Constants {
 
 	public String apply(SharedKeyCiphertext that) {
 		StringWriter sb = new StringWriter();
@@ -21,12 +22,12 @@ public class SharedKeyCiphertextToXML {
 
 	public void apply(SharedKeyCiphertext that, PrintWriter s) {
 		s.print('<');
-		s.print(SharedKeyCiphertext.OPENING_TAG);
+		s.print(SharedKeyCiphertextOPENING_TAG);
 		s.print('>');
 		Util.escapeString(
 				java.util.Base64.getEncoder().encodeToString(that.encryptedBytes), s);
 		s.print("</");
-		s.print(SharedKeyCiphertext.OPENING_TAG);
+		s.print(SharedKeyCiphertextOPENING_TAG);
 		s.print('>');
 	}
 

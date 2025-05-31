@@ -11,7 +11,6 @@ import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
-import civitas.crypto.signedciphertext.ElGamalSignedCiphertextC;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
@@ -47,7 +46,7 @@ public class MultiplyCiphertextsTest extends TestBase
 	@DisplayName("returns null if encounters a null in the matrix")
 	void test3() {
 		assertEquals(null, multiplyCiphertexts
-				.apply(new ElGamalSignedCiphertextC[][] { null }, EL_GAMAL_PARAMETERS));
+				.apply(new ElGamalSignedCiphertext[][] { null }, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test

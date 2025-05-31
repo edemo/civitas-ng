@@ -32,7 +32,8 @@ public class VerifyPETDecommitment {
 		CivitasBigInteger e = m1.b.modDivide(m2.b, ps.p);
 
 		// check that it's a proof of the correct thing.
-		if (self.di == null || self.ei == null || !d.equals(prf.g1) || !e.equals(prf.g2))
+		if (self.di == null || self.ei == null || !d.equals(prf.g1)
+				|| !e.equals(prf.g2))
 			return false;
 		return com.hash.equals(cryptoHash.apply(self.di, self.ei))
 				&& verifyElGamalProofDiscLogEquality.apply(prf, params);

@@ -10,7 +10,7 @@ public class GenerateSharedKey {
 
 	public SharedKey apply(int keyLength) {
 		SecretKey k = getSharedKeyGenerator.apply(keyLength).generateKey();
-		return new SharedKeyC(k, "sharedKey-civitas");
+		return new SharedKey(k, "sharedKey-civitas");
 	}
 
 }

@@ -6,13 +6,15 @@
  */
 package civitas.crypto.votecapability;
 
-import java.io.PrintWriter;
+import civitas.crypto.msg.ElGamalMsg;
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
 
-/**
- * A capability that a voter uses to vote with.
- */
-public interface VoteCapability {
-	public static final String OPENING_TAG = "voteCapability";
+@EqualsAndHashCode(callSuper = true)
+public class VoteCapability extends ElGamalMsg {
 
-	public void toXML(PrintWriter sb);
+	public VoteCapability(CivitasBigInteger c) {
+		super(c);
+	}
+
 }

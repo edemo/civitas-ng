@@ -43,9 +43,9 @@ public class SignAndEncryptTest extends TestBase
 		CivitasBigInteger c = cryptoHash.apply(g.modPow(s, p), a, b, env).mod(q);
 		CivitasBigInteger d = s.modAdd(c.modMultiply(y, q), q);
 
-		ElGamalSignedCiphertextC encrypt = (ElGamalSignedCiphertextC) signAndEncrypt
-				.apply(EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_MESSAGE_VOTE_CAPABILITY_SHARE,
-						ELGAMAL_REENCRYPT_FACTOR_E, env);
+		ElGamalSignedCiphertext encrypt = signAndEncrypt.apply(
+				EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_MESSAGE_VOTE_CAPABILITY_SHARE,
+				ELGAMAL_REENCRYPT_FACTOR_E, env);
 
 		assertEquals(a, encrypt.a);
 		assertEquals(b, encrypt.b);

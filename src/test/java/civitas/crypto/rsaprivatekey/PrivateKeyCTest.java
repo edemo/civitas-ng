@@ -10,8 +10,7 @@ import org.junit.jupiter.api.Test;
 import civitas.common.TestBase;
 import civitas.util.Use;
 
-public class PrivateKeyCTest extends TestBase
-		implements PrivateKeyTestData {
+public class PrivateKeyCTest extends TestBase implements PrivateKeyTestData {
 	@Use
 	PrivateKeyFromXML privateKeyFromXML;
 	@Use
@@ -26,7 +25,7 @@ public class PrivateKeyCTest extends TestBase
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test1() throws Exception {
-		assertEquals(PRIVATE_KEY, privateKeyFromXML
-				.apply(new StringReader(PRIVATE_KEY_XML)));
+		assertEquals(PRIVATE_KEY,
+				privateKeyFromXML.apply(new StringReader(PRIVATE_KEY_XML)));
 	}
 }

@@ -79,7 +79,6 @@ import civitas.crypto.privatekey.ElGamalPrivateKeyFromXML;
 import civitas.crypto.proof1ofl.ConstructElGamalProof1OfL;
 import civitas.crypto.proof1ofl.ConstructWellKnownCiphertexts;
 import civitas.crypto.proof1ofl.ElGamalProof1OfL;
-import civitas.crypto.proof1ofl.ElGamalProof1OfL;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLFromXML;
 import civitas.crypto.proofdisclog.ConstructElGamalDiscLogEqualityProof;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
@@ -538,8 +537,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	public ElGamalMsg elGamalDecrypt(ElGamalPrivateKey key,
 			ElGamalSignedCiphertext ciphertext, byte[] additionalEnv)
 			throws CryptoException {
-		return decryptElGamalMessage.apply(key, (ElGamalCiphertext) ciphertext,
-				additionalEnv);
+		return decryptElGamalMessage.apply(key, ciphertext, additionalEnv);
 	}
 
 	@Override

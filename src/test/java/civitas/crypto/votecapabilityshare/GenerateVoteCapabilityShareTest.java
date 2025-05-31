@@ -18,7 +18,6 @@ public class GenerateVoteCapabilityShareTest extends TestBase
 	@DisplayName("generates a vote capability share based on a random")
 	void test() {
 		assertEquals(BIGINT_G.modPow(RANDOMS_0, BIGINT_P),
-				((VoteCapabilityShareC) generateVoteCapabilityShare
-						.apply(EL_GAMAL_PARAMETERS)).m);
+				generateVoteCapabilityShare.apply(EL_GAMAL_PARAMETERS).m);
 	}
 }

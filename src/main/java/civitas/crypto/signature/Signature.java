@@ -6,15 +6,14 @@
  */
 package civitas.crypto.signature;
 
-import java.io.PrintWriter;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 
-/**
- * Represents the a signature of a message. It can be verified that this is the
- * signature of a specific message by using the method
- * CryptoFactory.publicKeyVerifySignature.
- */
-public interface Signature {
-	public static final String OPENING_TAG = "signature";
+@AllArgsConstructor
+@EqualsAndHashCode
+public class Signature {
+	@NonNull
+	public final byte[] signature;
 
-	public void toXML(PrintWriter sb);
 }

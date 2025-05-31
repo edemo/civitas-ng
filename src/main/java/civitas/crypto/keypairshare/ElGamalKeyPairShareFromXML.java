@@ -22,13 +22,11 @@ public class ElGamalKeyPairShareFromXML {
 		try {
 			Util.swallowTag(r, "elGamalKeyPairShare");
 			ElGamalPublicKey pubKey = elGamalPublicKeyFromXML.apply(r);
-			ElGamalPrivateKey privKey = elGamalPrivateKeyFromXML
-					.apply(r);
+			ElGamalPrivateKey privKey = elGamalPrivateKeyFromXML.apply(r);
 			Util.swallowEndTag(r, "elGamalKeyPairShare");
 
 			ElGamalParameters params = pubKey == null ? null : pubKey.params;
-			return new ElGamalKeyPairShare(params, pubKey,
-					privKey);
+			return new ElGamalKeyPairShare(params, pubKey, privKey);
 		} catch (NullPointerException e) {
 			throw new IllegalArgumentException();
 		}

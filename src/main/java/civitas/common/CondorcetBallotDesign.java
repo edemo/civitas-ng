@@ -180,7 +180,8 @@ public class CondorcetBallotDesign extends BallotDesign {
 	@Override
 	public VoterSubmission decompose(Ballot ballot, int voterBlock,
 			ElGamalPublicKey key, CiphertextList ciphertexts, String context,
-			Map capabilities) throws IllegalArgumentException {
+			Map<String, VoteCapability> capabilities)
+			throws IllegalArgumentException {
 
 		if (!(ballot instanceof CondorcetBallot)) {
 			throw new IllegalArgumentException("Incorrect kind of ballot.");
@@ -220,7 +221,7 @@ public class CondorcetBallotDesign extends BallotDesign {
 				String desiredContext = context + CONTEXT_SUFFIX + i + ":" + j;
 				VoteCapability c = null;
 				try {
-					c = (VoteCapability) capabilities.get(desiredContext);
+					c = capabilities.get(desiredContext);
 				} catch (NullPointerException e) {
 					throw new IllegalArgumentException(
 							"Not enough capabilities supplied");
@@ -239,8 +240,7 @@ public class CondorcetBallotDesign extends BallotDesign {
 				try {
 					encCapFactor = CryptoUtil.factory()
 							.generateElGamalReencryptFactor(key.params);
-					encCap = CryptoUtil.factory().elGamalEncrypt(key, (ElGamalMsg) c,
-							encCapFactor);
+					encCap = CryptoUtil.factory().elGamalEncrypt(key, c, encCapFactor);
 					proofVote = CryptoUtil.factory().constructProofVote(key.params,
 							encCap, encChoice, desiredContext, encCapFactor, encChoiceFactor);
 				} catch (NullPointerException imposs) {
@@ -301,7 +301,7 @@ public class CondorcetBallotDesign extends BallotDesign {
 	}
 
 	@Override
-	public void contextsNeeded(List l, String context)
+	public void contextsNeeded(List<String> l, String context)
 			throws IllegalArgumentException {
 		if (l == null)
 			return;

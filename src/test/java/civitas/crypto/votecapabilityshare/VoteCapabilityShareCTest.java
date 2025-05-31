@@ -22,33 +22,23 @@ public class VoteCapabilityShareCTest extends TestBase
 		implements VoteCapabilityShareTestData {
 	@Use
 	EncodeMessage encodeMessage;
+	@Use
+	VoteCapabilityShareToXML voteCapabilityShareToXML;
 
 	@Test
 	@DisplayName("BigInteger+parameter constructor and toXML works as expected")
 	void test() throws CryptoException {
 		StringWriter s = new StringWriter();
 		PrintWriter p = new PrintWriter(s);
-		VOTE_CAPABILITY_SHARE.toXML(p);
+		voteCapabilityShareToXML.apply(VOTE_CAPABILITY_SHARE, p);
 		assertEquals(VOTE_CAPABILITY_SHARE_XML, s.toString());
 	}
 
 	@Test
 	@DisplayName("String constructor works as expected")
 	void test1() throws CryptoException {
-		StringWriter s = new StringWriter();
-		PrintWriter p = new PrintWriter(s);
-		new VoteCapabilityShareC(encodeMessage.apply(VOTE, EL_GAMAL_PARAMETERS))
-				.toXML(p);
-		assertEquals(VOTE_CAPABILITY_SHARE_XML, s.toString());
-	}
-
-	@Test
-	@DisplayName("BigInteger constructor and toXML works as expected")
-	void test2() throws CryptoException {
-		StringWriter s = new StringWriter();
-		PrintWriter p = new PrintWriter(s);
-		VOTE_CAPABILITY_SHARE.toXML(p);
-		assertEquals(VOTE_CAPABILITY_SHARE_XML, s.toString());
+		assertEquals(VOTE_CAPABILITY_SHARE, new VoteCapabilityShare(
+				encodeMessage.apply(VOTE, EL_GAMAL_PARAMETERS)));
 	}
 
 	@Use
@@ -74,8 +64,8 @@ public class VoteCapabilityShareCTest extends TestBase
 	@DisplayName("intValue works as expected")
 	void test4() throws IllegalArgumentException, IOException {
 
-		assertEquals(VOTE_CAPABILITY_SHARE.intValue(),
-				VOTE_CAPABILITY_SHARE.intValue());
+		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED.intValue(),
+				VOTE_CAPABILITY_SHARE.m.intValue());
 	}
 
 }

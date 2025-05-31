@@ -5,7 +5,7 @@ import java.util.Base64;
 
 public class SharedKeyToWire {
 
-	public void apply(SharedKeyC that, PrintWriter s) {
+	public void apply(SharedKey that, PrintWriter s) {
 		s.print(that.name);
 		s.print('\n');
 		byte[] bs = that.k.getEncoded();

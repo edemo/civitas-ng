@@ -9,7 +9,7 @@ import civitas.util.CivitasBigInteger;
 
 public class ElGamalSignedCiphertextFromXML {
 
-	public ElGamalSignedCiphertextC apply(Reader r)
+	public ElGamalSignedCiphertext apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, "elGamalSignedCiphertext");
 		CivitasBigInteger a = null;
@@ -37,7 +37,7 @@ public class ElGamalSignedCiphertextFromXML {
 		}
 
 		Util.swallowEndTag(r, "elGamalSignedCiphertext");
-		return new ElGamalSignedCiphertextC(a, b, c, d);
+		return new ElGamalSignedCiphertext(a, b, c, d);
 	}
 
 }

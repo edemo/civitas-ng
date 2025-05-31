@@ -18,7 +18,7 @@ public class MultiplyCiphertexts {
 			CivitasBigInteger[] bAccum = new CivitasBigInteger[ciphertexts[0].length];
 			for (ElGamalSignedCiphertext[] ciphertext : ciphertexts) {
 				for (int j = 0; j < ciphertext.length; j++) {
-					ElGamalCiphertext s = (ElGamalCiphertext) ciphertext[j];
+					ElGamalCiphertext s = ciphertext[j];
 					if (aAccum[j] == null) {
 						aAccum[j] = s.a;
 						bAccum[j] = s.b;

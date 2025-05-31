@@ -16,8 +16,7 @@ import civitas.crypto.parameters.encoder.SafePrimeEncode;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 
-public class SafePrimeEncoderTest extends TestBase
-		implements EncoderTestData {
+public class SafePrimeEncoderTest extends TestBase implements EncoderTestData {
 
 	@Tested
 	private SafePrimeEncode encoder;

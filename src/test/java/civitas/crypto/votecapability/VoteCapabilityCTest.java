@@ -25,26 +25,24 @@ public class VoteCapabilityCTest extends TestBase
 	VoteCapabilityFromXML voteCapabilityFromXML;
 	@Use
 	EncodeMessage encodeMessage;
+	@Use
+	VoteCapabilityToXML voteCapabilityToXML;
 
 	@Test
 	@DisplayName("BigInteger+parameter constructor and toXML works as expected")
 	void test() throws CryptoException {
 		StringWriter s = new StringWriter();
 		PrintWriter p = new PrintWriter(s);
-		new VoteCapabilityC(
-				encodeMessage.apply(MESSAGE_VOTE_CAPABILITY_SHARE, EL_GAMAL_PARAMETERS))
-				.toXML(p);
+		voteCapabilityToXML.apply(new VoteCapability(encodeMessage
+				.apply(MESSAGE_VOTE_CAPABILITY_SHARE, EL_GAMAL_PARAMETERS)), p);
 		assertEquals(VOTE_CAPABILITY_XML, s.toString());
 	}
 
 	@Test
 	@DisplayName("String constructor works as expected")
 	void test1() throws CryptoException {
-		StringWriter s = new StringWriter();
-		PrintWriter p = new PrintWriter(s);
-		new VoteCapabilityC(encodeMessage.apply(VOTE, EL_GAMAL_PARAMETERS))
-				.toXML(p);
-		assertEquals(VOTE_CAPABILITY_XML, s.toString());
+		assertEquals(VOTE_CAPABILITY,
+				new VoteCapability(encodeMessage.apply(VOTE, EL_GAMAL_PARAMETERS)));
 	}
 
 	@Test
@@ -52,7 +50,7 @@ public class VoteCapabilityCTest extends TestBase
 	void test2() throws CryptoException {
 		StringWriter s = new StringWriter();
 		PrintWriter p = new PrintWriter(s);
-		VOTE_CAPABILITY.toXML(p);
+		voteCapabilityToXML.apply(VOTE_CAPABILITY, p);
 		assertEquals(VOTE_CAPABILITY_XML, s.toString());
 	}
 
@@ -76,7 +74,7 @@ public class VoteCapabilityCTest extends TestBase
 	void test4() throws IllegalArgumentException, IOException {
 
 		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED.intValue(),
-				VOTE_CAPABILITY.intValue());
+				VOTE_CAPABILITY.m.intValue());
 	}
 
 }

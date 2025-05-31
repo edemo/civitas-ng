@@ -19,7 +19,7 @@ public class SharedKeyFromXML implements Constants {
 
 		byte[] bs = Base64.getDecoder().decode(s);
 		CryptoFactoryC factory = CryptoFactoryC.singleton();
-		return new SharedKeyC(factory.sharedKeyFromBytes(bs), name);
+		return new SharedKey(factory.sharedKeyFromBytes(bs), name);
 	}
 
 }

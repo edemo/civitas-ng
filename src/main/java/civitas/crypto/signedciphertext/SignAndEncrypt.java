@@ -33,7 +33,7 @@ public class SignAndEncrypt {
 			CivitasBigInteger c = cryptoHash
 					.apply(ps.g.modPow(s, ps.p), a, b, additionalEnv).mod(ps.q);
 			CivitasBigInteger d = s.modAdd(c.modMultiply(rr, ps.q), ps.q);
-			return new ElGamalSignedCiphertextC(a, b, c, d);
+			return new ElGamalSignedCiphertext(a, b, c, d);
 		} catch (ClassCastException e) {
 			throw new CryptoError(e);
 		}

@@ -6,12 +6,14 @@
  */
 package civitas.crypto.sharedkeyciphertext;
 
-public class SharedKeyCiphertext {
-	public static final String OPENING_TAG = "sharedKeyCiphertext";
-	public final byte[] encryptedBytes;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 
-	public SharedKeyCiphertext(byte[] encrypted) {
-		this.encryptedBytes = encrypted;
-	}
+@AllArgsConstructor
+@EqualsAndHashCode
+public class SharedKeyCiphertext {
+	@NonNull
+	public final byte[] encryptedBytes;
 
 }

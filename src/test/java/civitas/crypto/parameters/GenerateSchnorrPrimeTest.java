@@ -24,8 +24,7 @@ public class GenerateSchnorrPrimeTest extends TestBase
 			+ "length of q is qLength, length of p is pLength "
 			+ "FIXME: uses random, must make a multirun verification test")
 	void schnorrPrimeTest() {
-		PrimePair sp = generateSchnorrPrime.apply(
-				Constants.EL_GAMAL_KEY_LENGTH,
+		PrimePair sp = generateSchnorrPrime.apply(Constants.EL_GAMAL_KEY_LENGTH,
 				Constants.EL_GAMAL_GROUP_LENGTH);
 		assertTrue(sp.p.isProbablePrime(CERTAINTY));
 		assertTrue(sp.q.isProbablePrime(CERTAINTY));

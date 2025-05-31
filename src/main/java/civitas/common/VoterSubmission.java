@@ -68,7 +68,8 @@ public class VoterSubmission implements XMLSerializable {
 		return hash;
 	}
 
-	public boolean equals(Comparable obj) {
+	@Override
+	public boolean equals(Object obj) {
 		if (obj instanceof VoterSubmission) {
 			VoterSubmission that = (VoterSubmission) obj;
 			if (this.voterBlock == that.voterBlock && this.size() == that.size()) {

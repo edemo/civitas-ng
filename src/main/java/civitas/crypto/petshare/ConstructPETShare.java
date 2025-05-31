@@ -13,7 +13,8 @@ public class ConstructPETShare {
 
 	public PETShare apply(ElGamalParameters prms, ElGamalCiphertext a,
 			ElGamalCiphertext b) {
-		if (a == null || b == null || prms == null || !(prms instanceof ElGamalParameters))
+		if (a == null || b == null || prms == null
+				|| !(prms instanceof ElGamalParameters))
 			return null;
 		ElGamalParameters params = prms;
 		ElGamalCiphertext ac = a;

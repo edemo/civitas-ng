@@ -4,14 +4,15 @@ import java.io.IOException;
 import java.io.Reader;
 
 import civitas.common.Util;
+import civitas.crypto.Constants;
 
-public class VoteCapabilityShareFromXML {
+public class VoteCapabilityShareFromXML implements Constants {
 
-	public VoteCapabilityShareC apply(Reader r)
+	public VoteCapabilityShare apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		String s = Util
-				.unescapeString(Util.readSimpleTag(r, VoteCapabilityShare.OPENING_TAG));
-		return new VoteCapabilityShareC(Util.asBigint(s));
+				.unescapeString(Util.readSimpleTag(r, VoteCapabilityShareOPENING_TAG));
+		return new VoteCapabilityShare(Util.asBigint(s));
 	}
 
 }

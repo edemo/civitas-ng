@@ -12,30 +12,31 @@ import org.junit.jupiter.api.Test;
 import civitas.common.TestBase;
 import civitas.util.Use;
 
-public class SignatureCTest extends TestBase
-		implements SignatureTestData {
+public class SignatureCTest extends TestBase implements SignatureTestData {
 
 	@Use
 	SignatureFromXML signatureFromXML;
 
+	@Use
+	SignatureToXML signatureToXML;
+
 	@Test
 	@DisplayName("constructor and toXML wors as expected")
 	void test() {
-		assertEquals(SIGNATURE_XML, new SignatureC(BYTES).toXML());
+		assertEquals(SIGNATURE_XML, signatureToXML.apply(new Signature(BYTES)));
 	}
 
 	@Test
-	@DisplayName("toBytes gets the bytes")
+	@DisplayName("signature contains the bytes")
 	void test1() {
-		assertArrayEquals(BYTES, new SignatureC(BYTES).toBytes());
+		assertArrayEquals(BYTES, SIGNATURE.signature);
 	}
 
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
-		assertEquals(SIGNATURE_XML,
-				((SignatureC) signatureFromXML.apply(new StringReader(SIGNATURE_XML)))
-						.toXML());
+		assertEquals(SIGNATURE,
+				(signatureFromXML.apply(new StringReader(SIGNATURE_XML))));
 	}
 
 }

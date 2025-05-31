@@ -19,7 +19,7 @@ public class GenerateVoteCapabilityShare {
 		ElGamalParameters ps = p;
 		CivitasBigInteger x = generateRandomElement.apply(ps.q);
 		try {
-			return new VoteCapabilityShareC(encodeMessage.apply(x, ps));
+			return new VoteCapabilityShare(encodeMessage.apply(x, ps));
 		} catch (CryptoException imposs) {
 			throw new CryptoError(imposs);
 		}

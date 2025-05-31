@@ -6,5 +6,18 @@
  */
 package civitas.crypto.sharedkey;
 
-public interface SharedKey {
+import javax.crypto.SecretKey;
+
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+
+@AllArgsConstructor
+@EqualsAndHashCode
+public class SharedKey {
+	@NonNull
+	public final SecretKey k;
+	@NonNull
+	final String name;
+
 }
