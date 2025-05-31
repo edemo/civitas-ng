@@ -50,49 +50,52 @@ public class ElGamalPublicKeyCTest extends ConcreteTestBase
 	}
 
 	@Test
-	@DisplayName("constructor works with any parameter as null")
-	void test0() {
-		assertEquals(EL_GAMAL_PUBLIC_KEY_NULL_XML,
-				elGamalPublicKeyToXML.apply(new ElGamalPublicKey(null, null)));
-	}
-
-	@Test
 	@DisplayName("fromXML works as expected")
 	void test1() throws IllegalArgumentException, IOException {
 		assertEquals(elGamalPublicKeyC, elGamalPublicKeyFromXML
 				.apply(new StringReader(EL_GAMAL_PUBLIC_KEY_XML)));
 	}
 
+	@Use
+	GetElGamalPublicKeyName getElGamalPublicKeyName;
+
 	@Test
 	@DisplayName("name returns a name")
 	void test2() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMALPUBLIC_KEY_NAME, elGamalPublicKeyC.name());
+		assertEquals(EL_GAMALPUBLIC_KEY_NAME,
+				getElGamalPublicKeyName.apply(elGamalPublicKeyC));
 	}
+
+	@Use
+	ElGamalPublicKeyisAuthorized elGamalPublicKeyisAuthorized;
 
 	@Test
 	@DisplayName("isAuthorized checks if the proof is the private key for this")
 	void test3() throws IllegalArgumentException, IOException {
-		assertTrue(elGamalPublicKeyC.isAuthorized(ELGAMAL_PRIVATE_KEY_E));
+		assertTrue(elGamalPublicKeyisAuthorized.apply(elGamalPublicKeyC,
+				ELGAMAL_PRIVATE_KEY_E));
 	}
 
 	@Test
 	@DisplayName("isAuthorized is false for a secret which is not a private key")
 	void test4() throws IllegalArgumentException, IOException {
-		assertFalse(elGamalPublicKeyC.isAuthorized(BIGINT_A));
+		assertFalse(
+				elGamalPublicKeyisAuthorized.apply(elGamalPublicKeyC, BIGINT_A));
 	}
 
 	@Test
 	@DisplayName("isAuthorized is false for bad secret")
 	void test5() throws IllegalArgumentException, IOException {
-		assertFalse(elGamalPublicKeyC
-				.isAuthorized(new ElGamalPrivateKey(BIGINT_B, EL_GAMAL_PARAMETERS)));
+		assertFalse(elGamalPublicKeyisAuthorized.apply(elGamalPublicKeyC,
+				new ElGamalPrivateKey(BIGINT_B, EL_GAMAL_PARAMETERS)));
 	}
 
 	@Test
 	@DisplayName("isAuthorized throws NullPointerException for a private key with null")
 	void test6() throws IllegalArgumentException, IOException {
-		assertThrows(NullPointerException.class, () -> elGamalPublicKeyC
-				.isAuthorized(new ElGamalPrivateKey(null, EL_GAMAL_PARAMETERS)));
+		assertThrows(NullPointerException.class,
+				() -> elGamalPublicKeyisAuthorized.apply(elGamalPublicKeyC,
+						new ElGamalPrivateKey(null, EL_GAMAL_PARAMETERS)));
 	}
 
 	@Test

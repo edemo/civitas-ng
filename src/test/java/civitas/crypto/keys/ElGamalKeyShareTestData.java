@@ -15,7 +15,7 @@ public interface ElGamalKeyShareTestData
 	public static final ElGamalKeyShare EL_GAMAL_KEY_SHARE_EPRIME = new ElGamalKeyShare(
 			EL_GAMAL_PUBLIC_KEY_EPRIME, EL_GAMAL_PROOF_KNOWN_DISC_LOG);
 	public static final ElGamalKeyShare EL_GAMAL_KEY_SHARE_NOT_GOOD_PUBKEY_TYPE = new ElGamalKeyShare(
-			EL_GAMAL_PUBLIC_KEY_NULL, EL_GAMAL_PROOF_KNOWN_DISC_LOG);
+			EL_GAMAL_PUBLIC_KEY_A_USING_G_OTHER, EL_GAMAL_PROOF_KNOWN_DISC_LOG);
 
 	ElGamalKeyShare[] KEY_SHARES = new ElGamalKeyShare[] {
 			EL_GAMAL_KEY_SHARE_E,

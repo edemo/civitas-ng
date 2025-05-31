@@ -6,36 +6,19 @@
  */
 package civitas.crypto.publickey;
 
-import civitas.common.Util;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.util.CivitasBigInteger;
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @EqualsAndHashCode
+@RequiredArgsConstructor
 public class ElGamalPublicKey {
-	public final static String EG_OPENING_TAG = "elGamalPublicKey";
 
+	@NonNull
 	public final CivitasBigInteger y;
+	@NonNull
 	public final ElGamalParameters params;
-
-	public ElGamalPublicKey(CivitasBigInteger y, ElGamalParameters params) {
-		this.y = y;
-		this.params = params;
-	}
-
-	public boolean isAuthorized(Object prf) {
-		// check if prf is the matching ElGamalPrivateKey
-		if (prf instanceof ElGamalPrivateKey) {
-			ElGamalPrivateKey k = (ElGamalPrivateKey) prf;
-			ElGamalParameters param = this.params;
-			return y.equals(param.g.modPow(k.x, param.p));
-		}
-		return false;
-	}
-
-	public String name() {
-		return "ElGamalPublicKey-" + Util.fromBigInt(y);
-	}
 
 }

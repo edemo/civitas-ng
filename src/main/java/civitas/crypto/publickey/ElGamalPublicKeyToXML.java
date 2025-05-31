@@ -4,10 +4,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import civitas.common.Util;
+import civitas.crypto.Constants;
 import civitas.crypto.parameters.ElGamalParametersToXML;
 import civitas.util.Use;
 
-public class ElGamalPublicKeyToXML {
+public class ElGamalPublicKeyToXML implements Constants {
 	@Use
 	ElGamalParametersToXML elGamalParametersToXML;
 
@@ -19,7 +20,7 @@ public class ElGamalPublicKeyToXML {
 
 	public void apply(ElGamalPublicKey that, PrintWriter s) {
 		s.print('<');
-		s.print(ElGamalPublicKey.EG_OPENING_TAG);
+		s.print(ElGamalPublicKeyOPENING_TAG);
 		s.print('>');
 
 		s.print("<params>");
@@ -33,7 +34,7 @@ public class ElGamalPublicKeyToXML {
 		s.print("</y>");
 
 		s.print("</");
-		s.print(ElGamalPublicKey.EG_OPENING_TAG);
+		s.print(ElGamalPublicKeyOPENING_TAG);
 		s.print('>');
 	}
 

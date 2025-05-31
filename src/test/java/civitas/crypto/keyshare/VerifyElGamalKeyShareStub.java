@@ -11,7 +11,6 @@ public class VerifyElGamalKeyShareStub implements ElGamalKeyShareTestData {
 		VerifyElGamalKeyShare s = mock(VerifyElGamalKeyShare.class);
 		when(s.apply(EL_GAMAL_KEY_SHARE_E)).thenReturn(true);
 		when(s.apply(EL_GAMAL_KEY_SHARE_EPRIME)).thenReturn(true);
-		when(s.apply(EL_GAMAL_KEY_SHARE_NOT_GOOD_PUBKEY_TYPE)).thenReturn(true);
 		return s;
 	}
 }
