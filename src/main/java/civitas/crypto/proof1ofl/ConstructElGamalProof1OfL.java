@@ -11,7 +11,7 @@ import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -25,7 +25,7 @@ public class ConstructElGamalProof1OfL implements Constants {
 
 	public ElGamalProof1OfLC apply(ElGamalPublicKey key,
 			CiphertextList ciphertexts, int L, int choice, ElGamalCiphertext m,
-			ElGamalReencryptFactorC factor) {
+			ElGamalReencryptFactor factor) {
 
 		ElGamalParameters ps = key.params;
 		CivitasBigInteger u = m.a;

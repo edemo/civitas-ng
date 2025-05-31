@@ -10,7 +10,7 @@ import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextC;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.Tested;
@@ -52,7 +52,7 @@ public class DecryptElGamalMessageTest extends ConcreteTestBase
 
 		ElGamalSignedCiphertextC encrypted = (ElGamalSignedCiphertextC) signAndEncrypt
 				.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, msg,
-						new ElGamalReencryptFactorC(SOME_INT_BIG), env);
+						new ElGamalReencryptFactor(SOME_INT_BIG), env);
 
 		assertThrows(CryptoException.class, () -> decryptElGamalMessage
 				.apply(ELGAMAL_PRIVATE_KEY_E, encrypted, null));

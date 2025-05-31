@@ -6,7 +6,7 @@ import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -29,7 +29,7 @@ public class ElGamalEncrypt {
 			ElGamalReencryptFactor encryptFactor) throws CryptoError {
 		ElGamalParameters ps = key.params;
 		ElGamalPublicKey k = key;
-		CivitasBigInteger r = ((ElGamalReencryptFactorC) encryptFactor).r;
+		CivitasBigInteger r = ((ElGamalReencryptFactor) encryptFactor).r;
 		CivitasBigInteger m = msg.m;
 		CivitasBigInteger a = ps.g.modPow(r, ps.p);
 		CivitasBigInteger s = k.y.modPow(r, ps.p);

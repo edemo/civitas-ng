@@ -6,8 +6,16 @@
  */
 package civitas.crypto.reencryptfactor;
 
-import java.io.PrintWriter;
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-public interface ElGamalReencryptFactor {
-	public void toXML(PrintWriter sb);
+@RequiredArgsConstructor
+@EqualsAndHashCode
+public class ElGamalReencryptFactor {
+
+	@NonNull
+	public final CivitasBigInteger r;
+
 }

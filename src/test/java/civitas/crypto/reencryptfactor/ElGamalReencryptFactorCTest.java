@@ -15,27 +15,23 @@ public class ElGamalReencryptFactorCTest extends ConcreteTestBase
 		implements ElGamalReencryptFactorCTestData {
 	@Use
 	ElGamalReencryptFactorFromXML elGamalReencryptFactorFromXML;
+	@Use
+	ElGamalReencryptFactorToXML elGamalReencryptFactorToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
-		assertEquals(ELGAMAL_REENCRYPT_FACTOR_XML,
-				new ElGamalReencryptFactorC(BIGINT_A).toXML());
-	}
-
-	@Test
-	@DisplayName("constructor parameter can be null")
-	void test1() {
-		assertEquals(ELGAMAL_REENCRYPT_FACTOR_NULL_XML,
-				new ElGamalReencryptFactorC(null).toXML());
+		assertEquals(ELGAMAL_REENCRYPT_FACTOR_XML, elGamalReencryptFactorToXML
+				.apply(new ElGamalReencryptFactor(BIGINT_A)));
 	}
 
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
-		ElGamalReencryptFactorC a = (ElGamalReencryptFactorC) elGamalReencryptFactorFromXML
+		ElGamalReencryptFactor a = (ElGamalReencryptFactor) elGamalReencryptFactorFromXML
 				.apply(new StringReader(ELGAMAL_REENCRYPT_FACTOR_XML));
-		assertEquals(ELGAMAL_REENCRYPT_FACTOR_XML, a.toXML());
+		assertEquals(ELGAMAL_REENCRYPT_FACTOR_XML,
+				elGamalReencryptFactorToXML.apply(a));
 	}
 
 }

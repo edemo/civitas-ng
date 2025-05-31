@@ -101,7 +101,7 @@ import civitas.crypto.publickeyciphertext.PublicKeyCiphertextFromXML;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.publickeymsg.VerifyPublicKeySignatureMsg;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorFromXML;
 import civitas.crypto.rsakeypair.GenerateKeyPair;
 import civitas.crypto.rsakeypair.KeyPair;
@@ -462,7 +462,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	public ElGamalProof1OfLC constructElGamalProof1OfL(ElGamalPublicKey key,
 			CiphertextList ciphertexts, int L, int choice, ElGamalCiphertext m,
-			ElGamalReencryptFactorC factor) {
+			ElGamalReencryptFactor factor) {
 		return constructElGamalProof1OfL.apply(key, ciphertexts, L, choice, m,
 				factor);
 	}
@@ -974,8 +974,8 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 			String context, ElGamalReencryptFactor encCapabilityFactor,
 			ElGamalReencryptFactor encChoiceFactor) {
 		return constructProofVote.apply(params, encCapability,
-				encChoice.m, context, (ElGamalReencryptFactorC) encCapabilityFactor,
-				(ElGamalReencryptFactorC) encChoiceFactor);
+				encChoice.m, context, (ElGamalReencryptFactor) encCapabilityFactor,
+				(ElGamalReencryptFactor) encChoiceFactor);
 	}
 
 	@Override

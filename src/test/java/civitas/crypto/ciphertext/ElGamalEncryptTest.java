@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.msg.EncodeMessage;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
@@ -51,7 +51,7 @@ public class ElGamalEncryptTest extends ConcreteTestBase
 				BIGINT_P);
 		ElGamalCiphertext actual = elGamalEncrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME,
 				EL_GAMAL_MESSAGE_VOTE_CAPABILITY_SHARE,
-				new ElGamalReencryptFactorC(FACTOR_EPRIME));
+				new ElGamalReencryptFactor(FACTOR_EPRIME));
 		ElGamalCiphertext ciphertext = new ElGamalCiphertext(c1, c2);
 		assertTrue(ciphertext.equals(actual));
 	}

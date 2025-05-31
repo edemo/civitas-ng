@@ -5,7 +5,7 @@ import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -35,7 +35,7 @@ public class ElGamalReencrypt {
 			throws CryptoError {
 		try {
 			ElGamalParameters ps = params;
-			return new ElGamalReencryptFactorC(generateRandomElement.apply(ps.q));
+			return new ElGamalReencryptFactor(generateRandomElement.apply(ps.q));
 		} catch (ClassCastException e) {
 			throw new CryptoError(e);
 		}
@@ -50,7 +50,7 @@ public class ElGamalReencrypt {
 			ElGamalCiphertext c = ciphertext;
 			CivitasBigInteger a = c.a;
 			CivitasBigInteger b = c.b;
-			CivitasBigInteger r = ((ElGamalReencryptFactorC) factor).r;
+			CivitasBigInteger r = ((ElGamalReencryptFactor) factor).r;
 			a = a.modMultiply(ps.g.modPow(r, ps.p), ps.p);
 			b = b.modMultiply(k.y.modPow(r, ps.p), ps.p);
 			return new ElGamalCiphertext(a, b);

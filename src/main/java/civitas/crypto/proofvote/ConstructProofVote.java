@@ -6,7 +6,7 @@ import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -20,8 +20,8 @@ public class ConstructProofVote {
 
 	public ProofVoteC apply(ElGamalParameters params,
 			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
-			String context, ElGamalReencryptFactorC alpha1,
-			ElGamalReencryptFactorC alpha2) {
+			String context, ElGamalReencryptFactor alpha1,
+			ElGamalReencryptFactor alpha2) {
 
 		CivitasBigInteger r1 = generateRandomElement.apply(params.q);
 		CivitasBigInteger r2 = generateRandomElement.apply(params.q);

@@ -10,7 +10,7 @@ import civitas.crypto.msg.EncodeMessage;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorC;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.util.Use;
 
 public class ConstructWellKnownCiphertexts implements Constants {
@@ -29,7 +29,7 @@ public class ConstructWellKnownCiphertexts implements Constants {
 		// Note: the well known ciphertexts MUST be the encryptions of 1,2,3,...
 		// using the encryption factor 0. This is assumed by some of the
 		// zero knowledge proofs.
-		ElGamalReencryptFactor factor = new ElGamalReencryptFactorC(ZERO);
+		ElGamalReencryptFactor factor = new ElGamalReencryptFactor(ZERO);
 		try {
 			ElGamalParameters params = key.params;
 			for (int i = 0; i < count; i++) {

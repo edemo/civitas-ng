@@ -11,7 +11,7 @@ public class ElGamalReencryptFactorFromXML {
 	public ElGamalReencryptFactor apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		String s = Util.unescapeString(Util.readSimpleTag(r, "r"));
-		return new ElGamalReencryptFactorC(CryptoFactoryC.stringToBigInt(s));
+		return new ElGamalReencryptFactor(CryptoFactoryC.stringToBigInt(s));
 	}
 
 }
