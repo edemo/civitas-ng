@@ -1,11 +1,11 @@
-package civitas.crypto.petcommitment;
+package civitas.crypto.petdecommitment;
 
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParameters;
+import civitas.crypto.petcommitment.PETCommitment;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.petdecommitment.PETDecommitmentC;
-import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityC;
+import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.crypto.proofdisclog.VerifyElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
@@ -20,12 +20,12 @@ public class VerifyPETDecommitment {
 	public boolean apply(PETDecommitmentC self, PETCommitment c,
 			ElGamalParameters params, ElGamalCiphertext ciphertext1,
 			ElGamalCiphertext ciphertext2) {
-		if (!(c instanceof PETCommitmentC)) {
+		if (!(c instanceof PETCommitment)) {
 			return false;
 		}
-		ElGamalProofDiscLogEqualityC prf = (ElGamalProofDiscLogEqualityC) self.proof;
+		ElGamalProofDiscLogEquality prf = (ElGamalProofDiscLogEquality) self.proof;
 		ElGamalParameters ps = (ElGamalParameters) params;
-		PETCommitmentC com = (PETCommitmentC) c;
+		PETCommitment com = (PETCommitment) c;
 		ElGamalCiphertext m1 = (ElGamalCiphertext) ciphertext1;
 		ElGamalCiphertext m2 = (ElGamalCiphertext) ciphertext2;
 

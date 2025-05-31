@@ -6,13 +6,32 @@
  */
 package civitas.crypto.proofdisclog;
 
-import java.io.PrintWriter;
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-/**
- * Proof that log_{g_1} v = log_{g_2} w. That is, that v = g_1^x and w = g_2^x
- */
-public interface ElGamalProofDiscLogEquality {
-//	public boolean verify(ElGamalParameters params);
+@RequiredArgsConstructor
+@EqualsAndHashCode
+public class ElGamalProofDiscLogEquality {
 
-	public void toXML(PrintWriter sb);
+	@NonNull
+	public final CivitasBigInteger g1;
+	@NonNull
+	public final CivitasBigInteger g2;
+
+	@NonNull
+	public final CivitasBigInteger v;
+	@NonNull
+	public final CivitasBigInteger w;
+
+	@NonNull
+	public final CivitasBigInteger a;
+	@NonNull
+	public final CivitasBigInteger b;
+	@NonNull
+	public final CivitasBigInteger c;
+	@NonNull
+	public final CivitasBigInteger r;
+
 }

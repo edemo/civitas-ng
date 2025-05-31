@@ -25,9 +25,9 @@ public class ElGamalProofDiscLogEqualityFromXML {
 		String rr = Util.unescapeString(Util.readSimpleTag(r, "r"));
 
 		Util.swallowEndTag(r, "egPrfKnwDscLog");
-		return new ElGamalProofDiscLogEqualityC(convertToBigInt.apply(g1),
-				convertToBigInt.apply(g2), convertToBigInt.apply(a),
-				convertToBigInt.apply(v), convertToBigInt.apply(w),
+		return new ElGamalProofDiscLogEquality(convertToBigInt.apply(g1),
+				convertToBigInt.apply(g2), convertToBigInt.apply(v),
+				convertToBigInt.apply(w), convertToBigInt.apply(a),
 				convertToBigInt.apply(b), convertToBigInt.apply(c),
 				convertToBigInt.apply(rr));
 	}

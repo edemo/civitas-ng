@@ -18,40 +18,43 @@ public class PETDecommitmentCTest extends ConcreteTestBase
 
 	@Use
 	PetDecommitmentFromXML petDecommitmentFromXML;
+	@Use
+	PETDecommitmentToXML petDecommitmentToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
-		assertEquals(PET_DECOMMITMENT_XML, PET_DECOMMITMENT.toXML());
+		assertEquals(PET_DECOMMITMENT_XML,
+				petDecommitmentToXML.apply(PET_DECOMMITMENT));
 	}
 
 	@Test
 	@DisplayName("constructor arguments di, ei can be null")
 	void test1() {
-		assertEquals(PET_DECOMMITMENT_NULL_XML, new PETDecommitmentC(null, null,
-				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT).toXML());
+		assertEquals(PET_DECOMMITMENT_NULL_XML,
+				petDecommitmentToXML.apply(new PETDecommitmentC(null, null,
+						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT)));
 	}
 
 	@Test
 	@DisplayName("if the proof is null, toXML throws a NullPointerException")
 	void test2() {
-		assertThrows(NullPointerException.class,
-				() -> new PETDecommitmentC(PET_DECOMMITMENT_D, PET_DECOMMITMENT_E, null)
-						.toXML());
+		assertThrows(NullPointerException.class, () -> petDecommitmentToXML.apply(
+				new PETDecommitmentC(PET_DECOMMITMENT_D, PET_DECOMMITMENT_E, null)));
 	}
 
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test3() throws IllegalArgumentException, IOException {
-		assertEquals(PET_DECOMMITMENT_XML, petDecommitmentFromXML
-				.apply(new StringReader(PET_DECOMMITMENT_XML)).toXML());
+		assertEquals(PET_DECOMMITMENT_XML, petDecommitmentToXML.apply(
+				petDecommitmentFromXML.apply(new StringReader(PET_DECOMMITMENT_XML))));
 	}
 
 	@Test
 	@DisplayName("proof returns the proof")
 	void test4() {
 		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT,
-				PET_DECOMMITMENT.proof());
+				PET_DECOMMITMENT.proof);
 	}
 
 }

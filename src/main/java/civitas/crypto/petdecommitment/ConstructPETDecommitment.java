@@ -4,7 +4,7 @@ import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.proofdisclog.ConstructElGamalDiscLogEqualityProof;
-import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityC;
+import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -25,7 +25,7 @@ public class ConstructPETDecommitment {
 			CivitasBigInteger di = d.modPow(zi, params.p);
 			CivitasBigInteger ei = e.modPow(zi, params.p);
 
-			ElGamalProofDiscLogEqualityC proof = constructElGamalDiscLogEqualityProof
+			ElGamalProofDiscLogEquality proof = constructElGamalDiscLogEqualityProof
 					.apply(params, d, e, zi);
 			return new PETDecommitmentC(di, ei, proof);
 		} catch (ClassCastException e) {

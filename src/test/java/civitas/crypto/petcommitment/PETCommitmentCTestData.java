@@ -13,10 +13,10 @@ public interface PETCommitmentCTestData extends BasicValuesTestData {
 	public static final String PET_C_XML = "<petC>" + PET_COMMITMENT_HASH_BASE64
 			+ "</petC>";
 
-	public static final PETCommitmentC PET_COMMITMENT = new PETCommitmentC(
+	public static final PETCommitment PET_COMMITMENT = new PETCommitment(
 			PET_COMMITMENT_HASH);
 
-	public static final PETCommitmentC PET_COMMITMENT_BAD_HASH = new PETCommitmentC(
+	public static final PETCommitment PET_COMMITMENT_BAD_HASH = new PETCommitment(
 			BIGINT_A);
 
 }

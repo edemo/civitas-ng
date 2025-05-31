@@ -16,24 +16,20 @@ public class PETCommitmentCTest extends ConcreteTestBase
 		implements PETCommitmentCTestData {
 	@Use
 	PetCommitmentFromXML petCommitmentFromXML;
+	@Use
+	PETCommitmentToXML pETCommitmentToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
-		assertEquals(PET_C_XML, PET_COMMITMENT.toXML());
-	}
-
-	@Test
-	@DisplayName("constructor accepts null parameter")
-	void test1() {
-		assertEquals(PET_C_NULL_XML, new PETCommitmentC(null).toXML());
+		assertEquals(PET_C_XML, pETCommitmentToXML.apply(PET_COMMITMENT));
 	}
 
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
-		assertEquals(PET_C_XML,
-				petCommitmentFromXML.apply(new StringReader(PET_C_XML)).toXML());
+		assertEquals(PET_C_XML, pETCommitmentToXML
+				.apply(petCommitmentFromXML.apply(new StringReader(PET_C_XML))));
 	}
 
 }

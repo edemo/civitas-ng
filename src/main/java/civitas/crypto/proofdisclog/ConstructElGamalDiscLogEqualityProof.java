@@ -18,7 +18,7 @@ public class ConstructElGamalDiscLogEqualityProof {
 	@Use
 	ConvertHashToBigInt convertHashToBigInt;
 
-	public ElGamalProofDiscLogEqualityC apply(ElGamalParameters params,
+	public ElGamalProofDiscLogEquality apply(ElGamalParameters params,
 			CivitasBigInteger g1, CivitasBigInteger g2, CivitasBigInteger x) {
 
 		CivitasBigInteger v = g1.modPow(x, params.p);
@@ -38,7 +38,7 @@ public class ConstructElGamalDiscLogEqualityProof {
 
 		CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q), params.q);
 
-		return new ElGamalProofDiscLogEqualityC(g1, g2, a, v, w, b, c, r);
+		return new ElGamalProofDiscLogEquality(g1, g2, v, w, a, b, c, r);
 	}
 
 }

@@ -6,13 +6,16 @@
  */
 package civitas.crypto.petcommitment;
 
-import java.io.PrintWriter;
+import civitas.crypto.Constants;
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-/**
- * A server's commimtment for the PET share
- */
-public interface PETCommitment {
-	public final static String OPENING_TAG = "petC";
+@RequiredArgsConstructor
+@EqualsAndHashCode
+public class PETCommitment implements Constants {
+	@NonNull
+	public final CivitasBigInteger hash;
 
-	public void toXML(PrintWriter sb);
 }

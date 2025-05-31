@@ -6,7 +6,7 @@
  */
 package civitas.crypto.decriptionshare;
 
-import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityC;
+import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
@@ -19,6 +19,6 @@ public class ElGamalDecryptionShare {
 	@NonNull
 	public final CivitasBigInteger ai;
 	@NonNull
-	public final ElGamalProofDiscLogEqualityC proof;
+	public final ElGamalProofDiscLogEquality proof;
 
 }

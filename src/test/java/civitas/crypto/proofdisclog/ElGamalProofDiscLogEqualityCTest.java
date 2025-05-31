@@ -31,6 +31,8 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase
 	@Use
 	ElGamalProofDiscLogEqualityFromXML elGamalProofDiscLogEqualityFromXML;
 	@Use
+	ElGamalProofDiscLogEqualityToXML elGamalProofDiscLogEqualityToXML;
+	@Use
 	ConvertHashToBigInt convertHashToBigInt;
 
 	@Test
@@ -38,7 +40,8 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase
 	void test() throws IllegalArgumentException, IOException {
 
 		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_PROOF_XML,
-				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT.toXML());
+				elGamalProofDiscLogEqualityToXML
+						.apply(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT));
 
 	}
 
@@ -49,14 +52,14 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase
 			+ "r = (z + cx) mod q		  The proof is (a,b,c,r). ")
 	void construcProofTest() {
 
-		ElGamalProofDiscLogEqualityC proof = constructElGamalDiscLogEqualityProof
+		ElGamalProofDiscLogEquality proof = constructElGamalDiscLogEqualityProof
 				.apply(EL_GAMAL_PARAMETERS,
 						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G1,
 						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G2, PRIVKEY_E);
 		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C_BASE64,
 				Util.fromBigInt(proof.c));
 		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_PROOF_XML,
-				proof.toXML());
+				elGamalProofDiscLogEqualityToXML.apply(proof));
 
 	}
 
@@ -65,14 +68,14 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase
 	@DisplayName("testdata consistency check")
 	void construcProofTest2() {
 
-		ElGamalProofDiscLogEqualityC proof1 = constructElGamalDiscLogEqualityProof
+		ElGamalProofDiscLogEquality proof1 = constructElGamalDiscLogEqualityProof
 				.apply(EL_GAMAL_PARAMETERS,
 						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_G1,
 						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_G2, PRIVKEY_E);
 		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_C_BASE64,
 				Util.fromBigInt(proof1.c));
 		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_PROOF_XML,
-				proof1.toXML());
+				elGamalProofDiscLogEqualityToXML.apply(proof1));
 
 	}
 
@@ -91,7 +94,7 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase
 	@DisplayName("verify is false for a bad proof ")
 	void test0_2() {
 		assertFalse(verifyElGamalProofDiscLogEquality.apply(
-				new ElGamalProofDiscLogEqualityC(BIGINT_G, GENERATOR_OTHER, BIGINT_A,
+				new ElGamalProofDiscLogEquality(BIGINT_G, GENERATOR_OTHER, BIGINT_A,
 						BIGINT_B, BIGINT_C, BIGINT_D, SAFE_P_MINUS_A, BIGINT_G_OTHER),
 				EL_GAMAL_PARAMETERS));
 	}
@@ -100,18 +103,10 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase
 	@DisplayName("verify is false for a bad proof (other branch)")
 	void test0_3() throws IllegalArgumentException, IOException {
 		assertFalse(verifyElGamalProofDiscLogEquality.apply(
-				((ElGamalProofDiscLogEqualityC) elGamalProofDiscLogEqualityFromXML
+				((ElGamalProofDiscLogEquality) elGamalProofDiscLogEqualityFromXML
 						.apply(
 								new StringReader(EL_GAMAL_PROOF_DISC_LOG_EQUALITY_BAD_W_XML))),
 				EL_GAMAL_PARAMETERS));
-	}
-
-	@Test
-	@DisplayName("verify is false for an empty proof")
-	void test0_4() throws IllegalArgumentException, IOException {
-		assertFalse(verifyElGamalProofDiscLogEquality
-				.apply(new ElGamalProofDiscLogEqualityC(null, null, null, null, null,
-						null, null, null), EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
@@ -123,19 +118,11 @@ public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase
 	}
 
 	@Test
-	@DisplayName("can be constructed with all nulls "
-			+ "FIXME: is there a reason for it?")
-	void test1() {
-		assertEquals(EL_GAMAL_PROOF_DISC_LOG_EQUALITY_NULL_XML,
-				new ElGamalProofDiscLogEqualityC(null, null, null, null, null, null,
-						null, null).toXML());
-	}
-
-	@Test
 	@DisplayName("fromXML works as expected ")
-	void test2() {
-		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_PROOF_XML,
-				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT.toXML());
+	void test2() throws IllegalArgumentException, IOException {
+		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT,
+				elGamalProofDiscLogEqualityFromXML.apply(new StringReader(
+						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_PROOF_XML)));
 	}
 
 }

@@ -4,7 +4,7 @@ import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.petcommitment.PETCommitment;
-import civitas.crypto.petcommitment.PETCommitmentC;
+import civitas.crypto.petcommitment.PETCommitment;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -26,7 +26,7 @@ public class ConstructPETCommitment {
 			CivitasBigInteger di = d.modPow(zi, ps.p);
 			CivitasBigInteger ei = e.modPow(zi, ps.p);
 
-			return new PETCommitmentC(cryptoHash.apply(di, ei));
+			return new PETCommitment(cryptoHash.apply(di, ei));
 		} catch (ClassCastException e) {
 			return null;
 		}

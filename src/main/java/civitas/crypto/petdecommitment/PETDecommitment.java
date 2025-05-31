@@ -6,24 +6,6 @@
  */
 package civitas.crypto.petdecommitment;
 
-import java.io.PrintWriter;
-
-import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.petcommitment.PETCommitment;
-import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
-
 public interface PETDecommitment {
-	public final static String OPENING_TAG = "petD";
 
-	public void toXML(PrintWriter sb);
-
-	ElGamalProofDiscLogEquality proof();
-
-	/**
-	 * Verify that the decommitment and the commitment agree
-	 */
-	@Deprecated
-	public boolean verify(PETCommitment c, ElGamalParameters params,
-			ElGamalCiphertext ciphertext1, ElGamalCiphertext ciphertext2);
 }

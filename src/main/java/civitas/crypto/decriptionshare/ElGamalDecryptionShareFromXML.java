@@ -6,7 +6,7 @@ import java.io.Reader;
 import civitas.common.Util;
 import civitas.crypto.Constants;
 import civitas.crypto.algorithms.ConvertToBigInt;
-import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityC;
+import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityFromXML;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
@@ -24,7 +24,7 @@ public class ElGamalDecryptionShareFromXML {
 		String sa = Util.unescapeString(Util.readSimpleTag(r, "ai"));
 		CivitasBigInteger ai = convertToBigInt.apply(sa);
 
-		ElGamalProofDiscLogEqualityC proof = (ElGamalProofDiscLogEqualityC) elGamalProofDiscLogEqualityFromXML
+		ElGamalProofDiscLogEquality proof = (ElGamalProofDiscLogEquality) elGamalProofDiscLogEqualityFromXML
 				.apply(r);
 
 		Util.swallowEndTag(r, Constants.ElGamalDecryptionShareOPENING_TAG);

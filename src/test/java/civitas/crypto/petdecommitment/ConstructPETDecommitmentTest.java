@@ -10,12 +10,15 @@ import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.petshare.PETShareTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
+import civitas.util.Use;
 
 public class ConstructPETDecommitmentTest extends ConcreteTestBase
 		implements PETDecommitmentCTestData, PETShareTestData {
 
 	@Tested
 	ConstructPETDecommitment constructPETDecommitment;
+	@Use
+	PETDecommitmentToXML pETDecommitmentToXML;
 
 	@Test
 	@DisplayName("decommitment returns a PETDecommitment "
@@ -40,7 +43,8 @@ public class ConstructPETDecommitmentTest extends ConcreteTestBase
 				EL_GAMAL_PARAMETERS,
 				CIPHERTEXT_E_A.modDivide(CIPHERTEXT_EPRIME_A, BIGINT_P),
 				CIPHERTEXT_E_B.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P), FACTOR_E);
-		assertEquals(PET_DECOMMITMENT_XML, decommitment.toXML());
+		assertEquals(PET_DECOMMITMENT_XML,
+				pETDecommitmentToXML.apply(decommitment));
 
 	}
 

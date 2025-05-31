@@ -13,7 +13,7 @@ import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.petcommitment.PETCommitmentC;
+import civitas.crypto.petcommitment.PETCommitment;
 import civitas.crypto.petdecommitment.PETDecommitmentCTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
@@ -86,7 +86,7 @@ public class PETShareCTest extends ConcreteTestBase
 				c1.a.modDivide(c2.a, BIGINT_P).modPow(exponent, BIGINT_P),
 				c1.b.modDivide(c2.b, BIGINT_P).modPow(exponent, BIGINT_P));
 
-		assertEquals(hashe, ((PETCommitmentC) constructPETCommitment
+		assertEquals(hashe, ((PETCommitment) constructPETCommitment
 				.apply(PET_SHARE_C, EL_GAMAL_PARAMETERS)).hash);
 	}
 

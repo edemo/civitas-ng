@@ -5,7 +5,7 @@ import civitas.crypto.parameters.ElGamalParameters;
 
 public class VerifyElGamalProofDiscLogEquality {
 
-	public boolean apply(ElGamalProofDiscLogEqualityC that,
+	public boolean apply(ElGamalProofDiscLogEquality that,
 			ElGamalParameters prms) {
 		if (!(prms instanceof ElGamalParameters))
 			return false;
