@@ -7,12 +7,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.privatekey.ElGamalPrivateKeyCTestData;
 import civitas.util.Use;
 
-public class GenerateSchnorrPrimeTest extends ConcreteTestBase
+public class GenerateSchnorrPrimeTest extends TestBase
 		implements ElGamalPrivateKeyCTestData, Constants {
 
 	@Use

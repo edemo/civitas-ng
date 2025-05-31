@@ -7,11 +7,11 @@ import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionCTestData;
 import civitas.util.Tested;
 
-public class VerifyElGamal1OfLReencryptionTest extends ConcreteTestBase
+public class VerifyElGamal1OfLReencryptionTest extends TestBase
 		implements ElGamal1OfLReencryptionCTestData {
 
 	@Tested

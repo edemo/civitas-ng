@@ -6,7 +6,7 @@ import static org.mockito.Mockito.mock;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertextlist.CiphertextList;
@@ -16,7 +16,7 @@ import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 
-public class MultiplyCiphertextsTest extends ConcreteTestBase
+public class MultiplyCiphertextsTest extends TestBase
 		implements MultiplyCiphertextsTestData {
 
 	@Tested

@@ -11,13 +11,13 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.keys.ElGamalKeyShareTestData;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Use;
 
-public class ElGamalKeyShareCTest extends ConcreteTestBase
+public class ElGamalKeyShareCTest extends TestBase
 		implements ElGamalKeyShareTestData {
 	@Use
 	ElGamalKeyShareFromXML elGamalKeyShareFromXML;

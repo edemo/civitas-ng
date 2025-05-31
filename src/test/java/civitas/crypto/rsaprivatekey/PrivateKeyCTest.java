@@ -7,10 +7,10 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.util.Use;
 
-public class PrivateKeyCTest extends ConcreteTestBase
+public class PrivateKeyCTest extends TestBase
 		implements PrivateKeyTestData {
 	@Use
 	PrivateKeyFromXML privateKeyFromXML;

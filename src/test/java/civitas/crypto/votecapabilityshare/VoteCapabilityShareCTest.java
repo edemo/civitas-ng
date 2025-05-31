@@ -13,12 +13,12 @@ import java.io.StringWriter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.msg.EncodeMessage;
 import civitas.util.Use;
 
-public class VoteCapabilityShareCTest extends ConcreteTestBase
+public class VoteCapabilityShareCTest extends TestBase
 		implements VoteCapabilityShareTestData {
 	@Use
 	EncodeMessage encodeMessage;

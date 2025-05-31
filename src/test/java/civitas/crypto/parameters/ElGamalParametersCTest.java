@@ -11,12 +11,12 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.CryptoError;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
-public class ElGamalParametersCTest extends ConcreteTestBase
+public class ElGamalParametersCTest extends TestBase
 		implements ElGamalParametersCTestData {
 	@Use
 	ElGamalParametersFromXML elGamalParametersFromXML;

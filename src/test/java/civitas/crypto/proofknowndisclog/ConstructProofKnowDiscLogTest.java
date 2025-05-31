@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class ConstructProofKnowDiscLogTest extends ConcreteTestBase
+public class ConstructProofKnowDiscLogTest extends TestBase
 		implements ProofKnowDiscLogTestData {
 
 	@Tested

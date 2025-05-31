@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
@@ -16,7 +16,7 @@ import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class DecryptElGamalMessageTest extends ConcreteTestBase
+public class DecryptElGamalMessageTest extends TestBase
 		implements ElGamalCiphertextCTestData {
 
 	@Tested

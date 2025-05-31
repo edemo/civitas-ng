@@ -7,11 +7,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import civitas.common.TestBase;
 import civitas.crypto.BasicValuesTestData;
-import civitas.crypto.ConcreteTestBase;
 import civitas.util.Tested;
 
-public class GenerateRandomIntTest extends ConcreteTestBase
+public class GenerateRandomIntTest extends TestBase
 		implements BasicValuesTestData {
 	@Tested
 	GenerateRandomInt generateRandomInt;

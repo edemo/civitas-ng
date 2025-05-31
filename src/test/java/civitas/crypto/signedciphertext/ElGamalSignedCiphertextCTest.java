@@ -8,10 +8,10 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.util.Use;
 
-public class ElGamalSignedCiphertextCTest extends ConcreteTestBase
+public class ElGamalSignedCiphertextCTest extends TestBase
 		implements ElGamalSignedCiphertextCTestData {
 
 	@Use

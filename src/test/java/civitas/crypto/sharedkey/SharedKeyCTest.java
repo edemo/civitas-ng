@@ -14,10 +14,10 @@ import javax.crypto.spec.SecretKeySpec;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.util.Use;
 
-public class SharedKeyCTest extends ConcreteTestBase
+public class SharedKeyCTest extends TestBase
 		implements SharedKeyTestData {
 
 	@Use

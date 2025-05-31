@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.common.TestBase;
 import civitas.crypto.BasicValuesTestData;
-import civitas.crypto.ConcreteTestBase;
 
-public class SharedKeyMsgCTest extends ConcreteTestBase
+public class SharedKeyMsgCTest extends TestBase
 		implements BasicValuesTestData {
 
 	@Test

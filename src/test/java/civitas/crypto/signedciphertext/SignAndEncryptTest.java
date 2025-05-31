@@ -6,15 +6,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import civitas.common.TestBase;
 import civitas.common.Util;
-import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class SignAndEncryptTest extends ConcreteTestBase
+public class SignAndEncryptTest extends TestBase
 		implements ElGamalCiphertextCTestData {
 
 	@Tested

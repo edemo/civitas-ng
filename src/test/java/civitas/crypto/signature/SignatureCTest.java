@@ -9,10 +9,10 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.util.Use;
 
-public class SignatureCTest extends ConcreteTestBase
+public class SignatureCTest extends TestBase
 		implements SignatureTestData {
 
 	@Use

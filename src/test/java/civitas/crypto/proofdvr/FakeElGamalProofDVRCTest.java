@@ -7,12 +7,12 @@ import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.privatekey.ElGamalPrivateKeyCTestData;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class FakeElGamalProofDVRCTest extends ConcreteTestBase
+public class FakeElGamalProofDVRCTest extends TestBase
 		implements ElGamalProofDVRCTestData, ElGamalPrivateKeyCTestData {
 
 	@Tested

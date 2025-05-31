@@ -8,11 +8,11 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.util.Tested;
 
-public class FindGeneratorTest extends ConcreteTestBase
+public class FindGeneratorTest extends TestBase
 		implements ElGamalParametersCTestData {
 
 	@Tested

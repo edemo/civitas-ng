@@ -8,12 +8,12 @@ import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.keys.ElGamalKeyShareTestData;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Tested;
 
-public class VerifyElGamalKeyShareTest extends ConcreteTestBase
+public class VerifyElGamalKeyShareTest extends TestBase
 		implements ElGamalKeyShareTestData {
 	@Tested
 	VerifyElGamalKeyShare verifyElGamalKeyShare;

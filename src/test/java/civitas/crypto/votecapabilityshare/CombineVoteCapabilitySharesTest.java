@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.votecapability.VoteCapability;
 import civitas.crypto.votecapability.VoteCapabilityC;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 
-public class CombineVoteCapabilitySharesTest extends ConcreteTestBase
+public class CombineVoteCapabilitySharesTest extends TestBase
 		implements VoteCapabilityShareTestData {
 
 	@Tested

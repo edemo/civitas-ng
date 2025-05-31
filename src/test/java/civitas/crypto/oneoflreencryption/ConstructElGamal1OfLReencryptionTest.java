@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.util.Tested;
 
-public class ConstructElGamal1OfLReencryptionTest extends ConcreteTestBase
+public class ConstructElGamal1OfLReencryptionTest extends TestBase
 		implements ElGamal1OfLReencryptionCTestData {
 
 	@Tested

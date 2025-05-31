@@ -6,13 +6,13 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.petshare.PETShareTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class ConstructPETDecommitmentTest extends ConcreteTestBase
+public class ConstructPETDecommitmentTest extends TestBase
 		implements PETDecommitmentCTestData, PETShareTestData {
 
 	@Tested
@@ -34,7 +34,7 @@ public class ConstructPETDecommitmentTest extends ConcreteTestBase
 		CivitasBigInteger ei = CIPHERTEXT_E_B
 				.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P).modPow(exponent, BIGINT_P);
 
-		PETDecommitment decommitment = (PETDecommitment) constructPETDecommitment
+		PETDecommitment decommitment = constructPETDecommitment
 				.apply(EL_GAMAL_PARAMETERS, exponent, CIPHERTEXT_E, CIPHERTEXT_EPRIME);
 		assertEquals(di, decommitment.di);
 		assertEquals(ei, decommitment.ei);

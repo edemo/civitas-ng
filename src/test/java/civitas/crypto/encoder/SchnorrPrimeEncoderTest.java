@@ -8,13 +8,13 @@ import java.util.Base64;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.parameters.encoder.SchnorrPrimeDecode;
 import civitas.crypto.parameters.encoder.SchnorrPrimeEncode;
 import civitas.util.Tested;
 
-public class SchnorrPrimeEncoderTest extends ConcreteTestBase
+public class SchnorrPrimeEncoderTest extends TestBase
 		implements EncoderTestData {
 
 	@Tested

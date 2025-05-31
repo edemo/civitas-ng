@@ -12,13 +12,13 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class ElGamalDecryptionShareCTest extends ConcreteTestBase
+public class ElGamalDecryptionShareCTest extends TestBase
 		implements ElGamalDecryptionShareTestData {
 
 	@Use

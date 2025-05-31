@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.common.TestBase;
 import civitas.common.Util;
-import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.parameters.ElGamalParametersCTestData;
 import civitas.util.Tested;
 
-public class GenerateElGamalKeyPairTest extends ConcreteTestBase
+public class GenerateElGamalKeyPairTest extends TestBase
 		implements ElGamalParametersCTestData {
 
 	@Tested

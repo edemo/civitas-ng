@@ -8,11 +8,11 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.parameters.ElGamalParametersCTestData;
 import civitas.util.Use;
 
-public class PETDecommitmentCTest extends ConcreteTestBase
+public class PETDecommitmentCTest extends TestBase
 		implements PETDecommitmentCTestData, ElGamalParametersCTestData {
 
 	@Use

@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.common.TestBase;
 import civitas.common.Util;
-import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
 import civitas.crypto.petcommitment.PETCommitmentCTestData;
@@ -18,7 +18,7 @@ import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class VerifyPETDecommitmentTest extends ConcreteTestBase
+public class VerifyPETDecommitmentTest extends TestBase
 		implements PETDecommitmentCTestData, PETCommitmentCTestData,
 		ElGamalCiphertextCTestData, PETShareTestData {
 

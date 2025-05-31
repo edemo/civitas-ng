@@ -11,12 +11,12 @@ import java.io.StringWriter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
 import civitas.crypto.signedciphertext.SharedKeyCiphertextFromXML;
 import civitas.util.Use;
 
-public class SharedKeyCiphertextCTest extends ConcreteTestBase
+public class SharedKeyCiphertextCTest extends TestBase
 		implements ElGamalCiphertextCTestData {
 	@Use
 	SharedKeyCiphertextFromXML sharedKeyCiphertextFromXML;

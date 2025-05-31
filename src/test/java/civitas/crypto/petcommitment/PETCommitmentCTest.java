@@ -8,11 +8,11 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.petdecommitment.PetCommitmentFromXML;
 import civitas.util.Use;
 
-public class PETCommitmentCTest extends ConcreteTestBase
+public class PETCommitmentCTest extends TestBase
 		implements PETCommitmentCTestData {
 	@Use
 	PetCommitmentFromXML petCommitmentFromXML;

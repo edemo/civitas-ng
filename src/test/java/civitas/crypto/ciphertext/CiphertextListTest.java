@@ -13,14 +13,14 @@ import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.ciphertextlist.CiphertextListToXML;
 import civitas.crypto.ciphertextlist.CiphertextListfromXML;
 import civitas.crypto.ciphertextlist.ConstructCiphertextList;
 import civitas.util.Use;
 
-public class CiphertextListTest extends ConcreteTestBase
+public class CiphertextListTest extends TestBase
 		implements ElGamalCiphertextCTestData {
 	@Use
 	CiphertextListfromXML ciphertextListfromXML;

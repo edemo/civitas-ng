@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.publickey.ElGamalPublicKeyCTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 
-public class ElGamalReencryptTest extends ConcreteTestBase
+public class ElGamalReencryptTest extends TestBase
 		implements ElGamalPublicKeyCTestData {
 
 	@Tested

@@ -6,14 +6,14 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalEncryptTest;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class ConstructElGamalDecryptionShareTest extends ConcreteTestBase
+public class ConstructElGamalDecryptionShareTest extends TestBase
 		implements ElGamalDecryptionShareTestData {
 
 	@Tested

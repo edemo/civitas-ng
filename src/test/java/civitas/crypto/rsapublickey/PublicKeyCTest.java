@@ -14,11 +14,11 @@ import java.security.SignatureException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.CryptoError;
 import civitas.util.Use;
 
-public class PublicKeyCTest extends ConcreteTestBase
+public class PublicKeyCTest extends TestBase
 		implements PublicKeyTestData {
 
 	@Use

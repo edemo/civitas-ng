@@ -8,20 +8,18 @@ import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
-import civitas.crypto.CryptoException;
+import civitas.common.TestBase;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
-public class ElGamalPublicKeyCTest extends ConcreteTestBase
+public class ElGamalPublicKeyCTest extends TestBase
 		implements ElGamalPublicKeyCTestData {
 
 	ElGamalPublicKey elGamalPublicKeyC;
@@ -31,8 +29,7 @@ public class ElGamalPublicKeyCTest extends ConcreteTestBase
 
 	@Override
 	@BeforeEach
-	public void setUp() throws NoSuchAlgorithmException, IllegalArgumentException,
-			IOException, CryptoException {
+	public void setUp() {
 		super.setUp();
 		elGamalPublicKeyC = new ElGamalPublicKey(
 				new CivitasBigInteger(Base64.getDecoder().decode(G_EXP_A_BASE64)),

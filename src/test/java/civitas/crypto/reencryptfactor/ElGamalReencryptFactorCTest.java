@@ -8,10 +8,10 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.util.Use;
 
-public class ElGamalReencryptFactorCTest extends ConcreteTestBase
+public class ElGamalReencryptFactorCTest extends TestBase
 		implements ElGamalReencryptFactorCTestData {
 	@Use
 	ElGamalReencryptFactorFromXML elGamalReencryptFactorFromXML;

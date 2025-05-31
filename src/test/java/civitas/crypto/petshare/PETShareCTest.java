@@ -9,7 +9,7 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
@@ -17,7 +17,7 @@ import civitas.crypto.petdecommitment.PETDecommitmentCTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
-public class PETShareCTest extends ConcreteTestBase
+public class PETShareCTest extends TestBase
 		implements PETDecommitmentCTestData, PETShareTestData {
 
 	@Use

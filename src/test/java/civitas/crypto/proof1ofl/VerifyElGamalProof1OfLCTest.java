@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
@@ -16,7 +16,7 @@ import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class VerifyElGamalProof1OfLCTest extends ConcreteTestBase implements
+public class VerifyElGamalProof1OfLCTest extends TestBase implements
 		ElGamal1OfLReencryptionCTestData, ElGamalReencryptFactorCTestData {
 
 	@Tested

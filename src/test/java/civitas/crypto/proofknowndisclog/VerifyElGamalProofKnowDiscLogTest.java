@@ -7,14 +7,14 @@ import static org.mockito.Mockito.mock;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class VerifyElGamalProofKnowDiscLogTest extends ConcreteTestBase
+public class VerifyElGamalProofKnowDiscLogTest extends TestBase
 		implements ProofKnowDiscLogTestData {
 	@Tested
 	VerifyElGamalProofKnowDiscLog verifyElGamalProofKnowDiscLog;

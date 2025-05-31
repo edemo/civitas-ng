@@ -5,18 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.util.Use;
+import lombok.SneakyThrows;
 
-public class ElGamalMsgCTest extends ConcreteTestBase
+public class ElGamalMsgCTest extends TestBase
 		implements ElgamalMessageTestData {
 
 	ElGamalMsg message;
@@ -25,8 +23,8 @@ public class ElGamalMsgCTest extends ConcreteTestBase
 
 	@Override
 	@BeforeEach
-	public void setUp() throws NoSuchAlgorithmException, IllegalArgumentException,
-			IOException, CryptoException {
+	@SneakyThrows()
+	public void setUp() {
 		super.setUp();
 		message = new ElGamalMsg(
 				encodeMessage.apply(BIGINT_A, EL_GAMAL_PARAMETERS));

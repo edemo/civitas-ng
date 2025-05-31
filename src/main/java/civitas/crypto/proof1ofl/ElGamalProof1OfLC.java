@@ -6,68 +6,16 @@
  */
 package civitas.crypto.proof1ofl;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
-import civitas.common.Util;
-import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertextlist.CiphertextList;
-import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
+@AllArgsConstructor()
 @EqualsAndHashCode
 public class ElGamalProof1OfLC implements ElGamalProof1OfL {
-	@Use
-	VerifyElGamalProof1OfLC verifyElGamalProof1OfLC;
 
 	public final int L;
 	public final CivitasBigInteger[] dvs;
 	public final CivitasBigInteger[] rvs;
-
-	public ElGamalProof1OfLC(int L, CivitasBigInteger[] dvs,
-			CivitasBigInteger[] rvs) {
-		this.L = L;
-		this.dvs = dvs;
-		this.rvs = rvs;
-		if (dvs == null || rvs == null || dvs.length != L || rvs.length != L) {
-			throw new IllegalArgumentException("Bad args");
-		}
-	}
-
-	public String toXML() {
-		StringWriter sb = new StringWriter();
-		toXML(new PrintWriter(sb));
-		return sb.toString();
-	}
-
-	@Override
-	public void toXML(PrintWriter s) {
-		s.print("<elGamalProof1OfL>");
-		s.print("<size>");
-		s.print(L);
-		s.print("</size>");
-		for (int i = 0; i < L; i++) {
-			s.print("<dv>");
-			if (dvs[i] != null)
-				Util.escapeString(Util.fromBigInt(this.dvs[i]), s);
-			s.print("</dv>");
-		}
-		for (int i = 0; i < L; i++) {
-			s.print("<rv>");
-			if (rvs[i] != null)
-				Util.escapeString(Util.fromBigInt(this.rvs[i]), s);
-			s.print("</rv>");
-		}
-		s.print("</elGamalProof1OfL>");
-	}
-
-	@Override
-	@Deprecated
-	public boolean verify(ElGamalPublicKey pubKey, CiphertextList ciphertexts,
-			int L, ElGamalCiphertext msg) {
-		throw new UnsupportedOperationException("use VerifyElGamalProof1OfLC");
-	}
 
 }

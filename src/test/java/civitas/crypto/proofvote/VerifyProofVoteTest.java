@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShareTestData;
 import civitas.util.Tested;
 
-public class VerifyProofVoteTest extends ConcreteTestBase
+public class VerifyProofVoteTest extends TestBase
 		implements VoteCapabilityShareTestData, ProofVoteTestData {
 
 	@Tested

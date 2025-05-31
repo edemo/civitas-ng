@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import civitas.common.TestBase;
 import civitas.common.TestUtil;
-import civitas.crypto.ConcreteTestBase;
 
-public class MessageDigestCTest extends ConcreteTestBase
+public class MessageDigestCTest extends TestBase
 		implements MessageDigestTestData {
 
 	MessageDigestC md = new MessageDigestC(TestUtil.getBaselineDigest());

@@ -1,9 +1,9 @@
 package civitas.crypto.publickeymsg;
 
+import civitas.common.TestBase;
 import civitas.crypto.BasicValuesTestData;
-import civitas.crypto.ConcreteTestBase;
 
-public class PublicKeyMsgCTest extends ConcreteTestBase
+public class PublicKeyMsgCTest extends TestBase
 		implements BasicValuesTestData {
 
 }

@@ -12,15 +12,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import civitas.common.TestBase;
 import civitas.common.Util;
-import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class ElGamalProofDiscLogEqualityCTest extends ConcreteTestBase
+public class ElGamalProofDiscLogEqualityCTest extends TestBase
 		implements ElGamalProofDiscLogEqualityCTestData {
 
 	@Tested

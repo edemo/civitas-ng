@@ -8,8 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import civitas.common.TestBase;
 import civitas.common.Util;
-import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.messagedigest.ObtainMessageDigest;
@@ -17,7 +17,7 @@ import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class ConstructProofVoteTest extends ConcreteTestBase
+public class ConstructProofVoteTest extends TestBase
 		implements ProofVoteTestData {
 
 	@Tested

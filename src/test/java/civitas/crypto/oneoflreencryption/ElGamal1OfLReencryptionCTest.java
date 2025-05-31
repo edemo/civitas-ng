@@ -10,13 +10,13 @@ import java.io.StringReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertextFromXML;
 import civitas.crypto.ciphertext.ElGamalCiphertextToXML;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLFromXML;
 import civitas.util.Use;
 
-public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
+public class ElGamal1OfLReencryptionCTest extends TestBase
 		implements ElGamal1OfLReencryptionCTestData {
 
 	@Use
@@ -38,8 +38,7 @@ public class ElGamal1OfLReencryptionCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("getProof works as expected")
 	void getProofTest() {
-		assertEquals(EL_GAMAL_PROOF_1_OF_L_XML,
-				EL_GAMAL_1_OF_L_REENCRYPTION.proof.toXML());
+		assertEquals(EL_GAMAL_PROOF_1_OF_L, EL_GAMAL_1_OF_L_REENCRYPTION.proof);
 	}
 
 	@Test

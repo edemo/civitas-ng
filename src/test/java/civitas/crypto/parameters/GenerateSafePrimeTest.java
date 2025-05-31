@@ -7,12 +7,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 import civitas.util.Tested;
 
-public class GenerateSafePrimeTest extends ConcreteTestBase
+public class GenerateSafePrimeTest extends TestBase
 		implements Constants, PrivateKeyTestData {
 
 	@Tested

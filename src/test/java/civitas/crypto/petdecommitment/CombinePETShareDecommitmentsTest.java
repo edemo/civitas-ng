@@ -8,13 +8,13 @@ import java.lang.reflect.Field;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.petcommitment.CombinePETShareDecommitments;
 import civitas.crypto.proofdisclog.VerifyElGamalProofDiscLogEquality;
 import civitas.util.Tested;
 
-public class CombinePETShareDecommitmentsTest extends ConcreteTestBase
+public class CombinePETShareDecommitmentsTest extends TestBase
 		implements PETDecommitmentCTestData {
 
 	@Tested

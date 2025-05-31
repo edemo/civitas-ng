@@ -12,8 +12,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import civitas.common.TestBase;
 import civitas.common.Util;
-import civitas.crypto.ConcreteTestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
@@ -24,7 +24,7 @@ import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class ConstructElGamalProof1OfLTest extends ConcreteTestBase implements
+public class ConstructElGamalProof1OfLTest extends TestBase implements
 		ElGamal1OfLReencryptionCTestData, ElGamalReencryptFactorCTestData {
 
 	@Tested
@@ -33,6 +33,8 @@ public class ConstructElGamalProof1OfLTest extends ConcreteTestBase implements
 	private ConvertHashToBigInt convertHashToBigInt;
 	@Use
 	private CryptoHash cryptoHash;
+	@Use
+	ElGamalProof1OfLToXML elGamalProof1OfLToXML;
 
 	@Test
 	@DisplayName("returns a proof that the ciphertext is a reencription of"
@@ -52,7 +54,7 @@ public class ConstructElGamalProof1OfLTest extends ConcreteTestBase implements
 				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS,
 				MY_CHOICE, REENCRYPTED_WELL_KNOWN_CHOICE, ELGAMAL_REENCRYPT_FACTOR_E);
 
-		assertEquals(EL_GAMAL_PROOF_1_OF_L_XML, proof.toXML());
+		assertEquals(EL_GAMAL_PROOF_1_OF_L_XML, elGamalProof1OfLToXML.apply(proof));
 	}
 
 	@Test

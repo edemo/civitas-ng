@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import civitas.crypto.ConcreteTestBase;
+import civitas.common.TestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.util.Tested;
 
-public class LegendreSymbolTest extends ConcreteTestBase
+public class LegendreSymbolTest extends TestBase
 		implements Constants, ElGamalParametersCTestData {
 
 	@Tested
