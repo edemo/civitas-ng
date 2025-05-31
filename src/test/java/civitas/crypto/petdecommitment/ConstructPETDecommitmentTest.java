@@ -34,7 +34,7 @@ public class ConstructPETDecommitmentTest extends ConcreteTestBase
 		CivitasBigInteger ei = CIPHERTEXT_E_B
 				.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P).modPow(exponent, BIGINT_P);
 
-		PETDecommitmentC decommitment = (PETDecommitmentC) constructPETDecommitment
+		PETDecommitment decommitment = (PETDecommitment) constructPETDecommitment
 				.apply(EL_GAMAL_PARAMETERS, exponent, CIPHERTEXT_E, CIPHERTEXT_EPRIME);
 		assertEquals(di, decommitment.di);
 		assertEquals(ei, decommitment.ei);

@@ -12,13 +12,13 @@ public class PETDecommitmentToXML implements Constants {
 	@Use
 	ElGamalProofDiscLogEqualityToXML elGamalProofDiscLogEqualityToXML;
 
-	public String apply(PETDecommitmentC that) {
+	public String apply(PETDecommitment that) {
 		StringWriter sb = new StringWriter();
 		apply(that, new PrintWriter(sb));
 		return sb.toString();
 	}
 
-	public void apply(PETDecommitmentC that, PrintWriter s) {
+	public void apply(PETDecommitment that, PrintWriter s) {
 		s.print('<');
 		s.print(PETDecommitmentOPENING_TAG);
 		s.print('>');

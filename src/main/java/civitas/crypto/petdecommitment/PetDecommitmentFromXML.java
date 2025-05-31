@@ -14,7 +14,7 @@ public class PetDecommitmentFromXML implements Constants {
 	@Use
 	ElGamalProofDiscLogEqualityFromXML elGamalProofDiscLogEqualityFromXML;
 
-	public PETDecommitmentC apply(Reader r)
+	public PETDecommitment apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, PETDecommitmentOPENING_TAG);
 		String d = Util.unescapeString(Util.readSimpleTag(r, "d"));
@@ -24,7 +24,7 @@ public class PetDecommitmentFromXML implements Constants {
 				.apply(r);
 		Util.swallowEndTag(r, "prf");
 		Util.swallowEndTag(r, PETDecommitmentOPENING_TAG);
-		return new PETDecommitmentC(CryptoFactoryC.stringToBigInt(d),
+		return new PETDecommitment(CryptoFactoryC.stringToBigInt(d),
 				CryptoFactoryC.stringToBigInt(e), proof);
 	}
 

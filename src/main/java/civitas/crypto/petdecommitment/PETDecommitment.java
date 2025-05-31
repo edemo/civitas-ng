@@ -6,6 +6,21 @@
  */
 package civitas.crypto.petdecommitment;
 
-public interface PETDecommitment {
+import civitas.crypto.Constants;
+import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@EqualsAndHashCode
+public class PETDecommitment implements Constants {
+	@NonNull
+	public final CivitasBigInteger di;
+	@NonNull
+	public final CivitasBigInteger ei;
+	@NonNull
+	public final ElGamalProofDiscLogEquality proof;
 
 }

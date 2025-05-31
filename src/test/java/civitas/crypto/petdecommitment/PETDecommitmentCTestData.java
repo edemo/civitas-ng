@@ -23,10 +23,10 @@ public interface PETDecommitmentCTestData
 			+ "</e><prf>" + EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_PROOF_XML
 			+ "</prf></petD>";
 
-	public static final PETDecommitmentC PET_DECOMMITMENT = new PETDecommitmentC(
+	public static final PETDecommitment PET_DECOMMITMENT = new PETDecommitment(
 			PET_DECOMMITMENT_D, PET_DECOMMITMENT_E,
 			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT);
-	public static final PETDecommitmentC PET_DECOMMITMENT2 = new PETDecommitmentC(
+	public static final PETDecommitment PET_DECOMMITMENT2 = new PETDecommitment(
 			BIGINT_A, BIGINT_B, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT);
 
 	PETDecommitment[] PET_DECOMMITMENTS = new PETDecommitment[] {

@@ -16,7 +16,7 @@ public class VerifyPETDecommitment {
 	@Use
 	VerifyElGamalProofDiscLogEquality verifyElGamalProofDiscLogEquality;
 
-	public boolean apply(PETDecommitmentC self, PETCommitment c,
+	public boolean apply(PETDecommitment self, PETCommitment c,
 			ElGamalParameters params, ElGamalCiphertext ciphertext1,
 			ElGamalCiphertext ciphertext2) {
 		if (!(c instanceof PETCommitment)) {

@@ -54,29 +54,9 @@ public class VerifyPETDecommitmentTest extends ConcreteTestBase
 	}
 
 	@Test
-	@DisplayName("if di of the decommitment is null, the verification fails")
-	public void test2() {
-		PETDecommitmentC petDecommitment = new PETDecommitmentC(null,
-				PET_DECOMMITMENT_E, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT);
-
-		assertFalse(verifyPETDecommitment.apply(petDecommitment, PET_COMMITMENT,
-				EL_GAMAL_PARAMETERS, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
-	}
-
-	@Test
-	@DisplayName("if ei of the decommitment is null, the verification fails")
-	public void test3() {
-		PETDecommitmentC petDecommitment = new PETDecommitmentC(PET_DECOMMITMENT_D,
-				null, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT);
-
-		assertFalse(verifyPETDecommitment.apply(petDecommitment, PET_COMMITMENT,
-				EL_GAMAL_PARAMETERS, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
-	}
-
-	@Test
 	@DisplayName("if g1 of the proof != ciphertext1.a/ciphertext2.a the verification fails")
 	public void test4() {
-		PETDecommitmentC petDecommitment = new PETDecommitmentC(PET_DECOMMITMENT_D,
+		PETDecommitment petDecommitment = new PETDecommitment(PET_DECOMMITMENT_D,
 				PET_DECOMMITMENT_E,
 				new ElGamalProofDiscLogEquality(BIGINT_A,
 						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G2,
@@ -94,7 +74,7 @@ public class VerifyPETDecommitmentTest extends ConcreteTestBase
 	@Test
 	@DisplayName("if g2 of the proof != ciphertext1.b/ciphertext2.b the verification fails")
 	public void test5() {
-		PETDecommitmentC petDecommitment = new PETDecommitmentC(PET_DECOMMITMENT_D,
+		PETDecommitment petDecommitment = new PETDecommitment(PET_DECOMMITMENT_D,
 				PET_DECOMMITMENT_E,
 				new ElGamalProofDiscLogEquality(
 						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G1, BIGINT_A,
@@ -128,7 +108,7 @@ public class VerifyPETDecommitmentTest extends ConcreteTestBase
 				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_W, BIGINT_A,
 				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C,
 				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R);
-		PETDecommitmentC petDecommitment = new PETDecommitmentC(PET_DECOMMITMENT_D,
+		PETDecommitment petDecommitment = new PETDecommitment(PET_DECOMMITMENT_D,
 				PET_DECOMMITMENT_E, proof);
 
 		assertFalse(verifyPETDecommitment.apply(petDecommitment, PET_COMMITMENT,

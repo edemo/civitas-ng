@@ -26,7 +26,7 @@ public class ConstructPETDecommitment {
 
 			ElGamalProofDiscLogEquality proof = constructElGamalDiscLogEqualityProof
 					.apply(params, d, e, zi);
-			return new PETDecommitmentC(di, ei, proof);
+			return new PETDecommitment(di, ei, proof);
 		} catch (ClassCastException e) {
 			return null;
 		}
