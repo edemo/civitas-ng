@@ -11,13 +11,13 @@ public class ElGamalProofDVRToXML {
 	@Use
 	ElGamalCiphertextToXML elGamalCiphertextToXML;
 
-	public String apply(ElGamalProofDVRC that) {
+	public String apply(ElGamalProofDVR that) {
 		StringWriter sb = new StringWriter();
 		apply(that, new PrintWriter(sb));
 		return sb.toString();
 	}
 
-	public void apply(ElGamalProofDVRC that, PrintWriter s) {
+	public void apply(ElGamalProofDVR that, PrintWriter s) {
 		s.print("<elGamalProofDVR>");
 		elGamalCiphertextToXML.apply(that.e, s);
 		elGamalCiphertextToXML.apply(that.eprime, s);

@@ -13,7 +13,7 @@ public interface ElGamalProofDVRCTestData extends ElGamalCiphertextCTestData {
 			ZETA.modMultiply(DVR_HASH.modAdd(RANDOMS_1, BIGINT_Q), BIGINT_Q),
 			BIGINT_Q);
 	String DVR_U_BASE64 = Util.fromBigInt(DVR_U);
-	ElGamalProofDVRC EL_GAMAL_PROOF_DVR = new ElGamalProofDVRC(CIPHERTEXT_E,
+	ElGamalProofDVR EL_GAMAL_PROOF_DVR = new ElGamalProofDVR(CIPHERTEXT_E,
 			CIPHERTEXT_EPRIME, DVR_HASH, RANDOMS_1, RANDOMS_2, DVR_U);
 
 	public static final String EL_GAMAL_PROOF_DVR_XML = "<elGamalProofDVR>"

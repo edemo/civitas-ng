@@ -31,7 +31,7 @@ public class ElGamalProofDVRFromXML {
 				.apply(Util.unescapeString(Util.readSimpleTag(reader, "u")));
 
 		Util.swallowEndTag(reader, "elGamalProofDVR");
-		return new ElGamalProofDVRC(e, eprime, c, w, r, u);
+		return new ElGamalProofDVR(e, eprime, c, w, r, u);
 	}
 
 }

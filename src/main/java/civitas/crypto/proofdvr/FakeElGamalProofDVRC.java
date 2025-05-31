@@ -22,7 +22,7 @@ public class FakeElGamalProofDVRC {
 	@Use
 	ConvertHashToBigInt convertHashToBigInt;
 
-	public ElGamalProofDVRC apply(ElGamalCiphertext e, ElGamalCiphertext et,
+	public ElGamalProofDVR apply(ElGamalCiphertext e, ElGamalCiphertext et,
 			ElGamalPublicKey key, ElGamalPublicKey verifierKey,
 			ElGamalPrivateKey verifierPrivKey) {
 
@@ -68,7 +68,7 @@ public class FakeElGamalProofDVRC {
 		CivitasBigInteger wt = alpha.modSubtract(ct, ps.q);
 		CivitasBigInteger rt = beta.modSubtract(wt, ps.q).modDivide(zv, ps.q);
 
-		return new ElGamalProofDVRC(e, et, ct, wt, rt, ut);
+		return new ElGamalProofDVR(e, et, ct, wt, rt, ut);
 
 	}
 

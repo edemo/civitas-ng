@@ -25,7 +25,7 @@ public class FakeElGamalProofDVRCTest extends ConcreteTestBase
 	@DisplayName("creates a fake proof with the private key of the verifier which verifies")
 	void test1_1() throws IllegalArgumentException, IOException {
 
-		ElGamalProofDVRC proof = fakeElGamalProofDVRC.apply(CIPHERTEXT_E,
+		ElGamalProofDVR proof = fakeElGamalProofDVRC.apply(CIPHERTEXT_E,
 				CIPHERTEXT_EPRIME, EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME,
 				ELGAMAL_PRIVATE_KEY_EPRIME);
 		assertTrue(verifyElGamalProofDVR.apply(proof, EL_GAMAL_PUBLIC_KEY_E,

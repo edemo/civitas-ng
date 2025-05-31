@@ -28,20 +28,20 @@ public class ElGamalProofDVRCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("getE works")
 	void getETest() {
-		assertEquals(CIPHERTEXT_E, EL_GAMAL_PROOF_DVR.getE());
+		assertEquals(CIPHERTEXT_E, EL_GAMAL_PROOF_DVR.e);
 	}
 
 	@Test
 	@DisplayName("getEprime works")
 	void getEprimeTest() {
-		assertEquals(CIPHERTEXT_EPRIME, EL_GAMAL_PROOF_DVR.getEprime());
+		assertEquals(CIPHERTEXT_EPRIME, EL_GAMAL_PROOF_DVR.eprime);
 	}
 
 	@Test
 	@DisplayName("fromXML works")
 	void fromXMLTest() throws IllegalArgumentException, IOException {
 		assertEquals(EL_GAMAL_PROOF_DVR_XML,
-				elGamalProofDVRToXML.apply(((ElGamalProofDVRC) elGamalProofDVRFromXML
+				elGamalProofDVRToXML.apply((elGamalProofDVRFromXML
 						.apply(new StringReader(EL_GAMAL_PROOF_DVR_XML)))));
 	}
 

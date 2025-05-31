@@ -7,18 +7,26 @@
 package civitas.crypto.proofdvr;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.publickey.ElGamalPublicKey;
+import civitas.util.CivitasBigInteger;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-/**
- * Designated Verifier Re-encryption Proof
- */
-public interface ElGamalProofDVR {
-	@Deprecated
-	public boolean verify(ElGamalPublicKey K, ElGamalPublicKey verifierKey);
+@RequiredArgsConstructor
+@EqualsAndHashCode
+public class ElGamalProofDVR {
 
-	// getters
-	ElGamalCiphertext getE();
-
-	ElGamalCiphertext getEprime();
+	@NonNull
+	public final ElGamalCiphertext e;
+	@NonNull
+	public final ElGamalCiphertext eprime;
+	@NonNull
+	public final CivitasBigInteger c;
+	@NonNull
+	public final CivitasBigInteger w;
+	@NonNull
+	public final CivitasBigInteger r;
+	@NonNull
+	public final CivitasBigInteger u;
 
 }

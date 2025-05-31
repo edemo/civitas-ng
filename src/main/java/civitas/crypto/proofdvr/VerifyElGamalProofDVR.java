@@ -17,7 +17,7 @@ public class VerifyElGamalProofDVR {
 	@Use
 	ConvertHashToBigInt convertHashToBigInt;
 
-	public boolean apply(ElGamalProofDVRC that, ElGamalPublicKey K,
+	public boolean apply(ElGamalProofDVR that, ElGamalPublicKey K,
 			ElGamalPublicKey verifierKey) {
 
 		ElGamalParameters ps = (ElGamalParameters) K.params;

@@ -35,7 +35,7 @@ public class ConstructElGamalProofDVR {
 		}
 	}
 
-	public ElGamalProofDVRC apply(ElGamalCiphertext e, ElGamalCiphertext eprime,
+	public ElGamalProofDVR apply(ElGamalCiphertext e, ElGamalCiphertext eprime,
 			ElGamalPublicKey key, ElGamalPublicKey verifierKey,
 			CivitasBigInteger zeta) {
 
@@ -69,7 +69,7 @@ public class ConstructElGamalProofDVR {
 		CivitasBigInteger u = d.modAdd(zeta.modMultiply(c.modAdd(w, ps.q), ps.q),
 				ps.q);
 
-		return new ElGamalProofDVRC(e, eprime, c, w, r, u);
+		return new ElGamalProofDVR(e, eprime, c, w, r, u);
 
 	}
 
