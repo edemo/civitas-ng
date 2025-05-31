@@ -45,13 +45,16 @@ public interface Constants {
 	public static final int EL_GAMAL_GROUP_LENGTH = 3072; // size in bits for p
 	public static final int EL_GAMAL_KEY_LENGTH = 256; // size in bits for q
 
+	public static final int AUTHENTICATION_NONCE_LENGTH = 64;
+
 	public static final String ElGamalCiphertextOPENING_TAG = "elGamalCiphertext";
 	public final static String ElGamalDecryptionShareOPENING_TAG = "elGamalDecryptionShare";
 	public final static String PETCommitmentOPENING_TAG = "petC";
 	public final static String PETDecommitmentOPENING_TAG = "petD";
 	public final static String ElGamalPublicKeyOPENING_TAG = "elGamalPublicKey";
 	public static final String PublicKeyCiphertextOPENING_TAG = "publicKeyCiphertext";
-
+	public static final String PrivateKeyOPENING_TAG = "privateKey";
+	public final static String PublicKeyOPENING_TAG = "publicKey";
 	public final String CHARSET_NAME = "UTF-8";
 
 }

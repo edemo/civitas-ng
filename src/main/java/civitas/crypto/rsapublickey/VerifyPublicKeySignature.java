@@ -28,7 +28,7 @@ public class VerifyPublicKeySignature implements Constants {
 		try {
 			java.security.Signature sig = java.security.Signature
 					.getInstance(PUBLIC_KEY_SIGNATURE_ALG, PUBLIC_KEY_PROVIDER);
-			PublicKeyC Kc = (PublicKeyC) K;
+			PublicKey Kc = K;
 			SignatureC sc = (SignatureC) s;
 			sig.initVerify(Kc.k);
 			sig.update(bytes);

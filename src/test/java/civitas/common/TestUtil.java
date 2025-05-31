@@ -5,8 +5,6 @@ import java.io.StringReader;
 import java.security.KeyFactory;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
 import java.security.Security;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -18,6 +16,8 @@ import java.util.function.Function;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.mockito.invocation.InvocationOnMock;
 
+import civitas.crypto.rsaprivatekey.PrivateKey;
+import civitas.crypto.rsapublickey.PublicKey;
 import civitas.util.CivitasBigInteger;
 
 public class TestUtil {
@@ -71,17 +71,18 @@ public class TestUtil {
 
 	public static PrivateKey generatePrivate(String privateKey2Base64) {
 		try {
-			return keyFactory.generatePrivate(new PKCS8EncodedKeySpec(
-					Base64.getDecoder().decode(privateKey2Base64)));
+			return new PrivateKey(keyFactory.generatePrivate(new PKCS8EncodedKeySpec(
+					Base64.getDecoder().decode(privateKey2Base64))));
 		} catch (InvalidKeySpecException e) {
 			throw new Error(e);
 		}
 	}
 
-	public static PublicKey generatePublic(String privateKey2Base64) {
+	public static PublicKey generatePublic(String privateKey2Base64,
+			String name) {
 		try {
-			return keyFactory.generatePublic(new X509EncodedKeySpec(
-					Base64.getDecoder().decode(privateKey2Base64)));
+			return new PublicKey(keyFactory.generatePublic(new X509EncodedKeySpec(
+					Base64.getDecoder().decode(privateKey2Base64))), name);
 		} catch (InvalidKeySpecException e) {
 			throw new Error(e);
 		}

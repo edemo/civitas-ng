@@ -6,8 +6,15 @@
  */
 package civitas.crypto.rsaprivatekey;
 
-import java.io.PrintWriter;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-public interface PrivateKey {
-	public void toXML(PrintWriter sb);
+@RequiredArgsConstructor
+@EqualsAndHashCode
+public class PrivateKey {
+
+	@NonNull
+	public final java.security.PrivateKey k;
+
 }

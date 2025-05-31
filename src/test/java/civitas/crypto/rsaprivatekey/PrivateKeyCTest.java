@@ -14,17 +14,19 @@ public class PrivateKeyCTest extends ConcreteTestBase
 		implements PrivateKeyTestData {
 	@Use
 	PrivateKeyFromXML privateKeyFromXML;
+	@Use
+	PrivateKeyToXML privateKeyToXML;
 
 	@Test
 	@DisplayName("constructor and toXML works as expected")
 	void test() {
-		assertEquals(PRIVATE_KEY_XML, new PrivateKeyC(PRIVATE_KEY).toXML());
+		assertEquals(PRIVATE_KEY_XML, privateKeyToXML.apply(PRIVATE_KEY));
 	}
 
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test1() throws Exception {
-		assertEquals(PRIVATE_KEY_XML, ((PrivateKeyC) privateKeyFromXML
-				.apply(new StringReader(PRIVATE_KEY_XML))).toXML());
+		assertEquals(PRIVATE_KEY, privateKeyFromXML
+				.apply(new StringReader(PRIVATE_KEY_XML)));
 	}
 }

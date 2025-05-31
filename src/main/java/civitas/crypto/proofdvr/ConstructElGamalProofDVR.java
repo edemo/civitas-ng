@@ -10,7 +10,6 @@ import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -27,8 +26,8 @@ public class ConstructElGamalProofDVR {
 			ElGamalReencryptFactor erPrime) {
 		try {
 			ElGamalParameters ps = k.params;
-			CivitasBigInteger zeta = ((ElGamalReencryptFactor) erPrime).r
-					.modSubtract(((ElGamalReencryptFactor) er).r, ps.q);
+			CivitasBigInteger zeta = erPrime.r
+					.modSubtract(er.r, ps.q);
 			return apply(e, ePrime, k, verifierKey, zeta);
 		} catch (ClassCastException ex) {
 			return null;

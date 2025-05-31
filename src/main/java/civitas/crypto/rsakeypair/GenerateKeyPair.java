@@ -2,8 +2,8 @@ package civitas.crypto.rsakeypair;
 
 import civitas.crypto.algorithms.CreateFreshNonceBase64;
 import civitas.crypto.algorithms.GetPublicKeyGenerator;
-import civitas.crypto.rsaprivatekey.PrivateKeyC;
-import civitas.crypto.rsapublickey.PublicKeyC;
+import civitas.crypto.rsaprivatekey.PrivateKey;
+import civitas.crypto.rsapublickey.PublicKey;
 import civitas.util.Use;
 
 public class GenerateKeyPair {
@@ -20,8 +20,8 @@ public class GenerateKeyPair {
 		java.security.PrivateKey prvk = kp.getPrivate();
 
 		return new KeyPair(
-				new PublicKeyC(pubk, "keypair-" + createFreshNonceBase64.apply(64)),
-				new PrivateKeyC(prvk));
+				new PublicKey(pubk, "keypair-" + createFreshNonceBase64.apply(64)),
+				new PrivateKey(prvk));
 	}
 
 }

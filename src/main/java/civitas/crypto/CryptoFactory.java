@@ -10,6 +10,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.SignatureException;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertextlist.CiphertextList;
@@ -226,14 +230,18 @@ public interface CryptoFactory {
 	/*
 	 * Public key signing operations
 	 */
-	Signature signature(PrivateKey k, PublicKeyMsg m);
+	Signature signature(PrivateKey k, PublicKeyMsg m)
+			throws InvalidKeyException, NoSuchAlgorithmException,
+			NoSuchProviderException, SignatureException, CryptoError;
 
 	boolean publicKeyVerifySignature(PublicKey K, Signature s, PublicKeyMsg m);
 
 	PublicKeyMsg publicKeyVerifySignatureMsg(PublicKey K, Signature s,
 			PublicKeyMsg m);
 
-	Signature signature(PrivateKey k, byte[] bytes);
+	Signature signature(PrivateKey k, byte[] bytes)
+			throws InvalidKeyException, NoSuchAlgorithmException,
+			NoSuchProviderException, SignatureException, CryptoError;
 
 	boolean publicKeyVerifySignature(PublicKey K, Signature s, byte[] bytes);
 

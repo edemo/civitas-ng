@@ -8,17 +8,17 @@ package civitas.crypto.rsakeypair;
 
 import civitas.crypto.rsaprivatekey.PrivateKey;
 import civitas.crypto.rsapublickey.PublicKey;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
+@EqualsAndHashCode
 public class KeyPair {
+
+	@NonNull
 	public final PublicKey publicKey;
-	// by definition, the private key is only readable
-	// by the principal represented by the publicKey
+	@NonNull
 	public final PrivateKey privateKey;
 
-	public KeyPair(final PublicKey publicKey, final PrivateKey privateKey)
-
-	{
-		this.publicKey = publicKey;
-		this.privateKey = privateKey;
-	}
 }

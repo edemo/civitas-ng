@@ -10,7 +10,6 @@ import civitas.crypto.msg.EncodeMessage;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.util.Use;
 
 public class ConstructWellKnownCiphertexts implements Constants {

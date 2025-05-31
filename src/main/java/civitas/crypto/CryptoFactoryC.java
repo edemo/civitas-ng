@@ -10,10 +10,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.Security;
+import java.security.SignatureException;
 
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -100,7 +102,6 @@ import civitas.crypto.publickeyciphertext.PublicKeyCiphertext;
 import civitas.crypto.publickeyciphertext.PublicKeyCiphertextFromXML;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.publickeymsg.VerifyPublicKeySignatureMsg;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorFromXML;
 import civitas.crypto.rsakeypair.GenerateKeyPair;
@@ -760,12 +761,16 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	@Override
-	public Signature signature(PrivateKey k, PublicKeyMsg msg) {
+	public Signature signature(PrivateKey k, PublicKeyMsg msg)
+			throws InvalidKeyException, NoSuchAlgorithmException,
+			NoSuchProviderException, SignatureException, CryptoError {
 		return signWithPublicKey.apply(k, msg);
 	}
 
 	@Override
-	public Signature signature(PrivateKey k, byte[] bytes) {
+	public Signature signature(PrivateKey k, byte[] bytes)
+			throws InvalidKeyException, NoSuchAlgorithmException,
+			NoSuchProviderException, SignatureException, CryptoError {
 		return signWithPublicKey.apply(k, bytes);
 	}
 
@@ -973,9 +978,8 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 			ElGamalCiphertext encCapability, ElGamal1OfLReencryption encChoice,
 			String context, ElGamalReencryptFactor encCapabilityFactor,
 			ElGamalReencryptFactor encChoiceFactor) {
-		return constructProofVote.apply(params, encCapability,
-				encChoice.m, context, (ElGamalReencryptFactor) encCapabilityFactor,
-				(ElGamalReencryptFactor) encChoiceFactor);
+		return constructProofVote.apply(params, encCapability, encChoice.m, context,
+				encCapabilityFactor, encChoiceFactor);
 	}
 
 	@Override

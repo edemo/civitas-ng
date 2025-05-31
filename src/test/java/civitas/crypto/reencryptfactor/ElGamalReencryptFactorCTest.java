@@ -28,7 +28,7 @@ public class ElGamalReencryptFactorCTest extends ConcreteTestBase
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
-		ElGamalReencryptFactor a = (ElGamalReencryptFactor) elGamalReencryptFactorFromXML
+		ElGamalReencryptFactor a = elGamalReencryptFactorFromXML
 				.apply(new StringReader(ELGAMAL_REENCRYPT_FACTOR_XML));
 		assertEquals(ELGAMAL_REENCRYPT_FACTOR_XML,
 				elGamalReencryptFactorToXML.apply(a));

@@ -6,10 +6,16 @@
  */
 package civitas.crypto.rsapublickey;
 
-import java.io.PrintWriter;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-public interface PublicKey {
-	public final static String OPENING_TAG = "publicKey";
+@RequiredArgsConstructor
+@EqualsAndHashCode
+public class PublicKey {
+	@NonNull
+	public final java.security.PublicKey k;
+	@NonNull
+	final String name;
 
-	public void toXML(PrintWriter sb);
 }
