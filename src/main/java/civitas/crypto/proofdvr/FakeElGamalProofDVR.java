@@ -22,6 +22,12 @@ public class FakeElGamalProofDVR {
 	@Use
 	ConvertHashToBigInt convertHashToBigInt;
 
+	public ElGamalProofDVR apply(ElGamalPublicKey key,
+			ElGamalPublicKey verifierKey, ElGamalPrivateKey verifierPrivKey,
+			ElGamalCiphertext e, ElGamalCiphertext ePrime) {
+		return apply(e, ePrime, key, verifierKey, verifierPrivKey);
+	}
+
 	public ElGamalProofDVR apply(ElGamalCiphertext e, ElGamalCiphertext et,
 			ElGamalPublicKey key, ElGamalPublicKey verifierKey,
 			ElGamalPrivateKey verifierPrivKey) {
@@ -70,16 +76,6 @@ public class FakeElGamalProofDVR {
 
 		return new ElGamalProofDVR(e, et, ct, wt, rt, ut);
 
-	}
-
-	public ElGamalProofDVR apply(ElGamalPublicKey k, ElGamalPublicKey verifierKey,
-			ElGamalPrivateKey verifierPrivKey, ElGamalCiphertext e,
-			ElGamalCiphertext ePrime) {
-		try {
-			return apply(e, ePrime, k, verifierKey, verifierPrivKey);
-		} catch (ClassCastException ex) {
-			return null;
-		}
 	}
 
 }

@@ -10,12 +10,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 
+import civitas.util.Boilerplate;
+
 /**
  * This class is the ballot of a condorcet race. In a condorcet race, there is a
  * slate of candidates, and the voter indicates for each pair of candidates i
  * and j whether the voter prefers i to j, j to i, or does not prefer one over
  * the other. A CondorcetBallot records a voter's preferences.
  */
+@Boilerplate
 public class CondorcetBallot extends Ballot {
 	/**
 	 * The number of candidates

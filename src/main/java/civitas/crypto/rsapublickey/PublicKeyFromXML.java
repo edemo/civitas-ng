@@ -5,9 +5,12 @@ import java.io.Reader;
 
 import civitas.common.Util;
 import civitas.crypto.Constants;
-import civitas.crypto.CryptoFactoryC;
+import civitas.util.Use;
 
 public class PublicKeyFromXML implements Constants {
+	@Use
+	CreatePublicKeyFromBytes createPublicKeyFromBytes;
+
 	public PublicKey apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, PublicKeyOPENING_TAG);
@@ -16,8 +19,7 @@ public class PublicKeyFromXML implements Constants {
 		Util.swallowEndTag(r, PublicKeyOPENING_TAG);
 
 		byte[] bs = java.util.Base64.getDecoder().decode(s);
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-		return new PublicKey(factory.publicKeyFromBytes(bs), name);
+		return new PublicKey(createPublicKeyFromBytes.apply(bs), name);
 	}
 
 }

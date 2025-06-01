@@ -23,14 +23,14 @@ public class ConstructElGamalKeyShareTest extends TestBase
 	@DisplayName("the one-parameter version returns the public key with the proof of knowledge for the private key")
 	void test() {
 		ElGamalKeyShare actual = constructElGamalKeyShare
-				.apply(EL_GAMAL_KEYPAIR_SHARE_NO_PROOF);
+				.apply(EL_GAMAL_KEYPAIR_SHARE);
 		assertTrue(EL_GAMAL_KEY_SHARE_E.equals(actual));
 	}
 
 	@Test
 	@DisplayName("the one-parameter version tests the created proof")
 	void test_1() {
-		constructElGamalKeyShare.apply(EL_GAMAL_KEYPAIR_SHARE_NO_PROOF);
+		constructElGamalKeyShare.apply(EL_GAMAL_KEYPAIR_SHARE);
 		verify(constructElGamalKeyShare.verifyElGamalKeyShare)
 				.apply(EL_GAMAL_KEY_SHARE_E);
 	}
@@ -39,7 +39,7 @@ public class ConstructElGamalKeyShareTest extends TestBase
 	@DisplayName("if the generated proof does not verify (impossible) a CryptoError is thrown")
 	void test_2() {
 		assertThrows(CryptoError.class, () -> constructElGamalKeyShare
-				.apply(EL_GAMAL_KEYPAIR_SHARE_BAD_PROOF_GENERATED));
+				.apply(EL_GAMAL_KEYPAIR_SHARE_BAD));
 	}
 
 }

@@ -12,12 +12,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
-import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
+import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.signedciphertext.SharedKeyCiphertextFromXML;
 import civitas.util.Use;
 
 public class SharedKeyCiphertextCTest extends TestBase
-		implements ElGamalCiphertextCTestData {
+		implements ElGamalCiphertextTestData {
 	@Use
 	SharedKeyCiphertextFromXML sharedKeyCiphertextFromXML;
 	@Use

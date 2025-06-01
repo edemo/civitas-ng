@@ -18,11 +18,14 @@ import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
-import civitas.crypto.parameters.ElGamalParameters;
+import civitas.crypto.parameters.SetUpDecodeMap;
 import civitas.crypto.proofvote.ProofVote;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.votecapability.VoteCapability;
+import civitas.util.Boilerplate;
+import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 /**
  * This class is the ballot design of a condorcet race. In a condorcet race,
@@ -31,6 +34,7 @@ import civitas.crypto.votecapability.VoteCapability;
  * prefer one over the other. A CondorcetBallotDesign describes the slate of
  * candidates.
  */
+@Boilerplate
 public class CondorcetBallotDesign extends BallotDesign {
 	public static final String KIND = "condorcet";
 	private static final String CONTEXT_SUFFIX = "condorcet:";
@@ -83,6 +87,11 @@ public class CondorcetBallotDesign extends BallotDesign {
 			return VOTE_CHOICE_NEITHER_BEAT;
 		return -1;
 	}
+
+	Map<CivitasBigInteger, Integer> decodeMap;
+
+	@Use
+	SetUpDecodeMap setUpDecodeMap;
 
 	public CondorcetBallotDesign(String[] candidates) {
 		super();
@@ -334,9 +343,10 @@ public class CondorcetBallotDesign extends BallotDesign {
 
 	@Override
 	public void tally(String ctxt, ElGamalMsg m, String c, TallyState s,
-			ElGamalParameters params) throws IllegalArgumentException
+			Map<CivitasBigInteger, Integer> decodeMap) throws IllegalArgumentException
 
 	{
+
 		if (!(s instanceof CondorcetTallyState)) {
 			throw new IllegalArgumentException("Incorrect tally state");
 		}
@@ -353,7 +363,7 @@ public class CondorcetBallotDesign extends BallotDesign {
 		}
 
 		try {
-			int choice = CryptoUtil.factory().elGamal1OfLValue(m, 4, params);
+			int choice = CryptoUtil.factory().elGamal1OfLValue(m, decodeMap);
 			String suffix = c.substring(desiredContext.length());
 			// suffix is of the form "i:j". Find i and j.
 			if (suffix != null) {

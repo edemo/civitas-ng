@@ -1,11 +1,11 @@
 package civitas.crypto.ciphertext;
 
-import civitas.crypto.parameters.ElGamalParametersCTestData;
+import civitas.crypto.parameters.ElGamalParametersTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.util.CivitasBigInteger;
 
 public interface MultiplyCiphertextsTestData
-		extends ElGamalParametersCTestData {
+		extends ElGamalParametersTestData {
 	ElGamalSignedCiphertext CIPHERTEXT_2_3 = new ElGamalSignedCiphertext(
 			CivitasBigInteger.valueOf(2), CivitasBigInteger.valueOf(3), null, null);
 	ElGamalSignedCiphertext[][] CIPHERTEXT_MATRIX = new ElGamalSignedCiphertext[][] {

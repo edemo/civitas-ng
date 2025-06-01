@@ -15,7 +15,7 @@ public interface Constants {
 	/**
 	 * 2^-CERTAINTY is false positive rate for probablePrime.
 	 */
-	public final static int CERTAINTY = 80; // 2^80 recommended by FIPS 186.
+	public final static int CERTAINTY = 100; // 2^80 recommended by FIPS 186.
 
 	public static final CivitasBigInteger ZERO = CivitasBigInteger.valueOf(0);
 	public static final CivitasBigInteger ONE = CivitasBigInteger.valueOf(1);

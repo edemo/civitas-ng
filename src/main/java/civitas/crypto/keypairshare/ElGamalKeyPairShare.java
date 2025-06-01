@@ -9,12 +9,10 @@ package civitas.crypto.keypairshare;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-@EqualsAndHashCode
+@Data
 public class ElGamalKeyPairShare {
 	@NonNull
 	public final ElGamalParameters params;

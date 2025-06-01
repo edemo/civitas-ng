@@ -20,7 +20,7 @@ import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
 public class ElGamalPublicKeyCTest extends TestBase
-		implements ElGamalPublicKeyCTestData {
+		implements ElGamalPublicKeyTestData {
 
 	ElGamalPublicKey elGamalPublicKeyC;
 
@@ -70,7 +70,7 @@ public class ElGamalPublicKeyCTest extends TestBase
 	@DisplayName("isAuthorized checks if the proof is the private key for this")
 	void test3() throws IllegalArgumentException, IOException {
 		assertTrue(elGamalPublicKeyisAuthorized.apply(elGamalPublicKeyC,
-				ELGAMAL_PRIVATE_KEY_E));
+				EL_GAMAL_PRIVATE_KEY_E));
 	}
 
 	@Test

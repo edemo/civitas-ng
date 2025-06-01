@@ -11,7 +11,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 public class ElGamalCiphertextFromXMLStub
-		implements ElGamalCiphertextCTestData {
+		implements ElGamalCiphertextTestData {
 	public ElGamalCiphertextFromXML stub() throws IOException {
 		ElGamalCiphertextFromXML stub = mock(ElGamalCiphertextFromXML.class);
 		ArgumentCaptor<Reader> readerArgument = ArgumentCaptor

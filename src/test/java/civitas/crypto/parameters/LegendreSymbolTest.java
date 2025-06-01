@@ -12,7 +12,7 @@ import civitas.crypto.CryptoError;
 import civitas.util.Tested;
 
 public class LegendreSymbolTest extends TestBase
-		implements Constants, ElGamalParametersCTestData {
+		implements Constants, ElGamalParametersTestData {
 
 	@Tested
 	LegendreSymbol legendreSymbol;

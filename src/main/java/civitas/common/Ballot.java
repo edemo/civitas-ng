@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 
+import civitas.util.Boilerplate;
+
 /**
  * A Ballot is a representation of a voter's intentions. For example, in a
  * "single choice" race, there is a slate of candidates, of which the voter may
@@ -18,6 +20,7 @@ import java.io.Reader;
  * <code>Vote</code>s, which the voter submits to the bulletin board, and which
  * are used in the tabulation protocols.
  */
+@Boilerplate
 public abstract class Ballot {
 	public abstract void toXML(PrintWriter sb);
 

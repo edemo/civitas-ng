@@ -7,14 +7,10 @@
 package civitas.crypto.msg;
 
 import civitas.util.CivitasBigInteger;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
-@EqualsAndHashCode
-@ToString
-@RequiredArgsConstructor
+@Data
 public class ElGamalMsg {
 	@NonNull
 	public final CivitasBigInteger m;

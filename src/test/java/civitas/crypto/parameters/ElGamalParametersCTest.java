@@ -17,7 +17,7 @@ import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
 public class ElGamalParametersCTest extends TestBase
-		implements ElGamalParametersCTestData {
+		implements ElGamalParametersTestData {
 	@Use
 	ElGamalParametersFromXML elGamalParametersFromXML;
 	@Use

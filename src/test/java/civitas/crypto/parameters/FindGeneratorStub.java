@@ -3,7 +3,7 @@ package civitas.crypto.parameters;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class FindGeneratorStub implements ElGamalParametersCTestData {
+public class FindGeneratorStub implements ElGamalParametersTestData {
 
 	public static FindGenerator stub() {
 		FindGenerator findGenerator = mock(FindGenerator.class);

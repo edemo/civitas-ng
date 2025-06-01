@@ -6,9 +6,12 @@
  */
 package civitas.common;
 
+import civitas.util.Boilerplate;
+
 /**
  * TallyState for a CondorcetBallotDesign.
  */
+@Boilerplate
 public class CondorcetTallyState extends TallyState {
 	private final int[][] matrix;
 	private final int size;

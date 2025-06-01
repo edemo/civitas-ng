@@ -8,9 +8,11 @@ package civitas.crypto.signedciphertext;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.util.CivitasBigInteger;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 
+@Data
 @EqualsAndHashCode(callSuper = true)
 public class ElGamalSignedCiphertext extends ElGamalCiphertext {
 	@NonNull

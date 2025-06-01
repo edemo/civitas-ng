@@ -6,12 +6,12 @@ import java.util.function.Supplier;
 
 import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
+import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.proof1ofl.ElGamalProof1OfL;
 import civitas.util.CivitasBigInteger;
 
 public interface ElGamal1OfLReencryptionCTestData
-		extends ElGamalCiphertextCTestData {
+		extends ElGamalCiphertextTestData {
 
 	public static final int MY_CHOICE = 2;
 

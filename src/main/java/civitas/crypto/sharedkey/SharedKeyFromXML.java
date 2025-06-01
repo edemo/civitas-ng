@@ -6,9 +6,12 @@ import java.util.Base64;
 
 import civitas.common.Util;
 import civitas.crypto.Constants;
-import civitas.crypto.CryptoFactoryC;
+import civitas.util.Use;
 
 public class SharedKeyFromXML implements Constants {
+
+	@Use
+	CreateSharedKeyFromBytes createSharedKeyFromBytes;
 
 	public SharedKey apply(Reader r)
 			throws IllegalArgumentException, IOException {
@@ -18,8 +21,7 @@ public class SharedKeyFromXML implements Constants {
 		Util.swallowEndTag(r, SharedKeyOPENING_TAG);
 
 		byte[] bs = Base64.getDecoder().decode(s);
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-		return new SharedKey(factory.sharedKeyFromBytes(bs), name);
+		return new SharedKey(createSharedKeyFromBytes.apply(bs), name);
 	}
 
 }

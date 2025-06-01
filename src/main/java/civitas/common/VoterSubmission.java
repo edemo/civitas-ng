@@ -10,12 +10,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 
+import civitas.util.Boilerplate;
 import civitas.util.Use;
 
 /**
  * A submission made by a voter to the ballot box. It is a collection of
  * VeriableVotes, and the voter block that the voter belings in.
  */
+@Boilerplate
 public class VoterSubmission implements XMLSerializable {
 	public final static String meta(int voterBlock) {
 		return "voterSubmission-voterBlock" + voterBlock;

@@ -8,12 +8,10 @@ package civitas.crypto.proofdvr;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.util.CivitasBigInteger;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-@EqualsAndHashCode
+@Data
 public class ElGamalProofDVR {
 
 	@NonNull

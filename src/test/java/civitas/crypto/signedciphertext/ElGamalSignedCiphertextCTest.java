@@ -12,7 +12,7 @@ import civitas.common.TestBase;
 import civitas.util.Use;
 
 public class ElGamalSignedCiphertextCTest extends TestBase
-		implements ElGamalSignedCiphertextCTestData {
+		implements ElGamalSignedCiphertextTestData {
 
 	@Use
 	ElGamalSignedCiphertextFromXML elGamalSignedCiphertextFromXML;

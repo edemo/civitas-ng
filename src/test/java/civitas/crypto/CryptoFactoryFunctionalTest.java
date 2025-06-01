@@ -2,11 +2,9 @@ package civitas.crypto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPublicKey;
-import java.util.Arrays;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
@@ -16,14 +14,14 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
-import civitas.crypto.algorithms.CreatePermutation;
 import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GetPublicKeyGenerator;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 import civitas.crypto.sharedkey.GetSharedKeyGenerator;
 import civitas.util.Use;
 
-public class CryptoFactoryCTest extends TestBase
+@Tag("functional")
+public class CryptoFactoryFunctionalTest extends TestBase
 		implements PrivateKeyTestData, BasicValuesTestData {
 
 	@Use
@@ -31,9 +29,10 @@ public class CryptoFactoryCTest extends TestBase
 
 	@Use
 	GetPublicKeyGenerator getPublicKeyGenerator;
+	@Use
+	GetSharedKeyGenerator getSharedKeyGenerator;
 
 	@Test
-	@Tag("functional")
 	@DisplayName("publicKeyGenerator gives a generator which generates a public key with the given length")
 	void publicKeyGeneratorTest() throws Exception {
 
@@ -41,7 +40,7 @@ public class CryptoFactoryCTest extends TestBase
 
 		RSAPublicKey publicKey = (RSAPublicKey) generator.generateKeyPair()
 				.getPublic();
-		assertEquals(1024, publicKey.getModulus().bitLength());
+		assertEquals(KEYSIZE, publicKey.getModulus().bitLength());
 
 	}
 
@@ -54,9 +53,6 @@ public class CryptoFactoryCTest extends TestBase
 		assertTrue(generator == generator2);
 
 	}
-
-	@Use
-	GetSharedKeyGenerator getSharedKeyGenerator;
 
 	@Test
 	@DisplayName("sharedKeyGenerator returns a generator for the given key size")
@@ -77,26 +73,6 @@ public class CryptoFactoryCTest extends TestBase
 		KeyGenerator generator2 = getSharedKeyGenerator.apply(KEYSIZE);
 		assertTrue(generator == generator2);
 
-	}
-
-	@Use
-	CreatePermutation createPermutation;
-
-	@Test
-	@DisplayName("createPermutation creates a permutation of given size")
-	void createPermutation() {
-
-		int[] permutation = createPermutation.apply(SOME_SMALL_INT);
-		boolean[] hasIt = new boolean[SOME_SMALL_INT];
-		Arrays.fill(hasIt, false);
-		for (int i = 0; i < SOME_SMALL_INT; i++) {
-			hasIt[permutation[i]] = true;
-		}
-		for (int i = 0; i < SOME_SMALL_INT; i++) {
-			if (!hasIt[i])
-				fail();
-		}
-		assertTrue(true);
 	}
 
 }

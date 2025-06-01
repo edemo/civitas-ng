@@ -1,12 +1,12 @@
 package civitas.crypto.petshare;
 
 import civitas.crypto.BasicValuesTestData;
-import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
+import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 
 public interface PETShareTestData
-		extends BasicValuesTestData, ElGamalCiphertextCTestData {
+		extends BasicValuesTestData, ElGamalCiphertextTestData {
 
-	public static final PETShare PET_SHARE_C = new PETShare(CIPHERTEXT_E,
+	public static final PETShare PET_SHARE = new PETShare(CIPHERTEXT_E,
 			CIPHERTEXT_EPRIME, FACTOR_E);
 
 	public static final String PET_SHARE_XML = "<petShare>"

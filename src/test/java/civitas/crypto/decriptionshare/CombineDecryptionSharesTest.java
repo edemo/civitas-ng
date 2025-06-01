@@ -6,13 +6,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
-import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
+import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 
 public class CombineDecryptionSharesTest extends TestBase
-		implements ElGamalDecryptionShareTestData, ElGamalCiphertextCTestData {
+		implements ElGamalDecryptionShareTestData, ElGamalCiphertextTestData {
 
 	@Tested
 	CombineDecryptionShares combineDecryptionShares;

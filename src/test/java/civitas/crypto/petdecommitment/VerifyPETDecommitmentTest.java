@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import civitas.common.TestBase;
 import civitas.common.Util;
 import civitas.crypto.algorithms.CryptoHash;
-import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
-import civitas.crypto.petcommitment.PETCommitmentCTestData;
+import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
+import civitas.crypto.petcommitment.PETCommitmentTestData;
 import civitas.crypto.petshare.PETShareTestData;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
@@ -19,8 +19,8 @@ import civitas.util.Tested;
 import civitas.util.Use;
 
 public class VerifyPETDecommitmentTest extends TestBase
-		implements PETDecommitmentCTestData, PETCommitmentCTestData,
-		ElGamalCiphertextCTestData, PETShareTestData {
+		implements PETDecommitmentTestData, PETCommitmentTestData,
+		ElGamalCiphertextTestData, PETShareTestData {
 
 	@Tested
 	VerifyPETDecommitment verifyPETDecommitment;

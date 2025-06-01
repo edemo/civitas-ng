@@ -6,6 +6,9 @@
  */
 package civitas.crypto;
 
+import civitas.util.Boilerplate;
+
+@Boilerplate
 public class CryptoException extends Exception {
 	/**
 	 * Required by the documentation for the Serializable interface.

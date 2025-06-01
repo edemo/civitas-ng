@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import civitas.crypto.Constants;
+import civitas.util.Boilerplate;
 
+@Boilerplate
 public class GetPublicKeyGenerator implements Constants {
 
 	private Map<String, KeyPairGenerator> publicKeyGenerators = new HashMap<>();

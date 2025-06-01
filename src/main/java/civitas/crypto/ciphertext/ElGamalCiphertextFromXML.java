@@ -19,15 +19,11 @@ public class ElGamalCiphertextFromXML {
 		Util.swallowTag(r, Constants.ElGamalCiphertextOPENING_TAG);
 		CivitasBigInteger a = null;
 		String sa = Util.unescapeString(Util.readSimpleTag(r, "a"));
-		if (sa.length() > 0) {
-			a = Util.asBigint(sa);
-		}
+		a = Util.asBigint(sa);
 
 		CivitasBigInteger b = null;
 		String sb = Util.unescapeString(Util.readSimpleTag(r, "b"));
-		if (sb.length() > 0) {
-			b = Util.asBigint(sb);
-		}
+		b = Util.asBigint(sb);
 
 		Util.swallowEndTag(r, Constants.ElGamalCiphertextOPENING_TAG);
 		return new ElGamalCiphertext(a, b);

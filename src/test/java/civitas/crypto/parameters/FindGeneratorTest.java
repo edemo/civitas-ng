@@ -13,7 +13,7 @@ import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.util.Tested;
 
 public class FindGeneratorTest extends TestBase
-		implements ElGamalParametersCTestData {
+		implements ElGamalParametersTestData {
 
 	@Tested
 	FindGenerator findGenerator;

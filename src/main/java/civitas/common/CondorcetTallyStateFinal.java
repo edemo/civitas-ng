@@ -10,9 +10,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 
+import civitas.util.Boilerplate;
+
 /**
  * TallyStateFinal for a CondorcetBallotDesign.
  */
+@Boilerplate
 public class CondorcetTallyStateFinal extends TallyStateFinal {
 	private final int[][] matrix;
 	private final int size;

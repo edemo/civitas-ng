@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
 import civitas.crypto.algorithms.CryptoHash;
-import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
+import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.util.Tested;
 import civitas.util.Use;
 
 public class VerifyElGamalSignatureTest extends TestBase
-		implements ElGamalCiphertextCTestData {
+		implements ElGamalCiphertextTestData {
 	@Tested
 	VerifyElGamalSignature verifyElGamalSignature;
 

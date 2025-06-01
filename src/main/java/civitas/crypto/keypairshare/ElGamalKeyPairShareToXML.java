@@ -1,6 +1,7 @@
 package civitas.crypto.keypairshare;
 
 import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import civitas.crypto.privatekey.ElGamalPrivateKeyToXML;
 import civitas.crypto.publickey.ElGamalPublicKeyToXML;
@@ -12,7 +13,13 @@ public class ElGamalKeyPairShareToXML {
 	@Use
 	ElGamalPrivateKeyToXML elGamalPrivateKeyToXML;
 
-	public void toXML(ElGamalKeyPairShare that, PrintWriter sb) {
+	public String apply(ElGamalKeyPairShare that) {
+		StringWriter sb = new StringWriter();
+		apply(that, new PrintWriter(sb));
+		return sb.toString();
+	}
+
+	public void apply(ElGamalKeyPairShare that, PrintWriter sb) {
 		if (sb == null)
 			return;
 		sb.print("<elGamalKeyPairShare>");

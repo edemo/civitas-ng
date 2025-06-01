@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
-import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
+import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
@@ -17,7 +17,7 @@ import civitas.util.Tested;
 import civitas.util.Use;
 
 public class DecryptElGamalMessageTest extends TestBase
-		implements ElGamalCiphertextCTestData {
+		implements ElGamalCiphertextTestData {
 
 	@Tested
 	DecryptElGamalMessage decryptElGamalMessage;
@@ -36,7 +36,7 @@ public class DecryptElGamalMessageTest extends TestBase
 
 		ElGamalSignedCiphertext encrypted = SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV;
 
-		ElGamalMsg decrypted = decryptElGamalMessage.apply(ELGAMAL_PRIVATE_KEY_E,
+		ElGamalMsg decrypted = decryptElGamalMessage.apply(EL_GAMAL_PRIVATE_KEY_E,
 				encrypted, ADDITIONALENV_BYTES);
 		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED, decrypted.m);
 
@@ -55,7 +55,7 @@ public class DecryptElGamalMessageTest extends TestBase
 				new ElGamalReencryptFactor(SOME_INT_BIG), env);
 
 		assertThrows(CryptoException.class, () -> decryptElGamalMessage
-				.apply(ELGAMAL_PRIVATE_KEY_E, encrypted, null));
+				.apply(EL_GAMAL_PRIVATE_KEY_E, encrypted, null));
 
 	}
 
@@ -64,7 +64,7 @@ public class DecryptElGamalMessageTest extends TestBase
 	void elGamalDecryptTest2() throws Exception {
 
 		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED,
-				decryptElGamalMessage.apply(ELGAMAL_PRIVATE_KEY_E, CIPHERTEXT_E).m);
+				decryptElGamalMessage.apply(EL_GAMAL_PRIVATE_KEY_E, CIPHERTEXT_E).m);
 
 	}
 

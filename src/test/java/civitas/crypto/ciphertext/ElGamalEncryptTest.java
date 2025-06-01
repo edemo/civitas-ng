@@ -16,7 +16,7 @@ import civitas.util.Tested;
 import civitas.util.Use;
 
 public class ElGamalEncryptTest extends TestBase
-		implements ElGamalCiphertextCTestData, ElGamalReencryptFactorCTestData {
+		implements ElGamalCiphertextTestData, ElGamalReencryptFactorCTestData {
 
 	@Tested
 	ElGamalEncrypt elGamalEncrypt;

@@ -4,23 +4,29 @@ import civitas.crypto.Constants;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.algorithms.GetRandomGenerator;
 import civitas.util.CivitasBigInteger;
+import civitas.util.ObtainProbablePrime;
 import civitas.util.Use;
 
 public class GenerateSchnorrPrime implements Constants {
 	@Use
-	private static GenerateRandomElement generateRandomElement;
+	GenerateRandomElement generateRandomElement;
 	@Use
 	GetRandomGenerator getRandomGenerator;
+	@Use
+	CalculateNumberOfPrimeTests calculateNumberOfPrimeTests;
+	@Use
+	ObtainProbablePrime obtainProbablePrime;
 
 	public PrimePair apply(int qLength, int pLength) {
 		CivitasBigInteger p, q;
 
-		final int NUM_P_TESTS = numPrimeTests(pLength);
+		final int NUM_P_TESTS = calculateNumberOfPrimeTests.apply(pLength);
 		CivitasBigInteger l = TWO.pow(pLength); // l = 2^pLength
 		boolean done = false;
 
 		do {
-			q = new CivitasBigInteger(qLength, CERTAINTY, getRandomGenerator.apply());
+			q = obtainProbablePrime.apply(qLength, CERTAINTY,
+					getRandomGenerator.apply());
 
 			int nP = 0;
 			do {
@@ -55,11 +61,6 @@ public class GenerateSchnorrPrime implements Constants {
 		} while (!done);
 
 		return new PrimePair(p, q);
-	}
-
-	private static int numPrimeTests(int pLength) {
-		int k = (int) Math.ceil(Math.log(pLength) / Math.log(2));
-		return (int) Math.pow(2, k + 2);
 	}
 
 }

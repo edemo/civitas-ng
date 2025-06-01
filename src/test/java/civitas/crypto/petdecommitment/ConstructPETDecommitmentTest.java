@@ -13,7 +13,7 @@ import civitas.util.Tested;
 import civitas.util.Use;
 
 public class ConstructPETDecommitmentTest extends TestBase
-		implements PETDecommitmentCTestData, PETShareTestData {
+		implements PETDecommitmentTestData, PETShareTestData {
 
 	@Tested
 	ConstructPETDecommitment constructPETDecommitment;

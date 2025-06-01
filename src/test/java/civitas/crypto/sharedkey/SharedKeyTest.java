@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import civitas.common.TestBase;
 import civitas.util.Use;
 
-public class SharedKeyCTest extends TestBase implements SharedKeyTestData {
+public class SharedKeyTest extends TestBase implements SharedKeyTestData {
 
 	@Use
 	SharedKeyFromWire sharedKeyFromWire;

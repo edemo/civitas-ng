@@ -7,11 +7,9 @@
 package civitas.crypto.proof1ofl;
 
 import civitas.util.CivitasBigInteger;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 
-@AllArgsConstructor()
-@EqualsAndHashCode
+@Data
 public class ElGamalProof1OfL {
 
 	public final int L;

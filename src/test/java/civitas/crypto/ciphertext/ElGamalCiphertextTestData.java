@@ -1,5 +1,8 @@
 package civitas.crypto.ciphertext;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import civitas.common.Util;
 import civitas.crypto.CryptoFactoryC;
 import civitas.crypto.ciphertextlist.CiphertextList;
@@ -7,7 +10,7 @@ import civitas.crypto.msg.ElgamalMessageTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.util.CivitasBigInteger;
 
-public interface ElGamalCiphertextCTestData extends ElgamalMessageTestData {
+public interface ElGamalCiphertextTestData extends ElgamalMessageTestData {
 
 	String ADDITIONALENV = "Árvíztűrő Tükörfúrógép";
 
@@ -46,7 +49,7 @@ public interface ElGamalCiphertextCTestData extends ElgamalMessageTestData {
 			+ "</b></elGamalCiphertext>";
 
 	public static final String XML_ELGAMALCIPHERTEXT_TRUNCATED = "<elGamalCiphertext><a>ESIQ9LFs";
-	public static final String XML_ELGAMALCIPHERTEXT_ = "<elGamalCiphertext><a>"
+	public static final String ELGAMALCIPHERTEXT_XML = "<elGamalCiphertext><a>"
 			+ SOMESTRING_BASE64 + "</a><b>Xje5W2KfxNk=</b></elGamalCiphertext>";
 	public static final String XML_ELGAMALCIPHERTEXT_ANULL = "<elGamalCiphertext><a></a><b>Xje5W2KfxNk=</b></elGamalCiphertext>";
 	public static final String XML_ELGAMALCIPHERTEXT_BNULL = "<elGamalCiphertext><a>Xje5W2KfxNk=</a><b></b></elGamalCiphertext>";
@@ -82,9 +85,12 @@ public interface ElGamalCiphertextCTestData extends ElgamalMessageTestData {
 	public static final CryptoFactoryC factory = CryptoFactoryC.singleton();
 
 	public static final int NO_OF_WELL_KNOWN_CIPHERTEXTS = 4;
-	public static final CiphertextList CIPHERTEXT_LIST = new CiphertextList(
-			factory.constructWellKnownCiphertexts(EL_GAMAL_PUBLIC_KEY_E,
-					NO_OF_WELL_KNOWN_CIPHERTEXTS));
+
+	CiphertextList CIPHERTEXT_LIST = new CiphertextList(
+			IntStream.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS)
+					.mapToObj(i -> new ElGamalCiphertext(ONE,
+							BIGINT_G.modPow(CivitasBigInteger.valueOf(i + 1), BIGINT_P)))
+					.collect(Collectors.toList()));
 
 	public static final String CIPHERTEXT_LIST_AS_XML = "<ciphertextList>"
 			+ "<size>1</size>" + EL_GAMAL_CIPHERTEXT_E_XML + "</ciphertextList>";

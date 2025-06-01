@@ -6,12 +6,10 @@
  */
 package civitas.crypto.publickeyciphertext;
 
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-@EqualsAndHashCode
+@Data
 public class PublicKeyCiphertext {
 	@NonNull
 	public final byte[] encryptedBytes;

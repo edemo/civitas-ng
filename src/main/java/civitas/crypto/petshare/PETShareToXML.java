@@ -21,17 +21,11 @@ public class PETShareToXML {
 		if (sb == null)
 			return;
 		sb.append("<petShare>");
-		if (that.ciphertext1 != null) {
-			elGamalCiphertextToXML.apply(that.ciphertext1, sb);
-		}
-		if (that.ciphertext2 != null) {
-			elGamalCiphertextToXML.apply(that.ciphertext2, sb);
-		}
-		if (that.exponent != null) {
-			sb.append("<exponent>");
-			Util.escapeString(Util.fromBigInt(that.exponent), sb);
-			sb.append("</exponent>");
-		}
+		elGamalCiphertextToXML.apply(that.ciphertext1, sb);
+		elGamalCiphertextToXML.apply(that.ciphertext2, sb);
+		sb.append("<exponent>");
+		Util.escapeString(Util.fromBigInt(that.exponent), sb);
+		sb.append("</exponent>");
 		sb.append("</petShare>");
 	}
 

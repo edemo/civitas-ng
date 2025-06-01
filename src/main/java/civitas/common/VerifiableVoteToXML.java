@@ -5,8 +5,10 @@ import java.io.PrintWriter;
 import civitas.crypto.ciphertext.ElGamalCiphertextToXML;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionToXML;
 import civitas.crypto.proofvote.ProofVoteToXML;
+import civitas.util.Boilerplate;
 import civitas.util.Use;
 
+@Boilerplate
 public class VerifiableVoteToXML {
 	@Use
 	ElGamal1OfLReencryptionToXML elGamal1OfLReencryptionToXML;

@@ -1,9 +1,6 @@
 package civitas.crypto.proofdisclog;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -16,7 +13,6 @@ import civitas.common.TestBase;
 import civitas.common.Util;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.CryptoHash;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.Tested;
 import civitas.util.Use;
 
@@ -77,43 +73,6 @@ public class ElGamalProofDiscLogEqualityCTest extends TestBase
 		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_PROOF_XML,
 				elGamalProofDiscLogEqualityToXML.apply(proof1));
 
-	}
-
-	@Tested
-	VerifyElGamalProofDiscLogEquality verifyElGamalProofDiscLogEquality;
-
-	@Test
-	@DisplayName("verify is true for a correctly costructed proof "
-			+ "To verify, check that g_1^r = av^c (mod p) and g_2^r = bw^c (mod p).")
-	void test0_1() {
-		assertTrue(verifyElGamalProofDiscLogEquality.apply(
-				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT, EL_GAMAL_PARAMETERS));
-	}
-
-	@Test
-	@DisplayName("verify is false for a bad proof ")
-	void test0_2() {
-		assertFalse(verifyElGamalProofDiscLogEquality.apply(
-				new ElGamalProofDiscLogEquality(BIGINT_G, GENERATOR_OTHER, BIGINT_A,
-						BIGINT_B, BIGINT_C, BIGINT_D, SAFE_P_MINUS_A, BIGINT_G_OTHER),
-				EL_GAMAL_PARAMETERS));
-	}
-
-	@Test
-	@DisplayName("verify is false for a bad proof (other branch)")
-	void test0_3() throws IllegalArgumentException, IOException {
-		assertFalse(verifyElGamalProofDiscLogEquality.apply(
-				(elGamalProofDiscLogEqualityFromXML.apply(
-						new StringReader(EL_GAMAL_PROOF_DISC_LOG_EQUALITY_BAD_W_XML))),
-				EL_GAMAL_PARAMETERS));
-	}
-
-	@Test
-	@DisplayName("verify is false if the parameters are not of ElGamalParametersC")
-	void test0_5() {
-		assertFalse(verifyElGamalProofDiscLogEquality.apply(
-				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT,
-				mock(ElGamalParameters.class)));
 	}
 
 	@Test

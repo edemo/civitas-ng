@@ -10,10 +10,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 
+import civitas.util.Boilerplate;
+
 /**
  * This class is the super class of all final tally states. A final tally state
  * is very similar to a tally state, not it is not mutable.
  */
+@Boilerplate
 public abstract class TallyStateFinal implements XMLSerializable {
 	@Override
 	public abstract void toXML(PrintWriter sb);

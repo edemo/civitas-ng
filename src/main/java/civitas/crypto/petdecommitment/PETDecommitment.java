@@ -9,12 +9,10 @@ package civitas.crypto.petdecommitment;
 import civitas.crypto.Constants;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-@EqualsAndHashCode
+@Data
 public class PETDecommitment implements Constants {
 	@NonNull
 	public final CivitasBigInteger di;

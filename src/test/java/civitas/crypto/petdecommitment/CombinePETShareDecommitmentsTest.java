@@ -15,7 +15,7 @@ import civitas.crypto.proofdisclog.VerifyElGamalProofDiscLogEquality;
 import civitas.util.Tested;
 
 public class CombinePETShareDecommitmentsTest extends TestBase
-		implements PETDecommitmentCTestData {
+		implements PETDecommitmentTestData {
 
 	@Tested
 	CombinePETShareDecommitments combinePETShareDecommitments;

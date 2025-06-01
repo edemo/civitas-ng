@@ -8,8 +8,10 @@ package civitas.crypto.votecapability;
 
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.util.CivitasBigInteger;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+@Data
 @EqualsAndHashCode(callSuper = true)
 public class VoteCapability extends ElGamalMsg {
 

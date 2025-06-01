@@ -1,0 +1,26 @@
+#!/bin/bash
+targetTests=$(find src/test/java -name '*Test.java' |xargs egrep -L '@Tag\("functional"\)' |sed 'sA/A.Ag;s/.java$//;s/src.test.java.//')
+targetClasses=$(find src/main/java -name '*.java' |xargs egrep -L "@Data|@Boilerplate" |sed 'sA/A.Ag;s/.java$//;s/src.main.java.//')
+excludedTests=$(find src/test/java -name '*Test.java' |xargs egrep -l '@Tag\("functional"\)' |sed 'sA/A.Ag;s/.java$//;s/src.test.java.//')
+excludedClasses=$(find src/main/java -name '*.java' |xargs egrep -l "@Data|@Boilerplate" |sed 'sA/A.Ag;s/.java$//;s/src.main.java.//')
+
+(
+echo '<project xmlns="http://maven.apache.org/POM/4.0.0">'
+for i in $excludedTests
+do
+	echo "<param>$i</param>"
+done
+echo '</project>'
+)>target/excludedTests.xml
+
+(
+echo '<project xmlns="http://maven.apache.org/POM/4.0.0">'
+for i in $excludedClasses
+do
+	echo "<param>$i</param>"
+done
+echo '</project>'
+) >target/excludedClasses.xml
+
+java -jar ~/lib/saxon9.jar -xsl:replace.xslt -s:pom.xml |sed 's/ xmlns:pom.*>/>/;s/pom://'> target/pom.xml
+echo "see target/pom.xml"

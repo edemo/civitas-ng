@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+@Boilerplate
 public class DI {
 
 	private static Map<Class<?>, Object> instances = new HashMap<>();

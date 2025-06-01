@@ -12,24 +12,16 @@ import civitas.common.TestBase;
 import civitas.crypto.petdecommitment.PetCommitmentFromXML;
 import civitas.util.Use;
 
-public class PETCommitmentCTest extends TestBase
-		implements PETCommitmentCTestData {
+public class PetCommitmentFromXMLTest extends TestBase
+		implements PETCommitmentTestData {
 	@Use
 	PetCommitmentFromXML petCommitmentFromXML;
-	@Use
-	PETCommitmentToXML pETCommitmentToXML;
-
-	@Test
-	@DisplayName("constructor and toXML works as expected")
-	void test() {
-		assertEquals(PET_C_XML, pETCommitmentToXML.apply(PET_COMMITMENT));
-	}
 
 	@Test
 	@DisplayName("fromXML works as expected")
 	void test2() throws IllegalArgumentException, IOException {
-		assertEquals(PET_C_XML, pETCommitmentToXML
-				.apply(petCommitmentFromXML.apply(new StringReader(PET_C_XML))));
+		assertEquals(PET_COMMITMENT,
+				petCommitmentFromXML.apply(new StringReader(PET_COMMITMENT_XML)));
 	}
 
 }

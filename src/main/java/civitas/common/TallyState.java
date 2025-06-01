@@ -6,11 +6,14 @@
  */
 package civitas.common;
 
+import civitas.util.Boilerplate;
+
 /**
  * This class is the super class of all tally states. A tally state is an object
  * to store state in while tallying the results on an election. TallyStateDesign
  * subclasses should be the only code to modify a tally state.
  */
+@Boilerplate
 public abstract class TallyState {
 	public abstract TallyStateFinal finalTally();
 }

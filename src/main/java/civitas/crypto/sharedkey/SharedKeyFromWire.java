@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Base64;
 
-import civitas.crypto.CryptoFactoryC;
+import civitas.util.Use;
 
 public class SharedKeyFromWire {
+	@Use
+	CreateSharedKeyFromBytes createSharedKeyFromBytes;
 
 	public SharedKey apply(Reader r)
 			throws IllegalArgumentException, IOException {
@@ -21,8 +23,7 @@ public class SharedKeyFromWire {
 		String name = br.readLine();
 		String s = br.readLine();
 		byte[] bs = Base64.getDecoder().decode(s);
-		CryptoFactoryC factory = CryptoFactoryC.singleton();
-		return new SharedKey(factory.sharedKeyFromBytes(bs), name);
+		return new SharedKey(createSharedKeyFromBytes.apply(bs), name);
 	}
 
 }

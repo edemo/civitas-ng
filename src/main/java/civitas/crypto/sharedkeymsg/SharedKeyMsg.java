@@ -6,12 +6,10 @@
  */
 package civitas.crypto.sharedkeymsg;
 
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-@EqualsAndHashCode
+@Data
 public class SharedKeyMsg {
 	@NonNull
 	public final String m;

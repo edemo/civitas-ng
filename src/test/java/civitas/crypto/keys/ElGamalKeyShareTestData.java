@@ -2,10 +2,10 @@ package civitas.crypto.keys;
 
 import civitas.crypto.keyshare.ElGamalKeyShare;
 import civitas.crypto.proofknowndisclog.ProofKnowDiscLogTestData;
-import civitas.crypto.publickey.ElGamalPublicKeyCTestData;
+import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 
 public interface ElGamalKeyShareTestData
-		extends ProofKnowDiscLogTestData, ElGamalPublicKeyCTestData {
+		extends ProofKnowDiscLogTestData, ElGamalPublicKeyTestData {
 	public static final String EL_GAMAL_KEY_SHARE_XML = "<elGamalKeyShare><pubKey>"
 			+ EL_GAMAL_PUBLIC_KEY_E_XML + "</pubKey><proof>"
 			+ EL_GAMAL_PROOF_KNOWN_DISC_LOG_XML + "</proof></elGamalKeyShare>";

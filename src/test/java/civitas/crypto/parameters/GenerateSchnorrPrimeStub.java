@@ -5,7 +5,7 @@ import static org.mockito.Mockito.when;
 
 import civitas.crypto.Constants;
 
-public class GenerateSchnorrPrimeStub implements ElGamalParametersCTestData {
+public class GenerateSchnorrPrimeStub implements ElGamalParametersTestData {
 
 	public static GenerateSchnorrPrime stub() {
 		GenerateSchnorrPrime generateSchnorrPrime = mock(

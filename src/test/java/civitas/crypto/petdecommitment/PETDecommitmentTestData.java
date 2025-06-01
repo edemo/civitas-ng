@@ -4,7 +4,7 @@ import civitas.common.Util;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityCTestData;
 import civitas.util.CivitasBigInteger;
 
-public interface PETDecommitmentCTestData
+public interface PETDecommitmentTestData
 		extends ElGamalProofDiscLogEqualityCTestData {
 
 	CivitasBigInteger PET_DECOMMITMENT_D = CIPHERTEXT_E_A

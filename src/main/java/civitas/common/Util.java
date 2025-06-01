@@ -12,11 +12,13 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.util.Base64;
 
+import civitas.util.Boilerplate;
 import civitas.util.CivitasBigInteger;
 
 /**
  * Some miscellaneous utility functions.
  */
+@Boilerplate
 public class Util {
 	public static String currentVersion() {
 		return "JCivitas-v0.1";

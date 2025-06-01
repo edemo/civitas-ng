@@ -11,6 +11,7 @@ import java.util.Random;
 
 import civitas.crypto.Constants;
 
+@Boilerplate
 public class CivitasBigInteger implements Constants {
 
 	public final BigInteger i;
@@ -164,6 +165,12 @@ public class CivitasBigInteger implements Constants {
 			byteArray = i.toByteArray();
 		}
 		return byteArray;
+	}
+
+	public static CivitasBigInteger probablePrime(int bitLenght, int certainty,
+			Random random) {
+		return DI.get(ObtainProbablePrime.class).apply(bitLenght, certainty,
+				random);
 	}
 
 }

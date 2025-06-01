@@ -1,11 +1,11 @@
 package civitas.crypto.reencryptfactor;
 
 import civitas.common.Util;
-import civitas.crypto.parameters.ElGamalParametersCTestData;
+import civitas.crypto.parameters.ElGamalParametersTestData;
 import civitas.util.CivitasBigInteger;
 
 public interface ElGamalReencryptFactorCTestData
-		extends ElGamalParametersCTestData {
+		extends ElGamalParametersTestData {
 	public static final String ELGAMAL_REENCRYPT_FACTOR_XML = "<r>"
 			+ BIGINT_A_BASE64 + "</r>";
 

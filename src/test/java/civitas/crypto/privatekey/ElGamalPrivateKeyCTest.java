@@ -15,14 +15,14 @@ import civitas.common.TestBase;
 import civitas.util.Use;
 
 public class ElGamalPrivateKeyCTest extends TestBase
-		implements ElGamalPrivateKeyCTestData {
+		implements ElGamalPrivateKeyTestData {
 	@Use
 	ElGamalPrivateKeyFromXML elGamalPrivateKeyFromXML;
 
 	@Test
 	@DisplayName("constructor with key and params works")
 	void test0() {
-		assertEquals(ELGAMAL_PRIVATE_KEY_E,
+		assertEquals(EL_GAMAL_PRIVATE_KEY_E,
 				new ElGamalPrivateKey(BIGINT_A, EL_GAMAL_PARAMETERS));
 	}
 
@@ -33,14 +33,14 @@ public class ElGamalPrivateKeyCTest extends TestBase
 	@DisplayName("Equals takes x into account"
 			+ "FIXME: equals do not take x into account in original code (no override)")
 	void test0_0() {
-		assertNotEquals(ELGAMAL_PRIVATE_KEY_E,
+		assertNotEquals(EL_GAMAL_PRIVATE_KEY_E,
 				new ElGamalPrivateKey(BIGINT_C, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("Equals takes parameters into account")
 	void test0_1() {
-		assertNotEquals(ELGAMAL_PRIVATE_KEY_E,
+		assertNotEquals(EL_GAMAL_PRIVATE_KEY_E,
 				new ElGamalPrivateKey(BIGINT_D, EL_GAMAL_PARAMETERS_OTHER));
 	}
 
@@ -48,26 +48,26 @@ public class ElGamalPrivateKeyCTest extends TestBase
 	@DisplayName("toXML returns an XML representation")
 	void test() {
 		assertEquals(ELGAMAL_PRIVATE_KEY_XML,
-				elGamalPrivateKeyToXML.apply(ELGAMAL_PRIVATE_KEY_E));
+				elGamalPrivateKeyToXML.apply(EL_GAMAL_PRIVATE_KEY_E));
 	}
 
 	@Test
 	@DisplayName("fromXML returns the private key")
 	void test1() throws IllegalArgumentException, IOException {
-		assertEquals(ELGAMAL_PRIVATE_KEY_E, elGamalPrivateKeyFromXML
+		assertEquals(EL_GAMAL_PRIVATE_KEY_E, elGamalPrivateKeyFromXML
 				.apply(new StringReader(ELGAMAL_PRIVATE_KEY_XML)));
 	}
 
 	@Test
 	@DisplayName("getParams gets the parameters")
 	void test2() {
-		assertEquals(EL_GAMAL_PARAMETERS, ELGAMAL_PRIVATE_KEY_E.params);
+		assertEquals(EL_GAMAL_PARAMETERS, EL_GAMAL_PRIVATE_KEY_E.params);
 	}
 
 	@Test
 	@DisplayName("does not equal anything which is not ElGamalPrivateKeyC")
 	void test3() {
-		assertFalse(ELGAMAL_PRIVATE_KEY_E.equals(mock(ElGamalPrivateKey.class)));
+		assertFalse(EL_GAMAL_PRIVATE_KEY_E.equals(mock(ElGamalPrivateKey.class)));
 	}
 
 }

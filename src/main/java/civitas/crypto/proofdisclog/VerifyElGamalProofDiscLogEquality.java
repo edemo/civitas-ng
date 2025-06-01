@@ -6,12 +6,8 @@ public class VerifyElGamalProofDiscLogEquality {
 
 	public boolean apply(ElGamalProofDiscLogEquality that,
 			ElGamalParameters prms) {
-		if (!(prms instanceof ElGamalParameters))
-			return false;
 		ElGamalParameters params = prms;
-
 		try {
-			// To verify, check that g_1^r = av^c (mod p) and g_2^r = bw^c (mod p)
 			return that.g1.modPow(that.r, params.p)
 					.equals(that.a.modMultiply(that.v.modPow(that.c, params.p), params.p))
 					&& that.g2.modPow(that.r, params.p).equals(

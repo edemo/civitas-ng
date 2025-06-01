@@ -9,11 +9,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
-import civitas.crypto.parameters.ElGamalParametersCTestData;
+import civitas.crypto.parameters.ElGamalParametersTestData;
 import civitas.util.Use;
 
 public class PETDecommitmentCTest extends TestBase
-		implements PETDecommitmentCTestData, ElGamalParametersCTestData {
+		implements PETDecommitmentTestData, ElGamalParametersTestData {
 
 	@Use
 	PetDecommitmentFromXML petDecommitmentFromXML;

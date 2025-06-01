@@ -6,14 +6,16 @@
  */
 package civitas.crypto;
 
-//FIXME: commented out to make it compile
+import civitas.util.Boilerplate;
+
+@Boilerplate
 public class CryptoUtil {
-//    private static final CryptoFactory factory = civitas.crypto.concrete.CryptoFactoryC.singleton();
+	private static final CryptoFactory factory = CryptoFactoryC.singleton();
+
 	private CryptoUtil() {
 	}
 
 	public static CryptoFactory factory() {
-		// return factory;
-		return null;
+		return factory;
 	}
 }

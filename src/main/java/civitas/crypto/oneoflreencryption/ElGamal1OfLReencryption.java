@@ -8,14 +8,10 @@ package civitas.crypto.oneoflreencryption;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.proof1ofl.ElGamalProof1OfL;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
-@RequiredArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Data
 public class ElGamal1OfLReencryption {
 	@NonNull
 	public final ElGamalCiphertext m;

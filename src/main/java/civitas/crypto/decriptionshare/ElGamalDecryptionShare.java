@@ -8,12 +8,10 @@ package civitas.crypto.decriptionshare;
 
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-@EqualsAndHashCode
+@Data
 public class ElGamalDecryptionShare {
 
 	@NonNull

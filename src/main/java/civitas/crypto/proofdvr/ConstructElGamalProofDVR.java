@@ -24,13 +24,9 @@ public class ConstructElGamalProofDVR {
 	public ElGamalProofDVR apply(ElGamalPublicKey k, ElGamalPublicKey verifierKey,
 			ElGamalCiphertext e, ElGamalCiphertext ePrime, ElGamalReencryptFactor er,
 			ElGamalReencryptFactor erPrime) {
-		try {
-			ElGamalParameters ps = k.params;
-			CivitasBigInteger zeta = erPrime.r.modSubtract(er.r, ps.q);
-			return apply(e, ePrime, k, verifierKey, zeta);
-		} catch (ClassCastException ex) {
-			return null;
-		}
+		ElGamalParameters ps = k.params;
+		CivitasBigInteger zeta = erPrime.r.modSubtract(er.r, ps.q);
+		return apply(e, ePrime, k, verifierKey, zeta);
 	}
 
 	public ElGamalProofDVR apply(ElGamalCiphertext e, ElGamalCiphertext eprime,

@@ -21,7 +21,7 @@ import civitas.crypto.ciphertextlist.ConstructCiphertextList;
 import civitas.util.Use;
 
 public class CiphertextListTest extends TestBase
-		implements ElGamalCiphertextCTestData {
+		implements ElGamalCiphertextTestData {
 	@Use
 	CiphertextListfromXML ciphertextListfromXML;
 	@Use

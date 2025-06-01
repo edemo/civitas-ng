@@ -6,12 +6,10 @@
  */
 package civitas.crypto.signature;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.NonNull;
 
-@AllArgsConstructor
-@EqualsAndHashCode
+@Data
 public class Signature {
 	@NonNull
 	public final byte[] signature;

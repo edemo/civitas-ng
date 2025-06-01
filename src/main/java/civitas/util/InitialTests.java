@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
+@Boilerplate
 public class InitialTests {
 
 	static {

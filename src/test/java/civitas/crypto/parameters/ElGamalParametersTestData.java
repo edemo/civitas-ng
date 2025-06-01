@@ -1,12 +1,18 @@
 package civitas.crypto.parameters;
 
+import java.util.AbstractMap;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import civitas.common.Util;
 import civitas.crypto.BasicValuesTestData;
+import civitas.crypto.Constants;
 import civitas.util.CivitasBigInteger;
 
-public interface ElGamalParametersCTestData extends BasicValuesTestData {
+public interface ElGamalParametersTestData extends BasicValuesTestData {
 
 	public static final String BIGINT_P_BASE64 = "AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ0gWk4zQiy9p87hS+sgNkxYr5okLM6HhXFTu2eUFgf5BQjju2YsvFhOXce4yJ00rsGSGeZAg5bT1Z45SdexGMevXEdCZrADRdikYU0ZLFTN7UWopWgLXd3DBfu3CY2fzwYzq0YWS0bzJ3cQA4fSAyFdU+Tekcd3vwQlkthh7WJW0VCYF1hGFdiGt9/aDQ7cDrW+fqbg4xrUN+wKoFbEHNHomUkGMaXsGyM9vyLCjtp9Jf/UXQSU9X+jAJS+Y7VXyEa9/ifHxsjAExE5RYpNWzqgjJRoiADVL1XeoqvdL/ltcEhAeq3TnhHNIi7cEGQZSGCvSVMiDPn2JBUeY8AswihwZhI7IiqroysQy6UcsZ45oACaVH0ZYSMSIvuGimPhqv0OVbR95lXipxaoHlygq8pLWJWlgVj9KIQQG1wTnD80liudqIdQ+/yuo10YxtGacmC7YxB/atrTgbJ8V/wRDRQw==";
 	public static final CivitasBigInteger BIGINT_P = new CivitasBigInteger(
@@ -59,6 +65,9 @@ public interface ElGamalParametersCTestData extends BasicValuesTestData {
 
 	public static final ElGamalParameters EL_GAMAL_PARAMETERS = new ElGamalParameters(
 			BIGINT_P, BIGINT_Q, BIGINT_G);
+
+	public static final ElGamalParameters EL_GAMAL_PARAMETERS_NEGATIVE_P = new ElGamalParameters(
+			BIGINT_P.multiply(CivitasBigInteger.valueOf(-1)), BIGINT_Q, BIGINT_G);
 	public static final ElGamalParameters EL_GAMAL_PARAMETERS_OTHER = new ElGamalParameters(
 			P2, Q2, G2);
 
@@ -83,7 +92,7 @@ public interface ElGamalParametersCTestData extends BasicValuesTestData {
 	public static final String ELGAMAL_PRIVATE_KEY_XML = "<elGamalPrivateKey><params>"
 			+ EL_GAMAL_PARAMETERS_XML + "</params><x>" + SOMESTRING_BASE64
 			+ "</x></elGamalPrivateKey>";
-	public static final int SAFE_KEY_LENGTH = EL_GAMAL_GROUP_LENGTH - 1;
+	public static final int SAFE_KEY_LENGTH = 512;
 	public static final String SAFE_P_BASE64 = "ASvIFyEHZA21reK32LTtYEwJG4GSW8Xzrl83llQSdjcztgsIJeyQm0ZZ36vG4aTVYjtADzV9J6xJ5RJ2U9QDfV8=";
 	public static final String SAFE_Q_BASE64 = "AJXkC5CDsgba1vFb7Fp2sCYEjcDJLeL51y+byyoJOxuZ2wWEEvZITaMs79XjcNJqsR2gB5q+k9Yk8ok7KeoBvq8=";
 	public static final String SAFE_G_BASE64 = "AKhY5FkyO989WVWT54UIYi29aZjUfx1XD0xlcF13Y7nGa7itniOZIj36m+m8XHW9VN0bzCgLh4btlHBQ8AY3dMo=";
@@ -106,4 +115,23 @@ public interface ElGamalParametersCTestData extends BasicValuesTestData {
 	public static final CivitasBigInteger D_EXP_TWOK_FROMP = BIGINT_D
 			.modPow(BIGINT_P.subtract(ONE).divide(BIGINT_Q), BIGINT_P);
 
+	List<Integer> CHOICES = Arrays.asList(1, 2, 3, 5);
+	Map<CivitasBigInteger, Integer> DECODEMAP = CHOICES.stream()
+			.map(x -> new AbstractMap.SimpleEntry<>(
+					CivitasBigInteger.valueOf(x).modMultiply(BIGINT_G, BIGINT_P), x))
+			.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+	CivitasBigInteger TWO_ENCODED = CivitasBigInteger.valueOf(2)
+			.modMultiply(BIGINT_G, BIGINT_P);
+
+	Integer TWO_INT = 2;
+	CivitasBigInteger TWO_EXP_GROUP_LENGTH = TWO
+			.pow(Constants.EL_GAMAL_GROUP_LENGTH);
+	CivitasBigInteger TWO_EXP_KEY_LENGTH = TWO.pow(Constants.EL_GAMAL_KEY_LENGTH);
+	String BIGINT_NO_PRIME_OF_GROUPLENGTH_BASE64 = "AJzqQEe12aps6eODiQVPjfuBv2XCZ3zXJqNgJWBndSevG1TaxCQ6uE0Qo77OGE9uNOTIpYqDm0RVpW8+o5ILWI/s9CqZe2XKzsv2KzQBeaemnMxPgJ59BJ+TJ5yZSrowzR012Yic6fwUdn2a11AFfHRpHX9mw0dPjbpNIImzULSbEXU5ZNuWUx2RVNE2VMtcaGmj9P2FkOAwjU9zGDfenkc2WhywT0SP2qDXnaBwc3U4ucAmr/9URAggOIbbQv0fH2v6uVmIG9vaPLhUiZCfygm6j4VqFe936iHUD4cLV+pB68l9Ajh5qpBw1xceNZJBW6dOuUzSB1V/qcsMbvgyA3JylX5dBQTNpFaps95rcGKOAh4QyB9xuPI9Bmza0f3rMBK7zcRTrbD1OlkssrZhk1xB+0vKCIGzMEBy6QAwOv/Ymi8CgsHBpDamD4A9xmoMXGKnrQKzv4yPccARLtAyr8unzYKJcrgc2r6bLxgodbRTpCQnqUOhR936mfWzFRl62Q==";
+	String BIGINT_NO_PRIME_OF_KEYLENGTH_BASE64 = "AJew5gc10pHDbzKQUm2+rIFj7hYrP7aHqAfLkHdwDlnQ";
+	CivitasBigInteger BIGINT_NO_PRIME_OF_GROUPLENGTH = Util
+			.asBigint(BIGINT_NO_PRIME_OF_GROUPLENGTH_BASE64);
+	CivitasBigInteger BIGINT_NO_PRIME_OF_KEYLENGTH = Util
+			.asBigint(BIGINT_NO_PRIME_OF_KEYLENGTH_BASE64);
 }

@@ -17,6 +17,7 @@ import civitas.crypto.proof1ofl.VerifyElGamal1OfLReencryption;
 import civitas.crypto.proofvote.ProofVote;
 import civitas.crypto.proofvote.VerifyProofVote;
 import civitas.crypto.publickey.ElGamalPublicKey;
+import civitas.util.Boilerplate;
 import civitas.util.Use;
 
 /**
@@ -26,6 +27,7 @@ import civitas.util.Use;
  * proof, and change the capability to be malleable (for the re-encryption
  * mixes).
  */
+@Boilerplate
 public class VerifiableVote {
 	public static final String OPENING_TAG = "verifiableVote";
 

@@ -3,7 +3,7 @@ package civitas.crypto.parameters;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class GenerateSafePrimeStub implements ElGamalParametersCTestData {
+public class GenerateSafePrimeStub implements ElGamalParametersTestData {
 
 	public static GenerateSafePrime stub() {
 		GenerateSafePrime generateSafePrime = mock(GenerateSafePrime.class);

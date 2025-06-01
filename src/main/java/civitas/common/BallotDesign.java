@@ -15,9 +15,10 @@ import java.util.Map;
 
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.msg.ElGamalMsg;
-import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.votecapability.VoteCapability;
+import civitas.util.Boilerplate;
+import civitas.util.CivitasBigInteger;
 
 /**
  * A BallotDesign describes a race. For example, in a "single choice" race,
@@ -25,6 +26,7 @@ import civitas.crypto.votecapability.VoteCapability;
  * design for a single choice race (a SingleChoiceBallotDesign) lists the
  * candidates on the slate.
  */
+@Boilerplate
 public abstract class BallotDesign implements XMLSerializable {
 	public final static String OPENING_TAG = "ballotDesign";
 
@@ -106,7 +108,8 @@ public abstract class BallotDesign implements XMLSerializable {
 	 * state s.
 	 */
 	public abstract void tally(String ctxt, ElGamalMsg m, String c, TallyState s,
-			ElGamalParameters params) throws IllegalArgumentException;
+			Map<CivitasBigInteger, Integer> decodeMap)
+			throws IllegalArgumentException;
 
 	/**
 	 * Construct a new tally state.

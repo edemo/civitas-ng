@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
 import civitas.common.Util;
-import civitas.crypto.parameters.ElGamalParametersCTestData;
+import civitas.crypto.parameters.ElGamalParametersTestData;
 import civitas.util.Tested;
 
 public class GenerateElGamalKeyPairTest extends TestBase
-		implements ElGamalParametersCTestData {
+		implements ElGamalParametersTestData {
 
 	@Tested
 	GenerateElGamalKeyPair generateElGamalKeyPair;

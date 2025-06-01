@@ -12,11 +12,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
-import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
+import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.util.Use;
 
 public class ProofVoteCTest extends TestBase
-		implements ProofVoteTestData, ElGamalCiphertextCTestData {
+		implements ProofVoteTestData, ElGamalCiphertextTestData {
 
 	@Use
 	ProofVoteFromXML proofVoteFromXML;

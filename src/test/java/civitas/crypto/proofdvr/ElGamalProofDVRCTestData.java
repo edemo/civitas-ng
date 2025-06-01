@@ -1,10 +1,10 @@
 package civitas.crypto.proofdvr;
 
 import civitas.common.Util;
-import civitas.crypto.ciphertext.ElGamalCiphertextCTestData;
+import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.util.CivitasBigInteger;
 
-public interface ElGamalProofDVRCTestData extends ElGamalCiphertextCTestData {
+public interface ElGamalProofDVRCTestData extends ElGamalCiphertextTestData {
 
 	String DVR_HASH_BASE64 = "AJjM7UWkhFgdnqy5yiDJJMUKuLDFD/k8Yqv74UN9Qhp6";
 	CivitasBigInteger DVR_HASH = Util.asBigint(DVR_HASH_BASE64);

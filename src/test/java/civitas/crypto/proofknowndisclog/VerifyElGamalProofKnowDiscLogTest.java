@@ -25,7 +25,7 @@ public class VerifyElGamalProofKnowDiscLogTest extends TestBase
 	@DisplayName("verify checks that g^r = av^c (mod p)")
 	void verifyTest() {
 
-		CivitasBigInteger key = ELGAMAL_PRIVATE_KEY_E.x;
+		CivitasBigInteger key = EL_GAMAL_PRIVATE_KEY_E.x;
 		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
 		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
 		CivitasBigInteger q = EL_GAMAL_PARAMETERS.q;
