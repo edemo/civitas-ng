@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
-import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GetPublicKeyGenerator;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 import civitas.crypto.sharedkey.GetSharedKeyGenerator;
 import civitas.util.Use;

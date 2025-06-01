@@ -29,7 +29,6 @@ import civitas.crypto.algorithms.ConvertToBigInt;
 import civitas.crypto.algorithms.CreateFreshNonce;
 import civitas.crypto.algorithms.CreateFreshNonceBase64;
 import civitas.crypto.algorithms.CreatePermutation;
-import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.algorithms.GenerateRandomInt;
 import civitas.crypto.algorithms.GetPublicKeyGenerator;
@@ -53,7 +52,7 @@ import civitas.crypto.keyshare.CombineKeyShares;
 import civitas.crypto.keyshare.ConstructElGamalKeyShare;
 import civitas.crypto.keyshare.ElGamalKeyShare;
 import civitas.crypto.keyshare.ElGamalKeyShareFromXML;
-import civitas.crypto.messagedigest.ComputeMessageDigest;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.messagedigest.MessageDigest;
 import civitas.crypto.messagedigest.ObtainMessageDigest;
 import civitas.crypto.msg.DecryptElGamalMessage;
@@ -104,6 +103,7 @@ import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.publickeymsg.VerifyPublicKeySignatureMsg;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorFromXML;
+import civitas.crypto.reencryptfactor.GenerateElGamalReencryptFactor;
 import civitas.crypto.rsakeypair.GenerateKeyPair;
 import civitas.crypto.rsakeypair.KeyPair;
 import civitas.crypto.rsaprivatekey.CreatePrivateKeyFromBytes;
@@ -277,8 +277,6 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Use
 	SignWithPublicKey signWithPublicKey;
 	@Use
-	ComputeMessageDigest computeMessageDigest;
-	@Use
 	DecryptPublic decryptPublic;
 	@Use
 	EncryptPublic encryptPublic;
@@ -314,6 +312,8 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	ElGamalPublicKeyFromFile elGamalPublicKeyFromFile;
 	@Use
 	ElGamalProofKnowDiscLogFromXML elGamalProofKnowDiscLogFromXML;
+	@Use
+	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
 
 	public static SecretKeyFactory sharedKeyFactory;
 	public static KeyFactory publicKeyFactory;
@@ -445,7 +445,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public ElGamalReencryptFactor generateElGamalReencryptFactor(
 			ElGamalParameters params) {
-		return elGamalReencrypt.apply(params);
+		return generateElGamalReencryptFactor.apply(params);
 
 	}
 
@@ -823,29 +823,29 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public byte[] messageDigest(byte[] a) {
-		return computeMessageDigest.apply(a);
+		return cryptoHash.apply(a);
 	}
 
 	@Override
 	@Deprecated
 	public byte[] messageDigest(byte[] a, boolean constArray) {
-		return computeMessageDigest.apply(a);
+		return cryptoHash.apply(a);
 	}
 
 	@Override
 	public byte[] messageDigest(byte[] a, int i) {
-		return computeMessageDigest.apply(a, i);
+		return cryptoHash.apply(a, i);
 	}
 
 	@Override
 	@Deprecated
 	public byte[] messageDigest(byte[] a, int i, boolean constArray) {
-		return computeMessageDigest.apply(a, i);
+		return cryptoHash.apply(a, i);
 	}
 
 	@Override
 	public byte[] messageDigest(String s) {
-		return computeMessageDigest.apply(s);
+		return cryptoHash.apply(s);
 	}
 
 	@Override

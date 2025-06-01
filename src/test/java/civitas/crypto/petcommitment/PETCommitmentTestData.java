@@ -10,8 +10,8 @@ public interface PETCommitmentTestData extends BasicValuesTestData {
 	public static final CivitasBigInteger PET_COMMITMENT_HASH = Util
 			.asBigint(PET_COMMITMENT_HASH_BASE64);
 	public static final String PET_COMMITMENT_NULL_XML = "<petC></petC>";
-	public static final String PET_COMMITMENT_XML = "<petC>" + PET_COMMITMENT_HASH_BASE64
-			+ "</petC>";
+	public static final String PET_COMMITMENT_XML = "<petC>"
+			+ PET_COMMITMENT_HASH_BASE64 + "</petC>";
 
 	public static final PETCommitment PET_COMMITMENT = new PETCommitment(
 			PET_COMMITMENT_HASH);

@@ -1,6 +1,6 @@
 package civitas.crypto.petcommitment;
 
-import civitas.crypto.algorithms.CryptoHash;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.petshare.PETShare;
 import civitas.util.CivitasBigInteger;

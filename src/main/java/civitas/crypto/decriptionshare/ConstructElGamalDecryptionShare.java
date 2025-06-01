@@ -15,17 +15,12 @@ public class ConstructElGamalDecryptionShare {
 
 	public ElGamalDecryptionShare apply(ElGamalCiphertext c,
 			ElGamalKeyPairShare keyShare) {
-		if (c instanceof ElGamalCiphertext
-				&& keyShare.privKey instanceof ElGamalPrivateKey
-				&& keyShare.privKey.params instanceof ElGamalParameters) {
-			ElGamalCiphertext mc = c;
-			ElGamalPrivateKey priv = keyShare.privKey;
-			ElGamalParameters params = priv.params;
-			CivitasBigInteger ai = mc.a.modPow(priv.x, params.p);
-			return new ElGamalDecryptionShare(ai, constructElGamalDiscLogEqualityProof
-					.apply(params, mc.a, params.g, priv.x));
-		}
-		return null;
+		ElGamalCiphertext mc = c;
+		ElGamalPrivateKey priv = keyShare.privKey;
+		ElGamalParameters params = priv.params;
+		CivitasBigInteger ai = mc.a.modPow(priv.x, params.p);
+		return new ElGamalDecryptionShare(ai, constructElGamalDiscLogEqualityProof
+				.apply(params, mc.a, params.g, priv.x));
 	}
 
 }

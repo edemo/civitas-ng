@@ -19,17 +19,12 @@ public class ElGamalKeyPairShareFromXML {
 
 	public ElGamalKeyPairShare apply(Reader r)
 			throws IllegalArgumentException, IOException {
-		try {
-			Util.swallowTag(r, "elGamalKeyPairShare");
-			ElGamalPublicKey pubKey = elGamalPublicKeyFromXML.apply(r);
-			ElGamalPrivateKey privKey = elGamalPrivateKeyFromXML.apply(r);
-			Util.swallowEndTag(r, "elGamalKeyPairShare");
-
-			ElGamalParameters params = pubKey == null ? null : pubKey.params;
-			return new ElGamalKeyPairShare(params, pubKey, privKey);
-		} catch (NullPointerException e) {
-			throw new IllegalArgumentException();
-		}
+		Util.swallowTag(r, "elGamalKeyPairShare");
+		ElGamalPublicKey pubKey = elGamalPublicKeyFromXML.apply(r);
+		ElGamalPrivateKey privKey = elGamalPrivateKeyFromXML.apply(r);
+		Util.swallowEndTag(r, "elGamalKeyPairShare");
+		ElGamalParameters params = pubKey.params;
+		return new ElGamalKeyPairShare(params, pubKey, privKey);
 	}
 
 }

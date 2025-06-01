@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import civitas.crypto.algorithms.ConvertHashToBigInt;
-import civitas.crypto.algorithms.CryptoHash;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;

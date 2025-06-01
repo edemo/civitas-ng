@@ -24,8 +24,6 @@ public class VerifyElGamalDecryptionShare {
 				}
 			} catch (NullPointerException e) {
 				throw new Error(e);
-			} catch (ClassCastException e) {
-				throw new Error(e);
 			}
 		}
 

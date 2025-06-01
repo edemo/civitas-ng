@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import civitas.common.TestBase;
 import civitas.util.Use;
 
-public class ElGamalSignedCiphertextCTest extends TestBase
+public class ElGamalSignedCiphertextTest extends TestBase
 		implements ElGamalSignedCiphertextTestData {
 
 	@Use

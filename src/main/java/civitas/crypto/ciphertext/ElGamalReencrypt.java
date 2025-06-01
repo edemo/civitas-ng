@@ -15,47 +15,25 @@ public class ElGamalReencrypt {
 
 	public ElGamalCiphertext apply(ElGamalPublicKey key,
 			ElGamalCiphertext ciphertext) throws CryptoError {
-		try {
-			ElGamalParameters ps = key.params;
-			ElGamalPublicKey k = key;
-			ElGamalCiphertext c = ciphertext;
-			CivitasBigInteger c1 = c.a;
-			CivitasBigInteger c2 = c.b;
-			CivitasBigInteger y = generateRandomElement.apply(ps.q);
-			c1 = c1.modMultiply(ps.g.modPow(y, ps.p), ps.p);
-			c2 = c2.modMultiply(k.y.modPow(y, ps.p), ps.p);
-			return new ElGamalCiphertext(c1, c2);
-		} catch (ClassCastException impossible) {
-			throw new CryptoError(impossible);
-		}
-	}
-
-	public ElGamalReencryptFactor apply(ElGamalParameters params)
-			throws CryptoError {
-		try {
-			ElGamalParameters ps = params;
-			return new ElGamalReencryptFactor(generateRandomElement.apply(ps.q));
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
-		}
+		ElGamalParameters ps = key.params;
+		CivitasBigInteger c1 = ciphertext.a;
+		CivitasBigInteger c2 = ciphertext.b;
+		CivitasBigInteger y = generateRandomElement.apply(ps.q);
+		c1 = c1.modMultiply(ps.g.modPow(y, ps.p), ps.p);
+		c2 = c2.modMultiply(key.y.modPow(y, ps.p), ps.p);
+		return new ElGamalCiphertext(c1, c2);
 	}
 
 	public ElGamalCiphertext apply(ElGamalPublicKey key,
 			ElGamalCiphertext ciphertext, ElGamalReencryptFactor factor)
 			throws CryptoError {
-		try {
-			ElGamalParameters ps = key.params;
-			ElGamalPublicKey k = key;
-			ElGamalCiphertext c = ciphertext;
-			CivitasBigInteger a = c.a;
-			CivitasBigInteger b = c.b;
-			CivitasBigInteger r = factor.r;
-			a = a.modMultiply(ps.g.modPow(r, ps.p), ps.p);
-			b = b.modMultiply(k.y.modPow(r, ps.p), ps.p);
-			return new ElGamalCiphertext(a, b);
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
-		}
+		ElGamalParameters ps = key.params;
+		CivitasBigInteger a = ciphertext.a;
+		CivitasBigInteger b = ciphertext.b;
+		CivitasBigInteger r = factor.r;
+		a = a.modMultiply(ps.g.modPow(r, ps.p), ps.p);
+		b = b.modMultiply(key.y.modPow(r, ps.p), ps.p);
+		return new ElGamalCiphertext(a, b);
 
 	}
 

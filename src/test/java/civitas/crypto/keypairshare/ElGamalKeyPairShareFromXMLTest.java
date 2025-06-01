@@ -23,4 +23,5 @@ public class ElGamalKeyPairShareFromXMLTest extends TestBase
 		assertEquals(EL_GAMAL_KEYPAIR_SHARE, elGamalKeyPairShareFromXML
 				.apply(new StringReader(EL_GAMAL_KEYPAIR_SHARE_XML)));
 	}
+
 }

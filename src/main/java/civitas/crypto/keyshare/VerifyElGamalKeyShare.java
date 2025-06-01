@@ -12,11 +12,7 @@ public class VerifyElGamalKeyShare {
 
 	public boolean apply(ElGamalKeyShare that) {
 		ElGamalProofKnowDiscLog prf = that.proof;
-		// the base of the prf is correct, as it is taken from params.
 		ElGamalPublicKey K = that.pubKey;
-		if (prf == null || K == null) {
-			return false;
-		}
 		return prf.v.equals(K.y)
 				&& verifyElGamalProofKnowDiscLog.apply(prf, that.pubKey.params);
 	}

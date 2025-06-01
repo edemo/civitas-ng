@@ -7,28 +7,30 @@ import java.security.SignatureException;
 
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
-import civitas.crypto.messagedigest.ComputeMessageDigest;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.rsaprivatekey.PrivateKey;
+import civitas.crypto.rsapublickey.ObtainRSASigner;
 import civitas.util.Use;
 
 public class SignWithPublicKey implements Constants {
 	@Use
-	ComputeMessageDigest computeMessageDigest;
+	CryptoHash cryptoHash;
+	@Use
+	ObtainRSASigner obtainRSASigner;
 
 	public Signature apply(PrivateKey k, PublicKeyMsg msg)
 			throws CryptoError, InvalidKeyException, NoSuchAlgorithmException,
 			NoSuchProviderException, SignatureException {
 		PublicKeyMsg mc = msg;
-		byte[] bytes = computeMessageDigest.apply(mc.m.getBytes());
+		byte[] bytes = cryptoHash.apply(mc.m.getBytes());
 		return apply(k, bytes);
 	}
 
 	public Signature apply(PrivateKey k, byte[] bytes)
 			throws CryptoError, NoSuchAlgorithmException, NoSuchProviderException,
 			InvalidKeyException, SignatureException {
-		java.security.Signature sig = java.security.Signature
-				.getInstance(PUBLIC_KEY_SIGNATURE_ALG, PUBLIC_KEY_PROVIDER);
+		java.security.Signature sig = obtainRSASigner.apply();
 		sig.initSign(k.k);
 		sig.update(bytes);
 		return new Signature(sig.sign());

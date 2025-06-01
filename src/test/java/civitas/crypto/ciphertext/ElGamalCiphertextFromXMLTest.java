@@ -23,9 +23,16 @@ public class ElGamalCiphertextFromXMLTest extends TestBase
 	@Test
 	@DisplayName("fromXML creates a new ElGamalCiphertext from an xml corresponding to that")
 	void test3() throws IllegalArgumentException, IOException {
-		Reader r = new StringReader(EL_GAMAL_CIPHERTEXT_XML);
-		ElGamalCiphertext el = elGamalCiphertextFromXML.apply(r);
-		assertEquals(EL_GAMAL_CIPHERTEXT, el);
+		assertEquals(EL_GAMAL_CIPHERTEXT, elGamalCiphertextFromXML
+				.apply(new StringReader(EL_GAMAL_CIPHERTEXT_XML)));
+	}
+
+	@Test
+	@DisplayName("leaves the reader at the right place")
+	void test() throws IllegalArgumentException, IOException {
+		StringReader sr = new StringReader(EL_GAMAL_CIPHERTEXT_XML + "a");
+		ElGamalCiphertext el = elGamalCiphertextFromXML.apply(sr);
+		assertEquals('a', sr.read());
 	}
 
 	@Test

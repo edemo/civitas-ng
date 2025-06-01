@@ -24,11 +24,7 @@ public class ConstructElGamalKeyShare {
 
 	public ElGamalKeyShare apply(ElGamalPublicKey K,
 			ElGamalProofKnowDiscLog proof) throws Error {
-		if (K instanceof ElGamalPublicKey
-				&& proof instanceof ElGamalProofKnowDiscLog) {
-			return new ElGamalKeyShare(K, proof);
-		}
-		throw new CryptoError("problem with parameters");
+		return new ElGamalKeyShare(K, proof);
 	}
 
 }

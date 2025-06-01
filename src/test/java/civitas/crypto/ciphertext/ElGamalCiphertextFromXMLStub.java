@@ -10,8 +10,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-public class ElGamalCiphertextFromXMLStub
-		implements ElGamalCiphertextTestData {
+public class ElGamalCiphertextFromXMLStub implements ElGamalCiphertextTestData {
 	public ElGamalCiphertextFromXML stub() throws IOException {
 		ElGamalCiphertextFromXML stub = mock(ElGamalCiphertextFromXML.class);
 		ArgumentCaptor<Reader> readerArgument = ArgumentCaptor

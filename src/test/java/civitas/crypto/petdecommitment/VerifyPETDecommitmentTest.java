@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
 import civitas.common.Util;
-import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.petcommitment.PETCommitmentTestData;
 import civitas.crypto.petshare.PETShareTestData;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;

@@ -4,15 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import civitas.crypto.messagedigest.MessageDigest;
-import civitas.crypto.messagedigest.ObtainMessageDigest;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
 public class CalculateProofEnvironment {
 	@Use
-	ObtainMessageDigest obtainMessageDigest;
+	CryptoHash cryptoHash;
 
 	public List<CivitasBigInteger> apply(ElGamalParameters params,
 			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
@@ -23,10 +22,7 @@ public class CalculateProofEnvironment {
 		E.add(encCapability.b);
 		E.add(encChoice.a);
 		E.add(encChoice.b);
-		MessageDigest md = obtainMessageDigest.apply();
-		md.update(context.getBytes());
-		E.add(new CivitasBigInteger(1, md.digest()));
-
+		E.add(new CivitasBigInteger(1, cryptoHash.apply(context.getBytes())));
 		return E;
 	}
 

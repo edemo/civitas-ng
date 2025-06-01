@@ -1,7 +1,7 @@
 package civitas.crypto.signature;
 
 import civitas.crypto.CryptoError;
-import civitas.crypto.algorithms.CryptoHash;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.util.CivitasBigInteger;

@@ -8,11 +8,10 @@ import org.junit.jupiter.api.Test;
 import civitas.common.TestBase;
 import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 
 public class ElGamalReencryptTest extends TestBase
-		implements ElGamalPublicKeyTestData {
+		implements ElGamalPublicKeyTestData, ElGamalCiphertextTestData {
 
 	@Tested
 	ElGamalReencrypt elGamalReencrypt;
@@ -21,21 +20,8 @@ public class ElGamalReencryptTest extends TestBase
 	@DisplayName("elGamalReencrypt works as expected: "
 			+ "c1:=c1*g^y, c2:=c2*m^y, where y is random, all mod p")
 	void test1() throws Exception {
-
-		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
-		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
-		CivitasBigInteger y = RANDOMS_0;
-		CivitasBigInteger m = EL_GAMAL_PUBLIC_KEY_EPRIME.y;
-		CivitasBigInteger c1 = BIGINT_A;
-		CivitasBigInteger c2 = BIGINT_B;
-
-		ElGamalCiphertext cipherText = new ElGamalCiphertext(c1, c2);
-
-		c1 = c1.modMultiply(g.modPow(y, p), p);
-		c2 = c2.modMultiply(m.modPow(y, p), p);
-
-		assertEquals(new ElGamalCiphertext(c1, c2),
-				elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, cipherText));
+		assertEquals(CIPHERTEXT_E_REENCRYPTED,
+				elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_E));
 
 	}
 
@@ -44,20 +30,9 @@ public class ElGamalReencryptTest extends TestBase
 			+ "c1:=c1*g^y, c2:=c2*m^y, where y is random, all mod p")
 	void test1_1() throws Exception {
 
-		CivitasBigInteger y = RANDOMS_0;
-		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
-		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
-		CivitasBigInteger m = EL_GAMAL_PUBLIC_KEY_EPRIME.y;
-
-		CivitasBigInteger c1 = BIGINT_A;
-		CivitasBigInteger c2 = BIGINT_B;
-		ElGamalCiphertext cipherText = new ElGamalCiphertext(c1, c2);
-
-		c1 = c1.modMultiply(g.modPow(y, p), p);
-		c2 = c2.modMultiply(m.modPow(y, p), p);
-
-		assertEquals(new ElGamalCiphertext(c1, c2), elGamalReencrypt.apply(
-				EL_GAMAL_PUBLIC_KEY_EPRIME, cipherText, new ElGamalReencryptFactor(y)));
+		assertEquals(CIPHERTEXT_E_REENCRYPTED,
+				elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_E,
+						new ElGamalReencryptFactor(RANDOMS_0)));
 
 	}
 

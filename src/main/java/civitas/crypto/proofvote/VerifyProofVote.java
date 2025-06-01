@@ -3,9 +3,9 @@ package civitas.crypto.proofvote;
 import java.util.List;
 
 import civitas.crypto.algorithms.ConvertHashToBigInt;
-import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;

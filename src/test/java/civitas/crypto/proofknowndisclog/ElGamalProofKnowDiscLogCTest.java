@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
 import civitas.common.Util;
-import civitas.crypto.algorithms.CryptoHash;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 

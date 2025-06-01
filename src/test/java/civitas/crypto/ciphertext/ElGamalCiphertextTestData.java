@@ -21,6 +21,11 @@ public interface ElGamalCiphertextTestData extends ElgamalMessageTestData {
 			.modMultiply(PUBKEY_E.modPow(FACTOR_E, BIGINT_P), BIGINT_P);
 	public static ElGamalCiphertext CIPHERTEXT_E = new ElGamalCiphertext(
 			CIPHERTEXT_E_A, CIPHERTEXT_E_B);
+	public static ElGamalCiphertext CIPHERTEXT_E_REENCRYPTED = new ElGamalCiphertext(
+			CIPHERTEXT_E_A.modMultiply(BIGINT_G.modPow(RANDOMS_0, BIGINT_P),
+					BIGINT_P),
+			CIPHERTEXT_E_B.modMultiply(PUBKEY_EPRIME.modPow(RANDOMS_0, BIGINT_P),
+					BIGINT_P));
 
 	CivitasBigInteger CIPHERTEXT_ENCCAP_A = BIGINT_G.modPow(FACTOR_EPRIME,
 			BIGINT_P);

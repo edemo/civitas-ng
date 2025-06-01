@@ -11,7 +11,9 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 import civitas.crypto.CryptoError;
+import civitas.util.Boilerplate;
 
+@Boilerplate
 public class DoCrypto {
 	public byte[] apply(String alg, String provider, Key skey, int mode,
 			byte[] input) throws CryptoError {

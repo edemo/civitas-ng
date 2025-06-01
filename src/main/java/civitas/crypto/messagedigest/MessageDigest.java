@@ -6,25 +6,12 @@
  */
 package civitas.crypto.messagedigest;
 
-public interface MessageDigest {
-	void update(byte[] bs);
+import lombok.Data;
+import lombok.NonNull;
 
-	@Deprecated
-	void update(byte[] bs, boolean constBytes);
+@Data
+public class MessageDigest {
+	@NonNull
+	public final java.security.MessageDigest md;
 
-	void update(byte b);
-
-	void update(int i);
-
-	void update(long l);
-
-	void update(String s);
-
-	void update(char[] cbuf, int off, int len);
-
-	// Get the digest. Note that we assume the digest
-	// does not reveal any information about data used
-	// to update it, i.e. it is a byte [],
-	// not a byte [].
-	byte[] digest();
 }

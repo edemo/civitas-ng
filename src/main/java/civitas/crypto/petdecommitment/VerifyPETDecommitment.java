@@ -1,7 +1,7 @@
 package civitas.crypto.petdecommitment;
 
-import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.petcommitment.PETCommitment;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;

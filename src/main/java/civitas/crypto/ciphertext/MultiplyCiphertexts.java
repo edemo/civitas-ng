@@ -12,8 +12,6 @@ public class MultiplyCiphertexts {
 		if (ciphertexts == null)
 			return null;
 		try {
-			ElGamalParameters params = p;
-			// multiply all the shares together
 			CivitasBigInteger[] aAccum = new CivitasBigInteger[ciphertexts[0].length];
 			CivitasBigInteger[] bAccum = new CivitasBigInteger[ciphertexts[0].length];
 			for (ElGamalSignedCiphertext[] ciphertext : ciphertexts) {
@@ -23,8 +21,8 @@ public class MultiplyCiphertexts {
 						aAccum[j] = s.a;
 						bAccum[j] = s.b;
 					} else {
-						aAccum[j] = aAccum[j].modMultiply(s.a, params.p);
-						bAccum[j] = bAccum[j].modMultiply(s.b, params.p);
+						aAccum[j] = aAccum[j].modMultiply(s.a, p.p);
+						bAccum[j] = bAccum[j].modMultiply(s.b, p.p);
 					}
 				}
 			}
@@ -35,8 +33,6 @@ public class MultiplyCiphertexts {
 			return ret;
 
 		} catch (NullPointerException e) {
-			return null;
-		} catch (ClassCastException e) {
 			return null;
 		}
 	}

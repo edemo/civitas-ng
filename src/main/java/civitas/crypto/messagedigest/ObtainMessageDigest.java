@@ -10,10 +10,10 @@ public class ObtainMessageDigest implements Constants {
 	public MessageDigest apply() throws CryptoError {
 		try {
 			if (MESSAGE_DIGEST_PROVIDER == null) {
-				return new MessageDigestC(
+				return new MessageDigest(
 						java.security.MessageDigest.getInstance(MESSAGE_DIGEST_ALG));
 			} else {
-				return new MessageDigestC(java.security.MessageDigest
+				return new MessageDigest(java.security.MessageDigest
 						.getInstance(MESSAGE_DIGEST_ALG, MESSAGE_DIGEST_PROVIDER));
 			}
 		} catch (NoSuchAlgorithmException e) {

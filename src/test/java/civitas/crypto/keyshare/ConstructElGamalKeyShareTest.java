@@ -38,8 +38,8 @@ public class ConstructElGamalKeyShareTest extends TestBase
 	@Test
 	@DisplayName("if the generated proof does not verify (impossible) a CryptoError is thrown")
 	void test_2() {
-		assertThrows(CryptoError.class, () -> constructElGamalKeyShare
-				.apply(EL_GAMAL_KEYPAIR_SHARE_BAD));
+		assertThrows(CryptoError.class,
+				() -> constructElGamalKeyShare.apply(EL_GAMAL_KEYPAIR_SHARE_BAD));
 	}
 
 }

@@ -1,5 +1,6 @@
-package civitas.crypto.algorithms;
+package civitas.crypto.messagedigest;
 
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.util.DI;
 
 public class CryptoHashStub {

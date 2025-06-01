@@ -6,8 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
-import civitas.crypto.algorithms.CryptoHash;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.petshare.PETShareTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;

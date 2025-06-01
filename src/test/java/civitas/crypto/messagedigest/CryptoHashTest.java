@@ -7,80 +7,78 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
 import civitas.common.TestUtil;
+import civitas.util.Tested;
 
-public class MessageDigestCTest extends TestBase
-		implements MessageDigestTestData {
+public class CryptoHashTest extends TestBase implements MessageDigestTestData {
 
-	MessageDigestC md = new MessageDigestC(TestUtil.getBaselineDigest());
+	MessageDigest md = new MessageDigest(TestUtil.getBaselineDigest());
+	@Tested
+	CryptoHash cryptoHash;
 
 	@Test
 	@DisplayName("digest for just initialized one is correct")
 	void test() {
-		assertArrayEquals(BASELINE_DIGEST.digest(), md.digest());
+		assertArrayEquals(BASELINE_DIGEST.digest(),
+				cryptoHash.apply(new byte[] {}));
 	}
 
 	@Test
 	@DisplayName("digest for byte array is correct")
 	void test1() {
-		md.update(BYTES);
 		BASELINE_DIGEST.update(BYTES);
-		assertArrayEquals(BASELINE_DIGEST.digest(), md.digest());
+		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply(BYTES));
 	}
 
 	@Test
 	@DisplayName("if updated with (byte[]) null, nothing happens")
 	void test2() {
-		md.update((byte[]) null);
-		assertArrayEquals(BASELINE_DIGEST.digest(), md.digest());
+		assertArrayEquals(BASELINE_DIGEST.digest(),
+				cryptoHash.apply((byte[]) null));
 	}
 
 	@Test
 	@DisplayName("if updated with (String) null, nothing happens")
 	void test2_2() {
-		md.update((String) null);
-		assertArrayEquals(BASELINE_DIGEST.digest(), md.digest());
+		assertArrayEquals(BASELINE_DIGEST.digest(),
+				cryptoHash.apply((String) null));
 	}
 
 	@Test
 	@DisplayName("digest for byte is correct")
 	void test3() {
-		md.update((byte) 42);
 		BASELINE_DIGEST.update((byte) 42);
-		assertArrayEquals(BASELINE_DIGEST.digest(), md.digest());
+		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply((byte) 42));
 	}
 
 	@Test
 	@DisplayName("digest for int is correct")
 	void test4() {
-		md.update(0xdeadbeef);
+
 		BASELINE_DIGEST.update(
 				new byte[] { (byte) 0xef, (byte) 0xbe, (byte) 0xad, (byte) 0xde });
-		assertArrayEquals(BASELINE_DIGEST.digest(), md.digest());
+		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply(0xdeadbeef));
 	}
 
 	@Test
 	@DisplayName("digest for long is correct")
 	void test5() {
-		md.update(LONG);
 		BASELINE_DIGEST.update(LONG_AS_BYTES);
-		assertArrayEquals(BASELINE_DIGEST.digest(), md.digest());
+		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply(LONG));
 	}
 
 	@Test
 	@DisplayName("digest for String is correct")
 	void test6() {
-		md.update(SOMESTRING);
 		BASELINE_DIGEST.update(BYTES);
-		assertArrayEquals(BASELINE_DIGEST.digest(), md.digest());
+		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply(SOMESTRING));
 	}
 
 	@Test
 	@DisplayName("digest for char array with offset is correct")
 	void test7() {
-		char[] ca = SOMESTRING_EXTENDED.toCharArray();
-		md.update(ca, 3, 8);
 		BASELINE_DIGEST.update(BYTES);
-		assertArrayEquals(BASELINE_DIGEST.digest(), md.digest());
+		assertArrayEquals(BASELINE_DIGEST.digest(),
+				cryptoHash.apply(SOMESTRING_EXTENDED.toCharArray(), 3, 8));
 	}
 
 }

@@ -81,11 +81,12 @@
 		          <artifactId>pitest-maven</artifactId>
 		          <version>1.9.4</version>
 		          <configuration>
-					 <excludedGroups>functional</excludedGroups>
+					          <excludedGroups>functional</excludedGroups>
 		             <verbose>true</verbose>
 
 					          <excludedClasses>
                   <param>civitas.crypto.parameters.ElGamalParameters</param>
+                  <param>civitas.crypto.algorithms.GetPublicKeyGenerator</param>
                   <param>civitas.crypto.keypair.ElGamalKeyPair</param>
                   <param>civitas.crypto.decriptionshare.ElGamalDecryptionShare</param>
                   <param>civitas.crypto.keypairshare.ElGamalKeyPairShare</param>
@@ -105,6 +106,7 @@
                   <param>civitas.crypto.votecapabilityshare.VoteCapabilityShare</param>
                   <param>civitas.crypto.petdecommitment.PETDecommitment</param>
                   <param>civitas.crypto.signedciphertext.ElGamalSignedCiphertext</param>
+                  <param>civitas.crypto.external.DoCrypto</param>
                   <param>civitas.crypto.petcommitment.PETCommitment</param>
                   <param>civitas.crypto.publickeyciphertext.PublicKeyCiphertext</param>
                   <param>civitas.crypto.proof1ofl.ElGamalProof1OfL</param>

@@ -4,8 +4,7 @@ import civitas.crypto.parameters.ElGamalParametersTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.util.CivitasBigInteger;
 
-public interface MultiplyCiphertextsTestData
-		extends ElGamalParametersTestData {
+public interface MultiplyCiphertextsTestData extends ElGamalParametersTestData {
 	ElGamalSignedCiphertext CIPHERTEXT_2_3 = new ElGamalSignedCiphertext(
 			CivitasBigInteger.valueOf(2), CivitasBigInteger.valueOf(3), null, null);
 	ElGamalSignedCiphertext[][] CIPHERTEXT_MATRIX = new ElGamalSignedCiphertext[][] {
