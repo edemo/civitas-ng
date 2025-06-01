@@ -1,5 +1,7 @@
 package civitas.crypto.parameters;
 
+import java.util.Random;
+
 import civitas.crypto.Constants;
 import civitas.crypto.algorithms.GetRandomGenerator;
 import civitas.util.CivitasBigInteger;
@@ -16,8 +18,9 @@ public class GenerateSafePrime implements Constants {
 	public PrimePair apply(int length) {
 		CivitasBigInteger possibleP, possibleQ;
 		do {
+			Random randomGenerator = getRandomGenerator.apply();
 			possibleQ = obtainProbablePrime.apply(length, CERTAINTY,
-					getRandomGenerator.apply());
+					randomGenerator);
 			possibleP = possibleQ.multiply(TWO).add(ONE);
 		} while (!possibleP.isProbablePrime(CERTAINTY));
 		return new PrimePair(possibleP, possibleQ);
