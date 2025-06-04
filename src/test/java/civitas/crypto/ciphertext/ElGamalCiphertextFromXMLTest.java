@@ -31,7 +31,7 @@ public class ElGamalCiphertextFromXMLTest extends TestBase
 	@DisplayName("leaves the reader at the right place")
 	void test() throws IllegalArgumentException, IOException {
 		StringReader sr = new StringReader(EL_GAMAL_CIPHERTEXT_XML + "a");
-		ElGamalCiphertext el = elGamalCiphertextFromXML.apply(sr);
+		elGamalCiphertextFromXML.apply(sr);
 		assertEquals('a', sr.read());
 	}
 

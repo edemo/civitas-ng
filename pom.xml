@@ -79,7 +79,7 @@
         <plugin>
 		          <groupId>org.pitest</groupId>
 		          <artifactId>pitest-maven</artifactId>
-		          <version>1.9.4</version>
+		          <version>1.19.4</version>
 		          <configuration>
 					          <excludedGroups>functional</excludedGroups>
 		             <verbose>true</verbose>
@@ -118,6 +118,7 @@
                   <param>civitas.crypto.proofdvr.ElGamalProofDVR</param>
                   <param>civitas.crypto.reencryptfactor.ElGamalReencryptFactor</param>
                   <param>civitas.crypto.rsaprivatekey.PrivateKey</param>
+                  <param>civitas.crypto.messagedigest.MessageDigest</param>
                   <param>civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog</param>
                   <param>civitas.crypto.CryptoError</param>
                   <param>civitas.crypto.keyshare.ElGamalKeyShare</param>

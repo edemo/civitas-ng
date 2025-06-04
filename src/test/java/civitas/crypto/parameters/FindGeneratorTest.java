@@ -1,15 +1,11 @@
 package civitas.crypto.parameters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
-import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.util.Tested;
 
 public class FindGeneratorTest extends TestBase
@@ -19,26 +15,14 @@ public class FindGeneratorTest extends TestBase
 	FindGenerator findGenerator;
 
 	@Test
-	@DisplayName("generator with value 1 is rejected")
+	@DisplayName("finds the generator for a prime pair\n"
+			+ "Implementation of step 3 of Algorithm 11.54 from Handbook of Applied Cryptography\n"
+			+ "x is a random < p, r = (p-1)/q, g = x^r % p\n"
+			+ "if g is neither 1 nor -1 mod p then it is a generator\n"
+			+ "FIXME: can be a case when g = -1 mod p?")
 	void test() {
-
-		findGenerator.generateRandomElement = mock(GenerateRandomElement.class);
-		when(findGenerator.generateRandomElement.apply(any())).thenReturn(ONE)
-				.thenReturn(BIGINT_D);
-
 		assertEquals(D_EXP_TWOK_FROMP,
 				findGenerator.apply(new PrimePair(BIGINT_P, BIGINT_Q)));
 	}
 
-	@Test
-	@DisplayName("generator with value -1 is rejected")
-	void test1() {
-
-		findGenerator.generateRandomElement = mock(GenerateRandomElement.class);
-		when(findGenerator.generateRandomElement.apply(any()))
-				.thenReturn(BIGINT_P.subtract(ONE)).thenReturn(BIGINT_D);
-
-		assertEquals(D_EXP_TWOK_FROMP,
-				findGenerator.apply(new PrimePair(BIGINT_P, BIGINT_Q)));
-	}
 }

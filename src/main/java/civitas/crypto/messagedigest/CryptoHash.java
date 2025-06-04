@@ -1,19 +1,19 @@
 package civitas.crypto.messagedigest;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import civitas.crypto.CryptoError;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
-import lombok.SneakyThrows;
 
 public class CryptoHash {
 	@Use
 	ObtainMessageDigest obtainMessageDigest;
 
 	public byte[] apply(List<CivitasBigInteger> list) {
-		MessageDigest md = (MessageDigest) obtainMessageDigest.apply();
+		MessageDigest md = obtainMessageDigest.apply();
 		// list.forEach(x -> md.md.update(x.toByteArray()));
 		for (CivitasBigInteger x : list) {
 			md.md.update(x.toByteArray());
@@ -32,7 +32,7 @@ public class CryptoHash {
 
 	public CivitasBigInteger apply(CivitasBigInteger a, CivitasBigInteger b,
 			CivitasBigInteger c, byte[] d) {
-		MessageDigest md = (MessageDigest) obtainMessageDigest.apply();
+		MessageDigest md = obtainMessageDigest.apply();
 		md.md.update(a.toByteArray());
 		md.md.update(b.toByteArray());
 		if (c != null)
@@ -47,30 +47,33 @@ public class CryptoHash {
 	}
 
 	public byte[] apply(byte[] a) throws CryptoError {
-		MessageDigest md = (MessageDigest) obtainMessageDigest.apply();
+		MessageDigest md = obtainMessageDigest.apply();
 		if (a != null)
 			md.md.update(a);
 		return md.md.digest();
 	}
 
 	public byte[] apply(byte[] a, int i) {
-		MessageDigest md = (MessageDigest) obtainMessageDigest.apply();
+		MessageDigest md = obtainMessageDigest.apply();
 		md.md.update(a);
 		byte[] dword = intToBytes(i);
 		md.md.update(dword);
 		return md.md.digest();
 	}
 
-	@SneakyThrows
 	public byte[] apply(String s) {
-		MessageDigest md = (MessageDigest) obtainMessageDigest.apply();
+		MessageDigest md = obtainMessageDigest.apply();
 		if (s != null)
-			md.md.update(s.getBytes("UTF-8"));
+			try {
+				md.md.update(s.getBytes("UTF-8"));
+			} catch (UnsupportedEncodingException impossible) {
+				throw new Error(impossible);
+			}
 		return md.md.digest();
 	}
 
 	public byte[] apply(byte b) {
-		MessageDigest md = (MessageDigest) obtainMessageDigest.apply();
+		MessageDigest md = obtainMessageDigest.apply();
 		md.md.update(b);
 		return md.md.digest();
 	}
