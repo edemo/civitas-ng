@@ -15,12 +15,6 @@ public class CheckVoterSubmission implements CommonConstants {
 	@Use
 	VerifyVerifiableVote verifyVerifiableVote;
 
-	/**
-	 * Checks that the votes in VoterSubmission vs correspond to an acceptable
-	 * ballot for this ballot design. Throws an IllegalArgumentException is this
-	 * is
-	 * not the case.
-	 */
 	public final void apply(BallotDesign that, VoterSubmission vs,
 			String baseContext, CiphertextList ciphertexts, ElGamalPublicKey pubKey)
 			throws IllegalArgumentException {
@@ -33,41 +27,34 @@ public class CheckVoterSubmission implements CommonConstants {
 		if (pubKey == null) {
 			throw new IllegalArgumentException("Invalid public Key");
 		}
+		if (context == null) {
+			throw new IllegalArgumentException("Invalid context");
+		}
 		if (vs == null) {
 			throw new IllegalArgumentException("Invalid voter submission.");
 		}
 		int k = that.candidates.length;
-		try {
-			for (int i = 0; i < k; i++) {
-				for (int j = i + 1; j < k; j++) {
-					VerifiableVote vv = vs.votes[startIndex
-							+ calculatePositionInBallot.apply(i, j, k)];
-					if (vv == null) {
-						throw new IllegalArgumentException("Invalid verifiable vote.");
-					}
-					String vvcontext = vv.context;
-					String desiredContext = (context == null ? "" : context) + KIND + i
-							+ ":" + j;
-					if (!desiredContext.equals(vvcontext)) {
-						System.out.println("i=" + i + ",j=" + j + "\ncontext:" + vvcontext
-								+ "\ndesired:" + desiredContext);
-						throw new IllegalArgumentException(
-								"Vote did not have correct context");
-					}
+		for (int i = 0; i < k; i++) {
+			for (int j = i + 1; j < k; j++) {
+				VerifiableVote vv = vs.votes[startIndex
+						+ calculatePositionInBallot.apply(i, j, k)];
+				if (vv == null) {
+					throw new IllegalArgumentException("Invalid verifiable vote.");
+				}
+				String vvcontext = vv.context;
+				String desiredContext = context + KIND + i + ":" + j;
+				if (!desiredContext.equals(vvcontext)) {
+					throw new IllegalArgumentException(
+							"Vote did not have correct context");
+				}
 
-					if (!verifyVerifiableVote.apply(vv, pubKey, ciphertexts,
-							MAX_POSSIBLE_CHOICES)) {
-						throw new IllegalArgumentException(
-								"Vote choice odes not pass verification.");
-					}
+				if (!verifyVerifiableVote.apply(vv, pubKey, ciphertexts,
+						MAX_POSSIBLE_CHOICES)) {
+					throw new IllegalArgumentException(
+							"Vote choice odes not pass verification.");
 				}
 			}
-			return;
-		} catch (NullPointerException e) {
-		} catch (ArrayIndexOutOfBoundsException e) {
 		}
-		throw new IllegalArgumentException(
-				"Inappropriate vote for condorcet ballot");
+		return;
 	}
-
 }

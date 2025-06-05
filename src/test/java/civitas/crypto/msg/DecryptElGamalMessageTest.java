@@ -46,10 +46,6 @@ public class DecryptElGamalMessageTest extends TestBase
 	@DisplayName("elGamalDecrypt throws CryptoException when the verification fails")
 	void elGamalDecryptTest1() throws Exception {
 
-		byte[] env = SOMESTRING_EXTENDED.getBytes();
-		ElGamalMsg msg = new ElGamalMsg(
-				encodeMessage.apply(BIGINT_A, EL_GAMAL_PARAMETERS));
-
 		assertThrows(CryptoException.class, () -> decryptElGamalMessage
 				.apply(EL_GAMAL_PRIVATE_KEY_E, EL_GAMAL_SIGNED_CIPHERTEXT, null));
 

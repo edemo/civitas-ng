@@ -4,37 +4,29 @@
  * See the LICENSE file accompanying this distribution for further license
  * and copyright information.
  */
-package civitas.common;
+package civitas.common.tallystatefinal;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 
+import civitas.common.CommonConstants;
+import civitas.common.Util;
 import civitas.common.ballotdesign.BallotDesign;
-import civitas.util.Boilerplate;
+import lombok.Data;
 
 /**
  * TallyStateFinal for a CondorcetBallotDesign.
  */
-@Boilerplate
-public class CondorcetTallyStateFinal extends TallyStateFinal {
-	private final int[][] matrix;
-	private final int size;
+@Data
+public class TallyStateFinal implements CommonConstants {
+	private final Integer size;
+	private final Integer[][] matrix;
 
-	CondorcetTallyStateFinal(int[][] matrix, int size) {
-		super();
-		int[][] as = null;
-		if (matrix != null)
-			as = matrix.clone();
-		this.matrix = as;
-		this.size = size;
-	}
-
-	@Override
 	public void toXML(PrintWriter sb) {
 		if (sb == null)
 			return;
-		sb.print("<" + OPENING_TAG + ">");
+		sb.print("<" + TallyStateFinalOPENING_TAG + ">");
 		sb.print("<kind>");
 		sb.print(BallotDesign.KIND);
 		sb.print("</kind>");
@@ -65,14 +57,15 @@ public class CondorcetTallyStateFinal extends TallyStateFinal {
 		} catch (ArrayIndexOutOfBoundsException imposs) {
 		}
 		sb.print("</matrix>");
-		sb.print("</" + OPENING_TAG + ">");
+		sb.print("</" + TallyStateFinalOPENING_TAG + ">");
 	}
 
 	public static TallyStateFinal fromXML(Reader r)
 			throws IllegalArgumentException, IOException {
-		int count = Util.readSimpleIntTag(r, "count");
+		Integer count = Util.readSimpleIntTag(r, "count");
 
-		int[][] matrix = new int[count < 0 ? 0 : count][count < 0 ? 0 : count];
+		Integer[][] matrix = new Integer[count < 0 ? 0 : count][count < 0 ? 0
+				: count];
 
 		Util.swallowTag(r, "matrix");
 		try {
@@ -95,7 +88,7 @@ public class CondorcetTallyStateFinal extends TallyStateFinal {
 		}
 
 		Util.swallowEndTag(r, "matrix");
-		CondorcetTallyStateFinal b = new CondorcetTallyStateFinal(matrix, count);
+		TallyStateFinal b = new TallyStateFinal(count, matrix);
 		return b;
 	}
 }

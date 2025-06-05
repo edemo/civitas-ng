@@ -4,23 +4,21 @@
  * See the LICENSE file accompanying this distribution for further license
  * and copyright information.
  */
-package civitas.common;
+package civitas.common.tallystate;
 
-import civitas.util.Boilerplate;
+import civitas.common.tallystatefinal.TallyStateFinal;
+import lombok.Data;
+import lombok.NonNull;
 
 /**
  * TallyState for a CondorcetBallotDesign.
  */
-@Boilerplate
-public class CondorcetTallyState extends TallyState {
-	private final int[][] matrix;
-	private final int size;
-
-	public CondorcetTallyState(int size) {
-		super();
-		this.matrix = new int[size < 0 ? 0 : size][size < 0 ? 0 : size];
-		this.size = size;
-	}
+@Data
+public class TallyState {
+	@NonNull
+	public final Integer size;
+	@NonNull
+	public final Integer[][] matrix;
 
 	public void record(int i, int j) throws IndexOutOfBoundsException {
 		if (matrix != null && i >= 0 && i < size && j >= 0 && j < size) {
@@ -34,8 +32,7 @@ public class CondorcetTallyState extends TallyState {
 		throw new IndexOutOfBoundsException();
 	}
 
-	@Override
 	public TallyStateFinal finalTally() {
-		return new CondorcetTallyStateFinal(matrix, size);
+		return new TallyStateFinal(size, matrix);
 	}
 }

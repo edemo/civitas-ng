@@ -12,13 +12,6 @@ import civitas.crypto.proofvote.ProofVote;
 import lombok.Data;
 import lombok.NonNull;
 
-/**
- * Similar to a <code>Vote</code>, but the capability is encrypted and signed,
- * and there is also a proof that the choice is in fact a valid choice. This is
- * part of what a voter submits; the tabulation process will strip off the
- * proof, and change the capability to be malleable (for the re-encryption
- * mixes).
- */
 @Data
 public class VerifiableVote {
 	@NonNull

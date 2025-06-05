@@ -4,7 +4,10 @@ public interface CommonConstants {
 	public final static String CondorcetBallotOPENING_TAG = "ballot";
 	public final static String BallotDesignOPENING_TAG = "ballotDesign";
 	public static final String VerifiableVoteOPENING_TAG = "verifiableVote";
+	public final static String TallyStateFinalOPENING_TAG = "tallyState";
+
 	public static final String KIND = "condorcet";
+	String NONE_OF_ABOVE = "none of the above";
 
 	public int MAX_POSSIBLE_CHOICES = 4;
 

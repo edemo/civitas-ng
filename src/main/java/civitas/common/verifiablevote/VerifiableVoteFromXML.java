@@ -10,7 +10,7 @@ import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.proofvote.ProofVote;
 
 public class VerifiableVoteFromXML {
-	public static VerifiableVote apply(Reader r)
+	public VerifiableVote apply(Reader r)
 			throws IllegalArgumentException, IOException {
 		Util.swallowTag(r, "verifiableVote");
 		String context = Util.unescapeString(Util.readSimpleTag(r, "context"));

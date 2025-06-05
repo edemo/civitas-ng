@@ -3,8 +3,7 @@ package civitas.common.ballotdesign;
 import java.util.Map;
 
 import civitas.common.CommonConstants;
-import civitas.common.CondorcetTallyState;
-import civitas.common.TallyState;
+import civitas.common.tallystate.TallyState;
 import civitas.crypto.CryptoException;
 import civitas.crypto.CryptoUtil;
 import civitas.crypto.msg.ElGamalMsg;
@@ -17,10 +16,10 @@ public class TallyVote implements CommonConstants {
 
 	{
 
-		if (!(s instanceof CondorcetTallyState)) {
+		if (!(s instanceof TallyState)) {
 			throw new IllegalArgumentException("Incorrect tally state");
 		}
-		CondorcetTallyState cts = (CondorcetTallyState) s;
+		TallyState cts = s;
 
 		// interpret the context and the message
 		String desiredContext = (ctxt == null ? "" : ctxt) + KIND;
