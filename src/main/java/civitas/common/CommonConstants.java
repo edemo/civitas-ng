@@ -1,0 +1,19 @@
+package civitas.common;
+
+public interface CommonConstants {
+	public final static String CondorcetBallotOPENING_TAG = "ballot";
+	public final static String BallotDesignOPENING_TAG = "ballotDesign";
+	public static final String VerifiableVoteOPENING_TAG = "verifiableVote";
+	public static final String KIND = "condorcet";
+
+	public int MAX_POSSIBLE_CHOICES = 4;
+
+	public static final int VOTE_CHOICE_I_BEATS_J = 1;
+	public static final int VOTE_CHOICE_J_BEATS_I = 2;
+	public static final int VOTE_CHOICE_NEITHER_BEAT = 3;
+
+	String VOTE_CHOICE_I_BEATS_J_STRING = "10";
+	String VOTE_CHOICE_J_BEATS_I_STRING = "01";
+	String VOTE_CHOICE_NEITHER_BEAT_STRING = "00";
+
+}

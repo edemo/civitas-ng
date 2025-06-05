@@ -15,7 +15,7 @@ import civitas.common.TestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.util.Use;
 
-public class ProofVoteCTest extends TestBase
+public class ProofVoteTest extends TestBase
 		implements ProofVoteTestData, ElGamalCiphertextTestData {
 
 	@Use

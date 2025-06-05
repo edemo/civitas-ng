@@ -35,7 +35,7 @@ public class TestUtil {
 		java.util.Arrays.fill(array, (byte) 0);
 		byte[] aBytes = random.toByteArray();
 		int diff = aBytes.length - array.length;
-		for (int i = diff; i < array.length; i++) {
+		for (int i = 0; i < array.length; i++) {
 			try {
 				array[i] = aBytes[i + diff];
 			} catch (ArrayIndexOutOfBoundsException e) {

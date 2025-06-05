@@ -1,14 +1,14 @@
 package civitas.crypto.ciphertext;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 
 import java.io.PrintWriter;
 
 import org.mockito.ArgumentCaptor;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
+
+import civitas.util.XMLAnswer;
 
 public class ElGamalCiphertextToXMLStub implements ElGamalCiphertextTestData {
 	public static ElGamalCiphertextToXML stub() {
@@ -16,17 +16,13 @@ public class ElGamalCiphertextToXMLStub implements ElGamalCiphertextTestData {
 
 		ArgumentCaptor<PrintWriter> argument = ArgumentCaptor
 				.forClass(PrintWriter.class);
-		doAnswer(new Answer<Void>() {
-			@Override
-			public Void answer(InvocationOnMock invocation) {
-				PrintWriter printWriter = (PrintWriter) invocation.getArguments()[0];
-				printWriter.append(EL_GAMAL_CIPHERTEXT_E_XML);
-				return null;
-			}
-		}).when(stub).apply(any(), argument.capture());
+
+		doAnswer(new XMLAnswer(EL_GAMAL_CIPHERTEXT_E_XML)).when(stub)
+				.apply(eq(CIPHERTEXT_E), argument.capture());
+		doAnswer(new XMLAnswer(CIPHERTEXT_ENCCAP_XML)).when(stub)
+				.apply(eq(CIPHERTEXT_ENCCAP), argument.capture());
 
 		return stub;
-
 	}
 
 }

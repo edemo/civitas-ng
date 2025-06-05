@@ -10,14 +10,14 @@ import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
+import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.Tested;
 import civitas.util.Use;
 
 public class DecryptElGamalMessageTest extends TestBase
-		implements ElGamalCiphertextTestData {
+		implements ElGamalCiphertextTestData, ElGamalSignedCiphertextTestData {
 
 	@Tested
 	DecryptElGamalMessage decryptElGamalMessage;
@@ -50,12 +50,8 @@ public class DecryptElGamalMessageTest extends TestBase
 		ElGamalMsg msg = new ElGamalMsg(
 				encodeMessage.apply(BIGINT_A, EL_GAMAL_PARAMETERS));
 
-		ElGamalSignedCiphertext encrypted = signAndEncrypt.apply(
-				EL_GAMAL_PUBLIC_KEY_EPRIME, msg,
-				new ElGamalReencryptFactor(SOME_INT_BIG), env);
-
 		assertThrows(CryptoException.class, () -> decryptElGamalMessage
-				.apply(EL_GAMAL_PRIVATE_KEY_E, encrypted, null));
+				.apply(EL_GAMAL_PRIVATE_KEY_E, EL_GAMAL_SIGNED_CIPHERTEXT, null));
 
 	}
 

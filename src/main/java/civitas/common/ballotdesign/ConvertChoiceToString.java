@@ -1,0 +1,19 @@
+package civitas.common.ballotdesign;
+
+import civitas.common.CommonConstants;
+
+public class ConvertChoiceToString implements CommonConstants {
+
+	public String apply(int choice) {
+		switch (choice) {
+		case VOTE_CHOICE_I_BEATS_J:
+			return "10";
+		case VOTE_CHOICE_J_BEATS_I:
+			return "01";
+		case VOTE_CHOICE_NEITHER_BEAT:
+			return "00";
+		}
+		return "INVALID";
+	}
+
+}

@@ -14,18 +14,17 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
 import civitas.common.Util;
-import civitas.crypto.CryptoException;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.messagedigest.CryptoHash;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionCTestData;
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
 
 public class ConstructElGamalProof1OfLTest extends TestBase implements
-		ElGamal1OfLReencryptionCTestData, ElGamalReencryptFactorCTestData {
+		ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorCTestData {
 
 	@Tested
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
@@ -49,7 +48,7 @@ public class ConstructElGamalProof1OfLTest extends TestBase implements
 			+ "dv_i = d_i for i != choice, and dprimet for r = choice\n"
 			+ "rv_i = r_i for i != choice, and rprimet for r = choice\n"
 			+ "return dv, rv")
-	void test1() throws CryptoException {
+	void test1() {
 		ElGamalProof1OfL proof = constructElGamalProof1OfL.apply(
 				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS,
 				MY_CHOICE, REENCRYPTED_WELL_KNOWN_CHOICE, ELGAMAL_REENCRYPT_FACTOR_E);

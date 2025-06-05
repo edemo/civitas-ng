@@ -6,13 +6,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
+import civitas.crypto.proof1ofl.VerifyElGamal1OfLReencryption;
 import civitas.util.Tested;
+import civitas.util.Use;
 
 public class ConstructElGamal1OfLReencryptionTest extends TestBase
-		implements ElGamal1OfLReencryptionCTestData {
+		implements ElGamal1OfLReencryptionTestData {
 
 	@Tested
 	ConstructElGamal1OfLReencryption constructElGamal1OfLReencryption;
+
+	@Use
+	VerifyElGamal1OfLReencryption verifyElGamal1OfLReencryption;
 
 	@Test
 	@DisplayName("constructs an encrypted choice,"
@@ -23,6 +28,5 @@ public class ConstructElGamal1OfLReencryptionTest extends TestBase
 				MY_CHOICE, ELGAMAL_REENCRYPT_FACTOR_E);
 		assertEquals(EL_GAMAL_PROOF_1_OF_L, encChoice.proof);
 		assertEquals(REENCRYPTED_WELL_KNOWN_CHOICE, encChoice.m);
-
 	}
 }

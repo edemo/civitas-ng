@@ -1,8 +1,12 @@
 package civitas.crypto.ciphertext;
 
+import java.util.Base64;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import civitas.common.CommonConstants;
 import civitas.common.Util;
 import civitas.crypto.CryptoFactoryC;
 import civitas.crypto.ciphertextlist.CiphertextList;
@@ -13,6 +17,20 @@ import civitas.util.CivitasBigInteger;
 public interface ElGamalCiphertextTestData extends ElgamalMessageTestData {
 
 	String ADDITIONALENV = "Árvíztűrő Tükörfúrógép";
+
+	String CONTEXT_0 = ADDITIONALENV + CommonConstants.KIND + "0:1";
+	String CONTEXT_1 = ADDITIONALENV + CommonConstants.KIND + "0:2";
+	String CONTEXT_2 = ADDITIONALENV + CommonConstants.KIND + "1:2";
+
+	List<Integer> VOTE_PIECES = List.of(0, 1, 2);
+
+	Map<Integer, String> CONTEXT_MAP = Map.of(0, CONTEXT_0, 1, CONTEXT_1, 2,
+			CONTEXT_2);
+
+	Map<Integer, Integer> VOTE_CONTENTS_MAP = Map.of(0,
+			CommonConstants.VOTE_CHOICE_I_BEATS_J, 1,
+			CommonConstants.VOTE_CHOICE_NEITHER_BEAT, 2,
+			CommonConstants.VOTE_CHOICE_J_BEATS_I);
 
 	byte[] ADDITIONALENV_BYTES = ADDITIONALENV.getBytes();
 
@@ -33,6 +51,14 @@ public interface ElGamalCiphertextTestData extends ElgamalMessageTestData {
 			.modMultiply(PUBKEY_E.modPow(FACTOR_EPRIME, BIGINT_P), BIGINT_P);
 	public static ElGamalCiphertext CIPHERTEXT_ENCCAP = new ElGamalCiphertext(
 			CIPHERTEXT_ENCCAP_A, CIPHERTEXT_ENCCAP_B);
+
+	String CIPHERTEXT_ENCCAP_A_BASE64 = Base64.getEncoder()
+			.encodeToString(CIPHERTEXT_ENCCAP_A.toByteArray());
+	String CIPHERTEXT_ENCCAP_B_BASE64 = Base64.getEncoder()
+			.encodeToString(CIPHERTEXT_ENCCAP_B.toByteArray());
+	String CIPHERTEXT_ENCCAP_XML = "<elGamalCiphertext><a>"
+			+ CIPHERTEXT_ENCCAP_A_BASE64 + "</a><b>" + CIPHERTEXT_ENCCAP_B_BASE64
+			+ "</b></elGamalCiphertext>";
 
 	CivitasBigInteger CIPHERTEXT_EPRIME_A = BIGINT_G.modPow(FACTOR_EPRIME,
 			BIGINT_P);

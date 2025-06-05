@@ -1,16 +1,20 @@
 package civitas.crypto.proofvote;
 
+import java.util.Map;
+
+import civitas.common.ConstrucTestData;
 import civitas.common.Util;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionCTestData;
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 import civitas.util.CivitasBigInteger;
+import civitas.util.DI;
 
-public interface ProofVoteTestData extends ElGamal1OfLReencryptionCTestData {
+public interface ProofVoteTestData extends ElGamal1OfLReencryptionTestData {
 
 	ElGamal1OfLReencryption ENCRYPTED_CHOICE = new ElGamal1OfLReencryption(
 			REENCRYPTED_WELL_KNOWN_CHOICE, EL_GAMAL_PROOF_1_OF_L);
 
-	public static final String PROOF_VOTE_C_BASE64 = "Y0o69XyW2yRes4idK+EEsiiVoRqNJEsZjXErAc6UfJY=";
+	public static final String PROOF_VOTE_C_BASE64 = "M1ePVeZ/yI560i1i05j4HF/m7bYqVrEwDGtFZcSjZUo=";
 	public static final CivitasBigInteger PROOF_VOTE_C = Util
 			.asBigint(PROOF_VOTE_C_BASE64);
 	CivitasBigInteger PROOF_VOTE_S1 = RANDOMS_0.modSubtract(
@@ -30,5 +34,14 @@ public interface ProofVoteTestData extends ElGamal1OfLReencryptionCTestData {
 			+ PROOF_VOTE_C_BASE64 + "</c><s1>" + PROOF_VOTE_S1_BASE64 + "</s1><s2>"
 			+ PROOF_VOTE_S2_BASE64 + "</s2></elGamalProofVote>";
 	public static final String PROOF_VOTE_NULL_XML = "<elGamalProofVote><c></c><s1></s1><s2></s2></elGamalProofVote>";
+
+	Map<Integer, ProofVote> PROOF_VOTE_MAP = ConstrucTestData
+			.constructTestData(VOTE_PIECES, (piece) -> {
+				return DI.get(ConstructProofVote.class).apply(EL_GAMAL_PARAMETERS,
+						CIPHERTEXT_ENCCAP,
+						REENCRYPTED_CHOICE_MAP.get(VOTE_CONTENTS_MAP.get(piece)),
+						CONTEXT_MAP.get(piece), ELGAMAL_REENCRYPT_FACTOR_EPRIME,
+						ELGAMAL_REENCRYPT_FACTOR_E);
+			});
 
 }

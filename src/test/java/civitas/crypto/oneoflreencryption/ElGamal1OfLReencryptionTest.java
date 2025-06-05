@@ -16,8 +16,8 @@ import civitas.crypto.ciphertext.ElGamalCiphertextToXML;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLFromXML;
 import civitas.util.Use;
 
-public class ElGamal1OfLReencryptionCTest extends TestBase
-		implements ElGamal1OfLReencryptionCTestData {
+public class ElGamal1OfLReencryptionTest extends TestBase
+		implements ElGamal1OfLReencryptionTestData {
 
 	@Use
 	ElGamalCiphertextFromXML elGamalCiphertextFromXML;
@@ -31,8 +31,7 @@ public class ElGamal1OfLReencryptionCTest extends TestBase
 	@Test
 	@DisplayName("getCyphertext works as expected")
 	void test() {
-		assertEquals(EL_GAMAL_CIPHERTEXT_E_XML,
-				elGamalCiphertextToXML.apply(EL_GAMAL_1_OF_L_REENCRYPTION.m));
+		assertEquals(REENCRYPTED_WELL_KNOWN_CHOICE, EL_GAMAL_1_OF_L_REENCRYPTION.m);
 	}
 
 	@Test

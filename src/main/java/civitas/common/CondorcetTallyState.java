@@ -16,13 +16,13 @@ public class CondorcetTallyState extends TallyState {
 	private final int[][] matrix;
 	private final int size;
 
-	CondorcetTallyState(int size) {
+	public CondorcetTallyState(int size) {
 		super();
 		this.matrix = new int[size < 0 ? 0 : size][size < 0 ? 0 : size];
 		this.size = size;
 	}
 
-	void record(int i, int j) throws IndexOutOfBoundsException {
+	public void record(int i, int j) throws IndexOutOfBoundsException {
 		if (matrix != null && i >= 0 && i < size && j >= 0 && j < size) {
 			try {
 				matrix[i][j]++;

@@ -8,6 +8,7 @@ I decided to convert the whole stuff to Java, getting rid of the information flo
 This version uses modern java, maven, significantly refactored and thorougly tested.
 
 The aim is to have all of the original features of civitas, with the following differences:
+
 - No voting method is supported beyond Condorcet. I do not want to contribute to the further degradation of the quality of civil discourse.
 - Adding a procedure along the lines of the Debian General Resolution procedure, to fully support a good community decision making procedure.
 - Have an actual, real-world useable client, supporting the possible most intuitive and simple ballot layout for Condorcet.

@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionCTestData;
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
 import civitas.util.Use;
 
 public class ElGamalProof1OfLCTest extends TestBase implements
-		ElGamal1OfLReencryptionCTestData, ElGamalReencryptFactorCTestData {
+		ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorCTestData {
 
 	@Use
 	ElGamalProof1OfLToXML elGamalProof1OfLToXML;

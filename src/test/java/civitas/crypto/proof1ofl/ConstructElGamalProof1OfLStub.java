@@ -3,11 +3,11 @@ package civitas.crypto.proof1ofl;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionCTestData;
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
 
 public class ConstructElGamalProof1OfLStub implements
-		ElGamal1OfLReencryptionCTestData, ElGamalReencryptFactorCTestData {
+		ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorCTestData {
 
 	public static ConstructElGamalProof1OfL stub() {
 		ConstructElGamalProof1OfL mock = mock(ConstructElGamalProof1OfL.class);

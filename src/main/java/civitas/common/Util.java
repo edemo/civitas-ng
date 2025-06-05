@@ -80,6 +80,7 @@ public class Util {
 	/**
 	 * Escape the characters: & (&amp;) < (&lt;) > (&gt;) , (&apos;) " (&quot;)
 	 */
+
 	public static String escapeString(final String s) {
 		StringWriter sb = new StringWriter();
 		escapeString(s, new PrintWriter(sb));
@@ -94,6 +95,9 @@ public class Util {
 
 		for (int i = 0; i < n; i++) {
 			char c = s.charAt(i);
+			// FIXME: make sure it is resistant to unicode attacks
+			if (c > 127)
+				continue;
 			if (!is_meta[c])
 				continue;
 			switch (c) {

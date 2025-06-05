@@ -24,7 +24,6 @@ public class GenerateSafePrimeTest extends TestBase
 	@Test
 	@DisplayName("safePrime returns two primes p,q where p=2*q+1, and length of q is length ")
 	void safePrimeTest() {
-		org.pitest.junit5.JUnit5TestUnitFinder a;
 		PrimePair sp = generateSafePrime.apply(SAFE_KEY_LENGTH);
 		assertTrue(sp.p.isProbablePrime(CERTAINTY));
 		assertTrue(sp.q.isProbablePrime(CERTAINTY));

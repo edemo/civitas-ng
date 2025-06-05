@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 
+import civitas.common.ballotdesign.BallotDesign;
 import civitas.util.Boilerplate;
 
 /**
@@ -35,7 +36,7 @@ public class CondorcetTallyStateFinal extends TallyStateFinal {
 			return;
 		sb.print("<" + OPENING_TAG + ">");
 		sb.print("<kind>");
-		sb.print(CondorcetBallotDesign.KIND);
+		sb.print(BallotDesign.KIND);
 		sb.print("</kind>");
 		sb.print("<count>");
 		sb.print(size);

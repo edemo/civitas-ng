@@ -1,15 +1,15 @@
-package civitas.common;
+package civitas.common.verifiablevote;
 
 import java.io.PrintWriter;
 
+import civitas.common.CommonConstants;
+import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertextToXML;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionToXML;
 import civitas.crypto.proofvote.ProofVoteToXML;
-import civitas.util.Boilerplate;
 import civitas.util.Use;
 
-@Boilerplate
-public class VerifiableVoteToXML {
+public class VerifiableVoteToXML implements CommonConstants {
 	@Use
 	ElGamal1OfLReencryptionToXML elGamal1OfLReencryptionToXML;
 	@Use
@@ -21,7 +21,7 @@ public class VerifiableVoteToXML {
 		if (sb == null)
 			return;
 		sb.print("<");
-		sb.print(VerifiableVote.OPENING_TAG);
+		sb.print(VerifiableVoteOPENING_TAG);
 		sb.print(">");
 		sb.print("<context>");
 		Util.escapeString(that.context, sb);
@@ -42,7 +42,7 @@ public class VerifiableVoteToXML {
 		}
 		sb.print("</proof>");
 
-		sb.print("</" + VerifiableVote.OPENING_TAG + ">");
+		sb.print("</" + VerifiableVoteOPENING_TAG + ">");
 	}
 
 }

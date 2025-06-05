@@ -76,6 +76,7 @@ public class DI {
 					Method method = stub.getDeclaredMethod("stub");
 					if (null == method)
 						throw new Error(stubName + " does not have stub");
+					method.setAccessible(true);
 					value = method.invoke(null);
 				} catch (Exception e) {
 					e.printStackTrace();

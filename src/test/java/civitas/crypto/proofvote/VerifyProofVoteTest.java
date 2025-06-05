@@ -6,11 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
-import civitas.crypto.votecapabilityshare.VoteCapabilityShareTestData;
 import civitas.util.Tested;
 
-public class VerifyProofVoteTest extends TestBase
-		implements VoteCapabilityShareTestData, ProofVoteTestData {
+public class VerifyProofVoteTest extends TestBase implements ProofVoteTestData {
 
 	@Tested
 	VerifyProofVote verifyProofVote;
@@ -22,8 +20,7 @@ public class VerifyProofVoteTest extends TestBase
 			+ "	   g^s2*encChoice.a^c (mod p))")
 	void test2_1() {
 
-		ProofVote proofVote = PROOF_VOTE;
-		assertTrue(verifyProofVote.apply(proofVote, EL_GAMAL_PARAMETERS,
+		assertTrue(verifyProofVote.apply(PROOF_VOTE, EL_GAMAL_PARAMETERS,
 				CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE, ADDITIONALENV));
 	}
 

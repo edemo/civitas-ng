@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 
+import civitas.common.ballotdesign.BallotDesign;
 import civitas.util.Boilerplate;
 
 /**
@@ -34,7 +35,7 @@ public abstract class TallyStateFinal implements XMLSerializable {
 		String kind = Util.unescapeString(Util.readSimpleTag(r, "kind"));
 		if (kind == null) {
 			throw new IOException("Unspecified kind");
-		} else if (kind.equalsIgnoreCase(CondorcetBallotDesign.KIND)) {
+		} else if (kind.equalsIgnoreCase(BallotDesign.KIND)) {
 			b = CondorcetTallyStateFinal.fromXML(r);
 		} else
 			throw new IOException("Unknown ballot kind: " + kind);
