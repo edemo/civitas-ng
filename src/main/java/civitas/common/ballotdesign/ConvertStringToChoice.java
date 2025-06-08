@@ -5,13 +5,10 @@ import civitas.common.CommonConstants;
 public class ConvertStringToChoice implements CommonConstants {
 
 	public byte apply(String choice) {
-		if (VOTE_CHOICE_I_BEATS_J_STRING.equals(choice))
-			return VOTE_CHOICE_I_BEATS_J;
-		if (VOTE_CHOICE_J_BEATS_I_STRING.equals(choice))
-			return VOTE_CHOICE_J_BEATS_I;
-		if (VOTE_CHOICE_NEITHER_BEAT_STRING.equals(choice))
-			return VOTE_CHOICE_NEITHER_BEAT;
-		return -1;
+		Integer value = STRING_TO_CHOICE_MAP.get(choice);
+		if (null == value)
+			return -1;
+		return value.byteValue();
 	}
 
 }

@@ -1,5 +1,7 @@
 package civitas.common;
 
+import java.util.Map;
+
 public interface CommonConstants {
 	public final static String CondorcetBallotOPENING_TAG = "ballot";
 	public final static String BallotDesignOPENING_TAG = "ballotDesign";
@@ -18,5 +20,10 @@ public interface CommonConstants {
 	String VOTE_CHOICE_I_BEATS_J_STRING = "10";
 	String VOTE_CHOICE_J_BEATS_I_STRING = "01";
 	String VOTE_CHOICE_NEITHER_BEAT_STRING = "00";
+
+	Map<String, Integer> STRING_TO_CHOICE_MAP = Map.of(
+			VOTE_CHOICE_I_BEATS_J_STRING, VOTE_CHOICE_I_BEATS_J,
+			VOTE_CHOICE_J_BEATS_I_STRING, VOTE_CHOICE_J_BEATS_I,
+			VOTE_CHOICE_NEITHER_BEAT_STRING, VOTE_CHOICE_NEITHER_BEAT);
 
 }

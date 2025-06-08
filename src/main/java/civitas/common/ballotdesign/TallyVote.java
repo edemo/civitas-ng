@@ -6,8 +6,8 @@ import civitas.common.CommonConstants;
 import civitas.common.tallystate.RecordBeat;
 import civitas.common.tallystate.TallyState;
 import civitas.crypto.CryptoException;
-import civitas.crypto.CryptoUtil;
 import civitas.crypto.msg.ElGamalMsg;
+import civitas.crypto.parameters.DecodeChoice;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
@@ -15,53 +15,46 @@ public class TallyVote implements CommonConstants {
 
 	@Use
 	RecordBeat recordBeat;
+	@Use
+	DecodeChoice decodeChoice;
 
-	public void apply(String ctxt, ElGamalMsg m, String c, TallyState s,
+	public void apply(String additionalcontext, ElGamalMsg msg,
+			String currentcontext, TallyState state,
 			Map<CivitasBigInteger, Integer> decodeMap) throws IllegalArgumentException
 
 	{
 
-		if (!(s instanceof TallyState)) {
-			throw new IllegalArgumentException("Incorrect tally state");
-		}
-		TallyState cts = s;
-
-		// interpret the context and the message
-		String desiredContext = (ctxt == null ? "" : ctxt) + KIND;
-		if (c == null || desiredContext == null || !c.startsWith(desiredContext)) {
+		String desiredContext = additionalcontext + KIND;
+		if (currentcontext == null || !currentcontext.startsWith(desiredContext)) {
 			throw new IllegalArgumentException("Incorrect context");
 		}
 
-		if (m == null) {
+		if (msg == null) {
 			throw new IllegalArgumentException("Null message");
 		}
 
 		try {
-			int choice = CryptoUtil.factory().elGamal1OfLValue(m, decodeMap);
-			String suffix = c.substring(desiredContext.length());
-			// suffix is of the form "i:j". Find i and j.
-			if (suffix != null) {
-				int ind = suffix.indexOf(':');
-				try {
-					int i = Integer.parseInt(suffix.substring(0, ind));
-					int j = Integer.parseInt(suffix.substring(ind + 1));
-					if (choice == VOTE_CHOICE_I_BEATS_J) {
-						recordBeat.apply(cts, i, j);
-					}
-					if (choice == VOTE_CHOICE_J_BEATS_I) {
-						recordBeat.apply(cts, j, i);
-					}
-
-				} catch (NumberFormatException e) {
-					throw new IllegalArgumentException("Invalid context: " + suffix);
+			int choice = decodeChoice.apply(decodeMap, msg.m);
+			String suffix = currentcontext.substring(desiredContext.length());
+			int ind = suffix.indexOf(':');
+			try {
+				int i = Integer.parseInt(suffix.substring(0, ind));
+				int j = Integer.parseInt(suffix.substring(ind + 1));
+				if (choice == VOTE_CHOICE_I_BEATS_J) {
+					recordBeat.apply(state, i, j);
 				}
+				if (choice == VOTE_CHOICE_J_BEATS_I) {
+					recordBeat.apply(state, j, i);
+				}
+
+			} catch (NumberFormatException e) {
+				throw new IllegalArgumentException("Invalid context: " + suffix);
 			}
+
 		} catch (CryptoException e) {
-			throw new IllegalArgumentException("Invalid vote value");
+			throw new IllegalArgumentException("Invalid vote value", e);
 		} catch (IndexOutOfBoundsException e) {
-			throw new IllegalArgumentException("Invalid index");
-		} catch (NullPointerException imposs) {
-			throw new IllegalArgumentException("impossible!");
+			throw new IllegalArgumentException("Invalid index", e);
 		}
 	}
 

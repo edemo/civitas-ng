@@ -45,12 +45,6 @@ class DecomposeBallotTest extends TestBase
 						CIPHERTEXT_LIST, BALLOT.matrix, pos);
 				verify(decomposeBallot.calculatePositionInBallot).apply(i, j,
 						NUM_CANDIDATES);
-//				verify(decomposeBallot.constructElGamal1OfLReencryption).apply(
-//						EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, 4, BALLOT.matrix[pos],
-//						ELGAMAL_REENCRYPT_FACTOR_EPRIME);
-//				verify(decomposeBallot.elGamalEncrypt).apply(EL_GAMAL_PUBLIC_KEY_E,
-//						CAPABILITY_MAP.get(ADDITIONALENV + KIND + i + ":" + j),
-//						ELGAMAL_REENCRYPT_FACTOR_E);
 
 				verify(decomposeBallot.constructProofVote).apply(EL_GAMAL_PARAMETERS,
 						ENCRYPTED_VOTE_CAPABILITIES.get(pos),
@@ -58,8 +52,6 @@ class DecomposeBallotTest extends TestBase
 						CONTEXT_MAP.get(pos), ELGAMAL_REENCRYPT_FACTOR_E,
 						ELGAMAL_REENCRYPT_FACTOR_EPRIME);
 			}
-//		verify(decomposeBallot.generateElGamalReencryptFactor, times(6))
-//				.apply(EL_GAMAL_PARAMETERS);
 	}
 
 	@Test
