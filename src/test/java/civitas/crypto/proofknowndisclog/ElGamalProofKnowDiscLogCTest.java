@@ -1,10 +1,6 @@
 package civitas.crypto.proofknowndisclog;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.io.IOException;
-import java.io.StringReader;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -21,8 +17,6 @@ public class ElGamalProofKnowDiscLogCTest extends TestBase
 
 	@Use
 	CryptoHash cryptoHash;
-	@Use
-	ElGamalProofKnowDiscLogFromXML elGamalProofKnowDiscLogFromXML;
 
 	@Test
 	@Tag("testdata")
@@ -33,38 +27,6 @@ public class ElGamalProofKnowDiscLogCTest extends TestBase
 				.mod(BIGINT_Q);
 		assertEquals(EL_GAMAL_PROOF_KNOWN_DISC_LOG_C_BASE64, Util.fromBigInt(hash));
 
-	}
-
-	@Use
-	ElGamalProofKnowDiscLogToXML elGamalProofKnowDiscLogToXML;
-
-	@Test
-	@DisplayName("constructor and toXML works as expected")
-	void test() {
-
-		assertEquals(EL_GAMAL_PROOF_KNOWN_DISC_LOG_XML,
-				elGamalProofKnowDiscLogToXML.apply(new ElGamalProofKnowDiscLog(
-						EL_GAMAL_PROOF_KNOWN_DISC_LOG_A, EL_GAMAL_PROOF_KNOWN_DISC_LOG_C,
-						EL_GAMAL_PROOF_KNOWN_DISC_LOG_R, G_EXP_A)));
-	}
-
-	@Test
-	@DisplayName("fromXml works as expected")
-	void test2() throws IllegalArgumentException, IOException {
-		ElGamalProofKnowDiscLog actual = elGamalProofKnowDiscLogFromXML
-				.apply(new StringReader(EL_GAMAL_PROOF_KNOWN_DISC_LOG_XML));
-		assertEquals(EL_GAMAL_PROOF_KNOWN_DISC_LOG_A, actual.a);
-		assertEquals(EL_GAMAL_PROOF_KNOWN_DISC_LOG_C, actual.c);
-		assertEquals(EL_GAMAL_PROOF_KNOWN_DISC_LOG_R, actual.r);
-		assertEquals(G_EXP_A, actual.v);
-	}
-
-	@Test
-	@DisplayName("fromXml throws NumberFormatException for empty values")
-	void test3() throws IllegalArgumentException, IOException {
-		assertThrows(NumberFormatException.class,
-				() -> elGamalProofKnowDiscLogFromXML
-						.apply(new StringReader(EL_GAMAL_PROOF_KNOWN_DISC_LOG_NULL_XML)));
 	}
 
 }

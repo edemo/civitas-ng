@@ -23,8 +23,6 @@ public class ConstructElGamalDecryptionShareTest extends TestBase
 	CryptoHash hash;
 	@Use
 	ElGamalEncryptTest elGamalEncrypt;
-	@Use
-	ElGamalDecryptionShareToXML elGamalDecryptionShareToXML;
 
 	@Test
 	@DisplayName("constructDecryptionShare works as expected: "
@@ -44,8 +42,7 @@ public class ConstructElGamalDecryptionShareTest extends TestBase
 				.apply(EL_GAMAL_PARAMETERS, CIPHERTEXT_E.a, BIGINT_G,
 						EL_GAMAL_PRIVATE_KEY_E.x);
 		assertEquals(ai, actual.ai);
-		assertEquals(EL_GAMAL_DECRYPTION_SHARE_XML,
-				elGamalDecryptionShareToXML.apply(actual));
+		assertEquals(EL_GAMAL_DECRYPTION_SHARE, actual);
 
 	}
 

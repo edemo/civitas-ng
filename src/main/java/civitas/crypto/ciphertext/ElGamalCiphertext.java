@@ -7,14 +7,19 @@
 package civitas.crypto.ciphertext;
 
 import civitas.util.CivitasBigInteger;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Data
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class ElGamalCiphertext {
 	@NonNull
-	public final CivitasBigInteger a;
+	public CivitasBigInteger a;
 	@NonNull
-	public final CivitasBigInteger b;
+	public CivitasBigInteger b;
 
 }

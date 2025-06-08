@@ -27,12 +27,9 @@ import civitas.crypto.msg.CryptMessage;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.petcommitment.PETCommitment;
 import civitas.crypto.petdecommitment.PETDecommitment;
 import civitas.crypto.petshare.PETShare;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
-import civitas.crypto.proof1ofl.ElGamalProof1OfL;
-import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.crypto.proofdvr.ElGamalProofDVR;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.proofvote.ProofVote;
@@ -53,17 +50,9 @@ import civitas.crypto.votecapabilityshare.VoteCapabilityShare;
 import civitas.util.CivitasBigInteger;
 
 public interface CryptoFactory {
-	/**
-	 * Returns an array of length size that is a permutation, i.e. i maps to j iff
-	 * ret[i] == j
-	 */
+
 	int[] createPermutation(int size);
 
-//    KeyPairPrincipal keyPair(String name, ElGamalPublicKey publicKey, ElGamalPrivateKey privateKey);
-//    KeyPairPrincipal keyPair(String name, PublicKey publicKey);
-//    KeyPairPrincipal keyPair(String name, PublicKey publicKey, PrivateKey privateKey);
-
-	// TODO: it is unclear what the label on the return result should be.
 	ElGamalPublicKey egPubKeyFromFile(String keyFile)
 			throws IllegalArgumentException, FileNotFoundException, IOException;
 
@@ -248,90 +237,6 @@ public interface CryptoFactory {
 
 	boolean publicKeyVerifySignature(PublicKey K, Signature s, byte[] bytes);
 
-	/*
-	 * XML parsing methods
-	 */
-	ElGamalPublicKey elGamalPublicKeyFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ElGamalPrivateKey elGamalPrivateKeyFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ElGamalParameters elGamalParametersFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ElGamalProofKnowDiscLog elGamalProofKnowDiscLogFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ElGamalProofDiscLogEquality elGamalProofDiscLogEqualityFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ElGamalCiphertext elGamalCiphertextFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ElGamalSignedCiphertext elGamalSignedCiphertextFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ElGamalDecryptionShare decryptionShareFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	PETCommitment petCommitmentFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	PETDecommitment petDecommitmentFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ElGamalKeyShare elGamalKeyShareFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ElGamal1OfLReencryption elGamal1OfLReencryptionFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ElGamalProof1OfL elGamalProof1OfLFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ElGamalReencryptFactor elGamalReencryptFactorFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	PrivateKey privateKeyFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	PublicKeyCiphertext publicKeyCiphertextFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	SharedKeyCiphertext sharedKeyCiphertextFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	SharedKey sharedKeyFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	SharedKey sharedKeyFromWire(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ElGamalProofDVR elGamalProofDVRFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	VoteCapability voteCapabilityFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	VoteCapabilityShare voteCapabilityShareFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	PublicKey publicKeyFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	Signature signatureFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	ProofVote proofVoteFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	PETShare petShareFromXML(Reader r)
-			throws IllegalArgumentException, IOException;
-
-	/*
-	 * Factory methods
-	 */
 	ElGamalMsg elGamalMsg(int m, ElGamalParameters p) throws CryptoException;
 
 	ElGamalMsg elGamalMsg(String m, ElGamalParameters p) throws CryptoException;
@@ -342,5 +247,8 @@ public interface CryptoFactory {
 	PublicKeyMsg publicKeyMsg(String m) throws CryptoException;
 
 	SharedKeyMsg sharedKeyMsg(String m) throws CryptoException;
+
+	SharedKey sharedKeyFromWire(Reader r)
+			throws IllegalArgumentException, IOException;
 
 }

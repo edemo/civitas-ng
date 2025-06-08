@@ -47,7 +47,7 @@ public interface Constants {
 
 	public static final int AUTHENTICATION_NONCE_LENGTH = 64;
 
-	public static final String ElGamalCiphertextOPENING_TAG = "elGamalCiphertext";
+	public static final String ElGamalCiphertextOPENING_TAG = "ElGamalCiphertext";
 	public final static String ElGamalDecryptionShareOPENING_TAG = "elGamalDecryptionShare";
 	public final static String PETCommitmentOPENING_TAG = "petC";
 	public final static String PETDecommitmentOPENING_TAG = "petD";

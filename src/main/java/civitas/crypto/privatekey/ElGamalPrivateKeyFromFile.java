@@ -5,16 +5,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import civitas.util.Use;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class ElGamalPrivateKeyFromFile {
-	@Use
-	ElGamalPrivateKeyFromXML elGamalPrivateKeyFromXML;
 
 	public ElGamalPrivateKey apply(String keyFile)
 			throws IOException, FileNotFoundException {
-		return elGamalPrivateKeyFromXML
-				.apply(new BufferedReader(new FileReader(keyFile)));
+		BufferedReader reader = new BufferedReader(new FileReader(keyFile));
+		XmlMapper mapper = new XmlMapper();
+		return mapper.readValue(reader, ElGamalPrivateKey.class);
+
 	}
 
 }

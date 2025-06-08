@@ -17,13 +17,13 @@ import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
 
 public class ConstructElGamalProof1OfLTest extends TestBase implements
-		ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorCTestData {
+		ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorTestData {
 
 	@Tested
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
@@ -31,8 +31,6 @@ public class ConstructElGamalProof1OfLTest extends TestBase implements
 	private ConvertHashToBigInt convertHashToBigInt;
 	@Use
 	private CryptoHash cryptoHash;
-	@Use
-	ElGamalProof1OfLToXML elGamalProof1OfLToXML;
 
 	@Test
 	@DisplayName("returns a proof that the ciphertext is a reencription of"
@@ -52,7 +50,7 @@ public class ConstructElGamalProof1OfLTest extends TestBase implements
 				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS,
 				MY_CHOICE, REENCRYPTED_WELL_KNOWN_CHOICE, ELGAMAL_REENCRYPT_FACTOR_E);
 
-		assertEquals(EL_GAMAL_PROOF_1_OF_L_XML, elGamalProof1OfLToXML.apply(proof));
+		assertEquals(EL_GAMAL_PROOF_1_OF_L, proof);
 	}
 
 	@Test

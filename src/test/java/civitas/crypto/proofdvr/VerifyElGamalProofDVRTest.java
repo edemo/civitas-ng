@@ -9,7 +9,7 @@ import civitas.common.TestBase;
 import civitas.util.Tested;
 
 public class VerifyElGamalProofDVRTest extends TestBase
-		implements ElGamalProofDVRCTestData {
+		implements ElGamalProofDVRTestData {
 
 	@Tested
 	VerifyElGamalProofDVR verifyElGamalProofDVR;

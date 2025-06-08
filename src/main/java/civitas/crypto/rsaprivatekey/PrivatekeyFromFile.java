@@ -4,15 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import civitas.util.Use;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class PrivatekeyFromFile {
-	@Use
-	PrivateKeyFromXML privateKeyFromXML;
 
 	public PrivateKey apply(String keyFile)
 			throws IllegalArgumentException, IOException {
-		return privateKeyFromXML.apply(new BufferedReader(new FileReader(keyFile)));
+		XmlMapper mapper = new XmlMapper();
+		BufferedReader reader = new BufferedReader(new FileReader(keyFile));
+		return mapper.readValue(reader, PrivateKey.class);
 	}
 
 }

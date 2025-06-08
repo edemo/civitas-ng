@@ -14,7 +14,7 @@ import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.Tested;
 
 public class VerifyElGamalProofDiscLogEqualityTest extends TestBase
-		implements ElGamalProofDiscLogEqualityCTestData {
+		implements ElGamalProofDiscLogEqualityTestData {
 
 	@Tested
 	VerifyElGamalProofDiscLogEquality verifyElGamalProofDiscLogEquality;

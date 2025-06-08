@@ -1,11 +1,11 @@
 package civitas.crypto.petdecommitment;
 
 import civitas.common.Util;
-import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityCTestData;
+import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityTestData;
 import civitas.util.CivitasBigInteger;
 
 public interface PETDecommitmentTestData
-		extends ElGamalProofDiscLogEqualityCTestData {
+		extends ElGamalProofDiscLogEqualityTestData {
 
 	CivitasBigInteger PET_DECOMMITMENT_D = CIPHERTEXT_E_A
 			.modDivide(CIPHERTEXT_EPRIME_A, BIGINT_P).modPow(FACTOR_E, BIGINT_P);

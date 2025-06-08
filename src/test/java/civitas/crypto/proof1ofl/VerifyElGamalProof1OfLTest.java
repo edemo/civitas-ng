@@ -12,12 +12,12 @@ import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 import civitas.util.Tested;
 import civitas.util.Use;
 
 public class VerifyElGamalProof1OfLTest extends TestBase implements
-		ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorCTestData {
+		ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorTestData {
 
 	@Tested
 	VerifyElGamalProof1OfL verifyElGamalProof1OfLC;

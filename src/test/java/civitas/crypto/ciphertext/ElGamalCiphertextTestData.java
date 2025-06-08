@@ -36,9 +36,9 @@ public interface ElGamalCiphertextTestData
 			.encodeToString(CIPHERTEXT_ENCCAP_A.toByteArray());
 	String CIPHERTEXT_ENCCAP_B_BASE64 = Base64.getEncoder()
 			.encodeToString(CIPHERTEXT_ENCCAP_B.toByteArray());
-	String CIPHERTEXT_ENCCAP_XML = "<elGamalCiphertext><a>"
+	String CIPHERTEXT_ENCCAP_XML = "<ElGamalCiphertext><a>"
 			+ CIPHERTEXT_ENCCAP_A_BASE64 + "</a><b>" + CIPHERTEXT_ENCCAP_B_BASE64
-			+ "</b></elGamalCiphertext>";
+			+ "</b></ElGamalCiphertext>";
 
 	CivitasBigInteger CIPHERTEXT_EPRIME_A = BIGINT_G.modPow(FACTOR_EPRIME,
 			BIGINT_P);
@@ -49,37 +49,37 @@ public interface ElGamalCiphertextTestData
 
 	String CIPHERTEXT_E_B_BASE64 = Util.fromBigInt(CIPHERTEXT_E_B);
 	String CIPHERTEXT_E_A_BASE64 = Util.fromBigInt(CIPHERTEXT_E_A);
-	public static final String EL_GAMAL_CIPHERTEXT_E_XML = "<elGamalCiphertext><a>"
+	public static final String EL_GAMAL_CIPHERTEXT_E_XML = "<ElGamalCiphertext><a>"
 			+ CIPHERTEXT_E_A_BASE64 + "</a><b>" + CIPHERTEXT_E_B_BASE64
-			+ "</b></elGamalCiphertext>";
+			+ "</b></ElGamalCiphertext>";
 
 	String CIPHERTEXT_EPRIME_B_BASE64 = Util.fromBigInt(CIPHERTEXT_EPRIME_B);
 	String CIPHERTEXT_EPRIME_A_BASE64 = Util.fromBigInt(CIPHERTEXT_EPRIME_A);
-	public static final String EL_GAMAL_CIPHERTEXT_EPRIME_XML = "<elGamalCiphertext><a>"
+	public static final String EL_GAMAL_CIPHERTEXT_EPRIME_XML = "<ElGamalCiphertext><a>"
 			+ CIPHERTEXT_EPRIME_A_BASE64 + "</a><b>" + CIPHERTEXT_EPRIME_B_BASE64
-			+ "</b></elGamalCiphertext>";
+			+ "</b></ElGamalCiphertext>";
 
-	public static final String XML_ELGAMALCIPHERTEXT_TRUNCATED = "<elGamalCiphertext><a>ESIQ9LFs";
-	public static final String ELGAMALCIPHERTEXT_XML = "<elGamalCiphertext><a>"
-			+ SOMESTRING_BASE64 + "</a><b>Xje5W2KfxNk=</b></elGamalCiphertext>";
-	public static final String XML_ELGAMALCIPHERTEXT_ANULL = "<elGamalCiphertext><a></a><b>Xje5W2KfxNk=</b></elGamalCiphertext>";
-	public static final String XML_ELGAMALCIPHERTEXT_BNULL = "<elGamalCiphertext><a>Xje5W2KfxNk=</a><b></b></elGamalCiphertext>";
+	public static final String XML_ELGAMALCIPHERTEXT_TRUNCATED = "<ElGamalCiphertext><a>ESIQ9LFs";
+	public static final String ELGAMALCIPHERTEXT_XML = "<ElGamalCiphertext><a>"
+			+ SOMESTRING_BASE64 + "</a><b>Xje5W2KfxNk=</b></ElGamalCiphertext>";
+	public static final String XML_ELGAMALCIPHERTEXT_ANULL = "<ElGamalCiphertext><a></a><b>Xje5W2KfxNk=</b></ElGamalCiphertext>";
+	public static final String XML_ELGAMALCIPHERTEXT_BNULL = "<ElGamalCiphertext><a>Xje5W2KfxNk=</a><b></b></ElGamalCiphertext>";
 
 	public static final String SHARED_KEY_CIPHERTEXT_XML = "<sharedKeyCiphertext>"
 			+ SOMESTRING_BASE64 + "</sharedKeyCiphertext>";
 	public static final String PUBLIC_KEY_CIPHERTEXT_XML = "<publicKeyCiphertext>"
 			+ SOMESTRING_BASE64 + "</publicKeyCiphertext>";
-	public static final String EL_GAMAL_CIPHERTEXT_NAIVE_XML = "<elGamalCiphertext><a>42</a><b>24</b></elGamalCiphertext>";
+	public static final String EL_GAMAL_CIPHERTEXT_NAIVE_XML = "<ElGamalCiphertext><a>42</a><b>24</b></ElGamalCiphertext>";
 	public static final ElGamalCiphertext EL_GAMAL_CIPHERTEXT = new ElGamalCiphertext(
 			GENERATOR_OTHER_POW_R1, BIGINT_D);
-	public static final String EL_GAMAL_CIPHERTEXT_XML = "<elGamalCiphertext><a>"
+	public static final String EL_GAMAL_CIPHERTEXT_XML = "<ElGamalCiphertext><a>"
 			+ GENERATOR_OTHER__POW_R1_BASE64 + "</a><b>" + BIGINT_D_BASE64
-			+ "</b></elGamalCiphertext>";
+			+ "</b></ElGamalCiphertext>";
 
 	public static final ElGamalCiphertext ENCRYPTED_ZERO_FACTOR = new ElGamalCiphertext(
 			ONE, G_EXP_B);
-	public static final String ENCRYPTED_ZERO_FACTOR_XML = "<elGamalCiphertext><a>"
-			+ ONE_BASE64 + "</a><b>" + G_EXP_B_BASE64 + "</b></elGamalCiphertext>";
+	public static final String ENCRYPTED_ZERO_FACTOR_XML = "<ElGamalCiphertext><a>"
+			+ ONE_BASE64 + "</a><b>" + G_EXP_B_BASE64 + "</b></ElGamalCiphertext>";
 
 	CivitasBigInteger HASH_OF_G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR_ADDITIONALENV = Util
 			.asBigint("dHKDA9V8OEUx/Z2A7TLdgbG7OdIZTbg860iANjgFJMI=");

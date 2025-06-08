@@ -4,10 +4,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 
 public class ConstructElGamalProof1OfLStub implements
-		ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorCTestData {
+		ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorTestData {
 
 	public static ConstructElGamalProof1OfL stub() {
 		ConstructElGamalProof1OfL mock = mock(ConstructElGamalProof1OfL.class);

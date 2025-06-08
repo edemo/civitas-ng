@@ -10,13 +10,13 @@ import civitas.common.TestBase;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.msg.EncodeMessage;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
 
 public class ElGamalEncryptTest extends TestBase
-		implements ElGamalCiphertextTestData, ElGamalReencryptFactorCTestData {
+		implements ElGamalCiphertextTestData, ElGamalReencryptFactorTestData {
 
 	@Tested
 	ElGamalEncrypt elGamalEncrypt;

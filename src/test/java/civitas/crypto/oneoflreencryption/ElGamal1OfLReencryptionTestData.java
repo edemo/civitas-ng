@@ -116,9 +116,9 @@ public interface ElGamal1OfLReencryptionTestData
 			.fromBigInt(REENCRYPTED_WELL_KNOWN_CHOICE_A);
 	String REENCRYPTED_WELL_KNOWN_CHOICE_B_BASE64 = Util
 			.fromBigInt(REENCRYPTED_WELL_KNOWN_CHOICE_B);
-	String REENCRYPTED_WELL_KNOWN_CHOICE_XML = "<elGamalCiphertext><a>"
+	String REENCRYPTED_WELL_KNOWN_CHOICE_XML = "<ElGamalCiphertext><a>"
 			+ REENCRYPTED_WELL_KNOWN_CHOICE_A_BASE64 + "</a><b>"
-			+ REENCRYPTED_WELL_KNOWN_CHOICE_B_BASE64 + "</b></elGamalCiphertext>";
+			+ REENCRYPTED_WELL_KNOWN_CHOICE_B_BASE64 + "</b></ElGamalCiphertext>";
 
 	public static final String EL_GAMAL_1_OF_L_REENCRYPTION_XML = "<elGamal1OfLReencryption>"
 			+ REENCRYPTED_WELL_KNOWN_CHOICE_XML + EL_GAMAL_PROOF_1_OF_L_XML

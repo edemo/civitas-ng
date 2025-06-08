@@ -9,9 +9,14 @@ package civitas.util;
 import java.math.BigInteger;
 import java.util.Random;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import civitas.crypto.Constants;
 
 @Boilerplate
+@JsonSerialize(using = CivitasBigIntegerSerializer.class)
+@JsonDeserialize(using = CivitasBigIntegerDeserializer.class)
 public class CivitasBigInteger implements Constants {
 
 	public final BigInteger i;

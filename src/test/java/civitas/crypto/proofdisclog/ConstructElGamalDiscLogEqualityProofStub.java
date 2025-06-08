@@ -4,7 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class ConstructElGamalDiscLogEqualityProofStub
-		implements ElGamalProofDiscLogEqualityCTestData {
+		implements ElGamalProofDiscLogEqualityTestData {
 
 	public static ConstructElGamalDiscLogEqualityProof stub() {
 		ConstructElGamalDiscLogEqualityProof mock = mock(

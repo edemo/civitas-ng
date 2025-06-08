@@ -5,15 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import civitas.util.Use;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class PublicKeyFromFile {
-	@Use
-	PublicKeyFromXML publicKeyFromXML;
 
 	public PublicKey apply(String keyFile)
 			throws IOException, FileNotFoundException {
-		return publicKeyFromXML.apply(new BufferedReader(new FileReader(keyFile)));
+		XmlMapper mapper = new XmlMapper();
+		BufferedReader reader = new BufferedReader(new FileReader(keyFile));
+		return mapper.readValue(reader, PublicKey.class);
 	}
 
 }

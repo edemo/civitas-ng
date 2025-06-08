@@ -4,11 +4,11 @@ import java.util.Map;
 
 import civitas.common.Util;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorCTestData;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 import civitas.util.CivitasBigInteger;
 
 public interface ElGamalPublicKeyTestData
-		extends ElGamalPrivateKeyTestData, ElGamalReencryptFactorCTestData {
+		extends ElGamalPrivateKeyTestData, ElGamalReencryptFactorTestData {
 
 	CivitasBigInteger PUBKEY_EPRIME = BIGINT_G.modPow(PRIVKEY_EPRIME, BIGINT_P);
 	String PUBKEY_EPRIME_BASE64 = Util.fromBigInt(PUBKEY_EPRIME);

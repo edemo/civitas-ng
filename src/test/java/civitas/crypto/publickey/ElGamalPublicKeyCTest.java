@@ -7,51 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
-import java.io.StringReader;
-import java.util.Base64;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
-import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
 
 public class ElGamalPublicKeyCTest extends TestBase
 		implements ElGamalPublicKeyTestData {
-
-	ElGamalPublicKey elGamalPublicKeyC;
-
-	@Use
-	ElGamalPublicKeyFromXML elGamalPublicKeyFromXML;
-
-	@Override
-	@BeforeEach
-	public void setUp() {
-		super.setUp();
-		elGamalPublicKeyC = new ElGamalPublicKey(
-				new CivitasBigInteger(Base64.getDecoder().decode(G_EXP_A_BASE64)),
-				EL_GAMAL_PARAMETERS);
-	}
-
-	@Use
-	ElGamalPublicKeyToXML elGamalPublicKeyToXML;
-
-	@Test
-	@DisplayName("constructor and toXML works as expected")
-	void test() {
-		assertEquals(EL_GAMAL_PUBLIC_KEY_XML,
-				elGamalPublicKeyToXML.apply(elGamalPublicKeyC));
-	}
-
-	@Test
-	@DisplayName("fromXML works as expected")
-	void test1() throws IllegalArgumentException, IOException {
-		assertEquals(elGamalPublicKeyC, elGamalPublicKeyFromXML
-				.apply(new StringReader(EL_GAMAL_PUBLIC_KEY_XML)));
-	}
 
 	@Use
 	GetElGamalPublicKeyName getElGamalPublicKeyName;
@@ -60,7 +25,7 @@ public class ElGamalPublicKeyCTest extends TestBase
 	@DisplayName("name returns a name")
 	void test2() throws IllegalArgumentException, IOException {
 		assertEquals(EL_GAMALPUBLIC_KEY_NAME,
-				getElGamalPublicKeyName.apply(elGamalPublicKeyC));
+				getElGamalPublicKeyName.apply(EL_GAMAL_PUBLIC_KEY_E));
 	}
 
 	@Use
@@ -69,7 +34,7 @@ public class ElGamalPublicKeyCTest extends TestBase
 	@Test
 	@DisplayName("isAuthorized checks if the proof is the private key for this")
 	void test3() throws IllegalArgumentException, IOException {
-		assertTrue(elGamalPublicKeyisAuthorized.apply(elGamalPublicKeyC,
+		assertTrue(elGamalPublicKeyisAuthorized.apply(EL_GAMAL_PUBLIC_KEY_E,
 				EL_GAMAL_PRIVATE_KEY_E));
 	}
 
@@ -77,13 +42,13 @@ public class ElGamalPublicKeyCTest extends TestBase
 	@DisplayName("isAuthorized is false for a secret which is not a private key")
 	void test4() throws IllegalArgumentException, IOException {
 		assertFalse(
-				elGamalPublicKeyisAuthorized.apply(elGamalPublicKeyC, BIGINT_A));
+				elGamalPublicKeyisAuthorized.apply(EL_GAMAL_PUBLIC_KEY_E, BIGINT_A));
 	}
 
 	@Test
 	@DisplayName("isAuthorized is false for bad secret")
 	void test5() throws IllegalArgumentException, IOException {
-		assertFalse(elGamalPublicKeyisAuthorized.apply(elGamalPublicKeyC,
+		assertFalse(elGamalPublicKeyisAuthorized.apply(EL_GAMAL_PUBLIC_KEY_E,
 				new ElGamalPrivateKey(BIGINT_B, EL_GAMAL_PARAMETERS)));
 	}
 
@@ -91,7 +56,7 @@ public class ElGamalPublicKeyCTest extends TestBase
 	@DisplayName("isAuthorized throws NullPointerException for a private key with null")
 	void test6() throws IllegalArgumentException, IOException {
 		assertThrows(NullPointerException.class,
-				() -> elGamalPublicKeyisAuthorized.apply(elGamalPublicKeyC,
+				() -> elGamalPublicKeyisAuthorized.apply(EL_GAMAL_PUBLIC_KEY_E,
 						new ElGamalPrivateKey(null, EL_GAMAL_PARAMETERS)));
 	}
 

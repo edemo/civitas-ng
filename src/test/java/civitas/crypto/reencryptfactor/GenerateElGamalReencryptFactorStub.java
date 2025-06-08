@@ -4,7 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class GenerateElGamalReencryptFactorStub
-		implements ElGamalReencryptFactorCTestData {
+		implements ElGamalReencryptFactorTestData {
 
 	public static GenerateElGamalReencryptFactor stub() {
 		GenerateElGamalReencryptFactor mock = mock(
