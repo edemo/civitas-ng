@@ -16,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.Security;
 import java.security.SignatureException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Map;
 
 import javax.crypto.SecretKey;
@@ -537,13 +538,15 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public PrivateKey privateKeyFromFile(String keyFile)
-			throws IllegalArgumentException, FileNotFoundException, IOException {
+			throws IllegalArgumentException, FileNotFoundException, IOException,
+			InvalidKeySpecException {
 		return privatekeyFromFile.apply(keyFile);
 	}
 
 	@Override
 	public PublicKey publicKeyFromFile(String keyFile)
-			throws IllegalArgumentException, FileNotFoundException, IOException {
+			throws IllegalArgumentException, FileNotFoundException, IOException,
+			InvalidKeySpecException {
 		return publicKeyFromFile.apply(keyFile);
 	}
 

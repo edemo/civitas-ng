@@ -8,10 +8,15 @@ package civitas.crypto.privatekey;
 
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Data
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class ElGamalPrivateKey {
 
 	@NonNull

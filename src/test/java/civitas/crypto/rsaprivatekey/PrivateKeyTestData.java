@@ -12,7 +12,7 @@ public interface PrivateKeyTestData {
 	public static final PrivateKey PRIVATE_KEY2 = TestUtil
 			.generatePrivate(PRIVATE_KEY2_BASE64);
 
-	public static final String PRIVATE_KEY_XML = "<privateKey>"
-			+ PRIVATE_KEY_BASE64 + "</privateKey>";
+	public static final String PRIVATE_KEY_XML = "<PrivateKey><name>bob</name><key>"
+			+ PRIVATE_KEY_BASE64 + "</key></PrivateKey>";
 
 }

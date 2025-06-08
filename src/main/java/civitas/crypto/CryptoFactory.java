@@ -14,6 +14,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SignatureException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Map;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
@@ -59,11 +60,11 @@ public interface CryptoFactory {
 	ElGamalPrivateKey egPrivKeyFromFile(String keyFile)
 			throws IllegalArgumentException, FileNotFoundException, IOException;
 
-	PublicKey publicKeyFromFile(String keyFile)
-			throws IllegalArgumentException, FileNotFoundException, IOException;
+	PublicKey publicKeyFromFile(String keyFile) throws IllegalArgumentException,
+			FileNotFoundException, IOException, InvalidKeySpecException;
 
-	PrivateKey privateKeyFromFile(String keyFile)
-			throws IllegalArgumentException, FileNotFoundException, IOException;
+	PrivateKey privateKeyFromFile(String keyFile) throws IllegalArgumentException,
+			FileNotFoundException, IOException, InvalidKeySpecException;
 
 	KeyPair generateKeyPair(int keyLength);
 

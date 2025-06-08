@@ -6,14 +6,18 @@
  */
 package civitas.crypto.rsapublickey;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
+@RequiredArgsConstructor
 public class PublicKey {
 	@NonNull
-	public final java.security.PublicKey k;
+	public java.security.PublicKey key;
 	@NonNull
-	final String name;
-
+	String name;
 }

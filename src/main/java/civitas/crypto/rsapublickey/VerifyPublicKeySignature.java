@@ -30,7 +30,7 @@ public class VerifyPublicKeySignature implements Constants {
 			java.security.Signature sig = obtainRSASigner.apply();
 			PublicKey Kc = K;
 			Signature sc = s;
-			sig.initVerify(Kc.k);
+			sig.initVerify(Kc.key);
 			sig.update(bytes);
 			return sig.verify(sc.signature);
 		} catch (Exception e) {

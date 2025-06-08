@@ -77,21 +77,10 @@ public interface ElGamalParametersTestData extends BasicValuesTestData {
 	public static final ElGamalParameters EL_GAMAL_PARAMETERS_GENERATOR_OTHER = new ElGamalParameters(
 			BIGINT_P, BIGINT_Q, GENERATOR_OTHER);
 
-	public static final String EL_GAMAL_PARAMETERS_XML = "<elGamalParameters><p>"
-			+ BIGINT_P_BASE64 + "</p><q>" + BIGINT_Q_BASE64 + "</q><g>"
-			+ BIGINT_G_BASE64 + "</g></elGamalParameters>";
-	public static final String ELGAMAL_PARAMETERS_NOGROUP_XML = "<elGamalParameters><p>"
-			+ BIGINT_A_BASE64 + "</p><q>" + BIGINT_B_BASE64 + "</q><g>"
-			+ BIGINT_C_BASE64 + "</g></elGamalParameters>";
-
-	public static final String ELGAMAL_PARAMETERS_OTHER_XML = "<elGamalParameters>"
-			+ "<p>" + P2_BASE64 + "</p><q>" + Q2_BASE64 + "</q><g>" + G2_BASE64
-			+ "</g></elGamalParameters>\n";
+	public static final String EL_GAMAL_PARAMETERS_XML = "<p>" + BIGINT_P_BASE64
+			+ "</p><q>" + BIGINT_Q_BASE64 + "</q><g>" + BIGINT_G_BASE64 + "</g>";
 	public static final CivitasBigInteger RANDOMS_0_PUBLISHED = BIGINT_G
 			.modPow(RANDOMS_0, BIGINT_P);
-	public static final String ELGAMAL_PRIVATE_KEY_XML = "<elGamalPrivateKey><params>"
-			+ EL_GAMAL_PARAMETERS_XML + "</params><x>" + SOMESTRING_BASE64
-			+ "</x></elGamalPrivateKey>";
 	public static final int SAFE_KEY_LENGTH = 512;
 	public static final String SAFE_P_BASE64 = "ASvIFyEHZA21reK32LTtYEwJG4GSW8Xzrl83llQSdjcztgsIJeyQm0ZZ36vG4aTVYjtADzV9J6xJ5RJ2U9QDfV8=";
 	public static final String SAFE_Q_BASE64 = "AJXkC5CDsgba1vFb7Fp2sCYEjcDJLeL51y+byyoJOxuZ2wWEEvZITaMs79XjcNJqsR2gB5q+k9Yk8ok7KeoBvq8=";

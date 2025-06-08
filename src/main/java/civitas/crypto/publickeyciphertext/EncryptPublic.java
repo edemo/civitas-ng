@@ -16,7 +16,7 @@ public class EncryptPublic implements Constants {
 		PublicKey keyc = key;
 		PublicKeyMsg msgc = msg;
 		byte[] encrypted = doCrypto.apply(PUBLIC_KEY_CIPHER_ALG,
-				PUBLIC_KEY_PROVIDER, keyc.k, Cipher.ENCRYPT_MODE, msgc.m.getBytes());
+				PUBLIC_KEY_PROVIDER, keyc.key, Cipher.ENCRYPT_MODE, msgc.m.getBytes());
 		return new PublicKeyCiphertext(encrypted);
 	}
 
