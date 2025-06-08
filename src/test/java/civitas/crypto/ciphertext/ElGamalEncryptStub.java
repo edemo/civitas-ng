@@ -1,13 +1,24 @@
 package civitas.crypto.ciphertext;
 
-import civitas.util.DI;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-class ElGamalEncryptStub {
+import civitas.crypto.proofvote.ProofVoteTestData;
+
+class ElGamalEncryptStub
+		implements ElGamalCiphertextTestData, ProofVoteTestData {
 
 	public static ElGamalEncrypt stub() {
-		ElGamalEncrypt instance = new ElGamalEncrypt();
-		DI.stubFill(instance);
-		return instance;
+		ElGamalEncrypt mock = mock(ElGamalEncrypt.class);
+		for (int i = 0; i < VOTE_CAPABILITIES.size(); i++) {
+			when(mock.apply(EL_GAMAL_PUBLIC_KEY_E, VOTE_CAPABILITIES.get(i),
+					ELGAMAL_REENCRYPT_FACTOR_E))
+					.thenReturn(ENCRYPTED_VOTE_CAPABILITIES.get(i));
+			when(mock.apply(EL_GAMAL_PUBLIC_KEY_E, VOTE_CAPABILITIES.get(i),
+					ELGAMAL_REENCRYPT_FACTOR_EPRIME))
+					.thenReturn(ENCRYPTED_VOTE_CAPABILITIES_WITH_EPRIME.get(i));
+		}
+		return mock;
 
 	}
 }

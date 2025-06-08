@@ -28,7 +28,7 @@ class CheckBallotAgainstBallotDesignTest extends TestBase
 	void test() {
 		assertThrows(IllegalArgumentException.class,
 				() -> checkBallotAgainstBallotDesign.apply(BALLOTDESIGN,
-						BALLOT_2_LENGTH));
+						BALLOT_2_CANDIDATES));
 	}
 
 	@Test

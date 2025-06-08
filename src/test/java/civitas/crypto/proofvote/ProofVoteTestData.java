@@ -53,6 +53,11 @@ public interface ProofVoteTestData
 					.apply(EL_GAMAL_PUBLIC_KEY_E, x, ELGAMAL_REENCRYPT_FACTOR_E))
 			.toList();
 
+	List<ElGamalCiphertext> ENCRYPTED_VOTE_CAPABILITIES_WITH_EPRIME = VOTE_CAPABILITIES
+			.stream().map(x -> DI.get(ElGamalEncrypt.class)
+					.apply(EL_GAMAL_PUBLIC_KEY_E, x, ELGAMAL_REENCRYPT_FACTOR_EPRIME))
+			.toList();
+
 	Map<Integer, ProofVote> PROOF_VOTE_MAP = ConstructTestData
 			.constructTestData(VOTE_PIECES, (piece) -> {
 				return DI.get(ConstructProofVote.class).apply(EL_GAMAL_PARAMETERS,

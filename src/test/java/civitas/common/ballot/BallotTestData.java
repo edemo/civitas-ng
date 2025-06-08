@@ -10,16 +10,18 @@ public interface BallotTestData extends CommonConstants {
 			new int[] { 0, VOTE_CHOICE_I_BEATS_J, 0 });
 
 	int VOTER_BLOCK = 3;
-	Ballot BALLOT = new Ballot(VOTER_BLOCK,
+	int NUM_CANDIDATES = 3;
+	Ballot BALLOT = new Ballot(NUM_CANDIDATES,
 			new int[] {
 					VOTE_CHOICE_I_BEATS_J,
 					VOTE_CHOICE_J_BEATS_I,
 					VOTE_CHOICE_NEITHER_BEAT });
 
-	Ballot BALLOT_SHORT_MATRIX = new Ballot(3,
+	Ballot BALLOT_SHORT_MATRIX = new Ballot(NUM_CANDIDATES,
 			new int[] { VOTE_CHOICE_I_BEATS_J, VOTE_CHOICE_J_BEATS_I });
 
-	Ballot BALLOT_2_LENGTH = new Ballot(2, new int[] { VOTE_CHOICE_I_BEATS_J });
+	Ballot BALLOT_2_CANDIDATES = new Ballot(2,
+			new int[] { VOTE_CHOICE_I_BEATS_J });
 
 	//@formatter:off
 	String BALLOT_XML = "<ballot><k>3</k><matrix>"

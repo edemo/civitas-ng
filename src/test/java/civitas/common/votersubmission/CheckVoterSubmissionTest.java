@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
-import civitas.common.votersubmission.VoterSubmissionTestData;
 import civitas.util.Tested;
 
 class CheckVoterSubmissionTest extends TestBase
