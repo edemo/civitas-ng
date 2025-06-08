@@ -37,6 +37,7 @@ public class VerifyProofVote {
 					encCapabilityC, encChoiceC, context);
 			E.add(paramsC.g.modPow(that.s1, p).modMultiply(a1.modPow(that.c, p), p));
 			E.add(paramsC.g.modPow(that.s2, p).modMultiply(a2.modPow(that.c, p), p));
+
 			CivitasBigInteger x = convertHashToBigInt.apply(cryptoHash.apply(E))
 					.mod(q);
 			boolean ret = that.c.equals(x);

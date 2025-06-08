@@ -7,11 +7,15 @@ import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
 import civitas.util.Tested;
+import civitas.util.Use;
 
 public class VerifyProofVoteTest extends TestBase implements ProofVoteTestData {
 
 	@Tested
 	VerifyProofVote verifyProofVote;
+
+	@Use
+	VerifyProofVote verifyProofVoteReal;
 
 	@Test
 	@DisplayName("verify checks if c equals "
@@ -24,4 +28,14 @@ public class VerifyProofVoteTest extends TestBase implements ProofVoteTestData {
 				CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE, ADDITIONALENV));
 	}
 
+	@Test
+	@DisplayName("PROOF_VOTE_MAP")
+	void test() {
+		for (Integer piece : VOTE_PIECES) {
+			assertTrue(verifyProofVoteReal.apply(PROOF_VOTE_MAP.get(piece),
+					EL_GAMAL_PARAMETERS, ENCRYPTED_VOTE_CAPABILITIES.get(piece),
+					REENCRYPTED_CHOICE_MAP.get(BALLOT.matrix[piece]),
+					CONTEXT_MAP.get(piece)));
+		}
+	}
 }

@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NonNull;
 
 @Data
-public class ElGamalMsg {
+public class ElGamalMsg implements CryptMessage {
 	@NonNull
 	public final CivitasBigInteger m;
 

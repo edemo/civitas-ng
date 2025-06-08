@@ -1,12 +1,23 @@
 package civitas.crypto.reencryptfactor;
 
-import civitas.util.DI;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-public class GenerateElGamalReencryptFactorStub {
+public class GenerateElGamalReencryptFactorStub
+		implements ElGamalReencryptFactorCTestData {
 
 	public static GenerateElGamalReencryptFactor stub() {
-		GenerateElGamalReencryptFactor mock = DI
-				.get(GenerateElGamalReencryptFactor.class);
+		GenerateElGamalReencryptFactor mock = mock(
+				GenerateElGamalReencryptFactor.class);
+		when(mock.apply(EL_GAMAL_PARAMETERS))
+				.thenReturn(ELGAMAL_REENCRYPT_FACTOR_EPRIME)
+				.thenReturn(ELGAMAL_REENCRYPT_FACTOR_E)
+				.thenReturn(ELGAMAL_REENCRYPT_FACTOR_EPRIME)
+				.thenReturn(ELGAMAL_REENCRYPT_FACTOR_E)
+				.thenReturn(ELGAMAL_REENCRYPT_FACTOR_EPRIME)
+				.thenReturn(ELGAMAL_REENCRYPT_FACTOR_E)
+				.thenReturn(ELGAMAL_REENCRYPT_FACTOR_EPRIME)
+				.thenReturn(ELGAMAL_REENCRYPT_FACTOR_E);
 		return mock;
 	}
 }

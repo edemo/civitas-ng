@@ -6,17 +6,16 @@
  */
 package civitas.crypto.votecapabilityshare;
 
-import civitas.crypto.msg.ElGamalMsg;
+import civitas.crypto.msg.CryptMessage;
 import civitas.util.CivitasBigInteger;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class VoteCapabilityShare extends ElGamalMsg {
-
-	public VoteCapabilityShare(CivitasBigInteger c) {
-		super(c);
-	}
+@EqualsAndHashCode
+public class VoteCapabilityShare implements CryptMessage {
+	@NonNull
+	public final CivitasBigInteger m;
 
 }

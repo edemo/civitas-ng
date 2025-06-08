@@ -12,7 +12,7 @@ import civitas.crypto.proof1ofl.ConstructElGamalProof1OfL;
 import civitas.crypto.proof1ofl.ElGamalProof1OfL;
 import civitas.util.DI;
 
-public class ConstrucTestData implements ElGamal1OfLReencryptionTestData {
+public class ConstructTestData implements ElGamal1OfLReencryptionTestData {
 
 	public static <I, O> Map<I, O> constructTestData(List<I> values,
 			Function<I, O> konstruktor) {

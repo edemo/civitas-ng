@@ -34,7 +34,6 @@ public class CalculateWinnerList {
 				winningCandidates
 						.add(new CandidateResult(winner, new ArrayList<Integer>(),
 								new ArrayList<Integer>(), new ArrayList<Integer>(), 1.0));
-				System.out.println(candidates[winner]);
 				for (CandidateResult lastWinner : lastWinners) {
 					Integer i = lastWinner.candidate;
 					lastWinner.beatenCandidates.add(winner);

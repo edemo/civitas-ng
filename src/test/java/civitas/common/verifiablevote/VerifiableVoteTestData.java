@@ -2,10 +2,12 @@ package civitas.common.verifiablevote;
 
 import java.util.Map;
 
-import civitas.common.ConstrucTestData;
+import civitas.common.ConstructTestData;
+import civitas.common.ballot.BallotTestData;
 import civitas.crypto.proofvote.ProofVoteTestData;
 
-public interface VerifiableVoteTestData extends ProofVoteTestData {
+public interface VerifiableVoteTestData
+		extends ProofVoteTestData, BallotTestData {
 	VerifiableVote VERIFIABLE_VOTE = new VerifiableVote(CONTEXT_0,
 			EL_GAMAL_1_OF_L_REENCRYPTION, CIPHERTEXT_ENCCAP, PROOF_VOTE);
 
@@ -15,12 +17,12 @@ public interface VerifiableVoteTestData extends ProofVoteTestData {
 			+ "</encCapability><proof>" + PROOF_VOTE_XML
 			+ "</proof></verifiableVote>";
 
-	Map<Integer, VerifiableVote> VERIFIABLE_VOTE_MAP = ConstrucTestData
+	Map<Integer, VerifiableVote> VERIFIABLE_VOTE_MAP = ConstructTestData
 			.constructTestData(VOTE_PIECES,
 					(piece) -> new VerifiableVote(CONTEXT_MAP.get(piece),
-							EL_GAMAL_1_OF_L_REENCRYPTION_MAP
-									.get(VOTE_CONTENTS_MAP.get(piece)),
-							CIPHERTEXT_ENCCAP, PROOF_VOTE_MAP.get(piece)));
+							EL_GAMAL_1_OF_L_REENCRYPTION_MAP.get(BALLOT.matrix[piece]),
+							ENCRYPTED_VOTE_CAPABILITIES.get(piece),
+							PROOF_VOTE_MAP.get(piece)));
 	VerifiableVote[] VERIFIABLE_VOTES = VERIFIABLE_VOTE_MAP.values()
 			.toArray(new VerifiableVote[0]);
 

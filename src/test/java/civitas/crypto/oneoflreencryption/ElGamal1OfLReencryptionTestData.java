@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import civitas.common.CommonConstants;
-import civitas.common.ConstrucTestData;
+import civitas.common.ConstructTestData;
 import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
@@ -34,7 +34,7 @@ public interface ElGamal1OfLReencryptionTestData
 			CommonConstants.VOTE_CHOICE_J_BEATS_I,
 			CommonConstants.VOTE_CHOICE_NEITHER_BEAT);
 
-	Map<Integer, ElGamalCiphertext> REENCRYPTED_CHOICE_MAP = ConstrucTestData
+	Map<Integer, ElGamalCiphertext> REENCRYPTED_CHOICE_MAP = ConstructTestData
 			.constructTestData(VOTE_CHOICES,
 					(choice) -> new ElGamalCiphertext(
 							CIPHERTEXT_LIST.get(choice).a
@@ -128,13 +128,13 @@ public interface ElGamal1OfLReencryptionTestData
 	public static final ElGamal1OfLReencryption EL_GAMAL_1_OF_L_REENCRYPTION = new ElGamal1OfLReencryption(
 			REENCRYPTED_WELL_KNOWN_CHOICE, EL_GAMAL_PROOF_1_OF_L);
 
-	Map<Integer, ElGamalProof1OfL> EL_GAMAL_PROOF_1_OF_L_MAP = ConstrucTestData
+	Map<Integer, ElGamalProof1OfL> EL_GAMAL_PROOF_1_OF_L_MAP = ConstructTestData
 			.constructTestData(VOTE_CHOICES,
 					(i) -> DI.get(ConstructElGamalProof1OfL.class).apply(
 							EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST,
 							NO_OF_WELL_KNOWN_CIPHERTEXTS, i, REENCRYPTED_CHOICE_MAP.get(i),
 							ELGAMAL_REENCRYPT_FACTOR_E));
-	Map<Integer, ElGamal1OfLReencryption> EL_GAMAL_1_OF_L_REENCRYPTION_MAP = ConstrucTestData
+	Map<Integer, ElGamal1OfLReencryption> EL_GAMAL_1_OF_L_REENCRYPTION_MAP = ConstructTestData
 			.constructTestData(VOTE_CHOICES,
 					(choice) -> new ElGamal1OfLReencryption(
 							REENCRYPTED_CHOICE_MAP.get(choice),

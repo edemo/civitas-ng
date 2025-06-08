@@ -3,7 +3,6 @@ package civitas.crypto.ciphertext;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import civitas.common.CommonConstants;
@@ -121,7 +120,7 @@ public interface ElGamalCiphertextTestData extends ElgamalMessageTestData {
 			IntStream.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS)
 					.mapToObj(i -> new ElGamalCiphertext(ONE,
 							BIGINT_G.modPow(CivitasBigInteger.valueOf(i + 1), BIGINT_P)))
-					.collect(Collectors.toList()));
+					.toList());
 
 	public static final String CIPHERTEXT_LIST_AS_XML = "<ciphertextList>"
 			+ "<size>1</size>" + EL_GAMAL_CIPHERTEXT_E_XML + "</ciphertextList>";

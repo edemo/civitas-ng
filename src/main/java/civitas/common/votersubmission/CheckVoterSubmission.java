@@ -1,9 +1,10 @@
-package civitas.common.ballotdesign;
+package civitas.common.votersubmission;
 
 import civitas.common.CommonConstants;
+import civitas.common.ballotdesign.BallotDesign;
+import civitas.common.ballotdesign.CalculatePositionInBallot;
 import civitas.common.verifiablevote.VerifiableVote;
 import civitas.common.verifiablevote.VerifyVerifiableVote;
-import civitas.common.votersubmission.VoterSubmission;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Use;

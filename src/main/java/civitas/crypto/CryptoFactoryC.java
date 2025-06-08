@@ -55,6 +55,7 @@ import civitas.crypto.keyshare.ElGamalKeyShareFromXML;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.messagedigest.MessageDigest;
 import civitas.crypto.messagedigest.ObtainMessageDigest;
+import civitas.crypto.msg.CryptMessage;
 import civitas.crypto.msg.DecryptElGamalMessage;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.oneoflreencryption.ConstructElGamal1OfLReencryption;
@@ -431,8 +432,8 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	@Override
-	public ElGamalCiphertext elGamalEncrypt(ElGamalPublicKey key, ElGamalMsg msg,
-			ElGamalReencryptFactor encryptFactor) {
+	public ElGamalCiphertext elGamalEncrypt(ElGamalPublicKey key,
+			CryptMessage msg, ElGamalReencryptFactor encryptFactor) {
 		return elGamalEncrypt.apply(key, msg, encryptFactor);
 	}
 

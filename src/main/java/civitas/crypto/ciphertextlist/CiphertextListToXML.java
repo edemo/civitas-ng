@@ -2,7 +2,6 @@ package civitas.crypto.ciphertextlist;
 
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import civitas.crypto.ciphertext.ElGamalCiphertextToXML;
 import civitas.util.Use;
@@ -18,7 +17,7 @@ public class CiphertextListToXML {
 			if (null != ciphertext)
 				return elGamalCiphertextToXML.apply(ciphertext);
 			return (String) null;
-		}).filter(x -> x != null).collect(Collectors.toList());
+		}).filter(x -> x != null).toList();
 		sb.print("<ciphertextList>");
 		sb.print("<size>");
 		int length = pieces.size();

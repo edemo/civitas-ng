@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.DisplayName;
@@ -63,22 +62,21 @@ public class ConstructElGamalProof1OfLTest extends TestBase implements
 		CivitasBigInteger ciphertextA = REENCRYPTED_WELL_KNOWN_CHOICE_A;
 		CivitasBigInteger ciphertextB = REENCRYPTED_WELL_KNOWN_CHOICE_B;
 		CivitasBigInteger pubkey = PUBKEY_E;
-		List<ElGamalCiphertext> ms = CIPHERTEXT_LIST.stream().map(x -> x)
-				.collect(Collectors.toList());
+		List<ElGamalCiphertext> ms = CIPHERTEXT_LIST.stream().map(x -> x).toList();
 		List<CivitasBigInteger> as = IntStream
 				.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS).mapToObj(i -> {
 					return ms.get(i).a.modDivide(ciphertextA, BIGINT_P)
 							.modPow(DS.get(i), BIGINT_P)
 							.modMultiply(BIGINT_G.modPow(RS.get(i), BIGINT_P), BIGINT_P)
 							.mod(BIGINT_P);
-				}).collect(Collectors.toList());
+				}).toList();
 		List<CivitasBigInteger> bs = IntStream
 				.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS).mapToObj(i -> {
 					return ms.get(i).b.modDivide(ciphertextB, BIGINT_P)
 							.modPow(DS.get(i), BIGINT_P)
 							.modMultiply(pubkey.modPow(RS.get(i), BIGINT_P), BIGINT_P)
 							.mod(BIGINT_P);
-				}).collect(Collectors.toList());
+				}).toList();
 
 		List<CivitasBigInteger> env = ((Supplier<List<CivitasBigInteger>>) () -> {
 			ArrayList<CivitasBigInteger> d = new ArrayList<>(

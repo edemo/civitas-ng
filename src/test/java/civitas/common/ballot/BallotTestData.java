@@ -9,7 +9,8 @@ public interface BallotTestData extends CommonConstants {
 	Ballot BALLOT_ONE_RECORD = new Ballot(3,
 			new int[] { 0, VOTE_CHOICE_I_BEATS_J, 0 });
 
-	Ballot BALLOT = new Ballot(3,
+	int VOTER_BLOCK = 3;
+	Ballot BALLOT = new Ballot(VOTER_BLOCK,
 			new int[] {
 					VOTE_CHOICE_I_BEATS_J,
 					VOTE_CHOICE_J_BEATS_I,

@@ -23,6 +23,7 @@ import civitas.crypto.keypair.ElGamalKeyPair;
 import civitas.crypto.keypairshare.ElGamalKeyPairShare;
 import civitas.crypto.keyshare.ElGamalKeyShare;
 import civitas.crypto.messagedigest.MessageDigest;
+import civitas.crypto.msg.CryptMessage;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.parameters.ElGamalParameters;
@@ -92,7 +93,7 @@ public interface CryptoFactory {
 
 	ElGamalCiphertext elGamalEncrypt(ElGamalPublicKey key, ElGamalMsg msg);
 
-	ElGamalCiphertext elGamalEncrypt(ElGamalPublicKey key, ElGamalMsg msg,
+	ElGamalCiphertext elGamalEncrypt(ElGamalPublicKey key, CryptMessage msg,
 			ElGamalReencryptFactor r);
 
 	ElGamalCiphertext elGamalReencrypt(ElGamalPublicKey key, ElGamalCiphertext c);

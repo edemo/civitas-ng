@@ -5,14 +5,18 @@ import java.util.Map;
 import civitas.common.CommonConstants;
 import civitas.common.ballot.Ballot;
 import civitas.common.verifiablevote.VerifiableVote;
+import civitas.common.votersubmission.CreateVoterSubmission;
 import civitas.common.votersubmission.VoterSubmission;
-import civitas.crypto.CryptoUtil;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.ciphertextlist.CiphertextList;
+import civitas.crypto.oneoflreencryption.ConstructElGamal1OfLReencryption;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
+import civitas.crypto.proofvote.ConstructProofVote;
 import civitas.crypto.proofvote.ProofVote;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
+import civitas.crypto.reencryptfactor.GenerateElGamalReencryptFactor;
 import civitas.crypto.votecapability.VoteCapability;
 import civitas.util.Use;
 
@@ -22,10 +26,20 @@ public class DecomposeBallot implements CommonConstants {
 	CalculatePositionInBallot calculatePositionInBallot;
 	@Use
 	CalculateBallotLength calculateBallotLength;
+	@Use
+	ConstructElGamal1OfLReencryption constructElGamal1OfLReencryption;
+	@Use
+	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
+	@Use
+	ElGamalEncrypt elGamalEncrypt;
+	@Use
+	ConstructProofVote constructProofVote;
+	@Use
+	CreateVoterSubmission createVoterSubmission;
 
-	public VoterSubmission decompose(BallotDesign that, Ballot ballot,
-			int voterBlock, ElGamalPublicKey key, CiphertextList ciphertexts,
-			String context, Map<String, VoteCapability> capabilities)
+	public VoterSubmission apply(BallotDesign that, Ballot ballot, int voterBlock,
+			ElGamalPublicKey key, CiphertextList ciphertexts, String context,
+			Map<String, VoteCapability> capabilities)
 			throws IllegalArgumentException {
 
 		if (!(ballot instanceof Ballot)) {
@@ -48,24 +62,18 @@ public class DecomposeBallot implements CommonConstants {
 		// add one vote for each matrix entry.
 		// FIXME call once
 		int matrixSize = calculateBallotLength.apply(cb.k);
-		VerifiableVote[] votes = new VerifiableVote[matrixSize < 0 ? 0
-				: matrixSize];
+		VerifiableVote[] votes = new VerifiableVote[matrixSize];
 		for (int i = 0; i < cb.k; i++) {
 			for (int j = i + 1; j < cb.k; j++) {
 				ElGamalReencryptFactor encChoiceFactor = null;
 				ElGamal1OfLReencryption encChoice = null;
 				int pos = calculatePositionInBallot.apply(i, j, cb.k);
-				try {
-					int choice = cbMatrix[calculatePositionInBallot.apply(i, j, cb.k)];// FIXME
-																																							// use
-																																							// pos
-					encChoiceFactor = CryptoUtil.factory()
-							.generateElGamalReencryptFactor(key.params);
-					encChoice = CryptoUtil.factory().elGamal1OfLReencrypt(key,
-							ciphertexts, 4, choice, encChoiceFactor);
-				} catch (NullPointerException imposs) {
-				} catch (ArrayIndexOutOfBoundsException imposs) {
-				}
+				int choice = cbMatrix[calculatePositionInBallot.apply(i, j, cb.k)];// FIXME
+																																						// use
+																																						// pos
+				encChoiceFactor = generateElGamalReencryptFactor.apply(key.params);
+				encChoice = constructElGamal1OfLReencryption.apply(key, ciphertexts, 4,
+						choice, encChoiceFactor);
 
 				String desiredContext = context + KIND + i + ":" + j;
 				VoteCapability c = null;
@@ -83,17 +91,11 @@ public class DecomposeBallot implements CommonConstants {
 							"No capability supplied for context " + desiredContext);
 				}
 
-				ElGamalReencryptFactor encCapFactor = null;
-				ElGamalCiphertext encCap = null;
-				ProofVote proofVote = null;
-				try {
-					encCapFactor = CryptoUtil.factory()
-							.generateElGamalReencryptFactor(key.params);
-					encCap = CryptoUtil.factory().elGamalEncrypt(key, c, encCapFactor);
-					proofVote = CryptoUtil.factory().constructProofVote(key.params,
-							encCap, encChoice, desiredContext, encCapFactor, encChoiceFactor);
-				} catch (NullPointerException imposs) {
-				}
+				ElGamalReencryptFactor encCapFactor = generateElGamalReencryptFactor
+						.apply(key.params);
+				ElGamalCiphertext encCap = elGamalEncrypt.apply(key, c, encCapFactor);
+				ProofVote proofVote = constructProofVote.apply(key.params, encCap,
+						encChoice.m, desiredContext, encCapFactor, encChoiceFactor);
 
 				VerifiableVote v = new VerifiableVote(desiredContext, encChoice, encCap,
 						proofVote);
@@ -105,7 +107,7 @@ public class DecomposeBallot implements CommonConstants {
 				}
 			}
 		}
-		VoterSubmission vs = new VoterSubmission(voterBlock, votes);
+		VoterSubmission vs = createVoterSubmission.apply(voterBlock, votes);
 		return vs;
 	}
 

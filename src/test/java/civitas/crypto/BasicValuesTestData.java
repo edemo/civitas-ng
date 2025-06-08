@@ -2,7 +2,6 @@ package civitas.crypto;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import civitas.common.Util;
 import civitas.util.CivitasBigInteger;
@@ -64,7 +63,7 @@ public interface BasicValuesTestData extends Constants {
 			"KnJKpa62Fm1sRo+qU1RfkGD6heTRBoEgkdL5CIFHKUk=");
 
 	public static final List<CivitasBigInteger> RANDOMS = RANDOMS_BASE64.stream()
-			.map((s) -> Util.asBigint(s)).collect(Collectors.toList());
+			.map((s) -> Util.asBigint(s)).toList();
 
 	public static final CivitasBigInteger RANDOMS_0 = RANDOMS.get(0);
 	public static final String RANDOMS_0_BASE64 = RANDOMS_BASE64.get(0);

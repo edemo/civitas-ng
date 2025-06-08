@@ -19,7 +19,7 @@ import civitas.crypto.msg.EncodeMessage;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShareTestData;
 import civitas.util.Use;
 
-public class VoteCapabilityCTest extends TestBase
+public class VoteCapabilityTest extends TestBase
 		implements VoteCapabilityShareTestData {
 	@Use
 	VoteCapabilityFromXML voteCapabilityFromXML;
