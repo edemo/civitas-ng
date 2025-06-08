@@ -3,13 +3,18 @@ package civitas.common.ballotdesign;
 import java.util.Map;
 
 import civitas.common.CommonConstants;
+import civitas.common.tallystate.RecordBeat;
 import civitas.common.tallystate.TallyState;
 import civitas.crypto.CryptoException;
 import civitas.crypto.CryptoUtil;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.util.CivitasBigInteger;
+import civitas.util.Use;
 
 public class TallyVote implements CommonConstants {
+
+	@Use
+	RecordBeat recordBeat;
 
 	public void apply(String ctxt, ElGamalMsg m, String c, TallyState s,
 			Map<CivitasBigInteger, Integer> decodeMap) throws IllegalArgumentException
@@ -41,10 +46,10 @@ public class TallyVote implements CommonConstants {
 					int i = Integer.parseInt(suffix.substring(0, ind));
 					int j = Integer.parseInt(suffix.substring(ind + 1));
 					if (choice == VOTE_CHOICE_I_BEATS_J) {
-						cts.record(i, j);
+						recordBeat.apply(cts, i, j);
 					}
 					if (choice == VOTE_CHOICE_J_BEATS_I) {
-						cts.record(j, i);
+						recordBeat.apply(cts, j, i);
 					}
 
 				} catch (NumberFormatException e) {

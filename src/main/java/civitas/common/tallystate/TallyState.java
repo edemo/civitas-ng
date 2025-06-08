@@ -6,33 +6,15 @@
  */
 package civitas.common.tallystate;
 
-import civitas.common.tallystatefinal.TallyStateFinal;
 import lombok.Data;
 import lombok.NonNull;
 
-/**
- * TallyState for a CondorcetBallotDesign.
- */
 @Data
 public class TallyState {
 	@NonNull
 	public final Integer size;
 	@NonNull
 	public final Integer[][] matrix;
+	RecordBeat a;
 
-	public void record(int i, int j) throws IndexOutOfBoundsException {
-		if (matrix != null && i >= 0 && i < size && j >= 0 && j < size) {
-			try {
-				matrix[i][j]++;
-				return;
-			} catch (ArrayIndexOutOfBoundsException imposs) {
-			} catch (NullPointerException imposs) {
-			}
-		}
-		throw new IndexOutOfBoundsException();
-	}
-
-	public TallyStateFinal finalTally() {
-		return new TallyStateFinal(size, matrix);
-	}
 }
