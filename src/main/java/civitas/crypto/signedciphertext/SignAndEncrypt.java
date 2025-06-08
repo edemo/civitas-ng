@@ -22,21 +22,16 @@ public class SignAndEncrypt {
 
 	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg,
 			ElGamalReencryptFactor r, byte[] additionalEnv) throws CryptoError {
-		try {
-			ElGamalParameters ps = key.params;
-			ElGamalPublicKey k = key;
-			CivitasBigInteger m = msg.m;
-			CivitasBigInteger rr = r.r;
-			CivitasBigInteger s = generateRandomElement.apply(ps.q);
-			CivitasBigInteger a = ps.g.modPow(rr, ps.p);
-			CivitasBigInteger b = m.modMultiply(k.y.modPow(rr, ps.p), ps.p);
-			CivitasBigInteger c = cryptoHash
-					.apply(ps.g.modPow(s, ps.p), a, b, additionalEnv).mod(ps.q);
-			CivitasBigInteger d = s.modAdd(c.modMultiply(rr, ps.q), ps.q);
-			return new ElGamalSignedCiphertext(a, b, c, d);
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
-		}
+		ElGamalParameters ps = key.params;
+		CivitasBigInteger m = msg.m;
+		CivitasBigInteger rr = r.r;
+		CivitasBigInteger s = generateRandomElement.apply(ps.q);
+		CivitasBigInteger a = ps.g.modPow(rr, ps.p);
+		CivitasBigInteger b = m.modMultiply(key.y.modPow(rr, ps.p), ps.p);
+		CivitasBigInteger c = cryptoHash
+				.apply(ps.g.modPow(s, ps.p), a, b, additionalEnv).mod(ps.q);
+		CivitasBigInteger d = s.modAdd(c.modMultiply(rr, ps.q), ps.q);
+		return new ElGamalSignedCiphertext(a, b, c, d);
 	}
 
 	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg)

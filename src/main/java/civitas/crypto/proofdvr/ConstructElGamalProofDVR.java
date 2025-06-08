@@ -33,11 +33,6 @@ public class ConstructElGamalProofDVR {
 			ElGamalPublicKey key, ElGamalPublicKey verifierKey,
 			CivitasBigInteger zeta) {
 
-// check that the inputs are correct
-//        if (!factory.elGamalReencrypt(key, e, new ElGamalReencryptFactorC(zeta)).equals(eprime)) {
-//            throw new CryptoError("Incorrect value for zeta passed in");
-//        }
-
 		ElGamalParameters ps = key.params;
 		CivitasBigInteger d = generateRandomElement.apply(ps.q);
 		CivitasBigInteger w = generateRandomElement.apply(ps.q);

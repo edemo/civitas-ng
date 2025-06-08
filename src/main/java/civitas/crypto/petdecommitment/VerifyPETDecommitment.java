@@ -19,9 +19,6 @@ public class VerifyPETDecommitment {
 	public boolean apply(PETDecommitment self, PETCommitment c,
 			ElGamalParameters params, ElGamalCiphertext ciphertext1,
 			ElGamalCiphertext ciphertext2) {
-		if (!(c instanceof PETCommitment)) {
-			return false;
-		}
 		ElGamalProofDiscLogEquality prf = self.proof;
 		ElGamalParameters ps = params;
 		PETCommitment com = c;
@@ -31,7 +28,6 @@ public class VerifyPETDecommitment {
 		CivitasBigInteger d = m1.a.modDivide(m2.a, ps.p);
 		CivitasBigInteger e = m1.b.modDivide(m2.b, ps.p);
 
-		// check that it's a proof of the correct thing.
 		if (self.di == null || self.ei == null || !d.equals(prf.g1)
 				|| !e.equals(prf.g2))
 			return false;

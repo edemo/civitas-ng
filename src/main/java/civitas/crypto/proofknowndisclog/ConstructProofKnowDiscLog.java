@@ -24,10 +24,7 @@ public class ConstructProofKnowDiscLog {
 		CivitasBigInteger v = params.g.modPow(x, params.p);
 		CivitasBigInteger z = generateRandomElement.apply(params.q);
 		CivitasBigInteger a = params.g.modPow(z, params.p);
-		CivitasBigInteger c = cryptoHash.apply(v, a).mod(params.q); // can take mod
-																																// q
-		// without
-		// any ill effects.
+		CivitasBigInteger c = cryptoHash.apply(v, a).mod(params.q);
 		CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q), params.q);
 		return new ElGamalProofKnowDiscLog(a, c, r, v);
 	}

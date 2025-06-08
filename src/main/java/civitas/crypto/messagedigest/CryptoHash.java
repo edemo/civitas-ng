@@ -1,12 +1,12 @@
 package civitas.crypto.messagedigest;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import civitas.crypto.CryptoError;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.util.CivitasBigInteger;
 import civitas.util.Use;
+import lombok.SneakyThrows;
 
 public class CryptoHash {
 	@Use
@@ -61,14 +61,11 @@ public class CryptoHash {
 		return md.md.digest();
 	}
 
+	@SneakyThrows
 	public byte[] apply(String s) {
 		MessageDigest md = obtainMessageDigest.apply();
 		if (s != null)
-			try {
-				md.md.update(s.getBytes("UTF-8"));
-			} catch (UnsupportedEncodingException impossible) {
-				throw new Error(impossible);
-			}
+			md.md.update(s.getBytes("UTF-8"));
 		return md.md.digest();
 	}
 

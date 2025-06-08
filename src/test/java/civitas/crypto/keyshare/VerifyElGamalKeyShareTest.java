@@ -33,4 +33,11 @@ public class VerifyElGamalKeyShareTest extends TestBase
 						EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
 	}
 
+	@Test
+	@DisplayName("verify is false if the proof fails")
+	void test1_4() throws IllegalArgumentException, IOException {
+		assertFalse(verifyElGamalKeyShare.apply(new ElGamalKeyShare(
+				EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PROOF_KNOWN_DISC_LOG_BAD)));
+	}
+
 }

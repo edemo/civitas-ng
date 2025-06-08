@@ -5,8 +5,6 @@ import civitas.util.CivitasBigInteger;
 
 public class VerifyElGamalProofKnowDiscLog {
 	public boolean apply(ElGamalProofKnowDiscLog that, ElGamalParameters prms) {
-		if (!(prms instanceof ElGamalParameters))
-			return false;
 		ElGamalParameters params = prms;
 		try {
 			CivitasBigInteger u = params.g.modPow(that.r, params.p);

@@ -17,26 +17,20 @@ public class DecryptElGamalMessage {
 
 	public ElGamalMsg apply(ElGamalPrivateKey key, ElGamalCiphertext ciphertext,
 			byte[] additionalEnv) throws CryptoException, CryptoError {
-		try {
-			ElGamalPrivateKey k = key;
-			ElGamalParameters ps = key.params;
+		ElGamalPrivateKey k = key;
+		ElGamalParameters ps = key.params;
 
-			if (ciphertext instanceof ElGamalSignedCiphertext) {
-				if (!verifyElGamalSignature.apply(ps,
-						(ElGamalSignedCiphertext) ciphertext, additionalEnv)) {
-					throw new CryptoException("Ciphertext failed verification");
-				}
+		if (ciphertext instanceof ElGamalSignedCiphertext) {
+			if (!verifyElGamalSignature.apply(ps,
+					(ElGamalSignedCiphertext) ciphertext, additionalEnv)) {
+				throw new CryptoException("Ciphertext failed verification");
 			}
-			ElGamalCiphertext c = ciphertext;
-			CivitasBigInteger a = c.a;
-			CivitasBigInteger b = c.b;
-			CivitasBigInteger m = b.modDivide(a.modPow(k.x, ps.p), ps.p);
-			return new ElGamalMsg(m);
-		} catch (ClassCastException e) {
-			throw new CryptoError(e);
-		} catch (NullPointerException e) {
-			throw new CryptoError(e);
 		}
+		ElGamalCiphertext c = ciphertext;
+		CivitasBigInteger a = c.a;
+		CivitasBigInteger b = c.b;
+		CivitasBigInteger m = b.modDivide(a.modPow(k.x, ps.p), ps.p);
+		return new ElGamalMsg(m);
 	}
 
 	public ElGamalMsg apply(ElGamalPrivateKey key, ElGamalCiphertext ciphertext)

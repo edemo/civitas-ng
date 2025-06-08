@@ -7,12 +7,10 @@ import civitas.util.CivitasBigInteger;
 public class CombineVoteCapabilityShares {
 
 	public VoteCapability[] apply(VoteCapabilityShare[][] shares,
-			ElGamalParameters p) {
+			ElGamalParameters params) {
 		if (shares == null)
 			return null;
 		try {
-			ElGamalParameters params = p;
-			// multiply all the shares together
 			CivitasBigInteger[] accum = new CivitasBigInteger[shares[0].length];
 			for (VoteCapabilityShare[] share : shares) {
 				for (int j = 0; j < share.length; j++) {
@@ -31,8 +29,6 @@ public class CombineVoteCapabilityShares {
 			return ret;
 
 		} catch (NullPointerException e) {
-			return null;
-		} catch (ClassCastException e) {
 			return null;
 		}
 	}

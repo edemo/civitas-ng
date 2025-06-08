@@ -42,14 +42,6 @@ public class FakeElGamalProofDVR {
 		CivitasBigInteger xt = et.a;
 		CivitasBigInteger yt = et.b;
 
-		/*
-		 * A verifier can simulate a "proof" that any e~=(x~,y~) is a reencryption
-		 * of e. Select \alpha, \beta, u~ at random from Z_q Compute: o a~ (g^u~) /
-		 * ((x~/x)^(\alpha)) o b~ = (h^u~) / ((y~/y)^(\alpha)) o s~ = g^(\beta) o E~
-		 * = e||e~ o c~ = hash(E~||a~||b~||s~) o w~ = \alpha - c~ (mod q) o r~ =
-		 * (\beta - w~)/(z_v) (mod q) (c~, w~, r~, u~) will verify as a proof for
-		 * E~.
-		 */
 		CivitasBigInteger alpha = generateRandomElement.apply(ps.q);
 		CivitasBigInteger beta = generateRandomElement.apply(ps.q);
 		CivitasBigInteger ut = generateRandomElement.apply(ps.q);

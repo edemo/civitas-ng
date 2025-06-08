@@ -1,19 +1,6 @@
 package civitas.result;
 
 public class InitialMatrix {
-	/*
-	 * # initial_matrix($m,$n): Return a matrix which is the
-	 * # initial starting point for the Floyd-Warshall algorithm.
-	 * # Input m is a reference to an n-by-n matrix. For any given
-	 * # pair of elements ij and ji in m, at most one is
-	 * # initialized to something other than (0,0): the one that
-	 * # contains a larger value in m. That element is initialized
-	 * # to a reference to a pair containing the larger and the
-	 * # smaller of the two values. Thus, diagonal elements are
-	 * # initialized to (0,0); if m_ij=m_ji, both are initialized
-	 * # to (0,0).
-	 * #
-	 */
 
 	Pair<Integer, Integer>[][] apply(Integer[][] m, Integer n) {
 		@SuppressWarnings("unchecked")

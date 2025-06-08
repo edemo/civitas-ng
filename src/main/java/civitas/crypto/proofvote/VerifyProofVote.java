@@ -24,28 +24,19 @@ public class VerifyProofVote {
 	public boolean apply(ProofVote that, ElGamalParameters params,
 			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
 			String context) {
-		try {
-			ElGamalParameters paramsC = params;
-			ElGamalCiphertext encCapabilityC = encCapability;
-			ElGamalCiphertext encChoiceC = encChoice;
-			CivitasBigInteger a1 = encCapabilityC.a;
-			CivitasBigInteger a2 = encChoiceC.a;
-			CivitasBigInteger p = paramsC.p;
-			CivitasBigInteger q = paramsC.q;
+		CivitasBigInteger a1 = encCapability.a;
+		CivitasBigInteger a2 = encChoice.a;
+		CivitasBigInteger p = params.p;
+		CivitasBigInteger q = params.q;
 
-			List<CivitasBigInteger> E = calculateProofEnvironment.apply(paramsC,
-					encCapabilityC, encChoiceC, context);
-			E.add(paramsC.g.modPow(that.s1, p).modMultiply(a1.modPow(that.c, p), p));
-			E.add(paramsC.g.modPow(that.s2, p).modMultiply(a2.modPow(that.c, p), p));
+		List<CivitasBigInteger> E = calculateProofEnvironment.apply(params,
+				encCapability, encChoice, context);
+		E.add(params.g.modPow(that.s1, p).modMultiply(a1.modPow(that.c, p), p));
+		E.add(params.g.modPow(that.s2, p).modMultiply(a2.modPow(that.c, p), p));
 
-			CivitasBigInteger x = convertHashToBigInt.apply(cryptoHash.apply(E))
-					.mod(q);
-			boolean ret = that.c.equals(x);
-			return ret;
-		} catch (ClassCastException e) {
-			e.printStackTrace();
-			return false;
-		}
+		CivitasBigInteger x = convertHashToBigInt.apply(cryptoHash.apply(E)).mod(q);
+		boolean ret = that.c.equals(x);
+		return ret;
 	}
 
 }
