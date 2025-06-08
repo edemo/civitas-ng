@@ -4,12 +4,21 @@ import java.util.Map;
 
 import civitas.common.ConstructTestData;
 import civitas.common.ballot.BallotTestData;
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.proofvote.ProofVoteTestData;
 
 public interface VerifiableVoteTestData
 		extends ProofVoteTestData, BallotTestData {
 	VerifiableVote VERIFIABLE_VOTE = new VerifiableVote(CONTEXT_0,
 			EL_GAMAL_1_OF_L_REENCRYPTION, CIPHERTEXT_ENCCAP, PROOF_VOTE);
+
+	VerifiableVote VERIFIABLE_VOTE_BAD_CHOICE = new VerifiableVote(CONTEXT_0,
+			new ElGamal1OfLReencryption(REENCRYPTED_WELL_KNOWN_CHOICE,
+					EL_GAMAL_PROOF_1_OF_L_BAD),
+			CIPHERTEXT_ENCCAP, PROOF_VOTE);
+
+	VerifiableVote VERIFIABLE_VOTE_BAD_PROOF = new VerifiableVote(CONTEXT_0,
+			EL_GAMAL_1_OF_L_REENCRYPTION, CIPHERTEXT_ENCCAP, PROOF_VOTE_MAP.get(1));
 
 	String VERIFIABLE_VOTE_XML = "<verifiableVote><context>" + CONTEXT_0
 			+ "</context><encChoice>" + EL_GAMAL_1_OF_L_REENCRYPTION_XML
