@@ -18,6 +18,8 @@ public interface ElGamalPublicKeyTestData
 			PUBKEY_EPRIME, EL_GAMAL_PARAMETERS);
 	public static final ElGamalPublicKey EL_GAMAL_PUBLIC_KEY_E = new ElGamalPublicKey(
 			PUBKEY_E, EL_GAMAL_PARAMETERS);
+	public static final ElGamalPublicKey EL_GAMAL_PUBLIC_KEY_E_BUT_OTHER_PARAMETERS = new ElGamalPublicKey(
+			PUBKEY_E, EL_GAMAL_PARAMETERS_OTHER);
 	public static final ElGamalPublicKey EL_GAMAL_PUBLIC_KEY_A_USING_G_OTHER = new ElGamalPublicKey(
 			BIGINT_G_OTHER.modPow(BIGINT_A, BIGINT_P), EL_GAMAL_PARAMETERS_OTHER);
 

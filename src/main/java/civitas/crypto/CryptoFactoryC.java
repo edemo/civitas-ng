@@ -404,11 +404,6 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return decodeChoice.apply(map, m.m);
 	}
 
-	/**
-	 * Construct a well known ciphertext list. Needs to be coordinated with
-	 * elGamal1OfLValue(ElGamalMsg) such that elGamal1OfLValue(m) = j where ret[j]
-	 * = enc(m)
-	 */
 	@Override
 	public CiphertextList constructWellKnownCiphertexts(ElGamalPublicKey key,
 			int count) {

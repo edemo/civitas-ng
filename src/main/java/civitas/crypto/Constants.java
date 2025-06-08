@@ -38,7 +38,6 @@ public interface Constants {
 	public final String PUBLIC_KEY_ALG = "RSA";
 
 	public final String PUBLIC_KEY_CIPHER_ALG = "RSA/ECB/PKCS1Padding";
-//  public final String PUBLIC_KEY_CIPHER_ALG = "RSA/NONE/OAEPPADDING";
 	public final String PUBLIC_KEY_SIGNATURE_ALG = "SHA512WithRSAEncryption";
 	public final String PUBLIC_KEY_PROVIDER = "BC";
 

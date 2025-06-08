@@ -14,6 +14,9 @@ public interface ElGamalDecryptionShareTestData
 			EL_GAMAL_DECRYPTION_SHARE_AI,
 			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE);
 
+	public static final ElGamalDecryptionShare EL_GAMAL_DECRYPTION_SHARE_BAD_AI = new ElGamalDecryptionShare(
+			BIGINT_A, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE);
+
 	public static final ElGamalDecryptionShare EL_GAMAL_DECRYPTION_SHARE_BADPROOF = new ElGamalDecryptionShare(
 			RANDOMS_1, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT);
 	String EL_GAMAL_DECRYPTION_SHARE_AI_BASE64 = Util

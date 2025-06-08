@@ -1,6 +1,5 @@
 package civitas.crypto.decriptionshare;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,14 +19,15 @@ public class VerifyElGamalDecryptionShareTest extends TestBase
 	VerifyElGamalDecryptionShare verifyElGamalDecryptionShare;
 
 	@Test
-	@DisplayName("verify verifies the proof")
+	// @formatter:off
+	@DisplayName("verify verifies the proof\n"
+			+ " - ciphertext.a =? proof.g1\n"
+			+ " - g =? proof.g2\n"
+			+ " - proof.v =? share.ai\n"
+			+ " - proof.w =? key\n"
+			+ " - the proof verifies")
+	//@formatter:on
 	void test4() {
-		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_G1,
-				CIPHERTEXT_E_A);
-		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_G2, BIGINT_G);
-		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_V,
-				EL_GAMAL_DECRYPTION_SHARE_AI);
-		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_W, PUBKEY_E);
 		boolean actual = verifyElGamalDecryptionShare
 				.apply(EL_GAMAL_DECRYPTION_SHARE, CIPHERTEXT_E, EL_GAMAL_PUBLIC_KEY_E);
 		verify(verifyElGamalDecryptionShare.verifyElGamalProofDiscLogEquality)
@@ -37,10 +37,40 @@ public class VerifyElGamalDecryptionShareTest extends TestBase
 	}
 
 	@Test
-	@DisplayName("verify throws Error if ciphertext is null")
+	@DisplayName("if g2 != g, it fails")
+	void test4_1() {
+		assertFalse(verifyElGamalDecryptionShare.apply(EL_GAMAL_DECRYPTION_SHARE,
+				CIPHERTEXT_E, EL_GAMAL_PUBLIC_KEY_E_BUT_OTHER_PARAMETERS));
+	}
+
+	@Test
+	@DisplayName("if proof.v != share.ai, it fails")
+	void testg() {
+		assertFalse(verifyElGamalDecryptionShare.apply(
+				EL_GAMAL_DECRYPTION_SHARE_BAD_AI, CIPHERTEXT_E, EL_GAMAL_PUBLIC_KEY_E));
+	}
+
+	@Test
+	@DisplayName("if proof.w != key, it fails")
+	void testw() {
+		assertFalse(verifyElGamalDecryptionShare.apply(EL_GAMAL_DECRYPTION_SHARE,
+				CIPHERTEXT_E, EL_GAMAL_PUBLIC_KEY_EPRIME));
+	}
+
+	@Test
+	@DisplayName("verify throws IllegalArgumentException if ciphertext is null")
 	void test4_2() {
-		assertThrows(Error.class, () -> assertFalse(verifyElGamalDecryptionShare
-				.apply(EL_GAMAL_DECRYPTION_SHARE, null, EL_GAMAL_PUBLIC_KEY_EPRIME)));
+		assertThrows(IllegalArgumentException.class,
+				() -> assertFalse(verifyElGamalDecryptionShare.apply(
+						EL_GAMAL_DECRYPTION_SHARE, null, EL_GAMAL_PUBLIC_KEY_EPRIME)));
+	}
+
+	@Test
+	@DisplayName("verify throws IllegalArgumentException if key is null")
+	void test4_3() {
+		assertThrows(IllegalArgumentException.class,
+				() -> assertFalse(verifyElGamalDecryptionShare
+						.apply(EL_GAMAL_DECRYPTION_SHARE, CIPHERTEXT_E, null)));
 	}
 
 	@Test

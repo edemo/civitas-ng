@@ -13,18 +13,17 @@ public class VerifyElGamalDecryptionShare {
 
 	public boolean apply(ElGamalDecryptionShare that, ElGamalCiphertext c,
 			ElGamalPublicKey K) throws Error {
-		if (that.proof != null) {
-			try {
-				ElGamalCiphertext cipher = c;
-				ElGamalPublicKey KC = K;
-				ElGamalParameters params = K.params;
-				if (that.proof.g1.equals(cipher.a) && that.proof.g2.equals(params.g)
-						&& that.proof.v.equals(that.ai) && that.proof.w.equals(KC.y)) {
-					return verifyElGamalProofDiscLogEquality.apply(that.proof, params);
-				}
-			} catch (NullPointerException e) {
-				throw new Error(e);
-			}
+		if (c == null)
+			throw new IllegalArgumentException("null ciphertext");
+		if (K == null)
+			throw new IllegalArgumentException("null key");
+		ElGamalParameters params = K.params;
+		//@formatter:off
+		if (that.proof.g1.equals(c.a)
+				&& that.proof.g2.equals(params.g)
+				&& that.proof.v.equals(that.ai)
+				&& that.proof.w.equals(K.y)) {
+			return verifyElGamalProofDiscLogEquality.apply(that.proof, params);
 		}
 
 		return false;

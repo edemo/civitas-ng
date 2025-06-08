@@ -5,11 +5,9 @@ import civitas.common.verifiablevote.VerifiableVote;
 public class CreateVoterSubmission {
 
 	public VoterSubmission apply(int voterBlock, VerifiableVote[] votes) {
-		VerifiableVote[] vs = null;
-		if (votes != null) {
-			vs = votes.clone();
-		}
-		return new VoterSubmission(voterBlock, vs);
+		if (votes == null)
+			throw new IllegalArgumentException("votes are null");
+		return new VoterSubmission(voterBlock, votes.clone());
 	}
 
 }
