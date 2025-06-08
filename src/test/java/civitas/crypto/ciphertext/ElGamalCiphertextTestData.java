@@ -1,37 +1,18 @@
 package civitas.crypto.ciphertext;
 
 import java.util.Base64;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.IntStream;
 
-import civitas.common.CommonConstants;
 import civitas.common.Util;
+import civitas.common.ballotdesign.BallotDesignTestData;
 import civitas.crypto.CryptoFactoryC;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.msg.ElgamalMessageTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.util.CivitasBigInteger;
 
-public interface ElGamalCiphertextTestData extends ElgamalMessageTestData {
-
-	String ADDITIONALENV = "Árvíztűrő Tükörfúrógép";
-
-	String CONTEXT_0 = ADDITIONALENV + CommonConstants.KIND + "0:1";
-	String CONTEXT_1 = ADDITIONALENV + CommonConstants.KIND + "0:2";
-	String CONTEXT_2 = ADDITIONALENV + CommonConstants.KIND + "1:2";
-
-	List<Integer> VOTE_PIECES = List.of(0, 1, 2);
-
-	Map<Integer, String> CONTEXT_MAP = Map.of(0, CONTEXT_0, 1, CONTEXT_1, 2,
-			CONTEXT_2);
-
-	Map<Integer, Integer> VOTE_CONTENTS_MAP = Map.of(0,
-			CommonConstants.VOTE_CHOICE_I_BEATS_J, 1,
-			CommonConstants.VOTE_CHOICE_NEITHER_BEAT, 2,
-			CommonConstants.VOTE_CHOICE_J_BEATS_I);
-
-	byte[] ADDITIONALENV_BYTES = ADDITIONALENV.getBytes();
+public interface ElGamalCiphertextTestData
+		extends ElgamalMessageTestData, BallotDesignTestData {
 
 	CivitasBigInteger CIPHERTEXT_E_A = BIGINT_G.modPow(FACTOR_E, BIGINT_P);
 	CivitasBigInteger CIPHERTEXT_E_B = MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED
