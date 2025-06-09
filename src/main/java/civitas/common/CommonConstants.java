@@ -9,6 +9,8 @@ public interface CommonConstants {
 	public final static String TallyStateFinalOPENING_TAG = "tallyState";
 
 	String CapabilityMixMETA = "capabilityMix:";
+	String ElectionResultsMETA = "electionResults:";
+	String ElectoralRollCapabilitySharesMETA = "electoralRollCapShares";
 
 	public static final String KIND = "condorcet";
 	String NONE_OF_ABOVE = "none of the above";

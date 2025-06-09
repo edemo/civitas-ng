@@ -27,4 +27,15 @@ public interface CapabilityMixTestData
 			new byte[0], new byte[][] {},
 			new ElGamalCiphertext[] { ENCRYPTED_VOTE_CAPABILITIES.get(0) });
 
+	CapabilityMix CAPABILITY_MIX_REMIXED = new CapabilityMix(VOTER_BLOCK,
+			new byte[0], new byte[][] {},
+			new ElGamalCiphertext[] {
+					REENCRYPTED_VOTE_CAPABILITIES.get(1),
+					REENCRYPTED_VOTE_CAPABILITIES.get(0) });
+
+	byte[] NONCE = BYTES;
+	int MAPPING = 1;
+	MixCapabilityElementRevelation RELEVATION = new MixCapabilityElementRevelation(
+			MAPPING, NONCE, ELGAMAL_REENCRYPT_FACTOR_EPRIME);
+
 }

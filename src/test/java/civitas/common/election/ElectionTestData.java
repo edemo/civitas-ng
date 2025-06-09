@@ -1,5 +1,6 @@
 package civitas.common.election;
 
+import civitas.common.ElectionAbandonment;
 import civitas.common.ElectionID;
 import civitas.common.UtilTestData;
 import civitas.common.ballotdesign.BallotDesignTestData;
@@ -32,4 +33,14 @@ public interface ElectionTestData extends BallotDesignTestData,
 	String BLOCKNAME_14 = "voterBlock-4-context-" + BARE_CONTEXT_2;
 	String FULL_CONTEXT_11 = ELECTION_ID_AS_STRING + ":3:" + BARE_CONTEXT_2;
 	String FULL_CONTEXT_14 = ELECTION_ID_AS_STRING + ":4:" + BARE_CONTEXT_2;
+
+	int TELLER_INDEX = 1;
+	String ABANDONMENT_REASON = "just why not";
+	ElectionAbandonment ELECTION_ABANDONMENT = new ElectionAbandonment(
+			TELLER_INDEX, true, ABANDONMENT_REASON);
+	ElectionAbandonment ELECTION_ABANDONMENT_NONTELLER = new ElectionAbandonment(
+			TELLER_INDEX, false, ABANDONMENT_REASON);
+	String ELECTION_ABANDONMENT_REPORTER = "tabulation teller 1";
+	String ELECTION_ABANDONMENT_REPORTER_UNKNOWN = "unknown entity";
+
 }
