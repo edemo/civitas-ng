@@ -3,23 +3,29 @@ package civitas.common;
 import java.util.Map;
 
 public interface CommonConstants {
-	public final static String CondorcetBallotOPENING_TAG = "ballot";
-	public final static String BallotDesignOPENING_TAG = "ballotDesign";
-	public static final String VerifiableVoteOPENING_TAG = "verifiableVote";
-	public final static String TallyStateFinalOPENING_TAG = "tallyState";
+	String CondorcetBallotOPENING_TAG = "ballot";
+	String BallotDesignOPENING_TAG = "ballotDesign";
+	String VerifiableVoteOPENING_TAG = "verifiableVote";
+	String TallyStateFinalOPENING_TAG = "tallyState";
 
 	String CapabilityMixMETA = "capabilityMix:";
 	String ElectionResultsMETA = "electionResults:";
 	String ElectoralRollCapabilitySharesMETA = "electoralRollCapShares";
+	String mixConfirmMETA_PREFIX = "mixConfirm:";
+	String mixConfirmMETA_VOTE_REVELATION = "vote";
+	String mixConfirmMETA_ER_REVELATION = "elecRoll";
+	String mixHashRevelationMETA_PREFIX = "mixHashRevelation:";
+	String mixHashRevelationMETA_VOTE_REVELATION = "vote";
+	String mixHashRevelationMETA_ER_REVELATION = "elecRoll";
 
-	public static final String KIND = "condorcet";
+	String KIND = "condorcet";
 	String NONE_OF_ABOVE = "none of the above";
 
-	public int MAX_POSSIBLE_CHOICES = 4;
+	int MAX_POSSIBLE_CHOICES = 4;
 
-	public static final int VOTE_CHOICE_I_BEATS_J = 1;
-	public static final int VOTE_CHOICE_J_BEATS_I = 2;
-	public static final int VOTE_CHOICE_NEITHER_BEAT = 3;
+	int VOTE_CHOICE_I_BEATS_J = 1;
+	int VOTE_CHOICE_J_BEATS_I = 2;
+	int VOTE_CHOICE_NEITHER_BEAT = 3;
 
 	String VOTE_CHOICE_I_BEATS_J_STRING = "10";
 	String VOTE_CHOICE_J_BEATS_I_STRING = "01";

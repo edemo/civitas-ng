@@ -38,4 +38,11 @@ public interface CapabilityMixTestData
 	MixCapabilityElementRevelation RELEVATION = new MixCapabilityElementRevelation(
 			MAPPING, NONCE, ELGAMAL_REENCRYPT_FACTOR_EPRIME);
 
+	String MIX_CONFIRM_ROLL_META = "mixConfirm:elecRoll:1:2";
+	String MIX_CONFIRM_VOTE_META = "mixConfirm:vote:1:2";
+	String MIX_HASH_REVELATION_VOTE = "mixHashRevelation:vote:" + BLOCKNAME_14
+			+ ":2";
+	String MIX_HASH_REVELATION_ROLL = "mixHashRevelation:elecRoll:" + BLOCKNAME_14
+			+ ":2";
+
 }
