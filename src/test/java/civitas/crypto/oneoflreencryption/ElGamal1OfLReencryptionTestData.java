@@ -10,6 +10,7 @@ import civitas.common.ConstructTestData;
 import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
+import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.proof1ofl.ConstructElGamalProof1OfL;
 import civitas.crypto.proof1ofl.ElGamalProof1OfL;
 import civitas.util.CivitasBigInteger;
@@ -139,5 +140,11 @@ public interface ElGamal1OfLReencryptionTestData
 					(choice) -> new ElGamal1OfLReencryption(
 							REENCRYPTED_CHOICE_MAP.get(choice),
 							EL_GAMAL_PROOF_1_OF_L_MAP.get(choice)));
+
+	List<ElGamalCiphertext> REENCRYPTED_VOTE_CAPABILITIES = ENCRYPTED_VOTE_CAPABILITIES
+			.stream()
+			.map(x -> DI.get(ElGamalReencrypt.class).apply(EL_GAMAL_PUBLIC_KEY_EPRIME,
+					x, ELGAMAL_REENCRYPT_FACTOR_EPRIME))
+			.toList();
 
 }

@@ -11,18 +11,18 @@ import civitas.util.Tested;
 class GetNthContextTest extends TestBase implements BallotDesignTestData {
 
 	@Tested
-	GetNthContext GetNthContext;
+	GetNthContext getNthContext;
 
 	@Test
 	@DisplayName("gets the context for the nth element of the ballot")
 	void test() {
-		assertEquals(BARE_CONTEXT_1, GetNthContext.nthContext(BALLOTDESIGN, 1));
+		assertEquals(BARE_CONTEXT_2, getNthContext.apply(BALLOTDESIGN, 2));
 	}
 
 	@Test
 	@DisplayName("in case n > length of the matrix, null returned")
 	void test1() {
-		assertEquals(null, GetNthContext.nthContext(BALLOTDESIGN, 4));
+		assertEquals(null, getNthContext.apply(BALLOTDESIGN, 4));
 	}
 
 }

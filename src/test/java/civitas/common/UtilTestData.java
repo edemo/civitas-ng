@@ -1,6 +1,6 @@
 package civitas.common;
 
-public class UtilTestData {
+public interface UtilTestData {
 
 	public static final String UNESCAPED = "h&el&'<>&\"lo' \" <mum>";
 	public static final String ESCAPED = "h&amp;el&amp;&apos;&lt;&gt;&amp;&quot;lo&apos; &quot; &lt;mum&gt;";

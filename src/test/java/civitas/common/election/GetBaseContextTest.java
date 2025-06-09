@@ -1,0 +1,23 @@
+package civitas.common.election;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import civitas.common.TestBase;
+import civitas.util.Tested;
+
+class GetBaseContextTest extends TestBase implements ElectionTestData {
+
+	@Tested
+	GetBaseContext getBaseContext;
+
+	@Test
+	@DisplayName("the base context is comprised of the election id string and the voter block")
+	void test() {
+		assertEquals(ELECTION_ID_AS_STRING + ":14:",
+				getBaseContext.apply(ELECTION_DETAILS, 14));
+	}
+
+}

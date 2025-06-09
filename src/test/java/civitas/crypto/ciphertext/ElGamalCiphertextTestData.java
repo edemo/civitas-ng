@@ -1,18 +1,20 @@
 package civitas.crypto.ciphertext;
 
 import java.util.Base64;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import civitas.common.Util;
-import civitas.common.ballotdesign.BallotDesignTestData;
 import civitas.crypto.CryptoFactoryC;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.msg.ElgamalMessageTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
+import civitas.crypto.votecapabilityshare.VoteCapabilityShareTestData;
 import civitas.util.CivitasBigInteger;
+import civitas.util.DI;
 
 public interface ElGamalCiphertextTestData
-		extends ElgamalMessageTestData, BallotDesignTestData {
+		extends ElgamalMessageTestData, VoteCapabilityShareTestData {
 
 	CivitasBigInteger CIPHERTEXT_E_A = BIGINT_G.modPow(FACTOR_E, BIGINT_P);
 	CivitasBigInteger CIPHERTEXT_E_B = MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED
@@ -109,5 +111,15 @@ public interface ElGamalCiphertextTestData
 			+ "<size>0</size></ciphertextList>";
 	public static final String CIPHERTEXT_LIST_XML_WITH_NEGATIVE_LENGTH = "<ciphertextList>"
 			+ "<size>-1</size></ciphertextList>";
+
+	List<ElGamalCiphertext> ENCRYPTED_VOTE_CAPABILITIES = VOTE_CAPABILITIES
+			.stream().map(x -> DI.get(ElGamalEncrypt.class)
+					.apply(EL_GAMAL_PUBLIC_KEY_E, x, ELGAMAL_REENCRYPT_FACTOR_E))
+			.toList();
+
+	List<ElGamalCiphertext> ENCRYPTED_VOTE_CAPABILITIES_WITH_EPRIME = VOTE_CAPABILITIES
+			.stream().map(x -> DI.get(ElGamalEncrypt.class)
+					.apply(EL_GAMAL_PUBLIC_KEY_E, x, ELGAMAL_REENCRYPT_FACTOR_EPRIME))
+			.toList();
 
 }

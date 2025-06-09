@@ -8,6 +8,8 @@ public interface CommonConstants {
 	public static final String VerifiableVoteOPENING_TAG = "verifiableVote";
 	public final static String TallyStateFinalOPENING_TAG = "tallyState";
 
+	String CapabilityMixMETA = "capabilityMix:";
+
 	public static final String KIND = "condorcet";
 	String NONE_OF_ABOVE = "none of the above";
 

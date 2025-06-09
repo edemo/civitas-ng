@@ -4,7 +4,7 @@ import civitas.common.CommonConstants;
 
 public class GetNthContext implements CommonConstants {
 
-	public String nthContext(BallotDesign that, int n) {
+	public String apply(BallotDesign that, int n) {
 		int c = 0;
 		int k = that.candidates.length;
 		for (int i = 0; i < k; i++) {

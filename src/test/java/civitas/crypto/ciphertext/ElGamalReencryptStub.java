@@ -1,12 +1,21 @@
 package civitas.crypto.ciphertext;
 
-import civitas.util.DI;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-public class ElGamalReencryptStub {
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
+
+public class ElGamalReencryptStub implements ElGamal1OfLReencryptionTestData {
 
 	public static ElGamalReencrypt stub() {
-		ElGamalReencrypt a = new ElGamalReencrypt();
-		DI.fill(a);
-		return a;
+		ElGamalReencrypt mock = mock(ElGamalReencrypt.class);
+		for (int i = 0; i < REENCRYPTED_VOTE_CAPABILITIES.size(); i++) {
+			when(mock.apply(EL_GAMAL_PUBLIC_KEY_EPRIME,
+					ENCRYPTED_VOTE_CAPABILITIES.get(i), ELGAMAL_REENCRYPT_FACTOR_EPRIME))
+					.thenReturn(REENCRYPTED_VOTE_CAPABILITIES.get(i));
+		}
+		when(mock.apply(EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST.get(MY_CHOICE),
+				ELGAMAL_REENCRYPT_FACTOR_E)).thenReturn(REENCRYPTED_WELL_KNOWN_CHOICE);
+		return mock;
 	}
 }
