@@ -10,13 +10,13 @@ public class InitialMatrix {
 				Integer x = m[i][j];
 				Integer y = m[j][i];
 				if (x == y)
-					r[i][j] = new Pair<Integer, Integer>(0, 0);
+					r[i][j] = new Pair<>(0, 0);
 				else if (x > y) {
-					r[i][j] = new Pair<Integer, Integer>(x, y);
-					r[j][i] = new Pair<Integer, Integer>(0, 0);
+					r[i][j] = new Pair<>(x, y);
+					r[j][i] = new Pair<>(0, 0);
 				} else {
-					r[i][j] = new Pair<Integer, Integer>(0, 0);
-					r[j][i] = new Pair<Integer, Integer>(y, x);
+					r[i][j] = new Pair<>(0, 0);
+					r[j][i] = new Pair<>(y, x);
 				}
 			}
 		return r;

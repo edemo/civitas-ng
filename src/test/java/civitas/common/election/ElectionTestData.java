@@ -1,7 +1,5 @@
 package civitas.common.election;
 
-import civitas.common.ElectionAbandonment;
-import civitas.common.ElectionID;
 import civitas.common.UtilTestData;
 import civitas.common.ballotdesign.BallotDesignTestData;
 import civitas.crypto.parameters.ElGamalParametersTestData;

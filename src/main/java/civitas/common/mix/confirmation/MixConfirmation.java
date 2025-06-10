@@ -4,18 +4,17 @@
  * See the LICENSE file accompanying this distribution for further license
  * and copyright information.
  */
-package civitas.common.board;
+package civitas.common.mix.confirmation;
 
 import civitas.common.election.ElectionID;
 import lombok.Data;
 
 @Data
-public class BoardClosedContentCommitment {
-	public final static String META = "boardContents";
-	public final static String OPENING_TAG = "boardContents";
+public class MixConfirmation {
 
+	public final int speakerIndex;
+	public final int tellerIndex;
+	public final boolean isVoteMix;
 	public final ElectionID electionID;
-	public final int boardIndex;
 
-	public final String[] voterBlockContentHash;
 }

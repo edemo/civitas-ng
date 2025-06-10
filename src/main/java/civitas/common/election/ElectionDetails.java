@@ -6,7 +6,6 @@
  */
 package civitas.common.election;
 
-import civitas.common.ElectionID;
 import civitas.common.ballotdesign.BallotDesign;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.rsapublickey.PublicKey;

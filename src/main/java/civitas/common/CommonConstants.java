@@ -17,6 +17,10 @@ public interface CommonConstants {
 	String mixHashRevelationMETA_PREFIX = "mixHashRevelation:";
 	String mixHashRevelationMETA_VOTE_REVELATION = "vote";
 	String mixHashRevelationMETA_ER_REVELATION = "elecRoll";
+	String VoteMixMETA = "voteMix:";
+	String mixRevelationMETA_PREFIX = "mixRevelation:";
+	String mixRevelationMETA_VOTE_REVELATION = "vote";
+	String mixRevelationMETA_ER_REVELATION = "elecRoll";
 
 	String KIND = "condorcet";
 	String NONE_OF_ABOVE = "none of the above";

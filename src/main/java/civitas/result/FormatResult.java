@@ -10,9 +10,9 @@ public class FormatResult {
 		int stagenum = 0;
 		for (List<CandidateResult> stage : winnerList) {
 			stagenum++;
-			List<String> winners = new ArrayList<String>();
+			List<String> winners = new ArrayList<>();
 			for (CandidateResult winner : stage) {
-				List<String> beats = new ArrayList<String>();
+				List<String> beats = new ArrayList<>();
 				for (int i = 0; i < winner.beatenCandidates.size(); i++) {
 					Integer beat = winner.beat.get(i);
 					Integer beaten = winner.beaten.get(i);

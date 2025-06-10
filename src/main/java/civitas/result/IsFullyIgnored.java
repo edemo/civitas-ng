@@ -4,8 +4,8 @@ public class IsFullyIgnored {
 
 	public boolean apply(Boolean[] ignore) {
 		boolean ignored = true;
-		for (int i = 0; i < ignore.length; i++)
-			ignored = ignored && ignore[i];
+		for (Boolean element : ignore)
+			ignored = ignored && element;
 		return ignored;
 	}
 

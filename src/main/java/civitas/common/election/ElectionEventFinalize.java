@@ -4,18 +4,17 @@
  * See the LICENSE file accompanying this distribution for further license
  * and copyright information.
  */
-package civitas.common.board;
+package civitas.common.election;
 
-import civitas.common.election.ElectionID;
+import civitas.common.tallystatefinal.TallyStateFinal;
 import lombok.Data;
 
 @Data
-public class BoardClosedContentCommitment {
-	public final static String META = "boardContents";
-	public final static String OPENING_TAG = "boardContents";
-
+public class ElectionEventFinalize implements ElectionEvent {
+	public final String kind = EVENT_KIND_FINALIZE;
 	public final ElectionID electionID;
-	public final int boardIndex;
+	public final int sequence;
+	public final TallyStateFinal tally;
+	public final String message;
 
-	public final String[] voterBlockContentHash;
 }

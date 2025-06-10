@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.election.ElectionTestData;
+import civitas.common.election.GetElectionAbandonmentReporter;
 import civitas.util.Tested;
 
 class GetElectionAbandonmentReporterTest extends TestBase
