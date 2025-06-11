@@ -6,11 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import civitas.common.TestBase;
-import civitas.util.Use;
+import civitas.util.Tested;
 
 class CalculateBallotLengthTest extends TestBase {
 
-	@Use
+	@Tested
 	CalculateBallotLength calculateBallotLength;
 
 	@Test

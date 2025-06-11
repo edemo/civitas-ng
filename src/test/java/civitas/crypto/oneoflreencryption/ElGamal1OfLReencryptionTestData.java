@@ -147,4 +147,9 @@ public interface ElGamal1OfLReencryptionTestData
 					x, ELGAMAL_REENCRYPT_FACTOR_EPRIME))
 			.toList();
 
+	List<ElGamalCiphertext> REENCRYPTED_VOTE_CAPABILITIES_WITH_KEY_E = ENCRYPTED_VOTE_CAPABILITIES
+			.stream().map(x -> DI.get(ElGamalReencrypt.class)
+					.apply(EL_GAMAL_PUBLIC_KEY_E, x, ELGAMAL_REENCRYPT_FACTOR_EPRIME))
+			.toList();
+
 }

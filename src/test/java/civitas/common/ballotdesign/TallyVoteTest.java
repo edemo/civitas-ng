@@ -13,12 +13,12 @@ import civitas.common.tallystate.TallyStateTestData;
 import civitas.common.votersubmission.VoterSubmissionTestData;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.msg.ElgamalMessageTestData;
-import civitas.util.Use;
+import civitas.util.Tested;
 
 class TallyVoteTest extends TestBase implements TallyStateTestData,
 		VoterSubmissionTestData, BallotTestData, ElgamalMessageTestData {
 
-	@Use
+	@Tested
 	TallyVote tallyVote;
 
 	@Test

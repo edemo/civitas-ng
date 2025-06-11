@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import civitas.common.TestBase;
 import civitas.common.mix.capabilitymix.CapabilityMixTestData;
 import civitas.common.mix.elementrevelation.MixElementRevelation;
-import civitas.common.mix.elementrevelation.VerifyMixElementRevelation;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 import civitas.util.Use;
@@ -19,9 +18,6 @@ class VerifyMixRevelationTest extends TestBase
 
 	@Use
 	VerifyMixRevelation verifyMixRevelation;
-
-	@Use
-	VerifyMixElementRevelation verifyMixElementRevelation;
 
 	@Test
 	@DisplayName("verifies the mix revelation. For each revelations\n"

@@ -78,6 +78,10 @@ public interface ElGamalCiphertextTestData
 			+ GENERATOR_OTHER__POW_R1_BASE64 + "</a><b>" + BIGINT_D_BASE64
 			+ "</b></ElGamalCiphertext>";
 
+	ElGamalCiphertext ENCRYPTED_WITH_FACTOR_EPRIME = new ElGamalCiphertext(
+			G_EXP_FACTOR, MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED.modMultiply(
+					PUBKEY_EPRIME.modPow(FACTOR_EPRIME, BIGINT_P), BIGINT_P));
+
 	public static final ElGamalCiphertext ENCRYPTED_ZERO_FACTOR = new ElGamalCiphertext(
 			ONE, G_EXP_B);
 	public static final String ENCRYPTED_ZERO_FACTOR_XML = "<ElGamalCiphertext><a>"

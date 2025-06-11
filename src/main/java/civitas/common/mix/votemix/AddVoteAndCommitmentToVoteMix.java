@@ -3,6 +3,7 @@ package civitas.common.mix.votemix;
 import civitas.common.Vote;
 import civitas.common.mix.AddCommitmentToMix;
 import civitas.util.Use;
+import lombok.NonNull;
 
 public class AddVoteAndCommitmentToVoteMix {
 	@Use
@@ -11,11 +12,11 @@ public class AddVoteAndCommitmentToVoteMix {
 	@Use
 	AddVoteToVoteMix addVoteToVoteMix;
 
-	public void add(VoteMix that, Object v, byte[] commitment)
-			throws ClassCastException
+	public void apply(@NonNull VoteMix that, @NonNull Vote v,
+			@NonNull byte[] commitment) throws ClassCastException
 
 	{
-		addVoteToVoteMix.apply(that, (Vote) v);
+		addVoteToVoteMix.apply(that, v);
 		addCommitmentToMix.apply(that, commitment);
 	}
 

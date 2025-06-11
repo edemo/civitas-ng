@@ -8,10 +8,12 @@ package civitas.common.mix.votemix;
 
 import civitas.common.Vote;
 import civitas.common.mix.Mix;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
 @Data
+@Builder(toBuilder = true)
 public class VoteMix implements Mix {
 	@NonNull
 	public Integer number;

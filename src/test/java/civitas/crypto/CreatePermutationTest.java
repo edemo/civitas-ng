@@ -11,12 +11,12 @@ import org.junit.jupiter.api.Test;
 import civitas.common.TestBase;
 import civitas.crypto.algorithms.CreatePermutation;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
-import civitas.util.Use;
+import civitas.util.Tested;
 
 public class CreatePermutationTest extends TestBase
 		implements PrivateKeyTestData, BasicValuesTestData {
 
-	@Use
+	@Tested
 	CreatePermutation createPermutation;
 
 	@Test
