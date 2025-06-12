@@ -29,6 +29,7 @@ class VerifyMixVoteElementRevelationTest extends TestBase
 
 	// FIXME: turn all verify* into void throwing exception if the verification
 	// fails
+
 	@Test
 	@DisplayName("if the capability is not reencrypted to target, the verification fails")
 	void test1() {

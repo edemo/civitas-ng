@@ -22,7 +22,7 @@ public class ElGamalReencryptStub implements ElGamal1OfLReencryptionTestData {
 				ELGAMAL_REENCRYPT_FACTOR_E)).thenReturn(REENCRYPTED_WELL_KNOWN_CHOICE);
 		when(mock.apply(EL_GAMAL_PUBLIC_KEY_EPRIME,
 				CIPHERTEXT_LIST.get(CommonConstants.VOTE_CHOICE_I_BEATS_J),
-				ELGAMAL_REENCRYPT_FACTOR_E)).thenReturn(REENCRYPTED_WELL_KNOWN_CHOICE);
+				ELGAMAL_REENCRYPT_FACTOR_E)).thenReturn(CIPHERTEXT_E);
 		return mock;
 	}
 }

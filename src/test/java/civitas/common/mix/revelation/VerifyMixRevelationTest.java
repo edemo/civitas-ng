@@ -10,13 +10,13 @@ import civitas.common.mix.capabilitymix.CapabilityMixTestData;
 import civitas.common.mix.elementrevelation.MixElementRevelation;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.publickey.ElGamalPublicKeyTestData;
-import civitas.util.Use;
+import civitas.util.Tested;
 
 class VerifyMixRevelationTest extends TestBase
 		implements ElGamalPublicKeyTestData, CapabilityMixTestData,
 		ElGamalCiphertextTestData, MixRevelationTestData {
 
-	@Use
+	@Tested
 	VerifyMixRevelation verifyMixRevelation;
 
 	@Test

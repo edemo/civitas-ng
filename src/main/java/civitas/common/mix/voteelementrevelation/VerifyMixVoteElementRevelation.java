@@ -32,7 +32,6 @@ public class VerifyMixVoteElementRevelation {
 				that.choiceFactor);
 		ElGamalCiphertext recapability = elGamalReencrypt.apply(key, fromCapability,
 				that.reencryptFactor);
-
 		return rechoice.equals(toChoice) && recapability.equals(toCapability);
 	}
 
