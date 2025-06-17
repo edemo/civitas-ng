@@ -7,6 +7,7 @@ import civitas.crypto.Constants;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
@@ -24,15 +25,15 @@ public class ConstructElGamalProof1OfL implements Constants {
 	private ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProof1OfL apply(ElGamalPublicKey key,
-			CiphertextList ciphertexts, int L, int choice, ElGamalCiphertext m,
+			CiphertextList ciphertexts, int L, int choice, ElGamalCiphertextish m,
 			ElGamalReencryptFactor factor) {
 
 		ElGamalParameters ps = key.params;
-		CivitasBigInteger u = m.a;
-		CivitasBigInteger v = m.b;
+		CivitasBigInteger u = m.getA();
+		CivitasBigInteger v = m.getB();
 		CivitasBigInteger r = factor.r;
 
-		ElGamalCiphertext[] ms = new ElGamalCiphertext[L];
+		ElGamalCiphertextish[] ms = new ElGamalCiphertext[L];
 		for (int i = 0; i < L; i++) {
 			ms[i] = ciphertexts.get(i);
 		}
@@ -51,9 +52,9 @@ public class ConstructElGamalProof1OfL implements Constants {
 		CivitasBigInteger[] as = new CivitasBigInteger[L];
 		CivitasBigInteger[] bs = new CivitasBigInteger[L];
 		for (int i = 0; i < L; i++) {
-			as[i] = ms[i].a.modDivide(u, ps.p).modPow(ds[i], ps.p)
+			as[i] = ms[i].getA().modDivide(u, ps.p).modPow(ds[i], ps.p)
 					.modMultiply(ps.g.modPow(rs[i], ps.p), ps.p).mod(ps.p);
-			bs[i] = ms[i].b.modDivide(v, ps.p).modPow(ds[i], ps.p)
+			bs[i] = ms[i].getB().modDivide(v, ps.p).modPow(ds[i], ps.p)
 					.modMultiply(key.y.modPow(rs[i], ps.p), ps.p).mod(ps.p);
 		}
 
@@ -61,8 +62,8 @@ public class ConstructElGamalProof1OfL implements Constants {
 		env.add(u);
 		env.add(v);
 		for (int i = 0; i < L; i++) {
-			env.add(ms[i].a);
-			env.add(ms[i].b);
+			env.add(ms[i].getA());
+			env.add(ms[i].getB());
 			env.add(as[i]);
 			env.add(bs[i]);
 		}

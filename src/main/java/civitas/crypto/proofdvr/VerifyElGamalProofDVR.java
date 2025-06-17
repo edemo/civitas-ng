@@ -25,10 +25,10 @@ public class VerifyElGamalProofDVR {
 
 		CivitasBigInteger hv = verifierKey.y;
 		CivitasBigInteger h = key.y;
-		CivitasBigInteger x = that.e.a;
-		CivitasBigInteger y = that.e.b;
-		CivitasBigInteger xp = that.eprime.a;
-		CivitasBigInteger yp = that.eprime.b;
+		CivitasBigInteger x = that.e.getA();
+		CivitasBigInteger y = that.e.getB();
+		CivitasBigInteger xp = that.eprime.getA();
+		CivitasBigInteger yp = that.eprime.getB();
 
 		/*
 		 * a' = (g^u) / ((x'/x)^(c+w)) b' = (h^u) / ((y'/y)^(c+w)) s' =
@@ -43,10 +43,10 @@ public class VerifyElGamalProofDVR {
 				.modMultiply(hv.modPow(that.r, ps.p), ps.p);
 
 		List<CivitasBigInteger> l = new ArrayList<>();
-		l.add(that.e.a);
-		l.add(that.e.b);
-		l.add(that.eprime.a);
-		l.add(that.eprime.b);
+		l.add(that.e.getA());
+		l.add(that.e.getB());
+		l.add(that.eprime.getA());
+		l.add(that.eprime.getB());
 		l.add(ap);
 		l.add(bp);
 		l.add(sp);

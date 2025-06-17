@@ -40,7 +40,7 @@ public interface ProofVoteTestData
 	Map<Integer, ProofVote> PROOF_VOTE_MAP = ConstructTestData
 			.constructTestData(VOTE_PIECES, (piece) -> {
 				return DI.get(ConstructProofVote.class).apply(EL_GAMAL_PARAMETERS,
-						ENCRYPTED_VOTE_CAPABILITIES.get(piece),
+						ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(piece),
 						REENCRYPTED_CHOICE_MAP.get(BALLOT.matrix[piece]),
 						CONTEXT_MAP.get(piece), ELGAMAL_REENCRYPT_FACTOR_E,
 						ELGAMAL_REENCRYPT_FACTOR_E);

@@ -6,6 +6,7 @@ import java.util.List;
 import civitas.crypto.Constants;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
@@ -20,15 +21,15 @@ public class VerifyElGamalProof1OfL {
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public boolean apply(ElGamalProof1OfL self, ElGamalPublicKey pubKey,
-			CiphertextList ciphertexts, int L, ElGamalCiphertext msg) {
+			CiphertextList ciphertexts, int L, ElGamalCiphertextish msg) {
 		if (self.L != L)
 			return false;
-		ElGamalCiphertext m = msg;
-		CivitasBigInteger u = m.a;
-		CivitasBigInteger v = m.b;
+		ElGamalCiphertextish m = msg;
+		CivitasBigInteger u = m.getA();
+		CivitasBigInteger v = m.getB();
 		ElGamalPublicKey key = pubKey;
 		ElGamalParameters ps = key.params;
-		ElGamalCiphertext[] ms = new ElGamalCiphertext[L];
+		ElGamalCiphertextish[] ms = new ElGamalCiphertext[L];
 
 		for (int i = 0; i < L; i++) {
 			ms[i] = ciphertexts.get(i);
@@ -38,9 +39,9 @@ public class VerifyElGamalProof1OfL {
 		CivitasBigInteger[] bs = new CivitasBigInteger[L];
 		CivitasBigInteger sum = Constants.ZERO;
 		for (int i = 0; i < L; i++) {
-			as[i] = (ms[i].a.modDivide(u, ps.p)).modPow(self.dvs[i], ps.p)
+			as[i] = (ms[i].getA().modDivide(u, ps.p)).modPow(self.dvs[i], ps.p)
 					.modMultiply(ps.g.modPow(self.rvs[i], ps.p), ps.p);
-			bs[i] = (ms[i].b.modDivide(v, ps.p)).modPow(self.dvs[i], ps.p)
+			bs[i] = (ms[i].getB().modDivide(v, ps.p)).modPow(self.dvs[i], ps.p)
 					.modMultiply(key.y.modPow(self.rvs[i], ps.p), ps.p);
 			sum = sum.modAdd(self.dvs[i], ps.q);
 		}
@@ -50,8 +51,8 @@ public class VerifyElGamalProof1OfL {
 		env.add(u);
 		env.add(v);
 		for (int i = 0; i < L; i++) {
-			env.add(ms[i].a);
-			env.add(ms[i].b);
+			env.add(ms[i].getA());
+			env.add(ms[i].getB());
 			env.add(as[i]);
 			env.add(bs[i]);
 		}

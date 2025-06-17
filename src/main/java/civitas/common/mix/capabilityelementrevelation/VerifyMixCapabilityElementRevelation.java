@@ -1,7 +1,7 @@
 package civitas.common.mix.capabilityelementrevelation;
 
 import civitas.common.mix.capabilitymix.CapabilityMix;
-import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Use;
@@ -15,11 +15,10 @@ public class VerifyMixCapabilityElementRevelation {
 	public boolean apply(@NonNull MixCapabilityElementRevelation that,
 			@NonNull ElGamalPublicKey key, int fromIndex, int toIndex,
 			@NonNull CapabilityMix fromMix, @NonNull CapabilityMix toMix) {
-		ElGamalCiphertext fromCipher = fromMix.capabilities[fromIndex];
-		ElGamalCiphertext toCipher = toMix.capabilities[toIndex];
+		ElGamalCiphertextish toCipher = toMix.capabilities[toIndex];
 
-		ElGamalCiphertext recipher = elGamalReencrypt.apply(key, fromCipher,
-				that.reencryptFactor);
+		ElGamalCiphertextish recipher = elGamalReencrypt.apply(key,
+				fromMix.capabilities[fromIndex], that.reencryptFactor);
 		return recipher.equals(toCipher);
 	}
 

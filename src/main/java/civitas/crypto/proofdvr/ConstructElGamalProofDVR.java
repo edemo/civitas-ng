@@ -6,6 +6,7 @@ import java.util.List;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
@@ -22,14 +23,14 @@ public class ConstructElGamalProofDVR {
 	private ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProofDVR apply(ElGamalPublicKey k, ElGamalPublicKey verifierKey,
-			ElGamalCiphertext e, ElGamalCiphertext ePrime, ElGamalReencryptFactor er,
-			ElGamalReencryptFactor erPrime) {
+			ElGamalCiphertextish e, ElGamalCiphertext ePrime,
+			ElGamalReencryptFactor er, ElGamalReencryptFactor erPrime) {
 		ElGamalParameters ps = k.params;
 		CivitasBigInteger zeta = erPrime.r.modSubtract(er.r, ps.q);
 		return apply(e, ePrime, k, verifierKey, zeta);
 	}
 
-	public ElGamalProofDVR apply(ElGamalCiphertext e, ElGamalCiphertext eprime,
+	public ElGamalProofDVR apply(ElGamalCiphertextish e, ElGamalCiphertext eprime,
 			ElGamalPublicKey key, ElGamalPublicKey verifierKey,
 			CivitasBigInteger zeta) {
 
@@ -44,10 +45,10 @@ public class ConstructElGamalProofDVR {
 		CivitasBigInteger s = ps.g.modPow(w, ps.p).modMultiply(hv.modPow(r, ps.p),
 				ps.p);
 		List<CivitasBigInteger> l = new ArrayList<>();
-		l.add(e.a);
-		l.add(e.b);
-		l.add(eprime.a);
-		l.add(eprime.b);
+		l.add(e.getA());
+		l.add(e.getB());
+		l.add(eprime.getA());
+		l.add(eprime.getB());
 		l.add(a);
 		l.add(b);
 		l.add(s);

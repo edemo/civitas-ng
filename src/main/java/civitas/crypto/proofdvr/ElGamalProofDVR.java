@@ -7,6 +7,7 @@
 package civitas.crypto.proofdvr;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.util.CivitasBigInteger;
 import lombok.Data;
 import lombok.NonNull;
@@ -15,7 +16,7 @@ import lombok.NonNull;
 public class ElGamalProofDVR {
 
 	@NonNull
-	public final ElGamalCiphertext e;
+	public final ElGamalCiphertextish e;
 	@NonNull
 	public final ElGamalCiphertext eprime;
 	@NonNull

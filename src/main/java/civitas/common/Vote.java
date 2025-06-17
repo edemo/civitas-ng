@@ -6,12 +6,12 @@
  */
 package civitas.common;
 
-import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import lombok.Data;
 
 @Data
 public class Vote {
 	public final String context;
-	public final ElGamalCiphertext encChoice;
-	public final ElGamalCiphertext encCapability;
+	public final ElGamalCiphertextish encChoice;
+	public final ElGamalCiphertextish encCapability;
 }

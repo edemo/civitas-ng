@@ -30,7 +30,7 @@ public interface VerifiableVoteTestData
 			.constructTestData(VOTE_PIECES,
 					(piece) -> new VerifiableVote(CONTEXT_MAP.get(piece),
 							EL_GAMAL_1_OF_L_REENCRYPTION_MAP.get(BALLOT.matrix[piece]),
-							ENCRYPTED_VOTE_CAPABILITIES.get(piece),
+							ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(piece),
 							PROOF_VOTE_MAP.get(piece)));
 	VerifiableVote[] VERIFIABLE_VOTES = VERIFIABLE_VOTE_MAP.values()
 			.toArray(new VerifiableVote[0]);

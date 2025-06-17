@@ -12,9 +12,9 @@ public class ElGamalReencryptStub implements ElGamal1OfLReencryptionTestData {
 		ElGamalReencrypt mock = mock(ElGamalReencrypt.class);
 		for (int i = 0; i < REENCRYPTED_VOTE_CAPABILITIES.size(); i++) {
 			when(mock.apply(EL_GAMAL_PUBLIC_KEY_EPRIME,
-					ENCRYPTED_VOTE_CAPABILITIES.get(i), ELGAMAL_REENCRYPT_FACTOR_EPRIME))
+					ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(i), ELGAMAL_REENCRYPT_FACTOR_EPRIME))
 					.thenReturn(REENCRYPTED_VOTE_CAPABILITIES.get(i));
-			when(mock.apply(EL_GAMAL_PUBLIC_KEY_E, ENCRYPTED_VOTE_CAPABILITIES.get(i),
+			when(mock.apply(EL_GAMAL_PUBLIC_KEY_E, ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(i),
 					ELGAMAL_REENCRYPT_FACTOR_EPRIME))
 					.thenReturn(REENCRYPTED_VOTE_CAPABILITIES_WITH_KEY_E.get(i));
 		}

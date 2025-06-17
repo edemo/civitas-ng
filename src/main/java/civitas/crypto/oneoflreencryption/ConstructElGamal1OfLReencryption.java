@@ -1,6 +1,6 @@
 package civitas.crypto.oneoflreencryption;
 
-import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.proof1ofl.ConstructElGamalProof1OfL;
@@ -22,8 +22,8 @@ public class ConstructElGamal1OfLReencryption {
 		if (ciphertexts == null || choice >= L || L > ciphertexts.size()) {
 			return null;
 		}
-		ElGamalCiphertext m = elGamalReencrypt.apply(key, ciphertexts.get(choice),
-				factor);
+		ElGamalCiphertextish m = elGamalReencrypt.apply(key,
+				ciphertexts.get(choice), factor);
 		ElGamalProof1OfL proof = constructElGamalProof1OfL.apply(key, ciphertexts,
 				L, choice, m, factor);
 		return new ElGamal1OfLReencryption(m, proof);

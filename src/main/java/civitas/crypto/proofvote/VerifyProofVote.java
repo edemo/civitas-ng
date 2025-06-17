@@ -4,7 +4,7 @@ import java.util.List;
 
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.GenerateRandomElement;
-import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
@@ -22,10 +22,10 @@ public class VerifyProofVote {
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public boolean apply(ProofVote that, ElGamalParameters params,
-			ElGamalCiphertext encCapability, ElGamalCiphertext encChoice,
+			ElGamalCiphertextish encCapability, ElGamalCiphertextish encChoice,
 			String context) {
-		CivitasBigInteger a1 = encCapability.a;
-		CivitasBigInteger a2 = encChoice.a;
+		CivitasBigInteger a1 = encCapability.getA();
+		CivitasBigInteger a2 = encChoice.getA();
 		CivitasBigInteger p = params.p;
 		CivitasBigInteger q = params.q;
 

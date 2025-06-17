@@ -1,6 +1,6 @@
 package civitas.common.capabilityencryption;
 
-import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import lombok.Data;
 import lombok.NonNull;
@@ -10,5 +10,5 @@ public class CapabilityEncryption {
 	@NonNull
 	public final ElGamalReencryptFactor factor;
 	@NonNull
-	public final ElGamalCiphertext encCap;
+	public final ElGamalCiphertextish encCap;
 }

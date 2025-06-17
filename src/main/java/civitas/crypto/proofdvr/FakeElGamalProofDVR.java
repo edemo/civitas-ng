@@ -6,6 +6,7 @@ import java.util.List;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
@@ -24,11 +25,11 @@ public class FakeElGamalProofDVR {
 
 	public ElGamalProofDVR apply(ElGamalPublicKey key,
 			ElGamalPublicKey verifierKey, ElGamalPrivateKey verifierPrivKey,
-			ElGamalCiphertext e, ElGamalCiphertext ePrime) {
+			ElGamalCiphertextish e, ElGamalCiphertext ePrime) {
 		return apply(e, ePrime, key, verifierKey, verifierPrivKey);
 	}
 
-	public ElGamalProofDVR apply(ElGamalCiphertext e, ElGamalCiphertext et,
+	public ElGamalProofDVR apply(ElGamalCiphertextish e, ElGamalCiphertext et,
 			ElGamalPublicKey key, ElGamalPublicKey verifierKey,
 			ElGamalPrivateKey verifierPrivKey) {
 
@@ -37,10 +38,10 @@ public class FakeElGamalProofDVR {
 		CivitasBigInteger zv = verifierPrivKey.x;
 
 		CivitasBigInteger h = key.y;
-		CivitasBigInteger x = e.a;
-		CivitasBigInteger y = e.b;
-		CivitasBigInteger xt = et.a;
-		CivitasBigInteger yt = et.b;
+		CivitasBigInteger x = e.getA();
+		CivitasBigInteger y = e.getB();
+		CivitasBigInteger xt = et.getA();
+		CivitasBigInteger yt = et.getB();
 
 		CivitasBigInteger alpha = generateRandomElement.apply(ps.q);
 		CivitasBigInteger beta = generateRandomElement.apply(ps.q);
@@ -53,10 +54,10 @@ public class FakeElGamalProofDVR {
 		CivitasBigInteger st = ps.g.modPow(beta, ps.p);
 
 		List<CivitasBigInteger> l = new ArrayList<>();
-		l.add(e.a);
-		l.add(e.b);
-		l.add(et.a);
-		l.add(et.b);
+		l.add(e.getA());
+		l.add(e.getB());
+		l.add(et.getA());
+		l.add(et.getB());
 		l.add(at);
 		l.add(bt);
 		l.add(st);

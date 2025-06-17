@@ -3,7 +3,7 @@ package civitas.common.mix.voteelementrevelation;
 import civitas.common.Vote;
 import civitas.common.mix.Mix;
 import civitas.common.mix.votemix.VoteMix;
-import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.Use;
@@ -23,15 +23,15 @@ public class VerifyMixVoteElementRevelation {
 
 		Vote fromVote = ((VoteMix) fromMix).votes[fromIndex];
 		Vote toVote = ((VoteMix) toMix).votes[toIndex];
-		ElGamalCiphertext fromChoice = fromVote.encChoice;
-		ElGamalCiphertext fromCapability = fromVote.encCapability;
-		ElGamalCiphertext toChoice = toVote.encChoice;
-		ElGamalCiphertext toCapability = toVote.encCapability;
+		ElGamalCiphertextish fromChoice = fromVote.encChoice;
+		ElGamalCiphertextish fromCapability = fromVote.encCapability;
+		ElGamalCiphertextish toChoice = toVote.encChoice;
+		ElGamalCiphertextish toCapability = toVote.encCapability;
 
-		ElGamalCiphertext rechoice = elGamalReencrypt.apply(key, fromChoice,
+		ElGamalCiphertextish rechoice = elGamalReencrypt.apply(key, fromChoice,
 				that.choiceFactor);
-		ElGamalCiphertext recapability = elGamalReencrypt.apply(key, fromCapability,
-				that.reencryptFactor);
+		ElGamalCiphertextish recapability = elGamalReencrypt.apply(key,
+				fromCapability, that.reencryptFactor);
 		return rechoice.equals(toChoice) && recapability.equals(toCapability);
 	}
 

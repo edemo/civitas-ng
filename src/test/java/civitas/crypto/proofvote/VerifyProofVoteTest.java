@@ -33,7 +33,7 @@ public class VerifyProofVoteTest extends TestBase implements ProofVoteTestData {
 	void test() {
 		for (Integer piece : VOTE_PIECES) {
 			assertTrue(verifyProofVoteReal.apply(PROOF_VOTE_MAP.get(piece),
-					EL_GAMAL_PARAMETERS, ENCRYPTED_VOTE_CAPABILITIES.get(piece),
+					EL_GAMAL_PARAMETERS, ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(piece),
 					REENCRYPTED_CHOICE_MAP.get(BALLOT.matrix[piece]),
 					CONTEXT_MAP.get(piece)));
 		}

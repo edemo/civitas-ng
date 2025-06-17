@@ -16,7 +16,7 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-public class ElGamalCiphertext {
+public class ElGamalCiphertext implements ElGamalCiphertextish {
 	@NonNull
 	public CivitasBigInteger a;
 	@NonNull

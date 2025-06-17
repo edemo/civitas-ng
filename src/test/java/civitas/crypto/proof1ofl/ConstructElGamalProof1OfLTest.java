@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import civitas.common.TestBase;
 import civitas.common.Util;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
-import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
@@ -22,8 +22,8 @@ import civitas.util.CivitasBigInteger;
 import civitas.util.Tested;
 import civitas.util.Use;
 
-public class ConstructElGamalProof1OfLTest extends TestBase implements
-		ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorTestData {
+public class ConstructElGamalProof1OfLTest extends TestBase
+		implements ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorTestData {
 
 	@Tested
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
@@ -60,17 +60,18 @@ public class ConstructElGamalProof1OfLTest extends TestBase implements
 		CivitasBigInteger ciphertextA = REENCRYPTED_WELL_KNOWN_CHOICE_A;
 		CivitasBigInteger ciphertextB = REENCRYPTED_WELL_KNOWN_CHOICE_B;
 		CivitasBigInteger pubkey = PUBKEY_E;
-		List<ElGamalCiphertext> ms = CIPHERTEXT_LIST.stream().map(x -> x).toList();
+		List<ElGamalCiphertextish> ms = CIPHERTEXT_LIST.stream().map(x -> x)
+				.toList();
 		List<CivitasBigInteger> as = IntStream
 				.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS).mapToObj(i -> {
-					return ms.get(i).a.modDivide(ciphertextA, BIGINT_P)
+					return ms.get(i).getA().modDivide(ciphertextA, BIGINT_P)
 							.modPow(DS.get(i), BIGINT_P)
 							.modMultiply(BIGINT_G.modPow(RS.get(i), BIGINT_P), BIGINT_P)
 							.mod(BIGINT_P);
 				}).toList();
 		List<CivitasBigInteger> bs = IntStream
 				.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS).mapToObj(i -> {
-					return ms.get(i).b.modDivide(ciphertextB, BIGINT_P)
+					return ms.get(i).getB().modDivide(ciphertextB, BIGINT_P)
 							.modPow(DS.get(i), BIGINT_P)
 							.modMultiply(pubkey.modPow(RS.get(i), BIGINT_P), BIGINT_P)
 							.mod(BIGINT_P);
@@ -82,8 +83,8 @@ public class ConstructElGamalProof1OfLTest extends TestBase implements
 			d.add(ciphertextA);
 			d.add(ciphertextB);
 			for (int i = 0; i < NO_OF_WELL_KNOWN_CIPHERTEXTS; i++) {
-				d.add(ms.get(i).a);
-				d.add(ms.get(i).b);
+				d.add(ms.get(i).getA());
+				d.add(ms.get(i).getB());
 				d.add(as.get(i));
 				d.add(bs.get(i));
 			}

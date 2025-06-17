@@ -10,9 +10,12 @@ import civitas.common.ConstructTestData;
 import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.proof1ofl.ConstructElGamalProof1OfL;
 import civitas.crypto.proof1ofl.ElGamalProof1OfL;
+import civitas.crypto.proofdvr.ConstructElGamalProofDVR;
+import civitas.crypto.proofdvr.ElGamalProofDVR;
 import civitas.util.CivitasBigInteger;
 import civitas.util.DI;
 
@@ -38,16 +41,16 @@ public interface ElGamal1OfLReencryptionTestData
 	Map<Integer, ElGamalCiphertext> REENCRYPTED_CHOICE_MAP = ConstructTestData
 			.constructTestData(VOTE_CHOICES,
 					(choice) -> new ElGamalCiphertext(
-							CIPHERTEXT_LIST.get(choice).a
+							CIPHERTEXT_LIST.get(choice).getA()
 									.modMultiply(BIGINT_G.modPow(FACTOR_E, BIGINT_P), BIGINT_P),
-							CIPHERTEXT_LIST.get(choice).b
+							CIPHERTEXT_LIST.get(choice).getB()
 									.modMultiply(PUBKEY_E.modPow(FACTOR_E, BIGINT_P), BIGINT_P)));
 
 	CivitasBigInteger REENCRYPTED_WELL_KNOWN_CHOICE_A = CIPHERTEXT_LIST
-			.get(MY_CHOICE).a
+			.get(MY_CHOICE).getA()
 			.modMultiply(BIGINT_G.modPow(FACTOR_E, BIGINT_P), BIGINT_P);
 	CivitasBigInteger REENCRYPTED_WELL_KNOWN_CHOICE_B = CIPHERTEXT_LIST
-			.get(MY_CHOICE).b
+			.get(MY_CHOICE).getB()
 			.modMultiply(PUBKEY_E.modPow(FACTOR_E, BIGINT_P), BIGINT_P);
 
 	ElGamalCiphertext REENCRYPTED_WELL_KNOWN_CHOICE = new ElGamalCiphertext(
@@ -141,15 +144,28 @@ public interface ElGamal1OfLReencryptionTestData
 							REENCRYPTED_CHOICE_MAP.get(choice),
 							EL_GAMAL_PROOF_1_OF_L_MAP.get(choice)));
 
-	List<ElGamalCiphertext> REENCRYPTED_VOTE_CAPABILITIES = ENCRYPTED_VOTE_CAPABILITIES
+	List<ElGamalCiphertextish> REENCRYPTED_VOTE_CAPABILITIES = ENCRYPTED_SIGNED_VOTE_CAPABILITIES
 			.stream()
 			.map(x -> DI.get(ElGamalReencrypt.class).apply(EL_GAMAL_PUBLIC_KEY_EPRIME,
 					x, ELGAMAL_REENCRYPT_FACTOR_EPRIME))
 			.toList();
 
-	List<ElGamalCiphertext> REENCRYPTED_VOTE_CAPABILITIES_WITH_KEY_E = ENCRYPTED_VOTE_CAPABILITIES
+	List<ElGamalCiphertextish> REENCRYPTED_VOTE_CAPABILITIES_WITH_KEY_E = ENCRYPTED_SIGNED_VOTE_CAPABILITIES
 			.stream().map(x -> DI.get(ElGamalReencrypt.class)
 					.apply(EL_GAMAL_PUBLIC_KEY_E, x, ELGAMAL_REENCRYPT_FACTOR_EPRIME))
 			.toList();
 
+	List<ElGamalProofDVR> PROOF_LIST = ENCRYPTED_SIGNED_VOTE_CAPABILITIES.stream()
+			.map(x -> DI.get(ConstructElGamalProofDVR.class).apply(
+					EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_E, x,
+					new ElGamalCiphertext(x.a, x.b), ELGAMAL_REENCRYPT_FACTOR_E,
+					ELGAMAL_REENCRYPT_FACTOR_E))
+			.toList();
+	ElGamalProofDVR[] PROOFS = PROOF_LIST.toArray(new ElGamalProofDVR[0]);
+
+	ElGamalProofDVR[] PROOFS_CAP_NONVERIFY = PROOF_LIST.stream()
+			.map(x -> new ElGamalProofDVR(
+					POSTED_CAPABILITIES_NONVERIFY[PROOF_LIST.indexOf(x)], x.eprime, x.c,
+					x.w, x.r, x.u))
+			.toList().toArray(new ElGamalProofDVR[0]);
 }

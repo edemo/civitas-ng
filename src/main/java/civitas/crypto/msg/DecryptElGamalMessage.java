@@ -2,7 +2,7 @@ package civitas.crypto.msg;
 
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
-import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.signature.VerifyElGamalSignature;
@@ -15,8 +15,9 @@ public class DecryptElGamalMessage {
 	@Use
 	VerifyElGamalSignature verifyElGamalSignature;
 
-	public ElGamalMsg apply(ElGamalPrivateKey key, ElGamalCiphertext ciphertext,
-			byte[] additionalEnv) throws CryptoException, CryptoError {
+	public ElGamalMsg apply(ElGamalPrivateKey key,
+			ElGamalCiphertextish ciphertext, byte[] additionalEnv)
+			throws CryptoException, CryptoError {
 		ElGamalPrivateKey k = key;
 		ElGamalParameters ps = key.params;
 
@@ -26,15 +27,15 @@ public class DecryptElGamalMessage {
 				throw new CryptoException("Ciphertext failed verification");
 			}
 		}
-		ElGamalCiphertext c = ciphertext;
-		CivitasBigInteger a = c.a;
-		CivitasBigInteger b = c.b;
+		ElGamalCiphertextish c = ciphertext;
+		CivitasBigInteger a = c.getA();
+		CivitasBigInteger b = c.getB();
 		CivitasBigInteger m = b.modDivide(a.modPow(k.x, ps.p), ps.p);
 		return new ElGamalMsg(m);
 	}
 
-	public ElGamalMsg apply(ElGamalPrivateKey key, ElGamalCiphertext ciphertext)
-			throws CryptoException, CryptoError {
+	public ElGamalMsg apply(ElGamalPrivateKey key,
+			ElGamalCiphertextish ciphertext) throws CryptoException, CryptoError {
 		return apply(key, ciphertext, null);
 	}
 

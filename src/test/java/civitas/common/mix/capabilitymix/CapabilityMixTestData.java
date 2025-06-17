@@ -9,6 +9,7 @@ import civitas.common.ballot.BallotTestData;
 import civitas.common.election.ElectionTestData;
 import civitas.common.mix.capabilitymixrevelation.MixCapabilityElementRevelationTestData;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.proofvote.ProofVoteTestData;
 
 public interface CapabilityMixTestData
@@ -32,24 +33,24 @@ public interface CapabilityMixTestData
 
 	CapabilityMix CAPABILITY_MIX_CAPABILITY_ADDED = new CapabilityMix(VOTER_BLOCK,
 			new byte[0], new byte[][] {},
-			new ElGamalCiphertext[] { ENCRYPTED_VOTE_CAPABILITIES.get(0) });
+			new ElGamalCiphertextish[] { ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(0) });
 
 	CapabilityMix CAPABILITY_MIX_REMIXED = new CapabilityMix(VOTER_BLOCK,
 			new byte[0], new byte[][] {},
-			new ElGamalCiphertext[] {
+			new ElGamalCiphertextish[] {
 					REENCRYPTED_VOTE_CAPABILITIES.get(1),
 					REENCRYPTED_VOTE_CAPABILITIES.get(0) });
 
 	CapabilityMix CAPABILITY_MIX_INITIAL = new CapabilityMix(4, new byte[0],
 			new byte[][] {},
-			new ElGamalCiphertext[] { ENCRYPTED_VOTE_CAPABILITIES.get(1) });
+			new ElGamalCiphertextish[] { ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(1) });
 	CapabilityMix CAPABILITY_MIX_LEFT = new CapabilityMix(2, new byte[0],
 			new byte[][] {
 					null,
 					Base64.getDecoder()
 							.decode("nbuVKzKGSCyUQ3uS29JzAG22s3ngrPqeLNr/jMcJRDU=") },
-			new ElGamalCiphertext[] {
-					ENCRYPTED_VOTE_CAPABILITIES.get(0),
+			new ElGamalCiphertextish[] {
+					ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(0),
 					REENCRYPTED_VOTE_CAPABILITIES.get(1) });
 
 	CapabilityMix CAPABILITY_MIX_RIGHT = new CapabilityMix(3, new byte[0],
@@ -57,6 +58,8 @@ public interface CapabilityMixTestData
 					new byte[0],
 					Base64.getDecoder()
 							.decode("bRJm0nLPKMbXxhCoKbymzOUfYlK5T5ffjUNjhvm40C0=") },
-			new ElGamalCiphertext[] { null, REENCRYPTED_VOTE_CAPABILITIES.get(0) });
+			new ElGamalCiphertextish[] {
+					null,
+					REENCRYPTED_VOTE_CAPABILITIES.get(0) });
 
 }

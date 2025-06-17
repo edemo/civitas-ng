@@ -3,7 +3,7 @@ package civitas.common.capabilityencryption;
 import java.util.Map;
 
 import civitas.crypto.CryptoError;
-import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
@@ -30,7 +30,7 @@ public class EncryptCapability {
 
 		ElGamalReencryptFactor encCapFactor = generateElGamalReencryptFactor
 				.apply(key.params);
-		ElGamalCiphertext encCap = elGamalEncrypt.apply(key, c, encCapFactor);
+		ElGamalCiphertextish encCap = elGamalEncrypt.apply(key, c, encCapFactor);
 
 		return new CapabilityEncryption(encCapFactor, encCap);
 	}

@@ -3,7 +3,7 @@ package civitas.crypto.signedciphertext;
 import civitas.crypto.CryptoError;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.messagedigest.CryptoHash;
-import civitas.crypto.msg.ElGamalMsg;
+import civitas.crypto.msg.CryptMessage;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
@@ -20,10 +20,10 @@ public class SignAndEncrypt {
 	@Use
 	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
 
-	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg,
+	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, CryptMessage msg,
 			ElGamalReencryptFactor r, byte[] additionalEnv) throws CryptoError {
 		ElGamalParameters ps = key.params;
-		CivitasBigInteger m = msg.m;
+		CivitasBigInteger m = msg.getM();
 		CivitasBigInteger rr = r.r;
 		CivitasBigInteger s = generateRandomElement.apply(ps.q);
 		CivitasBigInteger a = ps.g.modPow(rr, ps.p);
@@ -34,13 +34,13 @@ public class SignAndEncrypt {
 		return new ElGamalSignedCiphertext(a, b, c, d);
 	}
 
-	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg)
+	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, CryptMessage msg)
 			throws CryptoError {
 		return apply(key, msg, generateElGamalReencryptFactor.apply(key.params),
 				(byte[]) null);
 	}
 
-	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, ElGamalMsg msg,
+	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, CryptMessage msg,
 			ElGamalReencryptFactor r) throws CryptoError {
 		return apply(key, msg, r, (byte[]) null);
 	}

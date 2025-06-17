@@ -18,6 +18,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Map;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.decriptionshare.ElGamalDecryptionShare;
 import civitas.crypto.keypair.ElGamalKeyPair;
@@ -81,15 +82,16 @@ public interface CryptoFactory {
 	ElGamalPublicKey combineKeyShares(ElGamalKeyShare[] shares)
 			throws CryptoException;
 
-	ElGamalCiphertext elGamalEncrypt(ElGamalPublicKey key, ElGamalMsg msg);
+	ElGamalCiphertextish elGamalEncrypt(ElGamalPublicKey key, ElGamalMsg msg);
 
-	ElGamalCiphertext elGamalEncrypt(ElGamalPublicKey key, CryptMessage msg,
+	ElGamalCiphertextish elGamalEncrypt(ElGamalPublicKey key, CryptMessage msg,
 			ElGamalReencryptFactor r);
 
-	ElGamalCiphertext elGamalReencrypt(ElGamalPublicKey key, ElGamalCiphertext c);
+	ElGamalCiphertextish elGamalReencrypt(ElGamalPublicKey key,
+			ElGamalCiphertextish c);
 
-	ElGamalCiphertext elGamalReencrypt(ElGamalPublicKey key, ElGamalCiphertext c,
-			ElGamalReencryptFactor r);
+	ElGamalCiphertextish elGamalReencrypt(ElGamalPublicKey key,
+			ElGamalCiphertextish c, ElGamalReencryptFactor r);
 
 	ElGamalReencryptFactor generateElGamalReencryptFactor(
 			ElGamalParameters params);
@@ -109,8 +111,8 @@ public interface CryptoFactory {
 	boolean elGamalVerify(ElGamalParameters params,
 			ElGamalSignedCiphertext ciphertext, byte[] additionalEnv);
 
-	ElGamalMsg elGamalDecrypt(ElGamalPrivateKey key, ElGamalCiphertext ciphertext)
-			throws CryptoException;
+	ElGamalMsg elGamalDecrypt(ElGamalPrivateKey key,
+			ElGamalCiphertextish ciphertext) throws CryptoException;
 
 	ElGamalMsg elGamalDecrypt(ElGamalPrivateKey key,
 			ElGamalSignedCiphertext ciphertext, byte[] additionalEnv)
@@ -120,18 +122,18 @@ public interface CryptoFactory {
 			ElGamalPrivateKey k);
 
 	ElGamalProofDVR constructElGamalProofDVR(ElGamalPublicKey k,
-			ElGamalPublicKey verifierKey, ElGamalCiphertext e,
+			ElGamalPublicKey verifierKey, ElGamalCiphertextish e,
 			ElGamalCiphertext ePrime, ElGamalReencryptFactor er,
 			ElGamalReencryptFactor erPrime);
 
 	ElGamalProofDVR constructFakeElGamalProofDVR(ElGamalPublicKey k,
 			ElGamalPublicKey verifierKey, ElGamalPrivateKey verifierPrivKey,
-			ElGamalCiphertext e, ElGamalCiphertext ePrime);
+			ElGamalCiphertextish e, ElGamalCiphertext ePrime);
 
-	PETShare constructPETShare(ElGamalParameters params, ElGamalCiphertext a,
-			ElGamalCiphertext b);
+	PETShare constructPETShare(ElGamalParameters params, ElGamalCiphertextish a,
+			ElGamalCiphertextish b);
 
-	ElGamalCiphertext combinePETShareDecommitments(PETDecommitment[] decs,
+	ElGamalCiphertextish combinePETShareDecommitments(PETDecommitment[] decs,
 			ElGamalParameters params) throws CryptoException;
 
 	/**
@@ -150,10 +152,10 @@ public interface CryptoFactory {
 
 	CiphertextList constructWellKnownCiphertexts(ElGamalPublicKey key, int count);
 
-	ElGamalDecryptionShare constructDecryptionShare(ElGamalCiphertext c,
+	ElGamalDecryptionShare constructDecryptionShare(ElGamalCiphertextish c,
 			ElGamalKeyPairShare keyShare);
 
-	ElGamalMsg combineDecryptionShares(ElGamalCiphertext c,
+	ElGamalMsg combineDecryptionShares(ElGamalCiphertextish c,
 			ElGamalDecryptionShare[] shares, ElGamalParameters params)
 			throws CryptoException;
 
@@ -165,7 +167,7 @@ public interface CryptoFactory {
 			throws CryptoException;
 
 	ProofVote constructProofVote(ElGamalParameters params,
-			ElGamalCiphertext encCapability, ElGamal1OfLReencryption encChoice,
+			ElGamalCiphertextish encCapability, ElGamal1OfLReencryption encChoice,
 			String context, ElGamalReencryptFactor encCapabilityFactor,
 			ElGamalReencryptFactor encChoiceFactor);
 

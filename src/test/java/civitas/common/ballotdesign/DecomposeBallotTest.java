@@ -47,7 +47,7 @@ class DecomposeBallotTest extends TestBase
 						NUM_CANDIDATES);
 
 				verify(decomposeBallot.constructProofVote).apply(EL_GAMAL_PARAMETERS,
-						ENCRYPTED_VOTE_CAPABILITIES.get(pos),
+						ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(pos),
 						EL_GAMAL_1_OF_L_REENCRYPTION_MAP.get(BALLOT.matrix[pos]).m,
 						CONTEXT_MAP.get(pos), ELGAMAL_REENCRYPT_FACTOR_E,
 						ELGAMAL_REENCRYPT_FACTOR_EPRIME);

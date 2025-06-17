@@ -20,6 +20,6 @@ public interface VoteTestData
 
 	public static final Vote FROM_VOTE = new Vote(CONTEXT_0,
 			CIPHERTEXT_LIST.get(CommonConstants.VOTE_CHOICE_I_BEATS_J),
-			ENCRYPTED_VOTE_CAPABILITIES.get(0));
+			ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(0));
 
 }

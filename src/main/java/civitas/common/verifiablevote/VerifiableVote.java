@@ -6,7 +6,7 @@
  */
 package civitas.common.verifiablevote;
 
-import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.proofvote.ProofVote;
 import lombok.Data;
@@ -19,7 +19,7 @@ public class VerifiableVote {
 	@NonNull
 	public final ElGamal1OfLReencryption encChoice;
 	@NonNull
-	public final ElGamalCiphertext encCapability;
+	public final ElGamalCiphertextish encCapability;
 	@NonNull
 	public final ProofVote proofVote;
 

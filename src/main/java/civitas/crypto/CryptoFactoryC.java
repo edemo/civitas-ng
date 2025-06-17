@@ -35,6 +35,7 @@ import civitas.crypto.algorithms.GenerateRandomInt;
 import civitas.crypto.algorithms.GetPublicKeyGenerator;
 import civitas.crypto.algorithms.GetRandomGenerator;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.ciphertext.MultiplyCiphertexts;
@@ -350,20 +351,20 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	@Override
-	public ElGamalCiphertext elGamalEncrypt(ElGamalPublicKey key,
+	public ElGamalCiphertextish elGamalEncrypt(ElGamalPublicKey key,
 			ElGamalMsg msg) {
 		return elGamalEncrypt.apply(key, msg);
 	}
 
 	@Override
-	public ElGamalCiphertext elGamalEncrypt(ElGamalPublicKey key,
+	public ElGamalCiphertextish elGamalEncrypt(ElGamalPublicKey key,
 			CryptMessage msg, ElGamalReencryptFactor encryptFactor) {
 		return elGamalEncrypt.apply(key, msg, encryptFactor);
 	}
 
 	@Override
-	public ElGamalCiphertext elGamalReencrypt(ElGamalPublicKey key,
-			ElGamalCiphertext ciphertext) {
+	public ElGamalCiphertextish elGamalReencrypt(ElGamalPublicKey key,
+			ElGamalCiphertextish ciphertext) {
 		return elGamalReencrypt.apply(key, ciphertext);
 	}
 
@@ -375,8 +376,8 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	@Override
-	public ElGamalCiphertext elGamalReencrypt(ElGamalPublicKey key,
-			ElGamalCiphertext ciphertext, ElGamalReencryptFactor factor) {
+	public ElGamalCiphertextish elGamalReencrypt(ElGamalPublicKey key,
+			ElGamalCiphertextish ciphertext, ElGamalReencryptFactor factor) {
 		return elGamalReencrypt.apply(key, ciphertext, factor);
 	}
 
@@ -389,7 +390,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	public ElGamalProof1OfL constructElGamalProof1OfL(ElGamalPublicKey key,
-			CiphertextList ciphertexts, int L, int choice, ElGamalCiphertext m,
+			CiphertextList ciphertexts, int L, int choice, ElGamalCiphertextish m,
 			ElGamalReencryptFactor factor) {
 		return constructElGamalProof1OfL.apply(key, ciphertexts, L, choice, m,
 				factor);
@@ -453,7 +454,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public ElGamalMsg elGamalDecrypt(ElGamalPrivateKey key,
-			ElGamalCiphertext ciphertext) throws CryptoException {
+			ElGamalCiphertextish ciphertext) throws CryptoException {
 		return decryptElGamalMessage.apply(key, ciphertext);
 	}
 
@@ -464,8 +465,8 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	@Override
-	public PETShare constructPETShare(ElGamalParameters prms, ElGamalCiphertext a,
-			ElGamalCiphertext b) {
+	public PETShare constructPETShare(ElGamalParameters prms,
+			ElGamalCiphertextish a, ElGamalCiphertextish b) {
 		return constructPETShare.apply(prms, a, b);
 	}
 
@@ -490,15 +491,15 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	@Override
-	public ElGamalMsg combineDecryptionShares(ElGamalCiphertext c,
+	public ElGamalMsg combineDecryptionShares(ElGamalCiphertextish c,
 			ElGamalDecryptionShare[] shares, ElGamalParameters params)
 			throws CryptoException {
 		return combineDecryptionShares.apply(c, shares, params);
 	}
 
 	@Override
-	public ElGamalCiphertext combinePETShareDecommitments(PETDecommitment[] decs,
-			ElGamalParameters params) throws CryptoException {
+	public ElGamalCiphertextish combinePETShareDecommitments(
+			PETDecommitment[] decs, ElGamalParameters params) throws CryptoException {
 		return combinePETShareDecommitments.apply(decs, params);
 	}
 
@@ -508,7 +509,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	@Override
-	public ElGamalDecryptionShare constructDecryptionShare(ElGamalCiphertext c,
+	public ElGamalDecryptionShare constructDecryptionShare(ElGamalCiphertextish c,
 			ElGamalKeyPairShare keyShare) {
 		return constructElGamalDecryptionShare.apply(c, keyShare);
 	}
@@ -633,7 +634,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public ElGamalProofDVR constructElGamalProofDVR(ElGamalPublicKey k,
-			ElGamalPublicKey verifierKey, ElGamalCiphertext e,
+			ElGamalPublicKey verifierKey, ElGamalCiphertextish e,
 			ElGamalCiphertext ePrime, ElGamalReencryptFactor er,
 			ElGamalReencryptFactor erPrime) {
 		return constructElGamalProofDVR.apply(k, verifierKey, e, ePrime, er,
@@ -643,7 +644,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Override
 	public ElGamalProofDVR constructFakeElGamalProofDVR(ElGamalPublicKey k,
 			ElGamalPublicKey verifierKey, ElGamalPrivateKey verifierPrivKey,
-			ElGamalCiphertext e, ElGamalCiphertext ePrime) {
+			ElGamalCiphertextish e, ElGamalCiphertext ePrime) {
 		return fakeElGamalProofDVRC.apply(k, verifierKey, verifierPrivKey, e,
 				ePrime);
 	}
@@ -742,7 +743,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public ProofVote constructProofVote(ElGamalParameters params,
-			ElGamalCiphertext encCapability, ElGamal1OfLReencryption encChoice,
+			ElGamalCiphertextish encCapability, ElGamal1OfLReencryption encChoice,
 			String context, ElGamalReencryptFactor encCapabilityFactor,
 			ElGamalReencryptFactor encChoiceFactor) {
 		return constructProofVote.apply(params, encCapability, encChoice.m, context,

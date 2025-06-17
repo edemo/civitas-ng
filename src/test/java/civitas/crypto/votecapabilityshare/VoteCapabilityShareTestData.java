@@ -40,4 +40,8 @@ public interface VoteCapabilityShareTestData
 			VOTE_CAPABILITIES.get(0), CONTEXT_1, VOTE_CAPABILITIES.get(1), CONTEXT_2,
 			VOTE_CAPABILITIES.get(2));
 
+	VoteCapabilityShare[] VOTE_CAPABILITY_SHARES = VOTE_CAPABILITIES.stream()
+			.map(x -> new VoteCapabilityShare(x.m)).toList()
+			.toArray(new VoteCapabilityShare[0]);
+
 }

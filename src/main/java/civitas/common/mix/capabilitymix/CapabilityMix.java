@@ -7,7 +7,7 @@
 package civitas.common.mix.capabilitymix;
 
 import civitas.common.mix.Mix;
-import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -20,6 +20,6 @@ public class CapabilityMix implements Mix {
 	@NonNull
 	public byte[][] commitments;
 	@NonNull
-	public ElGamalCiphertext[] capabilities;
+	public ElGamalCiphertextish[] capabilities;
 
 }

@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 
-public class CiphertextList extends ArrayList<ElGamalCiphertext> {
+public class CiphertextList extends ArrayList<ElGamalCiphertextish> {
 	private static final long serialVersionUID = 1L;
 	public final static String META = "ciphertextList";
 

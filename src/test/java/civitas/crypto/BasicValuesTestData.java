@@ -74,21 +74,22 @@ public interface BasicValuesTestData extends Constants {
 	public static final CivitasBigInteger RANDOMS_2 = RANDOMS.get(2);
 	public static final String RANDOMS_2_BASE64 = RANDOMS_BASE64.get(2);
 
-	public static final CivitasBigInteger BIGINT_A = new CivitasBigInteger(
-			SOMESTRING.getBytes());
 	public static final String BIGINT_A_BASE64 = SOMESTRING_BASE64;
 	public static final String SAFE_P_MINUS_A_BASE64 = "ASvIFyEHZA21reK32LTtYEwJG4GSW8Xzrl83llQSdjcztgsIJeyQm0ZZ36vG4aTVYjtADzV9J6xJcK0C32+iCP4=";
 	public static final CivitasBigInteger SAFE_P_MINUS_A = Util
 			.asBigint(SAFE_P_MINUS_A_BASE64);
 
 	public static final String BIGINT_B_BASE64 = "Xje5W2KfxNk=";
-	public static final CivitasBigInteger BIGINT_B = Util
-			.asBigint(BIGINT_B_BASE64);
 	public static final String BIGINT_C_BASE64 = "eaUSELMHNaE=";
-	public static final CivitasBigInteger BIGINT_C = Util
-			.asBigint(BIGINT_C_BASE64);
 
 	public static final String BIGINT_D_BASE64 = "eOmnTcKMIpE=";
+
+	public static final CivitasBigInteger BIGINT_A = new CivitasBigInteger(
+			SOMESTRING.getBytes());
+	public static final CivitasBigInteger BIGINT_B = Util
+			.asBigint(BIGINT_B_BASE64);
+	public static final CivitasBigInteger BIGINT_C = Util
+			.asBigint(BIGINT_C_BASE64);
 	public static final CivitasBigInteger BIGINT_D = Util
 			.asBigint(BIGINT_D_BASE64);
 

@@ -30,10 +30,10 @@ public class MultiplyCiphertextsTest extends TestBase
 	void test() throws CryptoError, CryptoException {
 		CiphertextList actual = multiplyCiphertexts.apply(CIPHERTEXT_MATRIX,
 				EL_GAMAL_PARAMETERS);
-		assertEquals(CivitasBigInteger.valueOf(2 * 11), actual.get(0).a);
-		assertEquals(CivitasBigInteger.valueOf(5 * 17), actual.get(1).a);
-		assertEquals(CivitasBigInteger.valueOf(3 * 13), actual.get(0).b);
-		assertEquals(CivitasBigInteger.valueOf(7 * 19), actual.get(1).b);
+		assertEquals(CivitasBigInteger.valueOf(2 * 11), actual.get(0).getA());
+		assertEquals(CivitasBigInteger.valueOf(5 * 17), actual.get(1).getA());
+		assertEquals(CivitasBigInteger.valueOf(3 * 13), actual.get(0).getB());
+		assertEquals(CivitasBigInteger.valueOf(7 * 19), actual.get(1).getB());
 	}
 
 	@Test
