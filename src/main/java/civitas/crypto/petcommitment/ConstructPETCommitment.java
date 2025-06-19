@@ -15,16 +15,13 @@ public class ConstructPETCommitment {
 	CryptoHash cryptoHash;
 
 	public PETCommitment apply(PETShare that, ElGamalParameters params) {
-		ElGamalParameters ps = params;
-
-		CivitasBigInteger zi = that.exponent;
 		CivitasBigInteger d = that.ciphertext1.getA()
-				.modDivide(that.ciphertext2.getA(), ps.p);
+				.modDivide(that.ciphertext2.getA(), params.p);
 		CivitasBigInteger e = that.ciphertext1.getB()
-				.modDivide(that.ciphertext2.getB(), ps.p);
+				.modDivide(that.ciphertext2.getB(), params.p);
 
-		CivitasBigInteger di = d.modPow(zi, ps.p);
-		CivitasBigInteger ei = e.modPow(zi, ps.p);
+		CivitasBigInteger di = d.modPow(that.exponent, params.p);
+		CivitasBigInteger ei = e.modPow(that.exponent, params.p);
 
 		return new PETCommitment(cryptoHash.apply(di, ei));
 	}

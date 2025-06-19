@@ -3,11 +3,8 @@ package civitas.crypto.proofdvr;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,10 +14,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import civitas.AppTestConfig;
 import civitas.common.TestBase;
-import civitas.common.Util;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.messagedigest.CryptoHash;
-import civitas.util.CivitasBigInteger;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
@@ -69,20 +64,4 @@ public class ConstructElGamalProofDVRTest extends TestBase
 		assertEquals(EL_GAMAL_PROOF_DVR, proof);
 	}
 
-	@Test
-	@Tag("testdata")
-	@DisplayName("DVR_HASH_BASE64")
-	void checkTestData() {
-
-		CivitasBigInteger b = PUBKEY_E.modPow(RANDOMS_0, BIGINT_P);
-		CivitasBigInteger s = BIGINT_G.modPow(RANDOMS_1, BIGINT_P)
-				.modMultiply(PUBKEY_EPRIME.modPow(RANDOMS_2, BIGINT_P), BIGINT_P);
-		List<CivitasBigInteger> proofenv = Arrays.asList(CIPHERTEXT_E.a,
-				CIPHERTEXT_E.b, CIPHERTEXT_EPRIME.a, CIPHERTEXT_EPRIME.b,
-				BIGINT_G.modPow(RANDOMS_0, BIGINT_P), b, s);
-		CivitasBigInteger c = convertHashToBigInt.apply(cryptoHash.apply(proofenv))
-				.mod(BIGINT_Q);
-		assertEquals(DVR_HASH_BASE64, Util.fromBigInt(c));
-
-	}
 }

@@ -8,7 +8,6 @@ import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.mix.capabilitymix.CapabilityMixTestData;
-import civitas.common.mix.elementrevelation.MixElementRevelation;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 
@@ -27,7 +26,7 @@ class VerifyMixRevelationTest extends TestBase
 
 		assertTrue(verifyMixRevelation.apply(MIX_REVELATION,
 				EL_GAMAL_PUBLIC_KEY_EPRIME, CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_LEFT,
-				CAPABILITY_MIX_RIGHT, directions));
+				CAPABILITY_MIX_RIGHT, MIX_REVELATION_DIRECTIONS));
 	}
 
 	@Test
@@ -35,7 +34,7 @@ class VerifyMixRevelationTest extends TestBase
 	void test1() {
 		verifyMixRevelation.apply(MIX_REVELATION, EL_GAMAL_PUBLIC_KEY_E,
 				CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_LEFT, CAPABILITY_MIX_RIGHT,
-				directions);
+				MIX_REVELATION_DIRECTIONS);
 	}
 
 	@Test
@@ -44,17 +43,15 @@ class VerifyMixRevelationTest extends TestBase
 		// hash nonequal
 		verifyMixRevelation.apply(MIX_REVELATION, EL_GAMAL_PUBLIC_KEY_E,
 				CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_RIGHT, CAPABILITY_MIX_LEFT,
-				directions);
+				MIX_REVELATION_DIRECTIONS);
 	}
 
 	@Test
 	@DisplayName("fails if a revelation is null")
 	void test3() {
-		verifyMixRevelation.apply(
-				new MixRevelation(1, directions,
-						new MixElementRevelation[] { null, null }),
+		verifyMixRevelation.apply(MIX_REVELATION_WITH_NULL_REVELATION,
 				EL_GAMAL_PUBLIC_KEY_E, CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_RIGHT,
-				CAPABILITY_MIX_LEFT, directions);
+				CAPABILITY_MIX_LEFT, MIX_REVELATION_DIRECTIONS);
 	}
 
 	@Test
@@ -62,26 +59,23 @@ class VerifyMixRevelationTest extends TestBase
 	void test4() {
 		verifyMixRevelation.apply(MIX_REVELATION, EL_GAMAL_PUBLIC_KEY_E,
 				CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_RIGHT, CAPABILITY_MIX_LEFT,
-				new boolean[] { false, false });
+				MIX_REVELATION_DIRECTIONS_BAD);
 	}
 
 	@Test
 	@DisplayName("fails if the length of indicators in the revelation does not match the length of relevations there")
 	void test5() {
-		verifyMixRevelation.apply(
-				new MixRevelation(1, new boolean[] { true },
-						new MixElementRevelation[] { null, null }),
+		verifyMixRevelation.apply(MIX_REVELATION_WITH_BAD_INDICATOR_LENGTH,
 				EL_GAMAL_PUBLIC_KEY_EPRIME, CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_LEFT,
-				CAPABILITY_MIX_RIGHT, directions);
+				CAPABILITY_MIX_RIGHT, MIX_REVELATION_DIRECTIONS);
 	}
 
 	@Test
 	@DisplayName("fails if the length of indicators in the revelation does not match the length of directions")
 	void test6() {
-		// indicators.length != directions.length
 		verifyMixRevelation.apply(MIX_REVELATION, EL_GAMAL_PUBLIC_KEY_EPRIME,
 				CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_LEFT, CAPABILITY_MIX_RIGHT,
-				new boolean[] { false });
+				MIX_REVELATION_DIRECTIONS_SHORT);
 	}
 
 	@Test

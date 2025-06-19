@@ -4,26 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import civitas.AppTestConfig;
 import civitas.common.TestBase;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = AppTestConfig.class)
 class VerifyVerifiableVoteTest extends TestBase
 		implements VerifiableVoteTestData {
 	@InjectMocks
 	VerifyVerifiableVote verifyVerifiableVote;
-
-	@Autowired
-	VerifyVerifiableVote verifyVerifiableVoteReal;
 
 	@Test
 	@DisplayName("if the vote is correct, returns true\n"
@@ -55,15 +44,6 @@ class VerifyVerifiableVoteTest extends TestBase
 	void test_3() {
 		assertFalse(verifyVerifiableVote.apply(VERIFIABLE_VOTE_BAD_PROOF,
 				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
-	}
-
-	@Test
-	@Tag("testdata")
-	@DisplayName("VERIFIABLE_VOTES")
-	void test1() {
-		for (VerifiableVote vv : VERIFIABLE_VOTES)
-			assertTrue(verifyVerifiableVoteReal.apply(vv, EL_GAMAL_PUBLIC_KEY_E,
-					CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
 	}
 
 }

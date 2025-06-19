@@ -16,7 +16,5 @@ public interface VoterCapabilitySharesAndProofTestData
 			VOTER_BLOCK);
 	VoterCapabilitySharesAndProof VOTER_CAPABILITIES_AND_PROOFS_BAD_PROOF_COUNT = new VoterCapabilitySharesAndProof(
 			VOTE_CAPABILITY_SHARES, FACTORS, new ElGamalProofDVR[0], VOTER_BLOCK);
-	String VOTER_NAME = "bob";
-	int TELLER_INDEX = 8;
 
 }

@@ -6,32 +6,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import civitas.AppTestConfig;
 import civitas.common.TestBase;
-import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
-import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.petcommitment.PETCommitmentTestData;
 import civitas.crypto.petshare.PETShareTestData;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = AppTestConfig.class)
 public class VerifyPETDecommitmentTest extends TestBase
 		implements PETDecommitmentTestData, PETCommitmentTestData,
 		ElGamalCiphertextTestData, PETShareTestData {
 
 	@InjectMocks
 	VerifyPETDecommitment verifyPETDecommitment;
-	@Autowired
-	CryptoHash cryptoHash;
 
 	@Test
 	@DisplayName("correct decommitment passes "
@@ -52,9 +41,6 @@ public class VerifyPETDecommitmentTest extends TestBase
 
 		assertEquals(proof.g1, d);
 		assertEquals(proof.g2, e);
-		assertEquals(PET_COMMITMENT_HASH_BASE64, Util.fromBigInt(
-				cryptoHash.apply(PET_DECOMMITMENT.di, PET_DECOMMITMENT.ei)));
-		// exponent: BIGINT_C
 		assertTrue(verifyPETDecommitment.apply(PET_DECOMMITMENT, PET_COMMITMENT,
 				EL_GAMAL_PARAMETERS, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 	}

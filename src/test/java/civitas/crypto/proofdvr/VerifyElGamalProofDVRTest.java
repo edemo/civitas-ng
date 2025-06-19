@@ -19,7 +19,13 @@ public class VerifyElGamalProofDVRTest extends TestBase
 	void test2() {
 		assertTrue(verifyElGamalProofDVR.apply(EL_GAMAL_PROOF_DVR,
 				EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME));
+	}
 
+	@Test
+	@DisplayName("verify works for a fake proof")
+	void test() {
+		assertTrue(verifyElGamalProofDVR.apply(FAKE_PROOF_DVR,
+				EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME));
 	}
 
 }

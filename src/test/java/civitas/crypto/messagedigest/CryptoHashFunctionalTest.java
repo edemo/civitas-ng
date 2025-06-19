@@ -1,17 +1,22 @@
 package civitas.crypto.messagedigest;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Base64;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.common.TestUtil;
+import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 
-public class CryptoHashTest extends TestBase implements MessageDigestTestData {
+@Tag("functional")
+public class CryptoHashFunctionalTest extends TestBase
+		implements MessageDigestTestData, ElGamalSignedCiphertextTestData {
 
-	MessageDigest md = new MessageDigest(TestUtil.getBaselineDigest());
 	@InjectMocks
 	CryptoHash cryptoHash;
 
@@ -79,6 +84,16 @@ public class CryptoHashTest extends TestBase implements MessageDigestTestData {
 		BASELINE_DIGEST.update(BYTES);
 		assertArrayEquals(BASELINE_DIGEST.digest(),
 				cryptoHash.apply(SOMESTRING_EXTENDED.toCharArray(), 3, 8));
+	}
+
+	@Test
+	@Tag("testdata")
+	@DisplayName("EL_GAMAL_SIGNED_CIPHERTEXT_C_BASE64")
+	void test8() {
+		assertEquals(EL_GAMAL_SIGNED_CIPHERTEXT_C_BASE64, Base64.getEncoder()
+				.encodeToString(cryptoHash.apply(EL_GAMAL_SIGNED_CIPHERTEXT_HASH1,
+						EL_GAMAL_SIGNED_CIPHERTEXT_A, EL_GAMAL_SIGNED_CIPHERTEXT_B,
+						ADDITIONALENV_BYTES).toByteArray()));
 	}
 
 }

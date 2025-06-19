@@ -6,15 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
-import civitas.crypto.ciphertext.ElGamalEncrypt;
-import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
-import civitas.crypto.signedciphertext.SignAndEncrypt;
 
 public class DecryptElGamalMessageTest extends TestBase
 		implements ElGamalCiphertextTestData, ElGamalSignedCiphertextTestData {
@@ -22,22 +18,13 @@ public class DecryptElGamalMessageTest extends TestBase
 	@InjectMocks
 	DecryptElGamalMessage decryptElGamalMessage;
 
-	@Autowired
-	SignAndEncrypt signAndEncrypt;
-
-	@Autowired
-	ElGamalEncrypt elGamalEncrypt;
-	@Autowired
-	EncodeMessage encodeMessage;
-
 	@Test
 	@DisplayName("elGamalDecrypt decrypts and verifies the siged cyphertext")
 	void elGamalDecryptTest() throws Exception {
 
-		ElGamalSignedCiphertext encrypted = SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV;
-
 		ElGamalMsg decrypted = decryptElGamalMessage.apply(EL_GAMAL_PRIVATE_KEY_E,
-				encrypted, ADDITIONALENV_BYTES);
+				SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV,
+				ADDITIONALENV_BYTES);
 		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED, decrypted.m);
 
 	}

@@ -1,8 +1,10 @@
 package civitas.common.electionresults;
 
-public interface TellerTestData {
-	int TELLER_INDEX = 1;
-	String TELLER_COMPUTER = "Teller1";
-	String TELLER_META = "electionResults:Teller1";
+import civitas.crypto.BasicValuesTestData;
+
+public interface TellerTestData extends BasicValuesTestData {
+	int TELLER_INDEX = 8;
+	String TELLER_COMPUTER = "Teller" + TELLER_INDEX;
+	String TELLER_META = "electionResults:" + TELLER_COMPUTER;
 
 }

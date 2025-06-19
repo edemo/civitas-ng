@@ -1,6 +1,6 @@
 package civitas.crypto.proofdvr;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
@@ -8,7 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -24,18 +23,14 @@ public class FakeElGamalProofDVRTest extends TestBase
 	@InjectMocks
 	FakeElGamalProofDVR fakeElGamalProofDVRC;
 
-	@Autowired
-	VerifyElGamalProofDVR verifyElGamalProofDVR;
-
 	@Test
 	@DisplayName("creates a fake proof with the private key of the verifier which verifies")
 	void test1_1() throws IllegalArgumentException, IOException {
 
-		ElGamalProofDVR proof = fakeElGamalProofDVRC.apply(CIPHERTEXT_E,
-				CIPHERTEXT_EPRIME, EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME,
-				EL_GAMAL_PRIVATE_KEY_EPRIME);
-		assertTrue(verifyElGamalProofDVR.apply(proof, EL_GAMAL_PUBLIC_KEY_E,
-				EL_GAMAL_PUBLIC_KEY_EPRIME));
+		assertEquals(FAKE_PROOF_DVR,
+				fakeElGamalProofDVRC.apply(CIPHERTEXT_E, CIPHERTEXT_EPRIME,
+						EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME,
+						EL_GAMAL_PRIVATE_KEY_EPRIME));
 	}
 
 	@Test
@@ -43,11 +38,10 @@ public class FakeElGamalProofDVRTest extends TestBase
 			+ " FIXME: why do we have two versions?")
 	void test1_2() throws IllegalArgumentException, IOException {
 
-		ElGamalProofDVR proof = fakeElGamalProofDVRC.apply(EL_GAMAL_PUBLIC_KEY_E,
-				EL_GAMAL_PUBLIC_KEY_EPRIME, EL_GAMAL_PRIVATE_KEY_EPRIME, CIPHERTEXT_E,
-				CIPHERTEXT_EPRIME);
-		assertTrue(verifyElGamalProofDVR.apply(proof, EL_GAMAL_PUBLIC_KEY_E,
-				EL_GAMAL_PUBLIC_KEY_EPRIME));
+		assertEquals(FAKE_PROOF_DVR,
+				fakeElGamalProofDVRC.apply(EL_GAMAL_PUBLIC_KEY_E,
+						EL_GAMAL_PUBLIC_KEY_EPRIME, EL_GAMAL_PRIVATE_KEY_EPRIME,
+						CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 	}
 
 }

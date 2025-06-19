@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.Constants;
@@ -17,9 +16,6 @@ public class GenerateSafePrimeTest extends TestBase
 
 	@InjectMocks
 	GenerateSafePrime generateSafePrime;
-
-	@Autowired
-	GenerateElGamalParameters generateElGamalParameters;
 
 	@Test
 	@DisplayName("safePrime returns two primes p,q where p=2*q+1, and length of q is length ")

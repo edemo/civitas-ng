@@ -2,34 +2,17 @@ package civitas.crypto.proofvote;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
-
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import civitas.AppTestConfig;
 import civitas.common.TestBase;
-import civitas.common.Util;
 import civitas.crypto.CryptoException;
-import civitas.crypto.messagedigest.CryptoHash;
-import civitas.util.CivitasBigInteger;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = AppTestConfig.class)
 class ConstructProofVoteTest extends TestBase implements ProofVoteTestData {
 
 	@InjectMocks
 	ConstructProofVote constructProofVote;
-	@Autowired
-	CalculateProofEnvironment calculateProofEnvironment;
-	@Autowired
-	CryptoHash cryptoHash;
 
 	@Test
 	@DisplayName("constructs a proof that the vote data is correct"
@@ -46,24 +29,6 @@ class ConstructProofVoteTest extends TestBase implements ProofVoteTestData {
 				CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE, ADDITIONALENV,
 				ELGAMAL_REENCRYPT_FACTOR_EPRIME, ELGAMAL_REENCRYPT_FACTOR_E);
 		assertEquals(PROOF_VOTE, proofVote);
-	}
-
-	@Test
-	@Tag("testdata")
-	@DisplayName("PROOF_VOTE_C_BASE64")
-	void testData() {
-		CivitasBigInteger r1 = RANDOMS_0;
-		CivitasBigInteger r2 = RANDOMS_1;
-		List<CivitasBigInteger> E = calculateProofEnvironment.apply(
-				EL_GAMAL_PARAMETERS, CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE,
-				ADDITIONALENV);
-		E.add(BIGINT_G.modPow(r1, BIGINT_P));
-		E.add(BIGINT_G.modPow(r2, BIGINT_P));
-
-		CivitasBigInteger PROOF_VOTE_C = new CivitasBigInteger(1,
-				cryptoHash.apply(E)).mod(BIGINT_Q);
-		assertEquals(PROOF_VOTE_C_BASE64, Util.fromBigInt(PROOF_VOTE_C));
-
 	}
 
 }

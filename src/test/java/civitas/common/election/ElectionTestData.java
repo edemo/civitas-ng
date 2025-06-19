@@ -2,11 +2,12 @@ package civitas.common.election;
 
 import civitas.common.UtilTestData;
 import civitas.common.ballotdesign.BallotDesignTestData;
+import civitas.common.electionresults.TellerTestData;
 import civitas.crypto.parameters.ElGamalParametersTestData;
 import civitas.crypto.rsapublickey.PublicKeyTestData;
 
 public interface ElectionTestData extends BallotDesignTestData,
-		ElGamalParametersTestData, PublicKeyTestData, UtilTestData {
+		ElGamalParametersTestData, PublicKeyTestData, UtilTestData, TellerTestData {
 
 	String ELECTION_ID_STRING = "The Greatest Election ID";
 	int ELECTION_PORT = 4420;
@@ -32,13 +33,12 @@ public interface ElectionTestData extends BallotDesignTestData,
 	String FULL_CONTEXT_11 = ELECTION_ID_AS_STRING + ":3:" + BARE_CONTEXT_2;
 	String FULL_CONTEXT_14 = ELECTION_ID_AS_STRING + ":4:" + BARE_CONTEXT_2;
 
-	int TELLER_INDEX = 1;
 	String ABANDONMENT_REASON = "just why not";
 	ElectionAbandonment ELECTION_ABANDONMENT = new ElectionAbandonment(
 			TELLER_INDEX, true, ABANDONMENT_REASON);
 	ElectionAbandonment ELECTION_ABANDONMENT_NONTELLER = new ElectionAbandonment(
 			TELLER_INDEX, false, ABANDONMENT_REASON);
-	String ELECTION_ABANDONMENT_REPORTER = "tabulation teller 1";
+	String ELECTION_ABANDONMENT_REPORTER = "tabulation teller " + TELLER_INDEX;
 	String ELECTION_ABANDONMENT_REPORTER_UNKNOWN = "unknown entity";
 
 }

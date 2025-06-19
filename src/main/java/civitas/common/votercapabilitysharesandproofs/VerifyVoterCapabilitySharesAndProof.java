@@ -40,26 +40,22 @@ public class VerifyVoterCapabilitySharesAndProof {
 		}
 
 		ElGamalParameters params = tabTellerSharedPublicKey.params;
+		byte[] hash = cryptoHash.apply(tellerIndex + voterName);
 
 		for (int i = 0; i < that.capabilities.length; i++) {
 			VoteCapabilityShare vc = that.capabilities[i];
 			ElGamalReencryptFactor r = that.rencryptFactors[i];
 			ElGamalProofDVR p = that.proofs[i];
-			// check that p.e equals the posted capability
 			if (!p.getE().equals(postedCapabilities[i])) {
 				return false;
 			}
 
-			// check that the posted capability verifies
-			byte[] hash = cryptoHash.apply(tellerIndex + voterName);
 			if (!verifyElGamalSignature.apply(params, postedCapabilities[i], hash)) {
 				return false;
 			}
 
-			// check that p.e' equals enc(vc, ttKey r)
 			ElGamalCiphertext encrypted = elGamalEncrypt
 					.apply(tabTellerSharedPublicKey, vc, r);
-			// check the proof, i.e., that p.e is a reencryption of p.e'
 			if (!encrypted.equals(p.getEprime()) || !verifyElGamalProofDVR.apply(p,
 					tabTellerSharedPublicKey, voterPublicKey)) {
 				return false;

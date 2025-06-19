@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 
 import civitas.DI;
 import civitas.common.CommonConstants;
@@ -59,6 +60,37 @@ public interface ElGamal1OfLReencryptionTestData
 	CivitasBigInteger w = (FACTOR_E.modNegate(BIGINT_Q)
 			.modMultiply(DS.get(MY_CHOICE), BIGINT_Q))
 			.modAdd(RS.get(MY_CHOICE), BIGINT_Q);
+
+	List<CivitasBigInteger> EL_GAMAL_PROOF_1_OF_L_AS = IntStream
+			.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS).mapToObj(i -> {
+				return CIPHERTEXT_LIST.get(i).getA()
+						.modDivide(REENCRYPTED_WELL_KNOWN_CHOICE_A, BIGINT_P)
+						.modPow(DS.get(i), BIGINT_P)
+						.modMultiply(BIGINT_G.modPow(RS.get(i), BIGINT_P), BIGINT_P)
+						.mod(BIGINT_P);
+			}).toList();
+	List<CivitasBigInteger> EL_GAMAL_PROOF_1_OF_L_BS = IntStream
+			.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS).mapToObj(i -> {
+				return CIPHERTEXT_LIST.get(i).getB()
+						.modDivide(REENCRYPTED_WELL_KNOWN_CHOICE_B, BIGINT_P)
+						.modPow(DS.get(i), BIGINT_P)
+						.modMultiply(PUBKEY_E.modPow(RS.get(i), BIGINT_P), BIGINT_P)
+						.mod(BIGINT_P);
+			}).toList();
+
+	List<CivitasBigInteger> EL_GAMAL_PROOF_1_OF_L_ENV = ((Supplier<List<CivitasBigInteger>>) () -> {
+		ArrayList<CivitasBigInteger> d = new ArrayList<>(
+				2 + 4 * NO_OF_WELL_KNOWN_CIPHERTEXTS);
+		d.add(REENCRYPTED_WELL_KNOWN_CHOICE_A);
+		d.add(REENCRYPTED_WELL_KNOWN_CHOICE_B);
+		for (int i = 0; i < NO_OF_WELL_KNOWN_CIPHERTEXTS; i++) {
+			d.add(CIPHERTEXT_LIST.get(i).getA());
+			d.add(CIPHERTEXT_LIST.get(i).getB());
+			d.add(EL_GAMAL_PROOF_1_OF_L_AS.get(i));
+			d.add(EL_GAMAL_PROOF_1_OF_L_BS.get(i));
+		}
+		return d;
+	}).get();
 
 	String EL_GAMAL_PROOF_1_OF_L_HASH_BASE64 = "TqT++ODFynAUZo5awzSUsEXBXCS6HlC2CkKk6WEG1e4=";
 	CivitasBigInteger EL_GAMAL_PROOF_1_OF_L_HASH = Util

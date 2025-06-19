@@ -8,11 +8,11 @@ import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
-import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.messagedigest.CryptoHash;
+import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 
 public class VerifyElGamalSignatureTest extends TestBase
-		implements ElGamalCiphertextTestData {
+		implements ElGamalSignedCiphertextTestData {
 	@InjectMocks
 	VerifyElGamalSignature verifyElGamalSignature;
 

@@ -1,17 +1,19 @@
 package civitas.crypto.petcommitment;
 
 import civitas.common.Util;
-import civitas.crypto.BasicValuesTestData;
+import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.util.CivitasBigInteger;
 
-public interface PETCommitmentTestData extends BasicValuesTestData {
+public interface PETCommitmentTestData extends ElGamalCiphertextTestData {
 
-	public static final String PET_COMMITMENT_HASH_BASE64 = "cJwI6pCvSZhmplOrKDGHqSkWeGcSByNlMVR6d0IlbAM=";
-	public static final CivitasBigInteger PET_COMMITMENT_HASH = Util
-			.asBigint(PET_COMMITMENT_HASH_BASE64);
-	public static final String PET_COMMITMENT_NULL_XML = "<petC></petC>";
-	public static final String PET_COMMITMENT_XML = "<petC>"
-			+ PET_COMMITMENT_HASH_BASE64 + "</petC>";
+	CivitasBigInteger PET_COMMITMENT_DI = CIPHERTEXT_E_A
+			.modDivide(CIPHERTEXT_EPRIME_A, BIGINT_P)
+			.modPow(FACTOR_E, EL_GAMAL_PARAMETERS.p);
+	CivitasBigInteger PET_COMMITMENT_EI = CIPHERTEXT_E_B
+			.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P).modPow(FACTOR_E, BIGINT_P);
+
+	CivitasBigInteger PET_COMMITMENT_HASH = Util
+			.asBigint("cJwI6pCvSZhmplOrKDGHqSkWeGcSByNlMVR6d0IlbAM=");
 
 	public static final PETCommitment PET_COMMITMENT = new PETCommitment(
 			PET_COMMITMENT_HASH);

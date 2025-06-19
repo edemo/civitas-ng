@@ -6,28 +6,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import civitas.AppTestConfig;
 import civitas.common.TestBase;
+import civitas.common.electionresults.TellerTestData;
 import civitas.crypto.proofdvr.ElGamalProofDVRTestData;
-import civitas.crypto.signature.VerifyElGamalSignature;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = AppTestConfig.class)
 class VerifyVoterCapabilitySharesAndProofTest extends TestBase
-		implements ElGamalProofDVRTestData, VoterCapabilitySharesAndProofTestData {
+		implements ElGamalProofDVRTestData, VoterCapabilitySharesAndProofTestData,
+		TellerTestData {
 
 	@InjectMocks
 	VerifyVoterCapabilitySharesAndProof VerifyVoterCapabilitySharesAndProof;
-
-	@Autowired
-	VerifyElGamalSignature verifyElGamalSignature;
 
 	@Test
 	@DisplayName("verifies the voter capabilities and proofs\n"

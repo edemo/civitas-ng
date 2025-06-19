@@ -2,7 +2,6 @@ package civitas.common.mix.capabilitymix;
 
 import static org.mockito.Mockito.mock;
 
-import java.util.Base64;
 import java.util.function.Supplier;
 
 import civitas.common.ballot.BallotTestData;
@@ -45,19 +44,13 @@ public interface CapabilityMixTestData
 			new byte[][] {},
 			new ElGamalCiphertextish[] { ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(1) });
 	CapabilityMix CAPABILITY_MIX_LEFT = new CapabilityMix(2, new byte[0],
-			new byte[][] {
-					null,
-					Base64.getDecoder()
-							.decode("nbuVKzKGSCyUQ3uS29JzAG22s3ngrPqeLNr/jMcJRDU=") },
+			new byte[][] { null, CAPABILITY_ELEMENT_RELEVATION_LEFT_HASH },
 			new ElGamalCiphertextish[] {
 					ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(0),
 					REENCRYPTED_VOTE_CAPABILITIES.get(1) });
 
 	CapabilityMix CAPABILITY_MIX_RIGHT = new CapabilityMix(3, new byte[0],
-			new byte[][] {
-					new byte[0],
-					Base64.getDecoder()
-							.decode("bRJm0nLPKMbXxhCoKbymzOUfYlK5T5ffjUNjhvm40C0=") },
+			new byte[][] { new byte[0], CAPABILITY_ELEMENT_RELEVATION_RIGHT_HASH },
 			new ElGamalCiphertextish[] {
 					null,
 					REENCRYPTED_VOTE_CAPABILITIES.get(0) });

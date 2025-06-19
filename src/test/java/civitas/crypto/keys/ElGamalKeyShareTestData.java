@@ -6,9 +6,6 @@ import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 
 public interface ElGamalKeyShareTestData
 		extends ProofKnowDiscLogTestData, ElGamalPublicKeyTestData {
-	public static final String EL_GAMAL_KEY_SHARE_XML = "<elGamalKeyShare><pubKey>"
-			+ EL_GAMAL_PUBLIC_KEY_E_XML + "</pubKey><proof>"
-			+ EL_GAMAL_PROOF_KNOWN_DISC_LOG_XML + "</proof></elGamalKeyShare>";
 
 	public static final ElGamalKeyShare EL_GAMAL_KEY_SHARE_E = new ElGamalKeyShare(
 			EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PROOF_KNOWN_DISC_LOG);

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import civitas.common.tabteller.TabTellerKeyShareTestData;
 
-class ConvertToXmlStub implements TabTellerKeyShareTestData, XmlTestData {
+class ConvertToXmlStub implements TabTellerKeyShareTestData {
 
 	public static ConvertToXml stub() throws JsonProcessingException {
 		ConvertToXml mock = mock(ConvertToXml.class);

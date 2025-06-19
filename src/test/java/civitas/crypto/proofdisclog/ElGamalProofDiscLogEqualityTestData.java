@@ -1,5 +1,7 @@
 package civitas.crypto.proofdisclog;
 
+import java.util.List;
+
 import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
@@ -40,6 +42,11 @@ public interface ElGamalProofDiscLogEqualityTestData
 			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_B,
 			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C,
 			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R);
+	List<CivitasBigInteger> EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_FOR_HASH = List
+			.of(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_V,
+					EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_W,
+					EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_A,
+					EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_B);
 
 	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_G1 = CIPHERTEXT_E_A;
 	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_G2 = BIGINT_G;

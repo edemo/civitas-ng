@@ -5,13 +5,13 @@ import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 import civitas.util.CivitasBigInteger;
 
 public interface ProofKnowDiscLogTestData extends ElGamalPublicKeyTestData {
+
 	CivitasBigInteger EL_GAMAL_PROOF_KNOWN_DISC_LOG_A = BIGINT_G.modPow(RANDOMS_0,
 			BIGINT_P);
 	CivitasBigInteger EL_GAMAL_PROOF_KNOWN_DISC_LOG_V = BIGINT_G.modPow(PRIVKEY_E,
 			BIGINT_P);
-	public static final String EL_GAMAL_PROOF_KNOWN_DISC_LOG_C_BASE64 = "V0PAc6rSjBiKZU6P5kIU65fcVr5+eIekC1ABoOrgmvs=";
 	CivitasBigInteger EL_GAMAL_PROOF_KNOWN_DISC_LOG_C = Util
-			.asBigint(EL_GAMAL_PROOF_KNOWN_DISC_LOG_C_BASE64);
+			.asBigint("V0PAc6rSjBiKZU6P5kIU65fcVr5+eIekC1ABoOrgmvs=");
 
 	CivitasBigInteger EL_GAMAL_PROOF_KNOWN_DISC_LOG_R = RANDOMS_0.modAdd(
 			EL_GAMAL_PROOF_KNOWN_DISC_LOG_C.modMultiply(PRIVKEY_E, BIGINT_Q),
@@ -30,14 +30,5 @@ public interface ProofKnowDiscLogTestData extends ElGamalPublicKeyTestData {
 			.fromBigInt(EL_GAMAL_PROOF_KNOWN_DISC_LOG_R);
 	public static final String EL_GAMAL_PROOF_KNOWN_DISC_LOG_V_BASE64 = Util
 			.fromBigInt(EL_GAMAL_PROOF_KNOWN_DISC_LOG_V);
-
-	public static final String EL_GAMAL_PROOF_KNOWN_DISC_LOG_XML = "<elGamalProofKnowDiscLog><a>"
-			+ EL_GAMAL_PROOF_KNOWN_DISC_LOG_A_BASE64 + "</a><c>"
-			+ EL_GAMAL_PROOF_KNOWN_DISC_LOG_C_BASE64 + "</c><r>"
-			+ EL_GAMAL_PROOF_KNOWN_DISC_LOG_R_BASE64 + "</r><v>"
-			+ EL_GAMAL_PROOF_KNOWN_DISC_LOG_V_BASE64
-			+ "</v></elGamalProofKnowDiscLog>";
-	public static final String EL_GAMAL_PROOF_KNOWN_DISC_LOG_NULL_XML = "<elGamalProofKnowDiscLog><a>"
-			+ "</a><c>" + "</c><r>" + "</r><v>" + "</v></elGamalProofKnowDiscLog>";
 
 }

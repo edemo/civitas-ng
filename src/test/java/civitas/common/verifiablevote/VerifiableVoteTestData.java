@@ -20,12 +20,6 @@ public interface VerifiableVoteTestData
 	VerifiableVote VERIFIABLE_VOTE_BAD_PROOF = new VerifiableVote(CONTEXT_0,
 			EL_GAMAL_1_OF_L_REENCRYPTION, CIPHERTEXT_ENCCAP, PROOF_VOTE_MAP.get(1));
 
-	String VERIFIABLE_VOTE_XML = "<verifiableVote><context>" + CONTEXT_0
-			+ "</context><encChoice>" + EL_GAMAL_1_OF_L_REENCRYPTION_XML
-			+ "</encChoice><encCapability>" + CIPHERTEXT_ENCCAP_XML
-			+ "</encCapability><proof>" + PROOF_VOTE_XML
-			+ "</proof></verifiableVote>";
-
 	Map<Integer, VerifiableVote> VERIFIABLE_VOTE_MAP = ConstructTestData
 			.constructTestData(VOTE_PIECES,
 					(piece) -> new VerifiableVote(CONTEXT_MAP.get(piece),

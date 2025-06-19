@@ -7,6 +7,7 @@ import civitas.common.Util;
 import civitas.util.CivitasBigInteger;
 
 public interface BasicValuesTestData extends Constants {
+	String VOTER_NAME = "bob";
 
 	int BYTELENGTH = 8;
 	int BITLENGTH = 64;

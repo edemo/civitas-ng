@@ -1,9 +1,14 @@
 package civitas.common.votersubmission;
 
-public class CreateVoterSubmissionStub {
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+public class CreateVoterSubmissionStub implements VoterSubmissionTestData {
 
 	public static CreateVoterSubmission stub() {
-		CreateVoterSubmission mock = new CreateVoterSubmission();
+		CreateVoterSubmission mock = mock(CreateVoterSubmission.class);
+		when(mock.apply(VOTER_BLOCK, VERIFIABLE_VOTES))
+				.thenReturn(VOTER_SUBMISSION);
 		return mock;
 	}
 }

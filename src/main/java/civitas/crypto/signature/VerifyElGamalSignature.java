@@ -17,14 +17,13 @@ public class VerifyElGamalSignature {
 	public boolean apply(ElGamalParameters params,
 			ElGamalSignedCiphertext ciphertext, byte[] additionalEnv)
 			throws CryptoError {
-		ElGamalParameters ps = params;
-		ElGamalSignedCiphertext cc = ciphertext;
-		// to verify, check that c == h(g^d * a^(-c), a, b)
-		CivitasBigInteger x = ps.g.modPow(cc.d.mod(ps.q), ps.p)
-				.modMultiply(cc.a.modPow(cc.c.modNegate(ps.q), ps.p), ps.p);
-		CivitasBigInteger v = cryptoHash.apply(x, cc.a, cc.b, additionalEnv)
-				.mod(ps.q);
-		return cc.c.equals(v);
+		CivitasBigInteger x = params.g.modPow(ciphertext.d.mod(params.q), params.p)
+				.modMultiply(
+						ciphertext.a.modPow(ciphertext.c.modNegate(params.q), params.p),
+						params.p);
+		CivitasBigInteger v = cryptoHash
+				.apply(x, ciphertext.a, ciphertext.b, additionalEnv).mod(params.q);
+		return ciphertext.c.equals(v);
 	}
 
 	public boolean apply(ElGamalParameters params,

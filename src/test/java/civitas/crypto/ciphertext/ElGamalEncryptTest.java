@@ -2,16 +2,11 @@ package civitas.crypto.ciphertext;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Base64;
-
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.crypto.messagedigest.CryptoHash;
-import civitas.crypto.messagedigest.CryptoHashStub;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
@@ -58,15 +53,6 @@ public class ElGamalEncryptTest extends TestBase
 		ElGamalMsg msg = new ElGamalMsg(BIGINT_G.modPow(BIGINT_B, BIGINT_P));
 		assertEquals(ENCRYPTED_ZERO_FACTOR, (elGamalEncrypt
 				.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, msg, ENCRYPT_FACTOR_ZERO)));
-	}
-
-	@Test
-	@Tag("testdata")
-	@DisplayName("VOTER_ADDITIONAL_ENV")
-	void test1() {
-		CryptoHash cryptoHash = CryptoHashStub.stub();
-		assertEquals(Base64.getEncoder().encodeToString(VOTER_ADDITIONAL_ENV),
-				Base64.getEncoder().encodeToString(cryptoHash.apply(8 + "bob")));
 	}
 
 }

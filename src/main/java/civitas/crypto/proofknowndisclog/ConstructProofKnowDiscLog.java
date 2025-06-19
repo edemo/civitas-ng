@@ -22,13 +22,11 @@ public class ConstructProofKnowDiscLog {
 				|| !(prms instanceof ElGamalParameters)) {
 			return null;
 		}
-		ElGamalParameters params = prms;
-		CivitasBigInteger x = k.x;
-		CivitasBigInteger v = params.g.modPow(x, params.p);
-		CivitasBigInteger z = generateRandomElement.apply(params.q);
-		CivitasBigInteger a = params.g.modPow(z, params.p);
-		CivitasBigInteger c = cryptoHash.apply(v, a).mod(params.q);
-		CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q), params.q);
+		CivitasBigInteger v = prms.g.modPow(k.x, prms.p);
+		CivitasBigInteger z = generateRandomElement.apply(prms.q);
+		CivitasBigInteger a = prms.g.modPow(z, prms.p);
+		CivitasBigInteger c = cryptoHash.apply(v, a).mod(prms.q);
+		CivitasBigInteger r = z.modAdd(c.modMultiply(k.x, prms.q), prms.q);
 		return new ElGamalProofKnowDiscLog(a, c, r, v);
 	}
 

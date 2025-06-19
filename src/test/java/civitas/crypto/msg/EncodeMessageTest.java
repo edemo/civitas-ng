@@ -1,24 +1,19 @@
 package civitas.crypto.msg;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.InjectMocks;
 
-import civitas.AppTestConfig;
 import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShareTestData;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = AppTestConfig.class)
 public class EncodeMessageTest extends TestBase
 		implements VoteCapabilityShareTestData {
-	@Autowired
+	@InjectMocks
 	EncodeMessage encodeMessage;
 
 	@Test
@@ -27,6 +22,34 @@ public class EncodeMessageTest extends TestBase
 
 		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED, encodeMessage
 				.apply(MESSAGE_VOTE_CAPABILITY_SHARE, EL_GAMAL_PARAMETERS));
+	}
+
+	@Test
+	@DisplayName("encodeMessage with int parameter stores the message converted to bigint and encrypted")
+	void test1() throws NumberFormatException, CryptoException {
+		assertEquals(BIGINT_G.modPow(SOME_INT_BIG, BIGINT_P),
+				encodeMessage.apply(SOME_INT, EL_GAMAL_PARAMETERS));
+	}
+
+	@Test
+	@DisplayName("encodeMessage with String parameter stores the message encrypted")
+	void test1_1() throws NumberFormatException, CryptoException {
+		assertEquals(BIGINT_G.modPow(SOMESTRING_BIGINT, BIGINT_P),
+				encodeMessage.apply(SOMESTRING, EL_GAMAL_PARAMETERS));
+	}
+
+	@Test
+	@DisplayName("empty string cannot be used in encodeMessage")
+	void test1_1_1() throws NumberFormatException, CryptoException {
+		assertThrows(CryptoException.class,
+				() -> encodeMessage.apply("", EL_GAMAL_PARAMETERS));
+	}
+
+	@Test
+	@DisplayName("encodeMessage with BigInt parameter stores the message encrypted")
+	void test1_2() throws NumberFormatException, CryptoException {
+		assertEquals(BIGINT_G.modPow(BIGINT_A, BIGINT_P),
+				encodeMessage.apply(BIGINT_A, EL_GAMAL_PARAMETERS));
 	}
 
 }

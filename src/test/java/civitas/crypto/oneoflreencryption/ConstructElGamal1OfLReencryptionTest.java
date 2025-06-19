@@ -5,19 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
-import civitas.crypto.proof1ofl.VerifyElGamal1OfLReencryption;
 
 public class ConstructElGamal1OfLReencryptionTest extends TestBase
 		implements ElGamal1OfLReencryptionTestData {
 
 	@InjectMocks
 	ConstructElGamal1OfLReencryption constructElGamal1OfLReencryption;
-
-	@Autowired
-	VerifyElGamal1OfLReencryption verifyElGamal1OfLReencryption;
 
 	@Test
 	@DisplayName("constructs an encrypted choice,"

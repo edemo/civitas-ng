@@ -5,10 +5,14 @@ import java.util.Map;
 
 import civitas.common.CommonConstants;
 import civitas.crypto.BasicValuesTestData;
+import civitas.util.CivitasBigInteger;
 
 public interface BallotDesignTestData
 		extends CommonConstants, BasicValuesTestData {
 	String ADDITIONALENV = "Árvíztűrő Tükörfúrógép";
+	byte[] HASH_OF_ADDITIONALENV = "hash_of_additionalenv".getBytes();
+	CivitasBigInteger BIGINTEGER_HASH_OF_ADDITIONALENV = new CivitasBigInteger(1,
+			HASH_OF_ADDITIONALENV);
 
 	String BARE_CONTEXT_0 = CommonConstants.KIND + "0:1";
 	String BARE_CONTEXT_1 = CommonConstants.KIND + "0:2";

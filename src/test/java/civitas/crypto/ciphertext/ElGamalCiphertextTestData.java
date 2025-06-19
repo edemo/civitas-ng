@@ -87,18 +87,6 @@ public interface ElGamalCiphertextTestData
 	public static final String ENCRYPTED_ZERO_FACTOR_XML = "<ElGamalCiphertext><a>"
 			+ ONE_BASE64 + "</a><b>" + G_EXP_B_BASE64 + "</b></ElGamalCiphertext>";
 
-	CivitasBigInteger HASH_OF_G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR_ADDITIONALENV = Util
-			.asBigint("dHKDA9V8OEUx/Z2A7TLdgbG7OdIZTbg860iANjgFJMI=");
-	CivitasBigInteger RANDOMS_0_PLUS_HASH_MUL_FACTOR = RANDOMS_0.modAdd(
-			HASH_OF_G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR_ADDITIONALENV
-					.modMultiply(FACTOR_E, BIGINT_Q),
-			BIGINT_Q);
-
-	ElGamalSignedCiphertext SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV = new ElGamalSignedCiphertext(
-			CIPHERTEXT_E_A, CIPHERTEXT_E_B,
-			HASH_OF_G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR_ADDITIONALENV,
-			RANDOMS_0_PLUS_HASH_MUL_FACTOR);
-
 	public static final int NO_OF_WELL_KNOWN_CIPHERTEXTS = 4;
 
 	CiphertextList CIPHERTEXT_LIST = new CiphertextList(
@@ -114,8 +102,7 @@ public interface ElGamalCiphertextTestData
 	public static final String CIPHERTEXT_LIST_XML_WITH_NEGATIVE_LENGTH = "<ciphertextList>"
 			+ "<size>-1</size></ciphertextList>";
 
-	byte[] VOTER_ADDITIONAL_ENV = Base64.getDecoder()
-			.decode("oW/1n32y+V2WGH4xPoMcyfIQbmQLhCcnhjV6UeaGPyI=");
+	byte[] VOTER_ADDITIONAL_ENV = "8+bob hash".getBytes();
 	List<ElGamalSignedCiphertext> ENCRYPTED_SIGNED_VOTE_CAPABILITIES = VOTE_CAPABILITIES
 			.stream()
 			.map(x -> DI.get(SignAndEncrypt.class).apply(EL_GAMAL_PUBLIC_KEY_E, x,
