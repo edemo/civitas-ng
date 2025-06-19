@@ -15,7 +15,6 @@ public interface PublicKeyTestData extends PrivateKeyTestData {
 			.generatePublic(PUBLIC_KEY_BASE64, PUBLIC_KEY_NAME);
 	public static final PublicKey PUBLIC_KEY2 = TestUtil
 			.generatePublic(PUBLIC_KEY2_BASE64, PUBLIC_KEY_NAME2);
-
 	public static final String PUBLIC_KEY_XML = "<publicKey><name>"
 			+ PUBLIC_KEY_NAME + "</name><key>" + PUBLIC_KEY_BASE64
 			+ "</key></publicKey>";

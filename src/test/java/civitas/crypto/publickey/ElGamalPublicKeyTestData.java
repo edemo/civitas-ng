@@ -1,7 +1,5 @@
 package civitas.crypto.publickey;
 
-import java.util.Map;
-
 import civitas.common.Util;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
@@ -23,14 +21,8 @@ public interface ElGamalPublicKeyTestData
 	public static final ElGamalPublicKey EL_GAMAL_PUBLIC_KEY_A_USING_G_OTHER = new ElGamalPublicKey(
 			BIGINT_G_OTHER.modPow(BIGINT_A, BIGINT_P), EL_GAMAL_PARAMETERS_OTHER);
 
-	String EL_GAMAL_PUBLIC_KEY_EPRIME_XML = "<elGamalPublicKey>" + "<params>"
-			+ EL_GAMAL_PARAMETERS_XML + "</params><y>" + PUBKEY_EPRIME_BASE64
-			+ "</y></elGamalPublicKey>";
 	String EL_GAMAL_PUBLIC_KEY_E_XML = "<elGamalPublicKey>" + "<params>"
 			+ EL_GAMAL_PARAMETERS_XML + "</params><y>" + PUBKEY_E_BASE64
-			+ "</y></elGamalPublicKey>";
-	public static final String EL_GAMAL_PUBLIC_KEY_XML = "<elGamalPublicKey><params>"
-			+ EL_GAMAL_PARAMETERS_XML + "</params><y>" + G_EXP_A_BASE64
 			+ "</y></elGamalPublicKey>";
 
 	public static final String EL_GAMAL_PUBLIC_KEY_NULL_XML = "<elGamalPublicKey>"
@@ -40,8 +32,5 @@ public interface ElGamalPublicKeyTestData
 	CivitasBigInteger ZETA = FACTOR_EPRIME.modSubtract(FACTOR_E, BIGINT_Q);// E:key2,factor2,
 																																					// eprime:
 																																					// key,factor
-	Map<String, ElGamalPublicKey> EL_GAMAL_PUBLIC_KEY_MOCKING = Map.of(
-			EL_GAMAL_PUBLIC_KEY_E_XML, EL_GAMAL_PUBLIC_KEY_E,
-			EL_GAMAL_PUBLIC_KEY_EPRIME_XML, EL_GAMAL_PUBLIC_KEY_EPRIME);
 
 }

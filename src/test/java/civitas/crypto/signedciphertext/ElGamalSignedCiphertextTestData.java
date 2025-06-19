@@ -1,7 +1,6 @@
 package civitas.crypto.signedciphertext;
 
 import java.util.Base64;
-import java.util.Map;
 
 import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
@@ -44,15 +43,5 @@ public interface ElGamalSignedCiphertextTestData
 			CIPHERTEXT_E_A, CIPHERTEXT_E_B,
 			HASH_OF_G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR_ADDITIONALENV,
 			RANDOMS_0_PLUS_HASH_MUL_FACTOR);
-
-	public static final String EL_GAMAL_SIGNED_CIPHERTEXT_XML = "<elGamalSignedCiphertext><a>"
-			+ BIGINT_A_BASE64 + "</a><b>" + BIGINT_B_BASE64 + "</b><c>"
-			+ BIGINT_C_BASE64 + "</c><d>" + BIGINT_D_BASE64
-			+ "</d></elGamalSignedCiphertext>";
-	public static final String EL_GAMAL_SIGNED_CIPHERTEXT_NULL_XML = "<elGamalSignedCiphertext><a>"
-			+ "</a><b>" + "</b><c>" + "</c><d>" + "</d></elGamalSignedCiphertext>";
-
-	Map<String, ElGamalSignedCiphertext> EL_GAMAL_SIGNED_CIPHERTEXT_MOCKING = Map
-			.of(EL_GAMAL_SIGNED_CIPHERTEXT_XML, EL_GAMAL_SIGNED_CIPHERTEXT);
 
 }

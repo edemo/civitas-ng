@@ -10,8 +10,6 @@ public interface SharedKeyTestData {
 	SharedKey SHARED_KEY = new SharedKey(
 			new SecretKeySpec(Base64.getDecoder().decode(SHARED_KEY_BASE64), "AES"),
 			SHARED_KEY_NAME);
-	public static final String SHARED_KEY_XML = "<sharedKey><n>" + SHARED_KEY_NAME
-			+ "</n><k>" + SHARED_KEY_BASE64 + "</k></sharedKey>";
 	public static final String SHARED_KEY_ON_WIRE = SHARED_KEY_NAME + "\n"
 			+ SHARED_KEY_BASE64 + "\n";
 

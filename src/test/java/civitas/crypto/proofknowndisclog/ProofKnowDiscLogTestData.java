@@ -24,11 +24,4 @@ public interface ProofKnowDiscLogTestData extends ElGamalPublicKeyTestData {
 			BIGINT_A, EL_GAMAL_PROOF_KNOWN_DISC_LOG_C,
 			EL_GAMAL_PROOF_KNOWN_DISC_LOG_R, EL_GAMAL_PROOF_KNOWN_DISC_LOG_V);
 
-	public static final String EL_GAMAL_PROOF_KNOWN_DISC_LOG_A_BASE64 = Util
-			.fromBigInt(EL_GAMAL_PROOF_KNOWN_DISC_LOG_A);
-	public static final String EL_GAMAL_PROOF_KNOWN_DISC_LOG_R_BASE64 = Util
-			.fromBigInt(EL_GAMAL_PROOF_KNOWN_DISC_LOG_R);
-	public static final String EL_GAMAL_PROOF_KNOWN_DISC_LOG_V_BASE64 = Util
-			.fromBigInt(EL_GAMAL_PROOF_KNOWN_DISC_LOG_V);
-
 }

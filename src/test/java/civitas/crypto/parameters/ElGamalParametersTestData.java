@@ -78,8 +78,6 @@ public interface ElGamalParametersTestData extends BasicValuesTestData {
 	public static final ElGamalParameters EL_GAMAL_PARAMETERS_GENERATOR_OTHER = new ElGamalParameters(
 			BIGINT_P, BIGINT_Q, GENERATOR_OTHER);
 
-	public static final String EL_GAMAL_PARAMETERS_XML = "<p>" + BIGINT_P_BASE64
-			+ "</p><q>" + BIGINT_Q_BASE64 + "</q><g>" + BIGINT_G_BASE64 + "</g>";
 	public static final CivitasBigInteger RANDOMS_0_PUBLISHED = BIGINT_G
 			.modPow(RANDOMS_0, BIGINT_P);
 	public static final int SAFE_KEY_LENGTH = 512;
@@ -130,4 +128,8 @@ public interface ElGamalParametersTestData extends BasicValuesTestData {
 			.asBigint(BIGINT_NO_PRIME_OF_GROUPLENGTH_BASE64);
 	CivitasBigInteger BIGINT_NO_PRIME_OF_KEYLENGTH = Util
 			.asBigint(BIGINT_NO_PRIME_OF_KEYLENGTH_BASE64);
+
+	public static final String EL_GAMAL_PARAMETERS_XML = "<p>" + BIGINT_P_BASE64
+			+ "</p><q>" + BIGINT_Q_BASE64 + "</q><g>" + BIGINT_G_BASE64 + "</g>";
+
 }

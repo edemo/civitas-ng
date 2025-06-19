@@ -96,20 +96,20 @@ public interface ElGamal1OfLReencryptionTestData
 	CivitasBigInteger EL_GAMAL_PROOF_1_OF_L_HASH = Util
 			.asBigint(EL_GAMAL_PROOF_1_OF_L_HASH_BASE64);
 
-	CivitasBigInteger EL_GAMAL_PROOF_1_OF_L_XML_DV = EL_GAMAL_PROOF_1_OF_L_HASH
+	CivitasBigInteger EL_GAMAL_PROOF_1_OF_L_DV = EL_GAMAL_PROOF_1_OF_L_HASH
 			.modSubtract(SUM, BIGINT_Q);
-	CivitasBigInteger EL_GAMAL_PROOF_1_OF_L_XML_RV = w.modAdd(
-			FACTOR_E.modMultiply(EL_GAMAL_PROOF_1_OF_L_XML_DV, BIGINT_Q), BIGINT_Q);
+	CivitasBigInteger EL_GAMAL_PROOF_1_OF_L_RV = w.modAdd(
+			FACTOR_E.modMultiply(EL_GAMAL_PROOF_1_OF_L_DV, BIGINT_Q), BIGINT_Q);
 
 	public static final List<CivitasBigInteger> DVS = ((Supplier<List<CivitasBigInteger>>) () -> {
 		List<CivitasBigInteger> d = new ArrayList<>(DS);
-		d.set(MY_CHOICE, EL_GAMAL_PROOF_1_OF_L_XML_DV);
+		d.set(MY_CHOICE, EL_GAMAL_PROOF_1_OF_L_DV);
 		return d;
 	}).get();
 
 	public static final List<CivitasBigInteger> RVS = ((Supplier<List<CivitasBigInteger>>) () -> {
 		List<CivitasBigInteger> r = new ArrayList<>(RS);
-		r.set(MY_CHOICE, EL_GAMAL_PROOF_1_OF_L_XML_RV);
+		r.set(MY_CHOICE, EL_GAMAL_PROOF_1_OF_L_RV);
 		return r;
 	}).get();
 
@@ -128,38 +128,6 @@ public interface ElGamal1OfLReencryptionTestData
 			NO_OF_WELL_KNOWN_CIPHERTEXTS,
 			DVS_BAD.toArray(new CivitasBigInteger[NO_OF_WELL_KNOWN_CIPHERTEXTS]),
 			RVS.toArray(new CivitasBigInteger[NO_OF_WELL_KNOWN_CIPHERTEXTS]));
-
-	String EL_GAMAL_PROOF_1_OF_L_XML_DV_BASE64 = Util
-			.fromBigInt(EL_GAMAL_PROOF_1_OF_L_XML_DV);
-	String EL_GAMAL_PROOF_1_OF_L_XML_RV_BASE64 = Util
-			.fromBigInt(EL_GAMAL_PROOF_1_OF_L_XML_RV);
-
-	// @formatter:off
-	public static final String EL_GAMAL_PROOF_1_OF_L_XML = "<elGamalProof1OfL>"
-			+ "<size>4</size>"
-			+ "<dv>" + RANDOMS_BASE64.get(0) + "</dv>"
-			+ "<dv>" + EL_GAMAL_PROOF_1_OF_L_XML_DV_BASE64 + "</dv>"
-			+ "<dv>" + RANDOMS_BASE64.get(2) + "</dv>"
-			+ "<dv>" + RANDOMS_BASE64.get(3) + "</dv>"
-			+ "<rv>" + RANDOMS_BASE64.get(4) + "</rv>"
-			+ "<rv>" + EL_GAMAL_PROOF_1_OF_L_XML_RV_BASE64 + "</rv>"
-			+ "<rv>" + RANDOMS_BASE64.get(6) + "</rv>"
-			+ "<rv>" + RANDOMS_BASE64.get(7) + "</rv>"
-			+ "</elGamalProof1OfL>";
-	// @formatter:on
-
-	String REENCRYPTED_WELL_KNOWN_CHOICE_A_BASE64 = Util
-			.fromBigInt(REENCRYPTED_WELL_KNOWN_CHOICE_A);
-	String REENCRYPTED_WELL_KNOWN_CHOICE_B_BASE64 = Util
-			.fromBigInt(REENCRYPTED_WELL_KNOWN_CHOICE_B);
-	String REENCRYPTED_WELL_KNOWN_CHOICE_XML = "<ElGamalCiphertext><a>"
-			+ REENCRYPTED_WELL_KNOWN_CHOICE_A_BASE64 + "</a><b>"
-			+ REENCRYPTED_WELL_KNOWN_CHOICE_B_BASE64 + "</b></ElGamalCiphertext>";
-
-	public static final String EL_GAMAL_1_OF_L_REENCRYPTION_XML = "<elGamal1OfLReencryption>"
-			+ REENCRYPTED_WELL_KNOWN_CHOICE_XML + EL_GAMAL_PROOF_1_OF_L_XML
-			+ "</elGamal1OfLReencryption>";
-	public static final String EL_GAMAL_1_OF_L_REENCRYPTION_NULL_XML = "<elGamal1OfLReencryption></elGamal1OfLReencryption>";
 
 	public static final ElGamal1OfLReencryption EL_GAMAL_1_OF_L_REENCRYPTION = new ElGamal1OfLReencryption(
 			REENCRYPTED_WELL_KNOWN_CHOICE, EL_GAMAL_PROOF_1_OF_L);

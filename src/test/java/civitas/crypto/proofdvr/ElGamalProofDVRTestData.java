@@ -2,7 +2,6 @@ package civitas.crypto.proofdvr;
 
 import java.util.List;
 
-import civitas.common.Util;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 import civitas.util.CivitasBigInteger;
 
@@ -16,7 +15,6 @@ public interface ElGamalProofDVRTestData
 	CivitasBigInteger DVR_U = RANDOMS_0.modAdd(
 			ZETA.modMultiply(DVR_HASH.modAdd(RANDOMS_1, BIGINT_Q), BIGINT_Q),
 			BIGINT_Q);
-	String DVR_U_BASE64 = Util.fromBigInt(DVR_U);
 	ElGamalProofDVR EL_GAMAL_PROOF_DVR = new ElGamalProofDVR(CIPHERTEXT_E,
 			CIPHERTEXT_EPRIME, DVR_HASH, RANDOMS_1, RANDOMS_2, DVR_U);
 

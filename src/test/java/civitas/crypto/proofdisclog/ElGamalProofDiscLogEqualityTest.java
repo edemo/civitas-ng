@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.common.Util;
 
 public class ElGamalProofDiscLogEqualityTest extends TestBase
 		implements ElGamalProofDiscLogEqualityTestData {
@@ -26,8 +25,6 @@ public class ElGamalProofDiscLogEqualityTest extends TestBase
 				.apply(EL_GAMAL_PARAMETERS,
 						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G1,
 						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G2, PRIVKEY_E);
-		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C_BASE64,
-				Util.fromBigInt(proof.c));
 		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT, proof);
 
 	}

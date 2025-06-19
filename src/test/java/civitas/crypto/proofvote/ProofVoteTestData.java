@@ -5,7 +5,6 @@ import java.util.Map;
 
 import civitas.DI;
 import civitas.common.ConstructTestData;
-import civitas.common.Util;
 import civitas.common.ballot.BallotTestData;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
@@ -35,12 +34,6 @@ public interface ProofVoteTestData
 			BIGINT_Q);
 	public static final ProofVote PROOF_VOTE = new ProofVote(PROOF_VOTE_C,
 			PROOF_VOTE_S1, PROOF_VOTE_S2);
-
-	public static final String PROOF_VOTE_S1_BASE64 = Util
-			.fromBigInt(PROOF_VOTE_S1);
-	public static final String PROOF_VOTE_S2_BASE64 = Util
-			.fromBigInt(PROOF_VOTE_S2);
-	public static final String PROOF_VOTE_NULL_XML = "<elGamalProofVote><c></c><s1></s1><s2></s2></elGamalProofVote>";
 
 	Map<Integer, ProofVote> PROOF_VOTE_MAP = ConstructTestData
 			.constructTestData(VOTE_PIECES, (piece) -> {
