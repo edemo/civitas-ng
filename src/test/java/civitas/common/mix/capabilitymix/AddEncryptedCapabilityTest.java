@@ -16,11 +16,21 @@ class AddEncryptedCapabilityTest extends TestBase
 	AddEncryptedCapability addEncryptedCapability;
 
 	@Test
-	@DisplayName("Adds an encrypted capability to the mix")
+	@DisplayName("Works when adding an encrypted capability to the empty mix")
 	void test() {
 		CapabilityMix mix = CAPABILITY_MIX_EMPTY_SUPPLIER.get();
-		addEncryptedCapability.apply(mix, ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(0));
+		addEncryptedCapability.apply(mix,
+				ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(0));
 		assertEquals(CAPABILITY_MIX_CAPABILITY_ADDED, mix);
+	}
+
+	@Test
+	@DisplayName("Works when adding an encrypted capability to the nonempty mix")
+	void test1() {
+		CapabilityMix mix = CAPABILITY_MIX_CAPABILITY_ADDED;
+		addEncryptedCapability.apply(mix,
+				ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(1));
+		assertEquals(CAPABILITY_MIX_CAPABILITIES_ADDED, mix);
 	}
 
 }

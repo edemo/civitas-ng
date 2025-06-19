@@ -21,9 +21,9 @@ import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import civitas.common.Util;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.ConvertToBase64;
-import civitas.crypto.algorithms.ConvertToBigInt;
 import civitas.crypto.algorithms.CreateFreshNonce;
 import civitas.crypto.algorithms.CreateFreshNonceBase64;
 import civitas.crypto.algorithms.CreatePermutation;
@@ -181,8 +181,6 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	DecryptElGamalMessage decryptElGamalMessage;
 	@Autowired
 	ConstructPETShare constructPETShare;
-	@Autowired
-	static ConvertToBigInt convertToBigInt;
 	@Autowired
 	CombineDecryptionShares combineDecryptionShares;
 	@Autowired
@@ -680,7 +678,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	public static CivitasBigInteger stringToBigInt(String s) {
-		return convertToBigInt.apply(s);
+		return Util.asBigint(s);
 	}
 
 	@Override

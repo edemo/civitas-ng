@@ -12,6 +12,7 @@ public class VerifyPublicKeySignatureMsg {
 	@Autowired
 	VerifyPublicKeySignature verifyPublicKeySignature;
 
+	@Deprecated
 	public PublicKeyMsg apply(PublicKey K, Signature s, PublicKeyMsg msg) {
 		if (verifyPublicKeySignature.apply(K, s, msg)) {
 			return msg;

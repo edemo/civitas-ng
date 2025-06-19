@@ -18,7 +18,7 @@ class AddCommitmentToMixTest extends TestBase implements CapabilityMixTestData {
 
 		CapabilityMix mix = CAPABILITY_MIX_EMPTY_SUPPLIER.get();
 		addCommitmentToMix.apply(mix, SOMESTRING.getBytes());
-		assertEquals(CAPABILITY_MIX_COMMITMENT_ADDED, mix);
+		assertEquals(CAPABILITY_MIX_COMMITMENT_ADDED_SUPPLIER.get(), mix);
 	}
 
 }

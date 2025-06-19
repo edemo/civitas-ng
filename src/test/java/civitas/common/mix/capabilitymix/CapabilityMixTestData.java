@@ -26,13 +26,23 @@ public interface CapabilityMixTestData
 		}
 	};
 
-	CapabilityMix CAPABILITY_MIX_COMMITMENT_ADDED = new CapabilityMix(VOTER_BLOCK,
-			new byte[0], new byte[][] { SOMESTRING.getBytes() },
-			new ElGamalCiphertext[0]);
+	Supplier<CapabilityMix> CAPABILITY_MIX_COMMITMENT_ADDED_SUPPLIER = new Supplier<>() {
+		@Override
+		public CapabilityMix get() {
+			return new CapabilityMix(VOTER_BLOCK, new byte[0],
+					new byte[][] { SOMESTRING.getBytes() }, new ElGamalCiphertext[0]);
+		}
+	};
 
 	CapabilityMix CAPABILITY_MIX_CAPABILITY_ADDED = new CapabilityMix(VOTER_BLOCK,
 			new byte[0], new byte[][] {},
 			new ElGamalCiphertextish[] { ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(0) });
+
+	CapabilityMix CAPABILITY_MIX_CAPABILITIES_ADDED = new CapabilityMix(
+			VOTER_BLOCK, new byte[0], new byte[][] {},
+			new ElGamalCiphertextish[] {
+					ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(0),
+					ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(1) });
 
 	CapabilityMix CAPABILITY_MIX_REMIXED = new CapabilityMix(VOTER_BLOCK,
 			new byte[0], new byte[][] {},

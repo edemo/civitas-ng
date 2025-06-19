@@ -37,12 +37,14 @@ public class SignAndEncrypt {
 		return new ElGamalSignedCiphertext(a, b, c, d);
 	}
 
+	@Deprecated
 	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, CryptMessage msg)
 			throws CryptoError {
 		return apply(key, msg, generateElGamalReencryptFactor.apply(key.params),
 				(byte[]) null);
 	}
 
+	@Deprecated
 	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, CryptMessage msg,
 			ElGamalReencryptFactor r) throws CryptoError {
 		return apply(key, msg, r, (byte[]) null);

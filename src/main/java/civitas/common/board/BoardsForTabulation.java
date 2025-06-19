@@ -6,9 +6,11 @@
  */
 package civitas.common.board;
 
+import io.micrometer.common.lang.NonNull;
 import lombok.Data;
 
 @Data
 public class BoardsForTabulation {
+	@NonNull
 	public final BoardClosedContentCommitment[] contentComs;
 }

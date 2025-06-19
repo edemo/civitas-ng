@@ -1,7 +1,5 @@
 package civitas.common;
 
-import java.io.IOException;
-import java.io.StringReader;
 import java.security.KeyFactory;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -9,7 +7,6 @@ import java.security.Security;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.function.Function;
 
@@ -21,13 +18,6 @@ import civitas.crypto.rsapublickey.PublicKey;
 import civitas.util.CivitasBigInteger;
 
 public class TestUtil {
-
-	public static String readerToString(StringReader r) throws IOException {
-		char[] target = new char[40];
-		int i = r.read(target);
-		String actual = new String(Arrays.copyOfRange(target, 0, i));
-		return actual;
-	}
 
 	public static void fakeRandomToArray(InvocationOnMock invocation,
 			CivitasBigInteger random) {
