@@ -1,9 +1,7 @@
 package civitas.common.tallystate;
 
-import civitas.DI;
-
-class RecordBeatStub {
+class RecordBeatStub implements TallyStateTestData {
 	public static RecordBeat stub() {
-		return DI.get(RecordBeat.class);
+		return new RecordBeat();
 	}
 }

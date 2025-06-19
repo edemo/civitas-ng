@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+import civitas.crypto.CryptoBase;
 import civitas.util.GetReaderForFile;
 import civitas.util.KeyOnWire;
-import civitas.util.ObtainKeyFactory;
 
 @Service
 public class PrivatekeyFromFile {
@@ -21,14 +21,14 @@ public class PrivatekeyFromFile {
 	GetReaderForFile getReaderForFile;
 
 	@Autowired
-	ObtainKeyFactory obtainKeyFactory;
+	CryptoBase cryptoBase;
 
 	public PrivateKey apply(String keyFile)
 			throws IllegalArgumentException, IOException, InvalidKeySpecException {
 		XmlMapper mapper = new XmlMapper();
 		BufferedReader reader = getReaderForFile.apply(keyFile);
 		KeyOnWire valueOnWire = mapper.readValue(reader, KeyOnWire.class);
-		return new PrivateKey(obtainKeyFactory.apply().generatePrivate(
+		return new PrivateKey(cryptoBase.publicKeyFactory.generatePrivate(
 				new PKCS8EncodedKeySpec(Base64.getDecoder().decode(valueOnWire.key))));
 	}
 

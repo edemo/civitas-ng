@@ -1,9 +1,10 @@
 package civitas.crypto.proofvote;
 
+import static org.mockito.Mockito.mock;
+
 import java.util.List;
 import java.util.Map;
 
-import civitas.DI;
 import civitas.common.ConstructTestData;
 import civitas.common.ballot.BallotTestData;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
@@ -36,12 +37,7 @@ public interface ProofVoteTestData
 			PROOF_VOTE_S1, PROOF_VOTE_S2);
 
 	Map<Integer, ProofVote> PROOF_VOTE_MAP = ConstructTestData
-			.constructTestData(VOTE_PIECES, (piece) -> {
-				return DI.get(ConstructProofVote.class).apply(EL_GAMAL_PARAMETERS,
-						ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(piece),
-						REENCRYPTED_CHOICE_MAP.get(BALLOT.matrix[piece]),
-						CONTEXT_MAP.get(piece), ELGAMAL_REENCRYPT_FACTOR_E,
-						ELGAMAL_REENCRYPT_FACTOR_E);
-			});
+			.constructTestData(VOTE_PIECES, (piece) -> mock(ProofVote.class,
+					"PROOF_VOTE_" + VOTE_PIECES.indexOf(piece)));
 
 }

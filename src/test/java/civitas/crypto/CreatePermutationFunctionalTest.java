@@ -6,17 +6,25 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import civitas.AppTestConfig;
 import civitas.common.TestBase;
 import civitas.crypto.algorithms.CreatePermutation;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 
-public class CreatePermutationTest extends TestBase
+@Tag("functional")
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = AppTestConfig.class)
+public class CreatePermutationFunctionalTest extends TestBase
 		implements PrivateKeyTestData, BasicValuesTestData {
 
-	@InjectMocks
+	@Autowired
 	CreatePermutation createPermutation;
 
 	@Test

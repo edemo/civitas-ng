@@ -12,16 +12,16 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+import civitas.crypto.CryptoBase;
 import civitas.util.GetReaderForFile;
 import civitas.util.KeyOnWire;
-import civitas.util.ObtainKeyFactory;
 
 @Service
 public class PublicKeyFromFile {
 	@Autowired
 	GetReaderForFile getReaderForFile;
 	@Autowired
-	ObtainKeyFactory obtainKeyFactory;
+	CryptoBase cryptoBase;
 
 	public PublicKey apply(String keyFile)
 			throws IOException, FileNotFoundException, InvalidKeySpecException {
@@ -29,7 +29,7 @@ public class PublicKeyFromFile {
 		BufferedReader reader = getReaderForFile.apply(keyFile);
 		KeyOnWire fromWire = mapper.readValue(reader, KeyOnWire.class);
 		return new PublicKey(
-				obtainKeyFactory.apply().generatePublic(
+				cryptoBase.publicKeyFactory.generatePublic(
 						new X509EncodedKeySpec(Base64.getDecoder().decode(fromWire.key))),
 				fromWire.name);
 	}

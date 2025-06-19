@@ -3,10 +3,11 @@ package civitas.common.ballotdesign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import civitas.common.CommonConstants;
 import civitas.common.ballot.Ballot;
 
 @Service
-public class CheckBallotAgainstBallotDesign {
+public class CheckBallotAgainstBallotDesign implements CommonConstants {
 
 	@Autowired
 	CalculateBallotLength calculateBallotLength;
@@ -27,7 +28,7 @@ public class CheckBallotAgainstBallotDesign {
 		for (int i = 0; i < b.k; i++) {
 			for (int j = i + 1; j < b.k; j++) {
 				int choice = b.matrix[calculatePositionInBallot.apply(i, j, b.k)];
-				if ("INVALID".equals(convertChoiceToString.apply(choice))) {
+				if (VOTE_CHOICE_INVALID.equals(convertChoiceToString.apply(choice))) {
 					throw new IllegalArgumentException(
 							"Illegal choice for (" + i + "," + j + ")");
 				}

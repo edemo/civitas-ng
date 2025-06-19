@@ -1,9 +1,10 @@
 package civitas.common.ballot;
 
-import civitas.DI;
+import static org.mockito.Mockito.mock;
 
 public class CreateEmptyBallotStub {
 	public static CreateEmptyBallot stub() {
-		return DI.get(CreateEmptyBallot.class);
+		CreateEmptyBallot mock = mock(CreateEmptyBallot.class);
+		return mock;
 	}
 }

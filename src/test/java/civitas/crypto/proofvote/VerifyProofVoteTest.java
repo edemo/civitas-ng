@@ -4,24 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import civitas.AppTestConfig;
 import civitas.common.TestBase;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = AppTestConfig.class)
 public class VerifyProofVoteTest extends TestBase implements ProofVoteTestData {
 
 	@InjectMocks
 	VerifyProofVote verifyProofVote;
-
-	@Autowired
-	VerifyProofVote verifyProofVoteReal;
 
 	@Test
 	@DisplayName("verify checks if c equals "
@@ -34,14 +24,4 @@ public class VerifyProofVoteTest extends TestBase implements ProofVoteTestData {
 				CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE, ADDITIONALENV));
 	}
 
-	@Test
-	@DisplayName("PROOF_VOTE_MAP")
-	void test() {
-		for (Integer piece : VOTE_PIECES) {
-			assertTrue(verifyProofVoteReal.apply(PROOF_VOTE_MAP.get(piece),
-					EL_GAMAL_PARAMETERS, ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(piece),
-					REENCRYPTED_CHOICE_MAP.get(BALLOT.matrix[piece]),
-					CONTEXT_MAP.get(piece)));
-		}
-	}
 }

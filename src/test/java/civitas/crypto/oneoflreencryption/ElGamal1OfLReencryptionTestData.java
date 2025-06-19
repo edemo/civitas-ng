@@ -1,22 +1,20 @@
 package civitas.crypto.oneoflreencryption;
 
+import static org.mockito.Mockito.mock;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
-import civitas.DI;
 import civitas.common.CommonConstants;
 import civitas.common.ConstructTestData;
 import civitas.common.Util;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
-import civitas.crypto.ciphertext.ElGamalReencrypt;
-import civitas.crypto.proof1ofl.ConstructElGamalProof1OfL;
 import civitas.crypto.proof1ofl.ElGamalProof1OfL;
-import civitas.crypto.proofdvr.ConstructElGamalProofDVR;
 import civitas.crypto.proofdvr.ElGamalProofDVR;
 import civitas.util.CivitasBigInteger;
 
@@ -134,10 +132,19 @@ public interface ElGamal1OfLReencryptionTestData
 
 	Map<Integer, ElGamalProof1OfL> EL_GAMAL_PROOF_1_OF_L_MAP = ConstructTestData
 			.constructTestData(VOTE_CHOICES,
-					(i) -> DI.get(ConstructElGamalProof1OfL.class).apply(
-							EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST,
-							NO_OF_WELL_KNOWN_CIPHERTEXTS, i, REENCRYPTED_CHOICE_MAP.get(i),
-							ELGAMAL_REENCRYPT_FACTOR_E));
+					(i) -> new ElGamalProof1OfL(NO_OF_WELL_KNOWN_CIPHERTEXTS,
+							DVS.stream().map(x -> {
+								if (DVS.indexOf(x) == i)
+									return mock(CivitasBigInteger.class, "dvs" + i);
+								else
+									return x;
+							}).toList().toArray(new CivitasBigInteger[0]),
+							RVS.stream().map(x -> {
+								if (RVS.indexOf(x) == i)
+									return mock(CivitasBigInteger.class, "rvs" + i);
+								else
+									return x;
+							}).toList().toArray(new CivitasBigInteger[0])));
 	Map<Integer, ElGamal1OfLReencryption> EL_GAMAL_1_OF_L_REENCRYPTION_MAP = ConstructTestData
 			.constructTestData(VOTE_CHOICES,
 					(choice) -> new ElGamal1OfLReencryption(
@@ -146,26 +153,46 @@ public interface ElGamal1OfLReencryptionTestData
 
 	List<ElGamalCiphertextish> REENCRYPTED_VOTE_CAPABILITIES = ENCRYPTED_SIGNED_VOTE_CAPABILITIES
 			.stream()
-			.map(x -> DI.get(ElGamalReencrypt.class).apply(EL_GAMAL_PUBLIC_KEY_EPRIME,
-					x, ELGAMAL_REENCRYPT_FACTOR_EPRIME))
+			.map(
+					x -> (ElGamalCiphertextish) new ElGamalCiphertext(
+							mock(CivitasBigInteger.class,
+									"REENCRYPTED_VOTE_CAPABILITIES_A"
+											+ ENCRYPTED_SIGNED_VOTE_CAPABILITIES.indexOf(x)),
+							mock(CivitasBigInteger.class,
+									"REENCRYPTED_VOTE_CAPABILITIES_B"
+											+ ENCRYPTED_SIGNED_VOTE_CAPABILITIES.indexOf(x))))
 			.toList();
 
 	List<ElGamalCiphertextish> REENCRYPTED_VOTE_CAPABILITIES_WITH_KEY_E = ENCRYPTED_SIGNED_VOTE_CAPABILITIES
-			.stream().map(x -> DI.get(ElGamalReencrypt.class)
-					.apply(EL_GAMAL_PUBLIC_KEY_E, x, ELGAMAL_REENCRYPT_FACTOR_EPRIME))
+			.stream()
+			.map(
+					x -> (ElGamalCiphertextish) new ElGamalCiphertext(
+							mock(CivitasBigInteger.class,
+									"REENCRYPTED_VOTE_CAPABILITIES_E_A"
+											+ ENCRYPTED_SIGNED_VOTE_CAPABILITIES.indexOf(x)),
+							mock(CivitasBigInteger.class,
+									"REENCRYPTED_VOTE_CAPABILITIES_E_B"
+											+ ENCRYPTED_SIGNED_VOTE_CAPABILITIES.indexOf(x))))
 			.toList();
 
+	List<ElGamalCiphertext> PROOF_EPRIMES = List.of(
+			new ElGamalCiphertext(mock(CivitasBigInteger.class, "eprime_a0"),
+					mock(CivitasBigInteger.class, "eprime_b0")),
+			new ElGamalCiphertext(mock(CivitasBigInteger.class, "eprime_a1"),
+					mock(CivitasBigInteger.class, "eprime_b1")),
+			new ElGamalCiphertext(mock(CivitasBigInteger.class, "eprime_a2"),
+					mock(CivitasBigInteger.class, "eprime_b2")),
+			new ElGamalCiphertext(mock(CivitasBigInteger.class, "eprime_a3"),
+					mock(CivitasBigInteger.class, "eprime_b3")));
 	List<ElGamalProofDVR> PROOF_LIST = ENCRYPTED_SIGNED_VOTE_CAPABILITIES.stream()
-			.map(x -> DI.get(ConstructElGamalProofDVR.class).apply(
-					EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_E, x,
-					new ElGamalCiphertext(x.a, x.b), ELGAMAL_REENCRYPT_FACTOR_E,
-					ELGAMAL_REENCRYPT_FACTOR_E))
+			.map(x -> new ElGamalProofDVR(x,
+					PROOF_EPRIMES.get(ENCRYPTED_SIGNED_VOTE_CAPABILITIES.indexOf(x)),
+					mock(CivitasBigInteger.class), mock(CivitasBigInteger.class),
+					mock(CivitasBigInteger.class), mock(CivitasBigInteger.class)))
 			.toList();
 	ElGamalProofDVR[] PROOFS = PROOF_LIST.toArray(new ElGamalProofDVR[0]);
 
 	ElGamalProofDVR[] PROOFS_CAP_NONVERIFY = PROOF_LIST.stream()
-			.map(x -> new ElGamalProofDVR(
-					POSTED_CAPABILITIES_NONVERIFY[PROOF_LIST.indexOf(x)], x.eprime, x.c,
-					x.w, x.r, x.u))
+			.map(x -> new ElGamalProofDVR(x.eprime, x.eprime, x.c, x.w, x.r, x.u))
 			.toList().toArray(new ElGamalProofDVR[0]);
 }

@@ -56,8 +56,10 @@ public class VerifyVoterCapabilitySharesAndProof {
 
 			ElGamalCiphertext encrypted = elGamalEncrypt
 					.apply(tabTellerSharedPublicKey, vc, r);
-			if (!encrypted.equals(p.getEprime()) || !verifyElGamalProofDVR.apply(p,
-					tabTellerSharedPublicKey, voterPublicKey)) {
+			if (!encrypted.equals(p.getEprime()))
+				return false;
+			if (!verifyElGamalProofDVR.apply(p, tabTellerSharedPublicKey,
+					voterPublicKey)) {
 				return false;
 			}
 		}

@@ -21,6 +21,7 @@ Constants:
 
 Entities:
 
+- Have @Data annotation
 - The class is annotated with @Data (from Lombok)
 - The class only contains fields. Nothing more. Seriously.
 - Fields are annotated with @NonNull
@@ -28,10 +29,11 @@ Entities:
 
 Services:
 
+- Have @Service Annotation
 - The class contains one single functionality. Ideally a small one, not more than 50 LOC.
 - There is one method, doing one thing. There are possibly other methods doing the same things with slightly different arguments.
 - Every method is called apply, as you have already told what they do in the class name.
-- There is a field for each of the called services annotated with @Use, and they are called through that. 
+- There is a field for each of the called services annotated with @Autowire, and they are called through that. 
 - No constants directly in the code except 0, 1, null and "".
 - No interfaces defining the functionality (Test cases are used for that), and no need to use getters/setters for entities.
 - Services are in the same package than the entity they are most closely relate to (which class would you 
@@ -53,7 +55,7 @@ Stubs:
 
 - Their name starts with the service name and ends with "Stub".
 - They contain one public static T stub(); function, where T is the service class.
-- This function returns the stub. For code which takes only small amount of resources and called throughout the code with many different values, using DI.get(T.class) is okay.
+- This function returns the stub. 
 
 Test Data:
 

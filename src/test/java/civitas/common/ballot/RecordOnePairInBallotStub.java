@@ -1,9 +1,10 @@
 package civitas.common.ballot;
 
-import civitas.DI;
+import static org.mockito.Mockito.mock;
 
 public class RecordOnePairInBallotStub {
 	public static RecordOnePairInBallot stub() {
-		return DI.get(RecordOnePairInBallot.class);
+		RecordOnePairInBallot mock = mock(RecordOnePairInBallot.class);
+		return mock;
 	}
 }

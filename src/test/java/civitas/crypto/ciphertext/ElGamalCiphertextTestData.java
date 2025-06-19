@@ -1,13 +1,13 @@
 package civitas.crypto.ciphertext;
 
+import static org.mockito.Mockito.mock;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
-import civitas.DI;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.msg.ElgamalMessageTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
-import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShareTestData;
 import civitas.util.CivitasBigInteger;
 
@@ -60,22 +60,37 @@ public interface ElGamalCiphertextTestData
 	byte[] VOTER_ADDITIONAL_ENV = "8+bob hash".getBytes();
 	List<ElGamalSignedCiphertext> ENCRYPTED_SIGNED_VOTE_CAPABILITIES = VOTE_CAPABILITIES
 			.stream()
-			.map(x -> DI.get(SignAndEncrypt.class).apply(EL_GAMAL_PUBLIC_KEY_E, x,
-					ELGAMAL_REENCRYPT_FACTOR_E, VOTER_ADDITIONAL_ENV))
+			.map(x -> new ElGamalSignedCiphertext(
+					mock(CivitasBigInteger.class,
+							"ENCRYPTED_SIGNED_VOTE_CAPABILITIES_A"
+									+ VOTE_CAPABILITIES.indexOf(x)),
+					mock(CivitasBigInteger.class,
+							"ENCRYPTED_SIGNED_VOTE_CAPABILITIES_B"
+									+ VOTE_CAPABILITIES.indexOf(x)),
+					mock(CivitasBigInteger.class,
+							"ENCRYPTED_SIGNED_VOTE_CAPABILITIES_C"
+									+ VOTE_CAPABILITIES.indexOf(x)),
+					mock(CivitasBigInteger.class, "ENCRYPTED_SIGNED_VOTE_CAPABILITIES_D"
+							+ VOTE_CAPABILITIES.indexOf(x))))
 			.toList();
 	List<ElGamalCiphertext> ENCRYPTED_VOTE_CAPABILITIES = ENCRYPTED_SIGNED_VOTE_CAPABILITIES
-			.stream().map(x -> new ElGamalCiphertext(x.a, x.b)).toList();
+			.stream()
+			.map(x -> mock(ElGamalCiphertext.class, "ENCRYPTED_VOTE_CAPABILITIES_"
+					+ ENCRYPTED_SIGNED_VOTE_CAPABILITIES.indexOf(x)))
+			.toList();
 	ElGamalSignedCiphertext[] POSTED_CAPABILITIES = ENCRYPTED_SIGNED_VOTE_CAPABILITIES
 			.toArray(new ElGamalSignedCiphertext[0]);
 	ElGamalSignedCiphertext[] POSTED_CAPABILITIES_NONVERIFY = VOTE_CAPABILITIES
 			.stream()
-			.map(x -> DI.get(SignAndEncrypt.class).apply(EL_GAMAL_PUBLIC_KEY_E, x,
-					ELGAMAL_REENCRYPT_FACTOR_E, BYTES))
+			.map(x -> mock(ElGamalSignedCiphertext.class,
+					"POSTED_CAPABILITIES_NONVERIFY_" + VOTE_CAPABILITIES.indexOf(x)))
 			.toList().toArray(new ElGamalSignedCiphertext[0]);
 
 	List<ElGamalCiphertext> ENCRYPTED_VOTE_CAPABILITIES_WITH_EPRIME = VOTE_CAPABILITIES
-			.stream().map(x -> DI.get(ElGamalEncrypt.class)
-					.apply(EL_GAMAL_PUBLIC_KEY_E, x, ELGAMAL_REENCRYPT_FACTOR_EPRIME))
+			.stream()
+			.map(x -> mock(ElGamalCiphertext.class,
+					"ENCRYPTED_VOTE_CAPABILITIES_WITH_EPRIME_"
+							+ VOTE_CAPABILITIES.indexOf(x)))
 			.toList();
 
 }

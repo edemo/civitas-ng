@@ -1,9 +1,21 @@
 package civitas.crypto.parameters;
 
-import civitas.DI;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-class DecodeChoiceStub {
-	public static DecodeChoice stub() {
-		return DI.get(DecodeChoice.class);
+import civitas.crypto.CryptoException;
+import civitas.util.CivitasBigInteger;
+
+class DecodeChoiceStub implements ElGamalParametersTestData {
+	public static DecodeChoice stub() throws CryptoException {
+		DecodeChoice mock = mock(DecodeChoice.class);
+		when(mock.apply(DECODEMAP, BIGINT_A))
+				.thenThrow(IllegalArgumentException.class);
+		for (Integer choice : CHOICES) {
+			when(mock.apply(DECODEMAP,
+					CivitasBigInteger.valueOf(choice).modMultiply(BIGINT_G, BIGINT_P)))
+					.thenReturn(choice);
+		}
+		return mock;
 	}
 }
