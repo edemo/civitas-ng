@@ -1,16 +1,19 @@
 package civitas.common.verifiablevote;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.proof1ofl.VerifyElGamal1OfLReencryption;
 import civitas.crypto.proofvote.VerifyProofVote;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.util.Use;
 
+@Service
 public class VerifyVerifiableVote {
-	@Use
+	@Autowired
 	VerifyProofVote verifyProofVote;
 
-	@Use
+	@Autowired
 	VerifyElGamal1OfLReencryption verifyElGamal1OfLReencryption;
 
 	public boolean apply(VerifiableVote that, ElGamalPublicKey pubKey,

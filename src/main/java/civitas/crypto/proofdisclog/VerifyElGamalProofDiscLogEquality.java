@@ -1,7 +1,10 @@
 package civitas.crypto.proofdisclog;
 
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.parameters.ElGamalParameters;
 
+@Service
 public class VerifyElGamalProofDiscLogEquality {
 
 	public boolean apply(ElGamalProofDiscLogEquality that,

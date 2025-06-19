@@ -3,11 +3,13 @@ package civitas.result;
 import java.util.ArrayList;
 import java.util.List;
 
-import civitas.util.Use;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ComputeWinners {
 
-	@Use
+	@Autowired
 	CompareBeats compareBeats;
 
 	List<Integer> apply(Pair<Integer, Integer>[][] m, Integer n,

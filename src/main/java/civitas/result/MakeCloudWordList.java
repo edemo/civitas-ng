@@ -3,6 +3,9 @@ package civitas.result;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class MakeCloudWordList {
 	public List<Pair<String, Long>> apply(String[] candidates,
 			List<List<CandidateResult>> winnerList) {

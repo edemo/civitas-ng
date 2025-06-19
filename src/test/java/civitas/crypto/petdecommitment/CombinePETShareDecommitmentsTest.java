@@ -7,17 +7,17 @@ import java.lang.reflect.Field;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.petcommitment.CombinePETShareDecommitments;
 import civitas.crypto.proofdisclog.VerifyElGamalProofDiscLogEquality;
-import civitas.util.Tested;
 
 public class CombinePETShareDecommitmentsTest extends TestBase
 		implements PETDecommitmentTestData {
 
-	@Tested
+	@InjectMocks
 	CombinePETShareDecommitments combinePETShareDecommitments;
 
 	@Test

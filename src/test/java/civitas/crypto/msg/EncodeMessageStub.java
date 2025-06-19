@@ -1,6 +1,6 @@
 package civitas.crypto.msg;
 
-import civitas.util.DI;
+import civitas.DI;
 
 public class EncodeMessageStub {
 

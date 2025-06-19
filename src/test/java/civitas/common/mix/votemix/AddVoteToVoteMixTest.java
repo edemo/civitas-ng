@@ -5,14 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.VoteTestData;
-import civitas.util.Tested;
 
 class AddVoteToVoteMixTest extends TestBase
 		implements VoteMixTestData, VoteTestData {
-	@Tested
+	@InjectMocks
 	AddVoteToVoteMix addVoteToVoteMix;
 
 	@Test

@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
@@ -13,21 +15,19 @@ import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
-import civitas.util.Tested;
-import civitas.util.Use;
 
 public class VerifyElGamalProof1OfLTest extends TestBase implements
 		ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorTestData {
 
-	@Tested
+	@InjectMocks
 	VerifyElGamalProof1OfL verifyElGamalProof1OfLC;
-	@Tested
+	@InjectMocks
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
-	@Use
+	@Autowired
 	ConvertHashToBigInt convertHashToBigInt;
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
-	@Use
+	@Autowired
 	ElGamalReencrypt elGamalReencrypt;
 
 	@Test

@@ -6,19 +6,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
-import civitas.util.Use;
 
 @Tag("functional")
 public class GenerateSafePrimeFunctionalTest extends TestBase
 		implements Constants, ElGamalParametersTestData, PrivateKeyTestData {
 
-	@Use
+	@Autowired
 	GenerateSafePrime generateSafePrimeReal;
-	@Use
+	@Autowired
 	GenerateElGamalParameters generateElGamalParameters;
 
 	@Test

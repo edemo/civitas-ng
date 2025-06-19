@@ -201,7 +201,7 @@ public class MultiBallotDesign extends BallotDesign {
 	}
 
 	@Override
-	public void tally(String ctxt, ElGamalMsg m, String c, TallyState s, ElGamalParameters params)
+	public void tally(String TestBase.getCtx()t, ElGamalMsg m, String c, TallyState s, ElGamalParameters params)
 			throws IllegalArgumentException {
 		if (!(s instanceof MultiTallyState)) {
 			throw new IllegalArgumentException("Incorrect tally state");
@@ -218,8 +218,8 @@ public class MultiBallotDesign extends BallotDesign {
 				BallotDesign bdsub = designs[i];
 				if (bdsub == null)
 					throw new IllegalArgumentException("Null design");
-				if (c != null && c.startsWith(ctxt + i + ":")) {
-					bdsub.tally(ctxt + i + ":", m, c, mts.get(i), params);
+				if (c != null && c.startsWith(TestBase.getCtx()t + i + ":")) {
+					bdsub.tally(TestBase.getCtx()t + i + ":", m, c, mts.get(i), params);
 					done = true;
 					break;
 				}

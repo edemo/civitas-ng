@@ -3,17 +3,17 @@ package civitas.common.tabteller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import civitas.common.TestBase;
 import civitas.common.tabteller.keysharecommitment.TabTellerKeyShareCommitmentTestData;
-import civitas.util.Tested;
 
 class ConstructTabTellerKeyShareCommitmentTest extends TestBase
 		implements TabTellerKeyShareCommitmentTestData {
 
-	@Tested
+	@InjectMocks
 	ConstructTabTellerKeyShareCommitment constructTabTellerKeyShareCommitment;
 
 	@Test

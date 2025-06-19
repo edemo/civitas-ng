@@ -6,33 +6,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import civitas.AppTestConfig;
 import civitas.common.TestBase;
-import civitas.util.Use;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = AppTestConfig.class)
 class ComputeWinnersTest extends TestBase implements ResultTestData {
 
-	@Use
+	@Autowired
 	ComputeWinners computeWinners;
 
-	@Use
+	@Autowired
 	InitialMatrix initialMatrix;
 
-	@Use
+	@Autowired
 	TransitiveClosure transitiveClosure;
 
-	@Use
+	@Autowired
 	MakeCloudWordList makeCloudWordList;
-	@Use
+	@Autowired
 	CalculateWinnerList calculateWinnerList;
-	@Use
+	@Autowired
 	CalculateStrengths calculateStrengths;
-	@Use
+	@Autowired
 	FormatResult formatResult;
 
 	@Test
 	void test() {
-
 		List<List<CandidateResult>> winnerList = calculateWinnerList.apply(matrix,
 				candidates);
 

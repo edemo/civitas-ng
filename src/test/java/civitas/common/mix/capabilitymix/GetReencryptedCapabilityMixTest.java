@@ -3,14 +3,14 @@ package civitas.common.mix.capabilitymix;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.util.Tested;
 
 class GetReencryptedCapabilityMixTest extends TestBase
 		implements CapabilityMixTestData {
 
-	@Tested
+	@InjectMocks
 	GetReencryptedCapabilityMix getReencryptedCapabilityMix;
 
 	@Test

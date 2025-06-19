@@ -9,6 +9,8 @@ package civitas.util;
 import java.math.BigInteger;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -172,10 +174,12 @@ public class CivitasBigInteger implements Constants {
 		return byteArray;
 	}
 
+	@Autowired
+	static ObtainProbablePrime obtainProbablePrime;
+
 	public static CivitasBigInteger probablePrime(int bitLenght, int certainty,
 			Random random) {
-		return DI.get(ObtainProbablePrime.class).apply(bitLenght, certainty,
-				random);
+		return obtainProbablePrime.apply(bitLenght, certainty, random);
 	}
 
 }

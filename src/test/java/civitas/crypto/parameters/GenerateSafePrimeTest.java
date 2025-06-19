@@ -5,20 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
-import civitas.util.Tested;
-import civitas.util.Use;
 
 public class GenerateSafePrimeTest extends TestBase
 		implements Constants, ElGamalParametersTestData, PrivateKeyTestData {
 
-	@Tested
+	@InjectMocks
 	GenerateSafePrime generateSafePrime;
 
-	@Use
+	@Autowired
 	GenerateElGamalParameters generateElGamalParameters;
 
 	@Test

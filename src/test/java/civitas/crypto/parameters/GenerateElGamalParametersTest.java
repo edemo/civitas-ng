@@ -4,15 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.Constants;
-import civitas.util.Tested;
 
 public class GenerateElGamalParametersTest extends TestBase
 		implements ElGamalParametersTestData {
 
-	@Tested
+	@InjectMocks
 	GenerateElGamalParameters generateElGamalParameters;
 
 	@Test

@@ -1,5 +1,8 @@
 package civitas.crypto.petdecommitment;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
@@ -7,13 +10,13 @@ import civitas.crypto.petcommitment.PETCommitment;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.crypto.proofdisclog.VerifyElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class VerifyPETDecommitment {
 
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
-	@Use
+	@Autowired
 	VerifyElGamalProofDiscLogEquality verifyElGamalProofDiscLogEquality;
 
 	public boolean apply(PETDecommitment self, PETCommitment c,

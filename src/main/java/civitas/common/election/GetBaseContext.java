@@ -1,9 +1,11 @@
 package civitas.common.election;
 
-import civitas.util.Use;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GetBaseContext {
-	@Use
+	@Autowired
 	GetElectionIdAsString getElectionIdAsString;
 
 	public String apply(ElectionDetails that, int voterBlock) {

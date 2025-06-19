@@ -1,5 +1,8 @@
 package civitas.common.encryptedchoice;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.CryptoError;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.oneoflreencryption.ConstructElGamal1OfLReencryption;
@@ -7,13 +10,13 @@ import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.GenerateElGamalReencryptFactor;
-import civitas.util.Use;
 
+@Service
 public class EncryptChoice {
 
-	@Use
+	@Autowired
 	ConstructElGamal1OfLReencryption constructElGamal1OfLReencryption;
-	@Use
+	@Autowired
 	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
 
 	public EncryptedChoice apply(ElGamalPublicKey key, CiphertextList ciphertexts,

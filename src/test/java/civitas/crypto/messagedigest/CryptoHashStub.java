@@ -1,12 +1,12 @@
 package civitas.crypto.messagedigest;
 
-import civitas.util.DI;
+import civitas.crypto.CryptoBaseStub;
 
 public class CryptoHashStub {
 
 	public static CryptoHash stub() {
-		CryptoHash cryptoHash = new CryptoHash();
-		DI.stubFill(cryptoHash);
-		return cryptoHash;
+		CryptoHash mock = new CryptoHash();
+		mock.cryptoBase = CryptoBaseStub.stub();
+		return mock;
 	}
 }

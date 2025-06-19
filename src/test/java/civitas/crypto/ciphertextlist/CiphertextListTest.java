@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
-import civitas.util.Use;
 
 public class CiphertextListTest extends TestBase
 		implements ElGamalCiphertextListTestData {
-	@Use
+	@Autowired
 	ConstructCiphertextList constructCiphertextList;
 
 	@Test

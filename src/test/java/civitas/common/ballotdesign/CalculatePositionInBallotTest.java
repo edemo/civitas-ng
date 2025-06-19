@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.util.Tested;
 
 class CalculatePositionInBallotTest extends TestBase {
 
-	@Tested
+	@InjectMocks
 	CalculatePositionInBallot calculatePositionInBallot;
 
 	@Test

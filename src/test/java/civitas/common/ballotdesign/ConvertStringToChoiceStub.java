@@ -1,6 +1,6 @@
 package civitas.common.ballotdesign;
 
-import civitas.util.DI;
+import civitas.DI;
 
 class ConvertStringToChoiceStub {
 	public static ConvertStringToChoice stub() {

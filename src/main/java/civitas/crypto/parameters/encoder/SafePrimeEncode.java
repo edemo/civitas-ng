@@ -1,13 +1,16 @@
 package civitas.crypto.parameters.encoder;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.parameters.LegendreSymbol;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class SafePrimeEncode {
 
-	@Use
+	@Autowired
 	LegendreSymbol legendreSymbol;
 
 	public CivitasBigInteger apply(CivitasBigInteger x,

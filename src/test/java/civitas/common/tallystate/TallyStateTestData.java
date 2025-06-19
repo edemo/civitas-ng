@@ -6,7 +6,7 @@ import civitas.common.ballotdesign.BallotDesignTestData;
 
 public interface TallyStateTestData extends BallotDesignTestData {
 
-	Supplier<TallyState> TALLY_STATE_EMPTY_SUPPLIER = new Supplier<TallyState>() {
+	Supplier<TallyState> TALLY_STATE_EMPTY_SUPPLIER = new Supplier<>() {
 		@Override
 		public TallyState get() {
 			return new TallyState(CANDIDATES.size(),

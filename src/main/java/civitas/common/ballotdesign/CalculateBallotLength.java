@@ -1,5 +1,8 @@
 package civitas.common.ballotdesign;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CalculateBallotLength {
 
 	public int apply(Integer k) {

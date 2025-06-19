@@ -6,15 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.BasicValuesTestData;
-import civitas.util.Use;
 
 @Tag("functional")
 public class GenerateRandomIntFunctionalTest extends TestBase
 		implements BasicValuesTestData {
-	@Use
+	@Autowired
 	GenerateRandomInt generateRandomInt;
 
 	@Test

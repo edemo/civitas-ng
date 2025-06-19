@@ -204,14 +204,14 @@ public class SingleChoiceBallotDesign extends BallotDesign {
 	}
 
 	@Override
-	public void tally(String ctxt, ElGamalMsg m, String c, TallyState s, ElGamalParameters params)
+	public void tally(String TestBase.getCtx()t, ElGamalMsg m, String c, TallyState s, ElGamalParameters params)
 			throws IllegalArgumentException {
 		if (!(s instanceof SingleChoiceTallyState)) {
 			throw new IllegalArgumentException("Incorrect tally state");
 		}
 		SingleChoiceTallyState scts = (SingleChoiceTallyState) s;
 
-		String desiredContext = (ctxt == null ? "" : ctxt) + CONTEXT_SUFFIX;
+		String desiredContext = (TestBase.getCtx()t == null ? "" : TestBase.getCtx()t) + CONTEXT_SUFFIX;
 		if (desiredContext == null || !desiredContext.equals(c)) {
 			throw new IllegalArgumentException("Incorrect context");
 		}

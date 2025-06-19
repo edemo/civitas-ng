@@ -1,14 +1,17 @@
 package civitas.common.mix.revelation;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.common.CommonConstants;
 import civitas.common.election.ElectionDetails;
 import civitas.common.election.GetBlockName;
-import civitas.util.Use;
 import lombok.NonNull;
 
+@Service
 public class GetMixRevelationMeta implements CommonConstants {
 
-	@Use
+	@Autowired
 	GetBlockName getBlockName;
 
 	public String apply(@NonNull final ElectionDetails electionDetails,

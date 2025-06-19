@@ -3,6 +3,9 @@ package civitas.crypto.proof1ofl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
@@ -12,12 +15,12 @@ import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class VerifyElGamalProof1OfL {
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
-	@Use
+	@Autowired
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public boolean apply(ElGamalProof1OfL self, ElGamalPublicKey pubKey,

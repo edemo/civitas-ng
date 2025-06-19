@@ -6,17 +6,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import civitas.AppTestConfig;
 import civitas.common.TestBase;
-import civitas.util.Tested;
-import civitas.util.Use;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = AppTestConfig.class)
 class VerifyVerifiableVoteTest extends TestBase
 		implements VerifiableVoteTestData {
-	@Tested
+	@InjectMocks
 	VerifyVerifiableVote verifyVerifiableVote;
 
-	@Use
+	@Autowired
 	VerifyVerifiableVote verifyVerifiableVoteReal;
 
 	@Test

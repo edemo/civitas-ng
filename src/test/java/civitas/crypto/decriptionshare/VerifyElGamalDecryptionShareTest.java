@@ -7,15 +7,15 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.util.Tested;
 
 public class VerifyElGamalDecryptionShareTest extends TestBase
 		implements ElGamalDecryptionShareTestData {
-	@Tested
+	@InjectMocks
 	VerifyElGamalDecryptionShare verifyElGamalDecryptionShare;
 
 	@Test

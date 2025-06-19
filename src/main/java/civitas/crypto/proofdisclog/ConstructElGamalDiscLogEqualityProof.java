@@ -3,19 +3,22 @@ package civitas.crypto.proofdisclog;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class ConstructElGamalDiscLogEqualityProof {
-	@Use
+	@Autowired
 	GenerateRandomElement generateRandomElement;
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
-	@Use
+	@Autowired
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProofDiscLogEquality apply(ElGamalParameters params,

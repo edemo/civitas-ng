@@ -11,18 +11,15 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
-import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
-import java.security.Security;
 import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Map;
 
 import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.ConvertToBase64;
@@ -33,7 +30,6 @@ import civitas.crypto.algorithms.CreatePermutation;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.algorithms.GenerateRandomInt;
 import civitas.crypto.algorithms.GetPublicKeyGenerator;
-import civitas.crypto.algorithms.GetRandomGenerator;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
@@ -53,7 +49,6 @@ import civitas.crypto.keyshare.ConstructElGamalKeyShare;
 import civitas.crypto.keyshare.ElGamalKeyShare;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.messagedigest.MessageDigest;
-import civitas.crypto.messagedigest.ObtainMessageDigest;
 import civitas.crypto.msg.CryptMessage;
 import civitas.crypto.msg.DecryptElGamalMessage;
 import civitas.crypto.msg.ElGamalMsg;
@@ -118,177 +113,124 @@ import civitas.crypto.votecapabilityshare.GenerateVoteCapabilityShare;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShare;
 import civitas.util.Boilerplate;
 import civitas.util.CivitasBigInteger;
-import civitas.util.DI;
-import civitas.util.Use;
 
 @Boilerplate
 public class CryptoFactoryC implements CryptoFactory, Constants {
 
-	@Use
+	@Autowired
 	ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
-	@Use
+	@Autowired
 	GenerateRandomElement generateRandomElement;
-	@Use
+	@Autowired
 	GenerateElGamalParameters generateElGamalParameters;
-	@Use
+	@Autowired
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
-	@Use
+	@Autowired
 	FakeElGamalProofDVR fakeElGamalProofDVRC;
-	@Use
+	@Autowired
 	ConstructElGamalDecryptionShare constructElGamalDecryptionShare;
-	@Use
-	private static GetRandomGenerator getRandomGenerator;
-	@Use
-	ObtainMessageDigest obtainMessageDigest;
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
-	@Use
+	@Autowired
 	ElGamalEncrypt elGamalEncrypt;
-	@Use
+	@Autowired
 	ConstructProofVote constructProofVote;
-	@Use
+	@Autowired
 	SignAndEncrypt signAndEncrypt;
-	@Use
+	@Autowired
 	GenerateElGamalKeyPair generateElGamalKeyPair;
-	@Use
+	@Autowired
 	ConstructProofKnowDiscLog constructProofKnowDiscLog;
-	@Use
+	@Autowired
 	ElGamalReencrypt elGamalReencrypt;
-	@Use
+	@Autowired
 	GenerateKeyPairShare generateKeyPairShare;
-	@Use
+	@Autowired
 	GetSharedKeyGenerator getSharedKeyGenerator;
-	@Use
+	@Autowired
 	CreatePermutation createPermutation;
-	@Use
+	@Autowired
 	GenerateRandomInt generateRandomInt;
-	@Use
+	@Autowired
 	GetPublicKeyGenerator getPublicKeyGenerator;
-	@Use
+	@Autowired
 	GenerateKeyPair generateKeyPair;
-	@Use
+	@Autowired
 	CreateFreshNonce createFreshNonce;
-	@Use
+	@Autowired
 	CreateFreshNonceBase64 createFreshNonceBase64;
-	@Use
+	@Autowired
 	static ConvertToBase64 convertToBase64;
-	@Use
+	@Autowired
 	GenerateVoteCapabilityShare generateVoteCapabilityShare;
-	@Use
+	@Autowired
 	CombineVoteCapabilityShares combineVoteCapabilityShares;
-	@Use
+	@Autowired
 	MultiplyCiphertexts multiplyCiphertexts;
-	@Use
+	@Autowired
 	CombineKeyShares combineKeyShares;
-	@Use
+	@Autowired
 	ConstructElGamal1OfLReencryption constructElGamal1OfLReencryption;
-	@Use
+	@Autowired
 	ConstructWellKnownCiphertexts constructWellKnownCiphertexts;
-	@Use
+	@Autowired
 	ConvertHashToBigInt convertHashToBigInt;
-	@Use
+	@Autowired
 	VerifyElGamalSignature verifyElGamalSignature;
-	@Use
+	@Autowired
 	DecryptElGamalMessage decryptElGamalMessage;
-	@Use
+	@Autowired
 	ConstructPETShare constructPETShare;
-	@Use
+	@Autowired
 	static ConvertToBigInt convertToBigInt;
-	@Use
+	@Autowired
 	CombineDecryptionShares combineDecryptionShares;
-	@Use
+	@Autowired
 	SharedKeyFromWire sharedKeyFromWire;
-	@Use
+	@Autowired
 	IsPetResult isPetResult;
-	@Use
+	@Autowired
 	CombinePETShareDecommitments combinePETShareDecommitments;
-	@Use
+	@Autowired
 	ElGamalPrivateKeyFromFile elGamalPrivateKeyFromFile;
-	@Use
+	@Autowired
 	PrivatekeyFromFile privatekeyFromFile;
-	@Use
+	@Autowired
 	PublicKeyFromFile publicKeyFromFile;
-	@Use
+	@Autowired
 	SignWithPublicKey signWithPublicKey;
-	@Use
+	@Autowired
 	DecryptPublic decryptPublic;
-	@Use
+	@Autowired
 	EncryptPublic encryptPublic;
-	@Use
+	@Autowired
 	DoCrypto doCrypto;
-	@Use
+	@Autowired
 	EncryptShared encryptShared;
-	@Use
+	@Autowired
 	DecryptShared decryptShared;
-	@Use
+	@Autowired
 	CreateSharedKeyFromBytes createSharedKeyFromBytes;
-	@Use
+	@Autowired
 	CreatePublicKeyFromBytes createPublicKeyFromBytes;
-	@Use
+	@Autowired
 	CreatePrivateKeyFromBytes createPrivateKeyFromBytes;
-	@Use
+	@Autowired
 	VerifyPublicKeySignature verifyPublicKeySignature;
-	@Use
+	@Autowired
 	VerifyPublicKeySignatureMsg verifyPublicKeySignatureMsg;
-	@Use
+	@Autowired
 	ConstructElGamalKeyShare constructElGamalKeyShare;
-	@Use
+	@Autowired
 	ConstructElGamalProofDVR constructElGamalProofDVR;
-	@Use
+	@Autowired
 	GenerateSharedKey generateSharedKey;
-	@Use
+	@Autowired
 	ElGamalPublicKeyFromFile elGamalPublicKeyFromFile;
-	@Use
+	@Autowired
 	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
-
-	public static SecretKeyFactory sharedKeyFactory;
-	public static KeyFactory publicKeyFactory;
-
-	static {
-		BouncyCastleProvider bc = new BouncyCastleProvider();
-		Security.addProvider(bc);
-
-//      // dump the keys and services of the providers.
-//      Provider[] ps = Security.getProviders();
-//      for (int i = 0; i < ps.length; i++) {
-//      System.err.println("Provider: " + ps[i].getName());
-//      System.err.println("Key set");
-//      System.err.println("=======");
-//      System.err.println(ps[i].keySet());
-//      System.err.println("Services");
-//      System.err.println("========");
-//      System.err.println(ps[i].getServices());
-//      }
-	}
-
-	private static CryptoFactoryC singleton;
-
-	public static CryptoFactoryC singleton() {
-		if (null == singleton) {
-			singleton = DI.get(CryptoFactoryC.class);
-		}
-
-		return singleton;
-	}
-
-	private CryptoFactoryC() {
-		initializeCryptoProviders();
-	}
-
-	/**
-	 * Initialize the crypto providers.
-	 *
-	 */
-	private void initializeCryptoProviders() {
-		try {
-			sharedKeyFactory = SecretKeyFactory.getInstance(SHARED_KEY_ALG,
-					SHARED_KEY_PROVIDER);
-			publicKeyFactory = KeyFactory.getInstance(PUBLIC_KEY_ALG,
-					PUBLIC_KEY_PROVIDER);
-		} catch (NoSuchAlgorithmException | NoSuchProviderException impossible) {
-			throw new Error(impossible);
-		}
-	}
+	@Autowired
+	CryptoBase cryptoBase;
 
 	@Override
 	public int[] createPermutation(int size) {
@@ -396,7 +338,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 				factor);
 	}
 
-	@Use
+	@Autowired
 	DecodeChoice decodeChoice;
 
 	@Override
@@ -597,7 +539,7 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 
 	@Override
 	public MessageDigest messageDigest() {
-		return obtainMessageDigest.apply();
+		return cryptoBase.messageDigest;
 	}
 
 	@Override

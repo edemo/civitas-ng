@@ -4,15 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.election.ElectionTestData;
 import civitas.common.election.GetElectionAbandonmentReporter;
-import civitas.util.Tested;
 
 class GetElectionAbandonmentReporterTest extends TestBase
 		implements ElectionTestData {
 
-	@Tested
+	@InjectMocks
 	GetElectionAbandonmentReporter getElectionAbandonmentReporter;
 
 	@Test

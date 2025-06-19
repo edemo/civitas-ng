@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.Constants;
@@ -15,7 +16,7 @@ import civitas.crypto.parameters.ElGamalParametersTestData;
 public class ObtainProbablePrimeTest extends TestBase
 		implements ElGamalParametersTestData {
 
-	@Use
+	@Autowired
 	ObtainProbablePrime obtainProbablePrime;
 
 	@Test

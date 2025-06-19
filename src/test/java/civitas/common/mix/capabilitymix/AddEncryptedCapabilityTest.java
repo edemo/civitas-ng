@@ -4,15 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.proofvote.ProofVoteTestData;
-import civitas.util.Tested;
 
 class AddEncryptedCapabilityTest extends TestBase
 		implements CapabilityMixTestData, ProofVoteTestData {
 
-	@Tested
+	@InjectMocks
 	AddEncryptedCapability addEncryptedCapability;
 
 	@Test

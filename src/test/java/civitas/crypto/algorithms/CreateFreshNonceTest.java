@@ -8,15 +8,15 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.BasicValuesTestData;
-import civitas.util.Tested;
 
 public class CreateFreshNonceTest extends TestBase
 		implements BasicValuesTestData {
 
-	@Tested
+	@InjectMocks
 	CreateFreshNonce createFreshNonce;
 
 	@Test

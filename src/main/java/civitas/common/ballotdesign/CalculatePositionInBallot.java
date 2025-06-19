@@ -1,5 +1,8 @@
 package civitas.common.ballotdesign;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CalculatePositionInBallot {
 
 	public Integer apply(Integer i, Integer j, Integer k) {

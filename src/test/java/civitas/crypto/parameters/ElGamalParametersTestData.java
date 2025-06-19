@@ -105,7 +105,7 @@ public interface ElGamalParametersTestData extends BasicValuesTestData {
 	public static final CivitasBigInteger D_EXP_TWOK_FROMP = BIGINT_D
 			.modPow(BIGINT_P.subtract(ONE).divide(BIGINT_Q), BIGINT_P);
 
-	List<Integer> CHOICES = new ArrayList<Integer>(
+	List<Integer> CHOICES = new ArrayList<>(
 			CommonConstants.STRING_TO_CHOICE_MAP.values());
 	Map<CivitasBigInteger, Integer> DECODEMAP = CHOICES.stream()
 			.map(x -> new AbstractMap.SimpleEntry<>(

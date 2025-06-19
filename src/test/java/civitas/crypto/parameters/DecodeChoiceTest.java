@@ -5,16 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.CommonConstants;
 import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
-import civitas.util.Tested;
 
 public class DecodeChoiceTest extends TestBase
 		implements ElGamalParametersTestData {
 
-	@Tested
+	@InjectMocks
 	DecodeChoice decodeChoice;
 
 	@Test

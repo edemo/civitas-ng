@@ -2,24 +2,26 @@ package civitas.common.mix.revelation;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.common.mix.Mix;
 import civitas.common.mix.elementrevelation.MixElementRevelation;
 import civitas.common.mix.elementrevelation.VerifyMixElementRevelation;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.util.Use;
 
+@Service
 public class VerifyMixRevelation {
-	@Use
+	@Autowired
 	VerifyMixElementRevelation verifyMixElementRevelation;
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
 
 	public boolean apply(MixRevelation that, ElGamalPublicKey key, Mix initialMix,
 			Mix leftMix, Mix rightMix, boolean[] revelationDirections) {
-		if (revelationDirections == null)
-			return false;
-		if (that.revelations.length != revelationDirections.length
+		if ((revelationDirections == null)
+				|| that.revelations.length != revelationDirections.length
 				|| that.revelations.length != that.indicators.length) {
 			return false;
 		}

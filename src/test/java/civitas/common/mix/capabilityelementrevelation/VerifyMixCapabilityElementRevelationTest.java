@@ -5,15 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.mix.capabilitymix.CapabilityMixTestData;
-import civitas.util.Tested;
 
 class VerifyMixCapabilityElementRevelationTest extends TestBase
 		implements CapabilityMixTestData {
 
-	@Tested
+	@InjectMocks
 	VerifyMixCapabilityElementRevelation verifyMixCapabilityElementRevelation;
 
 	@Test

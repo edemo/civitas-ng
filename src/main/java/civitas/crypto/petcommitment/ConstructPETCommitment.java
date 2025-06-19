@@ -1,14 +1,17 @@
 package civitas.crypto.petcommitment;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.petshare.PETShare;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class ConstructPETCommitment {
 
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
 
 	public PETCommitment apply(PETShare that, ElGamalParameters params) {

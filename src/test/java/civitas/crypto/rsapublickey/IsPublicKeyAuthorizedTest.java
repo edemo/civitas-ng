@@ -10,14 +10,21 @@ import java.security.SignatureException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import civitas.AppTestConfig;
 import civitas.common.TestBase;
 import civitas.crypto.CryptoError;
-import civitas.util.Use;
 
-public class IsPublicKeyAuthorizedTest extends TestBase implements PublicKeyTestData {
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = AppTestConfig.class)
+public class IsPublicKeyAuthorizedTest extends TestBase
+		implements PublicKeyTestData {
 
-	@Use
+	@Autowired
 	IsPublicKeyAuthorized isPublicKeyAuthorized;
 
 	@Test

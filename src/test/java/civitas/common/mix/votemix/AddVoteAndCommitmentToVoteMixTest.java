@@ -5,15 +5,15 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.VoteTestData;
-import civitas.util.Tested;
 
 class AddVoteAndCommitmentToVoteMixTest extends TestBase
 		implements VoteMixTestData, VoteTestData {
 
-	@Tested
+	@InjectMocks
 	AddVoteAndCommitmentToVoteMix addVoteAndCommitmentToVoteMix;
 
 	@Test

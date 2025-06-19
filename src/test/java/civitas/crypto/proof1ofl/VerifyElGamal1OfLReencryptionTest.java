@@ -6,15 +6,15 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
-import civitas.util.Tested;
 
 public class VerifyElGamal1OfLReencryptionTest extends TestBase
 		implements ElGamal1OfLReencryptionTestData {
 
-	@Tested
+	@InjectMocks
 	VerifyElGamal1OfLReencryption verifyElGamal1OfLReencryption;
 
 	@Test

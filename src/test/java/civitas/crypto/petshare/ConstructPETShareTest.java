@@ -4,14 +4,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import civitas.AppTestConfig;
 import civitas.common.TestBase;
-import civitas.util.Use;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = AppTestConfig.class)
 public class ConstructPETShareTest extends TestBase
 		implements PETShareTestData {
 
-	@Use
+	@Autowired
 	ConstructPETShare constructPETShare;
 
 	@Test

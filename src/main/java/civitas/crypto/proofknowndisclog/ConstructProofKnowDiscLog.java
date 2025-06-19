@@ -1,16 +1,19 @@
 package civitas.crypto.proofknowndisclog;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class ConstructProofKnowDiscLog {
-	@Use
+	@Autowired
 	GenerateRandomElement generateRandomElement;
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
 
 	public ElGamalProofKnowDiscLog apply(ElGamalParameters prms,

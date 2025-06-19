@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.util.Tested;
 
 class CreateEmptyBallotTest extends TestBase implements BallotTestData {
-	@Tested
+	@InjectMocks
 	CreateEmptyBallot createEmptyBallot;
 
 	@Test

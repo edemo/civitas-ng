@@ -1,6 +1,6 @@
 package civitas.common.verifiablevote;
 
-import civitas.util.DI;
+import civitas.DI;
 
 public class VerifyVerifiableVoteStub {
 

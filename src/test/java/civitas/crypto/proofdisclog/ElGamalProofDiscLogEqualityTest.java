@@ -5,24 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.Util;
-import civitas.crypto.algorithms.ConvertHashToBigInt;
-import civitas.crypto.messagedigest.CryptoHash;
-import civitas.util.Tested;
-import civitas.util.Use;
 
 public class ElGamalProofDiscLogEqualityTest extends TestBase
 		implements ElGamalProofDiscLogEqualityTestData {
 
-	@Tested
+	@InjectMocks
 	private static ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
-
-	@Use
-	CryptoHash hash;
-	@Use
-	ConvertHashToBigInt convertHashToBigInt;
 
 	@Test
 	@DisplayName("construcProof constructs a proof "

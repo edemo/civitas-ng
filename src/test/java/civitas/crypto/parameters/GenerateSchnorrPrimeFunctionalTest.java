@@ -6,17 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
-import civitas.util.Use;
 
 @Tag("functional")
 public class GenerateSchnorrPrimeFunctionalTest extends TestBase
 		implements ElGamalPrivateKeyTestData, Constants {
 
-	@Use
+	@Autowired
 	GenerateSchnorrPrime generateSchnorrPrimeReal;
 
 	@Test

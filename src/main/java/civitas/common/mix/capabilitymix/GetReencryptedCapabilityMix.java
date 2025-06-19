@@ -1,13 +1,16 @@
 package civitas.common.mix.capabilitymix;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.util.Use;
 
+@Service
 public class GetReencryptedCapabilityMix {
-	@Use
+	@Autowired
 	ElGamalReencrypt elGamalReencrypt;
 
 	public ElGamalCiphertextish apply(CapabilityMix that, int i,

@@ -5,18 +5,21 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SignatureException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.rsaprivatekey.PrivateKey;
 import civitas.crypto.rsapublickey.ObtainRSASigner;
-import civitas.util.Use;
 
+@Service
 public class SignWithPublicKey implements Constants {
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
-	@Use
+	@Autowired
 	ObtainRSASigner obtainRSASigner;
 
 	public Signature apply(PrivateKey k, PublicKeyMsg msg)

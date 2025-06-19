@@ -1,5 +1,8 @@
 package civitas.crypto.msg;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
@@ -8,11 +11,11 @@ import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.signature.VerifyElGamalSignature;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class DecryptElGamalMessage {
 
-	@Use
+	@Autowired
 	VerifyElGamalSignature verifyElGamalSignature;
 
 	public ElGamalMsg apply(ElGamalPrivateKey key,

@@ -1,15 +1,18 @@
 package civitas.common.ballotdesign;
 
-import civitas.common.ballot.Ballot;
-import civitas.util.Use;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import civitas.common.ballot.Ballot;
+
+@Service
 public class CheckBallotAgainstBallotDesign {
 
-	@Use
+	@Autowired
 	CalculateBallotLength calculateBallotLength;
-	@Use
+	@Autowired
 	CalculatePositionInBallot calculatePositionInBallot;
-	@Use
+	@Autowired
 	ConvertChoiceToString convertChoiceToString;
 
 	public void apply(BallotDesign that, Ballot b)

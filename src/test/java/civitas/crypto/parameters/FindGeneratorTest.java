@@ -4,14 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.util.Tested;
 
 public class FindGeneratorTest extends TestBase
 		implements ElGamalParametersTestData {
 
-	@Tested
+	@InjectMocks
 	FindGenerator findGenerator;
 
 	@Test

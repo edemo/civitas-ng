@@ -2,14 +2,17 @@ package civitas.crypto.publickeyciphertext;
 
 import javax.crypto.Cipher;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.crypto.external.DoCrypto;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.rsapublickey.PublicKey;
-import civitas.util.Use;
 
+@Service
 public class EncryptPublic implements Constants {
-	@Use
+	@Autowired
 	DoCrypto doCrypto;
 
 	public PublicKeyCiphertext apply(PublicKey key, PublicKeyMsg msg) {

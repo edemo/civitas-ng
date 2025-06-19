@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.ballot.BallotTestData;
@@ -13,12 +14,11 @@ import civitas.common.tallystate.TallyStateTestData;
 import civitas.common.votersubmission.VoterSubmissionTestData;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.msg.ElgamalMessageTestData;
-import civitas.util.Tested;
 
 class TallyVoteTest extends TestBase implements TallyStateTestData,
 		VoterSubmissionTestData, BallotTestData, ElgamalMessageTestData {
 
-	@Tested
+	@InjectMocks
 	TallyVote tallyVote;
 
 	@Test

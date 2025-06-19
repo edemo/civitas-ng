@@ -4,16 +4,14 @@ import java.util.Base64;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import civitas.DI;
 import civitas.common.Util;
-import civitas.crypto.CryptoFactoryC;
 import civitas.crypto.ciphertextlist.CiphertextList;
-import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.msg.ElgamalMessageTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShareTestData;
 import civitas.util.CivitasBigInteger;
-import civitas.util.DI;
 
 public interface ElGamalCiphertextTestData
 		extends ElgamalMessageTestData, VoteCapabilityShareTestData {
@@ -101,8 +99,6 @@ public interface ElGamalCiphertextTestData
 			HASH_OF_G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR_ADDITIONALENV,
 			RANDOMS_0_PLUS_HASH_MUL_FACTOR);
 
-	public static final CryptoFactoryC factory = CryptoFactoryC.singleton();
-
 	public static final int NO_OF_WELL_KNOWN_CIPHERTEXTS = 4;
 
 	CiphertextList CIPHERTEXT_LIST = new CiphertextList(
@@ -118,7 +114,8 @@ public interface ElGamalCiphertextTestData
 	public static final String CIPHERTEXT_LIST_XML_WITH_NEGATIVE_LENGTH = "<ciphertextList>"
 			+ "<size>-1</size></ciphertextList>";
 
-	byte[] VOTER_ADDITIONAL_ENV = DI.get(CryptoHash.class).apply(8 + "bob");
+	byte[] VOTER_ADDITIONAL_ENV = Base64.getDecoder()
+			.decode("oW/1n32y+V2WGH4xPoMcyfIQbmQLhCcnhjV6UeaGPyI=");
 	List<ElGamalSignedCiphertext> ENCRYPTED_SIGNED_VOTE_CAPABILITIES = VOTE_CAPABILITIES
 			.stream()
 			.map(x -> DI.get(SignAndEncrypt.class).apply(EL_GAMAL_PUBLIC_KEY_E, x,

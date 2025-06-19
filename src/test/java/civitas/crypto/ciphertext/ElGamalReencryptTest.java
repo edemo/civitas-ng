@@ -4,16 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.util.Tested;
 
 public class ElGamalReencryptTest extends TestBase
 		implements ElGamalPublicKeyTestData, ElGamalCiphertextTestData {
 
-	@Tested
+	@InjectMocks
 	ElGamalReencrypt elGamalReencrypt;
 
 	@Test

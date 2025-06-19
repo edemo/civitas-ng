@@ -1,15 +1,18 @@
 package civitas.crypto.msg;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.CryptoException;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.parameters.encoder.SchnorrPrimeEncode;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class EncodeMessage {
 	protected static final String CHARSET = "UTF-8";
 
-	@Use
+	@Autowired
 	SchnorrPrimeEncode schnorrPrimeEncoder;
 
 	public CivitasBigInteger apply(CivitasBigInteger plaintext,

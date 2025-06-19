@@ -2,6 +2,9 @@ package civitas.common.ballotdesign;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.common.CommonConstants;
 import civitas.common.tallystate.RecordBeat;
 import civitas.common.tallystate.TallyState;
@@ -9,13 +12,13 @@ import civitas.crypto.CryptoException;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.parameters.DecodeChoice;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class TallyVote implements CommonConstants {
 
-	@Use
+	@Autowired
 	RecordBeat recordBeat;
-	@Use
+	@Autowired
 	DecodeChoice decodeChoice;
 
 	public void apply(String additionalcontext, ElGamalMsg msg,

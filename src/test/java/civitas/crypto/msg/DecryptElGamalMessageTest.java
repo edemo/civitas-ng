@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
@@ -13,21 +15,19 @@ import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
-import civitas.util.Tested;
-import civitas.util.Use;
 
 public class DecryptElGamalMessageTest extends TestBase
 		implements ElGamalCiphertextTestData, ElGamalSignedCiphertextTestData {
 
-	@Tested
+	@InjectMocks
 	DecryptElGamalMessage decryptElGamalMessage;
 
-	@Use
+	@Autowired
 	SignAndEncrypt signAndEncrypt;
 
-	@Use
+	@Autowired
 	ElGamalEncrypt elGamalEncrypt;
-	@Use
+	@Autowired
 	EncodeMessage encodeMessage;
 
 	@Test

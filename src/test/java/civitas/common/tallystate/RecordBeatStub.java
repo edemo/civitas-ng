@@ -1,6 +1,6 @@
 package civitas.common.tallystate;
 
-import civitas.util.DI;
+import civitas.DI;
 
 class RecordBeatStub {
 	public static RecordBeat stub() {

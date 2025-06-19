@@ -1,15 +1,18 @@
 package civitas.crypto.keypairshare;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class GenerateKeyPairShare {
 
-	@Use
+	@Autowired
 	GenerateRandomElement generateRandomElement;
 
 	public ElGamalKeyPairShare apply(ElGamalParameters params) {

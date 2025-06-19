@@ -8,13 +8,13 @@ import java.security.spec.InvalidKeySpecException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.util.Tested;
 
 class PublicKeyFromFileTest extends TestBase implements PublicKeyTestData {
 
-	@Tested
+	@InjectMocks
 	PublicKeyFromFile publicKeyFromFile;
 
 	@DisplayName("reads the public key from the named file")

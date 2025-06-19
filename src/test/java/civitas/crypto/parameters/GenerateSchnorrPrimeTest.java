@@ -5,16 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
-import civitas.util.Tested;
 
 public class GenerateSchnorrPrimeTest extends TestBase
 		implements ElGamalPrivateKeyTestData, Constants {
 
-	@Tested
+	@InjectMocks
 	GenerateSchnorrPrime generateSchnorrPrime;
 
 	@Test

@@ -1,10 +1,12 @@
 package civitas.crypto.algorithms;
 
-import civitas.util.Use;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateFreshNonce {
 
-	@Use
+	@Autowired
 	GetRandomGenerator getRandomGenerator;
 
 	public byte[] apply(int bitlength) {

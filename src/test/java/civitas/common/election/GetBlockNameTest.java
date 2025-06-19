@@ -3,13 +3,13 @@ package civitas.common.election;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.util.Tested;
 
 class GetBlockNameTest extends TestBase implements ElectionTestData {
 
-	@Tested
+	@InjectMocks
 	GetBlockName getBlockName;
 
 	@Test

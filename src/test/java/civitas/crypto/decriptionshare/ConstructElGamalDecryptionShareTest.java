@@ -5,23 +5,23 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.ciphertext.ElGamalEncryptTest;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Tested;
-import civitas.util.Use;
 
 public class ConstructElGamalDecryptionShareTest extends TestBase
 		implements ElGamalDecryptionShareTestData {
 
-	@Tested
+	@InjectMocks
 	ConstructElGamalDecryptionShare constructElGamalDecryptionShare;
 
-	@Use
+	@Autowired
 	CryptoHash hash;
-	@Use
+	@Autowired
 	ElGamalEncryptTest elGamalEncrypt;
 
 	@Test

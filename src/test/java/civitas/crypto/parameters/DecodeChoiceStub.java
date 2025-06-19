@@ -1,6 +1,6 @@
 package civitas.crypto.parameters;
 
-import civitas.util.DI;
+import civitas.DI;
 
 class DecodeChoiceStub {
 	public static DecodeChoice stub() {

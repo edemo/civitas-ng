@@ -1,5 +1,8 @@
 package civitas.crypto.proof1ofl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
@@ -10,13 +13,13 @@ import civitas.crypto.msg.EncodeMessage;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.util.Use;
 
+@Service
 public class ConstructWellKnownCiphertexts implements Constants {
 
-	@Use
+	@Autowired
 	ElGamalEncrypt elGamalEncrypt;
-	@Use
+	@Autowired
 	EncodeMessage encodeMessage;
 
 	public CiphertextList apply(ElGamalPublicKey key, int count)

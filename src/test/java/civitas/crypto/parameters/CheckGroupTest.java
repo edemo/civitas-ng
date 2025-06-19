@@ -5,16 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.CryptoError;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Tested;
 
 public class CheckGroupTest extends TestBase
 		implements ElGamalParametersTestData {
 
-	@Tested
+	@InjectMocks
 	CheckGroup checkGroup;
 
 	@Test

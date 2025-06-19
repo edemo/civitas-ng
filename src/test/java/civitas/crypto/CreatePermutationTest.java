@@ -7,16 +7,16 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.algorithms.CreatePermutation;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
-import civitas.util.Tested;
 
 public class CreatePermutationTest extends TestBase
 		implements PrivateKeyTestData, BasicValuesTestData {
 
-	@Tested
+	@InjectMocks
 	CreatePermutation createPermutation;
 
 	@Test

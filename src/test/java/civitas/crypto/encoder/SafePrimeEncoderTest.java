@@ -8,19 +8,19 @@ import java.util.Base64;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.parameters.encoder.SafePrimeDecode;
 import civitas.crypto.parameters.encoder.SafePrimeEncode;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Tested;
 
 public class SafePrimeEncoderTest extends TestBase implements EncoderTestData {
 
-	@Tested
+	@InjectMocks
 	private SafePrimeEncode encoder;
-	@Tested
+	@InjectMocks
 	private SafePrimeDecode decoder;
 
 	@Test

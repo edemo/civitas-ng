@@ -5,6 +5,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SignatureException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.algorithms.CreateFreshNonceBase64;
@@ -12,15 +15,15 @@ import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.rsaprivatekey.PrivateKey;
 import civitas.crypto.signature.SignWithPublicKey;
 import civitas.crypto.signature.Signature;
-import civitas.util.Use;
 
+@Service
 public class IsPublicKeyAuthorized implements Constants {
 
-	@Use
+	@Autowired
 	VerifyPublicKeySignature verifyPublicKeySignature;
-	@Use
+	@Autowired
 	SignWithPublicKey signWithPublicKey;
-	@Use
+	@Autowired
 	CreateFreshNonceBase64 createFreshNonceBase64;
 
 	public boolean apply(PublicKey that, PrivateKey privKey) {

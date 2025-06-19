@@ -1,20 +1,23 @@
 package civitas.crypto.parameters;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.algorithms.GetRandomGenerator;
 import civitas.util.CivitasBigInteger;
 import civitas.util.ObtainProbablePrime;
-import civitas.util.Use;
 
+@Service
 public class GenerateSchnorrPrime implements Constants {
-	@Use
+	@Autowired
 	GenerateRandomElement generateRandomElement;
-	@Use
+	@Autowired
 	GetRandomGenerator getRandomGenerator;
-	@Use
+	@Autowired
 	CalculateNumberOfPrimeTests calculateNumberOfPrimeTests;
-	@Use
+	@Autowired
 	ObtainProbablePrime obtainProbablePrime;
 
 	public PrimePair apply(int qLength, int pLength) {

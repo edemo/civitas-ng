@@ -3,18 +3,21 @@ package civitas.crypto.proofdvr;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class VerifyElGamalProofDVR {
 
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
-	@Use
+	@Autowired
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public boolean apply(ElGamalProofDVR that, ElGamalPublicKey K,

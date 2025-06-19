@@ -1,5 +1,8 @@
 package civitas.result;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class InitialMatrix {
 
 	Pair<Integer, Integer>[][] apply(Integer[][] m, Integer n) {

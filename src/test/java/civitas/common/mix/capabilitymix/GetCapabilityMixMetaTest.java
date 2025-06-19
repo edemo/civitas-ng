@@ -5,14 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.util.Tested;
 
 class GetCapabilityMixMetaTest extends TestBase
 		implements CapabilityMixTestData {
 
-	@Tested
+	@InjectMocks
 	GetCapabilityMixMeta getCapabilityMixMeta;
 
 	@Test

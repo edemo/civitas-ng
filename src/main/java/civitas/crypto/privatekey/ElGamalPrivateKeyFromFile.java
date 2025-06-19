@@ -4,18 +4,21 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import civitas.util.GetReaderForFile;
 import civitas.util.ObtainKeyFactory;
-import civitas.util.Use;
 
+@Service
 public class ElGamalPrivateKeyFromFile {
 
-	@Use
+	@Autowired
 	GetReaderForFile getReaderForFile;
 
-	@Use
+	@Autowired
 	ObtainKeyFactory obtainKeyFactory;
 
 	public ElGamalPrivateKey apply(String keyFile)

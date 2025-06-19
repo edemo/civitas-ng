@@ -6,19 +6,25 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import civitas.AppTestConfig;
 import civitas.common.TestBase;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
-import civitas.util.Tested;
-import civitas.util.Use;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = AppTestConfig.class)
 public class FakeElGamalProofDVRTest extends TestBase
 		implements ElGamalProofDVRTestData, ElGamalPrivateKeyTestData {
 
-	@Tested
+	@InjectMocks
 	FakeElGamalProofDVR fakeElGamalProofDVRC;
 
-	@Use
+	@Autowired
 	VerifyElGamalProofDVR verifyElGamalProofDVR;
 
 	@Test

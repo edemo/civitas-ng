@@ -4,15 +4,22 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
-import civitas.crypto.CryptoError;
-import civitas.crypto.CryptoFactoryC;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import civitas.crypto.CryptoBase;
+import civitas.crypto.CryptoError;
+
+@Service
 public class CreatePublicKeyFromBytes {
+
+	@Autowired
+	CryptoBase cryptoBase;
 
 	public java.security.PublicKey apply(byte[] bs) throws CryptoError {
 		KeySpec keySpec = new X509EncodedKeySpec(bs);
 		try {
-			return CryptoFactoryC.publicKeyFactory.generatePublic(keySpec);
+			return cryptoBase.publicKeyFactory.generatePublic(keySpec);
 		} catch (InvalidKeySpecException e) {
 			throw new CryptoError(e);
 		}

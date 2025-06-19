@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.util.Tested;
 
 class ListContextsNeededTest extends TestBase implements BallotDesignTestData {
 
-	@Tested
+	@InjectMocks
 	ListContextsNeeded listContextsNeeded;
 
 	@DisplayName("generates a list of contexts needed for a ballot design")

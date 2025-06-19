@@ -1,16 +1,19 @@
 package civitas.crypto.keyshare;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.CryptoError;
 import civitas.crypto.keypairshare.ElGamalKeyPairShare;
 import civitas.crypto.proofknowndisclog.ConstructProofKnowDiscLog;
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.util.Use;
 
+@Service
 public class ConstructElGamalKeyShare {
-	@Use
+	@Autowired
 	ConstructProofKnowDiscLog constructProofKnowDiscLog;
-	@Use
+	@Autowired
 	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
 	public ElGamalKeyShare apply(ElGamalKeyPairShare kps) throws CryptoError {

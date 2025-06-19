@@ -2,6 +2,9 @@ package civitas.common.ballotdesign;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.common.CommonConstants;
 import civitas.common.ballot.Ballot;
 import civitas.common.capabilityencryption.CapabilityEncryption;
@@ -16,22 +19,22 @@ import civitas.crypto.proofvote.ConstructProofVote;
 import civitas.crypto.proofvote.ProofVote;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.votecapability.VoteCapability;
-import civitas.util.Use;
 
+@Service
 public class DecomposeBallot implements CommonConstants {
 
-	@Use
+	@Autowired
 	EncryptCapability encryptCapability;
-	@Use
+	@Autowired
 	EncryptChoice encryptChoice;
 
-	@Use
+	@Autowired
 	CalculatePositionInBallot calculatePositionInBallot;
-	@Use
+	@Autowired
 	CalculateBallotLength calculateBallotLength;
-	@Use
+	@Autowired
 	ConstructProofVote constructProofVote;
-	@Use
+	@Autowired
 	CreateVoterSubmission createVoterSubmission;
 
 	public VoterSubmission apply(BallotDesign that, Ballot ballot, int voterBlock,

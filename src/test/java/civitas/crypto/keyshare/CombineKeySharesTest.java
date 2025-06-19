@@ -6,17 +6,17 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.keys.ElGamalKeyShareTestData;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.util.Tested;
 
 public class CombineKeySharesTest extends TestBase
 		implements ElGamalKeyShareTestData {
 
-	@Tested
+	@InjectMocks
 	CombineKeyShares combineKeyShares;
 
 	@Test

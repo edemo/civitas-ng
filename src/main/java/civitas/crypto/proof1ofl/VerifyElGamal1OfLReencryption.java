@@ -1,13 +1,16 @@
 package civitas.crypto.proof1ofl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.util.Use;
 
+@Service
 public class VerifyElGamal1OfLReencryption {
 
-	@Use
+	@Autowired
 	VerifyElGamalProof1OfL verifyElGamalProof1OfLC;
 
 	public boolean apply(ElGamal1OfLReencryption that, ElGamalPublicKey pubKey,

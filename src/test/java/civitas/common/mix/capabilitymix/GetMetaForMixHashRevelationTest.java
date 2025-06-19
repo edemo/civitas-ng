@@ -4,15 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.mix.hashrevelation.GetMetaForMixHashRevelation;
-import civitas.util.Tested;
 
 class GetMetaForMixHashRevelationTest extends TestBase
 		implements CapabilityMixTestData {
 
-	@Tested
+	@InjectMocks
 	GetMetaForMixHashRevelation getMetaForMixHashRevelation;
 
 	@Test

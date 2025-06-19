@@ -1,15 +1,18 @@
 package civitas.common.mix.votemix;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.common.Vote;
 import civitas.common.mix.AddCommitmentToMix;
-import civitas.util.Use;
 import lombok.NonNull;
 
+@Service
 public class AddVoteAndCommitmentToVoteMix {
-	@Use
+	@Autowired
 	AddCommitmentToMix addCommitmentToMix;
 
-	@Use
+	@Autowired
 	AddVoteToVoteMix addVoteToVoteMix;
 
 	public void apply(@NonNull VoteMix that, @NonNull Vote v,

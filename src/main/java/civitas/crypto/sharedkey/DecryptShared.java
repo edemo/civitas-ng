@@ -4,15 +4,18 @@ import java.io.UnsupportedEncodingException;
 
 import javax.crypto.Cipher;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.external.DoCrypto;
 import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertext;
 import civitas.crypto.sharedkeymsg.SharedKeyMsg;
-import civitas.util.Use;
 
+@Service
 public class DecryptShared implements Constants {
-	@Use
+	@Autowired
 	DoCrypto doCrypto;
 
 	public SharedKeyMsg apply(SharedKey key, SharedKeyCiphertext ciphertext)

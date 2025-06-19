@@ -1,12 +1,15 @@
 package civitas.common.ballot;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.common.ballotdesign.CalculatePositionInBallot;
-import civitas.util.Use;
 import lombok.NonNull;
 
+@Service
 public class RecordOnePairInBallot {
 
-	@Use
+	@Autowired
 	CalculatePositionInBallot calculatePositionInBallot;
 
 	public void apply(@NonNull Ballot that, int i, int j, int voteChoice) {

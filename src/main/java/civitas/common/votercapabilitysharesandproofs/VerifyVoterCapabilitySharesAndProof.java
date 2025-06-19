@@ -1,5 +1,8 @@
 package civitas.common.votercapabilitysharesandproofs;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.messagedigest.CryptoHash;
@@ -11,18 +14,18 @@ import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.signature.VerifyElGamalSignature;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShare;
-import civitas.util.Use;
 import lombok.NonNull;
 
+@Service
 public class VerifyVoterCapabilitySharesAndProof {
 
-	@Use
+	@Autowired
 	VerifyElGamalSignature verifyElGamalSignature;
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
-	@Use
+	@Autowired
 	ElGamalEncrypt elGamalEncrypt;
-	@Use
+	@Autowired
 	VerifyElGamalProofDVR verifyElGamalProofDVR;
 
 	public boolean apply(@NonNull VoterCapabilitySharesAndProof that,
@@ -56,13 +59,9 @@ public class VerifyVoterCapabilitySharesAndProof {
 			// check that p.e' equals enc(vc, ttKey r)
 			ElGamalCiphertext encrypted = elGamalEncrypt
 					.apply(tabTellerSharedPublicKey, vc, r);
-			if (!encrypted.equals(p.getEprime())) {
-				return false;
-			}
-
 			// check the proof, i.e., that p.e is a reencryption of p.e'
-			if (!verifyElGamalProofDVR.apply(p, tabTellerSharedPublicKey,
-					voterPublicKey)) {
+			if (!encrypted.equals(p.getEprime()) || !verifyElGamalProofDVR.apply(p,
+					tabTellerSharedPublicKey, voterPublicKey)) {
 				return false;
 			}
 		}

@@ -6,17 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.capabilityencryption.VoterEncCapabilities;
 import civitas.common.votersubmission.VoterSubmission;
 import civitas.common.votersubmission.VoterSubmissionTestData;
-import civitas.util.Tested;
 
 class IsVoterSubmissionInBlockTest extends TestBase implements ElectionTestData,
 		VoterSubmissionTestData, VoterEncCapabilitiesTestData {
 
-	@Tested
+	@InjectMocks
 	IsVoterSubmissionInBlock isVoterSubmissionInBlock;
 
 	@Test

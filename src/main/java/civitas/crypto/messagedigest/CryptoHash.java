@@ -2,18 +2,22 @@ package civitas.crypto.messagedigest;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import civitas.crypto.CryptoBase;
 import civitas.crypto.CryptoError;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 import lombok.SneakyThrows;
 
+@Service
 public class CryptoHash {
-	@Use
-	ObtainMessageDigest obtainMessageDigest;
+	@Autowired
+	CryptoBase cryptoBase;
 
 	public byte[] apply(List<CivitasBigInteger> list) {
-		MessageDigest md = obtainMessageDigest.apply();
+		MessageDigest md = cryptoBase.messageDigest;
 		// list.forEach(x -> md.md.update(x.toByteArray()));
 		for (CivitasBigInteger x : list) {
 			md.md.update(x.toByteArray());
@@ -32,7 +36,7 @@ public class CryptoHash {
 
 	public CivitasBigInteger apply(CivitasBigInteger a, CivitasBigInteger b,
 			CivitasBigInteger c, byte[] d) {
-		MessageDigest md = obtainMessageDigest.apply();
+		MessageDigest md = cryptoBase.messageDigest;
 		md.md.update(a.toByteArray());
 		md.md.update(b.toByteArray());
 		if (c != null)
@@ -47,14 +51,14 @@ public class CryptoHash {
 	}
 
 	public byte[] apply(byte[] a) throws CryptoError {
-		MessageDigest md = obtainMessageDigest.apply();
+		MessageDigest md = cryptoBase.messageDigest;
 		if (a != null)
 			md.md.update(a);
 		return md.md.digest();
 	}
 
 	public byte[] apply(byte[] a, int i) {
-		MessageDigest md = obtainMessageDigest.apply();
+		MessageDigest md = cryptoBase.messageDigest;
 		md.md.update(a);
 		byte[] dword = intToBytes(i);
 		md.md.update(dword);
@@ -63,14 +67,14 @@ public class CryptoHash {
 
 	@SneakyThrows
 	public byte[] apply(String s) {
-		MessageDigest md = obtainMessageDigest.apply();
+		MessageDigest md = cryptoBase.messageDigest;
 		if (s != null)
 			md.md.update(s.getBytes("UTF-8"));
 		return md.md.digest();
 	}
 
 	public byte[] apply(byte b) {
-		MessageDigest md = obtainMessageDigest.apply();
+		MessageDigest md = cryptoBase.messageDigest;
 		md.md.update(b);
 		return md.md.digest();
 	}

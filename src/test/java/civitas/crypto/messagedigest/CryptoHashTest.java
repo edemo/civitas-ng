@@ -4,15 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.TestUtil;
-import civitas.util.Tested;
 
 public class CryptoHashTest extends TestBase implements MessageDigestTestData {
 
 	MessageDigest md = new MessageDigest(TestUtil.getBaselineDigest());
-	@Tested
+	@InjectMocks
 	CryptoHash cryptoHash;
 
 	@Test

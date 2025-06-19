@@ -6,17 +6,17 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.ballot.BallotTestData;
 import civitas.common.votersubmission.VoterSubmission;
 import civitas.common.votersubmission.VoterSubmissionTestData;
-import civitas.util.Tested;
 
 class DecomposeBallotTest extends TestBase
 		implements VoterSubmissionTestData, BallotTestData {
 
-	@Tested
+	@InjectMocks
 	DecomposeBallot decomposeBallot;
 
 	@Test

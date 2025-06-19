@@ -4,15 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.BasicValuesTestData;
-import civitas.util.Tested;
 
 public class ConvertToBase64Test extends TestBase
 		implements BasicValuesTestData {
 
-	@Tested
+	@InjectMocks
 	ConvertToBase64 convertToBase64;
 
 	@Test

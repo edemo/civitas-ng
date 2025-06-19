@@ -1,13 +1,13 @@
 package civitas.crypto.signature;
 
-import civitas.util.DI;
+import civitas.crypto.messagedigest.CryptoHashStub;
 
 public class VerifyElGamalSignatureStub {
 
 	public static VerifyElGamalSignature stub() {
-		VerifyElGamalSignature stub = new VerifyElGamalSignature();
-		DI.fill(stub);
-		return stub;
+		VerifyElGamalSignature mock = new VerifyElGamalSignature();
+		mock.cryptoHash = CryptoHashStub.stub();
+		return mock;
 	}
 
 }

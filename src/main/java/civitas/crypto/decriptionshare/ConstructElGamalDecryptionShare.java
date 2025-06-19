@@ -1,16 +1,19 @@
 package civitas.crypto.decriptionshare;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.keypairshare.ElGamalKeyPairShare;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.proofdisclog.ConstructElGamalDiscLogEqualityProof;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class ConstructElGamalDecryptionShare {
 
-	@Use
+	@Autowired
 	ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
 
 	public ElGamalDecryptionShare apply(ElGamalCiphertextish c,

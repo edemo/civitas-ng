@@ -5,6 +5,7 @@ import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.CryptoError;
@@ -13,14 +14,13 @@ import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Tested;
 
 public class MultiplyCiphertextsTest extends TestBase
 		implements MultiplyCiphertextsTestData {
 
-	@Tested
+	@InjectMocks
 	MultiplyCiphertexts multiplyCiphertexts;
-	@Tested
+	@InjectMocks
 	SignAndEncrypt signAndEncrypt;
 
 	@Test

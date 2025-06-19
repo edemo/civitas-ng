@@ -7,15 +7,15 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.keys.ElGamalKeyShareTestData;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.util.Tested;
 
 public class VerifyElGamalKeyShareTest extends TestBase
 		implements ElGamalKeyShareTestData {
-	@Tested
+	@InjectMocks
 	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
 	@Test

@@ -1,17 +1,20 @@
 package civitas.common.mix.voteelementrevelation;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.common.Vote;
 import civitas.common.mix.Mix;
 import civitas.common.mix.votemix.VoteMix;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.util.Use;
 import lombok.NonNull;
 
+@Service
 public class VerifyMixVoteElementRevelation {
 
-	@Use
+	@Autowired
 	ElGamalReencrypt elGamalReencrypt;
 
 	public boolean apply(@NonNull MixVoteElementRevelation that,

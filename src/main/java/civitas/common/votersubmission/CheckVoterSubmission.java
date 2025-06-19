@@ -1,5 +1,8 @@
 package civitas.common.votersubmission;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.common.CommonConstants;
 import civitas.common.ballotdesign.BallotDesign;
 import civitas.common.ballotdesign.CalculatePositionInBallot;
@@ -7,13 +10,13 @@ import civitas.common.verifiablevote.VerifiableVote;
 import civitas.common.verifiablevote.VerifyVerifiableVote;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.util.Use;
 
+@Service
 public class CheckVoterSubmission implements CommonConstants {
 
-	@Use
+	@Autowired
 	CalculatePositionInBallot calculatePositionInBallot;
-	@Use
+	@Autowired
 	VerifyVerifiableVote verifyVerifiableVote;
 
 	public final void apply(BallotDesign that, VoterSubmission vs,

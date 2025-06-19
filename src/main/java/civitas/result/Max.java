@@ -1,10 +1,12 @@
 package civitas.result;
 
-import civitas.util.Use;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class Max {
 
-	@Use
+	@Autowired
 	CompareBeats compareBeats;
 
 	Pair<Integer, Integer> apply(Pair<Integer, Integer> xr,

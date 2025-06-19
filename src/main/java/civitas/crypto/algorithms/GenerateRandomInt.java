@@ -1,10 +1,12 @@
 package civitas.crypto.algorithms;
 
-import civitas.util.Use;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GenerateRandomInt {
 
-	@Use
+	@Autowired
 	GetRandomGenerator getRandomGenerator;
 
 	public int apply(int n) {

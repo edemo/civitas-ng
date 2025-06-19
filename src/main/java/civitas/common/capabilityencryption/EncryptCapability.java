@@ -2,6 +2,9 @@ package civitas.common.capabilityencryption;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.CryptoError;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
@@ -9,13 +12,13 @@ import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.GenerateElGamalReencryptFactor;
 import civitas.crypto.votecapability.VoteCapability;
-import civitas.util.Use;
 
+@Service
 public class EncryptCapability {
 
-	@Use
+	@Autowired
 	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
-	@Use
+	@Autowired
 	ElGamalEncrypt elGamalEncrypt;
 
 	public CapabilityEncryption apply(ElGamalPublicKey key,

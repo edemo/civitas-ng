@@ -2,6 +2,9 @@ package civitas.result;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CalculateStrengths {
 	public void apply(String[] candidates,
 			List<List<CandidateResult>> winnerList) {

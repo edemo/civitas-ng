@@ -3,6 +3,9 @@ package civitas.crypto.proofdvr;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
@@ -12,15 +15,15 @@ import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class FakeElGamalProofDVR {
 
-	@Use
-	private static GenerateRandomElement generateRandomElement;
-	@Use
+	@Autowired
+	GenerateRandomElement generateRandomElement;
+	@Autowired
 	CryptoHash cryptoHash;
-	@Use
+	@Autowired
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProofDVR apply(ElGamalPublicKey key,

@@ -4,20 +4,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import civitas.AppTestConfig;
 import civitas.common.TestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.petshare.PETShareTestData;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Tested;
-import civitas.util.Use;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = AppTestConfig.class)
 public class ConstructPETCommitmentTest extends TestBase
 		implements PETShareTestData {
-	@Tested
+	@InjectMocks
 	ConstructPETCommitment constructPETCommitment;
-	@Use
+	@Autowired
 	CryptoHash hash;
 
 	@Test

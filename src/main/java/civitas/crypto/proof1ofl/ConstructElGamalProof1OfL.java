@@ -3,6 +3,9 @@ package civitas.crypto.proof1ofl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.GenerateRandomElement;
@@ -14,14 +17,14 @@ import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class ConstructElGamalProof1OfL implements Constants {
-	@Use
+	@Autowired
 	public GenerateRandomElement generateRandomElement;
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
-	@Use
+	@Autowired
 	private ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProof1OfL apply(ElGamalPublicKey key,

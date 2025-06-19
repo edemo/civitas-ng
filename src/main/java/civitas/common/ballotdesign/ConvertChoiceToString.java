@@ -1,7 +1,10 @@
 package civitas.common.ballotdesign;
 
+import org.springframework.stereotype.Service;
+
 import civitas.common.CommonConstants;
 
+@Service
 public class ConvertChoiceToString implements CommonConstants {
 
 	public String apply(int choice) {

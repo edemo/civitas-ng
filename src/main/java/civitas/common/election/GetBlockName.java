@@ -1,15 +1,18 @@
 package civitas.common.election;
 
-import civitas.common.ballotdesign.GetNthContext;
-import civitas.util.Use;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import civitas.common.ballotdesign.GetNthContext;
+
+@Service
 public class GetBlockName {
 
-	@Use
+	@Autowired
 	GetNthContext getNthContext;
-	@Use
+	@Autowired
 	GetVoterBlockForBlock getVoterBlockForBlock;
-	@Use
+	@Autowired
 	GetContextForBlock getContextForBlock;
 
 	public String apply(ElectionDetails that, int block) {

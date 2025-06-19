@@ -235,14 +235,14 @@ public class MajGradingBallotDesign extends BallotDesign {
         return null;
     }    
     
-    public void tally (  String  ctxt, ElGamalMsg  m, String  c, TallyState   s, ElGamalParameters  params) throws (IllegalArgumentException ) {
+    public void tally (  String  TestBase.getCtx()t, ElGamalMsg  m, String  c, TallyState   s, ElGamalParameters  params) throws (IllegalArgumentException ) {
         if (!(s instanceof MajGradingTallyState )) {
             throw new IllegalArgumentException("Incorrect tally state");
         }
         MajGradingTallyState  ats = (MajGradingTallyState )s;
         
         // interpret the context and the message
-        String desiredContext = (ctxt==null?"":ctxt) + CONTEXT_SUFFIX;
+        String desiredContext = (TestBase.getCtx()t==null?"":TestBase.getCtx()t) + CONTEXT_SUFFIX;
         if (c == null || desiredContext == null || !c.startsWith(desiredContext)) {
             throw new IllegalArgumentException("Incorrect context");
         }        

@@ -21,7 +21,6 @@ public class VoterCapabilitySharesAndProof {
 	public final ElGamalReencryptFactor[] rencryptFactors;
 	@NonNull
 	public final ElGamalProofDVR[] proofs;
-	@NonNull
 	public final int voterBlock;
 
 }

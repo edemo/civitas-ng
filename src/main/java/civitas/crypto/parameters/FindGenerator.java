@@ -1,12 +1,15 @@
 package civitas.crypto.parameters;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class FindGenerator implements Constants {
-	@Use
+	@Autowired
 	public GenerateRandomElement generateRandomElement;
 
 	public CivitasBigInteger apply(PrimePair sp) {

@@ -1,12 +1,14 @@
 package civitas.result;
 
-import civitas.util.Use;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TransitiveClosure {
 
-	@Use
+	@Autowired
 	Min min;
-	@Use
+	@Autowired
 	Max max;
 
 	void apply(Pair<Integer, Integer>[][] m, Integer n) {

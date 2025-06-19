@@ -3,14 +3,17 @@ package civitas.crypto.proofvote;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class CalculateProofEnvironment {
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
 
 	public List<CivitasBigInteger> apply(ElGamalParameters params,

@@ -3,11 +3,13 @@ package civitas.crypto.algorithms;
 import java.util.LinkedList;
 import java.util.List;
 
-import civitas.util.Use;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreatePermutation {
 
-	@Use
+	@Autowired
 	GenerateRandomInt generateRandomInt;
 
 	public int[] apply(int size) {

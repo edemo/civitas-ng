@@ -4,16 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.CommonConstants;
 import civitas.common.TestBase;
 import civitas.crypto.BasicValuesTestData;
-import civitas.util.Tested;
 
 class ConvertStringToChoiceTest extends TestBase
 		implements CommonConstants, BasicValuesTestData {
 
-	@Tested
+	@InjectMocks
 	ConvertStringToChoice convertStringToChoice;
 
 	@Test

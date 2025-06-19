@@ -7,6 +7,7 @@ import civitas.common.Util;
 import civitas.util.CivitasBigInteger;
 
 public interface BasicValuesTestData extends Constants {
+
 	int BYTELENGTH = 8;
 	int BITLENGTH = 64;
 	int RANDOM_RUNS = 1000;

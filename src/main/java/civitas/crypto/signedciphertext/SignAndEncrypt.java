@@ -1,5 +1,8 @@
 package civitas.crypto.signedciphertext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.CryptoError;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.messagedigest.CryptoHash;
@@ -9,15 +12,15 @@ import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.GenerateElGamalReencryptFactor;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class SignAndEncrypt {
 
-	@Use
+	@Autowired
 	GenerateRandomElement generateRandomElement;
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
-	@Use
+	@Autowired
 	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
 
 	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, CryptMessage msg,

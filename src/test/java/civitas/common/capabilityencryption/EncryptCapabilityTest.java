@@ -6,15 +6,15 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.votersubmission.VoterSubmissionTestData;
-import civitas.util.Tested;
 
 class EncryptCapabilityTest extends TestBase
 		implements VoterSubmissionTestData {
 
-	@Tested
+	@InjectMocks
 	EncryptCapability encryptCapability;
 
 	@Test

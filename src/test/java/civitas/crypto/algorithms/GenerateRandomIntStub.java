@@ -1,7 +1,7 @@
 package civitas.crypto.algorithms;
 
+import civitas.DI;
 import civitas.crypto.BasicValuesTestData;
-import civitas.util.DI;
 
 class GenerateRandomIntStub implements BasicValuesTestData {
 	public static GenerateRandomInt stub() {

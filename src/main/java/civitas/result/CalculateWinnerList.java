@@ -4,17 +4,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import civitas.util.Use;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CalculateWinnerList {
-	@Use
+	@Autowired
 	TransitiveClosure transitiveClosure;
-	@Use
+	@Autowired
 	InitialMatrix initialMatrix;
-	@Use
+	@Autowired
 	ComputeWinners computeWinners;
 
-	@Use
+	@Autowired
 	IsFullyIgnored isFullyIgnored;
 
 	public List<List<CandidateResult>> apply(Integer[][] matrix,
@@ -31,9 +33,8 @@ public class CalculateWinnerList {
 			List<CandidateResult> winningCandidates = new ArrayList<>();
 			for (Integer winner : winners) {
 				ignore[winner] = true;
-				winningCandidates
-						.add(new CandidateResult(winner, new ArrayList<>(),
-								new ArrayList<>(), new ArrayList<>(), 1.0));
+				winningCandidates.add(new CandidateResult(winner, new ArrayList<>(),
+						new ArrayList<>(), new ArrayList<>(), 1.0));
 				for (CandidateResult lastWinner : lastWinners) {
 					Integer i = lastWinner.candidate;
 					lastWinner.beatenCandidates.add(winner);

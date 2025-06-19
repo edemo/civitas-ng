@@ -14,7 +14,7 @@ public class VerifyProofVoteStub implements ProofVoteTestData {
 		for(Integer piece:VOTE_PIECES)
 			when(mock.apply(eq(PROOF_VOTE_MAP.get(piece)), eq(EL_GAMAL_PARAMETERS), any(),
 					any(), eq(CONTEXT_MAP.get(piece)))).thenReturn(true);
-		
+
 		return mock;
 	}
 }

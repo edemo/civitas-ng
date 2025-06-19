@@ -12,24 +12,24 @@ import javax.crypto.spec.SecretKeySpec;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.algorithms.GetPublicKeyGenerator;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 import civitas.crypto.sharedkey.GetSharedKeyGenerator;
-import civitas.util.Use;
 
 @Tag("functional")
 public class CryptoFactoryFunctionalTest extends TestBase
 		implements PrivateKeyTestData, BasicValuesTestData {
 
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
 
-	@Use
+	@Autowired
 	GetPublicKeyGenerator getPublicKeyGenerator;
-	@Use
+	@Autowired
 	GetSharedKeyGenerator getSharedKeyGenerator;
 
 	@Test

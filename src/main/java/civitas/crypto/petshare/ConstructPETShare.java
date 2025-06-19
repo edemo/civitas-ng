@@ -1,14 +1,17 @@
 package civitas.crypto.petshare;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class ConstructPETShare {
 
-	@Use
+	@Autowired
 	GenerateRandomElement generateRandomElement;
 
 	public PETShare apply(ElGamalParameters prms, ElGamalCiphertextish a,

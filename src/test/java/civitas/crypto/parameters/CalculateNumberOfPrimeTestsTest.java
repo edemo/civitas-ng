@@ -3,14 +3,14 @@ package civitas.crypto.parameters;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.Constants;
-import civitas.util.Tested;
 
 class CalculateNumberOfPrimeTestsTest extends TestBase {
 
-	@Tested
+	@InjectMocks
 	CalculateNumberOfPrimeTests calculateNumberOfPrimeTests;
 
 	@Test

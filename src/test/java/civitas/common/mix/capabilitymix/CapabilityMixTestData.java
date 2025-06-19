@@ -18,7 +18,7 @@ public interface CapabilityMixTestData
 
 	CapabilityMix CAPABILITY_MIX_MOCK = mock(CapabilityMix.class);
 
-	Supplier<CapabilityMix> CAPABILITY_MIX_EMPTY_SUPPLIER = new Supplier<CapabilityMix>() {
+	Supplier<CapabilityMix> CAPABILITY_MIX_EMPTY_SUPPLIER = new Supplier<>() {
 
 		@Override
 		public CapabilityMix get() {

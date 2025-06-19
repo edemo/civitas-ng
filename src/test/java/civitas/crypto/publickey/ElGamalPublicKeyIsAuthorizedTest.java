@@ -1,6 +1,5 @@
 package civitas.crypto.publickey;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,25 +9,21 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import civitas.AppTestConfig;
 import civitas.common.TestBase;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
-import civitas.util.Use;
 
-public class ElGamalPublicKeyCTest extends TestBase
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = AppTestConfig.class)
+public class ElGamalPublicKeyIsAuthorizedTest extends TestBase
 		implements ElGamalPublicKeyTestData {
 
-	@Use
-	GetElGamalPublicKeyName getElGamalPublicKeyName;
-
-	@Test
-	@DisplayName("name returns a name")
-	void test2() throws IllegalArgumentException, IOException {
-		assertEquals(EL_GAMALPUBLIC_KEY_NAME,
-				getElGamalPublicKeyName.apply(EL_GAMAL_PUBLIC_KEY_E));
-	}
-
-	@Use
+	@Autowired
 	ElGamalPublicKeyisAuthorized elGamalPublicKeyisAuthorized;
 
 	@Test

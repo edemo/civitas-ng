@@ -1,5 +1,8 @@
 package civitas.result;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class IsFullyIgnored {
 
 	public boolean apply(Boolean[] ignore) {

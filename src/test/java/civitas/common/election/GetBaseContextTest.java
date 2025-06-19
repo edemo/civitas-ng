@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.util.Tested;
 
 class GetBaseContextTest extends TestBase implements ElectionTestData {
 
-	@Tested
+	@InjectMocks
 	GetBaseContext getBaseContext;
 
 	@Test

@@ -4,10 +4,11 @@ import java.security.KeyPairGenerator;
 import java.util.HashMap;
 import java.util.Map;
 
-import civitas.crypto.Constants;
-import civitas.util.Boilerplate;
+import org.springframework.stereotype.Service;
 
-@Boilerplate
+import civitas.crypto.Constants;
+
+@Service
 public class GetPublicKeyGenerator implements Constants {
 
 	private Map<String, KeyPairGenerator> publicKeyGenerators = new HashMap<>();

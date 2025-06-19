@@ -6,18 +6,21 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import civitas.util.GetReaderForFile;
 import civitas.util.KeyOnWire;
 import civitas.util.ObtainKeyFactory;
-import civitas.util.Use;
 
+@Service
 public class PrivatekeyFromFile {
-	@Use
+	@Autowired
 	GetReaderForFile getReaderForFile;
 
-	@Use
+	@Autowired
 	ObtainKeyFactory obtainKeyFactory;
 
 	public PrivateKey apply(String keyFile)

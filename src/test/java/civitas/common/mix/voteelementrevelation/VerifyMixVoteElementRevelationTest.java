@@ -6,18 +6,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.mix.capabilitymix.CapabilityMixTestData;
 import civitas.common.mix.votemix.VoteMixTestData;
 import civitas.crypto.publickey.ElGamalPublicKeyTestData;
-import civitas.util.Tested;
 
 class VerifyMixVoteElementRevelationTest extends TestBase
 		implements MixVoteElementRevelationTestData, ElGamalPublicKeyTestData,
 		VoteMixTestData, CapabilityMixTestData {
 
-	@Tested
+	@InjectMocks
 	VerifyMixVoteElementRevelation verifyMixVoteElementRevelation;
 
 	@Test

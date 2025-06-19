@@ -5,16 +5,16 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.petshare.PETShareTestData;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Tested;
 
 public class ConstructPETDecommitmentTest extends TestBase
 		implements PETDecommitmentTestData, PETShareTestData {
 
-	@Tested
+	@InjectMocks
 	ConstructPETDecommitment constructPETDecommitment;
 
 	@Test

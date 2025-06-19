@@ -5,18 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.messagedigest.CryptoHash;
-import civitas.util.Tested;
-import civitas.util.Use;
 
 public class ConstructProofKnowDiscLogTest extends TestBase
 		implements ProofKnowDiscLogTestData {
 
-	@Tested
+	@InjectMocks
 	ConstructProofKnowDiscLog constructProofKnowDiscLog;
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
 
 	@Test

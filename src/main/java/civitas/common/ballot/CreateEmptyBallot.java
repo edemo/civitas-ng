@@ -1,11 +1,14 @@
 package civitas.common.ballot;
 
-import civitas.common.ballotdesign.CalculateBallotLength;
-import civitas.util.Use;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import civitas.common.ballotdesign.CalculateBallotLength;
+
+@Service
 public class CreateEmptyBallot {
 
-	@Use
+	@Autowired
 	CalculateBallotLength calculateBallotLength;
 
 	public Ballot apply(int numCandidates) {

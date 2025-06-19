@@ -7,13 +7,13 @@ import java.security.spec.InvalidKeySpecException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.util.Tested;
 
 class PrivatekeyFromFileTest extends TestBase implements PrivateKeyTestData {
 
-	@Tested
+	@InjectMocks
 	PrivatekeyFromFile privatekeyFromFile;
 
 	@Test

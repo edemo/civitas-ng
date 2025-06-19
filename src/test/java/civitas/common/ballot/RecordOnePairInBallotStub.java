@@ -1,6 +1,6 @@
 package civitas.common.ballot;
 
-import civitas.util.DI;
+import civitas.DI;
 
 public class RecordOnePairInBallotStub {
 	public static RecordOnePairInBallot stub() {

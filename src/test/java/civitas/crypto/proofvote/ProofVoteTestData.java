@@ -2,13 +2,13 @@ package civitas.crypto.proofvote;
 
 import java.util.Map;
 
+import civitas.DI;
 import civitas.common.ConstructTestData;
 import civitas.common.Util;
 import civitas.common.ballot.BallotTestData;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 import civitas.util.CivitasBigInteger;
-import civitas.util.DI;
 
 public interface ProofVoteTestData
 		extends ElGamal1OfLReencryptionTestData, BallotTestData {

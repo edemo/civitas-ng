@@ -2,15 +2,18 @@ package civitas.crypto.sharedkeyciphertext;
 
 import javax.crypto.Cipher;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.external.DoCrypto;
 import civitas.crypto.sharedkey.SharedKey;
 import civitas.crypto.sharedkeymsg.SharedKeyMsg;
-import civitas.util.Use;
 
+@Service
 public class EncryptShared implements Constants {
-	@Use
+	@Autowired
 	DoCrypto doCrypto;
 
 	public SharedKeyCiphertext apply(SharedKey key, SharedKeyMsg msg)

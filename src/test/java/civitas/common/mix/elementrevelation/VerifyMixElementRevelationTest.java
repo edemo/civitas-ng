@@ -5,6 +5,7 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.mix.capabilitymix.CapabilityMixTestData;
@@ -12,14 +13,13 @@ import civitas.common.mix.capabilitymixrevelation.MixCapabilityElementRevelation
 import civitas.common.mix.voteelementrevelation.MixVoteElementRevelationTestData;
 import civitas.common.mix.votemix.VoteMixTestData;
 import civitas.crypto.publickey.ElGamalPublicKeyTestData;
-import civitas.util.Tested;
 
 class VerifyMixElementRevelationTest extends TestBase
 		implements ElGamalPublicKeyTestData, MixCapabilityElementRevelationTestData,
 		CapabilityMixTestData, MixVoteElementRevelationTestData, VoteMixTestData,
 		MixElementRevelationTestData {
 
-	@Tested
+	@InjectMocks
 	VerifyMixElementRevelation verifyMixElementRevelation;
 
 	@Test

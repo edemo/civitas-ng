@@ -5,14 +5,14 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.votersubmission.VoterSubmissionTestData;
-import civitas.util.Tested;
 
 class EncryptChoiceTest extends TestBase implements VoterSubmissionTestData {
 
-	@Tested
+	@InjectMocks
 	EncryptChoice encryptChoice;
 
 	@DisplayName("encrypts the choice for the ballot\n"

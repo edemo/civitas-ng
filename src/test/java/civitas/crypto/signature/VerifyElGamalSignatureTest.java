@@ -4,19 +4,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.messagedigest.CryptoHash;
-import civitas.util.Tested;
-import civitas.util.Use;
 
 public class VerifyElGamalSignatureTest extends TestBase
 		implements ElGamalCiphertextTestData {
-	@Tested
+	@InjectMocks
 	VerifyElGamalSignature verifyElGamalSignature;
 
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
 
 	@Test

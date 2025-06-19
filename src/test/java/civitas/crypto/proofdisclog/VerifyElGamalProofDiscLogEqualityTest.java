@@ -8,15 +8,15 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.util.Tested;
 
 public class VerifyElGamalProofDiscLogEqualityTest extends TestBase
 		implements ElGamalProofDiscLogEqualityTestData {
 
-	@Tested
+	@InjectMocks
 	VerifyElGamalProofDiscLogEquality verifyElGamalProofDiscLogEquality;
 
 	@Test

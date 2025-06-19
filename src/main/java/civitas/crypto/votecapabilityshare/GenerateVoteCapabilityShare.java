@@ -1,18 +1,21 @@
 package civitas.crypto.votecapabilityshare;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.msg.EncodeMessage;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class GenerateVoteCapabilityShare {
 
-	@Use
+	@Autowired
 	GenerateRandomElement generateRandomElement;
-	@Use
+	@Autowired
 	EncodeMessage encodeMessage;
 
 	public VoteCapabilityShare apply(ElGamalParameters p) throws CryptoError {

@@ -3,8 +3,11 @@ package civitas.crypto.rsapublickey;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 
+@Service
 public class ObtainRSASigner implements Constants {
 
 	public java.security.Signature apply()

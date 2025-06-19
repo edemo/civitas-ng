@@ -1,14 +1,17 @@
 package civitas.crypto.decriptionshare;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.proofdisclog.VerifyElGamalProofDiscLogEquality;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.util.Use;
 
+@Service
 public class VerifyElGamalDecryptionShare {
 
-	@Use
+	@Autowired
 	public VerifyElGamalProofDiscLogEquality verifyElGamalProofDiscLogEquality;
 
 	public boolean apply(ElGamalDecryptionShare that, ElGamalCiphertext c,

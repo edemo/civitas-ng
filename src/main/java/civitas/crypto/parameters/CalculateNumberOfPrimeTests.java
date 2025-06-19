@@ -1,5 +1,8 @@
 package civitas.crypto.parameters;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CalculateNumberOfPrimeTests {
 	int apply(int pLength) {
 		int k = (int) Math.ceil(Math.log(pLength) / Math.log(2));

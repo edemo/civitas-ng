@@ -1,14 +1,17 @@
 package civitas.crypto.keyshare;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoException;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class CombineKeyShares implements Constants {
-	@Use
+	@Autowired
 	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
 	public ElGamalPublicKey apply(ElGamalKeyShare[] shares)

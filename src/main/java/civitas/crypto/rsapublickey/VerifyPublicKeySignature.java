@@ -1,16 +1,19 @@
 package civitas.crypto.rsapublickey;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.signature.Signature;
-import civitas.util.Use;
 
+@Service
 public class VerifyPublicKeySignature implements Constants {
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
-	@Use
+	@Autowired
 	ObtainRSASigner obtainRSASigner;
 
 	public boolean apply(PublicKey K, Signature s, PublicKeyMsg msg)

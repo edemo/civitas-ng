@@ -4,17 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Tested;
 
 public class CombineDecryptionSharesTest extends TestBase
 		implements ElGamalDecryptionShareTestData, ElGamalCiphertextTestData {
 
-	@Tested
+	@InjectMocks
 	CombineDecryptionShares combineDecryptionShares;
 
 	@Test

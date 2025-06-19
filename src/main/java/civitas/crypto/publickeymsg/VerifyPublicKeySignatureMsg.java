@@ -1,12 +1,15 @@
 package civitas.crypto.publickeymsg;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.rsapublickey.PublicKey;
 import civitas.crypto.rsapublickey.VerifyPublicKeySignature;
 import civitas.crypto.signature.Signature;
-import civitas.util.Use;
 
+@Service
 public class VerifyPublicKeySignatureMsg {
-	@Use
+	@Autowired
 	VerifyPublicKeySignature verifyPublicKeySignature;
 
 	public PublicKeyMsg apply(PublicKey K, Signature s, PublicKeyMsg msg) {

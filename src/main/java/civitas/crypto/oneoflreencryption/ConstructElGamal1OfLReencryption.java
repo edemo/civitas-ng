@@ -1,5 +1,8 @@
 package civitas.crypto.oneoflreencryption;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.ciphertextlist.CiphertextList;
@@ -7,13 +10,13 @@ import civitas.crypto.proof1ofl.ConstructElGamalProof1OfL;
 import civitas.crypto.proof1ofl.ElGamalProof1OfL;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.util.Use;
 
+@Service
 public class ConstructElGamal1OfLReencryption {
 
-	@Use
+	@Autowired
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
-	@Use
+	@Autowired
 	ElGamalReencrypt elGamalReencrypt;
 
 	public ElGamal1OfLReencryption apply(ElGamalPublicKey key,

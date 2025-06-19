@@ -1,16 +1,19 @@
 package civitas.crypto.parameters;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import civitas.crypto.Constants;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Use;
 
+@Service
 public class GenerateElGamalParameters implements Constants {
 
-	@Use
+	@Autowired
 	GenerateSafePrime generateSafePrime;
-	@Use
+	@Autowired
 	GenerateSchnorrPrime generateSchnorrPrime;
-	@Use
+	@Autowired
 	FindGenerator findGenerator;
 
 	public ElGamalParameters apply(int keyLength, int groupLength) {

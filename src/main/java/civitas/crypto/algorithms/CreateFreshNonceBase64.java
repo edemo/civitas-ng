@@ -1,12 +1,14 @@
 package civitas.crypto.algorithms;
 
-import civitas.util.Use;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateFreshNonceBase64 {
 
-	@Use
+	@Autowired
 	CreateFreshNonce createFreshNonce;
-	@Use
+	@Autowired
 	ConvertToBase64 convertToBase64;
 
 	public String apply(int bitlength) {

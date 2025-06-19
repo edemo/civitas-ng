@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import civitas.DI;
 import civitas.common.CommonConstants;
 import civitas.common.ConstructTestData;
 import civitas.common.Util;
@@ -17,7 +18,6 @@ import civitas.crypto.proof1ofl.ElGamalProof1OfL;
 import civitas.crypto.proofdvr.ConstructElGamalProofDVR;
 import civitas.crypto.proofdvr.ElGamalProofDVR;
 import civitas.util.CivitasBigInteger;
-import civitas.util.DI;
 
 public interface ElGamal1OfLReencryptionTestData
 		extends ElGamalCiphertextTestData {

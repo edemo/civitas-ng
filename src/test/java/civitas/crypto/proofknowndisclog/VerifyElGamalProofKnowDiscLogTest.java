@@ -6,19 +6,25 @@ import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import civitas.AppTestConfig;
 import civitas.common.TestBase;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
-import civitas.util.Tested;
-import civitas.util.Use;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = AppTestConfig.class)
 public class VerifyElGamalProofKnowDiscLogTest extends TestBase
 		implements ProofKnowDiscLogTestData {
-	@Tested
+	@InjectMocks
 	VerifyElGamalProofKnowDiscLog verifyElGamalProofKnowDiscLog;
-	@Use
+	@Autowired
 	CryptoHash cryptoHash;
 
 	@Test
