@@ -3,6 +3,7 @@ package civitas.common.encryptedchoice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import civitas.common.VoteChoice;
 import civitas.crypto.CryptoError;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.oneoflreencryption.ConstructElGamal1OfLReencryption;
@@ -20,12 +21,12 @@ public class EncryptChoice {
 	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
 
 	public EncryptedChoice apply(ElGamalPublicKey key, CiphertextList ciphertexts,
-			int[] cbMatrix, int pos) throws CryptoError {
-		int choice = cbMatrix[pos];
+			VoteChoice[] cbMatrix, int pos) throws CryptoError {
+		VoteChoice choice = cbMatrix[pos];
 		ElGamalReencryptFactor encChoiceFactor = generateElGamalReencryptFactor
 				.apply(key.params);
 		ElGamal1OfLReencryption encChoice = constructElGamal1OfLReencryption
-				.apply(key, ciphertexts, 4, choice, encChoiceFactor);
+				.apply(key, ciphertexts, 4, choice.ordinal(), encChoiceFactor);
 		return new EncryptedChoice(encChoiceFactor, encChoice);
 	}
 

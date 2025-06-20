@@ -29,44 +29,7 @@ public class ElectionUtil {
 	/*
 	 * Election statuses
 	 */
-	public static final int STATUS_UNDEFINED = 0;
-	public static final int STATUS_CREATED = 1; // no election details yet
-	public static final int STATUS_DEFINED = 2; // election details, but no teller details
-	public static final int STATUS_INITIALIZED = 3; // teller details and tab teller public key posted
-	public static final int STATUS_STARTED = 4; // voting started
-	public static final int STATUS_STOPPED = 5; // voting stopped
 
-	public static final int STATUS_TABULATED = 6; // all tabulation has finished
-	public static final int STATUS_FINALIZED = 8; // supervisor has posted results
-	public static final int STATUS_ABANDONED = 999; // a teller has posted a reason to abandon
-
-	public static String statusString(int s) {
-		switch (s) {
-		case STATUS_UNDEFINED:
-			return "undefined";
-		case STATUS_CREATED:
-			return "created";
-		case STATUS_DEFINED:
-			return "defined";
-		case STATUS_INITIALIZED:
-			return "initialized";
-		case STATUS_STARTED:
-			return "started";
-		case STATUS_STOPPED:
-			return "stopped";
-
-		case STATUS_TABULATED:
-			return "tabulated";
-		case STATUS_FINALIZED:
-			return "finalized";
-		case STATUS_ABANDONED:
-			return "abandoned";
-
-		default:
-			return "<unknown status>";
-
-		}
-	}
 
 	/**
 	 * Retrieves the election status.

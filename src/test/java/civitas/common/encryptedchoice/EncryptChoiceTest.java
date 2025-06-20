@@ -30,7 +30,7 @@ class EncryptChoiceTest extends TestBase implements VoterSubmissionTestData {
 				.apply(EL_GAMAL_PARAMETERS);
 		verify(encryptChoice.constructElGamal1OfLReencryption).apply(
 				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS,
-				BALLOT.matrix[0], ELGAMAL_REENCRYPT_FACTOR_EPRIME);
+				BALLOT.matrix[0].ordinal(), ELGAMAL_REENCRYPT_FACTOR_EPRIME);
 	}
 
 }

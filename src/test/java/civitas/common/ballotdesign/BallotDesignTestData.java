@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import civitas.common.CommonConstants;
+import civitas.common.VoteChoice;
 import civitas.crypto.BasicValuesTestData;
 import civitas.util.CivitasBigInteger;
 
@@ -31,10 +32,8 @@ public interface BallotDesignTestData
 	Map<Integer, String> CONTEXT_MAP = Map.of(0, CONTEXT_0, 1, CONTEXT_1, 2,
 			CONTEXT_2);
 
-	Map<Integer, Integer> VOTE_CONTENTS_MAP = Map.of(0,
-			CommonConstants.VOTE_CHOICE_I_BEATS_J, 1,
-			CommonConstants.VOTE_CHOICE_NEITHER_BEAT, 2,
-			CommonConstants.VOTE_CHOICE_J_BEATS_I);
+	Map<Integer, VoteChoice> VOTE_CONTENTS_MAP = Map.of(0, VoteChoice.I_BEATS_J,
+			1, VoteChoice.J_BEATS_I, 2, VoteChoice.NEITHER_BEAT);
 
 	byte[] ADDITIONALENV_BYTES = ADDITIONALENV.getBytes();
 

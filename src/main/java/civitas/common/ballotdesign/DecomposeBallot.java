@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import civitas.common.CommonConstants;
+import civitas.common.VoteChoice;
 import civitas.common.ballot.Ballot;
 import civitas.common.capabilityencryption.CapabilityEncryption;
 import civitas.common.capabilityencryption.EncryptCapability;
@@ -45,7 +46,7 @@ public class DecomposeBallot implements CommonConstants {
 		if (key == null) {
 			throw new IllegalArgumentException("No key supplied");
 		}
-		int[] cbMatrix = ballot.matrix;
+		VoteChoice[] cbMatrix = ballot.matrix;
 		int matrixSize = calculateBallotLength.apply(ballot.k);
 		if (ballot.k != that.candidates.length || cbMatrix.length != matrixSize) {
 			throw new IllegalArgumentException(

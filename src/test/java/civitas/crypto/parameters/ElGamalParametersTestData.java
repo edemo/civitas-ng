@@ -1,14 +1,13 @@
 package civitas.crypto.parameters;
 
 import java.util.AbstractMap;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import civitas.common.CommonConstants;
 import civitas.common.Util;
+import civitas.common.VoteChoice;
 import civitas.crypto.BasicValuesTestData;
 import civitas.crypto.Constants;
 import civitas.util.CivitasBigInteger;
@@ -103,20 +102,17 @@ public interface ElGamalParametersTestData extends BasicValuesTestData {
 	public static final CivitasBigInteger D_EXP_TWOK_FROMP = BIGINT_D
 			.modPow(BIGINT_P.subtract(ONE).divide(BIGINT_Q), BIGINT_P);
 
-	List<Integer> CHOICES = new ArrayList<>(
-			CommonConstants.STRING_TO_CHOICE_MAP.values());
-	Map<CivitasBigInteger, Integer> DECODEMAP = CHOICES.stream()
-			.map(x -> new AbstractMap.SimpleEntry<>(
-					CivitasBigInteger.valueOf(x).modMultiply(BIGINT_G, BIGINT_P), x))
+	List<VoteChoice> CHOICES = List.of(VoteChoice.values());
+	Map<CivitasBigInteger, VoteChoice> DECODEMAP = CHOICES.stream()
+			.map(x -> new AbstractMap.SimpleEntry<>(CivitasBigInteger
+					.valueOf(x.ordinal()).modMultiply(BIGINT_G, BIGINT_P), x))
 			.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
 	CivitasBigInteger I_BEATS_J_ENCODED = CivitasBigInteger
-			.valueOf(CommonConstants.VOTE_CHOICE_I_BEATS_J)
-			.modMultiply(BIGINT_G, BIGINT_P);
+			.valueOf(VoteChoice.I_BEATS_J.ordinal()).modMultiply(BIGINT_G, BIGINT_P);
 
 	CivitasBigInteger J_BEATS_I_ENCODED = CivitasBigInteger
-			.valueOf(CommonConstants.VOTE_CHOICE_J_BEATS_I)
-			.modMultiply(BIGINT_G, BIGINT_P);
+			.valueOf(VoteChoice.J_BEATS_I.ordinal()).modMultiply(BIGINT_G, BIGINT_P);
 
 	Integer TWO_INT = 2;
 	CivitasBigInteger TWO_EXP_GROUP_LENGTH = TWO

@@ -22,6 +22,7 @@ import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.Util;
+import civitas.common.VoteChoice;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.algorithms.ConvertToBase64;
 import civitas.crypto.algorithms.CreateFreshNonce;
@@ -340,8 +341,8 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	DecodeChoice decodeChoice;
 
 	@Override
-	public int elGamal1OfLValue(ElGamalMsg m, Map<CivitasBigInteger, Integer> map)
-			throws CryptoException {
+	public VoteChoice elGamal1OfLValue(ElGamalMsg m,
+			Map<CivitasBigInteger, VoteChoice> map) throws CryptoException {
 		return decodeChoice.apply(map, m.m);
 	}
 

@@ -17,6 +17,7 @@ import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Map;
 
+import civitas.common.VoteChoice;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertextlist.CiphertextList;
@@ -163,8 +164,8 @@ public interface CryptoFactory {
 			CiphertextList ciphertexts, int L, int choice,
 			ElGamalReencryptFactor reencryptFactor);
 
-	int elGamal1OfLValue(ElGamalMsg m, Map<CivitasBigInteger, Integer> map)
-			throws CryptoException;
+	VoteChoice elGamal1OfLValue(ElGamalMsg m,
+			Map<CivitasBigInteger, VoteChoice> map) throws CryptoException;
 
 	ProofVote constructProofVote(ElGamalParameters params,
 			ElGamalCiphertextish encCapability, ElGamal1OfLReencryption encChoice,

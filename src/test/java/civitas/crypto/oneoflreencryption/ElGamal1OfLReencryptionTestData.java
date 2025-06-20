@@ -8,9 +8,9 @@ import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
-import civitas.common.CommonConstants;
 import civitas.common.ConstructTestData;
 import civitas.common.Util;
+import civitas.common.VoteChoice;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
@@ -21,43 +21,39 @@ import civitas.util.CivitasBigInteger;
 public interface ElGamal1OfLReencryptionTestData
 		extends ElGamalCiphertextTestData {
 
-	public static final int MY_CHOICE = CommonConstants.VOTE_CHOICE_I_BEATS_J;
+	public static final VoteChoice MY_CHOICE = VoteChoice.I_BEATS_J;
 
 	List<CivitasBigInteger> DS = RANDOMS.subList(0, NO_OF_WELL_KNOWN_CIPHERTEXTS);
 	List<CivitasBigInteger> RS = RANDOMS.subList(NO_OF_WELL_KNOWN_CIPHERTEXTS,
 			NO_OF_WELL_KNOWN_CIPHERTEXTS * 2);
 
 	CivitasBigInteger SUM = DS.stream().reduce(ZERO, (a, b) -> {
-		if (b != DS.get(MY_CHOICE))
+		if (b != DS.get(MY_CHOICE.ordinal()))
 			return a.modAdd(b, BIGINT_Q);
 		return a;
 	});
 
-	List<Integer> VOTE_CHOICES = List.of(CommonConstants.VOTE_CHOICE_I_BEATS_J,
-			CommonConstants.VOTE_CHOICE_J_BEATS_I,
-			CommonConstants.VOTE_CHOICE_NEITHER_BEAT);
-
-	Map<Integer, ElGamalCiphertext> REENCRYPTED_CHOICE_MAP = ConstructTestData
-			.constructTestData(VOTE_CHOICES,
+	Map<VoteChoice, ElGamalCiphertext> REENCRYPTED_CHOICE_MAP = ConstructTestData
+			.constructTestData(CHOICES,
 					(choice) -> new ElGamalCiphertext(
-							CIPHERTEXT_LIST.get(choice).getA()
+							CIPHERTEXT_LIST.get(choice.ordinal()).getA()
 									.modMultiply(BIGINT_G.modPow(FACTOR_E, BIGINT_P), BIGINT_P),
-							CIPHERTEXT_LIST.get(choice).getB()
+							CIPHERTEXT_LIST.get(choice.ordinal()).getB()
 									.modMultiply(PUBKEY_E.modPow(FACTOR_E, BIGINT_P), BIGINT_P)));
 
 	CivitasBigInteger REENCRYPTED_WELL_KNOWN_CHOICE_A = CIPHERTEXT_LIST
-			.get(MY_CHOICE).getA()
+			.get(MY_CHOICE.ordinal()).getA()
 			.modMultiply(BIGINT_G.modPow(FACTOR_E, BIGINT_P), BIGINT_P);
 	CivitasBigInteger REENCRYPTED_WELL_KNOWN_CHOICE_B = CIPHERTEXT_LIST
-			.get(MY_CHOICE).getB()
+			.get(MY_CHOICE.ordinal()).getB()
 			.modMultiply(PUBKEY_E.modPow(FACTOR_E, BIGINT_P), BIGINT_P);
 
 	ElGamalCiphertext REENCRYPTED_WELL_KNOWN_CHOICE = new ElGamalCiphertext(
 			REENCRYPTED_WELL_KNOWN_CHOICE_A, REENCRYPTED_WELL_KNOWN_CHOICE_B);
 
 	CivitasBigInteger w = (FACTOR_E.modNegate(BIGINT_Q)
-			.modMultiply(DS.get(MY_CHOICE), BIGINT_Q))
-			.modAdd(RS.get(MY_CHOICE), BIGINT_Q);
+			.modMultiply(DS.get(MY_CHOICE.ordinal()), BIGINT_Q))
+			.modAdd(RS.get(MY_CHOICE.ordinal()), BIGINT_Q);
 
 	List<CivitasBigInteger> EL_GAMAL_PROOF_1_OF_L_AS = IntStream
 			.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS).mapToObj(i -> {
@@ -101,19 +97,19 @@ public interface ElGamal1OfLReencryptionTestData
 
 	public static final List<CivitasBigInteger> DVS = ((Supplier<List<CivitasBigInteger>>) () -> {
 		List<CivitasBigInteger> d = new ArrayList<>(DS);
-		d.set(MY_CHOICE, EL_GAMAL_PROOF_1_OF_L_DV);
+		d.set(MY_CHOICE.ordinal(), EL_GAMAL_PROOF_1_OF_L_DV);
 		return d;
 	}).get();
 
 	public static final List<CivitasBigInteger> RVS = ((Supplier<List<CivitasBigInteger>>) () -> {
 		List<CivitasBigInteger> r = new ArrayList<>(RS);
-		r.set(MY_CHOICE, EL_GAMAL_PROOF_1_OF_L_RV);
+		r.set(MY_CHOICE.ordinal(), EL_GAMAL_PROOF_1_OF_L_RV);
 		return r;
 	}).get();
 
 	public static final List<CivitasBigInteger> DVS_BAD = ((Supplier<List<CivitasBigInteger>>) () -> {
 		List<CivitasBigInteger> d = new ArrayList<>(DVS);
-		d.set(MY_CHOICE, BIGINT_D);
+		d.set(MY_CHOICE.ordinal(), BIGINT_D);
 		return d;
 	}).get();
 
@@ -130,23 +126,23 @@ public interface ElGamal1OfLReencryptionTestData
 	public static final ElGamal1OfLReencryption EL_GAMAL_1_OF_L_REENCRYPTION = new ElGamal1OfLReencryption(
 			REENCRYPTED_WELL_KNOWN_CHOICE, EL_GAMAL_PROOF_1_OF_L);
 
-	Map<Integer, ElGamalProof1OfL> EL_GAMAL_PROOF_1_OF_L_MAP = ConstructTestData
-			.constructTestData(VOTE_CHOICES,
+	Map<VoteChoice, ElGamalProof1OfL> EL_GAMAL_PROOF_1_OF_L_MAP = ConstructTestData
+			.constructTestData(CHOICES,
 					(i) -> new ElGamalProof1OfL(NO_OF_WELL_KNOWN_CIPHERTEXTS,
 							DVS.stream().map(x -> {
-								if (DVS.indexOf(x) == i)
+								if (DVS.indexOf(x) == i.ordinal())
 									return mock(CivitasBigInteger.class, "dvs" + i);
 								else
 									return x;
 							}).toList().toArray(new CivitasBigInteger[0]),
 							RVS.stream().map(x -> {
-								if (RVS.indexOf(x) == i)
+								if (RVS.indexOf(x) == i.ordinal())
 									return mock(CivitasBigInteger.class, "rvs" + i);
 								else
 									return x;
 							}).toList().toArray(new CivitasBigInteger[0])));
-	Map<Integer, ElGamal1OfLReencryption> EL_GAMAL_1_OF_L_REENCRYPTION_MAP = ConstructTestData
-			.constructTestData(VOTE_CHOICES,
+	Map<VoteChoice, ElGamal1OfLReencryption> EL_GAMAL_1_OF_L_REENCRYPTION_MAP = ConstructTestData
+			.constructTestData(CHOICES,
 					(choice) -> new ElGamal1OfLReencryption(
 							REENCRYPTED_CHOICE_MAP.get(choice),
 							EL_GAMAL_PROOF_1_OF_L_MAP.get(choice)));

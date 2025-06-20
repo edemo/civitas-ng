@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import civitas.common.CommonConstants;
+import civitas.common.VoteChoice;
 import civitas.common.tallystate.RecordBeat;
 import civitas.common.tallystate.TallyState;
 import civitas.crypto.CryptoException;
@@ -23,7 +24,8 @@ public class TallyVote implements CommonConstants {
 
 	public void apply(String additionalcontext, ElGamalMsg msg,
 			String currentcontext, TallyState state,
-			Map<CivitasBigInteger, Integer> decodeMap) throws IllegalArgumentException
+			Map<CivitasBigInteger, VoteChoice> decodeMap)
+			throws IllegalArgumentException
 
 	{
 
@@ -37,16 +39,16 @@ public class TallyVote implements CommonConstants {
 		}
 
 		try {
-			int choice = decodeChoice.apply(decodeMap, msg.m);
+			VoteChoice choice = decodeChoice.apply(decodeMap, msg.m);
 			String suffix = currentcontext.substring(desiredContext.length());
 			int ind = suffix.indexOf(':');
 			try {
 				int i = Integer.parseInt(suffix.substring(0, ind));
 				int j = Integer.parseInt(suffix.substring(ind + 1));
-				if (choice == VOTE_CHOICE_I_BEATS_J) {
+				if (choice == VoteChoice.I_BEATS_J) {
 					recordBeat.apply(state, i, j);
 				}
-				if (choice == VOTE_CHOICE_J_BEATS_I) {
+				if (choice == VoteChoice.J_BEATS_I) {
 					recordBeat.apply(state, j, i);
 				}
 

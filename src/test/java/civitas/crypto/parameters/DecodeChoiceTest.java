@@ -7,8 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
-import civitas.common.CommonConstants;
 import civitas.common.TestBase;
+import civitas.common.VoteChoice;
 import civitas.crypto.CryptoException;
 
 public class DecodeChoiceTest extends TestBase
@@ -20,7 +20,7 @@ public class DecodeChoiceTest extends TestBase
 	@Test
 	@DisplayName("decodes the original message based on the message value")
 	void test() throws CryptoException {
-		assertEquals(CommonConstants.VOTE_CHOICE_I_BEATS_J,
+		assertEquals(VoteChoice.I_BEATS_J,
 				decodeChoice.apply(DECODEMAP, I_BEATS_J_ENCODED));
 	}
 

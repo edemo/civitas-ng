@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import civitas.common.CommonConstants;
+import civitas.common.VoteChoice;
 import civitas.common.ballotdesign.BallotDesign;
 import civitas.common.ballotdesign.CalculatePositionInBallot;
 import civitas.common.verifiablevote.VerifiableVote;
@@ -53,7 +54,7 @@ public class CheckVoterSubmission implements CommonConstants {
 				}
 
 				if (!verifyVerifiableVote.apply(vv, pubKey, ciphertexts,
-						MAX_POSSIBLE_CHOICES)) {
+						VoteChoice.values().length + 1)) {
 					throw new IllegalArgumentException(
 							"Vote choice odes not pass verification.");
 				}

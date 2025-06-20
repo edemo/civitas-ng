@@ -3,6 +3,7 @@ package civitas.common.ballot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import civitas.common.VoteChoice;
 import civitas.common.ballotdesign.CalculateBallotLength;
 
 @Service
@@ -16,7 +17,7 @@ public class CreateEmptyBallot {
 			throw new IllegalArgumentException(
 					"A ballot must contain at least one candidate and none of above");
 		int size = calculateBallotLength.apply(numCandidates);
-		int[] matrix = new int[size];
+		VoteChoice[] matrix = new VoteChoice[size];
 		return new Ballot(size, matrix);
 	}
 

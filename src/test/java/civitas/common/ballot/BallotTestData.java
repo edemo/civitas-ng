@@ -1,26 +1,27 @@
 package civitas.common.ballot;
 
 import civitas.common.CommonConstants;
+import civitas.common.VoteChoice;
 
 public interface BallotTestData extends CommonConstants {
 
-	Ballot BALLOT_EMPTY = new Ballot(3, new int[3]);
+	Ballot BALLOT_EMPTY = new Ballot(3, new VoteChoice[3]);
 
 	Ballot BALLOT_ONE_RECORD = new Ballot(3,
-			new int[] { 0, VOTE_CHOICE_I_BEATS_J, 0 });
+			new VoteChoice[] { null, VoteChoice.I_BEATS_J, null });
 
 	int VOTER_BLOCK = 3;
 	int NUM_CANDIDATES = 3;
 	Ballot BALLOT = new Ballot(NUM_CANDIDATES,
-			new int[] {
-					VOTE_CHOICE_I_BEATS_J,
-					VOTE_CHOICE_J_BEATS_I,
-					VOTE_CHOICE_NEITHER_BEAT });
+			new VoteChoice[] {
+					VoteChoice.I_BEATS_J,
+					VoteChoice.J_BEATS_I,
+					VoteChoice.NEITHER_BEAT });
 
 	Ballot BALLOT_SHORT_MATRIX = new Ballot(NUM_CANDIDATES,
-			new int[] { VOTE_CHOICE_I_BEATS_J, VOTE_CHOICE_J_BEATS_I });
+			new VoteChoice[] { VoteChoice.I_BEATS_J, VoteChoice.J_BEATS_I });
 
 	Ballot BALLOT_2_CANDIDATES = new Ballot(2,
-			new int[] { VOTE_CHOICE_I_BEATS_J });
+			new VoteChoice[] { VoteChoice.I_BEATS_J });
 
 }

@@ -4,15 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import civitas.common.VoteChoice;
 import civitas.util.CivitasBigInteger;
 
 public class SetUpDecodeMap {
 
-	public Map<CivitasBigInteger, Integer> apply(List<Integer> choices,
+	public Map<CivitasBigInteger, VoteChoice> apply(List<VoteChoice> choices,
 			ElGamalParameters params) {
-		Map<CivitasBigInteger, Integer> map = new HashMap<>();
-		choices.forEach(x -> map
-				.put(CivitasBigInteger.valueOf(x).modMultiply(params.g, params.p), x));
+		Map<CivitasBigInteger, VoteChoice> map = new HashMap<>();
+		choices.forEach(x -> map.put(
+				CivitasBigInteger.valueOf(x.ordinal()).modMultiply(params.g, params.p),
+				x));
 		return map;
 	}
 
