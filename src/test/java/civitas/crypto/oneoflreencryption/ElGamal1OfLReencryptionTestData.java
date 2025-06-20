@@ -193,6 +193,8 @@ public interface ElGamal1OfLReencryptionTestData
 	ElGamalProofDVR[] PROOFS = PROOF_LIST.toArray(new ElGamalProofDVR[0]);
 
 	ElGamalProofDVR[] PROOFS_CAP_NONVERIFY = PROOF_LIST.stream()
-			.map(x -> new ElGamalProofDVR(x.eprime, x.eprime, x.c, x.w, x.r, x.u))
+			.map(x -> new ElGamalProofDVR(
+					POSTED_CAPABILITIES_NONVERIFY[PROOF_LIST.indexOf(x)], x.eprime, x.c,
+					x.w, x.r, x.u))
 			.toList().toArray(new ElGamalProofDVR[0]);
 }
