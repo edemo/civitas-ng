@@ -10,8 +10,7 @@ import lombok.Data;
 
 @Data
 public class BulletinBoardID implements BulletinBoardIDish {
-	public final String host;
-	public final int port;
 	public final String id;
+	public final String uriBase;
 
 }

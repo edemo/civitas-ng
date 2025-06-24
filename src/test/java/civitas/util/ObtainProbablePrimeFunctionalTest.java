@@ -19,7 +19,7 @@ import civitas.crypto.parameters.ElGamalParametersTestData;
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-public class ObtainProbablePrimeTest extends TestBase
+public class ObtainProbablePrimeFunctionalTest extends TestBase
 		implements ElGamalParametersTestData {
 
 	@Autowired

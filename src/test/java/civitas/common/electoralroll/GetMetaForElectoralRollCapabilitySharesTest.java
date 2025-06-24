@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 import civitas.common.TestBase;
 
 class GetMetaForElectoralRollCapabilitySharesTest extends TestBase
-		implements ElectoralRollTestData {
+		implements ElectoralRollCapabilitySharesTestData {
 
 	@InjectMocks
 	GetMetaForElectoralRollCapabilityShares getMetaForElectoralRollCapabilityShares;

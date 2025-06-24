@@ -21,7 +21,7 @@ class PublicKeyFromFileTest extends TestBase implements PublicKeyTestData {
 	@Test
 	void test()
 			throws FileNotFoundException, IOException, InvalidKeySpecException {
-		assertEquals(PUBLIC_KEY, publicKeyFromFile.apply("public_key.xml"));
+		assertEquals(PUBLIC_KEY, publicKeyFromFile.apply(PUBLIC_KEY_FILE));
 	}
 
 }

@@ -15,10 +15,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import civitas.crypto.Constants;
+import jakarta.persistence.Embeddable;
 
 @Boilerplate
 @JsonSerialize(using = CivitasBigIntegerSerializer.class)
 @JsonDeserialize(using = CivitasBigIntegerDeserializer.class)
+@Embeddable
 public class CivitasBigInteger implements Constants {
 
 	public final BigInteger i;
@@ -162,16 +164,8 @@ public class CivitasBigInteger implements Constants {
 		return i.hashCode();
 	}
 
-	/*
-	 * Cache the byte array. Rely on no-one changing it.
-	 */
-	private byte[] byteArray = null;
-
 	public byte[] toByteArray() {
-		if (byteArray == null) {
-			byteArray = i.toByteArray();
-		}
-		return byteArray;
+		return i.toByteArray();
 	}
 
 	@Autowired

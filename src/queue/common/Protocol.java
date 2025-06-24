@@ -14,54 +14,6 @@ import jif.util.*;
  * this class are used to send and receive data over a communication channel.
  */
 public abstract class Protocol {
-    protected final void protocolOutputString{}(PrintStream[{}]{} output, String{} s) throws (IOException{})  {
-        String m = s==null?"":s;
-        if (output == null) return;
-        int len = m.length();
-        output.println(len);
-        output.print(m);
-    }
-    protected final void protocolOutputString{}(PrintWriter[{}]{} output, String{} s) throws (IOException{})  {
-        String m = s==null?"":s;
-        if (output == null) return;
-        int len = m.length();
-        output.println(len);
-        output.print(m);
-    }
-    protected final String protocolInputString{}(BufferedReader[{}]{} input) throws (IOException{})  {
-        if (input == null) return null;
-
-        int response_length = -1;
-        try {
-            response_length = Integer.parseInt(input.readLine());
-        }
-        catch (NumberFormatException e) {
-            throw new IOException(e.getMessage());
-        }
-        char{}[] responseArr = new char[response_length<0?0:response_length];
-        int ind = 0;
-        while (ind < response_length) {
-            int charsRead = input.read(responseArr, ind, response_length - ind);
-            if (charsRead == -1) throw new IOException("Unexpected end of stream");
-            ind += charsRead;
-            if (ind < response_length) {
-                // read a single char (which will block), to prevent a busy waiting loop
-                int ch = input.read();
-                if (ch == -1)  throw new IOException("Unexpected end of stream");
-                try {
-                    responseArr[ind++] = (char)ch;
-                }
-                catch (ArrayIndexOutOfBoundsException imposs) { }
-            }
-            
-        }
-        String response = null;
-        try {
-            response = new String(responseArr);
-        }
-        catch (NullPointerException impossible) { }
-        return response;
-    }
     private static final String SENTINAL = "**>>CIVITASSENTINAL<<**";
     protected final void protocolOutputSentinal{}(PrintStream[{}]{} output) throws (IOException{})  {
         if (output != null) output.print(SENTINAL);

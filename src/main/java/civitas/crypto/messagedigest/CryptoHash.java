@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import civitas.bboard.common.BBPost;
 import civitas.crypto.CryptoBase;
 import civitas.crypto.CryptoError;
 import civitas.crypto.publickeymsg.PublicKeyMsg;
@@ -57,11 +58,26 @@ public class CryptoHash {
 		return md.md.digest();
 	}
 
+	public byte[] apply(byte[] a, byte[] b) throws CryptoError {
+		MessageDigest md = cryptoBase.messageDigest;
+		if (a != null)
+			md.md.update(a);
+		md.md.update(b);
+		return md.md.digest();
+	}
+
 	public byte[] apply(byte[] a, int i) {
 		MessageDigest md = cryptoBase.messageDigest;
 		md.md.update(a);
 		byte[] dword = intToBytes(i);
 		md.md.update(dword);
+		return md.md.digest();
+	}
+
+	public byte[] apply(BBPost post, byte[] b) {
+		MessageDigest md = cryptoBase.messageDigest;
+		md.md.update(post.sig.signature);
+		md.md.update(b);
 		return md.md.digest();
 	}
 

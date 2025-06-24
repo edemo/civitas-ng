@@ -1,6 +1,9 @@
 package civitas.common.votersubmission;
 
-public class getMetaForVoterSubmission {
+import org.springframework.stereotype.Service;
+
+@Service
+public class GetMetaForVoterSubmission {
 
 	@Deprecated
 	public final String apply(int voterBlock) {

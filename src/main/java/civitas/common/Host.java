@@ -6,13 +6,14 @@
  */
 package civitas.common;
 
-import civitas.crypto.rsapublickey.PublicKey;
+import jakarta.persistence.Embeddable;
 import lombok.Data;
 
 @Data
+@Embeddable
 public class Host {
-	public final String address;
-	public final int port;
-	public final PublicKey publicKey;
+	final ServerRole role;
+	final String Urlbase;
+	final String publicKey;
 
 }

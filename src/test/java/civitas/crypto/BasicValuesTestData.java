@@ -94,5 +94,6 @@ public interface BasicValuesTestData extends Constants {
 			.asBigint(BIGINT_C_BASE64);
 	public static final CivitasBigInteger BIGINT_D = Util
 			.asBigint(BIGINT_D_BASE64);
+	String AUTHENTICATION_NONCE = "auth nonce";
 
 }

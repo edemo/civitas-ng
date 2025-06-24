@@ -1,6 +1,13 @@
 package civitas.common;
 
 public interface CommonConstants {
+
+	public static final int ELECTION_ID_LENGTH = 32;
+
+	public final static String BoardClosedContentCommitmentMETA = "boardContents";
+	String ElectionEventMETA = "electionevent";
+	String CiphertextListMETA = "ciphertextList";
+
 	String CondorcetBallotOPENING_TAG = "ballot";
 	String BallotDesignOPENING_TAG = "ballotDesign";
 	String VerifiableVoteOPENING_TAG = "verifiableVote";

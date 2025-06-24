@@ -14,7 +14,6 @@ import civitas.crypto.ciphertext.ElGamalCiphertextish;
 
 public class CiphertextList extends ArrayList<ElGamalCiphertextish> {
 	private static final long serialVersionUID = 1L;
-	public final static String META = "ciphertextList";
 
 	public CiphertextList(List<ElGamalCiphertext> list) {
 		super(list);

@@ -7,10 +7,14 @@
 package civitas.common.board;
 
 import io.micrometer.common.lang.NonNull;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embeddable;
 import lombok.Data;
 
 @Data
+@Embeddable
 public class BoardsForTabulation {
 	@NonNull
+	@ElementCollection
 	public final BoardClosedContentCommitment[] contentComs;
 }

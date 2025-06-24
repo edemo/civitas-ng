@@ -15,6 +15,7 @@ public interface ElGamalPrivateKeyTestData extends ElGamalParametersTestData {
 	public static final ElGamalPrivateKey EL_GAMAL_PRIVATE_KEY_C = new ElGamalPrivateKey(
 			BIGINT_C, EL_GAMAL_PARAMETERS);
 
+	String EL_GAMAL_PRIVATE_KEY_FILE = "el_gamal_private_key.xml";
 	public static final String EL_GAMAL_PRIVATE_KEY_E_XML = "<ElGamalPrivateKey><params>"
 			+ EL_GAMAL_PARAMETERS_XML + "</params><x>" + BIGINT_A_BASE64
 			+ "</x></ElGamalPrivateKey>";

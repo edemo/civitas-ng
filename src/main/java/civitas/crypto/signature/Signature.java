@@ -6,10 +6,12 @@
  */
 package civitas.crypto.signature;
 
+import jakarta.persistence.Embeddable;
 import lombok.Data;
 import lombok.NonNull;
 
 @Data
+@Embeddable
 public class Signature {
 	@NonNull
 	public final byte[] signature;

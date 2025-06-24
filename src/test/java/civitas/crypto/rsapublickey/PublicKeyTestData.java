@@ -1,6 +1,10 @@
 package civitas.crypto.rsapublickey;
 
-import civitas.common.TestUtil;
+import static org.mockito.Mockito.mock;
+
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
+
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 
 public interface PublicKeyTestData extends PrivateKeyTestData {
@@ -8,15 +12,17 @@ public interface PublicKeyTestData extends PrivateKeyTestData {
 
 	public static final String PUBLIC_KEY2_BASE64 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4QraOxcThCsATxuHzTSiVLDsJ++ddk7AAw/8qB6vjMT0/MKbBlVoJyg7innrc2BhH1PLZCGrinOCRDJHoFN4xm/k54JY/6oNEtXmg6xuaMMiaMjQdfTh8WfgU6p/oKhXp6Oo/PfW0zjJqyK9qOOiFWbQRXf2mqg+amDo/ol5K+2Tl+C7fy3hi8r78kUFDmgflnW9amYtPt5mT+wz95hJ994tiQfoVWVD0i5HksJoxW2t0QL3lqCfDcrRTLTGQ/EbuXJbinJDaiA0NunmYYR/lEVOr613PmGxmBsPPEfO1uQpZwhZbNd0SaJVNOzKGQwbs7xY4vUZIQ1tgub4+owdEQIDAQAB";
 
-	public static final String PUBLIC_KEY_NAME = "alice";
-	public static final String PUBLIC_KEY_NAME2 = "bob";
+	java.security.PublicKey PUBLIC_KEY_JS = mock(java.security.PublicKey.class);
+	java.security.PublicKey PUBLIC_KEY_JS2 = mock(java.security.PublicKey.class);
 
-	public static final PublicKey PUBLIC_KEY = TestUtil
-			.generatePublic(PUBLIC_KEY_BASE64, PUBLIC_KEY_NAME);
-	public static final PublicKey PUBLIC_KEY2 = TestUtil
-			.generatePublic(PUBLIC_KEY2_BASE64, PUBLIC_KEY_NAME2);
-	public static final String PUBLIC_KEY_XML = "<publicKey><name>"
-			+ PUBLIC_KEY_NAME + "</name><key>" + PUBLIC_KEY_BASE64
-			+ "</key></publicKey>";
+	PublicKey PUBLIC_KEY = new PublicKey(PUBLIC_KEY_JS, KEY_NAME);
+	PublicKey PUBLIC_KEY2 = new PublicKey(PUBLIC_KEY_JS2, KEY_NAME2);
+	String PUBLIC_KEY_FILE = "public_key.xml";
+
+	X509EncodedKeySpec KEYSPEC_PUBLIC = new X509EncodedKeySpec(
+			Base64.getDecoder().decode(PUBLIC_KEY_BASE64));
+
+	public static final String PUBLIC_KEY_XML = "<publicKey><name>" + KEY_NAME
+			+ "</name><key>" + PUBLIC_KEY_BASE64 + "</key></publicKey>";
 
 }

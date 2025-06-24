@@ -8,16 +8,22 @@ import java.util.Base64;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import civitas.AppTestConfig;
 import civitas.common.TestBase;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 
 @Tag("functional")
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = AppTestConfig.class)
 public class CryptoHashFunctionalTest extends TestBase
 		implements MessageDigestTestData, ElGamalSignedCiphertextTestData {
 
-	@InjectMocks
+	@Autowired
 	CryptoHash cryptoHash;
 
 	@Test

@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import java.util.Base64;
 
 import civitas.common.electionresults.TellerTestData;
+import civitas.common.electoralroll.ElectoralRollCapabilitySharesTestData;
 import civitas.common.mix.capabilitymixrevelation.MixCapabilityElementRevelationTestData;
 import civitas.common.tabteller.TabTellerKeyShareTestData;
 import civitas.common.votercapabilitysharesandproofs.VoterCapabilitySharesAndProofTestData;
@@ -16,14 +17,17 @@ import civitas.crypto.proofknowndisclog.ProofKnowDiscLogTestData;
 import civitas.crypto.proofvote.ProofVoteTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 
-public class CryptoHashStub implements ElGamalProofDiscLogEqualityTestData,
-		ProofVoteTestData, VoterCapabilitySharesAndProofTestData,
-		TabTellerKeyShareTestData, ElGamalProofDVRTestData, PETCommitmentTestData,
-		ProofKnowDiscLogTestData, MixCapabilityElementRevelationTestData,
-		TellerTestData, ElGamalSignedCiphertextTestData {
+public class CryptoHashStub
+		implements ElGamalProofDiscLogEqualityTestData, ProofVoteTestData,
+		VoterCapabilitySharesAndProofTestData, TabTellerKeyShareTestData,
+		ElGamalProofDVRTestData, PETCommitmentTestData, ProofKnowDiscLogTestData,
+		MixCapabilityElementRevelationTestData, TellerTestData,
+		ElGamalSignedCiphertextTestData, ElectoralRollCapabilitySharesTestData {
 
 	public static CryptoHash stub() {
 		CryptoHash mock = mock(CryptoHash.class);
+		when(mock.apply(ELECTORAL_ROLL_CAPABILITY_SHARES_XML))
+				.thenReturn(ELECTORAL_ROLL_CAPABILITY_SHARES_XML_HASH);
 		when(mock.apply(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_FOR_HASH))
 				.thenReturn(Base64.getDecoder()
 						.decode(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C_BASE64));
@@ -58,6 +62,11 @@ public class CryptoHashStub implements ElGamalProofDiscLogEqualityTestData,
 		when(mock.apply(EL_GAMAL_SIGNED_CIPHERTEXT_HASH1,
 				EL_GAMAL_SIGNED_CIPHERTEXT_A, EL_GAMAL_SIGNED_CIPHERTEXT_B,
 				ADDITIONALENV_BYTES)).thenReturn(EL_GAMAL_SIGNED_CIPHERTEXT_C);
+		when(mock.apply(BULLETIN_BOARD_ID.getBytes(), BLOCK0_META.getBytes()))
+				.thenReturn(BLOCK0_HASH);
+		when(mock.apply(BULLETIN_BOARD_ID.getBytes(), BLOCK1_META.getBytes()))
+				.thenReturn(BLOCK1_HASH);
+
 		return mock;
 	}
 }

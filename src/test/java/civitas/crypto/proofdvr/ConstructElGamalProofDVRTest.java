@@ -6,30 +6,15 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import civitas.AppTestConfig;
 import civitas.common.TestBase;
-import civitas.crypto.algorithms.ConvertHashToBigInt;
-import civitas.crypto.messagedigest.CryptoHash;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = AppTestConfig.class)
 public class ConstructElGamalProofDVRTest extends TestBase
 		implements ElGamalProofDVRTestData {
 
 	@InjectMocks
 	ConstructElGamalProofDVR constructElGamalProofDVR;
-	@Autowired
-	ConvertHashToBigInt convertHashToBigInt;
-	@Autowired
-	CryptoHash cryptoHash;
-	@Autowired
-	VerifyElGamalProofDVR verifyElGamalProofDVR;
 
 	//@formatter:off
 	@Test

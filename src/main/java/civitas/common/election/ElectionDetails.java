@@ -6,26 +6,47 @@
  */
 package civitas.common.election;
 
+import java.math.BigInteger;
+
 import civitas.common.ballotdesign.BallotDesign;
-import civitas.crypto.parameters.ElGamalParameters;
-import civitas.crypto.rsapublickey.PublicKey;
+import jakarta.persistence.Embeddable;
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
+@Embeddable
 public class ElectionDetails {
-	public final ElectionID electionID;
-	public final PublicKey supervisor;
-	public final PublicKey registrar;
-	public final String name;
-	public final String description;
-	public final String version;
-	public final BallotDesign ballotDesign;
-	public final String startTime;
-	public final String stopTime;
-	public final String finalizeTime;
-	public final ElGamalParameters elGamalParameters;
-	public final int sharedKeyLength;
-	public final int nonceLength;
-	public final int voterAnonymityParam;
+	@NonNull
+	public String electionID;
+	@NonNull
+	public String supervisorPubkey;
+	@NonNull
+	public String registrarPubKey;
+	@NonNull
+	public String name;
+	@NonNull
+	public String description;
+	@NonNull
+	public String version;
+	@NonNull
+	public BallotDesign ballotDesign;
+	@NonNull
+	public String startTime;
+	@NonNull
+	public String stopTime;
+	@NonNull
+	public String finalizeTime;
+	@NonNull
+	public BigInteger elGamalP;
+	@NonNull
+	public BigInteger elGamalQ;
+	@NonNull
+	public BigInteger elGamalG;
+	@NonNull
+	public Integer sharedKeyLength;
+	@NonNull
+	public Integer nonceLength;
+	@NonNull
+	public Integer voterAnonymityParam;
 
 }

@@ -6,16 +6,16 @@
  */
 package civitas.common.ballotdesign;
 
-import java.util.Map;
-
 import civitas.common.CommonConstants;
-import civitas.util.CivitasBigInteger;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embeddable;
 import lombok.Data;
 
 @Data
+@Embeddable
 public class BallotDesign implements CommonConstants {
 
+	@ElementCollection
 	public final String[] candidates;
-	Map<CivitasBigInteger, Integer> decodeMap;
 
 }

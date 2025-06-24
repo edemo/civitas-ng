@@ -6,26 +6,16 @@ import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import civitas.AppTestConfig;
 import civitas.common.TestBase;
-import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = AppTestConfig.class)
 public class VerifyElGamalProofKnowDiscLogTest extends TestBase
 		implements ProofKnowDiscLogTestData {
 	@InjectMocks
 	VerifyElGamalProofKnowDiscLog verifyElGamalProofKnowDiscLog;
-	@Autowired
-	CryptoHash cryptoHash;
 
 	@Test
 	@DisplayName("verify checks that g^r = av^c (mod p)")
@@ -39,7 +29,7 @@ public class VerifyElGamalProofKnowDiscLogTest extends TestBase
 		CivitasBigInteger v = g.modPow(key, p);
 		CivitasBigInteger z = RANDOMS_0;
 		CivitasBigInteger a = g.modPow(z, p);
-		CivitasBigInteger c = cryptoHash.apply(v, a).mod(q);
+		CivitasBigInteger c = EL_GAMAL_PROOF_KNOWN_DISC_LOG_C;
 		CivitasBigInteger r = z.add(c.modMultiply(key, q));
 		assertTrue(verifyElGamalProofKnowDiscLog
 				.apply(new ElGamalProofKnowDiscLog(a, c, r, v), EL_GAMAL_PARAMETERS));

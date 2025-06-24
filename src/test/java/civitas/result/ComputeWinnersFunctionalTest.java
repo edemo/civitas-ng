@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,8 @@ import civitas.common.TestBase;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-class ComputeWinnersTest extends TestBase implements ResultTestData {
+@Tag("functional")
+class ComputeWinnersFunctionalTest extends TestBase implements ResultTestData {
 
 	@Autowired
 	ComputeWinners computeWinners;

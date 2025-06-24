@@ -28,8 +28,10 @@ public class PrivatekeyFromFile {
 		XmlMapper mapper = new XmlMapper();
 		BufferedReader reader = getReaderForFile.apply(keyFile);
 		KeyOnWire valueOnWire = mapper.readValue(reader, KeyOnWire.class);
-		return new PrivateKey(cryptoBase.publicKeyFactory.generatePrivate(
-				new PKCS8EncodedKeySpec(Base64.getDecoder().decode(valueOnWire.key))));
+		java.security.PrivateKey privkey = cryptoBase.publicKeyFactory
+				.generatePrivate(new PKCS8EncodedKeySpec(
+						Base64.getDecoder().decode(valueOnWire.key)));
+		return new PrivateKey(privkey);
 	}
 
 }

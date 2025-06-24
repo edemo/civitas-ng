@@ -6,6 +6,7 @@
  */
 package civitas.crypto.rsapublickey;
 
+import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
+@Embeddable
 public class PublicKey {
 	@NonNull
 	public java.security.PublicKey key;

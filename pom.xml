@@ -14,9 +14,16 @@
      <maven.compiler.source>15</maven.compiler.source>
      <maven.compiler.target>15</maven.compiler.target>
      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-     <spring-version>7.0.0-M6</spring-version>
+     <spring-version>6.2.8</spring-version>
   </properties>
+  
+	
   <dependencies>
+	  <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-jpa</artifactId>
+		    <version>3.5.3</version>
+		</dependency>
 	     <dependency>
 	        <groupId>org.junit.jupiter</groupId>
 	        <artifactId>junit-jupiter-api</artifactId>
@@ -87,9 +94,9 @@
 		    <scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-jpa</artifactId>
-		    <version>3.5.0</version>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-web</artifactId>
+		    <version>${spring-version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>com.h2database</groupId>

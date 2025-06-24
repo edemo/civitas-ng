@@ -20,7 +20,7 @@ class PrivatekeyFromFileTest extends TestBase implements PrivateKeyTestData {
 	@DisplayName("reads an RSA private key from file")
 	void test()
 			throws IllegalArgumentException, IOException, InvalidKeySpecException {
-		assertEquals(PRIVATE_KEY, privatekeyFromFile.apply("rsa_private_key.xml"));
+		assertEquals(PRIVATE_KEY, privatekeyFromFile.apply(PRIVATE_KEY_FILE));
 	}
 
 }

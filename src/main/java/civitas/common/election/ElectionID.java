@@ -7,12 +7,13 @@
 package civitas.common.election;
 
 import civitas.common.board.BulletinBoardIDish;
+import jakarta.persistence.Embeddable;
 import lombok.Data;
 
 @Data
+@Embeddable
 public class ElectionID implements BulletinBoardIDish {
-	public final String host;
-	public final int port;
 	public final String id;
+	public final String uriBase;
 
 }

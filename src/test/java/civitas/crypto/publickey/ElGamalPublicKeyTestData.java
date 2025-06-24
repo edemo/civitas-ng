@@ -21,6 +21,8 @@ public interface ElGamalPublicKeyTestData
 	public static final ElGamalPublicKey EL_GAMAL_PUBLIC_KEY_A_USING_G_OTHER = new ElGamalPublicKey(
 			BIGINT_G_OTHER.modPow(BIGINT_A, BIGINT_P), EL_GAMAL_PARAMETERS_OTHER);
 
+	String EL_GAMAL_PUBLIC_KEY_FILE = "el_gamal_public_key.xml";
+
 	String EL_GAMAL_PUBLIC_KEY_E_XML = "<elGamalPublicKey>" + "<params>"
 			+ EL_GAMAL_PARAMETERS_XML + "</params><y>" + PUBKEY_E_BASE64
 			+ "</y></elGamalPublicKey>";

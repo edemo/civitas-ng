@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,8 +18,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class TestBase {
 	boolean doPrintMockInvocations = false;
 
+	public static List<EnvironmentState> states;
+
 	@BeforeEach
 	public void setUp() {
+		states = List.of();
 		stubUp(this);
 		RandomAnswer.step = 0;
 
@@ -29,6 +33,10 @@ public class TestBase {
 		if (doPrintMockInvocations)
 			printMockInvocations(this);
 		doPrintMockInvocations = false;
+	}
+
+	protected void given(EnvironmentState state) {
+		TestBase.states = List.of(state);
 	}
 
 	public static void printMockInvocations(Object test)
