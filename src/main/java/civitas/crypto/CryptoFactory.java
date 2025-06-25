@@ -38,7 +38,6 @@ import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.proofvote.ProofVote;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.publickeyciphertext.PublicKeyCiphertext;
-import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.rsakeypair.KeyPair;
 import civitas.crypto.rsaprivatekey.PrivateKey;
@@ -51,6 +50,7 @@ import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.votecapability.VoteCapability;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShare;
 import civitas.util.CivitasBigInteger;
+import civitas.util.KeyOnWire;
 
 public interface CryptoFactory {
 
@@ -62,7 +62,7 @@ public interface CryptoFactory {
 	ElGamalPrivateKey egPrivKeyFromFile(String keyFile)
 			throws IllegalArgumentException, FileNotFoundException, IOException;
 
-	PublicKey publicKeyFromFile(String keyFile) throws IllegalArgumentException,
+	KeyOnWire publicKeyFromFile(String keyFile) throws IllegalArgumentException,
 			FileNotFoundException, IOException, InvalidKeySpecException;
 
 	PrivateKey privateKeyFromFile(String keyFile) throws IllegalArgumentException,
@@ -175,9 +175,9 @@ public interface CryptoFactory {
 	/*
 	 * Public Key and shared key encryption
 	 */
-	PublicKeyCiphertext publicKeyEncrypt(PublicKey key, PublicKeyMsg msg);
+	PublicKeyCiphertext publicKeyEncrypt(PublicKey key, String msg);
 
-	PublicKeyMsg publicKeyDecrypt(PrivateKey key, PublicKeyCiphertext ciphertext)
+	String publicKeyDecrypt(PrivateKey key, PublicKeyCiphertext ciphertext)
 			throws CryptoException, UnsupportedEncodingException, CryptoError;
 
 	SharedKeyCiphertext sharedKeyEncrypt(SharedKey key, SharedKeyMsg msg);
@@ -226,20 +226,17 @@ public interface CryptoFactory {
 	/*
 	 * Public key signing operations
 	 */
-	Signature signature(PrivateKey k, PublicKeyMsg m)
+	Signature signature(PrivateKey k, KeyOnWire principal, String msg)
 			throws InvalidKeyException, NoSuchAlgorithmException,
 			NoSuchProviderException, SignatureException, CryptoError;
 
-	boolean publicKeyVerifySignature(PublicKey K, Signature s, PublicKeyMsg m);
-
-	PublicKeyMsg publicKeyVerifySignatureMsg(PublicKey K, Signature s,
-			PublicKeyMsg m);
-
-	Signature signature(PrivateKey k, byte[] bytes)
+	Signature signature(PrivateKey k, KeyOnWire principal, byte[] bytes)
 			throws InvalidKeyException, NoSuchAlgorithmException,
 			NoSuchProviderException, SignatureException, CryptoError;
 
-	boolean publicKeyVerifySignature(PublicKey K, Signature s, byte[] bytes);
+	boolean publicKeyVerifySignature(PublicKey K, Signature s, String m);
+
+	boolean publicKeyVerifySignature(Signature s, byte[] bytes);
 
 	ElGamalMsg elGamalMsg(int m, ElGamalParameters p) throws CryptoException;
 
@@ -247,8 +244,6 @@ public interface CryptoFactory {
 
 	ElGamalKeyShare elGamalKeyShare(ElGamalPublicKey K,
 			ElGamalProofKnowDiscLog proof);
-
-	PublicKeyMsg publicKeyMsg(String m) throws CryptoException;
 
 	SharedKeyMsg sharedKeyMsg(String m) throws CryptoException;
 

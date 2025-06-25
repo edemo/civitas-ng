@@ -17,7 +17,6 @@ import civitas.common.board.BoardClosedContentCommitment;
 import civitas.common.election.ElectionID;
 import civitas.crypto.CryptoBase;
 import civitas.crypto.messagedigest.CryptoHash;
-import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.rsapublickey.PublicKey;
 import civitas.crypto.rsapublickey.VerifyPublicKeySignature;
 import civitas.crypto.signature.Signature;
@@ -47,14 +46,10 @@ public class CloseBoardService {
 		if (numVoterBlocks < 0)
 			throw new IllegalArgumentException("number of voter blocks is negative");
 		Board board = getBoardForId.apply(bbid, true);
-		PublicKey owner = new PublicKey(
-				cryptoBase.publicKeyFactory.generatePublic(
-						new X509EncodedKeySpec(Base64.getDecoder().decode(board.keyData))),
-				board.keyName);
+		PublicKey owner = new PublicKey(cryptoBase.publicKeyFactory.generatePublic(
+				new X509EncodedKeySpec(Base64.getDecoder().decode(board.keyData))));
 
-		boolean res = false;
-		PublicKeyMsg msg = new PublicKeyMsg(bbid);
-		res = verifyPublicKeySignature.apply(owner, sig, msg);
+		boolean res = verifyPublicKeySignature.apply(sig, owner, bbid);
 		if (res) {
 
 			String[] hashes = new String[numVoterBlocks];

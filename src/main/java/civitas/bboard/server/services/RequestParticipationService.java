@@ -36,8 +36,8 @@ public class RequestParticipationService {
 		if (elecDetails == null || elecDetails.electionID == null)
 			return false;
 
-		Optional<ElectionCache> electionCachep = null;
-		// electionCacheRepository.findById(elecDetails.electionID);
+		Optional<ElectionCache> electionCachep = electionCacheRepository
+				.findById(elecDetails.electionID);
 		ElectionCache electionCache;
 		if (electionCachep.isEmpty()) {
 			// FIXME: try to get the election Cache from the master
@@ -47,7 +47,7 @@ public class RequestParticipationService {
 		}
 		if (electionCache.getStatus() != ElectionStatus.DEFINED)
 			return false;
-		// electionCacheRepository.save(electionCache);
+		electionCacheRepository.save(electionCache);
 
 //		postService.apply(elecDetails.electionID, "supervisor",
 //				elecDetails.supervisor);// FIXME is it okay?

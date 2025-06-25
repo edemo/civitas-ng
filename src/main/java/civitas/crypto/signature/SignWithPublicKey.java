@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.crypto.messagedigest.CryptoHash;
-import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.rsaprivatekey.PrivateKey;
 import civitas.crypto.rsapublickey.ObtainRSASigner;
+import civitas.util.KeyOnWire;
 
 @Service
 public class SignWithPublicKey implements Constants {
@@ -22,21 +22,20 @@ public class SignWithPublicKey implements Constants {
 	@Autowired
 	ObtainRSASigner obtainRSASigner;
 
-	public Signature apply(PrivateKey k, PublicKeyMsg msg)
+	public Signature apply(PrivateKey k, KeyOnWire principal, String msg)
 			throws CryptoError, InvalidKeyException, NoSuchAlgorithmException,
 			NoSuchProviderException, SignatureException {
-		PublicKeyMsg mc = msg;
-		byte[] bytes = cryptoHash.apply(mc.m.getBytes());
-		return apply(k, bytes);
+		byte[] bytes = cryptoHash.apply(msg.getBytes());
+		return apply(k, principal, bytes);
 	}
 
-	public Signature apply(PrivateKey k, byte[] bytes)
+	public Signature apply(PrivateKey k, KeyOnWire principal, byte[] bytes)
 			throws CryptoError, NoSuchAlgorithmException, NoSuchProviderException,
 			InvalidKeyException, SignatureException {
 		java.security.Signature sig = obtainRSASigner.apply();
 		sig.initSign(k.k);
 		sig.update(bytes);
-		return new Signature(sig.sign());
+		return new Signature(sig.sign(), principal);
 	}
 
 }

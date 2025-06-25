@@ -6,6 +6,8 @@
  */
 package civitas.crypto.signature;
 
+import civitas.util.KeyOnWire;
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Embeddable;
 import lombok.Data;
 import lombok.NonNull;
@@ -15,5 +17,7 @@ import lombok.NonNull;
 public class Signature {
 	@NonNull
 	public final byte[] signature;
+	@Nonnull
+	KeyOnWire signer;
 
 }

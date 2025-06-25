@@ -2,8 +2,26 @@ package civitas.crypto.signature;
 
 import static org.mockito.Mockito.mock;
 
-public interface SignatureTestData {
+import civitas.crypto.rsapublickey.PublicKeyTestData;
+
+public interface SignatureTestData extends PublicKeyTestData {
 	Signature SIGNATURE_OF_AUTH_NONCE_WITH_KEY = mock(Signature.class);
 	Signature SIGNATURE_OF_AUTH_NONCE_WITH_KEY2 = mock(Signature.class);
+	String BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE_STRINGBASE = "BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE";
+	Signature BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE = new Signature(
+			BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE_STRINGBASE.getBytes(),
+			PUBLIC_KEY_ON_WIRE);
+	Signature BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE_BAD = new Signature(
+			BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE_STRINGBASE.getBytes(),
+			PUBLIC_KEY2_ON_WIRE);
+	Signature BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE_BAD_ACTOR = new Signature(
+			BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE_STRINGBASE.getBytes(),
+			PUBLIC_KEY_UNAUTHORIZED);
+
+	byte[] BOARD_CLOSED__CONTENT_COMMITMENT_SIGNATURE_HASH = "hash of BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE post"
+			.getBytes();
+
+	byte[] BOARD_CLOSED__CONTENT_COMMITMENT_SIGNATURE_HASH_NOPREV = "hash of BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE post with no previous post"
+			.getBytes();
 
 }

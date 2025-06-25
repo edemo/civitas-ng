@@ -22,9 +22,7 @@ public class GenerateKeyPair {
 		java.security.PublicKey pubk = kp.getPublic();
 		java.security.PrivateKey prvk = kp.getPrivate();
 
-		return new KeyPair(
-				new PublicKey(pubk, "keypair-" + createFreshNonceBase64.apply(64)),
-				new PrivateKey(prvk));
+		return new KeyPair(new PublicKey(pubk), new PrivateKey(prvk));
 	}
 
 }

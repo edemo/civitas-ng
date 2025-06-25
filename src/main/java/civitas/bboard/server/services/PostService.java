@@ -17,13 +17,18 @@ import civitas.bboard.common.BBPost;
 import civitas.bboard.common.BBPostRepository;
 import civitas.bboard.server.GetBoardForId;
 import civitas.bboard.server.electioncache.UpdateCache;
+import civitas.common.CheckAccess;
 import civitas.common.ConvertToXml;
 import civitas.common.GetServerPrivateKey;
+import civitas.common.GetServerPublicKey;
 import civitas.common.LoggerService;
+import civitas.common.Operation;
 import civitas.crypto.CryptoError;
 import civitas.crypto.messagedigest.CryptoHash;
+import civitas.crypto.rsapublickey.VerifyPublicKeySignature;
 import civitas.crypto.signature.SignWithPublicKey;
 import civitas.crypto.signature.Signature;
+import civitas.util.GetCurrentTime;
 
 @Service
 public class PostService {
@@ -43,43 +48,58 @@ public class PostService {
 	SignWithPublicKey signWithPublicKey;
 	@Autowired
 	GetServerPrivateKey getServerPrivateKey;
+	@Autowired
+	GetServerPublicKey getServerPublicKey;
+	@Autowired
+	GetCurrentTime getCurrentTime;
+	@Autowired
+	VerifyPublicKeySignature verifyPublicKeySignature;
+	@Autowired
+	CheckAccess checkAccess;
 
 	@PostMapping("/boards/{bbid}")
 	public long apply(@PathVariable("bbid") String bbid, String meta, String mesg,
-			Signature sign) throws IOException {
+			Signature sign) throws IOException, SecurityException {
+		String objectID = meta + bbid;
+		checkAccess.apply(Operation.POST, sign.getSigner(), objectID);
+		if (!verifyPublicKeySignature.apply(sign, mesg.getBytes())) {
+			throw new IllegalArgumentException("bad signature");
+		}
+
+		loggerService.apply(MarkerFactory.getMarker("bbs_post"), objectID);
+
 		getBoardForId.apply(bbid, true);
 
-		long t = System.currentTimeMillis();
-		updateCache.apply(bbid, meta, mesg, t);
+		long t = getCurrentTime.apply();
 
 		Iterable<BBPost> lastPosts = bBPostRepository
 				.findByBbidOrderBySerialDesc(bbid);
 
-		byte[] lastHash = null;
-		long lastSerial = 0;
+		BBPost lastPost = null;
 		if (lastPosts.iterator().hasNext()) {
-			BBPost lastPost = lastPosts.iterator().next();
-			lastHash = lastPost.hash;
-			lastSerial = lastPost.serial;
+			lastPost = lastPosts.iterator().next();
 		}
-		byte[] newhash = cryptoHash.apply(lastHash, sign.signature);
+		byte[] newhash = cryptoHash.apply(lastPost, t, sign);
 
-		loggerService.apply(MarkerFactory.getMarker("bbs_post"), meta);
+		updateCache.apply(bbid, meta, mesg, t);
 
+		Long serial = 0L;
+		if (lastPost != null)
+			serial = lastPost.serial;
 		bBPostRepository
-				.save(new BBPost(bbid, lastSerial + 1, t, meta, mesg, sign, newhash));
+				.save(new BBPost(bbid, serial + 1, t, meta, mesg, sign, newhash));
 
 		return t;
 	}
 
-	public long apply(String bbid, String meta, Object mesg)
-			throws IOException, InvalidKeyException, NoSuchAlgorithmException,
-			NoSuchProviderException, SignatureException, CryptoError,
-			IllegalArgumentException, InvalidKeySpecException {
+	public long apply(String bbid, String meta, Object mesg) throws IOException,
+			InvalidKeyException, NoSuchAlgorithmException, NoSuchProviderException,
+			SignatureException, CryptoError, IllegalArgumentException,
+			InvalidKeySpecException, IllegalAccessException {
 
 		String msg = convertToXml.apply(mesg);
 		Signature sign = signWithPublicKey.apply(getServerPrivateKey.apply(),
-				msg.getBytes());
+				getServerPublicKey.apply(), msg.getBytes());
 		return apply(bbid, meta, msg, sign);
 	}
 }

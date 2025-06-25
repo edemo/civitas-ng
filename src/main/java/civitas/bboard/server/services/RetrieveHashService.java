@@ -17,6 +17,7 @@ import civitas.bboard.common.BBPost;
 import civitas.bboard.common.BBPostRepository;
 import civitas.bboard.server.GetBoardForId;
 import civitas.common.GetServerPrivateKey;
+import civitas.common.GetServerPublicKey;
 import civitas.crypto.CryptoError;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.signature.SignWithPublicKey;
@@ -34,6 +35,8 @@ public class RetrieveHashService {
 	SignWithPublicKey signWithPublicKey;
 	@Autowired
 	GetServerPrivateKey getServerPrivateKey;
+	@Autowired
+	GetServerPublicKey getServerPublicKey;
 
 	@GetMapping("/boards/{bbid}/signature-{fromTime}-{toTime}-{metaCriteria}")
 	private Signature apply(@PathVariable("bbid") String bbid,
@@ -57,7 +60,7 @@ public class RetrieveHashService {
 		}
 
 		Signature signature = signWithPublicKey.apply(getServerPrivateKey.apply(),
-				hash);
+				getServerPublicKey.apply(), hash);
 
 		return signature;
 

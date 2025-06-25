@@ -3,6 +3,9 @@ package civitas.crypto.messagedigest;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
 import java.util.Base64;
 
 import org.junit.jupiter.api.DisplayName;
@@ -14,14 +17,17 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import civitas.AppTestConfig;
+import civitas.bboard.common.BBPostTestData;
 import civitas.common.TestBase;
+import civitas.crypto.signature.SignatureTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
 public class CryptoHashFunctionalTest extends TestBase
-		implements MessageDigestTestData, ElGamalSignedCiphertextTestData {
+		implements MessageDigestTestData, ElGamalSignedCiphertextTestData,
+		SignatureTestData, BBPostTestData {
 
 	@Autowired
 	CryptoHash cryptoHash;
@@ -73,8 +79,8 @@ public class CryptoHashFunctionalTest extends TestBase
 	@Test
 	@DisplayName("digest for long is correct")
 	void test5() {
-		BASELINE_DIGEST.update(LONG_AS_BYTES);
-		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply(LONG));
+		BASELINE_DIGEST.update(CURRENT_TIME_STRINGBASE.getBytes());
+		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply(CURRENT_TIME));
 	}
 
 	@Test
@@ -90,6 +96,28 @@ public class CryptoHashFunctionalTest extends TestBase
 		BASELINE_DIGEST.update(BYTES);
 		assertArrayEquals(BASELINE_DIGEST.digest(),
 				cryptoHash.apply(SOMESTRING_EXTENDED.toCharArray(), 3, 8));
+	}
+
+	@Test
+	@DisplayName("digest for hash, time and signature is correct")
+	void test9() {
+		byte[] bytes = (BBPOST_HASH_STRINGBASE + CURRENT_TIME_STRINGBASE
+				+ BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE_STRINGBASE).getBytes();
+		BASELINE_DIGEST.update(bytes);
+		byte[] digest = BASELINE_DIGEST.digest();
+
+		assertArrayEquals(digest, cryptoHash.apply(BBPOST, CURRENT_TIME,
+				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE));
+	}
+
+	@Test
+	@Tag("testdata")
+	@DisplayName("CURRENT_TIME")
+	void test10() throws IOException {
+		assertEquals(CURRENT_TIME,
+				new DataInputStream(
+						new ByteArrayInputStream(CURRENT_TIME_STRINGBASE.getBytes()))
+						.readLong());
 	}
 
 	@Test

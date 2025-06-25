@@ -10,7 +10,6 @@ import java.security.SignatureException;
 
 import civitas.crypto.BasicValuesTestData;
 import civitas.crypto.CryptoError;
-import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.rsapublickey.PublicKeyTestData;
 
 class SignWithPublicKeyStub
@@ -20,9 +19,9 @@ class SignWithPublicKeyStub
 			NoSuchProviderException, SignatureException, CryptoError {
 		SignWithPublicKey mock = mock(SignWithPublicKey.class);
 
-		when(mock.apply(PRIVATE_KEY, new PublicKeyMsg(AUTHENTICATION_NONCE)))
+		when(mock.apply(PRIVATE_KEY, PUBLIC_KEY_ON_WIRE, AUTHENTICATION_NONCE))
 				.thenReturn(SIGNATURE_OF_AUTH_NONCE_WITH_KEY);
-		when(mock.apply(PRIVATE_KEY2, new PublicKeyMsg(AUTHENTICATION_NONCE)))
+		when(mock.apply(PRIVATE_KEY2, PUBLIC_KEY2_ON_WIRE, AUTHENTICATION_NONCE))
 				.thenReturn(SIGNATURE_OF_AUTH_NONCE_WITH_KEY2);
 		return mock;
 	}

@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import civitas.bboard.common.BBPost;
 import civitas.crypto.CryptoBase;
 import civitas.crypto.CryptoError;
-import civitas.crypto.publickeymsg.PublicKeyMsg;
+import civitas.crypto.signature.Signature;
 import civitas.util.CivitasBigInteger;
+import lombok.NonNull;
 import lombok.SneakyThrows;
 
 @Service
@@ -45,10 +46,6 @@ public class CryptoHash {
 		if (d != null)
 			md.md.update(d);
 		return new CivitasBigInteger(md.md.digest());
-	}
-
-	public byte[] apply(PublicKeyMsg mc) {
-		return apply(mc.m.getBytes());
 	}
 
 	public byte[] apply(byte[] a) throws CryptoError {
@@ -118,15 +115,28 @@ public class CryptoHash {
 
 	private byte[] longToBytes(long i) {
 		byte[] dword = new byte[8];
-		dword[0] = (byte) (i & 0x00FF);
-		dword[1] = (byte) ((i >> 8) & 0x000000FF);
-		dword[2] = (byte) ((i >> 2 * 8) & 0x000000FF);
-		dword[3] = (byte) ((i >> 3 * 8) & 0x000000FF);
-		dword[4] = (byte) ((i >> 4 * 8) & 0x000000FF);
-		dword[5] = (byte) ((i >> 5 * 8) & 0x000000FF);
-		dword[6] = (byte) ((i >> 6 * 8) & 0x000000FF);
-		dword[7] = (byte) ((i >> 7 * 8) & 0x000000FF);
+		dword[7] = (byte) (i & 0x00FF);
+		dword[6] = (byte) ((i >> 8) & 0x000000FF);
+		dword[5] = (byte) ((i >> 2 * 8) & 0x000000FF);
+		dword[4] = (byte) ((i >> 3 * 8) & 0x000000FF);
+		dword[3] = (byte) ((i >> 4 * 8) & 0x000000FF);
+		dword[2] = (byte) ((i >> 5 * 8) & 0x000000FF);
+		dword[1] = (byte) ((i >> 6 * 8) & 0x000000FF);
+		dword[0] = (byte) ((i >> 7 * 8) & 0x000000FF);
 		return dword;
+	}
+
+	public byte[] apply(BBPost post, long currentTime, @NonNull Signature sig) {
+		byte[] hash = new byte[0];
+		if (post != null)
+			hash = post.hash;
+		byte[] signature = sig.signature;
+		byte[] bytes = new byte[hash.length + 8 + signature.length];
+		System.arraycopy(hash, 0, bytes, 0, hash.length);
+		System.arraycopy(longToBytes(currentTime), 0, bytes, hash.length, 8);
+		System.arraycopy(signature, 0, bytes, hash.length + 8, signature.length);
+		System.out.println("prod:" + new String(bytes));
+		return apply(bytes);
 	}
 
 }

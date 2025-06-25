@@ -23,7 +23,7 @@ public interface PrivateKeyTestData {
 
 	PKCS8EncodedKeySpec KEYSPEC_PRIVATE = new PKCS8EncodedKeySpec(
 			Base64.getDecoder().decode(PRIVATE_KEY_BASE64));
-	public static final String PRIVATE_KEY_XML = "<PrivateKey><name>bob</name><key>"
-			+ PRIVATE_KEY_BASE64 + "</key></PrivateKey>";
+	public static final String PRIVATE_KEY_XML = "<PrivateKey><keyBase64>"
+			+ PRIVATE_KEY_BASE64 + "</keyBase64></PrivateKey>";
 
 }

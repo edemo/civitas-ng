@@ -20,6 +20,4 @@ import lombok.RequiredArgsConstructor;
 public class PublicKey {
 	@NonNull
 	public java.security.PublicKey key;
-	@NonNull
-	String name;
 }

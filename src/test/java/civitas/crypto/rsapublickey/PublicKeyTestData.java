@@ -6,6 +6,7 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
+import civitas.util.KeyOnWire;
 
 public interface PublicKeyTestData extends PrivateKeyTestData {
 	public static final String PUBLIC_KEY_BASE64 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA40oZkaWQnrXJHUjQ4kbCusUI+7Wmm6ljrqf2q5lLZLoAyjpoc8GpHnortB3iNJIUcibuU2qXLVuYXMXxCeR43k+zypHGY4gQtesgGtLr0VX8kY0pwKAWHoJwWciVqOT00VWeE5TBo3az2D8AT05AC4bZ38zYDCPGDPNUlm7diKY1cU2rF/NkK6XLByjfo63kWudjZicGxldv2JovLDNTbIAVPfPDrcMm4c54VhlPKj0cQHVIo1CYyVHU4UmF7+KKV+ZCKE6QounPtfjjL6L9VRaqG6KaMc/m+WxqxhaHdKR9GbmAQyFHWaBLAvoCEFHtQ20dvWLAhA4a4XhfIswiNwIDAQAB";
@@ -14,15 +15,20 @@ public interface PublicKeyTestData extends PrivateKeyTestData {
 
 	java.security.PublicKey PUBLIC_KEY_JS = mock(java.security.PublicKey.class);
 	java.security.PublicKey PUBLIC_KEY_JS2 = mock(java.security.PublicKey.class);
+	java.security.PublicKey PUBLIC_KEY_JS_UNAUTH = mock(
+			java.security.PublicKey.class);
 
-	PublicKey PUBLIC_KEY = new PublicKey(PUBLIC_KEY_JS, KEY_NAME);
-	PublicKey PUBLIC_KEY2 = new PublicKey(PUBLIC_KEY_JS2, KEY_NAME2);
+	PublicKey PUBLIC_KEY = new PublicKey(PUBLIC_KEY_JS);
+	PublicKey PUBLIC_KEY2 = new PublicKey(PUBLIC_KEY_JS2);
+	KeyOnWire PUBLIC_KEY_ON_WIRE = new KeyOnWire(PUBLIC_KEY_BASE64);
+	KeyOnWire PUBLIC_KEY2_ON_WIRE = new KeyOnWire(PUBLIC_KEY2_BASE64);
+	KeyOnWire PUBLIC_KEY_UNAUTHORIZED = mock(KeyOnWire.class);
 	String PUBLIC_KEY_FILE = "public_key.xml";
 
 	X509EncodedKeySpec KEYSPEC_PUBLIC = new X509EncodedKeySpec(
 			Base64.getDecoder().decode(PUBLIC_KEY_BASE64));
 
-	public static final String PUBLIC_KEY_XML = "<publicKey><name>" + KEY_NAME
-			+ "</name><key>" + PUBLIC_KEY_BASE64 + "</key></publicKey>";
+	public static final String PUBLIC_KEY_XML = "<publicKey><keyBase64>"
+			+ PUBLIC_KEY_BASE64 + "</keyBase64></publicKey>";
 
 }

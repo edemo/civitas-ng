@@ -5,7 +5,6 @@ import static org.mockito.Mockito.when;
 
 import civitas.bboard.common.BBPostTestData;
 import civitas.common.electoralroll.ElectoralRollCapabilitySharesTestData;
-import civitas.crypto.publickeymsg.PublicKeyMsg;
 import civitas.crypto.signature.SignatureTestData;
 
 public class VerifyPublicKeySignatureStub
@@ -13,12 +12,16 @@ public class VerifyPublicKeySignatureStub
 		ElectoralRollCapabilitySharesTestData, SignatureTestData {
 	public static VerifyPublicKeySignature stub() {
 		VerifyPublicKeySignature mock = mock(VerifyPublicKeySignature.class);
-		when(mock.apply(PUBLIC_KEY, BBPOST.sig,
-				ELECTORAL_ROLL_CAPABILITY_SHARES_XML_HASH)).thenReturn(true);
-		when(mock.apply(PUBLIC_KEY, SIGNATURE_OF_AUTH_NONCE_WITH_KEY,
-				new PublicKeyMsg(AUTHENTICATION_NONCE))).thenReturn(true);
-		when(mock.apply(PUBLIC_KEY, SIGNATURE_OF_AUTH_NONCE_WITH_KEY,
-				new PublicKeyMsg(BULLETIN_BOARD_ID))).thenReturn(true);
+		when(mock.apply(BBPOST.sig, ELECTORAL_ROLL_CAPABILITY_SHARES_XML_HASH))
+				.thenReturn(true);
+		when(mock.apply(SIGNATURE_OF_AUTH_NONCE_WITH_KEY, PUBLIC_KEY,
+				AUTHENTICATION_NONCE)).thenReturn(true);
+		when(mock.apply(SIGNATURE_OF_AUTH_NONCE_WITH_KEY, PUBLIC_KEY,
+				BULLETIN_BOARD_ID)).thenReturn(true);
+		when(mock.apply(BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE,
+				BOARD_CLOSED_CONTENT_COMMITMENT_XML.getBytes())).thenReturn(true);
+		when(mock.apply(SIGNATURE_OF_AUTH_NONCE_WITH_KEY, PUBLIC_KEY,
+				AUTHENTICATION_NONCE)).thenReturn(true);
 		return mock;
 	}
 

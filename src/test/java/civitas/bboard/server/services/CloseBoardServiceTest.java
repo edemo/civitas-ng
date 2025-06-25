@@ -16,14 +16,12 @@ import org.mockito.InjectMocks;
 import civitas.common.EnvironmentState;
 import civitas.common.TestBase;
 import civitas.common.board.BoardClosedContentCommitment;
-import civitas.common.board.BulletinBoardTestData;
-import civitas.common.election.ElectionTestData;
-import civitas.crypto.publickeymsg.PublicKeyMsg;
+import civitas.common.board.BoardClosedContentCommitmentTestData;
 import civitas.crypto.rsaprivatekey.KeySpecMatcher;
 import civitas.crypto.signature.SignatureTestData;
 
 class CloseBoardServiceTest extends TestBase
-		implements BulletinBoardTestData, ElectionTestData, SignatureTestData {
+		implements BoardClosedContentCommitmentTestData, SignatureTestData {
 
 	@InjectMocks
 	CloseBoardService closeBoardService;
@@ -44,17 +42,15 @@ class CloseBoardServiceTest extends TestBase
 		verify(closeBoardService.getBoardForId).apply(BULLETIN_BOARD_ID, true);
 		verify(closeBoardService.cryptoBase.publicKeyFactory)
 				.generatePublic(argThat(new KeySpecMatcher(KEYSPEC_PUBLIC)));
-		verify(closeBoardService.verifyPublicKeySignature).apply(PUBLIC_KEY,
-				SIGNATURE_OF_AUTH_NONCE_WITH_KEY, new PublicKeyMsg(BULLETIN_BOARD_ID));
+		verify(closeBoardService.verifyPublicKeySignature)
+				.apply(SIGNATURE_OF_AUTH_NONCE_WITH_KEY, PUBLIC_KEY, BULLETIN_BOARD_ID);
 		verify(closeBoardService.boardRepository).save(BULLETIN_BOARD);
 		verify(closeBoardService.cryptoHash).apply(BULLETIN_BOARD_ID.getBytes(),
 				"voterSubmission-voterBlock0".getBytes());
 		verify(closeBoardService.cryptoHash).apply(BULLETIN_BOARD_ID.getBytes(),
 				"voterSubmission-voterBlock1".getBytes());
 		verify(closeBoardService.restClient.restTemplate).postForObject(
-				ELECTION_ID.uriBase + "/post",
-				new BoardClosedContentCommitment(ELECTION_ID, BULLETIN_BOARD_ID,
-						new String[] { BLOCK0_HASH_BASE64, BLOCK1_HASH_BASE64 }),
+				ELECTION_ID.uriBase + "/post", BOARD_CLOSED_CONTENT_COMMITMENT,
 				Boolean.class);
 	}
 

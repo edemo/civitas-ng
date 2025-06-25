@@ -23,7 +23,7 @@ public class UpdateCache {
 	public void apply(String bbid, String meta, String mesg, long t)
 			throws JsonMappingException, JsonProcessingException {
 
-		Optional<ElectionCache> cachep = null;// electionCacheRepository.findById(bbid);
+		Optional<ElectionCache> cachep = electionCacheRepository.findById(bbid);
 		ElectionCache cache;
 		if (cachep.isEmpty())
 			throw new IllegalArgumentException("no cache");
@@ -41,7 +41,7 @@ public class UpdateCache {
 			}
 		}
 
-		// electionCacheRepository.save(cache);
+		electionCacheRepository.save(cache);
 	}
 
 }

@@ -5,6 +5,8 @@ import static org.mockito.Mockito.when;
 
 import java.util.Base64;
 
+import civitas.bboard.common.BBPostTestData;
+import civitas.common.board.BoardClosedContentCommitmentTestData;
 import civitas.common.electionresults.TellerTestData;
 import civitas.common.electoralroll.ElectoralRollCapabilitySharesTestData;
 import civitas.common.mix.capabilitymixrevelation.MixCapabilityElementRevelationTestData;
@@ -15,6 +17,7 @@ import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityTestData;
 import civitas.crypto.proofdvr.ElGamalProofDVRTestData;
 import civitas.crypto.proofknowndisclog.ProofKnowDiscLogTestData;
 import civitas.crypto.proofvote.ProofVoteTestData;
+import civitas.crypto.signature.SignatureTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 
 public class CryptoHashStub
@@ -22,7 +25,8 @@ public class CryptoHashStub
 		VoterCapabilitySharesAndProofTestData, TabTellerKeyShareTestData,
 		ElGamalProofDVRTestData, PETCommitmentTestData, ProofKnowDiscLogTestData,
 		MixCapabilityElementRevelationTestData, TellerTestData,
-		ElGamalSignedCiphertextTestData, ElectoralRollCapabilitySharesTestData {
+		ElGamalSignedCiphertextTestData, ElectoralRollCapabilitySharesTestData,
+		BoardClosedContentCommitmentTestData, BBPostTestData, SignatureTestData {
 
 	public static CryptoHash stub() {
 		CryptoHash mock = mock(CryptoHash.class);
@@ -66,6 +70,12 @@ public class CryptoHashStub
 				.thenReturn(BLOCK0_HASH);
 		when(mock.apply(BULLETIN_BOARD_ID.getBytes(), BLOCK1_META.getBytes()))
 				.thenReturn(BLOCK1_HASH);
+		when(mock.apply(BBPOST, CURRENT_TIME,
+				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE))
+				.thenReturn(BOARD_CLOSED__CONTENT_COMMITMENT_SIGNATURE_HASH);
+		when(mock.apply(null, CURRENT_TIME,
+				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE))
+				.thenReturn(BOARD_CLOSED__CONTENT_COMMITMENT_SIGNATURE_HASH_NOPREV);
 
 		return mock;
 	}

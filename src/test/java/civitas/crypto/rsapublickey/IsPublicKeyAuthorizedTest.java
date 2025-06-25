@@ -2,6 +2,7 @@ package civitas.crypto.rsapublickey;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -13,26 +14,41 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
+import civitas.crypto.BasicValuesTestData;
 import civitas.crypto.CryptoError;
+import civitas.crypto.signature.SignatureTestData;
 
 public class IsPublicKeyAuthorizedTest extends TestBase
-		implements PublicKeyTestData {
+		implements PublicKeyTestData, BasicValuesTestData, SignatureTestData {
 
 	@InjectMocks
 	IsPublicKeyAuthorized isPublicKeyAuthorized;
 
 	@Test
-	@DisplayName("isAuthorized checks if the private key is belonging to the public key")
+	@DisplayName("isAuthorized checks if the private key is belonging to the public key\n"
+			+ "- creates a new base64 nonce\n"
+			+ "- signs the nonce with the private key"
+			+ "- verifies that the signature is verifiable with the public key")
 	void test2() throws InvalidKeyException, NoSuchAlgorithmException,
 			NoSuchProviderException, SignatureException, CryptoError {
-		assertTrue(isPublicKeyAuthorized.apply(PUBLIC_KEY, PRIVATE_KEY));
+		boolean actual = isPublicKeyAuthorized.apply(PUBLIC_KEY_ON_WIRE,
+				PRIVATE_KEY);
+		verify(isPublicKeyAuthorized.createFreshNonceBase64)
+				.apply(AUTHENTICATION_NONCE_LENGTH);
+		verify(isPublicKeyAuthorized.createPublicKeyFromWire)
+				.apply(PUBLIC_KEY_ON_WIRE);
+		verify(isPublicKeyAuthorized.signWithPublicKey).apply(PRIVATE_KEY,
+				PUBLIC_KEY_ON_WIRE, AUTHENTICATION_NONCE);
+		verify(isPublicKeyAuthorized.verifyPublicKeySignature).apply(
+				SIGNATURE_OF_AUTH_NONCE_WITH_KEY, PUBLIC_KEY, AUTHENTICATION_NONCE);
+		assertTrue(actual);
 	}
 
 	@Test
 	@DisplayName("isAuthorized is false for other private key")
 	void test2_2() throws InvalidKeyException, NoSuchAlgorithmException,
 			NoSuchProviderException, SignatureException, CryptoError {
-		assertFalse(isPublicKeyAuthorized.apply(PUBLIC_KEY, PRIVATE_KEY2));
+		assertFalse(isPublicKeyAuthorized.apply(PUBLIC_KEY_ON_WIRE, PRIVATE_KEY2));
 	}
 
 }

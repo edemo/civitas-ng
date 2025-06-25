@@ -25,16 +25,16 @@ class VerifyBBPostTest extends TestBase implements BBPostTestData,
 			+ "- converts the message to xml" + "- computes the hash of the xml"
 			+ "- verifies that the signature is the signature of the hash using the key")
 	void test() throws JsonProcessingException {
-		assertTrue(verifyBBPost.apply(BBPOST, PUBLIC_KEY));
+		assertTrue(verifyBBPost.apply(BBPOST));
 		verify(verifyBBPost.cryptoHash).apply(ELECTORAL_ROLL_CAPABILITY_SHARES_XML);
-		verify(verifyBBPost.verifyPublicKeySignature).apply(PUBLIC_KEY, BBPOST.sig,
+		verify(verifyBBPost.verifyPublicKeySignature).apply(BBPOST.sig,
 				ELECTORAL_ROLL_CAPABILITY_SHARES_XML_HASH);
 	}
 
 	@Test
 	@DisplayName("if the signature does not verify, returns false")
 	void test1() throws JsonProcessingException {
-		assertFalse(verifyBBPost.apply(BBPOST, PUBLIC_KEY2));
+		assertFalse(verifyBBPost.apply(BBPOST_BAD_SIG));
 	}
 
 }

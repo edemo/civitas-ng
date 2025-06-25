@@ -30,7 +30,7 @@ public class PrivatekeyFromFile {
 		KeyOnWire valueOnWire = mapper.readValue(reader, KeyOnWire.class);
 		java.security.PrivateKey privkey = cryptoBase.publicKeyFactory
 				.generatePrivate(new PKCS8EncodedKeySpec(
-						Base64.getDecoder().decode(valueOnWire.key)));
+						Base64.getDecoder().decode(valueOnWire.keyBase64)));
 		return new PrivateKey(privkey);
 	}
 

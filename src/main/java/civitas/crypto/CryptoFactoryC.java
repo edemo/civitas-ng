@@ -80,8 +80,6 @@ import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.publickey.ElGamalPublicKeyFromFile;
 import civitas.crypto.publickeyciphertext.EncryptPublic;
 import civitas.crypto.publickeyciphertext.PublicKeyCiphertext;
-import civitas.crypto.publickeymsg.PublicKeyMsg;
-import civitas.crypto.publickeymsg.VerifyPublicKeySignatureMsg;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.GenerateElGamalReencryptFactor;
 import civitas.crypto.rsakeypair.GenerateKeyPair;
@@ -89,7 +87,7 @@ import civitas.crypto.rsakeypair.KeyPair;
 import civitas.crypto.rsaprivatekey.CreatePrivateKeyFromBytes;
 import civitas.crypto.rsaprivatekey.PrivateKey;
 import civitas.crypto.rsaprivatekey.PrivatekeyFromFile;
-import civitas.crypto.rsapublickey.CreatePublicKeyFromBytes;
+import civitas.crypto.rsapublickey.CreatePublicKeyFromWire;
 import civitas.crypto.rsapublickey.DecryptPublic;
 import civitas.crypto.rsapublickey.PublicKey;
 import civitas.crypto.rsapublickey.PublicKeyFromFile;
@@ -114,6 +112,7 @@ import civitas.crypto.votecapabilityshare.GenerateVoteCapabilityShare;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShare;
 import civitas.util.Boilerplate;
 import civitas.util.CivitasBigInteger;
+import civitas.util.KeyOnWire;
 
 @Boilerplate
 public class CryptoFactoryC implements CryptoFactory, Constants {
@@ -211,13 +210,11 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Autowired
 	CreateSharedKeyFromBytes createSharedKeyFromBytes;
 	@Autowired
-	CreatePublicKeyFromBytes createPublicKeyFromBytes;
+	CreatePublicKeyFromWire createPublicKeyFromWire;
 	@Autowired
 	CreatePrivateKeyFromBytes createPrivateKeyFromBytes;
 	@Autowired
 	VerifyPublicKeySignature verifyPublicKeySignature;
-	@Autowired
-	VerifyPublicKeySignatureMsg verifyPublicKeySignatureMsg;
 	@Autowired
 	ConstructElGamalKeyShare constructElGamalKeyShare;
 	@Autowired
@@ -481,43 +478,35 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	@Override
-	public PublicKey publicKeyFromFile(String keyFile)
+	public KeyOnWire publicKeyFromFile(String keyFile)
 			throws IllegalArgumentException, FileNotFoundException, IOException,
 			InvalidKeySpecException {
 		return publicKeyFromFile.apply(keyFile);
 	}
 
 	@Override
-	public Signature signature(PrivateKey k, PublicKeyMsg msg)
+	public Signature signature(PrivateKey k, KeyOnWire principal, String msg)
 			throws InvalidKeyException, NoSuchAlgorithmException,
 			NoSuchProviderException, SignatureException, CryptoError {
-		return signWithPublicKey.apply(k, msg);
+		return signWithPublicKey.apply(k, principal, msg);
 	}
 
 	@Override
-	public Signature signature(PrivateKey k, byte[] bytes)
+	public Signature signature(PrivateKey k, KeyOnWire principal, byte[] bytes)
 			throws InvalidKeyException, NoSuchAlgorithmException,
 			NoSuchProviderException, SignatureException, CryptoError {
-		return signWithPublicKey.apply(k, bytes);
+		return signWithPublicKey.apply(k, principal, bytes);
 	}
 
 	@Override
 	public boolean publicKeyVerifySignature(PublicKey K, Signature s,
-			PublicKeyMsg msg) {
-		return verifyPublicKeySignature.apply(K, s, msg);
+			String msg) {
+		return verifyPublicKeySignature.apply(s, msg);
 	}
 
 	@Override
-	public boolean publicKeyVerifySignature(PublicKey K, Signature s,
-			byte[] bytes) {
-		return verifyPublicKeySignature.apply(K, s, bytes);
-	}
-
-	@Override
-	@Deprecated
-	public PublicKeyMsg publicKeyVerifySignatureMsg(PublicKey K, Signature s,
-			PublicKeyMsg msg) {
-		return verifyPublicKeySignatureMsg.apply(K, s, msg);
+	public boolean publicKeyVerifySignature(Signature s, byte[] bytes) {
+		return verifyPublicKeySignature.apply(s, bytes);
 	}
 
 	@Override
@@ -591,13 +580,12 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	}
 
 	@Override
-	public PublicKeyCiphertext publicKeyEncrypt(PublicKey key, PublicKeyMsg msg) {
+	public PublicKeyCiphertext publicKeyEncrypt(PublicKey key, String msg) {
 		return encryptPublic.apply(key, msg);
 	}
 
 	@Override
-	public PublicKeyMsg publicKeyDecrypt(PrivateKey key,
-			PublicKeyCiphertext ciphertext)
+	public String publicKeyDecrypt(PrivateKey key, PublicKeyCiphertext ciphertext)
 			throws CryptoException, UnsupportedEncodingException, CryptoError {
 		return decryptPublic.apply(key, ciphertext);
 	}
@@ -638,8 +626,8 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 		return k.getEncoded();
 	}
 
-	public java.security.PublicKey publicKeyFromBytes(byte[] bs) {
-		return createPublicKeyFromBytes.apply(bs);
+	public PublicKey publicKeyFromBytes(KeyOnWire bs) {
+		return createPublicKeyFromWire.apply(bs);
 	}
 
 	public java.security.PrivateKey privateKeyFromBytes(byte[] bs) {
@@ -660,12 +648,6 @@ public class CryptoFactoryC implements CryptoFactory, Constants {
 	@Deprecated
 	public String constBytesToBase64(byte[] a) {
 		return convertToBase64.apply(a);
-	}
-
-	@Override
-	@Deprecated
-	public PublicKeyMsg publicKeyMsg(String m) throws CryptoException {
-		throw new UnsupportedOperationException("Use constructor");
 	}
 
 	@Override
