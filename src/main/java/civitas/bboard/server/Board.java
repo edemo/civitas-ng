@@ -1,14 +1,13 @@
 package civitas.bboard.server;
 
+import org.springframework.data.annotation.Id;
+
 import io.micrometer.common.lang.NonNull;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class Board {
@@ -16,8 +15,6 @@ public class Board {
 	@Id
 	public String boardName;
 	@NonNull
-	public String keyName;
-	@NonNull
-	public String keyData;
+	public String keyString;
 	public boolean isOpen = true;
 }

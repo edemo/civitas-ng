@@ -3,7 +3,7 @@ package civitas.common.capabilityencryption;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.CryptoError;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
@@ -13,7 +13,7 @@ import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.reencryptfactor.GenerateElGamalReencryptFactor;
 import civitas.crypto.votecapability.VoteCapability;
 
-@Service
+@Controller
 public class EncryptCapability {
 
 	@Autowired

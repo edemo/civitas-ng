@@ -1,13 +1,13 @@
 package civitas.crypto.reencryptfactor;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.CryptoError;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.parameters.ElGamalParameters;
 
-@Service
+@Controller
 public class GenerateElGamalReencryptFactor {
 
 	@Autowired

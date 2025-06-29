@@ -1,13 +1,13 @@
 package civitas.crypto.keyshare;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.proofknowndisclog.VerifyElGamalProofKnowDiscLog;
 import civitas.crypto.publickey.ElGamalPublicKey;
 
-@Service
+@Controller
 public class VerifyElGamalKeyShare {
 
 	@Autowired

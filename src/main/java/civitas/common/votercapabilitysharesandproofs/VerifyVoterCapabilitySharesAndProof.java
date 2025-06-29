@@ -1,7 +1,7 @@
 package civitas.common.votercapabilitysharesandproofs;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
@@ -16,7 +16,7 @@ import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShare;
 import lombok.NonNull;
 
-@Service
+@Controller
 public class VerifyVoterCapabilitySharesAndProof {
 
 	@Autowired
@@ -46,19 +46,13 @@ public class VerifyVoterCapabilitySharesAndProof {
 			VoteCapabilityShare vc = that.capabilities[i];
 			ElGamalReencryptFactor r = that.rencryptFactors[i];
 			ElGamalProofDVR p = that.proofs[i];
-			if (!p.getE().equals(postedCapabilities[i])) {
-				return false;
-			}
-
-			if (!verifyElGamalSignature.apply(params, postedCapabilities[i], hash)) {
+			if (!p.getE().equals(postedCapabilities[i]) || !verifyElGamalSignature.apply(params, postedCapabilities[i], hash)) {
 				return false;
 			}
 
 			ElGamalCiphertext encrypted = elGamalEncrypt
 					.apply(tabTellerSharedPublicKey, vc, r);
-			if (!encrypted.equals(p.getEprime()))
-				return false;
-			if (!verifyElGamalProofDVR.apply(p, tabTellerSharedPublicKey,
+			if (!encrypted.equals(p.getEprime()) || !verifyElGamalProofDVR.apply(p, tabTellerSharedPublicKey,
 					voterPublicKey)) {
 				return false;
 			}

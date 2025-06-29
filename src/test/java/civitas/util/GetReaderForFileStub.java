@@ -16,8 +16,6 @@ class GetReaderForFileStub implements PublicKeyTestData, PrivateKeyTestData,
 		ElGamalPrivateKeyTestData, ElGamalPublicKeyTestData {
 	public static GetReaderForFile stub() throws FileNotFoundException {
 		GetReaderForFile mock = mock(GetReaderForFile.class);
-		when(mock.apply(PUBLIC_KEY_FILE))
-				.thenReturn(new BufferedReader(new StringReader(PUBLIC_KEY_XML)));
 		when(mock.apply(EL_GAMAL_PRIVATE_KEY_FILE)).thenReturn(
 				new BufferedReader(new StringReader(EL_GAMAL_PRIVATE_KEY_E_XML)));
 		when(mock.apply(EL_GAMAL_PUBLIC_KEY_FILE)).thenReturn(

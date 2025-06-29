@@ -1,12 +1,12 @@
 package civitas.common.ballot;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.VoteChoice;
 import civitas.common.ballotdesign.CalculateBallotLength;
 
-@Service
+@Controller
 public class CreateEmptyBallot {
 
 	@Autowired

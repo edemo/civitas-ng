@@ -1,7 +1,7 @@
 package civitas.common.mix.votemix;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.Vote;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
@@ -9,7 +9,7 @@ import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import lombok.NonNull;
 
-@Service
+@Controller
 public class GetReencryptedVoteFromMix {
 
 	@Autowired

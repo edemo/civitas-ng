@@ -10,11 +10,11 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.CryptoError;
 
-@Service
+@Controller
 public class DoCrypto {
 	public byte[] apply(String alg, String provider, Key skey, int mode,
 			byte[] input) throws CryptoError {

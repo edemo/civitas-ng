@@ -1,7 +1,7 @@
 package civitas.crypto.parameters;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
 import civitas.crypto.algorithms.GenerateRandomElement;
@@ -9,7 +9,7 @@ import civitas.crypto.algorithms.GetRandomGenerator;
 import civitas.util.CivitasBigInteger;
 import civitas.util.ObtainProbablePrime;
 
-@Service
+@Controller
 public class GenerateSchnorrPrime implements Constants {
 	@Autowired
 	GenerateRandomElement generateRandomElement;

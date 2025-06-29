@@ -6,9 +6,9 @@ import java.io.Reader;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
-@Service
+@Controller
 public class SharedKeyFromWire {
 	@Autowired
 	CreateSharedKeyFromBytes createSharedKeyFromBytes;

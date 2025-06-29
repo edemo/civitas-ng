@@ -1,11 +1,11 @@
 package civitas.crypto.proofknowndisclog;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 
-@Service
+@Controller
 public class VerifyElGamalProofKnowDiscLog {
 	public boolean apply(ElGamalProofKnowDiscLog that, ElGamalParameters prms) {
 		ElGamalParameters params = prms;

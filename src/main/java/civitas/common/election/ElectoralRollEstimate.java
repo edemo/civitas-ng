@@ -6,11 +6,9 @@
  */
 package civitas.common.election;
 
-import jakarta.persistence.Embeddable;
 import lombok.Data;
 
 @Data
-@Embeddable
 public class ElectoralRollEstimate {
 	public final int estimate;
 }

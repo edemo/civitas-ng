@@ -2,11 +2,11 @@ package civitas.crypto.algorithms;
 
 import java.util.Random;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
 
-@Service
+@Controller
 public class GetRandomGenerator implements Constants {
 	public Random apply() {
 		return RANDOM;

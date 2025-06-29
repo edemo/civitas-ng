@@ -5,10 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import civitas.common.TestBase;
 import civitas.common.tabteller.keysharecommitment.TabTellerKeyShareCommitmentTestData;
+import jakarta.xml.bind.JAXBException;
 
 class ConstructTabTellerKeyShareCommitmentTest extends TestBase
 		implements TabTellerKeyShareCommitmentTestData {
@@ -17,7 +16,7 @@ class ConstructTabTellerKeyShareCommitmentTest extends TestBase
 	ConstructTabTellerKeyShareCommitment constructTabTellerKeyShareCommitment;
 
 	@Test
-	void test() throws JsonProcessingException {
+	void test() throws JAXBException {
 		assertEquals(TAB_TELLER_KEY_SHARE_COMMITMENT,
 				constructTabTellerKeyShareCommitment.apply(TAB_TELLER_KEY_SHARE));
 	}

@@ -31,14 +31,11 @@ public class IsPublicKeyAuthorizedTest extends TestBase
 			+ "- verifies that the signature is verifiable with the public key")
 	void test2() throws InvalidKeyException, NoSuchAlgorithmException,
 			NoSuchProviderException, SignatureException, CryptoError {
-		boolean actual = isPublicKeyAuthorized.apply(PUBLIC_KEY_ON_WIRE,
-				PRIVATE_KEY);
+		boolean actual = isPublicKeyAuthorized.apply(PUBLIC_KEY, PRIVATE_KEY_JS);
 		verify(isPublicKeyAuthorized.createFreshNonceBase64)
 				.apply(AUTHENTICATION_NONCE_LENGTH);
-		verify(isPublicKeyAuthorized.createPublicKeyFromWire)
-				.apply(PUBLIC_KEY_ON_WIRE);
-		verify(isPublicKeyAuthorized.signWithPublicKey).apply(PRIVATE_KEY,
-				PUBLIC_KEY_ON_WIRE, AUTHENTICATION_NONCE);
+		verify(isPublicKeyAuthorized.signWithPublicKey).apply(PRIVATE_KEY_JS,
+				PUBLIC_KEY, AUTHENTICATION_NONCE);
 		verify(isPublicKeyAuthorized.verifyPublicKeySignature).apply(
 				SIGNATURE_OF_AUTH_NONCE_WITH_KEY, PUBLIC_KEY, AUTHENTICATION_NONCE);
 		assertTrue(actual);
@@ -48,7 +45,7 @@ public class IsPublicKeyAuthorizedTest extends TestBase
 	@DisplayName("isAuthorized is false for other private key")
 	void test2_2() throws InvalidKeyException, NoSuchAlgorithmException,
 			NoSuchProviderException, SignatureException, CryptoError {
-		assertFalse(isPublicKeyAuthorized.apply(PUBLIC_KEY_ON_WIRE, PRIVATE_KEY2));
+		assertFalse(isPublicKeyAuthorized.apply(PUBLIC_KEY, PRIVATE_KEY_JS2));
 	}
 
 }

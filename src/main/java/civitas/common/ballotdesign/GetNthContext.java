@@ -1,10 +1,10 @@
 package civitas.common.ballotdesign;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.CommonConstants;
 
-@Service
+@Controller
 public class GetNthContext implements CommonConstants {
 
 	public String apply(BallotDesign that, int n) {

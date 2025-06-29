@@ -1,8 +1,8 @@
 package civitas.util;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
-@Service
+@Controller
 public class GetCurrentTime {
 	public long apply() {
 		long t = System.currentTimeMillis();

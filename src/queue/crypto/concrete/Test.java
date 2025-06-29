@@ -118,7 +118,7 @@ public class Test {
 //      msgTest();
       decTest();
 //
-//      // showProviderServices();
+//      // showProviderControllers();
 //      egHomoTest();
 //      dvrTest();
 //        oneOfLTest();
@@ -145,13 +145,13 @@ public class Test {
     }
 
     @SuppressWarnings("unused")
-    private static void showProviderServices() {
+    private static void showProviderControllers() {
         Provider[] providers = Security.getProviders();
         for (int i = 0; i < providers.length; i++) {
             Provider p = providers[i];
             System.out.println("NAME: " + p.getName());
             System.out.println("INFO: " + p.getInfo());
-            System.out.println("services: " + p.getServices());
+            System.out.println("services: " + p.getControllers());
         }
 
     }

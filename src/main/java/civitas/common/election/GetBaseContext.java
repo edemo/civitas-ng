@@ -1,8 +1,8 @@
 package civitas.common.election;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
-@Service
+@Controller
 public class GetBaseContext {
 
 	public String apply(ElectionDetails that, int voterBlock) {

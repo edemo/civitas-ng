@@ -5,11 +5,11 @@ import java.util.Map;
 
 import javax.crypto.KeyGenerator;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
 
-@Service
+@Controller
 public class GetSharedKeyGenerator implements Constants {
 
 	private Map<String, KeyGenerator> sharedKeyGenerators = new HashMap<>();

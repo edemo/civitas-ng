@@ -2,11 +2,11 @@ package civitas.crypto.algorithms;
 
 import java.util.Base64;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.util.CivitasBigInteger;
 
-@Service
+@Controller
 public class ConvertToBase64 {
 	public String apply(byte[] a) {
 		return Base64.getEncoder().encodeToString(a);

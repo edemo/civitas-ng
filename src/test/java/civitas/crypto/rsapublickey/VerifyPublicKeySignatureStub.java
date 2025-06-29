@@ -3,14 +3,19 @@ package civitas.crypto.rsapublickey;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
 import civitas.bboard.common.BBPostTestData;
 import civitas.common.electoralroll.ElectoralRollCapabilitySharesTestData;
+import civitas.crypto.CryptoError;
 import civitas.crypto.signature.SignatureTestData;
 
 public class VerifyPublicKeySignatureStub
 		implements BBPostTestData, PublicKeyTestData,
 		ElectoralRollCapabilitySharesTestData, SignatureTestData {
-	public static VerifyPublicKeySignature stub() {
+	public static VerifyPublicKeySignature stub()
+			throws NoSuchAlgorithmException, InvalidKeySpecException, CryptoError {
 		VerifyPublicKeySignature mock = mock(VerifyPublicKeySignature.class);
 		when(mock.apply(BBPOST.sig, ELECTORAL_ROLL_CAPABILITY_SHARES_XML_HASH))
 				.thenReturn(true);

@@ -15,9 +15,6 @@ public interface PrivateKeyTestData {
 			java.security.PrivateKey.class);
 	java.security.PrivateKey PRIVATE_KEY_JS2 = mock(
 			java.security.PrivateKey.class);
-
-	public static final PrivateKey PRIVATE_KEY = new PrivateKey(PRIVATE_KEY_JS);
-	public static final PrivateKey PRIVATE_KEY2 = new PrivateKey(PRIVATE_KEY_JS2);
 	public static final String KEY_NAME = "alice";
 	public static final String KEY_NAME2 = "bob";
 

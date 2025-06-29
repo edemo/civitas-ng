@@ -3,7 +3,7 @@ package civitas.common.ballotdesign;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.CommonConstants;
 import civitas.common.VoteChoice;
@@ -21,7 +21,7 @@ import civitas.crypto.proofvote.ProofVote;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.votecapability.VoteCapability;
 
-@Service
+@Controller
 public class DecomposeBallot implements CommonConstants {
 
 	@Autowired

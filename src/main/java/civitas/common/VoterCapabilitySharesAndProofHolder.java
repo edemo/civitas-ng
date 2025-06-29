@@ -1,7 +1,8 @@
 package civitas.common;
 
+import java.security.PublicKey;
+
 import civitas.common.votercapabilitysharesandproofs.VoterCapabilitySharesAndProof;
-import civitas.crypto.rsapublickey.PublicKey;
 import lombok.Data;
 
 @Data

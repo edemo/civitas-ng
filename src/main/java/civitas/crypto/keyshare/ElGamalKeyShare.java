@@ -8,12 +8,10 @@ package civitas.crypto.keyshare;
 
 import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import jakarta.persistence.Embeddable;
 import lombok.Data;
 import lombok.NonNull;
 
 @Data
-@Embeddable
 public class ElGamalKeyShare {
 
 	@NonNull

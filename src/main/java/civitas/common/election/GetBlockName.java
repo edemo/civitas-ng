@@ -1,11 +1,11 @@
 package civitas.common.election;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.ballotdesign.GetNthContext;
 
-@Service
+@Controller
 public class GetBlockName {
 
 	@Autowired

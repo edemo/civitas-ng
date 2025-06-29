@@ -1,13 +1,13 @@
 package civitas.common.election;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.ballotdesign.GetNthContext;
 import civitas.common.capabilityencryption.VoterEncCapabilities;
 import civitas.common.votersubmission.VoterSubmission;
 
-@Service
+@Controller
 public class IsVoterSubmissionInBlock {
 	@Autowired
 	GetVoterBlockForBlock getVoterBlockForBlock;

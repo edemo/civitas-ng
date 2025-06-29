@@ -5,6 +5,8 @@ public interface CommonConstants {
 	public static final int ELECTION_ID_LENGTH = 32;
 
 	public final static String BoardClosedContentCommitmentMETA = "boardContents";
+
+	String ElectionDetailsMETA = "electiondetails";
 	String ElectionEventMETA = "electionevent";
 	String CiphertextListMETA = "ciphertextList";
 

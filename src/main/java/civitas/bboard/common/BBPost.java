@@ -6,15 +6,16 @@
  */
 package civitas.bboard.common;
 
+import org.springframework.data.annotation.Id;
+
 import civitas.crypto.signature.Signature;
 import io.micrometer.common.lang.NonNull;
 import jakarta.annotation.Nonnull;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 
 @Data
-@Entity
+@XmlRootElement(name = "bbpost")
 public final class BBPost {
 	@NonNull
 	@Id

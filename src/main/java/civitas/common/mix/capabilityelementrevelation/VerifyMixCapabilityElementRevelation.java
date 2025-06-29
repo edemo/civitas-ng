@@ -1,7 +1,7 @@
 package civitas.common.mix.capabilityelementrevelation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.mix.capabilitymix.CapabilityMix;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
@@ -9,7 +9,7 @@ import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import lombok.NonNull;
 
-@Service
+@Controller
 public class VerifyMixCapabilityElementRevelation {
 
 	@Autowired

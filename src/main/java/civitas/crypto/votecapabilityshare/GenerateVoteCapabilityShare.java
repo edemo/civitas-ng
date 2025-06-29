@@ -1,7 +1,7 @@
 package civitas.crypto.votecapabilityshare;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
@@ -10,7 +10,7 @@ import civitas.crypto.msg.EncodeMessage;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 
-@Service
+@Controller
 public class GenerateVoteCapabilityShare {
 
 	@Autowired

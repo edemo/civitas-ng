@@ -1,18 +1,29 @@
 package civitas.common;
 
-import org.springframework.stereotype.Service;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.springframework.stereotype.Controller;
 
-@Service
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.annotation.adapters.NormalizedStringAdapter;
+
+@Controller
 public class ConvertFromXml {
 
 	public <T> T apply(String xmlString, Class<T> klass)
-			throws JsonMappingException, JsonProcessingException {
-		XmlMapper mapper = new XmlMapper();
-		return mapper.readValue(xmlString, klass);
-	}
+			throws JAXBException, IOException {
+		JAXBContext context = JAXBContext.newInstance(klass);
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+		unmarshaller.setAdapter(new NormalizedStringAdapter());
 
+		try (Reader reader = new StringReader(xmlString)) {
+			Object o = unmarshaller.unmarshal(reader);
+			return klass.cast(o);
+		}
+
+	}
 }

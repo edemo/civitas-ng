@@ -2,9 +2,9 @@ package civitas.common.mix;
 
 import java.util.Arrays;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
-@Service
+@Controller
 public class AddCommitmentToMix {
 	public void apply(Mix that, byte[] commitment) {
 		byte[][] commitments = that.getCommitments();

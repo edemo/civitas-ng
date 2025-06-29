@@ -3,7 +3,7 @@ package civitas.common.ballotdesign;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.CommonConstants;
 import civitas.common.VoteChoice;
@@ -14,7 +14,7 @@ import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.parameters.DecodeChoice;
 import civitas.util.CivitasBigInteger;
 
-@Service
+@Controller
 public class TallyVote implements CommonConstants {
 
 	@Autowired

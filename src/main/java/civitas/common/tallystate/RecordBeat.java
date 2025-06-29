@@ -1,8 +1,8 @@
 package civitas.common.tallystate;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
-@Service
+@Controller
 public class RecordBeat {
 	public void apply(TallyState that, int i, int j)
 			throws IndexOutOfBoundsException {

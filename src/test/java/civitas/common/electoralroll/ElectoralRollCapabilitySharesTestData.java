@@ -10,9 +10,9 @@ public interface ElectoralRollCapabilitySharesTestData
 	ElectoralRollCapabilityShares ELECTORAL_ROLL_CAPABILITY_SHARES = new ElectoralRollCapabilityShares(
 			VOTER_ENC_CAPABILITY_SHARES, TELLER_INDEX, BOARD_INDEX);
 	Signature SIGNATURE_ELECTORAL_ROLL_CAPABILITY_SHARES = new Signature(
-			"sigelecrollcapshares".getBytes(), PUBLIC_KEY_ON_WIRE);
+			"sigelecrollcapshares".getBytes(), PUBLIC_KEY_BASE64);
 	Signature SIGNATURE_ELECTORAL_ROLL_CAPABILITY_SHARES_BAD = new Signature(
-			"sigelecrollcapshares".getBytes(), PUBLIC_KEY2_ON_WIRE);
+			"sigelecrollcapshares".getBytes(), PUBLIC_KEY2_BASE64);
 
 	String ELECTORAL_ROLL_CAPABILITY_SHARES_XML = "mock value for ELECTORAL_ROLL_CAPABILITY_SHARES_XML";
 	byte[] ELECTORAL_ROLL_CAPABILITY_SHARES_XML_HASH = "elecrollcapsharexmlhash"

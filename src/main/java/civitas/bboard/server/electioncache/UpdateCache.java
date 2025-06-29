@@ -1,18 +1,17 @@
 package civitas.bboard.server.electioncache;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.CommonConstants;
 import civitas.common.ConvertFromXml;
 import civitas.common.election.ElectionEvent;
+import jakarta.xml.bind.JAXBException;
 
-@Service
+@Controller
 public class UpdateCache {
 
 	@Autowired
@@ -21,12 +20,13 @@ public class UpdateCache {
 	ElectionCacheRepository electionCacheRepository;
 
 	public void apply(String bbid, String meta, String mesg, long t)
-			throws JsonMappingException, JsonProcessingException {
+			throws JAXBException, IOException {
 
 		Optional<ElectionCache> cachep = electionCacheRepository.findById(bbid);
 		ElectionCache cache;
 		if (cachep.isEmpty())
 			throw new IllegalArgumentException("no cache");
+
 		cache = cachep.get();
 
 		if (meta.equals(CommonConstants.ElectionEventMETA)) {

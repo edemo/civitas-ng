@@ -6,8 +6,9 @@
  */
 package civitas.crypto.rsakeypair;
 
-import civitas.crypto.rsaprivatekey.PrivateKey;
-import civitas.crypto.rsapublickey.PublicKey;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+
 import lombok.Data;
 import lombok.NonNull;
 

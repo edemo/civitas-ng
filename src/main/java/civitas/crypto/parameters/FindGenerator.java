@@ -1,13 +1,13 @@
 package civitas.crypto.parameters;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.util.CivitasBigInteger;
 
-@Service
+@Controller
 public class FindGenerator implements Constants {
 	@Autowired
 	public GenerateRandomElement generateRandomElement;

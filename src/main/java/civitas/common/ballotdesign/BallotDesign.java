@@ -7,15 +7,15 @@
 package civitas.common.ballotdesign;
 
 import civitas.common.CommonConstants;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Embeddable
+@NoArgsConstructor
+@AllArgsConstructor
 public class BallotDesign implements CommonConstants {
 
-	@ElementCollection
-	public final String[] candidates;
+	String[] candidates;
 
 }

@@ -6,11 +6,9 @@
  */
 package civitas.common.tabteller.keysharecommitment;
 
-import jakarta.persistence.Embeddable;
 import lombok.Data;
 
 @Data
-@Embeddable
 public class TabTellerKeyShareCommitment {
 	public final int tellerIndex;
 	public final String keyShareHash;

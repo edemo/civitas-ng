@@ -6,14 +6,12 @@
  */
 package civitas.common;
 
-import jakarta.persistence.Embeddable;
 import lombok.Data;
 
 @Data
-@Embeddable
 public class Host {
 	final ServerRole role;
-	final String Urlbase;
+	final String urlbase;
 	final String publicKey;
 
 }

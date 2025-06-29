@@ -6,11 +6,11 @@ import java.security.Security;
 import javax.crypto.SecretKeyFactory;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.messagedigest.MessageDigest;
 
-@Service
+@Controller
 public class CryptoBase implements Constants {
 	public SecretKeyFactory sharedKeyFactory;
 	public KeyFactory publicKeyFactory;

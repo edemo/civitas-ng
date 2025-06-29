@@ -1,11 +1,11 @@
 package civitas.crypto.publickey;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 
-@Service
+@Controller
 public class ElGamalPublicKeyisAuthorized {
 
 	public boolean apply(ElGamalPublicKey that, Object prf) {

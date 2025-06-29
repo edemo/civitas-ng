@@ -1,7 +1,7 @@
 package civitas.common.votersubmission;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.CommonConstants;
 import civitas.common.VoteChoice;
@@ -12,7 +12,7 @@ import civitas.common.verifiablevote.VerifyVerifiableVote;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.publickey.ElGamalPublicKey;
 
-@Service
+@Controller
 public class CheckVoterSubmission implements CommonConstants {
 
 	@Autowired
@@ -38,7 +38,7 @@ public class CheckVoterSubmission implements CommonConstants {
 		if (vs == null) {
 			throw new IllegalArgumentException("Invalid voter submission.");
 		}
-		int k = that.candidates.length;
+		int k = that.getCandidates().length;
 		for (int i = 0; i < k; i++) {
 			for (int j = i + 1; j < k; j++) {
 				VerifiableVote vv = vs.votes[startIndex

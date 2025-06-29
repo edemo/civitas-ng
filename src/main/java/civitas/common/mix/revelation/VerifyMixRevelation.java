@@ -3,7 +3,7 @@ package civitas.common.mix.revelation;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.mix.Mix;
 import civitas.common.mix.elementrevelation.MixElementRevelation;
@@ -11,7 +11,7 @@ import civitas.common.mix.elementrevelation.VerifyMixElementRevelation;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.publickey.ElGamalPublicKey;
 
-@Service
+@Controller
 public class VerifyMixRevelation {
 	@Autowired
 	VerifyMixElementRevelation verifyMixElementRevelation;

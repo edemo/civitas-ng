@@ -2,12 +2,12 @@ package civitas.common.mix.votemix;
 
 import java.util.Arrays;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.Vote;
 import lombok.NonNull;
 
-@Service
+@Controller
 public class AddVoteToVoteMix {
 	public void apply(@NonNull VoteMix that, @NonNull Vote v) {
 		Vote[] n = Arrays.copyOf(that.votes, that.votes.length + 1);

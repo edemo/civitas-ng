@@ -1,18 +1,18 @@
 package civitas.common.election;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.ballotdesign.CalculateBallotLength;
 
-@Service
+@Controller
 public class GetContextForBlock {
 	@Autowired
 	CalculateBallotLength calculateBallotLength;
 
 	public int apply(ElectionDetails that, int block) {
 		int numberContexts = calculateBallotLength
-				.apply(that.ballotDesign.candidates.length);
+				.apply(that.ballotDesign.getCandidates().length);
 		return block % numberContexts;
 
 	}

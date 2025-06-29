@@ -7,12 +7,10 @@
 package civitas.crypto.proofknowndisclog;
 
 import civitas.util.CivitasBigInteger;
-import jakarta.persistence.Embeddable;
 import lombok.Data;
 import lombok.NonNull;
 
 @Data
-@Embeddable
 public class ElGamalProofKnowDiscLog {
 
 	@NonNull

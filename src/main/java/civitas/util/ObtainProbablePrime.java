@@ -2,9 +2,9 @@ package civitas.util;
 
 import java.util.Random;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
-@Service
+@Controller
 public class ObtainProbablePrime {
 
 	public CivitasBigInteger apply(int bitLenght, int certainty, Random random) {

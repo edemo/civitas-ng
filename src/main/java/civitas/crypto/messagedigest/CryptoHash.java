@@ -3,7 +3,7 @@ package civitas.crypto.messagedigest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.bboard.common.BBPost;
 import civitas.crypto.CryptoBase;
@@ -13,7 +13,7 @@ import civitas.util.CivitasBigInteger;
 import lombok.NonNull;
 import lombok.SneakyThrows;
 
-@Service
+@Controller
 public class CryptoHash {
 	@Autowired
 	CryptoBase cryptoBase;
@@ -135,7 +135,6 @@ public class CryptoHash {
 		System.arraycopy(hash, 0, bytes, 0, hash.length);
 		System.arraycopy(longToBytes(currentTime), 0, bytes, hash.length, 8);
 		System.arraycopy(signature, 0, bytes, hash.length + 8, signature.length);
-		System.out.println("prod:" + new String(bytes));
 		return apply(bytes);
 	}
 

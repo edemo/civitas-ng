@@ -1,7 +1,7 @@
 package civitas.crypto.petdecommitment;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.parameters.ElGamalParameters;
@@ -9,7 +9,7 @@ import civitas.crypto.proofdisclog.ConstructElGamalDiscLogEqualityProof;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
 
-@Service
+@Controller
 public class ConstructPETDecommitment {
 
 	@Autowired

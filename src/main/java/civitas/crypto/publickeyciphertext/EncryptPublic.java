@@ -1,23 +1,23 @@
 package civitas.crypto.publickeyciphertext;
 
+import java.security.PublicKey;
+
 import javax.crypto.Cipher;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
 import civitas.crypto.external.DoCrypto;
-import civitas.crypto.rsapublickey.PublicKey;
 
-@Service
+@Controller
 public class EncryptPublic implements Constants {
 	@Autowired
 	DoCrypto doCrypto;
 
 	public PublicKeyCiphertext apply(PublicKey key, String msg) {
-		PublicKey keyc = key;
 		byte[] encrypted = doCrypto.apply(PUBLIC_KEY_CIPHER_ALG,
-				PUBLIC_KEY_PROVIDER, keyc.key, Cipher.ENCRYPT_MODE, msg.getBytes());
+				PUBLIC_KEY_PROVIDER, key, Cipher.ENCRYPT_MODE, msg.getBytes());
 		return new PublicKeyCiphertext(encrypted);
 	}
 

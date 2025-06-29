@@ -6,19 +6,28 @@
  */
 package civitas.common.board;
 
+import java.util.List;
+
+import org.springframework.data.annotation.Id;
+
 import civitas.common.CommonConstants;
 import civitas.common.election.ElectionID;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Data
-@Entity
+@XmlRootElement(name = "boardclosedcontentcommitment")
+@NoArgsConstructor
+@AllArgsConstructor
 public class BoardClosedContentCommitment implements CommonConstants {
 	@Id
-	public final ElectionID electionID;
-	public final String boardName;
-	@ElementCollection
-	public final String[] voterBlockContentHash;
+	@NonNull
+	ElectionID electionID;
+	@NonNull
+	String boardName;
+	@NonNull
+	List<String> voterBlockContentHash;
 }

@@ -1,14 +1,14 @@
 package civitas.crypto.rsakeypair;
 
+import java.security.PublicKey;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.algorithms.CreateFreshNonceBase64;
 import civitas.crypto.algorithms.GetPublicKeyGenerator;
-import civitas.crypto.rsaprivatekey.PrivateKey;
-import civitas.crypto.rsapublickey.PublicKey;
 
-@Service
+@Controller
 public class GenerateKeyPair {
 
 	@Autowired
@@ -19,10 +19,10 @@ public class GenerateKeyPair {
 	public KeyPair apply(int keyLength) {
 		java.security.KeyPair kp = getPublicKeyGenerator.apply(keyLength)
 				.generateKeyPair();
-		java.security.PublicKey pubk = kp.getPublic();
+		PublicKey pubk = kp.getPublic();
 		java.security.PrivateKey prvk = kp.getPrivate();
 
-		return new KeyPair(new PublicKey(pubk), new PrivateKey(prvk));
+		return new KeyPair(pubk, prvk);
 	}
 
 }

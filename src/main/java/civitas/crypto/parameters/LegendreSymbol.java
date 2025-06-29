@@ -1,12 +1,12 @@
 package civitas.crypto.parameters;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.util.CivitasBigInteger;
 
-@Service
+@Controller
 public class LegendreSymbol implements Constants {
 
 	public int apply(CivitasBigInteger a, CivitasBigInteger p,

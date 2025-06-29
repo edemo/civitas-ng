@@ -6,13 +6,13 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoBase;
 import civitas.crypto.CryptoError;
 
-@Service
+@Controller
 public class CreateSharedKeyFromBytes implements Constants {
 
 	@Autowired

@@ -1,10 +1,10 @@
 package civitas.common.votersubmission;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.verifiablevote.VerifiableVote;
 
-@Service
+@Controller
 public class CreateVoterSubmission {
 
 	public VoterSubmission apply(int voterBlock, VerifiableVote[] votes) {

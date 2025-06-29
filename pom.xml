@@ -15,14 +15,31 @@
      <maven.compiler.target>15</maven.compiler.target>
      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
      <spring-version>6.2.8</spring-version>
+     <spring-boot-version>3.5.3</spring-boot-version>
   </properties>
   
 	
   <dependencies>
-	  <dependency>
+		<dependency>
 		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-jpa</artifactId>
-		    <version>3.5.3</version>
+		    <artifactId>spring-boot-starter-web</artifactId>
+		    <version>${spring-boot-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		    <version>${spring-boot-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-keyvalue</artifactId>
+		    <version>4.0.0-M3</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.jspecify</groupId>
+		    <artifactId>jspecify</artifactId>
+		    <version>1.0.0</version>
 		</dependency>
 	     <dependency>
 	        <groupId>org.junit.jupiter</groupId>
@@ -68,15 +85,20 @@
 	        <scope>provided</scope>
 	     </dependency>
 	     <dependency>
+		    <groupId>jakarta.xml.bind</groupId>
+		    <artifactId>jakarta.xml.bind-api</artifactId>
+		    <version>4.0.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.glassfish.jaxb</groupId>
+		    <artifactId>jaxb-runtime</artifactId>
+		    <version>4.0.5</version>
+		</dependency>
+	     <dependency>
 	        <groupId>org.pitest</groupId>
 	        <artifactId>pitest-junit5-plugin</artifactId>
 	        <version>1.2.3</version>
 	     </dependency>
-	     <dependency>
-		    <groupId>com.fasterxml.jackson.dataformat</groupId>
-		    <artifactId>jackson-dataformat-xml</artifactId>
-		    <version>2.19.0</version>
-		</dependency>
 		<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -98,27 +120,38 @@
 		    <artifactId>spring-web</artifactId>
 		    <version>${spring-version}</version>
 		</dependency>
-		<dependency>
-		    <groupId>com.h2database</groupId>
-		    <artifactId>h2</artifactId>
-		    <version>2.3.232</version>
-		    <scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.7.7</version>
-			<scope>runtime</scope>
-		</dependency>
 
   </dependencies>
+
   <build>
 	     <plugins>
-		       <plugin>
-		          <groupId>org.apache.maven.plugins</groupId>
-		          <artifactId>maven-surefire-plugin</artifactId>
-		          <version>2.22.2</version>
-		       </plugin>
+			<plugin>
+			  <groupId>org.codehaus.mojo</groupId>
+			  <artifactId>exec-maven-plugin</artifactId>
+			  <version>3.5.1</version>
+			  <configuration>
+			    <executable>python</executable>
+			    <workingDirectory>src/test/resources/</workingDirectory>
+			  </configuration>
+			  <executions>
+			    <execution>
+			      	<id>testsetup</id>
+					<phase>generate-test-resources</phase>
+			      <goals>
+			        <goal>exec</goal>
+			      </goals>
+			      <configuration>
+				      <workingDirectory>${basedir}</workingDirectory>
+					  <executable>tools/newkeystore</executable>
+			      </configuration>
+			    </execution>
+			  </executions>
+			</plugin>
+			<plugin>
+			      <groupId>org.apache.maven.plugins</groupId>
+			      <artifactId>maven-surefire-plugin</artifactId>
+			      <version>2.22.2</version>
+			</plugin>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-site-plugin</artifactId>
@@ -129,6 +162,16 @@
             <artifactId>maven-surefire-report-plugin</artifactId>
             <version>3.0.0-M4</version>
         </plugin>
+        <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>3.14.0</version>
+	        <configuration>
+	          <compilerArgs>
+	            <arg>-parameters</arg>
+	          </compilerArgs>
+	        </configuration>
+      	</plugin>
         <plugin>
 		          <groupId>org.pitest</groupId>
 		          <artifactId>pitest-maven</artifactId>

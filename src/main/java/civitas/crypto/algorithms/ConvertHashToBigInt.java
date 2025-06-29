@@ -1,10 +1,10 @@
 package civitas.crypto.algorithms;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.util.CivitasBigInteger;
 
-@Service
+@Controller
 public class ConvertHashToBigInt {
 
 	public CivitasBigInteger apply(byte[] hash) {

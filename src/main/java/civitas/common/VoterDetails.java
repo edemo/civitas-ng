@@ -6,8 +6,9 @@
  */
 package civitas.common;
 
+import java.security.PublicKey;
+
 import civitas.crypto.publickey.ElGamalPublicKey;
-import civitas.crypto.rsapublickey.PublicKey;
 import lombok.Data;
 
 @Data

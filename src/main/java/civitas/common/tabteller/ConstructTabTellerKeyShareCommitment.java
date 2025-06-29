@@ -1,16 +1,15 @@
 package civitas.common.tabteller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.ConvertToXml;
 import civitas.common.tabteller.keysharecommitment.TabTellerKeyShareCommitment;
 import civitas.crypto.algorithms.ConvertToBase64;
 import civitas.crypto.messagedigest.CryptoHash;
+import jakarta.xml.bind.JAXBException;
 
-@Service
+@Controller
 public class ConstructTabTellerKeyShareCommitment {
 	@Autowired
 	CryptoHash cryptoHash;
@@ -20,7 +19,7 @@ public class ConstructTabTellerKeyShareCommitment {
 	ConvertToXml convertToXml;
 
 	public TabTellerKeyShareCommitment apply(TabTellerKeyShare that)
-			throws JsonProcessingException {
+			throws JAXBException {
 		String xml = convertToXml.apply(that);
 		byte[] hash = cryptoHash.apply(xml);
 		return new TabTellerKeyShareCommitment(that.tellerIndex,

@@ -9,44 +9,47 @@ package civitas.common.election;
 import java.math.BigInteger;
 
 import civitas.common.ballotdesign.BallotDesign;
-import jakarta.persistence.Embeddable;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
-@Embeddable
+@NoArgsConstructor
+@RequiredArgsConstructor
+@XmlRootElement(name = "electiondetails")
 public class ElectionDetails {
 	@NonNull
-	public String electionID;
+	String electionID;
 	@NonNull
-	public String supervisorPubkey;
+	String supervisorPubkey;
 	@NonNull
-	public String registrarPubKey;
+	String registrarPubKey;
 	@NonNull
-	public String name;
+	String name;
 	@NonNull
-	public String description;
+	String description;
 	@NonNull
-	public String version;
+	String version;
 	@NonNull
-	public BallotDesign ballotDesign;
+	BallotDesign ballotDesign;
 	@NonNull
-	public String startTime;
+	String startTime;
 	@NonNull
-	public String stopTime;
+	String stopTime;
 	@NonNull
-	public String finalizeTime;
+	String finalizeTime;
 	@NonNull
-	public BigInteger elGamalP;
+	BigInteger elGamalP;
 	@NonNull
-	public BigInteger elGamalQ;
+	BigInteger elGamalQ;
 	@NonNull
-	public BigInteger elGamalG;
+	BigInteger elGamalG;
 	@NonNull
-	public Integer sharedKeyLength;
+	Integer sharedKeyLength;
 	@NonNull
-	public Integer nonceLength;
+	Integer nonceLength;
 	@NonNull
-	public Integer voterAnonymityParam;
-
+	Integer voterAnonymityParam;
 }

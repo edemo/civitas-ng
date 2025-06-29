@@ -1,7 +1,7 @@
 package civitas.crypto.keypair;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.parameters.ElGamalParameters;
@@ -9,7 +9,7 @@ import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.util.CivitasBigInteger;
 
-@Service
+@Controller
 public class GenerateElGamalKeyPair {
 
 	@Autowired

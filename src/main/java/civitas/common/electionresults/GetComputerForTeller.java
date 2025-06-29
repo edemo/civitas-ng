@@ -1,8 +1,8 @@
 package civitas.common.electionresults;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
-@Service
+@Controller
 public class GetComputerForTeller {
 
 	public String apply(int tellerIndex) {

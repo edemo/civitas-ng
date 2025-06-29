@@ -1,13 +1,13 @@
 package civitas.common.ballotdesign;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.CommonConstants;
 import civitas.common.VoteChoice;
 import civitas.common.ballot.Ballot;
 
-@Service
+@Controller
 public class CheckBallotAgainstBallotDesign implements CommonConstants {
 
 	@Autowired

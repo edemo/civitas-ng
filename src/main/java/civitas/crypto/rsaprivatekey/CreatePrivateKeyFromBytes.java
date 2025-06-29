@@ -5,12 +5,12 @@ import java.security.spec.KeySpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.CryptoBase;
 import civitas.crypto.CryptoError;
 
-@Service
+@Controller
 public class CreatePrivateKeyFromBytes {
 
 	@Autowired

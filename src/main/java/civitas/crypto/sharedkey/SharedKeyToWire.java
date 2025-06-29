@@ -3,9 +3,9 @@ package civitas.crypto.sharedkey;
 import java.io.PrintWriter;
 import java.util.Base64;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
-@Service
+@Controller
 public class SharedKeyToWire {
 
 	public void apply(SharedKey that, PrintWriter s) {

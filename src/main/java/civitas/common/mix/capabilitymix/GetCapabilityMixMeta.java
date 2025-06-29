@@ -1,13 +1,13 @@
 package civitas.common.mix.capabilitymix;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.common.CommonConstants;
 import civitas.common.election.ElectionDetails;
 import civitas.common.election.GetBlockName;
 
-@Service
+@Controller
 public class GetCapabilityMixMeta implements CommonConstants {
 
 	@Autowired

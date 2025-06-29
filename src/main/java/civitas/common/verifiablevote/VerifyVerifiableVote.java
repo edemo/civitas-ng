@@ -1,14 +1,14 @@
 package civitas.common.verifiablevote;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.proof1ofl.VerifyElGamal1OfLReencryption;
 import civitas.crypto.proofvote.VerifyProofVote;
 import civitas.crypto.publickey.ElGamalPublicKey;
 
-@Service
+@Controller
 public class VerifyVerifiableVote {
 	@Autowired
 	VerifyProofVote verifyProofVote;

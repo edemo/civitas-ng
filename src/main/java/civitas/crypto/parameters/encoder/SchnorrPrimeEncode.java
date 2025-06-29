@@ -1,12 +1,12 @@
 package civitas.crypto.parameters.encoder;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.CryptoException;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 
-@Service
+@Controller
 public class SchnorrPrimeEncode {
 	public CivitasBigInteger apply(CivitasBigInteger x,
 			ElGamalParameters elGamalParameters) throws CryptoException {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
@@ -18,7 +18,7 @@ import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.util.CivitasBigInteger;
 
-@Service
+@Controller
 public class ConstructElGamalProof1OfL implements Constants {
 	@Autowired
 	public GenerateRandomElement generateRandomElement;

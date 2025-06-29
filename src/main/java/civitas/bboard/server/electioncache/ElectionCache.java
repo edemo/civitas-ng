@@ -1,23 +1,24 @@
 package civitas.bboard.server.electioncache;
 
 import java.math.BigInteger;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.data.annotation.Id;
 
 import civitas.common.Host;
 import civitas.common.election.ElectionDetails;
 import civitas.common.election.ElectionStatus;
 import civitas.common.tabteller.keysharecommitment.TabTellerKeyShareCommitment;
 import civitas.crypto.ciphertextlist.CiphertextList;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
-@Embeddable
 class ElGamalKeyShareStored {
 
 	@NonNull
@@ -33,7 +34,9 @@ class ElGamalKeyShareStored {
 }
 
 @Data
-@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class ElectionCache {
 	@Id
 	@NonNull
@@ -44,7 +47,6 @@ public class ElectionCache {
 	ElectionStatus status;
 	@NonNull
 	ElectionDetails electionDetails;
-	@ElementCollection
 	List<Host> hosts;
 	Long electionStartTime;
 	Long electionStopTime;
@@ -53,13 +55,9 @@ public class ElectionCache {
 	// @ElementCollection
 	// ElectionEvent[] electionEvents;
 	Integer electoralRollEstimate;
-	@ElementCollection
 	Map<Integer, ElGamalKeyShareStored> tabTellerKeyShares;
-	@ElementCollection
 	Map<Integer, TabTellerKeyShareCommitment> tabTellerKeyShareCommitments;
 	BigInteger tabTellerSharedKeyY;
-	@ElementCollection
 	Map<Integer, TabTellerKeyShareCommitment> contentComs;
-	@ElementCollection
-	final Map<String, String> voterBlocks;
+	final Map<String, String> voterBlocks = new HashMap<>();
 }
