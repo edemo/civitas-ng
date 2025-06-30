@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.kodekonveyor</groupId>
+  <artifactId>civitas-ng-data</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>jcivitas</name>
+
+  <properties>
+     <maven.compiler.source>15</maven.compiler.source>
+     <maven.compiler.target>15</maven.compiler.target>
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     <spring-version>6.2.8</spring-version>
+     <spring-boot-version>3.5.3</spring-boot-version>
+
+  </properties>
+  <dependencies>
+	  <dependency>
+	        <groupId>org.projectlombok</groupId>
+	        <artifactId>lombok</artifactId>
+	        <version>1.18.36</version>
+	        <scope>provided</scope>
+	  </dependency>
+	  		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-keyvalue</artifactId>
+		    <version>4.0.0-M3</version>
+	   </dependency>
+	   <dependency>
+		    <groupId>jakarta.xml.bind</groupId>
+		    <artifactId>jakarta.xml.bind-api</artifactId>
+		    <version>4.0.2</version>
+		</dependency>
+
+  </dependencies>
+<build>
+	<plugins>
+		<plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>3.14.0</version>
+	        <configuration>
+	          <compilerArgs>
+	            <arg>-parameters</arg>
+	          </compilerArgs>
+	        </configuration>
+      	</plugin>
+
+	</plugins>
+</build>
+</project>

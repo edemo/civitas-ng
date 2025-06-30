@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.kodekonveyor</groupId>
+  <artifactId>civitas-ng-testdata</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>jcivitas</name>
+
+  <properties>
+     <maven.compiler.source>15</maven.compiler.source>
+     <maven.compiler.target>15</maven.compiler.target>
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     <spring-version>6.2.8</spring-version>
+     <spring-boot-version>3.5.3</spring-boot-version>
+  </properties>
+  <dependencies>
+	<dependency>
+		<groupId>com.kodekonveyor</groupId>
+		<artifactId>civitas-ng-data</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+		<groupId>org.mockito</groupId>
+		<artifactId>mockito-core</artifactId>
+		<version>5.18.0</version>
+	</dependency>
+	<dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.36</version>
+        <scope>provided</scope>
+	</dependency>
+	     <dependency>
+	        <groupId>org.junit.jupiter</groupId>
+	        <artifactId>junit-jupiter-api</artifactId>
+	        <version>5.12.1</version>
+	     </dependency>
+	     <dependency>
+	        <groupId>org.junit.jupiter</groupId>
+	        <artifactId>junit-jupiter-engine</artifactId>
+	        <version>5.12.1</version>
+	     </dependency>
+	     <dependency>
+	        <groupId>org.junit.platform</groupId>
+	        <artifactId>junit-platform-launcher</artifactId>
+	        <version>1.12.1</version>
+	     </dependency>
+
+  </dependencies>
+</project>
