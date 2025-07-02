@@ -8,16 +8,17 @@ import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.Constants;
+import civitas.crypto.CryptoBase;
 
 class GetRandomGeneratorTest extends TestBase implements Constants {
 
 	@InjectMocks
-	GetRandomGenerator getRandomGenerator;
+	CryptoBase cryptoBase;
 
 	@Test
 	@DisplayName("returns the random generator")
 	void test() {
-		assertEquals(RANDOM, getRandomGenerator.apply());
+		assertEquals(RANDOM, cryptoBase.getRandomGenerator());
 	}
 
 }

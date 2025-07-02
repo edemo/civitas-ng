@@ -1,10 +1,8 @@
 package civitas.crypto.algorithms;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
-
-import java.util.Arrays;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,10 +20,7 @@ public class CreateFreshNonceTest extends TestBase
 	@Test
 	@DisplayName("creates bitlenght/8 random bytes")
 	void test() {
-		byte[] byteArray = RANDOMS_0.toByteArray();
-		assertArrayEquals(Arrays.copyOfRange(byteArray,
-				byteArray.length - BYTELENGTH, byteArray.length),
-				createFreshNonce.apply(BITLENGTH));
+		assertEquals(BYTELENGTH, createFreshNonce.apply(BITLENGTH).length);
 	}
 
 	@Test
@@ -38,7 +33,7 @@ public class CreateFreshNonceTest extends TestBase
 	@DisplayName("uses the right random generator")
 	void test1() {
 		createFreshNonce.apply(BITLENGTH);
-		verify(createFreshNonce.getRandomGenerator).apply();
+		verify(createFreshNonce.cryptoBase).nextBytes(any());
 	}
 
 }

@@ -3,8 +3,8 @@ package civitas.crypto.ciphertext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import civitas.crypto.CryptoBase;
 import civitas.crypto.CryptoError;
-import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.msg.CryptMessage;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
@@ -14,13 +14,13 @@ import civitas.util.CivitasBigInteger;
 @Controller
 public class ElGamalEncrypt {
 	@Autowired
-	GenerateRandomElement generateRandomElement;
+	CryptoBase cryptoBase;
 
 	public ElGamalCiphertext apply(ElGamalPublicKey key, CryptMessage msg)
 			throws CryptoError {
 		ElGamalParameters ps = key.params;
 		CivitasBigInteger m = msg.getM();
-		CivitasBigInteger r = generateRandomElement.apply(ps.q);
+		CivitasBigInteger r = cryptoBase.generateRandomElement(ps.q);
 		CivitasBigInteger a = ps.g.modPow(r, ps.p);
 		CivitasBigInteger b = m.modMultiply(key.y.modPow(r, ps.p), ps.p);
 		return new ElGamalCiphertext(a, b);

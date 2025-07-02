@@ -5,16 +5,13 @@ import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoBase;
-import civitas.crypto.algorithms.GenerateRandomElement;
-import civitas.crypto.algorithms.GetRandomGenerator;
+import civitas.crypto.messagedigest.CryptoHash;
 import civitas.util.CivitasBigInteger;
 
 @Controller
 public class GenerateSchnorrPrime implements Constants {
 	@Autowired
-	GenerateRandomElement generateRandomElement;
-	@Autowired
-	GetRandomGenerator getRandomGenerator;
+	CryptoHash cryptoHash;
 	@Autowired
 	CalculateNumberOfPrimeTests calculateNumberOfPrimeTests;
 	@Autowired
@@ -27,12 +24,11 @@ public class GenerateSchnorrPrime implements Constants {
 		CivitasBigInteger l = TWO.pow(pLength); // l = 2^pLength
 		boolean done = false;
 		do {
-			q = cryptoBase.obtainProbablePrime(qLength, CERTAINTY,
-					getRandomGenerator.apply());
+			q = cryptoBase.obtainProbablePrime(qLength);
 			int nP = 0;
 			do {
 				nP++;
-				p = generateRandomElement.apply(l);
+				p = cryptoBase.generateRandomElement(l);
 				p.add(l);
 				CivitasBigInteger m = p.mod(q.multiply(TWO));
 				p = p.subtract(m).add(ONE);

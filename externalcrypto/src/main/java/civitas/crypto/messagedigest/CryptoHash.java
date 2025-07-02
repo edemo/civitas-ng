@@ -1,19 +1,29 @@
 package civitas.crypto.messagedigest;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import civitas.crypto.CryptoBase;
+import civitas.crypto.Constants;
 import civitas.util.CivitasBigInteger;
 
 @Service
-public class CryptoHash {
-	@Autowired
-	public CryptoBase cryptoBase;
+public class CryptoHash implements Constants {
+
+	MessageDigest messageDigest;
+
+	CryptoHash() {
+		try {
+			messageDigest = java.security.MessageDigest
+					.getInstance(MESSAGE_DIGEST_ALG);
+		} catch (NoSuchAlgorithmException e) {
+			throw new Error(e);
+		}
+	}
 
 	public byte[] apply(List<CivitasBigInteger> list) {
 		return apply(list.stream().filter(x -> x != null).map(x -> x.toByteArray())
@@ -29,12 +39,11 @@ public class CryptoHash {
 	}
 
 	public byte[] apply(byte[]... bytearrays) {
-		MessageDigest md = cryptoBase.messageDigest;
 		Arrays.asList(bytearrays).forEach(x -> {
 			if (null != x)
-				md.md.update(x);
+				messageDigest.update(x);
 		});
-		return md.md.digest();
+		return messageDigest.digest();
 	}
 
 }

@@ -6,19 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
-import civitas.crypto.external.DoCrypto;
+import civitas.crypto.CryptoBase;
 import civitas.crypto.sharedkey.SharedKey;
 import civitas.crypto.sharedkeymsg.SharedKeyMsg;
 
 @Controller
 public class EncryptShared implements Constants {
 	@Autowired
-	DoCrypto doCrypto;
+	CryptoBase cryptoBase;
 
 	public SharedKeyCiphertext apply(SharedKey key, SharedKeyMsg msg) {
 		SharedKey keyc = key;
 		SharedKeyMsg msgc = msg;
-		byte[] encrypted = doCrypto.apply(SHARED_KEY_CIPHER_ALG,
+		byte[] encrypted = cryptoBase.doCrypto(SHARED_KEY_CIPHER_ALG,
 				SHARED_KEY_PROVIDER, keyc.k, Cipher.ENCRYPT_MODE, msgc.m.getBytes());
 		return new SharedKeyCiphertext(encrypted);
 	}

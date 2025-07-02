@@ -1,4 +1,4 @@
-package civitas.functionaltests;
+package civitas.crypto;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,12 +13,8 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.InjectMocks;
 
-import civitas.AppTestConfig;
 import civitas.bboard.common.BBPostTestData;
 import civitas.common.TestBase;
 import civitas.crypto.messagedigest.CryptoHash;
@@ -28,13 +24,11 @@ import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 import civitas.util.CivitasBigInteger;
 
 @Tag("functional")
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = AppTestConfig.class)
 public class CryptoHashFunctionalTest extends TestBase
 		implements MessageDigestTestData, ElGamalSignedCiphertextTestData,
 		SignatureTestData, BBPostTestData {
 
-	@Autowired
+	@InjectMocks
 	CryptoHash cryptoHash;
 
 	@Test

@@ -3,7 +3,7 @@ package civitas.crypto.proofknowndisclog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import civitas.crypto.algorithms.GenerateRandomElement;
+import civitas.crypto.CryptoBase;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
@@ -12,7 +12,7 @@ import civitas.util.CivitasBigInteger;
 @Controller
 public class ConstructProofKnowDiscLog {
 	@Autowired
-	GenerateRandomElement generateRandomElement;
+	CryptoBase cryptoBase;
 	@Autowired
 	CryptoHash cryptoHash;
 
@@ -23,7 +23,7 @@ public class ConstructProofKnowDiscLog {
 			return null;
 		}
 		CivitasBigInteger v = prms.g.modPow(k.x, prms.p);
-		CivitasBigInteger z = generateRandomElement.apply(prms.q);
+		CivitasBigInteger z = cryptoBase.generateRandomElement(prms.q);
 		CivitasBigInteger a = prms.g.modPow(z, prms.p);
 		CivitasBigInteger c = cryptoHash.apply(v, a, null, null).mod(prms.q);
 		CivitasBigInteger r = z.modAdd(c.modMultiply(k.x, prms.q), prms.q);

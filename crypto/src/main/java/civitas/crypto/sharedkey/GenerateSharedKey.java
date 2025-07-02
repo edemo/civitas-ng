@@ -5,15 +5,15 @@ import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import civitas.crypto.sharedkey.SharedKey;
+import civitas.crypto.CryptoBase;
 
 @Controller
 public class GenerateSharedKey {
 	@Autowired
-	GetSharedKeyGenerator getSharedKeyGenerator;
+	CryptoBase cryptoBase;
 
 	public SharedKey apply(int keyLength) {
-		SecretKey k = getSharedKeyGenerator.apply(keyLength).generateKey();
+		SecretKey k = cryptoBase.getSharedKeyGenerator(keyLength).generateKey();
 		return new SharedKey(k, "sharedKey-civitas");
 	}
 

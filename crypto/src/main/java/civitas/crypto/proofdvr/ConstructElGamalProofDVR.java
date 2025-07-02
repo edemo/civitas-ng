@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import civitas.crypto.CryptoBase;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
-import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.messagedigest.CryptoHash;
@@ -19,7 +19,7 @@ import civitas.util.CivitasBigInteger;
 @Controller
 public class ConstructElGamalProofDVR {
 	@Autowired
-	GenerateRandomElement generateRandomElement;
+	CryptoBase cryptoBase;
 	@Autowired
 	CryptoHash cryptoHash;
 	@Autowired
@@ -38,9 +38,9 @@ public class ConstructElGamalProofDVR {
 			CivitasBigInteger zeta) {
 
 		ElGamalParameters ps = key.params;
-		CivitasBigInteger d = generateRandomElement.apply(ps.q);
-		CivitasBigInteger w = generateRandomElement.apply(ps.q);
-		CivitasBigInteger r = generateRandomElement.apply(ps.q);
+		CivitasBigInteger d = cryptoBase.generateRandomElement(ps.q);
+		CivitasBigInteger w = cryptoBase.generateRandomElement(ps.q);
+		CivitasBigInteger r = cryptoBase.generateRandomElement(ps.q);
 		CivitasBigInteger h = key.y;
 		CivitasBigInteger hv = verifierKey.y;
 		CivitasBigInteger a = ps.g.modPow(d, ps.p);

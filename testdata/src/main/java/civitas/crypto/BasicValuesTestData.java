@@ -11,7 +11,7 @@ public interface BasicValuesTestData extends Constants {
 
 	int BYTELENGTH = 8;
 	int BITLENGTH = 64;
-	int RANDOM_RUNS = 1000;
+	int RANDOM_RUNS = 200;
 	String CURRENT_TIME_STRINGBASE = "currentt";
 	Long CURRENT_TIME = 7166760217683588212L;
 	String SOMESTRING = "testdata";

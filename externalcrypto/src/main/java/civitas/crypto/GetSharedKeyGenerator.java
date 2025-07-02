@@ -1,29 +1,21 @@
-package civitas.crypto.sharedkey;
+package civitas.crypto;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.crypto.KeyGenerator;
 
-import org.springframework.stereotype.Controller;
-
-import civitas.crypto.Constants;
-
-@Controller
-public class GetSharedKeyGenerator implements Constants {
-
+class GetSharedKeyGenerator {
 	private Map<String, KeyGenerator> sharedKeyGenerators = new HashMap<>();
 
-	/**
-	 * Get an appropriate shared key generator, creating one if necessary.
-	 */
 	public KeyGenerator apply(int keyLength) {
 		String genKey = String.valueOf(keyLength);
 		KeyGenerator g = sharedKeyGenerators.get(genKey);
 		if (g != null)
 			return g;
 		try {
-			g = KeyGenerator.getInstance(SHARED_KEY_ALG, SHARED_KEY_PROVIDER);
+			g = KeyGenerator.getInstance(CryptoBase.SHARED_KEY_ALG,
+					CryptoBase.SHARED_KEY_PROVIDER);
 		} catch (Exception e) {
 			throw new Error(e);
 		}
@@ -31,5 +23,4 @@ public class GetSharedKeyGenerator implements Constants {
 		sharedKeyGenerators.put(genKey, g);
 		return g;
 	}
-
 }

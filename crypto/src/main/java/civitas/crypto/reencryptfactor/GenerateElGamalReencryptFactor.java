@@ -3,19 +3,20 @@ package civitas.crypto.reencryptfactor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import civitas.crypto.CryptoBase;
 import civitas.crypto.CryptoError;
-import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.parameters.ElGamalParameters;
 
 @Controller
 public class GenerateElGamalReencryptFactor {
 
 	@Autowired
-	GenerateRandomElement generateRandomElement;
+	CryptoBase cryptoBase;
 
 	public ElGamalReencryptFactor apply(ElGamalParameters params)
 			throws CryptoError {
-		return new ElGamalReencryptFactor(generateRandomElement.apply(params.q));
+		return new ElGamalReencryptFactor(
+				cryptoBase.generateRandomElement(params.q));
 	}
 
 }

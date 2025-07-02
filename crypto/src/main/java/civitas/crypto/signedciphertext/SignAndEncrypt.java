@@ -3,8 +3,8 @@ package civitas.crypto.signedciphertext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import civitas.crypto.CryptoBase;
 import civitas.crypto.CryptoError;
-import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.msg.CryptMessage;
 import civitas.crypto.parameters.ElGamalParameters;
@@ -17,7 +17,7 @@ import civitas.util.CivitasBigInteger;
 public class SignAndEncrypt {
 
 	@Autowired
-	GenerateRandomElement generateRandomElement;
+	CryptoBase cryptoBase;
 	@Autowired
 	CryptoHash cryptoHash;
 	@Autowired
@@ -28,7 +28,7 @@ public class SignAndEncrypt {
 		ElGamalParameters ps = key.params;
 		CivitasBigInteger m = msg.getM();
 		CivitasBigInteger rr = r.r;
-		CivitasBigInteger s = generateRandomElement.apply(ps.q);
+		CivitasBigInteger s = cryptoBase.generateRandomElement(ps.q);
 		CivitasBigInteger a = ps.g.modPow(rr, ps.p);
 		CivitasBigInteger b = m.modMultiply(key.y.modPow(rr, ps.p), ps.p);
 		CivitasBigInteger c = cryptoHash

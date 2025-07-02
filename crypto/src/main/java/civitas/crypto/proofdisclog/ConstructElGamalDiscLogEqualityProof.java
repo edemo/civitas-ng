@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import civitas.crypto.CryptoBase;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
-import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
@@ -15,7 +15,7 @@ import civitas.util.CivitasBigInteger;
 @Controller
 public class ConstructElGamalDiscLogEqualityProof {
 	@Autowired
-	GenerateRandomElement generateRandomElement;
+	CryptoBase cryptoBase;
 	@Autowired
 	CryptoHash cryptoHash;
 	@Autowired
@@ -27,7 +27,7 @@ public class ConstructElGamalDiscLogEqualityProof {
 		CivitasBigInteger v = g1.modPow(x, params.p);
 		CivitasBigInteger w = g2.modPow(x, params.p);
 
-		CivitasBigInteger z = generateRandomElement.apply(params.q);
+		CivitasBigInteger z = cryptoBase.generateRandomElement(params.q);
 		CivitasBigInteger a = g1.modPow(z, params.p);
 		CivitasBigInteger b = g2.modPow(z, params.p);
 

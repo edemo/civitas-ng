@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
+import civitas.crypto.CryptoBase;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
-import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertextlist.CiphertextList;
@@ -21,7 +21,7 @@ import civitas.util.CivitasBigInteger;
 @Controller
 public class ConstructElGamalProof1OfL implements Constants {
 	@Autowired
-	public GenerateRandomElement generateRandomElement;
+	CryptoBase cryptoBase;
 	@Autowired
 	CryptoHash cryptoHash;
 	@Autowired
@@ -45,11 +45,11 @@ public class ConstructElGamalProof1OfL implements Constants {
 		// choose d1 .. dL, and r1 ... rL at random.
 		CivitasBigInteger[] ds = new CivitasBigInteger[L];
 		for (int i = 0; i < L; i++) {
-			ds[i] = generateRandomElement.apply(ps.q);
+			ds[i] = cryptoBase.generateRandomElement(ps.q);
 		}
 		CivitasBigInteger[] rs = new CivitasBigInteger[L];
 		for (int i = 0; i < L; i++) {
-			rs[i] = generateRandomElement.apply(ps.q);
+			rs[i] = cryptoBase.generateRandomElement(ps.q);
 		}
 
 		// compute a_i's and b_i's

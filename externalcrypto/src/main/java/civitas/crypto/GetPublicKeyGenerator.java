@@ -1,16 +1,10 @@
-package civitas.crypto.algorithms;
+package civitas.crypto;
 
 import java.security.KeyPairGenerator;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.stereotype.Controller;
-
-import civitas.crypto.Constants;
-
-@Controller
-public class GetPublicKeyGenerator implements Constants {
-
+class GetPublicKeyGenerator implements Constants {
 	private Map<String, KeyPairGenerator> publicKeyGenerators = new HashMap<>();
 
 	public KeyPairGenerator apply(int keyLength) {

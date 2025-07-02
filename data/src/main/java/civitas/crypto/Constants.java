@@ -34,12 +34,14 @@ public interface Constants {
 	public final String SHARED_KEY_ALG = "AES";
 	public final String SHARED_KEY_CIPHER_ALG = "AES"; // "AES/CBC/PKCS7Padding";
 	public final String SHARED_KEY_PROVIDER = "BC";
+	public final int SHARED_KEY_LENGTH = 256;
 
 	public final String PUBLIC_KEY_ALG = "RSA";
 
 	public final String PUBLIC_KEY_CIPHER_ALG = "RSA/ECB/PKCS1Padding";
 	public final String PUBLIC_KEY_SIGNATURE_ALG = "SHA512WithRSAEncryption";
 	public final String PUBLIC_KEY_PROVIDER = "BC";
+	public final int PUBLIC_KEY_LENGTH = 2048;
 
 	public static final int EL_GAMAL_GROUP_LENGTH = 3072; // size in bits for p
 	public static final int EL_GAMAL_KEY_LENGTH = 256; // size in bits for q

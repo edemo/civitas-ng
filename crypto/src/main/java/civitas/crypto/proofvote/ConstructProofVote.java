@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import civitas.crypto.algorithms.GenerateRandomElement;
+import civitas.crypto.CryptoBase;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
@@ -15,7 +15,7 @@ import civitas.util.CivitasBigInteger;
 @Controller
 public class ConstructProofVote {
 	@Autowired
-	GenerateRandomElement generateRandomElement;
+	CryptoBase cryptoBase;
 	@Autowired
 	CryptoHash cryptoHash;
 	@Autowired
@@ -26,8 +26,8 @@ public class ConstructProofVote {
 			String context, ElGamalReencryptFactor alpha1,
 			ElGamalReencryptFactor alpha2) {
 
-		CivitasBigInteger r1 = generateRandomElement.apply(params.q);
-		CivitasBigInteger r2 = generateRandomElement.apply(params.q);
+		CivitasBigInteger r1 = cryptoBase.generateRandomElement(params.q);
+		CivitasBigInteger r2 = cryptoBase.generateRandomElement(params.q);
 		List<CivitasBigInteger> E = calculateProofEnvironment.apply(params,
 				encCapability, encChoice, context);
 		E.add(params.g.modPow(r1, params.p));

@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
-import civitas.crypto.algorithms.GenerateRandomElement;
+import civitas.crypto.CryptoBase;
 import civitas.util.CivitasBigInteger;
 
 @Controller
 public class FindGenerator implements Constants {
 	@Autowired
-	public GenerateRandomElement generateRandomElement;
+	CryptoBase cryptoBase;
 
 	public CivitasBigInteger apply(PrimePair sp) {
 		CivitasBigInteger g = null;
@@ -19,7 +19,7 @@ public class FindGenerator implements Constants {
 		CivitasBigInteger negONE = p.subtract(ONE);
 		CivitasBigInteger twoK = p.subtract(ONE).divide(sp.q);
 		do {
-			g = generateRandomElement.apply(p);
+			g = cryptoBase.generateRandomElement(p);
 			g = g.modPow(twoK, p);
 			reject = g.equals(ONE) || g.equals(negONE);
 		} while (reject);
