@@ -5,7 +5,15 @@ import static org.mockito.Mockito.mock;
 import civitas.crypto.rsapublickey.PublicKeyTestData;
 
 public interface SignatureTestData extends PublicKeyTestData {
-	Signature SIGNATURE_OF_AUTH_NONCE_WITH_KEY = mock(Signature.class);
+	byte[] SIGNATURE_OF_AUTH_NONCE_WITH_KEY_BYTES = "SIGNATURE_OF_AUTH_NONCE_WITH_KEY"
+			.getBytes();
+	Signature SIGNATURE_OF_AUTH_NONCE_WITH_KEY = new Signature(
+			SIGNATURE_OF_AUTH_NONCE_WITH_KEY_BYTES, PUBLIC_KEY_BASE64);
+	byte[] SIGNATURE_OF_SOMESTRING_WITH_KEY_BYTES = "SIGNATURE_OF_SOMESTRING_WITH_KEY"
+			.getBytes();
+	Signature SIGNATURE_OF_SOMESTRING_WITH_KEY = new Signature(
+			SIGNATURE_OF_SOMESTRING_WITH_KEY_BYTES, PUBLIC_KEY_BASE64);
+
 	Signature SIGNATURE_OF_AUTH_NONCE_WITH_KEY2 = mock(Signature.class);
 	String BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE_STRINGBASE = "BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE";
 	Signature BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE = new Signature(

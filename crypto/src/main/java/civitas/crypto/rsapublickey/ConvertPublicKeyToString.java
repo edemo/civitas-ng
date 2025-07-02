@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 public class ConvertPublicKeyToString {
 
 	public String apply(PublicKey pub) {
-		String publicK = Base64.getEncoder().encodeToString(pub.getEncoded());
-		return publicK;
+		return Base64.getEncoder().encodeToString(pub.getEncoded());
 	}
 
 }

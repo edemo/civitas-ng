@@ -14,18 +14,18 @@ public interface BasicValuesTestData extends Constants {
 	int RANDOM_RUNS = 1000;
 	String CURRENT_TIME_STRINGBASE = "currentt";
 	Long CURRENT_TIME = 7166760217683588212L;
-	public static final String SOMESTRING = "testdata";
-	public static final String SOMESTRING_BASE64 = "dGVzdGRhdGE=";
-	public static final String SOMESTRING_EXTENDED = "exttestdatawas";
-	public static final byte[] BYTES = SOMESTRING.getBytes();
+	String SOMESTRING = "testdata";
+	byte[] SOMESTRING_HASH = "somestring_hash".getBytes();
+	String SOMESTRING_BASE64 = "dGVzdGRhdGE=";
+	String SOMESTRING_EXTENDED = "exttestdatawas";
+	byte[] BYTES = SOMESTRING.getBytes();
 	CivitasBigInteger SOMESTRING_BIGINT = new CivitasBigInteger(BYTES);
-	public static final int SOME_INT = 0xdeadbeef;
-	public static final int SOME_SMALL_INT = 0xbeef;
-	public static final CivitasBigInteger SOME_INT_BIG = CivitasBigInteger
-			.valueOf(SOME_INT);
-	public static final String ONE_BASE64 = "AQ==";
-	public static final long LONG = 0xdeadbeeff001be41L;
-	public static final byte[] LONG_AS_BYTES = new byte[] {
+	int SOME_INT = 0xdeadbeef;
+	int SOME_SMALL_INT = 0xbeef;
+	CivitasBigInteger SOME_INT_BIG = CivitasBigInteger.valueOf(SOME_INT);
+	String ONE_BASE64 = "AQ==";
+	long LONG = 0xdeadbeeff001be41L;
+	byte[] LONG_AS_BYTES = new byte[] {
 			(byte) 0x41,
 			(byte) 0xbe,
 			(byte) 0x01,
@@ -34,7 +34,7 @@ public interface BasicValuesTestData extends Constants {
 			(byte) 0xbe,
 			(byte) 0xad,
 			(byte) 0xde };
-	public static final List<String> RANDOMS_BASE64 = Arrays.asList(
+	List<String> RANDOMS_BASE64 = Arrays.asList(
 			"JY+s34cV7ybeZLEpACLziJ3ZTb5fiCoGkx7duQSKvms=",
 			"POILzE0M8iAYB1dCQW44j2oeofu6U7JMxnxoboocpBI=",
 			"N8WtyRCrye3u8iDSDnKjAob9Wr/fMDqx3x3FE+OyDkM=",
@@ -65,36 +65,33 @@ public interface BasicValuesTestData extends Constants {
 			"Y68p7FIkSehbsEy9DEFm4ZCLBNHWvOHfZAFiJcNNyYU=",
 			"KnJKpa62Fm1sRo+qU1RfkGD6heTRBoEgkdL5CIFHKUk=");
 
-	public static final List<CivitasBigInteger> RANDOMS = RANDOMS_BASE64.stream()
+	List<CivitasBigInteger> RANDOMS = RANDOMS_BASE64.stream()
 			.map((s) -> Util.asBigint(s)).toList();
 
-	public static final CivitasBigInteger RANDOMS_0 = RANDOMS.get(0);
-	public static final String RANDOMS_0_BASE64 = RANDOMS_BASE64.get(0);
+	CivitasBigInteger RANDOMS_0 = RANDOMS.get(0);
+	String RANDOMS_0_BASE64 = RANDOMS_BASE64.get(0);
 
-	public static final CivitasBigInteger RANDOMS_1 = RANDOMS.get(1);
-	public static final String RANDOMS_1_BASE64 = RANDOMS_BASE64.get(1);
+	CivitasBigInteger RANDOMS_1 = RANDOMS.get(1);
+	String RANDOMS_1_BASE64 = RANDOMS_BASE64.get(1);
 
-	public static final CivitasBigInteger RANDOMS_2 = RANDOMS.get(2);
-	public static final String RANDOMS_2_BASE64 = RANDOMS_BASE64.get(2);
+	CivitasBigInteger RANDOMS_2 = RANDOMS.get(2);
+	String RANDOMS_2_BASE64 = RANDOMS_BASE64.get(2);
 
-	public static final String BIGINT_A_BASE64 = SOMESTRING_BASE64;
-	public static final String SAFE_P_MINUS_A_BASE64 = "ASvIFyEHZA21reK32LTtYEwJG4GSW8Xzrl83llQSdjcztgsIJeyQm0ZZ36vG4aTVYjtADzV9J6xJcK0C32+iCP4=";
-	public static final CivitasBigInteger SAFE_P_MINUS_A = Util
-			.asBigint(SAFE_P_MINUS_A_BASE64);
+	String BIGINT_A_BASE64 = SOMESTRING_BASE64;
+	String SAFE_P_MINUS_A_BASE64 = "ASvIFyEHZA21reK32LTtYEwJG4GSW8Xzrl83llQSdjcztgsIJeyQm0ZZ36vG4aTVYjtADzV9J6xJcK0C32+iCP4=";
+	CivitasBigInteger SAFE_P_MINUS_A = Util.asBigint(SAFE_P_MINUS_A_BASE64);
 
-	public static final String BIGINT_B_BASE64 = "Xje5W2KfxNk=";
-	public static final String BIGINT_C_BASE64 = "eaUSELMHNaE=";
+	String BIGINT_B_BASE64 = "Xje5W2KfxNk=";
+	String BIGINT_C_BASE64 = "eaUSELMHNaE=";
 
-	public static final String BIGINT_D_BASE64 = "eOmnTcKMIpE=";
+	String BIGINT_D_BASE64 = "eOmnTcKMIpE=";
 
-	public static final CivitasBigInteger BIGINT_A = new CivitasBigInteger(
-			SOMESTRING.getBytes());
-	public static final CivitasBigInteger BIGINT_B = Util
-			.asBigint(BIGINT_B_BASE64);
-	public static final CivitasBigInteger BIGINT_C = Util
-			.asBigint(BIGINT_C_BASE64);
-	public static final CivitasBigInteger BIGINT_D = Util
-			.asBigint(BIGINT_D_BASE64);
+	CivitasBigInteger BIGINT_A = new CivitasBigInteger(SOMESTRING.getBytes());
+	CivitasBigInteger BIGINT_B = Util.asBigint(BIGINT_B_BASE64);
+	CivitasBigInteger BIGINT_C = Util.asBigint(BIGINT_C_BASE64);
+	CivitasBigInteger BIGINT_D = Util.asBigint(BIGINT_D_BASE64);
 	String AUTHENTICATION_NONCE = "auth nonce";
+
+	int[] INTEGER_PERMUTATION = new int[] { 3, 0, 1, 2, 4 };
 
 }

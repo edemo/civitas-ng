@@ -1,6 +1,7 @@
 package civitas.bboard.server.controllers;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
@@ -90,10 +91,13 @@ public class PostController {
 				.findByBbidOrderBySerialDesc(bbid);
 
 		BBPost lastPost = null;
+		byte[] hash = new byte[0];
 		if (lastPosts.iterator().hasNext()) {
 			lastPost = lastPosts.iterator().next();
+			hash = lastPost.hash;
 		}
-		byte[] newhash = cryptoHash.apply(lastPost, t, dto.signature);
+		byte[] newhash = cryptoHash.apply(hash, BigInteger.valueOf(t).toByteArray(),
+				dto.signature.signature);
 
 		try {
 			updateCache.apply(bbid, dto.meta, dto.payloadXml, t);

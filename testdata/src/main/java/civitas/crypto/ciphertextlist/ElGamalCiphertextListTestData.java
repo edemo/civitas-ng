@@ -6,6 +6,10 @@ import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 
 public interface ElGamalCiphertextListTestData
 		extends ElGamalCiphertextTestData {
+
+	CiphertextList CIPHERTEXTLIST_TWO_LONG = new CiphertextList(
+			List.of(EL_GAMAL_CIPHERTEXT_ONE, EL_GAMAL_CIPHERTEXT_TWO));
+
 	CiphertextList CIPHERTEXTLIST_ZEROSIZED = new CiphertextList();
 	CiphertextList CIPHERTEXTLIST_ONEINSIDE = new CiphertextList(
 			List.of(CIPHERTEXT_E));

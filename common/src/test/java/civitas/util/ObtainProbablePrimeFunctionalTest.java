@@ -14,6 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import civitas.AppTestConfig;
 import civitas.common.TestBase;
 import civitas.crypto.Constants;
+import civitas.crypto.CryptoBase;
 import civitas.crypto.parameters.ElGamalParametersTestData;
 
 @Tag("functional")
@@ -23,12 +24,12 @@ public class ObtainProbablePrimeFunctionalTest extends TestBase
 		implements ElGamalParametersTestData {
 
 	@Autowired
-	ObtainProbablePrime obtainProbablePrime;
+	CryptoBase cryptoBase;
 
 	@Test
 	@DisplayName("obtain a probable prime with the given bit length, certainty and random generator")
 	void test() {
-		CivitasBigInteger p = obtainProbablePrime.apply(EL_GAMAL_KEY_LENGTH,
+		CivitasBigInteger p = cryptoBase.obtainProbablePrime(EL_GAMAL_KEY_LENGTH,
 				Constants.CERTAINTY, RANDOM);
 		assertTrue(p.isProbablePrime(CERTAINTY));
 		assertEquals(EL_GAMAL_KEY_LENGTH, p.bitLength());

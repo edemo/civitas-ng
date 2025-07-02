@@ -23,7 +23,7 @@ public class ConvertStringToPublicKey {
 		try {
 			return cryptoBase.publicKeyFactory.generatePublic(keySpec);
 		} catch (InvalidKeySpecException e) {
-			throw new CryptoException();
+			throw new CryptoException("cannot convert", e);
 		}
 	}
 

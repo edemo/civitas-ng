@@ -6,8 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.Base64;
+import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -24,6 +25,7 @@ import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.messagedigest.MessageDigestTestData;
 import civitas.crypto.signature.SignatureTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
+import civitas.util.CivitasBigInteger;
 
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
@@ -36,20 +38,6 @@ public class CryptoHashFunctionalTest extends TestBase
 	CryptoHash cryptoHash;
 
 	@Test
-	@DisplayName("digest for just initialized one is correct")
-	void test() {
-		assertArrayEquals(BASELINE_DIGEST.digest(),
-				cryptoHash.apply(new byte[] {}));
-	}
-
-	@Test
-	@DisplayName("digest for byte array is correct")
-	void test1() {
-		BASELINE_DIGEST.update(BYTES);
-		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply(BYTES));
-	}
-
-	@Test
 	@DisplayName("if updated with (byte[]) null, nothing happens")
 	void test2() {
 		assertArrayEquals(BASELINE_DIGEST.digest(),
@@ -57,60 +45,25 @@ public class CryptoHashFunctionalTest extends TestBase
 	}
 
 	@Test
-	@DisplayName("if updated with (String) null, nothing happens")
-	void test2_2() throws UnsupportedEncodingException {
+	@DisplayName("hash for list of CivitasBigintegers is correct")
+	void test_list() {
+		BASELINE_DIGEST.update(BIGINT_A.toByteArray());
+		BASELINE_DIGEST.update(BIGINT_B.toByteArray());
+		BASELINE_DIGEST.update(BIGINT_C.toByteArray());
+		BASELINE_DIGEST.update(BIGINT_D.toByteArray());
 		assertArrayEquals(BASELINE_DIGEST.digest(),
-				cryptoHash.apply((String) null));
+				cryptoHash.apply(List.of(BIGINT_A, BIGINT_B, BIGINT_C, BIGINT_D)));
 	}
 
 	@Test
-	@DisplayName("digest for byte is correct")
-	void test3() {
-		BASELINE_DIGEST.update((byte) 42);
-		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply((byte) 42));
-	}
+	@DisplayName("hash for list of CivitasBigintegers is correct even if some of them is null")
+	void test_list2() {
+		BASELINE_DIGEST.update(BIGINT_A.toByteArray());
+		BASELINE_DIGEST.update(BIGINT_C.toByteArray());
+		BASELINE_DIGEST.update(BIGINT_D.toByteArray());
 
-	@Test
-	@DisplayName("digest for int is correct")
-	void test4() {
-
-		BASELINE_DIGEST.update(
-				new byte[] { (byte) 0xef, (byte) 0xbe, (byte) 0xad, (byte) 0xde });
-		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply(0xdeadbeef));
-	}
-
-	@Test
-	@DisplayName("digest for long is correct")
-	void test5() {
-		BASELINE_DIGEST.update(CURRENT_TIME_STRINGBASE.getBytes());
-		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply(CURRENT_TIME));
-	}
-
-	@Test
-	@DisplayName("digest for String is correct")
-	void test6() throws UnsupportedEncodingException {
-		BASELINE_DIGEST.update(BYTES);
-		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply(SOMESTRING));
-	}
-
-	@Test
-	@DisplayName("digest for char array with offset is correct")
-	void test7() throws UnsupportedEncodingException {
-		BASELINE_DIGEST.update(BYTES);
-		assertArrayEquals(BASELINE_DIGEST.digest(),
-				cryptoHash.apply(SOMESTRING_EXTENDED.toCharArray(), 3, 8));
-	}
-
-	@Test
-	@DisplayName("digest for hash, time and signature is correct")
-	void test9() {
-		byte[] bytes = (BBPOST_HASH_STRINGBASE + CURRENT_TIME_STRINGBASE
-				+ BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE_STRINGBASE).getBytes();
-		BASELINE_DIGEST.update(bytes);
-		byte[] digest = BASELINE_DIGEST.digest();
-
-		assertArrayEquals(digest, cryptoHash.apply(BBPOST, CURRENT_TIME,
-				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE));
+		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash
+				.apply(Stream.of(BIGINT_A, null, BIGINT_C, BIGINT_D).toList()));
 	}
 
 	@Test
@@ -124,13 +77,23 @@ public class CryptoHashFunctionalTest extends TestBase
 	}
 
 	@Test
-	@Tag("testdata")
-	@DisplayName("EL_GAMAL_SIGNED_CIPHERTEXT_C_BASE64")
+	@DisplayName("hash for three bigintegers and an environment byte array is correct")
 	void test8() {
 		assertEquals(EL_GAMAL_SIGNED_CIPHERTEXT_C_BASE64, Base64.getEncoder()
 				.encodeToString(cryptoHash.apply(EL_GAMAL_SIGNED_CIPHERTEXT_HASH1,
 						EL_GAMAL_SIGNED_CIPHERTEXT_A, EL_GAMAL_SIGNED_CIPHERTEXT_B,
 						ADDITIONALENV_BYTES).toByteArray()));
+	}
+
+	@Test
+	@DisplayName("hash for two bigintegers and an environment byte array is correct")
+	void test9() {
+		BASELINE_DIGEST.update(BIGINT_A.toByteArray());
+		BASELINE_DIGEST.update(BIGINT_B.toByteArray());
+		BASELINE_DIGEST.update(ADDITIONALENV_BYTES);
+
+		assertEquals(new CivitasBigInteger(BASELINE_DIGEST.digest()),
+				cryptoHash.apply(BIGINT_A, BIGINT_B, null, ADDITIONALENV_BYTES));
 	}
 
 }

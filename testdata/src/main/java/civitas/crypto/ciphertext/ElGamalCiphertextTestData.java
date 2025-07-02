@@ -6,13 +6,18 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import civitas.crypto.ciphertextlist.CiphertextList;
-import civitas.crypto.msg.ElgamalMessageTestData;
+import civitas.crypto.msg.ElgamalMsgTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShareTestData;
 import civitas.util.CivitasBigInteger;
 
 public interface ElGamalCiphertextTestData
-		extends ElgamalMessageTestData, VoteCapabilityShareTestData {
+		extends ElgamalMsgTestData, VoteCapabilityShareTestData {
+
+	ElGamalCiphertext EL_GAMAL_CIPHERTEXT_ONE = new ElGamalCiphertext(ONE,
+			ONE_ENCODED.m);
+	ElGamalCiphertext EL_GAMAL_CIPHERTEXT_TWO = new ElGamalCiphertext(TWO,
+			TWO_ENCODED.m);
 
 	CivitasBigInteger CIPHERTEXT_E_A = BIGINT_G.modPow(FACTOR_E, BIGINT_P);
 	CivitasBigInteger CIPHERTEXT_E_B = MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -56,8 +57,9 @@ public class PostControllerTest extends TestBase
 				CURRENT_TIME);
 		verify(postController.bBPostRepository)
 				.findByBbidOrderBySerialDesc(BULLETIN_BOARD_ID);
-		verify(postController.cryptoHash).apply(BBPOST, CURRENT_TIME,
-				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE);
+		verify(postController.cryptoHash).apply(BBPOST.hash,
+				BigInteger.valueOf(CURRENT_TIME).toByteArray(),
+				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE.signature);
 		verify(postController.loggerController).apply(
 				MarkerFactory.getMarker("bbs_post"),
 				BoardClosedContentCommitmentMETA + BULLETIN_BOARD_ID);
@@ -89,14 +91,15 @@ public class PostControllerTest extends TestBase
 	@DisplayName("if there is no previous post the hash uses only the time and signature, and the serial is 1 ")
 	void test3() throws CommunicableException {
 		given(EnvironmentState.EMPTY_BOARD);
-		assertEquals(CURRENT_TIME,
-				postController.apply(BULLETIN_BOARD_ID,
-						new PostDTO(BoardClosedContentCommitmentMETA,
-								BOARD_CLOSED_CONTENT_COMMITMENT_XML,
-								BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE)));
-		verify(postController.cryptoHash).apply(null, CURRENT_TIME,
-				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE);
+		Long actual = postController.apply(BULLETIN_BOARD_ID,
+				new PostDTO(BoardClosedContentCommitmentMETA,
+						BOARD_CLOSED_CONTENT_COMMITMENT_XML,
+						BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE));
+		verify(postController.cryptoHash).apply(new byte[0],
+				BigInteger.valueOf(CURRENT_TIME).toByteArray(),
+				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE.signature);
 		verify(postController.bBPostRepository).save(FIRST_POST);
+		assertEquals(CURRENT_TIME, actual);
 	}
 
 }

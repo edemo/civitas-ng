@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import civitas.common.ballotdesign.BallotDesignTestData;
-import civitas.crypto.msg.ElgamalMessageTestData;
+import civitas.crypto.msg.ElgamalMsgTestData;
 import civitas.crypto.votecapability.VoteCapability;
 import civitas.util.CivitasBigInteger;
 
 public interface VoteCapabilityShareTestData
-		extends ElgamalMessageTestData, BallotDesignTestData {
+		extends ElgamalMsgTestData, BallotDesignTestData {
 
 	VoteCapability VOTE_CAPABILITY = new VoteCapability(
 			MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED);

@@ -8,7 +8,6 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>jcivitas</name>
 
   <properties>
      <maven.compiler.source>15</maven.compiler.source>

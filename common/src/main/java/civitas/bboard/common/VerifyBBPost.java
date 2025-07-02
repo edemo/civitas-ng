@@ -16,7 +16,7 @@ public class VerifyBBPost {
 	CryptoHash cryptoHash;
 
 	public boolean apply(BBPost that) throws CryptoException {
-		byte[] hash = cryptoHash.apply(that.msg);
+		byte[] hash = cryptoHash.apply(that.msg.getBytes());
 		return verifyPublicKeySignature.apply(that.sig, hash);
 	}
 }

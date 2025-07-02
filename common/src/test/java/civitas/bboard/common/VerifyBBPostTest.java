@@ -34,7 +34,8 @@ class VerifyBBPostTest extends TestBase implements BBPostTestData,
 			InvalidKeySpecException, CryptoError, UnsupportedEncodingException,
 			CryptoException {
 		assertTrue(verifyBBPost.apply(BBPOST));
-		verify(verifyBBPost.cryptoHash).apply(ELECTORAL_ROLL_CAPABILITY_SHARES_XML);
+		verify(verifyBBPost.cryptoHash)
+				.apply(ELECTORAL_ROLL_CAPABILITY_SHARES_XML.getBytes());
 		verify(verifyBBPost.verifyPublicKeySignature).apply(BBPOST.sig,
 				ELECTORAL_ROLL_CAPABILITY_SHARES_XML_HASH);
 	}

@@ -26,6 +26,10 @@ class ElGamalEncryptStub
 			when(mock.apply(EL_GAMAL_PUBLIC_KEY_E, VOTE_CAPABILITY_SHARES[i],
 					ELGAMAL_REENCRYPT_FACTOR_E)).thenReturn(PROOF_EPRIMES.get(i));
 		}
+		when(mock.apply(EL_GAMAL_PUBLIC_KEY_E, ONE_ENCODED, ENCRYPT_FACTOR_ZERO))
+				.thenReturn(EL_GAMAL_CIPHERTEXT_ONE);
+		when(mock.apply(EL_GAMAL_PUBLIC_KEY_E, TWO_ENCODED, ENCRYPT_FACTOR_ZERO))
+				.thenReturn(EL_GAMAL_CIPHERTEXT_TWO);
 		return mock;
 
 	}

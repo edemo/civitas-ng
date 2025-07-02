@@ -11,11 +11,13 @@ public interface ElGamalReencryptFactorTestData
 
 	CivitasBigInteger FACTOR_EPRIME = BIGINT_A;
 	CivitasBigInteger G_EXP_FACTOR = BIGINT_G.modPow(FACTOR_EPRIME, BIGINT_P);
-	public static final ElGamalReencryptFactor ELGAMAL_REENCRYPT_FACTOR_EPRIME = new ElGamalReencryptFactor(
+	ElGamalReencryptFactor ELGAMAL_REENCRYPT_FACTOR_EPRIME = new ElGamalReencryptFactor(
 			FACTOR_EPRIME);
 	CivitasBigInteger FACTOR_E = BIGINT_D;
-	public static final ElGamalReencryptFactor ELGAMAL_REENCRYPT_FACTOR_E = new ElGamalReencryptFactor(
+	ElGamalReencryptFactor ELGAMAL_REENCRYPT_FACTOR_E = new ElGamalReencryptFactor(
 			FACTOR_E);
+	ElGamalReencryptFactor ELGAMAL_REENCRYPT_FACTOR_RANDOMS_0 = new ElGamalReencryptFactor(
+			RANDOMS_0);
 
 	ElGamalReencryptFactor[] FACTORS = RANDOMS.subList(0, 3).stream()
 			.map(x -> ELGAMAL_REENCRYPT_FACTOR_E).toList()

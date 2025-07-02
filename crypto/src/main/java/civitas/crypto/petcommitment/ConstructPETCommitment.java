@@ -23,7 +23,7 @@ public class ConstructPETCommitment {
 		CivitasBigInteger di = d.modPow(that.exponent, params.p);
 		CivitasBigInteger ei = e.modPow(that.exponent, params.p);
 
-		return new PETCommitment(cryptoHash.apply(di, ei));
+		return new PETCommitment(cryptoHash.apply(di, ei, null, null));
 	}
 
 }

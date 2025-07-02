@@ -15,8 +15,7 @@ public class GenerateElGamalReencryptFactor {
 
 	public ElGamalReencryptFactor apply(ElGamalParameters params)
 			throws CryptoError {
-		ElGamalParameters ps = params;
-		return new ElGamalReencryptFactor(generateRandomElement.apply(ps.q));
+		return new ElGamalReencryptFactor(generateRandomElement.apply(params.q));
 	}
 
 }

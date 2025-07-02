@@ -14,10 +14,12 @@ import org.mockito.InjectMocks;
 import civitas.common.TestBase;
 import civitas.crypto.BasicValuesTestData;
 import civitas.crypto.CryptoError;
+import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 import civitas.crypto.signature.SignatureTestData;
 
 public class IsPublicKeyAuthorizedTest extends TestBase
-		implements PublicKeyTestData, BasicValuesTestData, SignatureTestData {
+		implements PublicKeyTestData, BasicValuesTestData, SignatureTestData,
+		PrivateKeyTestData {
 
 	@InjectMocks
 	IsPublicKeyAuthorized isPublicKeyAuthorized;
@@ -29,10 +31,10 @@ public class IsPublicKeyAuthorizedTest extends TestBase
 			+ "- verifies that the signature is verifiable with the public key")
 	void test2()
 			throws UnsupportedEncodingException, CryptoException, CryptoError {
-		boolean actual = isPublicKeyAuthorized.apply(PUBLIC_KEY, PRIVATE_KEY_JS);
+		boolean actual = isPublicKeyAuthorized.apply(PUBLIC_KEY, PRIVATE_KEY);
 		verify(isPublicKeyAuthorized.createFreshNonceBase64)
 				.apply(AUTHENTICATION_NONCE_LENGTH);
-		verify(isPublicKeyAuthorized.signWithPublicKey).apply(PRIVATE_KEY_JS,
+		verify(isPublicKeyAuthorized.signWithPublicKey).apply(PRIVATE_KEY,
 				PUBLIC_KEY, AUTHENTICATION_NONCE);
 		verify(isPublicKeyAuthorized.verifyPublicKeySignature).apply(
 				SIGNATURE_OF_AUTH_NONCE_WITH_KEY, PUBLIC_KEY, AUTHENTICATION_NONCE);
@@ -43,7 +45,7 @@ public class IsPublicKeyAuthorizedTest extends TestBase
 	@DisplayName("isAuthorized is false for other private key")
 	void test2_2()
 			throws UnsupportedEncodingException, CryptoException, CryptoError {
-		assertFalse(isPublicKeyAuthorized.apply(PUBLIC_KEY, PRIVATE_KEY_JS2));
+		assertFalse(isPublicKeyAuthorized.apply(PUBLIC_KEY, PRIVATE_KEY2));
 	}
 
 }

@@ -21,9 +21,9 @@ class SignWithPublicKeyStub
 			CryptoError, CryptoException {
 		SignWithPublicKey mock = mock(SignWithPublicKey.class);
 
-		when(mock.apply(PRIVATE_KEY_JS, PUBLIC_KEY, AUTHENTICATION_NONCE))
+		when(mock.apply(PRIVATE_KEY, PUBLIC_KEY, AUTHENTICATION_NONCE))
 				.thenReturn(SIGNATURE_OF_AUTH_NONCE_WITH_KEY);
-		when(mock.apply(PRIVATE_KEY_JS2, PUBLIC_KEY2, AUTHENTICATION_NONCE))
+		when(mock.apply(PRIVATE_KEY2, PUBLIC_KEY2, AUTHENTICATION_NONCE))
 				.thenReturn(SIGNATURE_OF_AUTH_NONCE_WITH_KEY2);
 		return mock;
 	}

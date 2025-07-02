@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
+import civitas.crypto.CryptoBase;
 import civitas.crypto.algorithms.GenerateRandomElement;
 import civitas.crypto.algorithms.GetRandomGenerator;
 import civitas.util.CivitasBigInteger;
-import civitas.util.ObtainProbablePrime;
 
 @Controller
 public class GenerateSchnorrPrime implements Constants {
@@ -18,7 +18,7 @@ public class GenerateSchnorrPrime implements Constants {
 	@Autowired
 	CalculateNumberOfPrimeTests calculateNumberOfPrimeTests;
 	@Autowired
-	ObtainProbablePrime obtainProbablePrime;
+	CryptoBase cryptoBase;
 
 	public PrimePair apply(int qLength, int pLength) {
 		CivitasBigInteger p, q;
@@ -27,7 +27,7 @@ public class GenerateSchnorrPrime implements Constants {
 		CivitasBigInteger l = TWO.pow(pLength); // l = 2^pLength
 		boolean done = false;
 		do {
-			q = obtainProbablePrime.apply(qLength, CERTAINTY,
+			q = cryptoBase.obtainProbablePrime(qLength, CERTAINTY,
 					getRandomGenerator.apply());
 			int nP = 0;
 			do {

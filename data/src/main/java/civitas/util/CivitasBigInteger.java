@@ -25,8 +25,9 @@ public class CivitasBigInteger implements Constants {
 	}
 
 	/** Construct a probable prime. */
-	public CivitasBigInteger(int length, int certainty, Random random) {
-		i = new BigInteger(length, certainty, random);
+	public static CivitasBigInteger constructProbablePrime(int length,
+			int certainty, Random random) {
+		return new CivitasBigInteger(new BigInteger(length, certainty, random));
 	}
 
 	/** Construct a random integer. */

@@ -1,5 +1,6 @@
 package civitas.common.mix.revelation;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,9 @@ public class VerifyMixRevelation {
 				toIndex = i;
 			}
 			byte[] commitment = toMix.getCommitments()[toIndex].clone();
-			byte[] hash = cryptoHash.apply(mer.getNonce(), mer.getMapping());
+			byte[] mappingBytes = BigInteger.valueOf(mer.getMapping()).toByteArray();
+			byte[] hash = cryptoHash.apply(mer.getNonce(),
+					mappingBytes);
 			if (!Arrays.equals(commitment, hash) || !verifyMixElementRevelation
 					.apply(mer, key, fromIndex, toIndex, fromMix, toMix)) {
 				return false;

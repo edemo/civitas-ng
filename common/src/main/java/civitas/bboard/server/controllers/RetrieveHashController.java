@@ -58,7 +58,8 @@ public class RetrieveHashController {
 		byte[] hash = null;
 		Iterator<BBPost> iter = posts.iterator();
 		while (iter.hasNext()) {// FIXME probably this should be something else
-			hash = cryptoHash.apply(iter.next(), hash);
+			BBPost post = iter.next();
+			hash = cryptoHash.apply(post.sig.signature, hash);
 		}
 
 		Signature signature;
