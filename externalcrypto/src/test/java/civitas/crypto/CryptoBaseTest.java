@@ -3,6 +3,7 @@ package civitas.crypto;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.security.KeyPair;
@@ -52,6 +53,35 @@ class CryptoBaseTest extends TestBase
 				sharedKey2, Cipher.DECRYPT_MODE, encrypted);
 
 		assertArrayEquals(BYTES, decrypted);
+	}
+
+	@Test
+	@DisplayName("getSharedKeyGenerator caches its result")
+	void test4() {
+		assertEquals(cryptoBase.getSharedKeyGenerator(SHARED_KEY_LENGTH),
+				cryptoBase.getSharedKeyGenerator(SHARED_KEY_LENGTH));
+	}
+
+	@Test
+	@DisplayName("getPublicKeyGenerator caches its result")
+	void test5() {
+		assertEquals(cryptoBase.getPublicKeyGenerator(PUBLIC_KEY_LENGTH),
+				cryptoBase.getPublicKeyGenerator(PUBLIC_KEY_LENGTH));
+	}
+
+	@Test
+	@DisplayName("getPublicKeyGenerator throws CryptoError for bad keylength")
+	void test7() {
+		assertThrows(CryptoError.class, () -> cryptoBase.getPublicKeyGenerator(-1));
+	}
+
+	@Test
+	@DisplayName("doCrypto throws CryptoError if anything goes wrong")
+	void test6() {
+		SecretKeySpec skeySpec = new SecretKeySpec(SOMESTRING.getBytes(),
+				SHARED_KEY_ALG);
+		assertThrows(CryptoError.class, () -> cryptoBase.doCrypto(PUBLIC_KEY_ALG,
+				PUBLIC_KEY_PROVIDER, skeySpec, Cipher.ENCRYPT_MODE, BYTES));
 	}
 
 	@Test
@@ -134,7 +164,6 @@ class CryptoBaseTest extends TestBase
 			}
 		}
 		double S = Math.abs(sum) / Math.sqrt(bytes.length * 8) / Math.sqrt(2);
-		System.out.println(S);
 		assertTrue(S < 1.82, "S=" + S);
 	}
 }

@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
 import civitas.crypto.Constants;
+import civitas.crypto.CryptoError;
 import civitas.util.CivitasBigInteger;
 
 @Service
@@ -21,7 +22,7 @@ public class CryptoHash implements Constants {
 			messageDigest = java.security.MessageDigest
 					.getInstance(MESSAGE_DIGEST_ALG);
 		} catch (NoSuchAlgorithmException e) {
-			throw new Error(e);
+			throw new CryptoError(e);
 		}
 	}
 

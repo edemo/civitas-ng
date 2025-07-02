@@ -1,5 +1,7 @@
 package civitas.crypto;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,9 +18,10 @@ class GetSharedKeyGenerator {
 		try {
 			g = KeyGenerator.getInstance(CryptoBase.SHARED_KEY_ALG,
 					CryptoBase.SHARED_KEY_PROVIDER);
-		} catch (Exception e) {
-			throw new Error(e);
+		} catch (NoSuchAlgorithmException | NoSuchProviderException impossible) {
+			throw new CryptoError(impossible);
 		}
+
 		g.init(keyLength);
 		sharedKeyGenerators.put(genKey, g);
 		return g;

@@ -18,7 +18,7 @@ class GetPublicKeyGenerator implements Constants {
 			publicKeyGenerators.put(genKey, g);
 			return g;
 		} catch (Exception impossible) {
-			throw new Error(impossible);
+			throw new CryptoError(impossible);
 		}
 	}
 
