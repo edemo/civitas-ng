@@ -12,12 +12,10 @@ import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.electionresults.TellerTestData;
-import civitas.crypto.proofdvr.ElGamalProofDVRTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 
 class VerifyVoterCapabilitySharesAndProofTest extends TestBase
-		implements ElGamalProofDVRTestData, VoterCapabilitySharesAndProofTestData,
-		TellerTestData {
+		implements VoterCapabilitySharesAndProofTestData, TellerTestData {
 
 	@InjectMocks
 	VerifyVoterCapabilitySharesAndProof VerifyVoterCapabilitySharesAndProof;

@@ -7,9 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
+import civitas.common.ballotdesign.BallotDesignTestData;
 
 public class SignAndEncryptTest extends TestBase
-		implements ElGamalSignedCiphertextTestData {
+		implements ElGamalSignedCiphertextTestData, BallotDesignTestData {
 
 	@InjectMocks
 	SignAndEncrypt signAndEncrypt;

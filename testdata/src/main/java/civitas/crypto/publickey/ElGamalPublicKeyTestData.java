@@ -2,11 +2,9 @@ package civitas.crypto.publickey;
 
 import civitas.common.Util;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 import civitas.util.CivitasBigInteger;
 
-public interface ElGamalPublicKeyTestData
-		extends ElGamalPrivateKeyTestData, ElGamalReencryptFactorTestData {
+public interface ElGamalPublicKeyTestData extends ElGamalPrivateKeyTestData {
 
 	CivitasBigInteger PUBKEY_EPRIME = BIGINT_G.modPow(PRIVKEY_EPRIME, BIGINT_P);
 	String PUBKEY_EPRIME_BASE64 = Util.fromBigInt(PUBKEY_EPRIME);
@@ -31,8 +29,5 @@ public interface ElGamalPublicKeyTestData
 			+ "<params></params><y></y></elGamalPublicKey>";
 	public static final String EL_GAMALPUBLIC_KEY_NAME = "ElGamalPublicKey-"
 			+ G_EXP_A_BASE64;
-	CivitasBigInteger ZETA = FACTOR_EPRIME.modSubtract(FACTOR_E, BIGINT_Q);// E:key2,factor2,
-																																					// eprime:
-																																					// key,factor
 
 }

@@ -1,13 +1,9 @@
 package civitas.common.votersubmission;
 
-import civitas.common.ballot.BallotTestData;
-import civitas.common.ballotdesign.BallotDesignTestData;
 import civitas.common.verifiablevote.VerifiableVote;
 import civitas.common.verifiablevote.VerifiableVoteTestData;
 
-public interface VoterSubmissionTestData
-
-		extends VerifiableVoteTestData, BallotTestData, BallotDesignTestData {
+public interface VoterSubmissionTestData extends VerifiableVoteTestData {
 
 	VoterSubmission VOTER_SUBMISSION = new VoterSubmission(VOTER_BLOCK,
 			VERIFIABLE_VOTES);

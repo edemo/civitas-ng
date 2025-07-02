@@ -2,9 +2,7 @@ package civitas.crypto.messagedigest;
 
 import java.security.MessageDigest;
 
-import civitas.crypto.BasicValuesTestData;
-
-public interface MessageDigestTestData extends BasicValuesTestData {
+public interface MessageDigestTestData {
 	public static final MessageDigest BASELINE_DIGEST = TestUtil
 			.getBaselineDigest();
 

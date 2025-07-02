@@ -2,11 +2,9 @@ package civitas.common;
 
 import static org.mockito.Mockito.mock;
 
-import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
+import civitas.comon.VoteChoiceTestData;
 
-public interface VoteTestData
-		extends ElGamalCiphertextTestData, ElGamal1OfLReencryptionTestData {
+public interface VoteTestData extends VoteChoiceTestData {
 
 	Vote VOTE_MOCK = mock(Vote.class);
 

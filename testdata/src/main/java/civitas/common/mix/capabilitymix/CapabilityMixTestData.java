@@ -5,15 +5,13 @@ import static org.mockito.Mockito.mock;
 import java.util.function.Supplier;
 
 import civitas.common.ballot.BallotTestData;
-import civitas.common.election.ElectionTestData;
 import civitas.common.mix.capabilitymixrevelation.MixCapabilityElementRevelationTestData;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
-import civitas.crypto.proofvote.ProofVoteTestData;
+import civitas.crypto.ciphertextlist.ElGamalCiphertextListTestData;
 
-public interface CapabilityMixTestData
-		extends BallotTestData, ProofVoteTestData, ElectionTestData,
-		MixCapabilityElementRevelationTestData {
+public interface CapabilityMixTestData extends BallotTestData,
+		ElGamalCiphertextListTestData, MixCapabilityElementRevelationTestData {
 
 	CapabilityMix CAPABILITY_MIX_MOCK = mock(CapabilityMix.class);
 

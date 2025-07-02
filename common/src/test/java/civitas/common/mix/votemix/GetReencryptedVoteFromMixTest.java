@@ -8,10 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.common.VoteTestData;
 
 class GetReencryptedVoteFromMixTest extends TestBase
-		implements VoteTestData, VoteMixTestData {
+		implements VoteMixTestData {
 
 	@InjectMocks
 	GetReencryptedVoteFromMix getReencryptedVoteFromMix;

@@ -8,12 +8,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
+import civitas.common.ballotdesign.BallotDesignTestData;
 import civitas.crypto.CryptoException;
-import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 
 public class DecryptElGamalMessageTest extends TestBase
-		implements ElGamalCiphertextTestData, ElGamalSignedCiphertextTestData {
+		implements ElGamalSignedCiphertextTestData, BallotDesignTestData {
 
 	@InjectMocks
 	DecryptElGamalMessage decryptElGamalMessage;

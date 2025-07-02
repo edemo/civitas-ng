@@ -8,9 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.common.votersubmission.VoterSubmissionTestData;
+import civitas.common.ballot.BallotTestData;
+import civitas.crypto.ciphertextlist.ElGamalCiphertextListTestData;
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 
-class EncryptChoiceTest extends TestBase implements VoterSubmissionTestData {
+class EncryptChoiceTest extends TestBase
+		implements ElGamalCiphertextListTestData, BallotTestData,
+		ElGamal1OfLReencryptionTestData {
 
 	@InjectMocks
 	EncryptChoice encryptChoice;

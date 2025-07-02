@@ -1,9 +1,8 @@
 package civitas.common.ballot;
 
-import civitas.common.CommonConstants;
 import civitas.common.VoteChoice;
 
-public interface BallotTestData extends CommonConstants {
+public interface BallotTestData {
 
 	Ballot BALLOT_EMPTY = new Ballot(3, new VoteChoice[3]);
 

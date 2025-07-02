@@ -6,11 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
-import civitas.common.election.ElectionTestData;
+import civitas.common.election.ElectionAbandonmentTestData;
 import civitas.common.election.GetElectionAbandonmentReporter;
 
 class GetElectionAbandonmentReporterTest extends TestBase
-		implements ElectionTestData {
+		implements ElectionAbandonmentTestData {
 
 	@InjectMocks
 	GetElectionAbandonmentReporter getElectionAbandonmentReporter;

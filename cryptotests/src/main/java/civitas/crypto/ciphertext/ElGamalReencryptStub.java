@@ -4,9 +4,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import civitas.common.VoteChoice;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
+import civitas.crypto.proof1ofl.ElGamalProof1OfLTestData;
 
-public class ElGamalReencryptStub implements ElGamal1OfLReencryptionTestData {
+public class ElGamalReencryptStub implements ElGamalProof1OfLTestData {
 
 	public static ElGamalReencrypt stub() {
 		ElGamalReencrypt mock = mock(ElGamalReencrypt.class);

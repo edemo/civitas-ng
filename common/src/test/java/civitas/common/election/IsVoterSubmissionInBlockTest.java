@@ -10,11 +10,13 @@ import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.common.capabilityencryption.VoterEncCapabilities;
+import civitas.common.mix.hashrevelation.MixHashRevelationTestData;
 import civitas.common.votersubmission.VoterSubmission;
 import civitas.common.votersubmission.VoterSubmissionTestData;
 
-class IsVoterSubmissionInBlockTest extends TestBase implements ElectionTestData,
-		VoterSubmissionTestData, VoterEncCapabilitiesTestData {
+class IsVoterSubmissionInBlockTest extends TestBase
+		implements ElectionDetailsTestData, VoterSubmissionTestData,
+		VoterEncCapabilitiesTestData, MixHashRevelationTestData {
 
 	@InjectMocks
 	IsVoterSubmissionInBlock isVoterSubmissionInBlock;

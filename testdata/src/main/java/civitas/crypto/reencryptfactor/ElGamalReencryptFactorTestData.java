@@ -22,5 +22,5 @@ public interface ElGamalReencryptFactorTestData
 	ElGamalReencryptFactor[] FACTORS = RANDOMS.subList(0, 3).stream()
 			.map(x -> ELGAMAL_REENCRYPT_FACTOR_E).toList()
 			.toArray(new ElGamalReencryptFactor[0]);
-
+	CivitasBigInteger ZETA = FACTOR_EPRIME.modSubtract(FACTOR_E, BIGINT_Q);
 }

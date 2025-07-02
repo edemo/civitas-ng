@@ -15,8 +15,7 @@ class GenerateKeyPairTest extends TestBase implements KeyPairTestData {
 	@Test
 	@DisplayName("generates a new public key pair")
 	void test() {
-		assertEquals(new KeyPair(PUBLIC_KEY, PRIVATE_KEY),
-				generateKeyPair.apply(KEYSIZE));
+		assertEquals(KEYPAIR, generateKeyPair.apply(KEYSIZE));
 	}
 
 }

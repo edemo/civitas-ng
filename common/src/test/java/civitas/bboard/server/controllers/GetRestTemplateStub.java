@@ -11,9 +11,9 @@ import java.util.Map;
 import org.springframework.web.client.RestTemplate;
 
 import civitas.common.EnvironmentState;
-import civitas.common.election.ElectionTestData;
+import civitas.common.election.ElectionDetailsTestData;
 
-class GetRestTemplateStub implements ElectionTestData {
+class GetRestTemplateStub implements ElectionDetailsTestData {
 	public static GetRestTemplate stub() {
 		GetRestTemplate mock = mock(GetRestTemplate.class);
 		RestTemplate restTemplateMock = mock(RestTemplate.class);

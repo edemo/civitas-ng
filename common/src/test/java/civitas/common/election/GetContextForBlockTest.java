@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 
-class GetContextForBlockTest extends TestBase implements ElectionTestData {
+class GetContextForBlockTest extends TestBase implements ElectionDetailsTestData {
 
 	@InjectMocks
 	GetContextForBlock getContextForBlock;

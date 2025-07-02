@@ -2,12 +2,13 @@ package civitas.bboard.common;
 
 import java.util.List;
 
+import civitas.common.CommonConstants;
 import civitas.common.board.BoardClosedContentCommitmentTestData;
 import civitas.common.electoralroll.ElectoralRollCapabilitySharesTestData;
 import civitas.crypto.signature.SignatureTestData;
 
 public interface BBPostTestData extends ElectoralRollCapabilitySharesTestData,
-		BoardClosedContentCommitmentTestData, SignatureTestData {
+		BoardClosedContentCommitmentTestData, SignatureTestData, CommonConstants {
 	long SERIAL = 12L;
 	public static final String BBPOST_HASH_STRINGBASE = "bbpost_hash";
 	byte[] BBPOST_HASH = BBPOST_HASH_STRINGBASE.getBytes();

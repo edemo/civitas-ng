@@ -7,9 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
+import civitas.common.mix.confirmation.MixConfirmationTestData;
 
 class GetMixConfirmationMetaTest extends TestBase
-		implements CapabilityMixTestData {
+		implements MixConfirmationTestData {
 
 	@InjectMocks
 	GetMixConfirmationMeta getMixConfirmationMeta;

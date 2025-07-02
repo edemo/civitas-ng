@@ -8,27 +8,19 @@ import java.math.BigInteger;
 import java.util.Base64;
 
 import civitas.bboard.common.BBPostTestData;
-import civitas.common.board.BoardClosedContentCommitmentTestData;
-import civitas.common.electionresults.TellerTestData;
-import civitas.common.electoralroll.ElectoralRollCapabilitySharesTestData;
 import civitas.common.mix.capabilitymixrevelation.MixCapabilityElementRevelationTestData;
 import civitas.common.tabteller.TabTellerKeyShareTestData;
-import civitas.common.votercapabilitysharesandproofs.VoterCapabilitySharesAndProofTestData;
 import civitas.crypto.petcommitment.PETCommitmentTestData;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEqualityTestData;
 import civitas.crypto.proofdvr.ElGamalProofDVRTestData;
 import civitas.crypto.proofknowndisclog.ProofKnowDiscLogTestData;
 import civitas.crypto.proofvote.ProofVoteTestData;
-import civitas.crypto.signature.SignatureTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 
-public class CryptoHashStub
-		implements ElGamalProofDiscLogEqualityTestData, ProofVoteTestData,
-		VoterCapabilitySharesAndProofTestData, TabTellerKeyShareTestData,
-		ElGamalProofDVRTestData, PETCommitmentTestData, ProofKnowDiscLogTestData,
-		MixCapabilityElementRevelationTestData, TellerTestData,
-		ElGamalSignedCiphertextTestData, ElectoralRollCapabilitySharesTestData,
-		BoardClosedContentCommitmentTestData, BBPostTestData, SignatureTestData {
+public class CryptoHashStub implements ElGamalProofDiscLogEqualityTestData,
+		TabTellerKeyShareTestData, ElGamalProofDVRTestData, PETCommitmentTestData,
+		ProofKnowDiscLogTestData, MixCapabilityElementRevelationTestData,
+		ElGamalSignedCiphertextTestData, BBPostTestData, ProofVoteTestData {
 
 	public static CryptoHash stub() throws UnsupportedEncodingException {
 		CryptoHash mock = mock(CryptoHash.class);

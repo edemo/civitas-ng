@@ -1,9 +1,9 @@
 package civitas.crypto.msg;
 
-import civitas.crypto.publickey.ElGamalPublicKeyTestData;
+import civitas.crypto.parameters.ElGamalParametersTestData;
 import civitas.util.CivitasBigInteger;
 
-public interface ElgamalMsgTestData extends ElGamalPublicKeyTestData {
+public interface ElgamalMsgTestData extends ElGamalParametersTestData {
 
 	public static final String VOTE = "3,(2,5),0,4,1";
 

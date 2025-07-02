@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
+import civitas.common.ballotdesign.BallotDesignTestData;
 
-public class VerifyProofVoteTest extends TestBase implements ProofVoteTestData {
+public class VerifyProofVoteTest extends TestBase
+		implements ProofVoteTestData, BallotDesignTestData {
 
 	@InjectMocks
 	VerifyProofVote verifyProofVote;

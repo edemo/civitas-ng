@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.common.ballot.BallotTestData;
 import civitas.common.votersubmission.VoterSubmission;
 import civitas.common.votersubmission.VoterSubmissionTestData;
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 
 class DecomposeBallotTest extends TestBase
-		implements VoterSubmissionTestData, BallotTestData {
+		implements VoterSubmissionTestData, ElGamal1OfLReencryptionTestData {
 
 	@InjectMocks
 	DecomposeBallot decomposeBallot;

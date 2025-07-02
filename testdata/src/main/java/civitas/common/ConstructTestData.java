@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
-
-public class ConstructTestData implements ElGamal1OfLReencryptionTestData {
+public class ConstructTestData {
 
 	public static <I, O> Map<I, O> constructTestData(List<I> values,
 			Function<I, O> konstruktor) {

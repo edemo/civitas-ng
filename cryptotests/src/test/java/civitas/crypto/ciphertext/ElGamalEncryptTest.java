@@ -9,10 +9,9 @@ import org.mockito.InjectMocks;
 import civitas.common.TestBase;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 
 public class ElGamalEncryptTest extends TestBase
-		implements ElGamalCiphertextTestData, ElGamalReencryptFactorTestData {
+		implements ElGamalCiphertextTestData {
 
 	@InjectMocks
 	ElGamalEncrypt elGamalEncrypt;

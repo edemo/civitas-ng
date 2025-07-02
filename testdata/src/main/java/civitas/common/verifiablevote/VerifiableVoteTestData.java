@@ -5,10 +5,11 @@ import java.util.Map;
 import civitas.common.ConstructTestData;
 import civitas.common.ballot.BallotTestData;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 import civitas.crypto.proofvote.ProofVoteTestData;
 
 public interface VerifiableVoteTestData
-		extends ProofVoteTestData, BallotTestData {
+		extends ProofVoteTestData, BallotTestData, ElGamal1OfLReencryptionTestData {
 	VerifiableVote VERIFIABLE_VOTE = new VerifiableVote(CONTEXT_0,
 			EL_GAMAL_1_OF_L_REENCRYPTION, CIPHERTEXT_ENCCAP, PROOF_VOTE);
 

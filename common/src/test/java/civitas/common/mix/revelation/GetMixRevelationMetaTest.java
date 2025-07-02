@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.common.election.ElectionTestData;
+import civitas.common.election.ElectionDetailsTestData;
 import civitas.common.mix.elementrevelation.MixElementRevelationTestData;
 
 class GetMixRevelationMetaTest extends TestBase
-		implements ElectionTestData, MixElementRevelationTestData {
+		implements ElectionDetailsTestData, MixElementRevelationTestData {
 
 	@InjectMocks
 	GetMixRevelationMeta getMixRevelationMeta;

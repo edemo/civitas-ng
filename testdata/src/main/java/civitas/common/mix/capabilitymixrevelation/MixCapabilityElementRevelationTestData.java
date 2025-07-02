@@ -5,13 +5,10 @@ import static org.mockito.Mockito.mock;
 import java.util.Base64;
 
 import civitas.common.mix.capabilityelementrevelation.MixCapabilityElementRevelation;
-import civitas.common.mix.confirmation.MixConfirmationTestData;
-import civitas.common.mix.hashrevelation.MixHashRevelationTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 
 public interface MixCapabilityElementRevelationTestData
-		extends ElGamalReencryptFactorTestData, MixHashRevelationTestData,
-		MixConfirmationTestData {
+		extends ElGamalReencryptFactorTestData {
 
 	byte[] NONCE = BYTES;
 	int MAPPING = 1;

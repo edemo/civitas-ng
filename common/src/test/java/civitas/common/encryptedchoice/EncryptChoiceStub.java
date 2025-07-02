@@ -5,9 +5,11 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import civitas.common.votersubmission.VoterSubmissionTestData;
+import civitas.common.ballot.BallotTestData;
+import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 
-class EncryptChoiceStub implements VoterSubmissionTestData {
+class EncryptChoiceStub
+		implements BallotTestData, ElGamal1OfLReencryptionTestData {
 
 	public static EncryptChoice stub() {
 		EncryptChoice mock = mock(EncryptChoice.class);

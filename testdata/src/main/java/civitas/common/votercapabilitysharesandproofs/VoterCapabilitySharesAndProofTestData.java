@@ -1,12 +1,13 @@
 package civitas.common.votercapabilitysharesandproofs;
 
 import civitas.common.ballot.BallotTestData;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 import civitas.crypto.proofdvr.ElGamalProofDVR;
+import civitas.crypto.proofdvr.ElGamalProofDVRTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
+import civitas.crypto.votecapabilityshare.VoteCapabilityShareTestData;
 
-public interface VoterCapabilitySharesAndProofTestData
-		extends ElGamal1OfLReencryptionTestData, BallotTestData {
+public interface VoterCapabilitySharesAndProofTestData extends
+		VoteCapabilityShareTestData, ElGamalProofDVRTestData, BallotTestData {
 	VoterCapabilitySharesAndProof VOTER_CAPABILITIES_AND_PROOFS = new VoterCapabilitySharesAndProof(
 			VOTE_CAPABILITY_SHARES, FACTORS, PROOFS, VOTER_BLOCK);
 	VoterCapabilitySharesAndProof VOTER_CAPABILITIES_AND_PROOFS_CAP_NONVERIFY = new VoterCapabilitySharesAndProof(

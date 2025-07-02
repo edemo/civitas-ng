@@ -13,11 +13,9 @@ import civitas.crypto.CryptoException;
 import civitas.crypto.algorithms.ConvertHashToBigInt;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
 import civitas.crypto.messagedigest.CryptoHash;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 
-public class VerifyElGamalProof1OfLTest extends TestBase implements
-		ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorTestData {
+public class VerifyElGamalProof1OfLTest extends TestBase
+		implements ElGamalProof1OfLTestData {
 
 	@InjectMocks
 	VerifyElGamalProof1OfL verifyElGamalProof1OfLC;

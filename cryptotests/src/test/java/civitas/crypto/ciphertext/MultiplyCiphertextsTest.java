@@ -11,12 +11,13 @@ import civitas.common.TestBase;
 import civitas.crypto.CryptoError;
 import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertextlist.CiphertextList;
+import civitas.crypto.ciphertextlist.ElGamalCiphertextListTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.CivitasBigInteger;
 
 public class MultiplyCiphertextsTest extends TestBase
-		implements MultiplyCiphertextsTestData {
+		implements ElGamalCiphertextListTestData {
 
 	@InjectMocks
 	MultiplyCiphertexts multiplyCiphertexts;

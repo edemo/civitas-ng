@@ -1,18 +1,13 @@
 package civitas.crypto.ciphertext;
 
-import static org.mockito.Mockito.mock;
-
-import java.util.List;
-import java.util.stream.IntStream;
-
-import civitas.crypto.ciphertextlist.CiphertextList;
+import civitas.common.VoteChoice;
 import civitas.crypto.msg.ElgamalMsgTestData;
-import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
-import civitas.crypto.votecapabilityshare.VoteCapabilityShareTestData;
+import civitas.crypto.publickey.ElGamalPublicKeyTestData;
+import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 import civitas.util.CivitasBigInteger;
 
-public interface ElGamalCiphertextTestData
-		extends ElgamalMsgTestData, VoteCapabilityShareTestData {
+public interface ElGamalCiphertextTestData extends ElgamalMsgTestData,
+		ElGamalPublicKeyTestData, ElGamalReencryptFactorTestData {
 
 	ElGamalCiphertext EL_GAMAL_CIPHERTEXT_ONE = new ElGamalCiphertext(ONE,
 			ONE_ENCODED.m);
@@ -54,48 +49,22 @@ public interface ElGamalCiphertextTestData
 	public static final ElGamalCiphertext ENCRYPTED_ZERO_FACTOR = new ElGamalCiphertext(
 			ONE, G_EXP_B);
 
-	public static final int NO_OF_WELL_KNOWN_CIPHERTEXTS = 4;
-
-	CiphertextList CIPHERTEXT_LIST = new CiphertextList(
-			IntStream.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS)
-					.mapToObj(i -> new ElGamalCiphertext(ONE,
-							BIGINT_G.modPow(CivitasBigInteger.valueOf(i + 1), BIGINT_P)))
-					.toList());
-
 	byte[] VOTER_ADDITIONAL_ENV = "8+bob hash".getBytes();
-	List<ElGamalSignedCiphertext> ENCRYPTED_SIGNED_VOTE_CAPABILITIES = VOTE_CAPABILITIES
-			.stream()
-			.map(x -> new ElGamalSignedCiphertext(
-					mock(CivitasBigInteger.class,
-							"ENCRYPTED_SIGNED_VOTE_CAPABILITIES_A"
-									+ VOTE_CAPABILITIES.indexOf(x)),
-					mock(CivitasBigInteger.class,
-							"ENCRYPTED_SIGNED_VOTE_CAPABILITIES_B"
-									+ VOTE_CAPABILITIES.indexOf(x)),
-					mock(CivitasBigInteger.class,
-							"ENCRYPTED_SIGNED_VOTE_CAPABILITIES_C"
-									+ VOTE_CAPABILITIES.indexOf(x)),
-					mock(CivitasBigInteger.class, "ENCRYPTED_SIGNED_VOTE_CAPABILITIES_D"
-							+ VOTE_CAPABILITIES.indexOf(x))))
-			.toList();
-	List<ElGamalCiphertext> ENCRYPTED_VOTE_CAPABILITIES = ENCRYPTED_SIGNED_VOTE_CAPABILITIES
-			.stream()
-			.map(x -> mock(ElGamalCiphertext.class, "ENCRYPTED_VOTE_CAPABILITIES_"
-					+ ENCRYPTED_SIGNED_VOTE_CAPABILITIES.indexOf(x)))
-			.toList();
-	ElGamalSignedCiphertext[] POSTED_CAPABILITIES = ENCRYPTED_SIGNED_VOTE_CAPABILITIES
-			.toArray(new ElGamalSignedCiphertext[0]);
-	ElGamalSignedCiphertext[] POSTED_CAPABILITIES_NONVERIFY = VOTE_CAPABILITIES
-			.stream()
-			.map(x -> mock(ElGamalSignedCiphertext.class,
-					"POSTED_CAPABILITIES_NONVERIFY_" + VOTE_CAPABILITIES.indexOf(x)))
-			.toList().toArray(new ElGamalSignedCiphertext[0]);
 
-	List<ElGamalCiphertext> ENCRYPTED_VOTE_CAPABILITIES_WITH_EPRIME = VOTE_CAPABILITIES
-			.stream()
-			.map(x -> mock(ElGamalCiphertext.class,
-					"ENCRYPTED_VOTE_CAPABILITIES_WITH_EPRIME_"
-							+ VOTE_CAPABILITIES.indexOf(x)))
-			.toList();
+	ElGamalCiphertext CIPHERTEXT_2_3 = new ElGamalCiphertext(
+			CivitasBigInteger.valueOf(2), CivitasBigInteger.valueOf(3));
+	ElGamalCiphertext[][] CIPHERTEXT_MATRIX = new ElGamalCiphertext[][] {
+			{
+					CIPHERTEXT_2_3,
+					new ElGamalCiphertext(CivitasBigInteger.valueOf(5),
+							CivitasBigInteger.valueOf(7)), },
+			{
+					new ElGamalCiphertext(CivitasBigInteger.valueOf(11),
+							CivitasBigInteger.valueOf(13)),
+					new ElGamalCiphertext(CivitasBigInteger.valueOf(17),
+							CivitasBigInteger.valueOf(19)),
+
+			} };
+	public static final VoteChoice MY_CHOICE = VoteChoice.I_BEATS_J;
 
 }

@@ -33,6 +33,7 @@ public class ConstructElGamalProofDVRTest extends TestBase
 			+ "ElGamalProofDVRC(e, eprime, c, w, r, u)\n")
 	//@formatter:on
 	void test1() throws IllegalArgumentException, IOException {
+
 		ElGamalProofDVR proof = constructElGamalProofDVR.apply(CIPHERTEXT_E,
 				CIPHERTEXT_EPRIME, EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME,
 				ZETA);

@@ -36,7 +36,7 @@ import civitas.common.GetPrivateKey;
 import civitas.common.Host;
 import civitas.common.ServerRole;
 import civitas.common.board.BulletinBoardTestData;
-import civitas.common.election.ElectionTestData;
+import civitas.common.election.ElectionDetailsTestData;
 import civitas.crypto.CryptoBase;
 import civitas.crypto.rsapublickey.ConvertPublicKeyToString;
 import civitas.crypto.rsapublickey.PublicKeyTestData;
@@ -45,7 +45,7 @@ import civitas.crypto.signature.Signature;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class EndToEndTest implements BulletinBoardTestData, BBPostTestData,
-		ElectionTestData, PublicKeyTestData {
+		ElectionDetailsTestData, PublicKeyTestData {
 	@LocalServerPort
 	private int port;
 

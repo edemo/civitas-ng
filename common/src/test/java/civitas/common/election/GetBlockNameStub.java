@@ -3,7 +3,10 @@ package civitas.common.election;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class GetBlockNameStub implements ElectionTestData {
+import civitas.common.mix.hashrevelation.MixHashRevelationTestData;
+
+class GetBlockNameStub
+		implements ElectionDetailsTestData, MixHashRevelationTestData {
 	public static GetBlockName stub() {
 		GetBlockName mock = mock(GetBlockName.class);
 		when(mock.apply(ELECTION_DETAILS, 14)).thenReturn(BLOCKNAME_14);

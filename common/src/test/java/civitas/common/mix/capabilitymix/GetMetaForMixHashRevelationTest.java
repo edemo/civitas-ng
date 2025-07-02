@@ -7,10 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
+import civitas.common.election.ElectionDetailsTestData;
 import civitas.common.mix.hashrevelation.GetMetaForMixHashRevelation;
+import civitas.common.mix.hashrevelation.MixHashRevelationTestData;
 
-class GetMetaForMixHashRevelationTest extends TestBase
-		implements CapabilityMixTestData {
+class GetMetaForMixHashRevelationTest extends TestBase implements
+		CapabilityMixTestData, ElectionDetailsTestData, MixHashRevelationTestData {
 
 	@InjectMocks
 	GetMetaForMixHashRevelation getMetaForMixHashRevelation;

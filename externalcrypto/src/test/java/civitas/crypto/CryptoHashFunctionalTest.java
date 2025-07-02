@@ -15,18 +15,17 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
-import civitas.bboard.common.BBPostTestData;
 import civitas.common.TestBase;
+import civitas.common.ballotdesign.BallotDesignTestData;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.messagedigest.MessageDigestTestData;
-import civitas.crypto.signature.SignatureTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 import civitas.util.CivitasBigInteger;
 
 @Tag("functional")
 public class CryptoHashFunctionalTest extends TestBase
-		implements MessageDigestTestData, ElGamalSignedCiphertextTestData,
-		SignatureTestData, BBPostTestData {
+		implements MessageDigestTestData, BallotDesignTestData,
+		ElGamalSignedCiphertextTestData {
 
 	@InjectMocks
 	CryptoHash cryptoHash;

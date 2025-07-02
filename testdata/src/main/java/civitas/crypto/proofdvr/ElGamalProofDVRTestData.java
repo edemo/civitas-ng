@@ -1,12 +1,13 @@
 package civitas.crypto.proofdvr;
 
+import static org.mockito.Mockito.mock;
+
 import java.util.List;
 
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
+import civitas.crypto.ciphertextlist.ElGamalCiphertextListTestData;
 import civitas.util.CivitasBigInteger;
 
-public interface ElGamalProofDVRTestData
-		extends ElGamal1OfLReencryptionTestData {
+public interface ElGamalProofDVRTestData extends ElGamalCiphertextListTestData {
 
 	byte[] EL_GAMAL_PROOF_DVR_HASH = "proofdvrhash".getBytes();
 	CivitasBigInteger DVR_HASH = new CivitasBigInteger(1,
@@ -67,5 +68,19 @@ public interface ElGamalProofDVRTestData
 	ElGamalProofDVR FAKE_PROOF_DVR = new ElGamalProofDVR(CIPHERTEXT_E,
 			CIPHERTEXT_EPRIME, FAKE_PROOF_DVR_CT, FAKE_PROOF_DVR_WT,
 			FAKE_PROOF_DVR_RT, RANDOMS_2);
+
+	List<ElGamalProofDVR> PROOF_LIST = ENCRYPTED_SIGNED_VOTE_CAPABILITIES.stream()
+			.map(x -> new ElGamalProofDVR(x,
+					PROOF_EPRIMES.get(ENCRYPTED_SIGNED_VOTE_CAPABILITIES.indexOf(x)),
+					mock(CivitasBigInteger.class), mock(CivitasBigInteger.class),
+					mock(CivitasBigInteger.class), mock(CivitasBigInteger.class)))
+			.toList();
+	ElGamalProofDVR[] PROOFS = PROOF_LIST.toArray(new ElGamalProofDVR[0]);
+
+	ElGamalProofDVR[] PROOFS_CAP_NONVERIFY = PROOF_LIST.stream()
+			.map(x -> new ElGamalProofDVR(
+					POSTED_CAPABILITIES_NONVERIFY[PROOF_LIST.indexOf(x)], x.eprime, x.c,
+					x.w, x.r, x.u))
+			.toList().toArray(new ElGamalProofDVR[0]);
 
 }

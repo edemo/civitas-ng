@@ -3,10 +3,10 @@ package civitas.common.board;
 import java.util.Base64;
 import java.util.List;
 
-import civitas.common.election.ElectionTestData;
+import civitas.common.election.ElectionIdTestData;
 
 public interface BoardClosedContentCommitmentTestData
-		extends ElectionTestData, BulletinBoardTestData {
+		extends ElectionIdTestData, BulletinBoardTestData {
 
 	List<BoardClosedContentCommitment> BOARD_CLOSED_CONTENT_COMMITMENTS = List
 			.of(0, 2, 1).stream()

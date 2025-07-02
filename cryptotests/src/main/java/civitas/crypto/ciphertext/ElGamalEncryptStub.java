@@ -3,10 +3,11 @@ package civitas.crypto.ciphertext;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import civitas.crypto.proofvote.ProofVoteTestData;
+import civitas.crypto.proof1ofl.ElGamalProof1OfLTestData;
+import civitas.crypto.votecapabilityshare.VoteCapabilityShareTestData;
 
 class ElGamalEncryptStub
-		implements ElGamalCiphertextTestData, ProofVoteTestData {
+		implements ElGamalProof1OfLTestData, VoteCapabilityShareTestData {
 
 	public static ElGamalEncrypt stub() {
 		ElGamalEncrypt mock = mock(ElGamalEncrypt.class);

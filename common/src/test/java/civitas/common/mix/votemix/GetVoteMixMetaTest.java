@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.common.election.ElectionTestData;
+import civitas.common.election.ElectionDetailsTestData;
 
-class GetVoteMixMetaTest extends TestBase implements ElectionTestData {
+class GetVoteMixMetaTest extends TestBase implements ElectionDetailsTestData {
 
 	@InjectMocks
 	GetVoteMixMeta getVoteMixMeta;

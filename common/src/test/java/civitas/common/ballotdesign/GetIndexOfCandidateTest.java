@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
+import civitas.crypto.BasicValuesTestData;
 
-class GetIndexOfCandidateTest extends TestBase implements BallotDesignTestData {
+class GetIndexOfCandidateTest extends TestBase
+		implements BallotDesignTestData, BasicValuesTestData {
 
 	@InjectMocks
 	GetIndexOfCandidate getIndexOfCandidate;

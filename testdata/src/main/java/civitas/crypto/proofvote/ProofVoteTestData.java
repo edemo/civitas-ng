@@ -6,13 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import civitas.common.ConstructTestData;
-import civitas.common.ballot.BallotTestData;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
+import civitas.crypto.proof1ofl.ElGamalProof1OfLTestData;
 import civitas.util.CivitasBigInteger;
 
-public interface ProofVoteTestData
-		extends ElGamal1OfLReencryptionTestData, BallotTestData {
+public interface ProofVoteTestData extends ElGamalProof1OfLTestData {
 
 	ElGamal1OfLReencryption ENCRYPTED_CHOICE = new ElGamal1OfLReencryption(
 			REENCRYPTED_WELL_KNOWN_CHOICE, EL_GAMAL_PROOF_1_OF_L);

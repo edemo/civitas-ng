@@ -3,7 +3,7 @@ package civitas.common.election;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class GetBaseContextStub implements ElectionTestData {
+class GetBaseContextStub implements ElectionDetailsTestData {
 
 	public static GetBaseContext stub() {
 		GetBaseContext mock = mock(GetBaseContext.class);

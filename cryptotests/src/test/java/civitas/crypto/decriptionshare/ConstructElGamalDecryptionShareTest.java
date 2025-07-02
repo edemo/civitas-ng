@@ -8,10 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
+import civitas.crypto.keypairshare.ElGamalKeyPairShareTestData;
 import civitas.util.CivitasBigInteger;
 
 public class ConstructElGamalDecryptionShareTest extends TestBase
-		implements ElGamalDecryptionShareTestData {
+		implements ElGamalDecryptionShareTestData, ElGamalKeyPairShareTestData {
 
 	@InjectMocks
 	ConstructElGamalDecryptionShare constructElGamalDecryptionShare;

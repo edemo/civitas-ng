@@ -7,11 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
-import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 
 public class ConstructElGamalProof1OfLTest extends TestBase
-		implements ElGamal1OfLReencryptionTestData, ElGamalReencryptFactorTestData {
+		implements ElGamalProof1OfLTestData {
 
 	@InjectMocks
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
