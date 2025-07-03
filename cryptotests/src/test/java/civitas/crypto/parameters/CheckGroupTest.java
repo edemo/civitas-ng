@@ -1,5 +1,6 @@
 package civitas.crypto.parameters;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -16,6 +17,12 @@ public class CheckGroupTest extends TestBase
 
 	@InjectMocks
 	CheckGroup checkGroup;
+
+	@Test
+	@DisplayName("checkGroup does nothing if the parameters are a group")
+	void test() {
+		assertDoesNotThrow(() -> checkGroup.apply(EL_GAMAL_PARAMETERS));
+	}
 
 	@Test
 	@DisplayName("checkGroup throws CryptoError if parameters are not a group")
