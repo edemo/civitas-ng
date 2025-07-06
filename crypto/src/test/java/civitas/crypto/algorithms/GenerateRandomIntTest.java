@@ -2,6 +2,7 @@ package civitas.crypto.algorithms;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,9 +17,12 @@ public class GenerateRandomIntTest extends TestBase
 	GenerateRandomInt generateRandomInt;
 
 	@Test
-	@DisplayName("generates an int <n ")
-	void test() {
-		assertTrue(generateRandomInt.apply(SOME_SMALL_INT) < SOME_SMALL_INT);
+	@DisplayName("uses the right random number generator")
+	void test4() {
+		int actual = generateRandomInt.apply(SOME_SMALL_INT);
+		verify(generateRandomInt.cryptoBase.getRandomGenerator())
+				.nextInt(SOME_SMALL_INT);
+		assertTrue(actual < SOME_SMALL_INT, "actual:" + actual);
 	}
 
 	@Test

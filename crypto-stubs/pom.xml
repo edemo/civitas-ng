@@ -2,28 +2,48 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.kodekonveyor</groupId>
-	<artifactId>civitas-ng-crypto-stubs</artifactId>
-	<version>0.0.1</version>
+	<parent>
+		<groupId>io.github.magwas</groupId>
+		<artifactId>civitas-ng</artifactId>
+		<version>0.0.1</version>
+		<relativePath>../pom.xml</relativePath>
 
-	<properties>
-		<maven.compiler.source>15</maven.compiler.source>
-		<maven.compiler.target>15</maven.compiler.target>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-version>6.2.8</spring-version>
-		<spring-boot-version>3.5.3</spring-boot-version>
-	</properties>
+	</parent>
+
+	<artifactId>civitas-ng-crypto-stubs</artifactId>
+	<packaging>jar</packaging>
+
+	<name>Civitas-ng cryptography stubs</name>
+	<description>
+		Stubs to test modules depending on civitas-ng-crypto.
+	</description>
 	<dependencies>
 		<dependency>
-			<groupId>com.kodekonveyor</groupId>
+			<groupId>io.github.magwas</groupId>
 			<artifactId>civitas-ng-crypto</artifactId>
 			<version>0.0.1</version>
-			<classifier>stubs</classifier>
+		</dependency>
+		<dependency>
+			<groupId>io.github.magwas</groupId>
+			<artifactId>civitas-ng-testdata</artifactId>
+			<version>0.0.1</version>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.5.0</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>src</directory>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -38,7 +58,7 @@
 						<configuration>
 							<artifactItems>
 								<artifactItem>
-									<groupId>com.kodekonveyor</groupId>
+									<groupId>io.github.magwas</groupId>
 									<artifactId>civitas-ng-crypto</artifactId>
 									<version>0.0.1</version>
 									<classifier>stubs</classifier>
@@ -46,7 +66,18 @@
 									<overWrite>false</overWrite>
 									<outputDirectory>
 										${project.build.directory}/classes</outputDirectory>
-									<includes>**/*.class,**/*.xml</includes>
+									<includes>**/*.class</includes>
+								</artifactItem>
+								<artifactItem>
+									<groupId>io.github.magwas</groupId>
+									<artifactId>civitas-ng-crypto</artifactId>
+									<version>0.0.1</version>
+									<classifier>stub-sources</classifier>
+									<type>jar</type>
+									<overWrite>false</overWrite>
+									<outputDirectory>
+										src/main/java</outputDirectory>
+									<includes>**/*.java</includes>
 								</artifactItem>
 							</artifactItems>
 						</configuration>
@@ -55,14 +86,30 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.3.0</version>
-				<configuration>
-					<includes>
-						<include>**/*Stub.class</include>
-					</includes>
-				</configuration>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.14.0</version>
+				<executions>
+					<execution>
+						<id>default-compile</id>
+						<phase>none</phase>
+					</execution>
+				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.3.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>

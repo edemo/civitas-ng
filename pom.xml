@@ -1,22 +1,129 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>kom.kodekonveyor</groupId>
-  <artifactId>civitas-ng</artifactId>
-  <version>0.0.1</version>
-  <packaging>pom</packaging>
-  
-  <modules>
-    <module>data</module>
-    <module>testdata</module>
-    <module>externalcrypto</module>
-    <module>crypto</module>
-    <module>crypto-stubs</module>
-    <module>common</module>
-  </modules>
- 
-  <properties>
-  </properties>
- 
+	<groupId>io.github.magwas</groupId>
+	<artifactId>civitas-ng</artifactId>
+	<version>0.0.1</version>
+	<packaging>pom</packaging>
+	<name>A secure voting system</name>
+	<description>
+		A secure voting system based on the code at https://www.cs.cornell.edu/projects/civitas/
+	</description>
+
+	<modules>
+		<module>data</module>
+		<module>testdata</module>
+		<module>externalcrypto</module>
+		<module>crypto</module>
+		<module>crypto-stubs</module>
+		<module>common</module>
+	</modules>
+
+	<url>https://github.com/magwas/civitas-ng</url>
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/magwas/civitas-ng/issues</url>
+	</issueManagement>
+	<scm>
+		<connection>scm:git:https://github.com/magwas/civitas-ng.git</connection>
+		<developerConnection>scm:git:https://github.com/magwas/civitas-ng.git</developerConnection>
+		<url>https://github.com/magwas/civitas-ng.git</url>
+	</scm>
+	<developers>
+		<developer>
+			<name>Árpád Magosányi</name>
+			<email>m4gw4s@gmail.com</email>
+		</developer>
+	</developers>
+	<licenses>
+		<license>
+			<name>EPL</name>
+			<url>https://www.eclipse.org/legal/epl-2.0/</url>
+			<comments>Eclipse Public License</comments>
+		</license>
+	</licenses>
+	<properties>
+		<maven.compiler.source>15</maven.compiler.source>
+		<maven.compiler.target>15</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring-version>6.2.8</spring-version>
+		<spring-boot-version>3.5.3</spring-boot-version>
+	</properties>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.14.0</version>
+				<configuration>
+					<compilerArgs>
+						<arg>-parameters</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.3.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>3.2.8</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.central</groupId>
+				<artifactId>central-publishing-maven-plugin</artifactId>
+				<version>0.8.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<publishingServerId>central</publishingServerId>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.11.2</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.11.2</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
 </project>

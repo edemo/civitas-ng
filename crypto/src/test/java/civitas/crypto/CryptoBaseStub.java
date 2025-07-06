@@ -96,6 +96,7 @@ public class CryptoBaseStub implements PrivateKeyTestData, PublicKeyTestData,
 
 		Random randomMock = mock(Random.class);
 		doAnswer(new RandomFillerAnswer()).when(randomMock).nextBytes(any());
+		when(randomMock.nextInt(SOME_SMALL_INT)).thenReturn(SOME_SMALL_INT - 1);
 		when(mock.getRandomGenerator()).thenReturn(randomMock);
 
 		KeyPair keypair = mock(KeyPair.class);
