@@ -12,8 +12,8 @@ import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 import civitas.crypto.rsapublickey.PublicKeyTestData;
 
-class GetReaderForFileStub implements PublicKeyTestData, PrivateKeyTestData,
-		ElGamalPrivateKeyTestData, ElGamalPublicKeyTestData {
+public class GetReaderForFileStub implements PublicKeyTestData,
+		PrivateKeyTestData, ElGamalPrivateKeyTestData, ElGamalPublicKeyTestData {
 	public static GetReaderForFile stub() throws FileNotFoundException {
 		GetReaderForFile mock = mock(GetReaderForFile.class);
 		when(mock.apply(EL_GAMAL_PRIVATE_KEY_FILE)).thenReturn(

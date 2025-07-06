@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 import civitas.common.ballot.BallotTestData;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 
-class EncryptChoiceStub
+public class EncryptChoiceStub
 		implements BallotTestData, ElGamal1OfLReencryptionTestData {
 
 	public static EncryptChoice stub() {

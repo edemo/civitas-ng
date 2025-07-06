@@ -2,7 +2,7 @@ package civitas.common;
 
 import static org.mockito.Mockito.mock;
 
-class ConfigurationStub {
+public class ConfigurationStub {
 	public static Configuration stub() {
 		Configuration mock = mock(Configuration.class);
 		mock.storeFile = "lib/server.jks";

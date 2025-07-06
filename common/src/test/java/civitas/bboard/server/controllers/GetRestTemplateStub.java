@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import civitas.common.EnvironmentState;
 import civitas.common.election.ElectionDetailsTestData;
 
-class GetRestTemplateStub implements ElectionDetailsTestData {
+public class GetRestTemplateStub implements ElectionDetailsTestData {
 	public static GetRestTemplate stub() {
 		GetRestTemplate mock = mock(GetRestTemplate.class);
 		RestTemplate restTemplateMock = mock(RestTemplate.class);
@@ -21,10 +21,10 @@ class GetRestTemplateStub implements ElectionDetailsTestData {
 		when(mock.apply()).thenReturn(restTemplateMock);
 		when(restTemplateMock.postForObject(eq(ELECTION_ID.uriBase + "/post"),
 				any(), any()))
-				.then(new EnvDependentAnswer<>(Map.of(EnvironmentState.NORMAL,
-						new AnswerOrThrowable<>(null, true),
-						EnvironmentState.ELECTION_SERVER_IS_UNREACHEABLE,
-						new AnswerOrThrowable<>(new IOException(), null))));
+				.then(new EnvDependentAnswer<>(
+						Map.of(EnvironmentState.NORMAL, new AnswerOrThrowable<>(null, true),
+								EnvironmentState.ELECTION_SERVER_IS_UNREACHEABLE,
+								new AnswerOrThrowable<>(new IOException(), null))));
 		return mock;
 	}
 }

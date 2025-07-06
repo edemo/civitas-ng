@@ -8,7 +8,7 @@ import static org.mockito.Mockito.mock;
 import civitas.common.board.BoardClosedContentCommitmentTestData;
 import civitas.crypto.signature.SignatureTestData;
 
-class CheckAccessStub implements BoardClosedContentCommitmentTestData,
+public class CheckAccessStub implements BoardClosedContentCommitmentTestData,
 		SignatureTestData, CommonConstants {
 	public static CheckAccess stub() throws IllegalAccessException {
 		CheckAccess mock = mock(CheckAccess.class);

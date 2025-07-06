@@ -3,7 +3,7 @@ package civitas.common.electionresults;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class GetComputerForTellerStub implements TellerTestData {
+public class GetComputerForTellerStub implements TellerTestData {
 
 	public static GetComputerForTeller stub() {
 		GetComputerForTeller mock = mock(GetComputerForTeller.class);

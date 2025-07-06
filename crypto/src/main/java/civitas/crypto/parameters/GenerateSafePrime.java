@@ -1,7 +1,5 @@
 package civitas.crypto.parameters;
 
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -18,7 +16,6 @@ public class GenerateSafePrime implements Constants {
 	public PrimePair apply(int length) {
 		CivitasBigInteger possibleP, possibleQ;
 		do {
-			Random randomGenerator = cryptoBase.getRandomGenerator();
 			possibleQ = cryptoBase.obtainProbablePrime(length);
 			possibleP = possibleQ.multiply(TWO).add(ONE);
 		} while (!possibleP.isProbablePrime(CERTAINTY));

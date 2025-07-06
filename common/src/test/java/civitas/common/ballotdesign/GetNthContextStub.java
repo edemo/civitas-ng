@@ -5,7 +5,7 @@ import static org.mockito.Mockito.when;
 
 import civitas.common.election.ElectionDetailsTestData;
 
-class GetNthContextStub implements ElectionDetailsTestData {
+public class GetNthContextStub implements ElectionDetailsTestData {
 	public static GetNthContext stub() {
 		GetNthContext mock = mock(GetNthContext.class);
 		when(mock.apply(BALLOTDESIGN, 0)).thenReturn(BARE_CONTEXT_0);

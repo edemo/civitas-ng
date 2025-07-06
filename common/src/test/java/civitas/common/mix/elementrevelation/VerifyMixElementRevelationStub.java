@@ -9,7 +9,8 @@ import static org.mockito.Mockito.when;
 import civitas.common.mix.capabilitymixrevelation.MixCapabilityElementRevelationTestData;
 import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 
-class VerifyMixElementRevelationStub implements MixElementRevelationTestData,
+public class VerifyMixElementRevelationStub
+		implements MixElementRevelationTestData,
 		MixCapabilityElementRevelationTestData, ElGamalPublicKeyTestData {
 	public static VerifyMixElementRevelation stub() {
 		VerifyMixElementRevelation mock = mock(VerifyMixElementRevelation.class);

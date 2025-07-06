@@ -1,4 +1,0 @@
-gcc -I /usr/lib/jvm/java-8-openjdk-amd64/include -I /usr/lib/jvm/java-8-openjdk-amd64/include/linux -c -o src/main/c/util/CivitasBigInteger.o -fpic src/main/c/util/CivitasBigInteger.c
-gcc -shared src/main/c/util/CivitasBigInteger.o
-mkdir -p src/main/resources
-gcc -shared src/main/c/util/CivitasBigInteger.o -o src/main/resources/civitasbigint.so

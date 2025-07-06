@@ -13,7 +13,7 @@ import civitas.common.votersubmission.VoterSubmission;
 import civitas.common.votersubmission.VoterSubmissionTestData;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 
-class DecomposeBallotTest extends TestBase
+public class DecomposeBallotTest extends TestBase
 		implements VoterSubmissionTestData, ElGamal1OfLReencryptionTestData {
 
 	@InjectMocks

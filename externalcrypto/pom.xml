@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.kodekonveyor</groupId>
   <artifactId>civitas-ng-externalcrypto</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   
     <properties>
      <maven.compiler.source>15</maven.compiler.source>
@@ -13,12 +13,12 @@
 		<dependency>
 			<groupId>com.kodekonveyor</groupId>
 			<artifactId>civitas-ng-data</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.kodekonveyor</groupId>
 			<artifactId>civitas-ng-testdata</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.1</version>
 			<scope>test</scope>
 		</dependency>
 	     <dependency>

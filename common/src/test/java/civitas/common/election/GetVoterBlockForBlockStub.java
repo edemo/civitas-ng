@@ -3,7 +3,7 @@ package civitas.common.election;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class GetVoterBlockForBlockStub implements ElectionDetailsTestData {
+public class GetVoterBlockForBlockStub implements ElectionDetailsTestData {
 	public static GetVoterBlockForBlock stub() {
 		GetVoterBlockForBlock mock = mock(GetVoterBlockForBlock.class);
 		when(mock.apply(ELECTION_DETAILS, 4)).thenReturn(1);

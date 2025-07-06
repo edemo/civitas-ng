@@ -3,7 +3,6 @@
 	<name>civitas-ng-common</name>
 	<comment></comment>
 	<projects>
-		<project>civitas-ng-data</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

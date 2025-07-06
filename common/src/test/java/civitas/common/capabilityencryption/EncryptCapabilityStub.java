@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 
 import civitas.common.votersubmission.VoterSubmissionTestData;
 
-class EncryptCapabilityStub implements VoterSubmissionTestData {
+public class EncryptCapabilityStub implements VoterSubmissionTestData {
 	public static EncryptCapability stub() {
 		EncryptCapability mock = mock(EncryptCapability.class);
 		for (Integer piece : VOTE_PIECES) {

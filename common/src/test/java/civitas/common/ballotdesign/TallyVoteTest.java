@@ -14,12 +14,15 @@ import civitas.common.tallystate.TallyStateTestData;
 import civitas.common.votersubmission.VoterSubmissionTestData;
 import civitas.crypto.msg.ElGamalMsg;
 import civitas.crypto.msg.ElgamalMsgTestData;
+import civitas.crypto.parameters.DecodeChoiceStub;
 
 class TallyVoteTest extends TestBase implements TallyStateTestData,
 		VoterSubmissionTestData, BallotTestData, ElgamalMsgTestData {
 
 	@InjectMocks
 	TallyVote tallyVote;
+
+	DecodeChoiceStub a;
 
 	@Test
 	@DisplayName("tallies one message\n"

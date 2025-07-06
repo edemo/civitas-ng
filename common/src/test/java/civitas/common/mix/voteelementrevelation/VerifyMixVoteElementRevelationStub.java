@@ -6,13 +6,13 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class VerifyMixVoteElementRevelationStub
+public class VerifyMixVoteElementRevelationStub
 		implements MixVoteElementRevelationTestData {
 	public static VerifyMixVoteElementRevelation stub() {
 		VerifyMixVoteElementRevelation mock = mock(
 				VerifyMixVoteElementRevelation.class);
-		when(mock.apply(eq(VOTE_ELEMENT_REVELATION_MOCK), any(), anyInt(), anyInt(), any(),
-				any())).thenReturn(true);
+		when(mock.apply(eq(VOTE_ELEMENT_REVELATION_MOCK), any(), anyInt(), anyInt(),
+				any(), any())).thenReturn(true);
 		return mock;
 	}
 }

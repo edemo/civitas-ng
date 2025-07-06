@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 
 import civitas.common.mix.capabilitymixrevelation.MixCapabilityElementRevelationTestData;
 
-class VerifyMixCapabilityElementRevelationStub
+public class VerifyMixCapabilityElementRevelationStub
 		implements MixCapabilityElementRevelationTestData {
 
 	public static VerifyMixCapabilityElementRevelation stub() {
