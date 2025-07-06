@@ -5,20 +5,16 @@
     <refs>
         <ref type="branch">
             <pattern>.+</pattern>
-            <version>${version}-${ref}-${commit.timestamp}</version>
-            <properties>
-                <foo>${ref}</foo>
-            </properties>
+            <version>${describe}</version>
         </ref>
-
         <ref type="tag">
-            <pattern><![CDATA[v(?<version>.*)]]></pattern>
-            <version>${ref.version}</version>
+            <pattern>.+</pattern>
+            <version>${describe}</version>
         </ref>
     </refs>
 
     <rev>
-        <version>${version}-${ref}-${commit.timestamp}</version>
+        <version>${describe}</version>
     </rev>
 
 </configuration>
