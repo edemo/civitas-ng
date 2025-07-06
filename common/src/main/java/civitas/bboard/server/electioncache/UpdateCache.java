@@ -19,7 +19,8 @@ public class UpdateCache {
 	@Autowired
 	ElectionCacheRepository electionCacheRepository;
 
-	public void apply(String bbid, String meta, String mesg, long t) throws JAXBException, IOException {
+	public void apply(String bbid, String meta, String mesg, long t)
+			throws JAXBException, IOException {
 
 		Optional<ElectionCache> cachep = electionCacheRepository.findById(bbid);
 		ElectionCache cache;
@@ -30,12 +31,12 @@ public class UpdateCache {
 
 		if (meta.equals(CommonConstants.ElectionEventMETA)) {
 			ElectionEvent e = convertFromXml.apply(mesg, ElectionEvent.class);
-			if (ElectionEvent.EVENT_KIND_FINALIZE.equals(e)) {
+			if (ElectionEvent.EVENT_KIND_FINALIZE.equals(e.getKind())) {
 				// FIXME: tally
 				cache.electionFinalizeTime = t;
-			} else if (ElectionEvent.EVENT_KIND_START.equals(e)) {
+			} else if (ElectionEvent.EVENT_KIND_START.equals(e.getKind())) {
 				cache.electionStartTime = t;
-			} else if (ElectionEvent.EVENT_KIND_STOP.equals(e)) {
+			} else if (ElectionEvent.EVENT_KIND_STOP.equals(e.getKind())) {
 				cache.electionStopTime = t;
 			}
 		}
