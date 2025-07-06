@@ -20,12 +20,12 @@
 		<dependency>
 			<groupId>io.github.magwas</groupId>
 			<artifactId>civitas-ng-data</artifactId>
-			<version>0.0.1</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.github.magwas</groupId>
 			<artifactId>civitas-ng-testdata</artifactId>
-			<version>0.0.1</version>
+			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
       <dependency>
