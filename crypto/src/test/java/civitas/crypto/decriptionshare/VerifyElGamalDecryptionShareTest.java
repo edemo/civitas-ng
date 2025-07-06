@@ -37,6 +37,15 @@ public class VerifyElGamalDecryptionShareTest extends TestBase
 	}
 
 	@Test
+	@DisplayName("if the proof fails, returns false")
+	void test() {
+		boolean actual = verifyElGamalDecryptionShare.apply(
+				EL_GAMAL_DECRYPTION_SHARE_BADPROOF, CIPHERTEXT_E,
+				EL_GAMAL_PUBLIC_KEY_E);
+		assertFalse(actual);
+	}
+
+	@Test
 	@DisplayName("if g2 != g, it fails")
 	void test4_1() {
 		assertFalse(verifyElGamalDecryptionShare.apply(EL_GAMAL_DECRYPTION_SHARE,

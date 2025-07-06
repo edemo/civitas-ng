@@ -21,11 +21,8 @@ public class VerifyElGamalDecryptionShare {
 		if (K == null)
 			throw new IllegalArgumentException("null key");
 		ElGamalParameters params = K.params;
-		//@formatter:off
-		if (that.proof.g1.equals(c.a)
-				&& that.proof.g2.equals(params.g)
-				&& that.proof.v.equals(that.ai)
-				&& that.proof.w.equals(K.y)) {
+		if (that.proof.g1.equals(c.a) && that.proof.g2.equals(params.g)
+				&& that.proof.v.equals(that.ai) && that.proof.w.equals(K.y)) {
 			return verifyElGamalProofDiscLogEquality.apply(that.proof, params);
 		}
 

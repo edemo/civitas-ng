@@ -34,7 +34,8 @@ public class VerifyProofVote {
 		E.add(params.g.modPow(that.s1, p).modMultiply(a1.modPow(that.c, p), p));
 		E.add(params.g.modPow(that.s2, p).modMultiply(a2.modPow(that.c, p), p));
 
-		CivitasBigInteger x = convertHashToBigInt.apply(cryptoHash.apply(E)).mod(q);
+		byte[] hash = cryptoHash.apply(E);
+		CivitasBigInteger x = convertHashToBigInt.apply(hash).mod(q);
 		boolean ret = that.c.equals(x);
 		return ret;
 	}

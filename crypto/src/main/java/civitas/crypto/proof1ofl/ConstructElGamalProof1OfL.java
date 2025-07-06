@@ -62,7 +62,7 @@ public class ConstructElGamalProof1OfL implements Constants {
 					.modMultiply(key.y.modPow(rs[i], ps.p), ps.p).mod(ps.p);
 		}
 
-		List<CivitasBigInteger> env = new ArrayList<>(2 + 4 * L);
+		List<CivitasBigInteger> env = new ArrayList<>();
 		env.add(u);
 		env.add(v);
 		for (int i = 0; i < L; i++) {

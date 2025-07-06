@@ -1,7 +1,6 @@
 package civitas.crypto.parameters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,11 +22,8 @@ public class GenerateSchnorrPrimeTest extends TestBase
 	void schnorrPrimeTest2() {
 		PrimePair sp = generateSchnorrPrime.apply(Constants.EL_GAMAL_KEY_LENGTH,
 				Constants.EL_GAMAL_GROUP_LENGTH);
-		assertTrue(sp.p.isProbablePrime(CERTAINTY));
-		assertTrue(sp.q.isProbablePrime(CERTAINTY));
-		assertEquals(ZERO, sp.p.subtract(ONE).mod(sp.q));
-		assertEquals(Constants.EL_GAMAL_GROUP_LENGTH, sp.p.bitLength());
-		assertEquals(Constants.EL_GAMAL_KEY_LENGTH, sp.q.bitLength());
+		assertEquals(BIGINT_Q, sp.q);
+		assertEquals(BIGINT_P, sp.p);
 	}
 
 }

@@ -1,5 +1,6 @@
 package civitas.crypto.signature;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
@@ -23,7 +24,15 @@ public class VerifyElGamalSignatureTest extends TestBase
 		assertTrue(verifyElGamalSignature.apply(EL_GAMAL_PARAMETERS,
 				SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV,
 				ADDITIONALENV_BYTES));
+	}
 
+	@Test
+	@DisplayName("if the verification fails, false is returned")
+	void test() throws Exception {
+
+		assertFalse(verifyElGamalSignature.apply(EL_GAMAL_PARAMETERS,
+				SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV_BAD,
+				ADDITIONALENV_BYTES));
 	}
 
 	@Test
@@ -31,7 +40,13 @@ public class VerifyElGamalSignatureTest extends TestBase
 	void elGamalVerifyTest1() throws Exception {
 		assertTrue(verifyElGamalSignature.apply(EL_GAMAL_PARAMETERS,
 				SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0));
+	}
 
+	@Test
+	@DisplayName("when the version without env fails false returned")
+	void t1() throws Exception {
+		assertFalse(verifyElGamalSignature.apply(EL_GAMAL_PARAMETERS,
+				SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_BAD));
 	}
 
 }

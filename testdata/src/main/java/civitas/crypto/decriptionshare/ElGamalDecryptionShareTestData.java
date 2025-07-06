@@ -8,14 +8,19 @@ public interface ElGamalDecryptionShareTestData
 
 	CivitasBigInteger EL_GAMAL_DECRYPTION_SHARE_AI = CIPHERTEXT_E_A
 			.modPow(PRIVKEY_E, BIGINT_P);
-	public static final ElGamalDecryptionShare EL_GAMAL_DECRYPTION_SHARE = new ElGamalDecryptionShare(
+	ElGamalDecryptionShare EL_GAMAL_DECRYPTION_SHARE = new ElGamalDecryptionShare(
 			EL_GAMAL_DECRYPTION_SHARE_AI,
 			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE);
 
-	public static final ElGamalDecryptionShare EL_GAMAL_DECRYPTION_SHARE_BAD_AI = new ElGamalDecryptionShare(
+	ElGamalDecryptionShare EL_GAMAL_DECRYPTION_SHARE_BAD_AI = new ElGamalDecryptionShare(
 			BIGINT_A, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE);
 
-	public static final ElGamalDecryptionShare EL_GAMAL_DECRYPTION_SHARE_BADPROOF = new ElGamalDecryptionShare(
-			RANDOMS_1, EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT);
+	ElGamalDecryptionShare EL_GAMAL_DECRYPTION_SHARE_BADPROOF = new ElGamalDecryptionShare(
+			EL_GAMAL_DECRYPTION_SHARE_AI,
+			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_BAD_B);
+
+	ElGamalDecryptionShare[] EL_GAMAL_DECRYPTION_SHARES = new ElGamalDecryptionShare[] {
+			EL_GAMAL_DECRYPTION_SHARE,
+			EL_GAMAL_DECRYPTION_SHARE_BADPROOF };
 
 }

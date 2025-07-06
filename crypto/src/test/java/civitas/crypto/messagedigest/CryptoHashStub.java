@@ -1,11 +1,13 @@
 package civitas.crypto.messagedigest;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.util.Base64;
+import java.util.List;
 
 import civitas.bboard.common.BBPostTestData;
 import civitas.common.mix.capabilitymixrevelation.MixCapabilityElementRevelationTestData;
@@ -16,6 +18,7 @@ import civitas.crypto.proofdvr.ElGamalProofDVRTestData;
 import civitas.crypto.proofknowndisclog.ProofKnowDiscLogTestData;
 import civitas.crypto.proofvote.ProofVoteTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
+import civitas.util.CivitasBigInteger;
 
 public class CryptoHashStub implements ElGamalProofDiscLogEqualityTestData,
 		TabTellerKeyShareTestData, ElGamalProofDVRTestData, PETCommitmentTestData,
@@ -24,6 +27,9 @@ public class CryptoHashStub implements ElGamalProofDiscLogEqualityTestData,
 
 	public static CryptoHash stub() throws UnsupportedEncodingException {
 		CryptoHash mock = mock(CryptoHash.class);
+		@SuppressWarnings("unchecked")
+		List<CivitasBigInteger> any = (List<CivitasBigInteger>) any();
+		when(mock.apply(any)).thenReturn(SOMESTRING_HASH);
 		when(mock.apply(ELECTORAL_ROLL_CAPABILITY_SHARES_XML.getBytes()))
 				.thenReturn(ELECTORAL_ROLL_CAPABILITY_SHARES_XML_HASH);
 		when(mock.apply(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_FOR_HASH))
@@ -45,6 +51,13 @@ public class CryptoHashStub implements ElGamalProofDiscLogEqualityTestData,
 				G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR_ADDITIONALENV,
 				CIPHERTEXT_E_A, CIPHERTEXT_E_B, null)).thenReturn(
 						HASH_OF_G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR);
+		when(mock.apply(
+				G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR_ADDITIONALENV_BAD,
+				CIPHERTEXT_E_A, CIPHERTEXT_E_B, ADDITIONALENV_BYTES))
+				.thenReturn(BIGINT_A);
+		when(mock.apply(
+				G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR_BAD,
+				CIPHERTEXT_E_A, CIPHERTEXT_E_B, null)).thenReturn(BIGINT_A);
 		when(mock.apply(EL_GAMAL_PROOF_1_OF_L_ENV)).thenReturn(
 				Base64.getDecoder().decode(EL_GAMAL_PROOF_1_OF_L_HASH_BASE64));
 		when(mock.apply(EL_GAMAL_PROOF_DVR_ENV))

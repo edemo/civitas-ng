@@ -34,6 +34,9 @@ public interface ProofVoteTestData extends ElGamalProof1OfLTestData {
 	public static final ProofVote PROOF_VOTE = new ProofVote(PROOF_VOTE_C,
 			PROOF_VOTE_S1, PROOF_VOTE_S2);
 
+	public static final ProofVote PROOF_VOTE_BAD = new ProofVote(BIGINT_B,
+			PROOF_VOTE_S1, PROOF_VOTE_S2);
+
 	Map<Integer, ProofVote> PROOF_VOTE_MAP = ConstructTestData
 			.constructTestData(VOTE_PIECES, (piece) -> mock(ProofVote.class,
 					"PROOF_VOTE_" + VOTE_PIECES.indexOf(piece)));

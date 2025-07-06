@@ -15,6 +15,9 @@ import civitas.util.CivitasBigInteger;
 public interface ElGamalCiphertextListTestData
 		extends ElGamalCiphertextTestData, VoteCapabilityTestData {
 
+	CiphertextList CIPHERTEXTLIST_ONE_LONG = new CiphertextList(
+			List.of(EL_GAMAL_CIPHERTEXT_ONE));
+
 	CiphertextList CIPHERTEXTLIST_TWO_LONG = new CiphertextList(
 			List.of(EL_GAMAL_CIPHERTEXT_ONE, EL_GAMAL_CIPHERTEXT_TWO));
 

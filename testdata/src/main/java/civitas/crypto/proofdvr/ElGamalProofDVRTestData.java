@@ -18,6 +18,8 @@ public interface ElGamalProofDVRTestData extends ElGamalCiphertextListTestData {
 			BIGINT_Q);
 	ElGamalProofDVR EL_GAMAL_PROOF_DVR = new ElGamalProofDVR(CIPHERTEXT_E,
 			CIPHERTEXT_EPRIME, DVR_HASH, RANDOMS_1, RANDOMS_2, DVR_U);
+	ElGamalProofDVR EL_GAMAL_PROOF_DVR_BAD = new ElGamalProofDVR(CIPHERTEXT_E,
+			CIPHERTEXT_EPRIME, BIGINT_B, RANDOMS_1, RANDOMS_2, DVR_U);
 
 	CivitasBigInteger EL_GAMAL_PROOF_DVR_AP = BIGINT_G
 			.modPow(EL_GAMAL_PROOF_DVR.u, BIGINT_P)

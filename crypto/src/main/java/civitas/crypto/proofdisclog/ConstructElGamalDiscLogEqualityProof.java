@@ -36,8 +36,8 @@ public class ConstructElGamalDiscLogEqualityProof {
 		l.add(w);
 		l.add(a);
 		l.add(b);
-		CivitasBigInteger c = convertHashToBigInt.apply(cryptoHash.apply(l))
-				.mod(params.q);
+		byte[] hash = cryptoHash.apply(l);
+		CivitasBigInteger c = convertHashToBigInt.apply(hash).mod(params.q);
 
 		CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q), params.q);
 

@@ -40,8 +40,15 @@ class ConstructWellKnownCiphertextsTest extends TestBase
 	}
 
 	@Test
-	@DisplayName("if the length is less than 1, a CryptoException is thrown")
+	@DisplayName("if the length is 1, a single ciphertext is returned as a list")
 	void test1() throws CryptoException {
+		assertEquals(CIPHERTEXTLIST_ONE_LONG,
+				constructWellKnownCiphertexts.apply(EL_GAMAL_PUBLIC_KEY_E, 1));
+	}
+
+	@Test
+	@DisplayName("if the length is less than 1, a CryptoException is thrown ")
+	void test1_1() throws CryptoException {
 		assertThrows(CryptoException.class,
 				() -> constructWellKnownCiphertexts.apply(EL_GAMAL_PUBLIC_KEY_E, 0));
 	}

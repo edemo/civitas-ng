@@ -1,5 +1,6 @@
 package civitas.crypto.proofvote;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
@@ -23,6 +24,14 @@ public class VerifyProofVoteTest extends TestBase
 	void test2_1() {
 
 		assertTrue(verifyProofVote.apply(PROOF_VOTE, EL_GAMAL_PARAMETERS,
+				CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE, ADDITIONALENV));
+	}
+
+	@Test
+	@DisplayName("returns false if the check fails")
+	void test2_2() {
+
+		assertFalse(verifyProofVote.apply(PROOF_VOTE_BAD, EL_GAMAL_PARAMETERS,
 				CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE, ADDITIONALENV));
 	}
 

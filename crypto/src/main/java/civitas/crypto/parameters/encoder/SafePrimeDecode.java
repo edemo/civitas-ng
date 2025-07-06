@@ -11,7 +11,7 @@ public class SafePrimeDecode {
 			throw new CryptoException("Message is too large for parameters");
 		}
 		if (i.compareTo(elGamalParameters.q) > 0) {
-			i = elGamalParameters.p.subtract(i); // i = -i
+			i = elGamalParameters.p.subtract(i);
 		}
 		return i;
 	}

@@ -21,18 +21,16 @@ public class VerifyElGamalProofKnowDiscLogTest extends TestBase
 	@DisplayName("verify checks that g^r = av^c (mod p)")
 	void verifyTest() {
 
-		CivitasBigInteger key = EL_GAMAL_PRIVATE_KEY_E.x;
-		CivitasBigInteger g = EL_GAMAL_PARAMETERS.g;
-		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
-		CivitasBigInteger q = EL_GAMAL_PARAMETERS.q;
-
-		CivitasBigInteger v = g.modPow(key, p);
-		CivitasBigInteger z = RANDOMS_0;
-		CivitasBigInteger a = g.modPow(z, p);
-		CivitasBigInteger c = EL_GAMAL_PROOF_KNOWN_DISC_LOG_C;
-		CivitasBigInteger r = z.add(c.modMultiply(key, q));
 		assertTrue(verifyElGamalProofKnowDiscLog
-				.apply(new ElGamalProofKnowDiscLog(a, c, r, v), EL_GAMAL_PARAMETERS));
+				.apply(EL_GAMAL_PROOF_KNOWN_DISC_LOG, EL_GAMAL_PARAMETERS));
+	}
+
+	@Test
+	@DisplayName("verify returns false if the check fails)")
+	void verifyTest1_1() {
+
+		assertFalse(verifyElGamalProofKnowDiscLog
+				.apply(EL_GAMAL_PROOF_KNOWN_DISC_LOG_BAD, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test

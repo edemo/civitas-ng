@@ -50,7 +50,7 @@ public class VerifyElGamalProof1OfL {
 		}
 
 		// construct the hash of the environment
-		List<CivitasBigInteger> env = new ArrayList<>(2 + 4 * L);
+		List<CivitasBigInteger> env = new ArrayList<>();
 		env.add(u);
 		env.add(v);
 		for (int i = 0; i < L; i++) {
@@ -60,8 +60,8 @@ public class VerifyElGamalProof1OfL {
 			env.add(bs[i]);
 		}
 
-		CivitasBigInteger c = convertHashToBigInt.apply(cryptoHash.apply(env))
-				.mod(ps.q);
+		byte[] hashBytes = cryptoHash.apply(env);
+		CivitasBigInteger c = convertHashToBigInt.apply(hashBytes).mod(ps.q);
 		return sum.equals(c);
 	}
 

@@ -6,27 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
-import civitas.crypto.algorithms.ConvertHashToBigInt;
-import civitas.crypto.ciphertext.ElGamalReencrypt;
-import civitas.crypto.messagedigest.CryptoHash;
 
 public class VerifyElGamalProof1OfLTest extends TestBase
 		implements ElGamalProof1OfLTestData {
 
 	@InjectMocks
 	VerifyElGamalProof1OfL verifyElGamalProof1OfLC;
-	@InjectMocks
-	ConstructElGamalProof1OfL constructElGamalProof1OfL;
-	@Autowired
-	ConvertHashToBigInt convertHashToBigInt;
-	@Autowired
-	CryptoHash cryptoHash;
-	@Autowired
-	ElGamalReencrypt elGamalReencrypt;
 
 	@Test
 	@DisplayName("verifies that the prover reencrypted one of the cyphertexts to the msg using pubkey"
@@ -36,8 +24,18 @@ public class VerifyElGamalProof1OfLTest extends TestBase
 			+ "sum = sum dv_i (mod q)                        "
 			+ "verify that sum = c")
 	void test1() throws CryptoException {
+		boolean actual = false;
+		actual = verifyElGamalProof1OfLC.apply(EL_GAMAL_PROOF_1_OF_L,
+				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS,
+				REENCRYPTED_WELL_KNOWN_CHOICE);
+		assertTrue(actual);
+	}
 
-		assertTrue(verifyElGamalProof1OfLC.apply(EL_GAMAL_PROOF_1_OF_L,
+	@Test
+	@DisplayName("if the verification fails, returns false")
+	void test() throws CryptoException {
+
+		assertFalse(verifyElGamalProof1OfLC.apply(EL_GAMAL_PROOF_1_OF_L_BAD,
 				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS,
 				REENCRYPTED_WELL_KNOWN_CHOICE));
 	}

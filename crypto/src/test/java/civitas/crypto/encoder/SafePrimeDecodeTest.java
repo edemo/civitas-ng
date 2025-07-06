@@ -13,29 +13,12 @@ import org.mockito.InjectMocks;
 import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.parameters.encoder.SafePrimeDecode;
-import civitas.crypto.parameters.encoder.SafePrimeEncode;
 import civitas.util.CivitasBigInteger;
 
-public class SafePrimeEncoderTest extends TestBase implements EncoderTestData {
+public class SafePrimeDecodeTest extends TestBase implements EncoderTestData {
 
-	@InjectMocks
-	private SafePrimeEncode encoder;
 	@InjectMocks
 	private SafePrimeDecode decoder;
-
-	@Test
-	@DisplayName("encoder works as expected")
-	void test() throws CryptoException, IllegalArgumentException, IOException {
-		assertEquals(SAFE_P_MINUS_A_BASE64, Base64.getEncoder().encodeToString(
-				encoder.apply(BIGINT_A, EL_GAMAL_PARAMETERS_SAFE).toByteArray()));
-	}
-
-	@Test
-	@DisplayName("encoder works as expected when the plaintext's Legendre symbol is -1")
-	void test2() throws CryptoException, IllegalArgumentException, IOException {
-		assertEquals(PUBLICIZED_SAFE_LEGENDRE, encoder
-				.apply(PLAINTEXT_WITH_LEGENDRE_MINUS_ONE, EL_GAMAL_PARAMETERS_SAFE));
-	}
 
 	@Test
 	@DisplayName("decoder works as expected")
@@ -50,10 +33,14 @@ public class SafePrimeEncoderTest extends TestBase implements EncoderTestData {
 	@Test
 	@DisplayName("decoder works as expected for encoded text > q")
 	void test3_1() throws CryptoException, IllegalArgumentException, IOException {
-		assertEquals(PLAINTEXT_OF_BIG_SECRET_BASE64,
-				Base64.getEncoder().encodeToString(
-						decoder.apply(EL_GAMAL_PARAMETERS_SAFE.q.add(BIGINT_A),
-								EL_GAMAL_PARAMETERS_SAFE).toByteArray()));
+		assertEquals(SAFE_P.subtract(SAFE_Q).subtract(BIGINT_A),
+				decoder.apply(SAFE_Q.add(BIGINT_A), EL_GAMAL_PARAMETERS_SAFE));
+	}
+
+	@Test
+	@DisplayName("decoder works as expected for encoded text = q")
+	void test3_2() throws CryptoException, IllegalArgumentException, IOException {
+		assertEquals(SAFE_Q, decoder.apply(SAFE_Q, EL_GAMAL_PARAMETERS_SAFE));
 	}
 
 	@Test
@@ -62,6 +49,12 @@ public class SafePrimeEncoderTest extends TestBase implements EncoderTestData {
 		assertThrows(CryptoException.class,
 				() -> decoder.apply(EL_GAMAL_PARAMETERS_SAFE.p.add(BIGINT_A),
 						EL_GAMAL_PARAMETERS_SAFE));
+	}
+
+	@Test
+	@DisplayName("decoder returns zero if message = p")
+	void test() throws CryptoException, IllegalArgumentException, IOException {
+		assertEquals(ZERO, decoder.apply(SAFE_P, EL_GAMAL_PARAMETERS_SAFE));
 	}
 
 }

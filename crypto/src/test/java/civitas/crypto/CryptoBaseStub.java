@@ -71,7 +71,8 @@ public class CryptoBaseStub implements PrivateKeyTestData, PublicKeyTestData,
 				.initVerify(PUBLIC_KEY_BAD);
 
 		when(mock.obtainProbablePrime(eq(EL_GAMAL_KEY_LENGTH))).thenReturn(BIGINT_B)
-				.thenReturn(BIGINT_NO_PRIME_OF_KEYLENGTH).thenReturn(BIGINT_Q);
+				.thenReturn(BIGINT_NO_PRIME_OF_KEYLENGTH).thenReturn(BIGINT_Q)
+				.thenThrow(new NullPointerException());
 		when(mock.obtainProbablePrime(eq(SAFE_KEY_LENGTH))).thenReturn(BIGINT_B)
 				.thenReturn(SAFE_Q);
 
@@ -90,7 +91,9 @@ public class CryptoBaseStub implements PrivateKeyTestData, PublicKeyTestData,
 
 		when(mock.generateRandomElement(any())).thenAnswer(new RandomAnswer());
 		when(mock.generateRandomElement(TWO_EXP_GROUP_LENGTH)).thenReturn(BIGINT_A)
-				.thenReturn(BIGINT_NO_PRIME_OF_GROUPLENGTH).thenReturn(BIGINT_P);
+				.thenReturn(BIGINT_NO_PRIME_OF_GROUPLENGTH).thenReturn(BIGINT_A)
+				.thenReturn(BIGINT_A).thenReturn(BIGINT_NO_PRIME_OF_GROUPLENGTH)
+				.thenReturn(BIGINT_P).thenThrow(new NullPointerException());
 		when(mock.generateRandomElement(BIGINT_P)).thenReturn(ONE)
 				.thenReturn(BIGINT_P.subtract(ONE)).thenReturn(BIGINT_D);
 
