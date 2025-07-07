@@ -4,14 +4,16 @@
  * See the LICENSE file accompanying this distribution for further license
  * and copyright information.
  */
-package civitas.crypto.messagedigest;
+package civitas.common.mix;
 
-import lombok.Data;
-import lombok.NonNull;
+public interface VoterMix {
 
-@Data
-public class MessageDigest {
-	@NonNull
-	public final java.security.MessageDigest md;
+	Integer getNumber();
+
+	byte[] getMixNonceHash();
+
+	byte[][] getCommitments();
+
+	void setCommitments(byte[][] commitments);
 
 }

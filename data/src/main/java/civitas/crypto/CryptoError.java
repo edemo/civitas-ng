@@ -6,22 +6,18 @@
  */
 package civitas.crypto;
 
-public class CryptoError extends Error {
-	/**
-	 * Required by the documentation for the Serializable interface. The arbitrary
-	 * number is the date this class was implemented.
-	 */
+public class CryptoError extends RuntimeException {
 	private static final long serialVersionUID = 20061102L;
 
-	public CryptoError(String m) {
+	public CryptoError(final String m) {
 		super(m);
 	}
 
-	public CryptoError(String m, Throwable cause) {
+	public CryptoError(final String m, final Throwable cause) {
 		super(m, cause);
 	}
 
-	public CryptoError(Throwable cause) {
+	public CryptoError(final Throwable cause) {
 		super(cause);
 	}
 }

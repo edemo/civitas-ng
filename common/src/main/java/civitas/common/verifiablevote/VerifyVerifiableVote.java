@@ -18,8 +18,9 @@ public class VerifyVerifiableVote {
 
 	public boolean apply(VerifiableVote that, ElGamalPublicKey pubKey,
 			CiphertextList ciphertexts, int L) {
-		if ((pubKey == null))
+		if ((pubKey == null)) {
 			return false;
+		}
 		return verifyElGamal1OfLReencryption.apply(that.encChoice, pubKey,
 				ciphertexts, L)
 				&& verifyProofVote.apply(that.proofVote, pubKey.params,

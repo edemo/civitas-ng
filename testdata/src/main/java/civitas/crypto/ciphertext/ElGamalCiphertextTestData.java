@@ -5,6 +5,7 @@ import civitas.crypto.msg.ElgamalMsgTestData;
 import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 public interface ElGamalCiphertextTestData extends ElgamalMsgTestData,
 		ElGamalPublicKeyTestData, ElGamalReencryptFactorTestData {
@@ -52,17 +53,17 @@ public interface ElGamalCiphertextTestData extends ElgamalMsgTestData,
 	byte[] VOTER_ADDITIONAL_ENV = "8+bob hash".getBytes();
 
 	ElGamalCiphertext CIPHERTEXT_2_3 = new ElGamalCiphertext(
-			CivitasBigInteger.valueOf(2), CivitasBigInteger.valueOf(3));
+			CivitasBigIntegerFactory.obtain(2), CivitasBigIntegerFactory.obtain(3));
 	ElGamalCiphertext[][] CIPHERTEXT_MATRIX = new ElGamalCiphertext[][] {
 			{
 					CIPHERTEXT_2_3,
-					new ElGamalCiphertext(CivitasBigInteger.valueOf(5),
-							CivitasBigInteger.valueOf(7)), },
+					new ElGamalCiphertext(CivitasBigIntegerFactory.obtain(5),
+							CivitasBigIntegerFactory.obtain(7)), },
 			{
-					new ElGamalCiphertext(CivitasBigInteger.valueOf(11),
-							CivitasBigInteger.valueOf(13)),
-					new ElGamalCiphertext(CivitasBigInteger.valueOf(17),
-							CivitasBigInteger.valueOf(19)),
+					new ElGamalCiphertext(CivitasBigIntegerFactory.obtain(11),
+							CivitasBigIntegerFactory.obtain(13)),
+					new ElGamalCiphertext(CivitasBigIntegerFactory.obtain(17),
+							CivitasBigIntegerFactory.obtain(19)),
 
 			} };
 	public static final VoteChoice MY_CHOICE = VoteChoice.I_BEATS_J;

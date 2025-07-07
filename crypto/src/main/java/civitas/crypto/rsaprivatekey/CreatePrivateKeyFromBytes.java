@@ -16,7 +16,7 @@ public class CreatePrivateKeyFromBytes {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public java.security.PrivateKey apply(byte[] bs) throws CryptoError {
+	public java.security.PrivateKey apply(final byte[] bs) {
 		KeySpec keySpec = new PKCS8EncodedKeySpec(bs);
 		try {
 			return cryptoBase.publicKeyFactory.generatePrivate(keySpec);

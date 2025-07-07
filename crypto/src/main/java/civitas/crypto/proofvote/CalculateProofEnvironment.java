@@ -10,6 +10,7 @@ import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 @Controller
 public class CalculateProofEnvironment {
@@ -25,7 +26,8 @@ public class CalculateProofEnvironment {
 		E.add(encCapability.getB());
 		E.add(encChoice.getA());
 		E.add(encChoice.getB());
-		E.add(new CivitasBigInteger(1, cryptoHash.apply(context.getBytes())));
+		E.add(CivitasBigIntegerFactory.obtain(1,
+				cryptoHash.apply(context.getBytes())));
 		return E;
 	}
 

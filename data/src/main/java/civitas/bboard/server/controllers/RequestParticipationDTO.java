@@ -3,7 +3,7 @@ package civitas.bboard.server.controllers;
 import java.math.BigInteger;
 import java.util.List;
 
-import civitas.common.Host;
+import civitas.common.ServerHost;
 import civitas.common.ballotdesign.BallotDesign;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,6 +47,6 @@ public class RequestParticipationDTO {
 	@NonNull
 	public Integer voterAnonymityParam;
 	@NonNull
-	List<Host> tellerDetails;
+	List<ServerHost> tellerDetails;
 
 }

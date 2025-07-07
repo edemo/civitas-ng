@@ -36,7 +36,7 @@ public class DecomposeBallotTest extends TestBase
 		assertEquals(VOTER_SUBMISSION, actual);
 		verify(decomposeBallot.calculateBallotLength).apply(BALLOT.k);
 		CalculatePositionInBallot posStub = CalculatePositionInBallotStub.stub();
-		for (int i = 0; i < NUM_CANDIDATES; i++)
+		for (int i = 0; i < NUM_CANDIDATES; i++) {
 			for (int j = i + 1; j < NUM_CANDIDATES; j++) {
 				Integer pos = posStub.apply(i, j, NUM_CANDIDATES);
 				verify(decomposeBallot.encryptCapability).apply(EL_GAMAL_PUBLIC_KEY_E,
@@ -52,6 +52,7 @@ public class DecomposeBallotTest extends TestBase
 						CONTEXT_MAP.get(pos), ELGAMAL_REENCRYPT_FACTOR_E,
 						ELGAMAL_REENCRYPT_FACTOR_EPRIME);
 			}
+		}
 	}
 
 	@Test

@@ -42,7 +42,7 @@ public class VerifyPublicKeySignature implements Constants {
 		try {
 			cryptoBase.rsaSigner.initVerify(signer);
 			cryptoBase.rsaSigner.update(bytes);
-			return cryptoBase.rsaSigner.verify(s.signature);
+			return cryptoBase.rsaSigner.verify(s.signatureBytes);
 		} catch (Exception e) {
 			throw new CryptoException("cannot verify signature", e);
 		}

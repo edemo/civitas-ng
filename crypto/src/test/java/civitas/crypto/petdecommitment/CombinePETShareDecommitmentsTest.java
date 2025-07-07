@@ -34,8 +34,9 @@ public class CombinePETShareDecommitmentsTest extends TestBase
 	void test2() {
 		Field[] fields = CombinePETShareDecommitments.class.getFields();
 		for (Field field : fields) {
-			if (field.getType() == VerifyElGamalProofDiscLogEquality.class)
+			if (field.getType() == VerifyElGamalProofDiscLogEquality.class) {
 				fail();
+			}
 		}
 	}
 

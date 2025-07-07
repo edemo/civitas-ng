@@ -21,13 +21,14 @@ public class InitialTests {
 		checkBouncyCastle();
 	}
 
-	public static void testUTF8Support() throws UnsupportedEncodingException {
-		"árvíztűrő tükörfúrógép".getBytes("UTF-8");
+	public static byte[] testUTF8Support() throws UnsupportedEncodingException {
+		return "árvíztűrő tükörfúrógép".getBytes("UTF-8");
 	}
 
 	public static void checkBouncyCastle() {
 		String info = new BouncyCastleProvider().getInfo();
-		if (!info.equals("BouncyCastle Security Provider v1.80"))
+		if (!info.equals("BouncyCastle Security Provider v1.80")) {
 			throw new SecurityException("unexpected crypto provider: " + info);
+		}
 	}
 }

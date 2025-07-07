@@ -22,13 +22,13 @@ public class ConfirmParticipationController {
 	ElectionCacheRepository electionCacheRepository;
 
 	@PostMapping("/confirmParticipation")
-	private boolean confirmParticipation(ElectionDetails elecDetails, int index)
-			throws IOException {
+	boolean apply(ElectionDetails elecDetails, int index) throws IOException {
 		getBoardForId.apply(elecDetails.getElectionID(), true);
 		Optional<ElectionCache> electionp = electionCacheRepository
 				.findById(elecDetails.getElectionID());
-		if (electionp.isPresent())
+		if (electionp.isPresent()) {
 			throw new IllegalArgumentException("we are already participating");
+		}
 		ElectionCache election = new ElectionCache(elecDetails.getElectionID(),
 				index, ElectionStatus.CREATED, elecDetails);
 		electionCacheRepository.save(election);

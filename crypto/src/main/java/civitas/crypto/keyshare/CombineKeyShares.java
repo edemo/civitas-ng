@@ -16,8 +16,9 @@ public class CombineKeyShares implements Constants {
 
 	public ElGamalPublicKey apply(ElGamalKeyShare[] shares)
 			throws CryptoException {
-		if (shares == null)
+		if (shares == null) {
 			return null;
+		}
 		CivitasBigInteger accum = ONE;
 		ElGamalParameters params = null;
 		for (ElGamalKeyShare s : shares) {

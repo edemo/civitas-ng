@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import civitas.common.TestBase;
 import civitas.crypto.CryptoException;
 import civitas.crypto.parameters.encoder.SafePrimeDecode;
-import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 public class SafePrimeDecodeTest extends TestBase implements EncoderTestData {
 
@@ -25,8 +25,8 @@ public class SafePrimeDecodeTest extends TestBase implements EncoderTestData {
 	void test3() throws CryptoException, IllegalArgumentException, IOException {
 		assertEquals(BIGINT_A,
 				decoder.apply(
-						new CivitasBigInteger(
-								Base64.getDecoder().decode(SAFE_P_MINUS_A_BASE64)),
+						CivitasBigIntegerFactory
+								.obtain(Base64.getDecoder().decode(SAFE_P_MINUS_A_BASE64)),
 						EL_GAMAL_PARAMETERS_SAFE));
 	}
 

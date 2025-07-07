@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
+import civitas.common.CommonUtil;
 import civitas.common.ConstructTestData;
-import civitas.common.Util;
 import civitas.common.VoteChoice;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertextlist.ElGamalCiphertextListTestData;
@@ -64,7 +64,7 @@ public interface ElGamalProof1OfLTestData
 	}).get();
 
 	String EL_GAMAL_PROOF_1_OF_L_HASH_BASE64 = "TqT++ODFynAUZo5awzSUsEXBXCS6HlC2CkKk6WEG1e4=";
-	CivitasBigInteger EL_GAMAL_PROOF_1_OF_L_HASH = Util
+	CivitasBigInteger EL_GAMAL_PROOF_1_OF_L_HASH = CommonUtil
 			.asBigint(EL_GAMAL_PROOF_1_OF_L_HASH_BASE64);
 
 	CivitasBigInteger EL_GAMAL_PROOF_1_OF_L_DV = EL_GAMAL_PROOF_1_OF_L_HASH
@@ -104,16 +104,18 @@ public interface ElGamalProof1OfLTestData
 			.constructTestData(CHOICES,
 					(i) -> new ElGamalProof1OfL(NO_OF_WELL_KNOWN_CIPHERTEXTS,
 							DVS.stream().map(x -> {
-								if (DVS.indexOf(x) == i.ordinal())
+								if (DVS.indexOf(x) == i.ordinal()) {
 									return mock(CivitasBigInteger.class, "dvs" + i);
-								else
+								} else {
 									return x;
+								}
 							}).toList().toArray(new CivitasBigInteger[0]),
 							RVS.stream().map(x -> {
-								if (RVS.indexOf(x) == i.ordinal())
+								if (RVS.indexOf(x) == i.ordinal()) {
 									return mock(CivitasBigInteger.class, "rvs" + i);
-								else
+								} else {
 									return x;
+								}
 							}).toList().toArray(new CivitasBigInteger[0])));
 
 }

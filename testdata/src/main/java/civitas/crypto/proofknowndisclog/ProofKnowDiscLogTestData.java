@@ -1,6 +1,6 @@
 package civitas.crypto.proofknowndisclog;
 
-import civitas.common.Util;
+import civitas.common.CommonUtil;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
 import civitas.util.CivitasBigInteger;
 
@@ -11,7 +11,7 @@ public interface ProofKnowDiscLogTestData extends ElGamalPrivateKeyTestData {
 	CivitasBigInteger EL_GAMAL_PROOF_KNOWN_DISC_LOG_V = BIGINT_G.modPow(PRIVKEY_E,
 			BIGINT_P);
 	String HASH_OF_G_POW_KEY_E_AND_G_POW_RANDOMS0 = "V0PAc6rSjBiKZU6P5kIU65fcVr5+eIekC1ABoOrgmvs=";
-	CivitasBigInteger EL_GAMAL_PROOF_KNOWN_DISC_LOG_C = Util
+	CivitasBigInteger EL_GAMAL_PROOF_KNOWN_DISC_LOG_C = CommonUtil
 			.asBigint(HASH_OF_G_POW_KEY_E_AND_G_POW_RANDOMS0);
 
 	CivitasBigInteger EL_GAMAL_PROOF_KNOWN_DISC_LOG_R = RANDOMS_0.modAdd(

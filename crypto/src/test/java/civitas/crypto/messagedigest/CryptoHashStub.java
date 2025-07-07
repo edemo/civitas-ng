@@ -84,10 +84,10 @@ public class CryptoHashStub implements ElGamalProofDiscLogEqualityTestData,
 		when(mock.apply(BULLETIN_BOARD_ID.getBytes(), BLOCK1_META.getBytes()))
 				.thenReturn(BLOCK1_HASH);
 		when(mock.apply(BBPOST.hash, BigInteger.valueOf(CURRENT_TIME).toByteArray(),
-				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE.signature))
+				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE.signatureBytes))
 				.thenReturn(BOARD_CLOSED__CONTENT_COMMITMENT_SIGNATURE_HASH);
 		when(mock.apply(new byte[0], BigInteger.valueOf(CURRENT_TIME).toByteArray(),
-				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE.signature))
+				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE.signatureBytes))
 				.thenReturn(BOARD_CLOSED__CONTENT_COMMITMENT_SIGNATURE_HASH_NOPREV);
 		when(mock.apply(SOMESTRING.getBytes())).thenReturn(SOMESTRING_HASH);
 		return mock;

@@ -10,7 +10,7 @@ import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.parameters.ElGamalParameters;
-import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 public class VerifyElGamalProofKnowDiscLogTest extends TestBase
 		implements ProofKnowDiscLogTestData {
@@ -51,7 +51,7 @@ public class VerifyElGamalProofKnowDiscLogTest extends TestBase
 				new ElGamalProofKnowDiscLog(EL_GAMAL_PROOF_KNOWN_DISC_LOG_A,
 						EL_GAMAL_PROOF_KNOWN_DISC_LOG_C, EL_GAMAL_PROOF_KNOWN_DISC_LOG_R,
 						G_EXP_A),
-				new ElGamalParameters(CivitasBigInteger.valueOf(-1), BIGINT_Q,
+				new ElGamalParameters(CivitasBigIntegerFactory.obtain(-1), BIGINT_Q,
 						BIGINT_G)));
 	}
 

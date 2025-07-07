@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.MockingDetails;
 import org.mockito.Mockito;
-import org.mockito.exceptions.misusing.NotAMockException;
 import org.mockito.invocation.Invocation;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,8 +28,9 @@ public class TestBase {
 
 	@AfterEach
 	public void tearDown() throws Exception {
-		if (doPrintMockInvocations)
+		if (doPrintMockInvocations) {
 			printMockInvocations(this);
+		}
 		doPrintMockInvocations = false;
 	}
 
@@ -47,14 +47,10 @@ public class TestBase {
 				for (Field mockField : objField.getType().getDeclaredFields()) {
 					mockField.setAccessible(true);
 					Object mock = mockField.get(service);
-					try {
-						MockingDetails mockingDetails = Mockito.mockingDetails(mock);
-						Collection<Invocation> invocations = mockingDetails
-								.getInvocations();
-						System.out.println(mockField.getName());
-						invocations.forEach(x -> System.out.println(x));
-					} catch (NotAMockException e) {
-					}
+					MockingDetails mockingDetails = Mockito.mockingDetails(mock);
+					Collection<Invocation> invocations = mockingDetails.getInvocations();
+					System.out.println(mockField.getName());
+					invocations.forEach(x -> System.out.println(x));
 				}
 			}
 		}
@@ -89,8 +85,9 @@ public class TestBase {
 				try {
 					stub = Class.forName(stubName);
 					Method method = stub.getDeclaredMethod("stub");
-					if (null == method)
+					if (null == method) {
 						throw new Error(stubName + " does not have stub");
+					}
 					method.setAccessible(true);
 					value = method.invoke(null);
 				} catch (Exception e) {

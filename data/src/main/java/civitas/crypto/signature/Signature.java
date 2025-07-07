@@ -12,7 +12,7 @@ import lombok.NonNull;
 @Data
 public class Signature {
 	@NonNull
-	public final byte[] signature;
+	public final byte[] signatureBytes;
 	@NonNull
 	String signerPubKey;
 

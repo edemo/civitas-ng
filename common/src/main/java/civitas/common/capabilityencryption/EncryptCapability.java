@@ -5,7 +5,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import civitas.crypto.CryptoError;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.publickey.ElGamalPublicKey;
@@ -21,11 +20,10 @@ public class EncryptCapability {
 	@Autowired
 	ElGamalEncrypt elGamalEncrypt;
 
-	public CapabilityEncryption apply(ElGamalPublicKey key,
-			Map<String, VoteCapability> capabilities, String desiredContext)
-			throws CryptoError {
-		VoteCapability c = null;
-		c = capabilities.get(desiredContext);
+	public CapabilityEncryption apply(final ElGamalPublicKey key,
+			final Map<String, VoteCapability> capabilities,
+			final String desiredContext) {
+		VoteCapability c = capabilities.get(desiredContext);
 		if (c == null) {
 			throw new IllegalArgumentException(
 					"No capability supplied for context " + desiredContext);

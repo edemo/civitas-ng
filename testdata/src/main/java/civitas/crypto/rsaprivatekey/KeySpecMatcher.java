@@ -14,11 +14,13 @@ public class KeySpecMatcher implements ArgumentMatcher<X509EncodedKeySpec> {
 
 	@Override
 	public boolean matches(X509EncodedKeySpec argument) {
-		if (null == argument)
-			if (null == spec)
+		if (null == argument) {
+			if (null == spec) {
 				return true;
-			else
+			} else {
 				return false;
+			}
+		}
 		boolean res = Arrays.equals(spec.getEncoded(), argument.getEncoded());
 		return res;
 	}

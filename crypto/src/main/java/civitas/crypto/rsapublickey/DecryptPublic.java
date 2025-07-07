@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoBase;
-import civitas.crypto.CryptoError;
 import civitas.crypto.publickeyciphertext.PublicKeyCiphertext;
 
 @Controller
@@ -18,8 +17,9 @@ public class DecryptPublic implements Constants {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public String apply(PrivateKey key, PublicKeyCiphertext ciphertext)
-			throws CryptoError, UnsupportedEncodingException {
+	public String apply(final PrivateKey key,
+			final PublicKeyCiphertext ciphertext)
+			throws UnsupportedEncodingException {
 		PublicKeyCiphertext ciphertextc = ciphertext;
 		byte[] plaintext = cryptoBase.doCrypto(PUBLIC_KEY_CIPHER_ALG,
 				PUBLIC_KEY_PROVIDER, key, Cipher.DECRYPT_MODE,

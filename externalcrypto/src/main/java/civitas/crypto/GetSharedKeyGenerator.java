@@ -13,11 +13,12 @@ class GetSharedKeyGenerator {
 	public KeyGenerator apply(int keyLength) {
 		String genKey = String.valueOf(keyLength);
 		KeyGenerator g = sharedKeyGenerators.get(genKey);
-		if (g != null)
+		if (g != null) {
 			return g;
+		}
 		try {
-			g = KeyGenerator.getInstance(CryptoBase.SHARED_KEY_ALG,
-					CryptoBase.SHARED_KEY_PROVIDER);
+			g = KeyGenerator.getInstance(Constants.SHARED_KEY_ALG,
+					Constants.SHARED_KEY_PROVIDER);
 		} catch (NoSuchAlgorithmException | NoSuchProviderException impossible) {
 			throw new CryptoError(impossible);
 		}

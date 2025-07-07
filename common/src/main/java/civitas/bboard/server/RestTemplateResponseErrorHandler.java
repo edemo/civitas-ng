@@ -20,8 +20,11 @@ public class RestTemplateResponseErrorHandler implements ResponseErrorHandler {
 	@Override
 	public void handleError(ClientHttpResponse httpResponse) throws IOException {
 		InputStream body = httpResponse.getBody();
-		String content = new BufferedReader(new InputStreamReader(body)).lines()
-				.reduce(String::concat).get();
+		InputStreamReader inputStreamReader = new InputStreamReader(body);
+		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+		String content = bufferedReader.lines().reduce(String::concat).get();
+		inputStreamReader.close();
+		bufferedReader.close();
 		throw new Error(httpResponse.getStatusCode() + ":" + content);
 	}
 }

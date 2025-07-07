@@ -24,8 +24,9 @@ public class UpdateCache {
 
 		Optional<ElectionCache> cachep = electionCacheRepository.findById(bbid);
 		ElectionCache cache;
-		if (!cachep.isPresent())
+		if (!cachep.isPresent()) {
 			throw new IllegalArgumentException("no cache");
+		}
 
 		cache = cachep.get();
 

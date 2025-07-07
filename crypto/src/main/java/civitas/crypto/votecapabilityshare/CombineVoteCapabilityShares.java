@@ -8,8 +8,9 @@ public class CombineVoteCapabilityShares {
 
 	public VoteCapability[] apply(VoteCapabilityShare[][] shares,
 			ElGamalParameters params) {
-		if (shares == null)
+		if (shares == null) {
 			return null;
+		}
 		try {
 			CivitasBigInteger[] accum = new CivitasBigInteger[shares[0].length];
 			for (VoteCapabilityShare[] share : shares) {

@@ -14,9 +14,10 @@ public class VerifyElGamal1OfLReencryptionStub
 
 		when(mock.apply(EL_GAMAL_1_OF_L_REENCRYPTION, EL_GAMAL_PUBLIC_KEY_E,
 				CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS)).thenReturn(true);
-		for(VoteChoice choice:CHOICES)
+		for(VoteChoice choice:CHOICES) {
 			when(mock.apply(EL_GAMAL_1_OF_L_REENCRYPTION_MAP.get(choice), EL_GAMAL_PUBLIC_KEY_E,
 					CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS)).thenReturn(true);
+		}
 
 		return mock;
 	}

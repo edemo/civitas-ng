@@ -8,8 +8,9 @@ public class MultiplyCiphertexts {
 
 	public CiphertextList apply(ElGamalCiphertextish[][] ciphertexts,
 			ElGamalParameters p) {
-		if (ciphertexts == null)
+		if (ciphertexts == null) {
 			return null;
+		}
 		try {
 			CivitasBigInteger[] aAccum = new CivitasBigInteger[ciphertexts[0].length];
 			CivitasBigInteger[] bAccum = new CivitasBigInteger[ciphertexts[0].length];

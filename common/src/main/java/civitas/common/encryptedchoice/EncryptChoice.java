@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import civitas.common.VoteChoice;
-import civitas.crypto.CryptoError;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.oneoflreencryption.ConstructElGamal1OfLReencryption;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
@@ -20,8 +19,9 @@ public class EncryptChoice {
 	@Autowired
 	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
 
-	public EncryptedChoice apply(ElGamalPublicKey key, CiphertextList ciphertexts,
-			VoteChoice[] cbMatrix, int pos) throws CryptoError {
+	public EncryptedChoice apply(final ElGamalPublicKey key,
+			final CiphertextList ciphertexts, final VoteChoice[] cbMatrix,
+			final int pos) {
 		VoteChoice choice = cbMatrix[pos];
 		ElGamalReencryptFactor encChoiceFactor = generateElGamalReencryptFactor
 				.apply(key.params);

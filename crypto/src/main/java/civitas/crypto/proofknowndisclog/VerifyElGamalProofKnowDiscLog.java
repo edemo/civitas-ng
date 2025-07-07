@@ -15,9 +15,7 @@ public class VerifyElGamalProofKnowDiscLog {
 					params.p);
 
 			return u.equals(w);
-		} catch (NullPointerException e) {
-			return false;
-		} catch (ArithmeticException e) {
+		} catch (NullPointerException | ArithmeticException e) {
 			return false;
 		}
 	}

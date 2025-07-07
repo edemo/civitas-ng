@@ -60,7 +60,7 @@
 								<artifactItem>
 									<groupId>io.github.magwas</groupId>
 									<artifactId>civitas-ng-crypto</artifactId>
-									<version>0.0.1</version>
+									<version>${project.version}</version>
 									<classifier>stubs</classifier>
 									<type>jar</type>
 									<overWrite>false</overWrite>
@@ -71,7 +71,7 @@
 								<artifactItem>
 									<groupId>io.github.magwas</groupId>
 									<artifactId>civitas-ng-crypto</artifactId>
-									<version>0.0.1</version>
+									<version>${project.version}</version>
 									<classifier>stub-sources</classifier>
 									<type>jar</type>
 									<overWrite>false</overWrite>

@@ -15,9 +15,7 @@ public class VerifyElGamalProofDiscLogEquality {
 					.equals(that.a.modMultiply(that.v.modPow(that.c, params.p), params.p))
 					&& that.g2.modPow(that.r, params.p).equals(
 							that.b.modMultiply(that.w.modPow(that.c, params.p), params.p));
-		} catch (NullPointerException e) {
-			return false;
-		} catch (ArithmeticException e) {
+		} catch (NullPointerException | ArithmeticException e) {
 			return false;
 		}
 	}

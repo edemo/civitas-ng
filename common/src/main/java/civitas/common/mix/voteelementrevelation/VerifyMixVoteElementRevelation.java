@@ -3,8 +3,8 @@ package civitas.common.mix.voteelementrevelation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import civitas.common.Vote;
-import civitas.common.mix.Mix;
+import civitas.common.EncryptedVote;
+import civitas.common.mix.VoterMix;
 import civitas.common.mix.votemix.VoteMix;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.ciphertext.ElGamalReencrypt;
@@ -19,15 +19,16 @@ public class VerifyMixVoteElementRevelation {
 
 	public boolean apply(@Nonnull MixVoteElementRevelation that,
 			@Nonnull ElGamalPublicKey key, int fromIndex, int toIndex,
-			@Nonnull Mix fromMix, @Nonnull Mix toMix) {
-		if (null == fromMix || null == toMix)
+			@Nonnull VoterMix fromMix, @Nonnull VoterMix toMix) {
+		if (null == fromMix || null == toMix) {
 			throw new NullPointerException();
+		}
 		if (!(fromMix instanceof VoteMix && toMix instanceof VoteMix)) {
 			return false;
 		}
 
-		Vote fromVote = ((VoteMix) fromMix).votes[fromIndex];
-		Vote toVote = ((VoteMix) toMix).votes[toIndex];
+		EncryptedVote fromVote = ((VoteMix) fromMix).votes[fromIndex];
+		EncryptedVote toVote = ((VoteMix) toMix).votes[toIndex];
 		ElGamalCiphertextish fromChoice = fromVote.encChoice;
 		ElGamalCiphertextish fromCapability = fromVote.encCapability;
 		ElGamalCiphertextish toChoice = toVote.encChoice;

@@ -6,13 +6,13 @@
  */
 package civitas.common.mix.capabilitymix;
 
-import civitas.common.mix.Mix;
+import civitas.common.mix.VoterMix;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import lombok.Data;
 import lombok.NonNull;
 
 @Data
-public class CapabilityMix implements Mix {
+public class CapabilityMix implements VoterMix {
 	@NonNull
 	public final Integer number;
 	@NonNull

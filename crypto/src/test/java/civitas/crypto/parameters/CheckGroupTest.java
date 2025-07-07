@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import civitas.common.TestBase;
 import civitas.crypto.CryptoError;
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 public class CheckGroupTest extends TestBase
 		implements ElGamalParametersTestData {
@@ -43,7 +44,7 @@ public class CheckGroupTest extends TestBase
 	@DisplayName("checkGroup throws CryptoException if p is not prime")
 	void checkGroupTest1() {
 		CivitasBigInteger p;
-		p = BIGINT_Q.multiply(CivitasBigInteger.valueOf(2)).add(ONE);
+		p = BIGINT_Q.multiply(CivitasBigIntegerFactory.obtain(2)).add(ONE);
 		CryptoError t = assertThrows(CryptoError.class, () -> {
 			checkGroup
 					.apply(new ElGamalParameters(p, BIGINT_Q, GENERATOR_FOR_UNPRIME_P));

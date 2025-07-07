@@ -2,9 +2,10 @@ package civitas.crypto.signedciphertext;
 
 import java.util.Base64;
 
-import civitas.common.Util;
+import civitas.common.CommonUtil;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 public interface ElGamalSignedCiphertextTestData
 		extends ElGamalCiphertextTestData {
@@ -16,17 +17,17 @@ public interface ElGamalSignedCiphertextTestData
 			BIGINT_P);
 	CivitasBigInteger EL_GAMAL_SIGNED_CIPHERTEXT_B = MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED
 			.modMultiply(PUBKEY_E.modPow(FACTOR_E, BIGINT_P), BIGINT_P);
-	CivitasBigInteger EL_GAMAL_SIGNED_CIPHERTEXT_C = new CivitasBigInteger(
-			Base64.getDecoder().decode(EL_GAMAL_SIGNED_CIPHERTEXT_C_BASE64));
+	CivitasBigInteger EL_GAMAL_SIGNED_CIPHERTEXT_C = CivitasBigIntegerFactory
+			.obtain(Base64.getDecoder().decode(EL_GAMAL_SIGNED_CIPHERTEXT_C_BASE64));
 	CivitasBigInteger EL_GAMAL_SIGNED_CIPHERTEXT_D = RANDOMS_0.modAdd(
 			EL_GAMAL_SIGNED_CIPHERTEXT_C.modMultiply(FACTOR_E, BIGINT_Q), BIGINT_Q);
 
 	ElGamalSignedCiphertext EL_GAMAL_SIGNED_CIPHERTEXT = new ElGamalSignedCiphertext(
 			EL_GAMAL_SIGNED_CIPHERTEXT_A, EL_GAMAL_SIGNED_CIPHERTEXT_B,
 			EL_GAMAL_SIGNED_CIPHERTEXT_C, EL_GAMAL_SIGNED_CIPHERTEXT_D);
-	CivitasBigInteger HASH_OF_G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR_ADDITIONALENV = Util
+	CivitasBigInteger HASH_OF_G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR_ADDITIONALENV = CommonUtil
 			.asBigint("dHKDA9V8OEUx/Z2A7TLdgbG7OdIZTbg860iANjgFJMI=");
-	CivitasBigInteger HASH_OF_G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR = Util
+	CivitasBigInteger HASH_OF_G_POW_RANDOMS0_G_EXP_FACTOR_MESSAGE_MUL_PUBKEY_POW_FACTOR = CommonUtil
 			.asBigint("AKw6iOIfDUU0OHK6D2nQ/e40bKkVIrYwO+kUZJuwSWYt");
 
 	CivitasBigInteger RANDOMS_0_PLUS_HASH_MUL_FACTOR = RANDOMS_0.modAdd(

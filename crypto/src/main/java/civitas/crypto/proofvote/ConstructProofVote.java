@@ -11,6 +11,7 @@ import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 @Controller
 public class ConstructProofVote {
@@ -33,8 +34,8 @@ public class ConstructProofVote {
 		E.add(params.g.modPow(r1, params.p));
 		E.add(params.g.modPow(r2, params.p));
 
-		CivitasBigInteger c = new CivitasBigInteger(1, cryptoHash.apply(E))
-				.mod(params.q);
+		CivitasBigInteger c = CivitasBigIntegerFactory
+				.obtain(1, cryptoHash.apply(E)).mod(params.q);
 		CivitasBigInteger s1 = r1.modSubtract(c.modMultiply(alpha1.r, params.q),
 				params.q);
 		CivitasBigInteger s2 = r2.modSubtract(c.modMultiply(alpha2.r, params.q),

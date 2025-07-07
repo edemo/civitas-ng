@@ -10,6 +10,6 @@ public class Winners {
 	@NonNull
 	List<List<Integer>> result;
 	@NonNull
-	Pair<Integer, Integer>[][] beatpaths;
+	CandidatePair<Integer, Integer>[][] beatpaths;
 
 }

@@ -12,8 +12,9 @@ public class GenerateRandomInt {
 	CryptoBase cryptoBase;
 
 	public int apply(int n) {
-		if (n <= 0)
+		if (n <= 0) {
 			return 0;
+		}
 		return cryptoBase.getRandomGenerator().nextInt(n);
 	}
 

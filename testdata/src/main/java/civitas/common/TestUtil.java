@@ -44,8 +44,9 @@ public class TestUtil {
 		return (s) -> {
 			if (n < 8 && mod == n++ % 2) {
 				return s;
-			} else
+			} else {
 				return null;
+			}
 		};
 	}
 

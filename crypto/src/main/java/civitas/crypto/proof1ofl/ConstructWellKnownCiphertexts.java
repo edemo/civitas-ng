@@ -25,9 +25,10 @@ public class ConstructWellKnownCiphertexts implements Constants {
 
 	public CiphertextList apply(ElGamalPublicKey key, int count)
 			throws CryptoException {
-		if (count < 1 || key == null)
+		if (count < 1 || key == null) {
 			throw new CryptoException(
 					"bad parameters for constructWellKnownCiphertexts");
+		}
 		CiphertextList cs = new CiphertextList();
 
 		ElGamalReencryptFactor factor = new ElGamalReencryptFactor(ZERO);

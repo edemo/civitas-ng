@@ -6,12 +6,12 @@
  */
 package civitas.common;
 
+import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import lombok.Data;
 
 @Data
-public class Host {
-	final ServerRole role;
-	final String urlbase;
-	final String publicKey;
-
+public class EncryptedVote {
+	public final String context;
+	public final ElGamalCiphertextish encChoice;
+	public final ElGamalCiphertextish encCapability;
 }

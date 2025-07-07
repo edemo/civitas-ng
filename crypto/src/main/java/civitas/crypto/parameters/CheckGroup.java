@@ -6,10 +6,12 @@ import civitas.crypto.CryptoError;
 public class CheckGroup implements Constants {
 
 	public void apply(ElGamalParameters that) {
-		if (!that.p.isProbablePrime(CERTAINTY))
+		if (!that.p.isProbablePrime(CERTAINTY)) {
 			throw new CryptoError("p is not prime");
-		if (!that.q.isProbablePrime(CERTAINTY))
+		}
+		if (!that.q.isProbablePrime(CERTAINTY)) {
 			throw new CryptoError("q is not prime");
+		}
 		if (!that.p.subtract(ONE).mod(that.q).equals(ZERO)) {
 			throw new CryptoError("q does not divide p-1");
 		}

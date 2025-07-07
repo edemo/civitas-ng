@@ -7,17 +7,14 @@
 package civitas.common.election;
 
 public interface ElectionEvent {
-//public final String kind;
-//public final ElectionID electionID;
-//public final int sequence;
-	public static final String EVENT_KIND_START = "start";
-	public static final String EVENT_KIND_STOP = "stop";
-	public static final String EVENT_KIND_FINALIZE = "finalize";
+	String EVENT_KIND_START = "start";
+	String EVENT_KIND_STOP = "stop";
+	String EVENT_KIND_FINALIZE = "finalize";
 
-	public String getKind();
+	String getKind();
 
-	public ElectionID getElectionID();
+	ElectionID getElectionID();
 
-	public int getSequence();
+	int getSequence();
 
 }

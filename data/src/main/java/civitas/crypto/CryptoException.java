@@ -7,17 +7,14 @@
 package civitas.crypto;
 
 public class CryptoException extends Exception {
-	/**
-	 * Required by the documentation for the Serializable interface.
-	 * The arbitrary number is the date this class was implemented.
-	 */
+
 	private static final long serialVersionUID = 20060925L;
 
-	public CryptoException(String m) {
+	public CryptoException(final String m) {
 		super(m);
 	}
 
-	public CryptoException(String m, Exception e) {
+	public CryptoException(final String m, final Exception e) {
 		super(m, e);
 	}
 }

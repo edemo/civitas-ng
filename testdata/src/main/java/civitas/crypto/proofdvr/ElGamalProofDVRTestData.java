@@ -6,11 +6,12 @@ import java.util.List;
 
 import civitas.crypto.ciphertextlist.ElGamalCiphertextListTestData;
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 public interface ElGamalProofDVRTestData extends ElGamalCiphertextListTestData {
 
 	byte[] EL_GAMAL_PROOF_DVR_HASH = "proofdvrhash".getBytes();
-	CivitasBigInteger DVR_HASH = new CivitasBigInteger(1,
+	CivitasBigInteger DVR_HASH = CivitasBigIntegerFactory.obtain(1,
 			EL_GAMAL_PROOF_DVR_HASH);
 
 	CivitasBigInteger DVR_U = RANDOMS_0.modAdd(
@@ -58,8 +59,8 @@ public interface ElGamalProofDVRTestData extends ElGamalCiphertextListTestData {
 			CIPHERTEXT_E.getB(), CIPHERTEXT_EPRIME.getA(), CIPHERTEXT_EPRIME.getB(),
 			FAKE_PROOF_DVR_AT, FAKE_PROOF_DVR_BT, FAKE_PROOF_DVR_ST);
 	byte[] FAKE_PROOF_DVR_HASH = "fakeproofdvrhash".getBytes();
-	CivitasBigInteger FAKE_PROOF_DVR_CT = new CivitasBigInteger(1,
-			FAKE_PROOF_DVR_HASH).mod(BIGINT_Q);
+	CivitasBigInteger FAKE_PROOF_DVR_CT = CivitasBigIntegerFactory
+			.obtain(1, FAKE_PROOF_DVR_HASH).mod(BIGINT_Q);
 
 	CivitasBigInteger FAKE_PROOF_DVR_WT = RANDOMS_0.modSubtract(FAKE_PROOF_DVR_CT,
 			BIGINT_Q);

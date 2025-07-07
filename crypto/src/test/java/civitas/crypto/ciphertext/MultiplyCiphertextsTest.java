@@ -14,7 +14,7 @@ import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.ciphertextlist.ElGamalCiphertextListTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
-import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 public class MultiplyCiphertextsTest extends TestBase
 		implements ElGamalCiphertextListTestData {
@@ -31,10 +31,10 @@ public class MultiplyCiphertextsTest extends TestBase
 	void test() throws CryptoError, CryptoException {
 		CiphertextList actual = multiplyCiphertexts.apply(CIPHERTEXT_MATRIX,
 				EL_GAMAL_PARAMETERS);
-		assertEquals(CivitasBigInteger.valueOf(2 * 11), actual.get(0).getA());
-		assertEquals(CivitasBigInteger.valueOf(5 * 17), actual.get(1).getA());
-		assertEquals(CivitasBigInteger.valueOf(3 * 13), actual.get(0).getB());
-		assertEquals(CivitasBigInteger.valueOf(7 * 19), actual.get(1).getB());
+		assertEquals(CivitasBigIntegerFactory.obtain(2 * 11), actual.get(0).getA());
+		assertEquals(CivitasBigIntegerFactory.obtain(5 * 17), actual.get(1).getA());
+		assertEquals(CivitasBigIntegerFactory.obtain(3 * 13), actual.get(0).getB());
+		assertEquals(CivitasBigIntegerFactory.obtain(7 * 19), actual.get(1).getB());
 	}
 
 	@Test

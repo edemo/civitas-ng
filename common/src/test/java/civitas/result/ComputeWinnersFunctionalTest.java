@@ -45,7 +45,7 @@ class ComputeWinnersFunctionalTest extends TestBase implements ResultTestData {
 
 		calculateStrengths.apply(candidates, winnerList);
 
-		List<Pair<String, Long>> cloudWords = makeCloudWordList.apply(candidates,
+		List<CandidatePair<String, Long>> cloudWords = makeCloudWordList.apply(candidates,
 				winnerList);
 
 		List<String> cws = new ArrayList<>();

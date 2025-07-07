@@ -38,10 +38,10 @@ public class DecomposeBallot implements CommonConstants {
 	@Autowired
 	CreateVoterSubmission createVoterSubmission;
 
-	public VoterSubmission apply(BallotDesign that, Ballot ballot, int voterBlock,
-			ElGamalPublicKey key, CiphertextList ciphertexts, String context,
-			Map<String, VoteCapability> capabilities)
-			throws IllegalArgumentException {
+	public VoterSubmission apply(final BallotDesign that, final Ballot ballot,
+			final int voterBlock, final ElGamalPublicKey key,
+			final CiphertextList ciphertexts, final String context,
+			final Map<String, VoteCapability> capabilities) {
 
 		if (key == null) {
 			throw new IllegalArgumentException("No key supplied");
@@ -74,8 +74,7 @@ public class DecomposeBallot implements CommonConstants {
 				votes[pos] = v;
 			}
 		}
-		VoterSubmission vs = createVoterSubmission.apply(voterBlock, votes);
-		return vs;
+		return createVoterSubmission.apply(voterBlock, votes);
 	}
 
 }

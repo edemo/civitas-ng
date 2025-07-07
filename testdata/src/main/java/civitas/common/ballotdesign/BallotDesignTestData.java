@@ -6,12 +6,13 @@ import java.util.Map;
 import civitas.common.CommonConstants;
 import civitas.common.VoteChoice;
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 public interface BallotDesignTestData extends CommonConstants {
 	String ADDITIONALENV = "Árvíztűrő Tükörfúrógép";
 	byte[] HASH_OF_ADDITIONALENV = "hash_of_additionalenv".getBytes();
-	CivitasBigInteger BIGINTEGER_HASH_OF_ADDITIONALENV = new CivitasBigInteger(1,
-			HASH_OF_ADDITIONALENV);
+	CivitasBigInteger BIGINTEGER_HASH_OF_ADDITIONALENV = CivitasBigIntegerFactory
+			.obtain(1, HASH_OF_ADDITIONALENV);
 
 	String BARE_CONTEXT_0 = KIND + "0:1";
 	String BARE_CONTEXT_1 = KIND + "0:2";

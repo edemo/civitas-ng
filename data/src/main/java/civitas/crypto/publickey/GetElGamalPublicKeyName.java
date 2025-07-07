@@ -2,12 +2,12 @@ package civitas.crypto.publickey;
 
 import org.springframework.stereotype.Controller;
 
-import civitas.common.Util;
+import civitas.common.CommonUtil;
 
 @Controller
 public class GetElGamalPublicKeyName {
-	public String apply(ElGamalPublicKey that) {
-		return "ElGamalPublicKey-" + Util.fromBigInt(that.y);
+	public String apply(final ElGamalPublicKey that) {
+		return "ElGamalPublicKey-" + CommonUtil.fromBigInt(that.y);
 	}
 
 }

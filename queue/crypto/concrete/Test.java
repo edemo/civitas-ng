@@ -315,7 +315,7 @@ public class Test {
         System.out.println("p = " + ps.p);
         System.out.println("q = " + ps.q);
         System.out.println("g = " + ps.g);
-        test("p=2q+1", ps.p.equals(ps.q.multiply(CivitasBigInteger.valueOf(2)).add(CivitasBigInteger.ONE)));
+        test("p=2q+1", ps.p.equals(ps.q.multiply(CivitasBigIntegerFactory.of(2)).add(CivitasBigInteger.ONE)));
         // g is a generator of QR_p if it passes two tests.
         // Test 1. g is order q, i.e. g^q = 1.
         test("g^q mod p = 1", ps.g.modPow(ps.q, ps.p).equals(CivitasBigInteger.ONE)); 

@@ -39,8 +39,9 @@ public class CreatePermutationFunctionalTest extends TestBase
 			hasIt[permutation[i]] = true;
 		}
 		for (int i = 0; i < SOME_SMALL_INT; i++) {
-			if (!hasIt[i])
+			if (!hasIt[i]) {
 				fail();
+			}
 		}
 		assertTrue(true);
 	}

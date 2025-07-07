@@ -18,7 +18,7 @@ public class CreateSharedKeyFromBytes implements Constants {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public SecretKey apply(byte[] bs) throws CryptoError {
+	public SecretKey apply(final byte[] bs) {
 		SecretKeySpec skeySpec = new SecretKeySpec(bs, SHARED_KEY_ALG);
 		try {
 			return cryptoBase.sharedKeyFactory.generateSecret(skeySpec);

@@ -59,7 +59,7 @@ public class PostControllerTest extends TestBase
 				.findByBbidOrderBySerialDesc(BULLETIN_BOARD_ID);
 		verify(postController.cryptoHash).apply(BBPOST.hash,
 				BigInteger.valueOf(CURRENT_TIME).toByteArray(),
-				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE.signature);
+				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE.signatureBytes);
 		verify(postController.loggerController).apply(
 				MarkerFactory.getMarker("bbs_post"),
 				BoardClosedContentCommitmentMETA + BULLETIN_BOARD_ID);
@@ -97,7 +97,7 @@ public class PostControllerTest extends TestBase
 						BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE));
 		verify(postController.cryptoHash).apply(new byte[0],
 				BigInteger.valueOf(CURRENT_TIME).toByteArray(),
-				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE.signature);
+				BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE.signatureBytes);
 		verify(postController.bBPostRepository).save(FIRST_POST);
 		assertEquals(CURRENT_TIME, actual);
 	}

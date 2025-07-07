@@ -6,15 +6,15 @@
  */
 package civitas.common.mix.votemix;
 
-import civitas.common.Vote;
-import civitas.common.mix.Mix;
+import civitas.common.EncryptedVote;
+import civitas.common.mix.VoterMix;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
 @Data
 @Builder(toBuilder = true)
-public class VoteMix implements Mix {
+public class VoteMix implements VoterMix {
 	@NonNull
 	public Integer number;
 	@NonNull
@@ -22,7 +22,7 @@ public class VoteMix implements Mix {
 	@NonNull
 	public byte[][] commitments;
 	@NonNull
-	public Vote[] votes;
+	public EncryptedVote[] votes;
 
 	@Deprecated
 	public int size() {

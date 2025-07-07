@@ -16,7 +16,7 @@ public class ConstructElGamalKeyShare {
 	@Autowired
 	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
-	public ElGamalKeyShare apply(ElGamalKeyPairShare kps) throws CryptoError {
+	public ElGamalKeyShare apply(final ElGamalKeyPairShare kps) {
 		ElGamalKeyShare egks = apply(kps.pubKey,
 				constructProofKnowDiscLog.apply(kps.pubKey.params, kps.privKey));
 		if (!verifyElGamalKeyShare.apply(egks)) {
@@ -25,9 +25,9 @@ public class ConstructElGamalKeyShare {
 		return egks;
 	}
 
-	public ElGamalKeyShare apply(ElGamalPublicKey K,
-			ElGamalProofKnowDiscLog proof) throws Error {
-		return new ElGamalKeyShare(K, proof);
+	public ElGamalKeyShare apply(final ElGamalPublicKey k,
+			final ElGamalProofKnowDiscLog proof) {
+		return new ElGamalKeyShare(k, proof);
 	}
 
 }

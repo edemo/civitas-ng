@@ -15,8 +15,7 @@ public class CheckBallotAgainstBallotDesign implements CommonConstants {
 	@Autowired
 	CalculatePositionInBallot calculatePositionInBallot;
 
-	public void apply(BallotDesign that, Ballot b)
-			throws IllegalArgumentException {
+	public void apply(final BallotDesign that, final Ballot b) {
 
 		if (b.k != that.candidates.length
 				|| b.matrix.length != calculateBallotLength.apply(b.k)) {

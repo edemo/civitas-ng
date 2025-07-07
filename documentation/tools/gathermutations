@@ -1,0 +1,10 @@
+#!/bin/bash
+mkdir -p target
+grep -c "class='SURVIVED'" $(find .. -type f |grep pit-reports)>target/survived
+grep -c "class='KILLED'" $(find .. -type f |grep pit-reports)>target/killed
+
+if cat target/survived|grep -v ":0$"
+then
+	echo "survived mutants"
+	exit 1
+fi

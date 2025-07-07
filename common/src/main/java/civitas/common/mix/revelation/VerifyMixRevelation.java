@@ -6,7 +6,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import civitas.common.mix.Mix;
+import civitas.common.mix.VoterMix;
 import civitas.common.mix.elementrevelation.MixElementRevelation;
 import civitas.common.mix.elementrevelation.VerifyMixElementRevelation;
 import civitas.crypto.messagedigest.CryptoHash;
@@ -19,8 +19,8 @@ public class VerifyMixRevelation {
 	@Autowired
 	CryptoHash cryptoHash;
 
-	public boolean apply(MixRevelation that, ElGamalPublicKey key, Mix initialMix,
-			Mix leftMix, Mix rightMix, boolean[] revelationDirections) {
+	public boolean apply(MixRevelation that, ElGamalPublicKey key, VoterMix initialMix,
+			VoterMix leftMix, VoterMix rightMix, boolean[] revelationDirections) {
 		if ((revelationDirections == null)
 				|| that.revelations.length != revelationDirections.length
 				|| that.revelations.length != that.indicators.length) {
@@ -33,12 +33,13 @@ public class VerifyMixRevelation {
 			}
 
 			MixElementRevelation mer = that.revelations[i];
-			if (mer == null)
+			if (mer == null) {
 				return false;
+			}
 			int fromIndex = -1;
 			int toIndex = -1;
-			Mix fromMix = null;
-			Mix toMix = null;
+			VoterMix fromMix = null;
+			VoterMix toMix = null;
 
 			if (revelationDirections[i]) {
 				// taken from the right

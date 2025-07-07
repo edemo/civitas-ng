@@ -33,7 +33,7 @@ import civitas.bboard.server.controllers.RequestParticipationController;
 import civitas.bboard.server.controllers.RequestParticipationDTO;
 import civitas.common.Configuration;
 import civitas.common.GetPrivateKey;
-import civitas.common.Host;
+import civitas.common.ServerHost;
 import civitas.common.ServerRole;
 import civitas.common.board.BulletinBoardTestData;
 import civitas.common.election.ElectionDetailsTestData;
@@ -103,11 +103,11 @@ public class EndToEndTest implements BulletinBoardTestData, BBPostTestData,
 	}
 
 	public RequestParticipationDTO createRequestParticipationDTO() {
-		List<Host> tellerDetails = List.of(
-				new Host(ServerRole.BBS, "https://localhost/", keyStrings.get("bbs")),
-				new Host(ServerRole.TABULATION_TELLER,
+		List<ServerHost> tellerDetails = List.of(
+				new ServerHost(ServerRole.BBS, "https://localhost/", keyStrings.get("bbs")),
+				new ServerHost(ServerRole.TABULATION_TELLER,
 						"https://localhost:" + port + "/", keyStrings.get("tabteller")),
-				new Host(ServerRole.REGISTRATION_TELLER,
+				new ServerHost(ServerRole.REGISTRATION_TELLER,
 						"https://localhost:" + port + "/", keyStrings.get("regteller")));
 		RequestParticipationDTO requestParticipationDTO = RequestParticipationDTO
 				.builder().electionID(ELECTION_ID_STRING)

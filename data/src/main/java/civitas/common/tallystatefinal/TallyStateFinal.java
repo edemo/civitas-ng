@@ -9,9 +9,6 @@ package civitas.common.tallystatefinal;
 import civitas.common.CommonConstants;
 import lombok.Data;
 
-/**
- * TallyStateFinal for a CondorcetBallotDesign.
- */
 @Data
 public class TallyStateFinal implements CommonConstants {
 	private final Integer size;

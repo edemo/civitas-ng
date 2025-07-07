@@ -2,9 +2,9 @@ package civitas.common;
 
 public interface CommonConstants {
 
-	public static final int ELECTION_ID_LENGTH = 32;
+	int ELECTION_ID_LENGTH = 32;
 
-	public final static String BoardClosedContentCommitmentMETA = "boardContents";
+	String BoardClosedContentCommitmentMETA = "boardContents";
 
 	String ElectionDetailsMETA = "electiondetails";
 	String ElectionEventMETA = "electionevent";

@@ -15,11 +15,13 @@ public class KeySpecMatcherPrivate
 
 	@Override
 	public boolean matches(PKCS8EncodedKeySpec argument) {
-		if (null == argument)
-			if (null == spec)
+		if (null == argument) {
+			if (null == spec) {
 				return true;
-			else
+			} else {
 				return false;
+			}
+		}
 		boolean res = Arrays.equals(spec.getEncoded(), argument.getEncoded());
 		return res;
 	}

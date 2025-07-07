@@ -14,8 +14,9 @@ public class VerifyElGamalSignatureStub
 
 	public static VerifyElGamalSignature stub() {
 		VerifyElGamalSignature mock = mock(VerifyElGamalSignature.class);
-		for (ElGamalSignedCiphertext posted_Capability : POSTED_CAPABILITIES)
+		for (ElGamalSignedCiphertext posted_Capability : POSTED_CAPABILITIES) {
 			when(mock.apply(EL_GAMAL_PARAMETERS, posted_Capability, VOTER_ADDITIONAL_ENV)).thenReturn(true);
+		}
 		when(mock.apply(EL_GAMAL_PARAMETERS, SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV,
 				ADDITIONALENV_BYTES)).thenReturn(true);
 		return mock;

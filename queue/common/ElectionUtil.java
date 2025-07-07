@@ -140,8 +140,7 @@ public class ElectionUtil {
 						return cachedEvents;
 					}
 				}
-			} catch (ArrayIndexOutOfBoundsException imposs) {
-			} catch (NullPointerException ignore) {
+			} catch (ArrayIndexOutOfBoundsException|NullPointerException imposs) {
 			}
 		}
 		// look for a start, stop or finalize event.

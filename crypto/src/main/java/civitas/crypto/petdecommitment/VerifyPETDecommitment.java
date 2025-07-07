@@ -32,8 +32,9 @@ public class VerifyPETDecommitment {
 		CivitasBigInteger e = m1.b.modDivide(m2.b, ps.p);
 
 		if (self.di == null || self.ei == null || !d.equals(prf.g1)
-				|| !e.equals(prf.g2))
+				|| !e.equals(prf.g2)) {
 			return false;
+		}
 		return com.hash.equals(cryptoHash.apply(self.di, self.ei, null, null))
 				&& verifyElGamalProofDiscLogEquality.apply(prf, params);
 	}

@@ -45,10 +45,12 @@ public class CloseBoardController {
 	public boolean apply(@PathVariable("bbid") String bbid,
 			@Nonnull ElectionID postHashTo, int numVoterBlocks,
 			@Nonnull Signature sig) throws CommunicableException {
-		if (null == sig)
+		if (null == sig) {
 			throw new NullPointerException();
-		if (numVoterBlocks < 0)
+		}
+		if (numVoterBlocks < 0) {
 			throw new IllegalArgumentException("number of voter blocks is negative");
+		}
 		Board board = getBoardForId.apply(bbid, true);
 		PublicKey key;
 		boolean res;

@@ -16,10 +16,12 @@ public class VerifyElGamalDecryptionShare {
 
 	public boolean apply(ElGamalDecryptionShare that, ElGamalCiphertext c,
 			ElGamalPublicKey K) throws Error {
-		if (c == null)
+		if (c == null) {
 			throw new IllegalArgumentException("null ciphertext");
-		if (K == null)
+		}
+		if (K == null) {
 			throw new IllegalArgumentException("null key");
+		}
 		ElGamalParameters params = K.params;
 		if (that.proof.g1.equals(c.a) && that.proof.g2.equals(params.g)
 				&& that.proof.v.equals(that.ai) && that.proof.w.equals(K.y)) {

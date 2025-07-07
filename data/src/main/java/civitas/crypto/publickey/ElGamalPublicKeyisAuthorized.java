@@ -8,7 +8,7 @@ import civitas.crypto.privatekey.ElGamalPrivateKey;
 @Controller
 public class ElGamalPublicKeyisAuthorized {
 
-	public boolean apply(ElGamalPublicKey that, Object prf) {
+	public boolean apply(final ElGamalPublicKey that, final Object prf) {
 		if (prf instanceof ElGamalPrivateKey) {
 			ElGamalPrivateKey k = (ElGamalPrivateKey) prf;
 			ElGamalParameters param = that.params;

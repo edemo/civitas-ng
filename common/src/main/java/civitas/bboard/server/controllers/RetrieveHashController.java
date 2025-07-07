@@ -7,7 +7,6 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
-import java.util.Iterator;
 
 import org.bouncycastle.crypto.CryptoException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,10 +55,8 @@ public class RetrieveHashController {
 						metaCriteria);
 
 		byte[] hash = null;
-		Iterator<BBPost> iter = posts.iterator();
-		while (iter.hasNext()) {// FIXME probably this should be something else
-			BBPost post = iter.next();
-			hash = cryptoHash.apply(post.sig.signature, hash);
+		for (BBPost post : posts) {// FIXME probably this should be something else
+			hash = cryptoHash.apply(post.sig.signatureBytes, hash);
 		}
 
 		Signature signature;

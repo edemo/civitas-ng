@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>asdf</comment>
+<entry key="csv__package">true</entry>
+<entry key="yahtml__outputDir">.</entry>
+<entry key="xml__encoding">UTF-8</entry>
+<entry key="csv__file">true</entry>
+<entry key="html__linkPrefix"></entry>
+<entry key="html__htmlExtension">false</entry>
+<entry key="ideaj__classAndMethodName"></entry>
+<entry key="csv__rule">true</entry>
+<entry key="csv__ruleSet">true</entry>
+<entry key="summaryhtml__linkPrefix"></entry>
+<entry key="xslt__xsltFilename"></entry>
+<entry key="summaryhtml__htmlExtension">false</entry>
+<entry key="csv__problem">true</entry>
+<entry key="csv__desc">true</entry>
+<entry key="ideaj__sourcePath"></entry>
+<entry key="ideaj__fileName"></entry>
+<entry key="csv__priority">true</entry>
+<entry key="xslt__encoding">UTF-8</entry>
+<entry key="csv__line">true</entry>
+<entry key="html__linePrefix">&lt;none&gt;</entry>
+<entry key="summaryhtml__linePrefix">&lt;none&gt;</entry>
+</properties>

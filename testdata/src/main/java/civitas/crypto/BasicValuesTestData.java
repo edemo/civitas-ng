@@ -3,8 +3,9 @@ package civitas.crypto;
 import java.util.Arrays;
 import java.util.List;
 
-import civitas.common.Util;
+import civitas.common.CommonUtil;
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 public interface BasicValuesTestData extends Constants {
 	String VOTER_NAME = "bob";
@@ -19,10 +20,10 @@ public interface BasicValuesTestData extends Constants {
 	String SOMESTRING_BASE64 = "dGVzdGRhdGE=";
 	String SOMESTRING_EXTENDED = "exttestdatawas";
 	byte[] BYTES = SOMESTRING.getBytes();
-	CivitasBigInteger SOMESTRING_BIGINT = new CivitasBigInteger(BYTES);
+	CivitasBigInteger SOMESTRING_BIGINT = CivitasBigIntegerFactory.obtain(BYTES);
 	int SOME_INT = 0xdeadbeef;
 	int SOME_SMALL_INT = 0xbeef;
-	CivitasBigInteger SOME_INT_BIG = CivitasBigInteger.valueOf(SOME_INT);
+	CivitasBigInteger SOME_INT_BIG = CivitasBigIntegerFactory.obtain(SOME_INT);
 	String ONE_BASE64 = "AQ==";
 	long LONG = 0xdeadbeeff001be41L;
 	byte[] LONG_AS_BYTES = new byte[] {
@@ -66,7 +67,7 @@ public interface BasicValuesTestData extends Constants {
 			"KnJKpa62Fm1sRo+qU1RfkGD6heTRBoEgkdL5CIFHKUk=");
 
 	List<CivitasBigInteger> RANDOMS = RANDOMS_BASE64.stream()
-			.map((s) -> Util.asBigint(s)).toList();
+			.map((s) -> CommonUtil.asBigint(s)).toList();
 
 	CivitasBigInteger RANDOMS_0 = RANDOMS.get(0);
 	String RANDOMS_0_BASE64 = RANDOMS_BASE64.get(0);
@@ -79,17 +80,18 @@ public interface BasicValuesTestData extends Constants {
 
 	String BIGINT_A_BASE64 = SOMESTRING_BASE64;
 	String SAFE_P_MINUS_A_BASE64 = "ASvIFyEHZA21reK32LTtYEwJG4GSW8Xzrl83llQSdjcztgsIJeyQm0ZZ36vG4aTVYjtADzV9J6xJcK0C32+iCP4=";
-	CivitasBigInteger SAFE_P_MINUS_A = Util.asBigint(SAFE_P_MINUS_A_BASE64);
+	CivitasBigInteger SAFE_P_MINUS_A = CommonUtil.asBigint(SAFE_P_MINUS_A_BASE64);
 
 	String BIGINT_B_BASE64 = "Xje5W2KfxNk=";
 	String BIGINT_C_BASE64 = "eaUSELMHNaE=";
 
 	String BIGINT_D_BASE64 = "eOmnTcKMIpE=";
 
-	CivitasBigInteger BIGINT_A = new CivitasBigInteger(SOMESTRING.getBytes());
-	CivitasBigInteger BIGINT_B = Util.asBigint(BIGINT_B_BASE64);
-	CivitasBigInteger BIGINT_C = Util.asBigint(BIGINT_C_BASE64);
-	CivitasBigInteger BIGINT_D = Util.asBigint(BIGINT_D_BASE64);
+	CivitasBigInteger BIGINT_A = CivitasBigIntegerFactory
+			.obtain(SOMESTRING.getBytes());
+	CivitasBigInteger BIGINT_B = CommonUtil.asBigint(BIGINT_B_BASE64);
+	CivitasBigInteger BIGINT_C = CommonUtil.asBigint(BIGINT_C_BASE64);
+	CivitasBigInteger BIGINT_D = CommonUtil.asBigint(BIGINT_D_BASE64);
 	String AUTHENTICATION_NONCE = "auth nonce";
 
 	int[] INTEGER_PERMUTATION = new int[] { 3, 0, 1, 2, 4 };

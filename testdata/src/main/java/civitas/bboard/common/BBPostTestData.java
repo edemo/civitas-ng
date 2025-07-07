@@ -10,7 +10,7 @@ import civitas.crypto.signature.SignatureTestData;
 public interface BBPostTestData extends ElectoralRollCapabilitySharesTestData,
 		BoardClosedContentCommitmentTestData, SignatureTestData, CommonConstants {
 	long SERIAL = 12L;
-	public static final String BBPOST_HASH_STRINGBASE = "bbpost_hash";
+	String BBPOST_HASH_STRINGBASE = "bbpost_hash";
 	byte[] BBPOST_HASH = BBPOST_HASH_STRINGBASE.getBytes();
 	BBPost BBPOST = new BBPost(BULLETIN_BOARD_ID, SERIAL, CURRENT_TIME,
 			META_FOR_ELECTORAL_ROLL_CAPABILITY_SHARES,

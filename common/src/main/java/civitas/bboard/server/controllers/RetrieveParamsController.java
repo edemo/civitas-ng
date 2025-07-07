@@ -24,16 +24,17 @@ public class RetrieveParamsController {
 	BBPostRepository bBPostRepository;
 
 	@GetMapping("/boards/{bbid}/{fromTime}-{toTime}-{metaCriteria}")
-	private Iterable<BBPost> retrieve_params(@PathVariable("bbid") String bbid,
+	Iterable<BBPost> apply(@PathVariable("bbid") String bbid,
 			@PathVariable("fromTime") Long fromTime,
 			@PathVariable("toTime") Long toTime,
 			@PathVariable("metaCriteria") String metaCriteria) throws IOException {
 
 		getBoardForId.apply(bbid, true);
 
-		loggerController.apply(MarkerFactory.getMarker("bbs_retrieve"), metaCriteria);
-		return bBPostRepository.findByBbidAndTimestampBetweenAndMeta(bbid,
-				fromTime, toTime, metaCriteria);
+		loggerController.apply(MarkerFactory.getMarker("bbs_retrieve"),
+				metaCriteria);
+		return bBPostRepository.findByBbidAndTimestampBetweenAndMeta(bbid, fromTime,
+				toTime, metaCriteria);
 	}
 
 }

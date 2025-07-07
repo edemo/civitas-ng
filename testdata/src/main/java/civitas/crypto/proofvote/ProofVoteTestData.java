@@ -9,6 +9,7 @@ import civitas.common.ConstructTestData;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.proof1ofl.ElGamalProof1OfLTestData;
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 public interface ProofVoteTestData extends ElGamalProof1OfLTestData {
 
@@ -23,8 +24,8 @@ public interface ProofVoteTestData extends ElGamalProof1OfLTestData {
 
 	byte[] HASH_OF_PROOF_ENVIRONMENT = "hash of proof environment".getBytes();
 
-	public static final CivitasBigInteger PROOF_VOTE_C = new CivitasBigInteger(1,
-			HASH_OF_PROOF_ENVIRONMENT).mod(BIGINT_Q);
+	public static final CivitasBigInteger PROOF_VOTE_C = CivitasBigIntegerFactory
+			.obtain(1, HASH_OF_PROOF_ENVIRONMENT).mod(BIGINT_Q);
 	CivitasBigInteger PROOF_VOTE_S1 = RANDOMS_0.modSubtract(
 			PROOF_VOTE_C.modMultiply(ELGAMAL_REENCRYPT_FACTOR_EPRIME.r, BIGINT_Q),
 			BIGINT_Q);

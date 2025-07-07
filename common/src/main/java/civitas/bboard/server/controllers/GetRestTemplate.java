@@ -15,9 +15,10 @@ public class GetRestTemplate {
 	RestTemplate restTemplate = null;
 
 	public RestTemplate apply() {
-		if (null == restTemplate)
+		if (null == restTemplate) {
 			restTemplate = restTemplateBuilder
 					.errorHandler(new RestTemplateResponseErrorHandler()).build();
+		}
 		return restTemplate;
 	}
 

@@ -10,7 +10,6 @@ import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
 import civitas.crypto.BasicValuesTestData;
-import civitas.crypto.CryptoError;
 import civitas.crypto.publickeyciphertext.PublicKeyCiphertextTestData;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 
@@ -22,7 +21,7 @@ class DecryptPublicTest extends TestBase implements PublicKeyCiphertextTestData,
 
 	@Test
 	@DisplayName("decrypts a ciphertext using the private key")
-	void test() throws UnsupportedEncodingException, CryptoError {
+	void test() throws UnsupportedEncodingException {
 		assertEquals(SOMESTRING,
 				decryptPublic.apply(PRIVATE_KEY, SOMESTRING_ENCRYPTED));
 	}

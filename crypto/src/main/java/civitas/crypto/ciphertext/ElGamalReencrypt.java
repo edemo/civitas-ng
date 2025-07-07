@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import civitas.crypto.CryptoBase;
-import civitas.crypto.CryptoError;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
@@ -16,8 +15,8 @@ public class ElGamalReencrypt {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public ElGamalCiphertextish apply(ElGamalPublicKey key,
-			ElGamalCiphertextish ciphertext) throws CryptoError {
+	public ElGamalCiphertextish apply(final ElGamalPublicKey key,
+			final ElGamalCiphertextish ciphertext) {
 		ElGamalParameters ps = key.params;
 		CivitasBigInteger c1 = ciphertext.getA();
 		CivitasBigInteger c2 = ciphertext.getB();
@@ -27,9 +26,9 @@ public class ElGamalReencrypt {
 		return new ElGamalCiphertext(c1, c2);
 	}
 
-	public ElGamalCiphertextish apply(ElGamalPublicKey key,
-			ElGamalCiphertextish ciphertext, ElGamalReencryptFactor factor)
-			throws CryptoError {
+	public ElGamalCiphertextish apply(final ElGamalPublicKey key,
+			final ElGamalCiphertextish ciphertext,
+			final ElGamalReencryptFactor factor) {
 		ElGamalParameters ps = key.params;
 		CivitasBigInteger a = ciphertext.getA();
 		CivitasBigInteger b = ciphertext.getB();

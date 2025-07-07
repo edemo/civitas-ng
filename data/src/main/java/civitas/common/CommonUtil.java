@@ -10,21 +10,19 @@ import java.util.Base64;
 
 import civitas.util.Boilerplate;
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
-/**
- * Some miscellaneous utility functions.
- */
 @Boilerplate
-public class Util {
+public class CommonUtil {
 	public static String currentVersion() {
 		return "JCivitas-v0.1";
 	}
 
-	public static CivitasBigInteger asBigint(String s) {
-		return new CivitasBigInteger(Base64.getDecoder().decode(s));
+	public static CivitasBigInteger asBigint(final String s) {
+		return CivitasBigIntegerFactory.obtain(Base64.getDecoder().decode(s));
 	}
 
-	public static String fromBigInt(CivitasBigInteger a) {
+	public static String fromBigInt(final CivitasBigInteger a) {
 		return Base64.getEncoder().encodeToString(a.toByteArray());
 	}
 

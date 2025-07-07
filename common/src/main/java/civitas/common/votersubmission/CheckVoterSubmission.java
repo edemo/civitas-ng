@@ -20,15 +20,15 @@ public class CheckVoterSubmission implements CommonConstants {
 	@Autowired
 	VerifyVerifiableVote verifyVerifiableVote;
 
-	public final void apply(BallotDesign that, VoterSubmission vs,
-			String baseContext, CiphertextList ciphertexts, ElGamalPublicKey pubKey)
-			throws IllegalArgumentException {
+	public final void apply(final BallotDesign that, final VoterSubmission vs,
+			final String baseContext, final CiphertextList ciphertexts,
+			final ElGamalPublicKey pubKey) {
 		apply(that, vs, 0, baseContext, ciphertexts, pubKey);
 	}
 
-	public void apply(BallotDesign that, VoterSubmission vs, int startIndex,
-			String context, CiphertextList ciphertexts, ElGamalPublicKey pubKey)
-			throws IllegalArgumentException {
+	public void apply(final BallotDesign that, final VoterSubmission vs,
+			final int startIndex, final String context,
+			final CiphertextList ciphertexts, final ElGamalPublicKey pubKey) {
 		if (pubKey == null) {
 			throw new IllegalArgumentException("Invalid public Key");
 		}
@@ -60,6 +60,5 @@ public class CheckVoterSubmission implements CommonConstants {
 				}
 			}
 		}
-		return;
 	}
 }

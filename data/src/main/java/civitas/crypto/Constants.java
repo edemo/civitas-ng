@@ -10,58 +10,51 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 public interface Constants {
-	/**
-	 * 2^-CERTAINTY is false positive rate for probablePrime.
-	 */
-	public final static int CERTAINTY = 100; // 2^80 recommended by FIPS 186.
+	int CERTAINTY = 100;
 
-	public static final CivitasBigInteger ZERO = CivitasBigInteger.valueOf(0);
-	public static final CivitasBigInteger ONE = CivitasBigInteger.valueOf(1);
-	public static final CivitasBigInteger TWO = CivitasBigInteger.valueOf(2);
+	CivitasBigInteger ZERO = CivitasBigIntegerFactory.obtain(0);
+	CivitasBigInteger ONE = CivitasBigIntegerFactory.obtain(1);
+	CivitasBigInteger TWO = CivitasBigIntegerFactory.obtain(2);
 
-//TODO: should we be requesting a specific RNG algorithm in the constructor
-//call?
-	public static final Random RANDOM = new SecureRandom();
+	Random RANDOM = new SecureRandom();
 
-	/*
-	 * The following constants define the algorithms and providers to use.
-	 */
-	public final String MESSAGE_DIGEST_ALG = "SHA-256";
-	public final String MESSAGE_DIGEST_PROVIDER = null; // use any provider
+	String MESSAGE_DIGEST_ALG = "SHA-256";
+	String MESSAGE_DIGEST_PROVIDER = null;
 
-	public final String SHARED_KEY_ALG = "AES";
-	public final String SHARED_KEY_CIPHER_ALG = "AES"; // "AES/CBC/PKCS7Padding";
-	public final String SHARED_KEY_PROVIDER = "BC";
-	public final int SHARED_KEY_LENGTH = 256;
+	String SHARED_KEY_ALG = "AES";
+	String SHARED_KEY_CIPHER_ALG = "AES";
+	String SHARED_KEY_PROVIDER = "BC";
+	int SHARED_KEY_LENGTH = 256;
 
-	public final String PUBLIC_KEY_ALG = "RSA";
+	String PUBLIC_KEY_ALG = "RSA";
 
-	public final String PUBLIC_KEY_CIPHER_ALG = "RSA/ECB/PKCS1Padding";
-	public final String PUBLIC_KEY_SIGNATURE_ALG = "SHA512WithRSAEncryption";
-	public final String PUBLIC_KEY_PROVIDER = "BC";
-	public final int PUBLIC_KEY_LENGTH = 2048;
+	String PUBLIC_KEY_CIPHER_ALG = "RSA/ECB/PKCS1Padding";
+	String PUBLIC_KEY_SIGNATURE_ALG = "SHA512WithRSAEncryption";
+	String PUBLIC_KEY_PROVIDER = "BC";
+	int PUBLIC_KEY_LENGTH = 2048;
 
-	public static final int EL_GAMAL_GROUP_LENGTH = 3072; // size in bits for p
-	public static final int EL_GAMAL_KEY_LENGTH = 256; // size in bits for q
+	int EL_GAMAL_GROUP_LENGTH = 3072;
+	int EL_GAMAL_KEY_LENGTH = 256;
 
-	public static final int AUTHENTICATION_NONCE_LENGTH = 64;
+	int AUTHENTICATION_NONCE_LENGTH = 64;
 
-	public static final String ElGamalCiphertextOPENING_TAG = "ElGamalCiphertext";
-	public final static String ElGamalDecryptionShareOPENING_TAG = "elGamalDecryptionShare";
-	public final static String PETCommitmentOPENING_TAG = "petC";
-	public final static String PETDecommitmentOPENING_TAG = "petD";
-	public final static String ElGamalPublicKeyOPENING_TAG = "elGamalPublicKey";
-	public static final String PublicKeyCiphertextOPENING_TAG = "publicKeyCiphertext";
-	public static final String PrivateKeyOPENING_TAG = "privateKey";
-	public final static String PublicKeyOPENING_TAG = "publicKey";
-	public final static String SharedKeyOPENING_TAG = "sharedKey";
-	public static final String SharedKeyCiphertextOPENING_TAG = "sharedKeyCiphertext";
-	public static final String SignatureOPENING_TAG = "signature";
-	public static final String VoteCapabilityOPENING_TAG = "voteCapability";
-	public static final String VoteCapabilityShareOPENING_TAG = "voteCapabilityShare";
+	String ElGamalCiphertextOPENING_TAG = "ElGamalCiphertext";
+	String ElGamalDecryptionShareOPENING_TAG = "elGamalDecryptionShare";
+	String PETCommitmentOPENING_TAG = "petC";
+	String PETDecommitmentOPENING_TAG = "petD";
+	String ElGamalPublicKeyOPENING_TAG = "elGamalPublicKey";
+	String PublicKeyCiphertextOPENING_TAG = "publicKeyCiphertext";
+	String PrivateKeyOPENING_TAG = "privateKey";
+	String PublicKeyOPENING_TAG = "publicKey";
+	String SharedKeyOPENING_TAG = "sharedKey";
+	String SharedKeyCiphertextOPENING_TAG = "sharedKeyCiphertext";
+	String SignatureOPENING_TAG = "signature";
+	String VoteCapabilityOPENING_TAG = "voteCapability";
+	String VoteCapabilityShareOPENING_TAG = "voteCapabilityShare";
 
-	public final String CHARSET_NAME = "UTF-8";
+	String CHARSET_NAME = "UTF-8";
 
 }

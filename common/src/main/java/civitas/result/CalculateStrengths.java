@@ -22,8 +22,9 @@ public class CalculateStrengths {
 				base = base * avg;
 			} else {
 				for (CandidateResult result : step) {
-					if (result.candidate == noneOfABove)
+					if (result.candidate == noneOfABove) {
 						base = 10.0;
+					}
 					result.strength = 0.0;
 				}
 			}

@@ -20,7 +20,7 @@ import civitas.common.ballotdesign.BallotDesignTestData;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.messagedigest.MessageDigestTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
-import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 @Tag("functional")
 public class CryptoHashFunctionalTest extends TestBase
@@ -85,7 +85,7 @@ public class CryptoHashFunctionalTest extends TestBase
 		BASELINE_DIGEST.update(BIGINT_B.toByteArray());
 		BASELINE_DIGEST.update(ADDITIONALENV_BYTES);
 
-		assertEquals(new CivitasBigInteger(BASELINE_DIGEST.digest()),
+		assertEquals(CivitasBigIntegerFactory.obtain(BASELINE_DIGEST.digest()),
 				cryptoHash.apply(BIGINT_A, BIGINT_B, null, ADDITIONALENV_BYTES));
 	}
 

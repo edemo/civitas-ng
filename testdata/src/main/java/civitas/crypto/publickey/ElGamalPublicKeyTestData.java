@@ -1,15 +1,15 @@
 package civitas.crypto.publickey;
 
-import civitas.common.Util;
+import civitas.common.CommonUtil;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
 import civitas.util.CivitasBigInteger;
 
 public interface ElGamalPublicKeyTestData extends ElGamalPrivateKeyTestData {
 
 	CivitasBigInteger PUBKEY_EPRIME = BIGINT_G.modPow(PRIVKEY_EPRIME, BIGINT_P);
-	String PUBKEY_EPRIME_BASE64 = Util.fromBigInt(PUBKEY_EPRIME);
+	String PUBKEY_EPRIME_BASE64 = CommonUtil.fromBigInt(PUBKEY_EPRIME);
 	CivitasBigInteger PUBKEY_E = BIGINT_G.modPow(PRIVKEY_E, BIGINT_P);
-	String PUBKEY_E_BASE64 = Util.fromBigInt(PUBKEY_E);
+	String PUBKEY_E_BASE64 = CommonUtil.fromBigInt(PUBKEY_E);
 	public static final ElGamalPublicKey EL_GAMAL_PUBLIC_KEY_EPRIME = new ElGamalPublicKey(
 			PUBKEY_EPRIME, EL_GAMAL_PARAMETERS);
 	public static final ElGamalPublicKey EL_GAMAL_PUBLIC_KEY_E = new ElGamalPublicKey(

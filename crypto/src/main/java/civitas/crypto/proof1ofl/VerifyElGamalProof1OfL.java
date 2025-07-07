@@ -25,8 +25,9 @@ public class VerifyElGamalProof1OfL {
 
 	public boolean apply(ElGamalProof1OfL self, ElGamalPublicKey pubKey,
 			CiphertextList ciphertexts, int L, ElGamalCiphertextish msg) {
-		if (self.L != L)
+		if (self.L != L) {
 			return false;
+		}
 		ElGamalCiphertextish m = msg;
 		CivitasBigInteger u = m.getA();
 		CivitasBigInteger v = m.getB();

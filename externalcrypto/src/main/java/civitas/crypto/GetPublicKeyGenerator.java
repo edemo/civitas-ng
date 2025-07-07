@@ -10,8 +10,9 @@ class GetPublicKeyGenerator implements Constants {
 	public KeyPairGenerator apply(int keyLength) {
 		String genKey = String.valueOf(keyLength);
 		KeyPairGenerator g = publicKeyGenerators.get(genKey);
-		if (g != null)
+		if (g != null) {
 			return g;
+		}
 		try {
 			g = KeyPairGenerator.getInstance(PUBLIC_KEY_ALG, PUBLIC_KEY_PROVIDER);
 			g.initialize(keyLength);

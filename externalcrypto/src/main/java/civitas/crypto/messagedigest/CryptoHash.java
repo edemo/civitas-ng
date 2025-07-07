@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 @Service
 public class CryptoHash implements Constants {
@@ -36,13 +37,14 @@ public class CryptoHash implements Constants {
 		Stream<byte[]> bigintStream = Stream.of(a, b, c).filter(x -> x != null)
 				.map(x -> x.toByteArray());
 		List<byte[]> nums = Stream.concat(bigintStream, Stream.of(d)).toList();
-		return new CivitasBigInteger(apply(nums.toArray(new byte[0][0])));
+		return CivitasBigIntegerFactory.obtain(apply(nums.toArray(new byte[0][0])));
 	}
 
 	public byte[] apply(byte[]... bytearrays) {
 		Arrays.asList(bytearrays).forEach(x -> {
-			if (null != x)
+			if (null != x) {
 				messageDigest.update(x);
+			}
 		});
 		return messageDigest.digest();
 	}

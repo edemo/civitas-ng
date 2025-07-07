@@ -21,10 +21,12 @@ public class EnvDependentAnswer<T> implements Answer<T> {
 	public T answer(InvocationOnMock invocation) throws Throwable {
 
 		AnswerOrThrowable<T> theAnswer = answer.get(TestBase.state);
-		if (null == theAnswer)
+		if (null == theAnswer) {
 			theAnswer = answer.get(EnvironmentState.NORMAL);
-		if (null != theAnswer.throwable)
+		}
+		if (null != theAnswer.throwable) {
 			throw theAnswer.throwable;
+		}
 		return theAnswer.answer;
 
 	}

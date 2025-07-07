@@ -1,6 +1,6 @@
 package civitas.crypto.petcommitment;
 
-import civitas.common.Util;
+import civitas.common.CommonUtil;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.util.CivitasBigInteger;
 
@@ -12,7 +12,7 @@ public interface PETCommitmentTestData extends ElGamalCiphertextTestData {
 	CivitasBigInteger PET_COMMITMENT_EI = CIPHERTEXT_E_B
 			.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P).modPow(FACTOR_E, BIGINT_P);
 
-	CivitasBigInteger PET_COMMITMENT_HASH = Util
+	CivitasBigInteger PET_COMMITMENT_HASH = CommonUtil
 			.asBigint("cJwI6pCvSZhmplOrKDGHqSkWeGcSByNlMVR6d0IlbAM=");
 
 	public static final PETCommitment PET_COMMITMENT = new PETCommitment(

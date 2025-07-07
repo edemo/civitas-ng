@@ -97,7 +97,7 @@ public class PostController {
 			hash = lastPost.hash;
 		}
 		byte[] newhash = cryptoHash.apply(hash, BigInteger.valueOf(t).toByteArray(),
-				dto.signature.signature);
+				dto.signature.signatureBytes);
 
 		try {
 			updateCache.apply(bbid, dto.meta, dto.payloadXml, t);
@@ -106,8 +106,9 @@ public class PostController {
 		}
 
 		Long serial = 0L;
-		if (lastPost != null)
+		if (lastPost != null) {
 			serial = lastPost.serial;
+		}
 		bBPostRepository.save(new BBPost(bbid, serial + 1, t, dto.meta,
 				dto.payloadXml, dto.signature, newhash));
 

@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.TestBase;
-import civitas.crypto.CryptoError;
 import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertextTestData;
 import civitas.crypto.sharedkeyciphertext.SharedKeyMsgTestData;
 
@@ -20,7 +19,7 @@ class DecryptSharedTest extends TestBase implements SharedKeyTestData,
 
 	@Test
 	@DisplayName("decrypts a shared key cyphertext")
-	void test() throws UnsupportedEncodingException, CryptoError {
+	void test() throws UnsupportedEncodingException {
 		assertEquals(SHARED_KEY_MSG,
 				decryptShared.apply(SHARED_KEY, SHARED_KEY_CIPHERTEXT));
 	}

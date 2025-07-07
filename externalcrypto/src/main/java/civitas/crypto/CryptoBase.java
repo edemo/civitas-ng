@@ -1,5 +1,6 @@
 package civitas.crypto;
 
+import java.math.BigInteger;
 import java.security.Key;
 import java.security.KeyFactory;
 import java.security.KeyPairGenerator;
@@ -15,6 +16,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.stereotype.Service;
 
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 @Service
 public class CryptoBase implements Constants {
@@ -42,14 +44,14 @@ public class CryptoBase implements Constants {
 	}
 
 	public CivitasBigInteger obtainProbablePrime(int bitLenght) {
-		return CivitasBigInteger.constructProbablePrime(bitLenght, CERTAINTY,
-				RANDOM);
+		return CivitasBigIntegerFactory
+				.obtain(new BigInteger(bitLenght, CERTAINTY, RANDOM));
 	}
 
 	public CivitasBigInteger generateRandomElement(CivitasBigInteger n) {
 		CivitasBigInteger r = null;
 		do {
-			r = new CivitasBigInteger(n.bitLength(), RANDOM);
+			r = CivitasBigIntegerFactory.obtain(n.bitLength(), RANDOM);
 		} while (r.equals(Constants.ZERO) || r.compareTo(n) >= 0);
 		return r;
 	}

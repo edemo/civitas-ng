@@ -2,7 +2,7 @@ package civitas.crypto.proofdisclog;
 
 import java.util.List;
 
-import civitas.common.Util;
+import civitas.common.CommonUtil;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
 import civitas.util.CivitasBigInteger;
@@ -23,12 +23,12 @@ public interface ElGamalProofDiscLogEqualityTestData
 	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_B = EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G2
 			.modPow(RANDOMS_0, BIGINT_P);
 	public static final String EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C_BASE64 = "AIm6aE5Q/X4ya4j3tjffpAIv6omtGzqwN5+HmeJJerGy";
-	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C = Util
+	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C = CommonUtil
 			.asBigint(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C_BASE64);
 	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R = RANDOMS_0
 			.modAdd(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C.modMultiply(
 					ElGamalPrivateKeyTestData.PRIVKEY_E, BIGINT_Q), BIGINT_Q);
-	public static final String EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R_BASE64 = Util
+	public static final String EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R_BASE64 = CommonUtil
 			.fromBigInt(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R);
 
 	ElGamalProofDiscLogEquality EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT = new ElGamalProofDiscLogEquality(
@@ -57,12 +57,12 @@ public interface ElGamalProofDiscLogEqualityTestData
 	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_B = EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_G2
 			.modPow(RANDOMS_0, BIGINT_P);
 	public static final String EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_C_BASE64 = "BR5zAZxvPyywQ6VQ0lew/Ro6h8eC41arC8Vzk8w5RzI=";
-	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_C = Util
+	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_C = CommonUtil
 			.asBigint(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_C_BASE64);
 	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_R = RANDOMS_0
 			.modAdd(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_C.modMultiply(
 					ElGamalPrivateKeyTestData.PRIVKEY_E, BIGINT_Q), BIGINT_Q);
-	public static final String EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_R_BASE64 = Util
+	public static final String EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_R_BASE64 = CommonUtil
 			.fromBigInt(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_R);
 
 	ElGamalProofDiscLogEquality EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE = new ElGamalProofDiscLogEquality(

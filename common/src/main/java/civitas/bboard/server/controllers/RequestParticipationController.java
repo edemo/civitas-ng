@@ -50,8 +50,9 @@ public class RequestParticipationController implements CommonConstants {
 			NoSuchAlgorithmException, CertificateException, NoSuchProviderException,
 			SignatureException, JAXBException, IOException, CryptoError,
 			CommunicableException, InvalidKeySpecException, CryptoException {
-		if (participationRequest == null || participationRequest.electionID == null)
+		if (participationRequest == null || participationRequest.electionID == null) {
 			return null;
+		}
 		ElectionDetails electionDetails = new ElectionDetails(
 				participationRequest.electionID, participationRequest.supervisorPubkey,
 				participationRequest.registrarPubKey, participationRequest.name,

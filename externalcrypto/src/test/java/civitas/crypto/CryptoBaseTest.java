@@ -152,15 +152,16 @@ class CryptoBaseTest extends TestBase
 
 	public void monoBitTest(byte[] bytes) {
 		int sum = 0;
-		for (int i = 0; i < bytes.length; i++) {
-			int current = bytes[i];
+		for (byte element : bytes) {
+			int current = element;
 			for (int j = 0; j < 8; j++) {
 				int isOne = (current & 1);
 				current = (current >>> 1);
-				if (1 == isOne)
+				if (1 == isOne) {
 					sum++;
-				else
+				} else {
 					sum--;
+				}
 			}
 		}
 		double S = Math.abs(sum) / Math.sqrt(bytes.length * 8) / Math.sqrt(2);

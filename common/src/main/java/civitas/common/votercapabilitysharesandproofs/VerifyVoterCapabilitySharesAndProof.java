@@ -35,8 +35,9 @@ public class VerifyVoterCapabilitySharesAndProof {
 			@Nonnull ElGamalPublicKey voterPublicKey,
 			@Nonnull ElGamalPublicKey tabTellerSharedPublicKey, String voterName,
 			int tellerIndex) throws UnsupportedEncodingException {
-		if (null == voterPublicKey)
+		if (null == voterPublicKey) {
 			throw new NullPointerException();
+		}
 		if (that.capabilities.length != that.rencryptFactors.length
 				|| that.capabilities.length != that.proofs.length
 				|| postedCapabilities.length != that.capabilities.length) {

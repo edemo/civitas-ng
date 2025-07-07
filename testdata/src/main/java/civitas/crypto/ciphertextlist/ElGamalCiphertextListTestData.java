@@ -11,6 +11,7 @@ import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.votecapabilityshare.VoteCapabilityTestData;
 import civitas.util.CivitasBigInteger;
+import civitas.util.CivitasBigIntegerFactory;
 
 public interface ElGamalCiphertextListTestData
 		extends ElGamalCiphertextTestData, VoteCapabilityTestData {
@@ -29,11 +30,11 @@ public interface ElGamalCiphertextListTestData
 
 	public static final int NO_OF_WELL_KNOWN_CIPHERTEXTS = 4;
 
-	CiphertextList CIPHERTEXT_LIST = new CiphertextList(
-			IntStream.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS)
-					.mapToObj(i -> new ElGamalCiphertext(ONE,
-							BIGINT_G.modPow(CivitasBigInteger.valueOf(i + 1), BIGINT_P)))
-					.toList());
+	CiphertextList CIPHERTEXT_LIST = new CiphertextList(IntStream
+			.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS)
+			.mapToObj(i -> new ElGamalCiphertext(ONE,
+					BIGINT_G.modPow(CivitasBigIntegerFactory.obtain(i + 1), BIGINT_P)))
+			.toList());
 	List<ElGamalSignedCiphertext> ENCRYPTED_SIGNED_VOTE_CAPABILITIES = VOTE_CAPABILITIES
 			.stream()
 			.map(x -> new ElGamalSignedCiphertext(
@@ -73,8 +74,9 @@ public interface ElGamalCiphertextListTestData
 			NO_OF_WELL_KNOWN_CIPHERTEXTS * 2);
 
 	CivitasBigInteger SUM = DS.stream().reduce(ZERO, (a, b) -> {
-		if (b != DS.get(MY_CHOICE.ordinal()))
+		if (b != DS.get(MY_CHOICE.ordinal())) {
 			return a.modAdd(b, BIGINT_Q);
+		}
 		return a;
 	});
 

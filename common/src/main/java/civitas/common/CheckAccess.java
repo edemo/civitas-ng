@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class CheckAccess {
 
-	public void apply(Operation operation, String string, String objectID)
-			throws SecurityException {
+	public void apply(final Operation operation, final String string,
+			final String objectID) {
 		switch (operation) {
 		case POST:
 			return;
