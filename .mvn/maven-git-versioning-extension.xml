@@ -4,17 +4,21 @@
 
     <refs>
         <ref type="branch">
+            <pattern>develop</pattern>
+            <version>${describe.tag}.${describe.distance}</version>
+        </ref>
+        <ref type="branch">
             <pattern>.+</pattern>
-            <version>${describe}</version>
+            <version>0.0.1</version>
         </ref>
         <ref type="tag">
             <pattern>.+</pattern>
-            <version>${describe}</version>
+            <version>${describe.tag}.${describe.distance}</version>
         </ref>
     </refs>
 
     <rev>
-        <version>${describe}</version>
+        <version>0.0.1</version>
     </rev>
 
 </configuration>
