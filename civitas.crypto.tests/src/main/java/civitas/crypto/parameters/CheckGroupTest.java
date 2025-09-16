@@ -13,7 +13,7 @@ import civitas.util.CivitasBigInteger;
 import civitas.util.CivitasBigIntegerFactory;
 import io.github.magwas.testing.TestBase;
 
-public class CheckGroupTest extends TestBase
+class CheckGroupTest extends TestBase
 		implements ElGamalParametersTestData {
 
 	@InjectMocks

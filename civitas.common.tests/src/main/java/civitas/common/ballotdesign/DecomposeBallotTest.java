@@ -13,22 +13,24 @@ import civitas.common.votersubmission.VoterSubmission;
 import civitas.common.votersubmission.VoterSubmissionTestData;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 
-public class DecomposeBallotTest extends RandomAwareTestBase
+class DecomposeBallotTest extends RandomAwareTestBase
 		implements VoterSubmissionTestData, ElGamal1OfLReencryptionTestData {
 
 	@InjectMocks
 	DecomposeBallot decomposeBallot;
 
 	@Test
-	@DisplayName("Decomposes a ballot into a VoterSubmission\n"
-			+ " - calculates the length of the ballot based on the number of candidates\n"
-			+ " - for each pair i,j:\n"
-			+ "   - calculates their position in the matrix\n"
-			+ "   - computes the encrypted choice by constructing an 1 of L reeencryption\n"
-			+ "   - encrypts the capability from the map\n"
-			+ "   - constructs a vote proof using all the above\n"
-			+ "   - creates a verifiable vote using the context, the encryted capability and choice and the proof\n"
-			+ " - returns a voter submission for the voter block with the verifiable votes")
+	@DisplayName("""
+			Decomposes a ballot into a VoterSubmission
+			 - calculates the length of the ballot based on the number of candidates
+			 - for each pair i,j:
+			   - calculates their position in the matrix
+			   - computes the encrypted choice by constructing an 1 of L reeencryption
+			   - encrypts the capability from the map
+			   - constructs a vote proof using all the above
+			   - creates a verifiable vote using the context, the encryted capability and choice and the proof
+			 - returns a voter submission for the voter block with the verifiable votes
+			""")
 	void test() {
 		VoterSubmission actual = decomposeBallot.apply(BALLOTDESIGN, BALLOT,
 				VOTER_BLOCK, EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, ADDITIONALENV,

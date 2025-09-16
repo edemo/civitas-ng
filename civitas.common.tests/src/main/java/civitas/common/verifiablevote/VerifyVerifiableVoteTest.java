@@ -15,11 +15,13 @@ class VerifyVerifiableVoteTest extends RandomAwareTestBase
 	VerifyVerifiableVote verifyVerifiableVote;
 
 	@Test
-	@DisplayName("if the vote is correct, returns true\n"
-			+ "the ciphertexts in the vote are 1 of L reencryption for \n"
-			+ "the encrypted choice in the vote and the public key, and\n"
-			+ "the vote proof in the vote is correct for the encrypted capability,\n"
-			+ "and the encrypted choice using the context and the el gamal parameters of the public key")
+	@DisplayName("""
+			if the vote is correct, returns true
+			the ciphertexts in the vote are 1 of L reencryption for
+			the encrypted choice in the vote and the public key, and
+			the vote proof in the vote is correct for the encrypted capability,
+			and the encrypted choice using the context and the el gamal parameters of the public key
+			""")
 	void test() {
 		assertTrue(verifyVerifiableVote.apply(VERIFIABLE_VOTE,
 				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));

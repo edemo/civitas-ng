@@ -15,13 +15,12 @@ public class GenerateElGamalKeyPair {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public ElGamalKeyPair apply(ElGamalParameters p) {
-		ElGamalParameters ps = p;
-		CivitasBigInteger x = cryptoBase.generateRandomElement(ps.q);
-		CivitasBigInteger y = ps.g.modPow(x, ps.p);
-		ElGamalPrivateKey k = new ElGamalPrivateKey(x, ps);
-		ElGamalPublicKey K = new ElGamalPublicKey(y, ps);
-		return new ElGamalKeyPair(K, k);
+	public ElGamalKeyPair apply(ElGamalParameters parameters) {
+        CivitasBigInteger x = cryptoBase.generateRandomElement(parameters.q);
+		CivitasBigInteger y = parameters.g.modPow(x, parameters.p);
+		ElGamalPrivateKey privateKey = new ElGamalPrivateKey(x, parameters);
+		ElGamalPublicKey publicKey = new ElGamalPublicKey(y, parameters);
+		return new ElGamalKeyPair(publicKey, privateKey);
 	}
 
 }

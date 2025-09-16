@@ -9,7 +9,7 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.common.ballotdesign.BallotDesignTestData;
 
-public class SignAndEncryptTest extends RandomAwareTestBase
+class SignAndEncryptTest extends RandomAwareTestBase
 		implements ElGamalSignedCiphertextTestData, BallotDesignTestData {
 
 	@InjectMocks

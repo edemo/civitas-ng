@@ -28,8 +28,8 @@ public interface ElGamalProof1OfLTestData
 	ElGamalCiphertext REENCRYPTED_WELL_KNOWN_CHOICE = new ElGamalCiphertext(
 			REENCRYPTED_WELL_KNOWN_CHOICE_A, REENCRYPTED_WELL_KNOWN_CHOICE_B);
 
-	CivitasBigInteger w = (FACTOR_E.modNegate(BIGINT_Q)
-			.modMultiply(DS.get(MY_CHOICE.ordinal()), BIGINT_Q))
+	CivitasBigInteger w = FACTOR_E.modNegate(BIGINT_Q)
+			.modMultiply(DS.get(MY_CHOICE.ordinal()), BIGINT_Q)
 			.modAdd(RS.get(MY_CHOICE.ordinal()), BIGINT_Q);
 
 	List<CivitasBigInteger> EL_GAMAL_PROOF_1_OF_L_AS = IntStream
@@ -72,37 +72,37 @@ public interface ElGamalProof1OfLTestData
 	CivitasBigInteger EL_GAMAL_PROOF_1_OF_L_RV = w.modAdd(
 			FACTOR_E.modMultiply(EL_GAMAL_PROOF_1_OF_L_DV, BIGINT_Q), BIGINT_Q);
 
-	public static final List<CivitasBigInteger> DVS = ((Supplier<List<CivitasBigInteger>>) () -> {
+	List<CivitasBigInteger> DVS = ((Supplier<List<CivitasBigInteger>>) () -> {
 		List<CivitasBigInteger> d = new ArrayList<>(DS);
 		d.set(MY_CHOICE.ordinal(), EL_GAMAL_PROOF_1_OF_L_DV);
 		return d;
 	}).get();
 
-	public static final List<CivitasBigInteger> RVS = ((Supplier<List<CivitasBigInteger>>) () -> {
+	List<CivitasBigInteger> RVS = ((Supplier<List<CivitasBigInteger>>) () -> {
 		List<CivitasBigInteger> r = new ArrayList<>(RS);
 		r.set(MY_CHOICE.ordinal(), EL_GAMAL_PROOF_1_OF_L_RV);
 		return r;
 	}).get();
 
-	public static final List<CivitasBigInteger> DVS_BAD = ((Supplier<List<CivitasBigInteger>>) () -> {
+	List<CivitasBigInteger> DVS_BAD = ((Supplier<List<CivitasBigInteger>>) () -> {
 		List<CivitasBigInteger> d = new ArrayList<>(DVS);
 		d.set(MY_CHOICE.ordinal(), BIGINT_D);
 		return d;
 	}).get();
 
-	public static final ElGamalProof1OfL EL_GAMAL_PROOF_1_OF_L = new ElGamalProof1OfL(
+	ElGamalProof1OfL EL_GAMAL_PROOF_1_OF_L = new ElGamalProof1OfL(
 			NO_OF_WELL_KNOWN_CIPHERTEXTS,
-			DVS.toArray(new CivitasBigInteger[NO_OF_WELL_KNOWN_CIPHERTEXTS]),
-			RVS.toArray(new CivitasBigInteger[NO_OF_WELL_KNOWN_CIPHERTEXTS]));
+			DVS.toArray(new CivitasBigInteger[0]),
+			RVS.toArray(new CivitasBigInteger[0]));
 
-	public static final ElGamalProof1OfL EL_GAMAL_PROOF_1_OF_L_BAD = new ElGamalProof1OfL(
+	ElGamalProof1OfL EL_GAMAL_PROOF_1_OF_L_BAD = new ElGamalProof1OfL(
 			NO_OF_WELL_KNOWN_CIPHERTEXTS,
-			DVS_BAD.toArray(new CivitasBigInteger[NO_OF_WELL_KNOWN_CIPHERTEXTS]),
-			RVS.toArray(new CivitasBigInteger[NO_OF_WELL_KNOWN_CIPHERTEXTS]));
+			DVS_BAD.toArray(new CivitasBigInteger[0]),
+			RVS.toArray(new CivitasBigInteger[0]));
 
 	Map<VoteChoice, ElGamalProof1OfL> EL_GAMAL_PROOF_1_OF_L_MAP = ConstructTestData
 			.constructTestData(CHOICES,
-					(i) -> new ElGamalProof1OfL(NO_OF_WELL_KNOWN_CIPHERTEXTS,
+                    i -> new ElGamalProof1OfL(NO_OF_WELL_KNOWN_CIPHERTEXTS,
 							DVS.stream().map(x -> {
 								if (DVS.indexOf(x) == i.ordinal()) {
 									return mock(CivitasBigInteger.class, "dvs" + i);

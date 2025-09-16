@@ -17,7 +17,7 @@ import civitas.crypto.signature.SignatureTestData;
 import civitas.util.BasicValuesTestData;
 import io.github.magwas.testing.TestBase;
 
-public class IsPublicKeyAuthorizedTest extends TestBase
+class IsPublicKeyAuthorizedTest extends TestBase
 		implements PublicKeyTestData, BasicValuesTestData, SignatureTestData,
 		PrivateKeyTestData {
 
@@ -25,10 +25,12 @@ public class IsPublicKeyAuthorizedTest extends TestBase
 	IsPublicKeyAuthorized isPublicKeyAuthorized;
 
 	@Test
-	@DisplayName("isAuthorized checks if the private key is belonging to the public key\n"
-			+ "- creates a new base64 nonce\n"
-			+ "- signs the nonce with the private key"
-			+ "- verifies that the signature is verifiable with the public key")
+	@DisplayName("""
+			isAuthorized checks if the private key is belonging to the public key
+			- creates a new base64 nonce
+			- signs the nonce with the private key
+			- verifies that the signature is verifiable with the public key
+			""")
 	void test2()
 			throws UnsupportedEncodingException, CryptoException, CryptoError {
 		boolean actual = isPublicKeyAuthorized.apply(PUBLIC_KEY, PRIVATE_KEY);

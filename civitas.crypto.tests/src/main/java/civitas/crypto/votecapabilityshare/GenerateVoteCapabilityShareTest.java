@@ -9,7 +9,7 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.crypto.CryptoException;
 
-public class GenerateVoteCapabilityShareTest extends RandomAwareTestBase
+class GenerateVoteCapabilityShareTest extends RandomAwareTestBase
 		implements VoteCapabilityShareTestData {
 
 	@InjectMocks

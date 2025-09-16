@@ -21,7 +21,7 @@ import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-public class GenerateSchnorrPrimeFunctionalTest extends RandomAwareTestBase
+class GenerateSchnorrPrimeFunctionalTest extends RandomAwareTestBase
 		implements ElGamalPrivateKeyTestData, Constants {
 
 	@Autowired

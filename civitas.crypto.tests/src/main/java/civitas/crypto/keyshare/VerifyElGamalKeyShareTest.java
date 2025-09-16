@@ -13,7 +13,7 @@ import civitas.crypto.keys.ElGamalKeyShareTestData;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import io.github.magwas.testing.TestBase;
 
-public class VerifyElGamalKeyShareTest extends TestBase
+class VerifyElGamalKeyShareTest extends TestBase
 		implements ElGamalKeyShareTestData {
 	@InjectMocks
 	VerifyElGamalKeyShare verifyElGamalKeyShare;

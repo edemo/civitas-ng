@@ -12,7 +12,7 @@ import org.mockito.InjectMocks;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 import io.github.magwas.testing.TestBase;
 
-public class VerifyElGamal1OfLReencryptionTest extends TestBase
+class VerifyElGamal1OfLReencryptionTest extends TestBase
 		implements ElGamal1OfLReencryptionTestData {
 
 	@InjectMocks

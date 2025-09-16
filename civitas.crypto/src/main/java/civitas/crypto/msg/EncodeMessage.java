@@ -18,8 +18,7 @@ public class EncodeMessage {
 
 	public CivitasBigInteger apply(CivitasBigInteger plaintext,
 			ElGamalParameters params) throws CryptoException {
-		CivitasBigInteger m = schnorrPrimeEncoder.apply(plaintext, params);
-		return m;
+        return schnorrPrimeEncoder.apply(plaintext, params);
 	}
 
 	public CivitasBigInteger apply(int i, ElGamalParameters params)

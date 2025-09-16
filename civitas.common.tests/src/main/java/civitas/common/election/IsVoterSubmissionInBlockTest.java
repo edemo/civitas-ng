@@ -22,7 +22,7 @@ class IsVoterSubmissionInBlockTest extends RandomAwareTestBase
 	IsVoterSubmissionInBlock isVoterSubmissionInBlock;
 
 	@Test
-	@DisplayName("checks if the block in the voter submission correponds to the block number given\n"
+	@DisplayName("checks if the block in the voter submission corresponds to the block number given\n"
 			+ "(version without context)")
 	void test() {
 		assertTrue(
@@ -45,7 +45,7 @@ class IsVoterSubmissionInBlockTest extends RandomAwareTestBase
 	}
 
 	@Test
-	@DisplayName("checks if the block in the voter submission correponds to the block number and context given\n"
+	@DisplayName("checks if the block in the voter submission corresponds to the block number and context given\n"
 			+ "(version with context)")
 	void test_1() {
 		assertTrue(isVoterSubmissionInBlock.apply(ELECTION_DETAILS,
@@ -77,7 +77,7 @@ class IsVoterSubmissionInBlockTest extends RandomAwareTestBase
 	}
 
 	@Test
-	@DisplayName("checks if the block in the encrypted capabilities correponds to the block number and context given\n"
+	@DisplayName("checks if the block in the encrypted capabilities corresponds to the block number and context given\n"
 			+ "(version with encrypted capabilities)")
 	void test_2() {
 		assertTrue(isVoterSubmissionInBlock.apply(ELECTION_DETAILS,

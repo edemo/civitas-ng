@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 public class ElectoralRoll {
-	public final static String META = "electoralRoll";
+	public static final String META = "electoralRoll";
 
 	public final VoterDetails[] roll;
 

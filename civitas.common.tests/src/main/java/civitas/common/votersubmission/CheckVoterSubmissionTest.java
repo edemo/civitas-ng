@@ -16,10 +16,12 @@ class CheckVoterSubmissionTest extends RandomAwareTestBase
 	CheckVoterSubmission checkVoterSubmission;
 
 	@Test
-	@DisplayName("does not throw an exception if the submission is okay\n"
-			+ "that means that for each of the votes recorded\n"
-			+ "- the context should be in the form <context>'condorcet'<i>':'<j>\n"
-			+ "- where i and j are the respective candidate indices")
+	@DisplayName("""
+			does not throw an exception if the submission is okay
+			that means that for each of the votes recorded
+			- the context should be in the form <context>'condorcet'<i>':'<j>
+			- where i and j are the respective candidate indices
+			""")
 	void test() {
 		assertDoesNotThrow(
 				() -> checkVoterSubmission.apply(BALLOTDESIGN, VOTER_SUBMISSION,

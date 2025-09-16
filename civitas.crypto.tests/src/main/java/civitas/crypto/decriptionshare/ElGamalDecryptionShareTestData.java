@@ -19,7 +19,7 @@ public interface ElGamalDecryptionShareTestData
 			EL_GAMAL_DECRYPTION_SHARE_AI,
 			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_BAD_B);
 
-	ElGamalDecryptionShare[] EL_GAMAL_DECRYPTION_SHARES = new ElGamalDecryptionShare[] {
+	ElGamalDecryptionShare[] EL_GAMAL_DECRYPTION_SHARES = {
 			EL_GAMAL_DECRYPTION_SHARE,
 			EL_GAMAL_DECRYPTION_SHARE_BADPROOF };
 

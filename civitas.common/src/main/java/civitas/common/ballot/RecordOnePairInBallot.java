@@ -14,7 +14,7 @@ public class RecordOnePairInBallot {
 	CalculatePositionInBallot calculatePositionInBallot;
 
 	public void apply(@Nonnull Ballot that, int i, int j, VoteChoice voteChoice) {
-		if ((0 > i) || (i >= j) || (j >= that.k)) {
+		if (0 > i || i >= j || j >= that.k) {
 			throw new IllegalArgumentException();
 		}
 		that.matrix[calculatePositionInBallot.apply(i, j, that.k)] = voteChoice;

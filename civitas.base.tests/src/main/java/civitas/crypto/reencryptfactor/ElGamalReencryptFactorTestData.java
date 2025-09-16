@@ -6,7 +6,7 @@ import civitas.util.CivitasBigInteger;
 public interface ElGamalReencryptFactorTestData
 		extends ElGamalParametersTestData {
 
-	public static final ElGamalReencryptFactor ENCRYPT_FACTOR_ZERO = new ElGamalReencryptFactor(
+	ElGamalReencryptFactor ENCRYPT_FACTOR_ZERO = new ElGamalReencryptFactor(
 			ZERO);
 
 	CivitasBigInteger FACTOR_EPRIME = BIGINT_A;

@@ -29,7 +29,7 @@ public class InitialTests {
 
 	public static void checkBouncyCastle() {
 		String info = new BouncyCastleProvider().getInfo();
-		if (!info.equals("BouncyCastle Security Provider v1.80")) {
+		if (!"BouncyCastle Security Provider v1.80".equals(info)) {
 			throw new SecurityException("unexpected crypto provider: " + info);
 		}
 	}

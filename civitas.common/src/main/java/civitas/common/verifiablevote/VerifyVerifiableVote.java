@@ -17,12 +17,12 @@ public class VerifyVerifiableVote {
 	VerifyElGamal1OfLReencryption verifyElGamal1OfLReencryption;
 
 	public boolean apply(VerifiableVote that, ElGamalPublicKey pubKey,
-			CiphertextList ciphertexts, int L) {
-		if ((pubKey == null)) {
+			CiphertextList ciphertexts, int l) {
+		if (pubKey == null) {
 			return false;
 		}
 		return verifyElGamal1OfLReencryption.apply(that.encChoice, pubKey,
-				ciphertexts, L)
+				ciphertexts, l)
 				&& verifyProofVote.apply(that.proofVote, pubKey.params,
 						that.encCapability, that.encChoice.m, that.context);
 	}

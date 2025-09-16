@@ -10,7 +10,7 @@ import org.mockito.InjectMocks;
 import civitas.crypto.CryptoException;
 import io.github.magwas.testing.TestBase;
 
-public class VerifyElGamalProof1OfLTest extends TestBase
+class VerifyElGamalProof1OfLTest extends TestBase
 		implements ElGamalProof1OfLTestData {
 
 	@InjectMocks

@@ -21,7 +21,7 @@ public class VerifyMixRevelation {
 
 	public boolean apply(MixRevelation that, ElGamalPublicKey key, VoterMix initialMix,
 			VoterMix leftMix, VoterMix rightMix, boolean[] revelationDirections) {
-		if ((revelationDirections == null)
+		if (revelationDirections == null
 				|| that.revelations.length != revelationDirections.length
 				|| that.revelations.length != that.indicators.length) {
 			return false;

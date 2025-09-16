@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 
 import io.github.magwas.testing.TestBase;
 
-public class SetUpDecodeMapTest extends TestBase
+class SetUpDecodeMapTest extends TestBase
 		implements ElGamalParametersTestData {
 
 	@InjectMocks

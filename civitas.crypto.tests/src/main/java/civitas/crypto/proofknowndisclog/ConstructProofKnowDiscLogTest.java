@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import civitas.common.RandomAwareTestBase;
 import civitas.crypto.messagedigest.CryptoHash;
 
-public class ConstructProofKnowDiscLogTest extends RandomAwareTestBase
+class ConstructProofKnowDiscLogTest extends RandomAwareTestBase
 		implements ProofKnowDiscLogTestData {
 
 	@InjectMocks

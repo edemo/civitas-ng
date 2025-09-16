@@ -15,7 +15,7 @@ import civitas.crypto.parameters.encoder.SafePrimeDecode;
 import civitas.util.CivitasBigIntegerFactory;
 import io.github.magwas.testing.TestBase;
 
-public class SafePrimeDecodeTest extends TestBase implements EncoderTestData {
+class SafePrimeDecodeTest extends TestBase implements EncoderTestData {
 
 	@InjectMocks
 	private SafePrimeDecode decoder;

@@ -14,7 +14,7 @@ import civitas.crypto.petcommitment.CombinePETShareDecommitments;
 import civitas.crypto.proofdisclog.VerifyElGamalProofDiscLogEquality;
 import io.github.magwas.testing.TestBase;
 
-public class CombinePETShareDecommitmentsTest extends TestBase
+class CombinePETShareDecommitmentsTest extends TestBase
 		implements PETDecommitmentTestData {
 
 	@InjectMocks

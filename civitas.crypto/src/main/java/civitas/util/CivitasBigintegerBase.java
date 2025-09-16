@@ -30,7 +30,7 @@ public class CivitasBigintegerBase implements CivitasBigIntegerInterface {
 
 	@Override
 	public boolean equals(final Object o) {
-		return (o instanceof CivitasBigInteger)
+		return o instanceof CivitasBigInteger
 				&& this.i.equals(((CivitasBigInteger) o).i);
 	}
 

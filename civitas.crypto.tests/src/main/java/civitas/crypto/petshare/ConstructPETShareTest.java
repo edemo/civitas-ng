@@ -1,6 +1,7 @@
 package civitas.crypto.petshare;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +9,7 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-public class ConstructPETShareTest extends RandomAwareTestBase
+class ConstructPETShareTest extends RandomAwareTestBase
 		implements PETShareTestData {
 
 	@InjectMocks
@@ -19,28 +20,25 @@ public class ConstructPETShareTest extends RandomAwareTestBase
 	void test() {
 		PETShare actual = constructPETShare.apply(EL_GAMAL_PARAMETERS, CIPHERTEXT_E,
 				CIPHERTEXT_EPRIME);
-		assertEquals(actual, PET_SHARE_RANDOMS0);
+		assertEquals(PET_SHARE_RANDOMS0, actual);
 	}
 
 	@Test
 	@DisplayName("returns null if ciphertext a is null")
 	void test2() {
-		assertEquals(null,
-				constructPETShare.apply(EL_GAMAL_PARAMETERS, null, CIPHERTEXT_EPRIME));
+        assertNull(constructPETShare.apply(EL_GAMAL_PARAMETERS, null, CIPHERTEXT_EPRIME));
 	}
 
 	@Test
 	@DisplayName("returns null if ciphertext b is null")
 	void test3() {
-		assertEquals(null,
-				constructPETShare.apply(EL_GAMAL_PARAMETERS, CIPHERTEXT_E, null));
+        assertNull(constructPETShare.apply(EL_GAMAL_PARAMETERS, CIPHERTEXT_E, null));
 	}
 
 	@Test
 	@DisplayName("returns null if parameters is null")
 	void test4() {
-		assertEquals(null,
-				constructPETShare.apply(null, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
+        assertNull(constructPETShare.apply(null, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 	}
 
 }

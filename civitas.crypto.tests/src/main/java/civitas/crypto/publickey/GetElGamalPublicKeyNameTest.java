@@ -10,7 +10,7 @@ import org.mockito.InjectMocks;
 
 import io.github.magwas.testing.TestBase;
 
-public class GetElGamalPublicKeyNameTest extends TestBase
+class GetElGamalPublicKeyNameTest extends TestBase
 		implements ElGamalPublicKeyTestData {
 
 	@InjectMocks

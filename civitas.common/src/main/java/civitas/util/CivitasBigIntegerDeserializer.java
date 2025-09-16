@@ -12,6 +12,8 @@ import civitas.common.CommonUtil;
 
 class CivitasBigIntegerDeserializer extends StdDeserializer<CivitasBigInteger> {
 
+	private static final long serialVersionUID = 1L;
+
 	protected CivitasBigIntegerDeserializer() {
 		this(null);
 	}
@@ -19,8 +21,6 @@ class CivitasBigIntegerDeserializer extends StdDeserializer<CivitasBigInteger> {
 	protected CivitasBigIntegerDeserializer(Class<CivitasBigInteger> vc) {
 		super(vc);
 	}
-
-	private static final long serialVersionUID = 1L;
 
 	@Override
 	public CivitasBigInteger deserialize(JsonParser p,

@@ -14,7 +14,7 @@ public class CombineKeyShares implements Constants {
 	@Autowired
 	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
-	public ElGamalPublicKey apply(ElGamalKeyShare[] shares)
+	public ElGamalPublicKey apply(ElGamalKeyShare... shares)
 			throws CryptoException {
 		if (shares == null) {
 			return null;

@@ -1,6 +1,7 @@
 package civitas.crypto.ciphertext;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +17,7 @@ import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.CivitasBigIntegerFactory;
 
-public class MultiplyCiphertextsTest extends RandomAwareTestBase
+class MultiplyCiphertextsTest extends RandomAwareTestBase
 		implements ElGamalCiphertextListTestData {
 
 	@InjectMocks
@@ -25,9 +26,11 @@ public class MultiplyCiphertextsTest extends RandomAwareTestBase
 	SignAndEncrypt signAndEncrypt;
 
 	@Test
-	@DisplayName("multiplies a matrix of ciphertexts\n"
-			+ "by multiplying a's and b's in each row\n"
-			+ "gives one ciphertext for each rows")
+	@DisplayName("""
+			multiplies a matrix of ciphertexts
+			by multiplying a's and b's in each row
+			gives one ciphertext for each rows
+			""")
 	void test() throws CryptoError, CryptoException {
 		CiphertextList actual = multiplyCiphertexts.apply(CIPHERTEXT_MATRIX,
 				EL_GAMAL_PARAMETERS);
@@ -40,20 +43,20 @@ public class MultiplyCiphertextsTest extends RandomAwareTestBase
 	@Test
 	@DisplayName("returns null if the matrix is null")
 	void test2() {
-		assertEquals(null, multiplyCiphertexts.apply(null, EL_GAMAL_PARAMETERS));
+        assertNull(multiplyCiphertexts.apply(null, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("returns null if encounters a null in the matrix")
 	void test3() {
-		assertEquals(null, multiplyCiphertexts
-				.apply(new ElGamalSignedCiphertext[][] { null }, EL_GAMAL_PARAMETERS));
+        assertNull(multiplyCiphertexts
+                .apply(new ElGamalSignedCiphertext[][]{null}, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("returns null if a ciphertext is not castable to ElGamalCiphertextC")
 	void test4() {
-		assertEquals(null,
+		assertNull(
 				multiplyCiphertexts.apply(
 						new ElGamalSignedCiphertext[][] {
 								{ mock(ElGamalSignedCiphertext.class) } },

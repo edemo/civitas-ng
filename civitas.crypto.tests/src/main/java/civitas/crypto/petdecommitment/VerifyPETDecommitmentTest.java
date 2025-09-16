@@ -15,7 +15,7 @@ import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
 import io.github.magwas.testing.TestBase;
 
-public class VerifyPETDecommitmentTest extends TestBase
+class VerifyPETDecommitmentTest extends TestBase
 		implements PETDecommitmentTestData, PETCommitmentTestData,
 		ElGamalCiphertextTestData, PETShareTestData {
 
@@ -23,14 +23,16 @@ public class VerifyPETDecommitmentTest extends TestBase
 	VerifyPETDecommitment verifyPETDecommitment;
 
 	@Test
-	@DisplayName("correct decommitment passes "
-			+ "		// d=ciphertext1.a/ciphertext2.a\n"
-			+ "		// e=ciphertext1.b/ciphertext2.b\n"
-			+ "		// d =? proof.g1                \n"
-			+ "		// e =? proof.g2                \n"
-			+ "		// c.hash =? hash(di,ei)        \n"
-			+ "		// verify(proof)                \n")
-	public void test() {
+	@DisplayName("""
+			correct decommitment passes
+			    // d=ciphertext1.a/ciphertext2.a
+			    // e=ciphertext1.b/ciphertext2.b
+			    // d =? proof.g1
+			    // e =? proof.g2
+			    // c.hash =? hash(di,ei)
+			    // verify(proof)
+			""")
+	void test() {
 
 		ElGamalProofDiscLogEquality proof = PET_DECOMMITMENT.proof;
 
@@ -47,7 +49,7 @@ public class VerifyPETDecommitmentTest extends TestBase
 
 	@Test
 	@DisplayName("if g1 of the proof != ciphertext1.a/ciphertext2.a the verification fails")
-	public void test4() {
+	void test4() {
 		PETDecommitment petDecommitment = new PETDecommitment(PET_DECOMMITMENT_D,
 				PET_DECOMMITMENT_E,
 				new ElGamalProofDiscLogEquality(BIGINT_A,
@@ -65,7 +67,7 @@ public class VerifyPETDecommitmentTest extends TestBase
 
 	@Test
 	@DisplayName("if g2 of the proof != ciphertext1.b/ciphertext2.b the verification fails")
-	public void test5() {
+	void test5() {
 		PETDecommitment petDecommitment = new PETDecommitment(PET_DECOMMITMENT_D,
 				PET_DECOMMITMENT_E,
 				new ElGamalProofDiscLogEquality(
@@ -83,7 +85,7 @@ public class VerifyPETDecommitmentTest extends TestBase
 
 	@Test
 	@DisplayName("if the hash in the commitment != hash(di,ei) the verification fails")
-	public void test6() {
+	void test6() {
 
 		assertFalse(
 				verifyPETDecommitment.apply(PET_DECOMMITMENT, PET_COMMITMENT_BAD_HASH,
@@ -92,7 +94,7 @@ public class VerifyPETDecommitmentTest extends TestBase
 
 	@Test
 	@DisplayName("if the proof does not verify the verification fails")
-	public void test7() {
+	void test7() {
 		ElGamalProofDiscLogEquality proof = new ElGamalProofDiscLogEquality(
 				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G1,
 				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G2,

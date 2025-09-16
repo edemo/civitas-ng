@@ -29,15 +29,14 @@ public class VerifyProofVote {
 		CivitasBigInteger p = params.p;
 		CivitasBigInteger q = params.q;
 
-		List<CivitasBigInteger> E = calculateProofEnvironment.apply(params,
+		List<CivitasBigInteger> e = calculateProofEnvironment.apply(params,
 				encCapability, encChoice, context);
-		E.add(params.g.modPow(that.s1, p).modMultiply(a1.modPow(that.c, p), p));
-		E.add(params.g.modPow(that.s2, p).modMultiply(a2.modPow(that.c, p), p));
+		e.add(params.g.modPow(that.s1, p).modMultiply(a1.modPow(that.c, p), p));
+		e.add(params.g.modPow(that.s2, p).modMultiply(a2.modPow(that.c, p), p));
 
-		byte[] hash = cryptoHash.apply(E);
+		byte[] hash = cryptoHash.apply(e);
 		CivitasBigInteger x = convertHashToBigInt.apply(hash).mod(q);
-		boolean ret = that.c.equals(x);
-		return ret;
+        return that.c.equals(x);
 	}
 
 }

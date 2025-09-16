@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import civitas.crypto.parameters.ElGamalParameters;
 import io.github.magwas.testing.TestBase;
 
-public class VerifyElGamalProofDiscLogEqualityTest extends TestBase
+class VerifyElGamalProofDiscLogEqualityTest extends TestBase
 		implements ElGamalProofDiscLogEqualityTestData {
 
 	@InjectMocks

@@ -9,10 +9,8 @@ public class CalculateNumberOfPrimeTestsStub {
 
 	public static CalculateNumberOfPrimeTests stub() {
 		CalculateNumberOfPrimeTests mock = mock(CalculateNumberOfPrimeTests.class);
-		when(mock.apply(Constants.EL_GAMAL_GROUP_LENGTH))
-				.thenReturn(Integer.valueOf(2));
-		when(mock.apply(Constants.EL_GAMAL_KEY_LENGTH))
-				.thenReturn(Integer.valueOf(2));
+		when(mock.apply(Constants.EL_GAMAL_GROUP_LENGTH)).thenReturn(2);
+		when(mock.apply(Constants.EL_GAMAL_KEY_LENGTH)).thenReturn(2);
 		return mock;
 	}
 }

@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
 
-public class FakeElGamalProofDVRTest extends RandomAwareTestBase
+class FakeElGamalProofDVRTest extends RandomAwareTestBase
 		implements ElGamalProofDVRTestData, ElGamalPrivateKeyTestData {
 
 	@InjectMocks

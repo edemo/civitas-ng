@@ -2,6 +2,7 @@ package civitas.util;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -20,8 +21,7 @@ public class ReaderAnswer<T> implements Answer<T> {
 	public T answer(InvocationOnMock invocation) throws IOException {
 		Reader reader = (Reader) invocation.getArguments()[0];
 		for (Entry<String, T> entry : mockingMap
-				.entrySet().stream().sorted((o1, o2) -> Integer
-						.valueOf(o1.getKey().length()).compareTo(o2.getKey().length()))
+				.entrySet().stream().sorted(Comparator.comparingInt(o -> o.getKey().length()))
 				.toList()) {
 			T value = mockValueFromStream(reader, entry.getKey(), entry.getValue());
 			if (null != value) {

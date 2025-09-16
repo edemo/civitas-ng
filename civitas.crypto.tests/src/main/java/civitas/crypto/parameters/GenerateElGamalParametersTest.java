@@ -9,7 +9,7 @@ import org.mockito.InjectMocks;
 import civitas.crypto.Constants;
 import io.github.magwas.testing.TestBase;
 
-public class GenerateElGamalParametersTest extends TestBase
+class GenerateElGamalParametersTest extends TestBase
 		implements ElGamalParametersTestData {
 
 	@InjectMocks
@@ -32,9 +32,11 @@ public class GenerateElGamalParametersTest extends TestBase
 	}
 
 	@Test
-	@DisplayName("without argument makes a prime pair with the builtin lengths:\n"
-			+ "Constants.EL_GAMAL_KEY_LENGTH and\n"
-			+ "Constants.EL_GAMAL_GROUP_LENGTH")
+	@DisplayName("""
+			without argument makes a prime pair with the builtin lengths:
+			Constants.EL_GAMAL_KEY_LENGTH and
+			Constants.EL_GAMAL_GROUP_LENGTH
+			""")
 	void test_3() {
 		assertEquals(BIGINT_G, generateElGamalParameters.apply().g);
 	}

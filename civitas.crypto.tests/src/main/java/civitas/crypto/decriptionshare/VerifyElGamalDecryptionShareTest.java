@@ -13,19 +13,21 @@ import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import io.github.magwas.testing.TestBase;
 
-public class VerifyElGamalDecryptionShareTest extends TestBase
+class VerifyElGamalDecryptionShareTest extends TestBase
 		implements ElGamalDecryptionShareTestData {
 	@InjectMocks
 	VerifyElGamalDecryptionShare verifyElGamalDecryptionShare;
 
 	@Test
 	// @formatter:off
-	@DisplayName("verify verifies the proof\n"
-			+ " - ciphertext.a =? proof.g1\n"
-			+ " - g =? proof.g2\n"
-			+ " - proof.v =? share.ai\n"
-			+ " - proof.w =? key\n"
-			+ " - the proof verifies")
+	@DisplayName("""
+			verify verifies the proof
+			 - ciphertext.a =? proof.g1
+			 - g =? proof.g2
+			 - proof.v =? share.ai
+			 - proof.w =? key
+			 - the proof verifies
+			""")
 	//@formatter:on
 	void test4() {
 		boolean actual = verifyElGamalDecryptionShare

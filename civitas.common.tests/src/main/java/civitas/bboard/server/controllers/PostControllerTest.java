@@ -23,20 +23,23 @@ import civitas.common.board.BulletinBoardTestData;
 import civitas.crypto.CryptoError;
 import jakarta.xml.bind.JAXBException;
 
-public class PostControllerTest extends RandomAwareTestBase
+class PostControllerTest extends RandomAwareTestBase
 		implements BulletinBoardTestData, BBPostTestData {
 
 	@InjectMocks
 	PostController postController;
 
 	@Test
-	@DisplayName("records a post to a bulletin board and returns the time of recording\n"
-			+ "- checks access right\n" + "- verifies the signature\n"
-			+ "- retrieves the last post for the serial and hash\n"
-			+ "- computes the hash using the previous hash and the signature\n"
-			+ "- records the hash , serial and current time in the post and saves it\n"
-			+ "- updates the election cache\n"
-			+ "- logs the transaction with its meta and board id\n")
+	@DisplayName("""
+			records a post to a bulletin board and returns the time of recording
+			- checks access right
+			- verifies the signature
+			- retrieves the last post for the serial and hash
+			- computes the hash using the previous hash and the signature
+			- records the hash, serial and current time in the post and saves it
+			- updates the election cache
+			- logs the transaction with its meta and board id
+			""")
 	void test() throws CommunicableException, JAXBException, IOException,
 			NoSuchAlgorithmException, InvalidKeySpecException, CryptoError,
 			CryptoException {

@@ -36,7 +36,7 @@ public class CryptoBase implements Constants {
 					SHARED_KEY_PROVIDER);
 			publicKeyFactory = KeyFactory.getInstance(PUBLIC_KEY_ALG,
 					PUBLIC_KEY_PROVIDER);
-			rsaSigner = java.security.Signature.getInstance(PUBLIC_KEY_SIGNATURE_ALG,
+			rsaSigner = Signature.getInstance(PUBLIC_KEY_SIGNATURE_ALG,
 					PUBLIC_KEY_PROVIDER);
 		} catch (Exception e) {
 			throw new CryptoError(e);

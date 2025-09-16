@@ -8,25 +8,26 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-public class ConstructElGamalProof1OfLTest extends RandomAwareTestBase
+class ConstructElGamalProof1OfLTest extends RandomAwareTestBase
 		implements ElGamalProof1OfLTestData {
 
 	@InjectMocks
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
 
 	@Test
-	@DisplayName("returns a proof that the ciphertext is a reencription of"
-			+ "one of the well-known ciphertexts with the key and factor\n"
-			+ "r_i, d_i random for each ciphertexts\n"
-			+ "a_i = ((ciphertexts_i.a/m.a)^d_i) * (g^r_i) (mod p)\n"
-			+ "b_i = ((ciphertexts_i.b/m.b)^d_i) * (key^r_i) (mod p)\n"
-			+ "c = hash (m.a,m.b,(ciphertexts_i.a,ciphertexts_i.b,a_i,b_i) for each ciphertext (mod q)\n"
-			+ "w = (-factor) * d_choice + r_choice (mod q)\n"
-			+ "sum = sum d_i for each i != choice (mod p)\n"
-			+ "dprimet = c - sum (mod q) ; rprimet = w + factor*dprimet\n"
-			+ "dv_i = d_i for i != choice, and dprimet for r = choice\n"
-			+ "rv_i = r_i for i != choice, and rprimet for r = choice\n"
-			+ "return dv, rv")
+	@DisplayName("""
+			returns a proof that the ciphertext is a reencription of one of the well-known ciphertexts with the key and factor
+			r_i, d_i random for each ciphertexts
+			a_i = ((ciphertexts_i.a/m.a)^d_i) * (g^r_i) (mod p)
+			b_i = ((ciphertexts_i.b/m.b)^d_i) * (key^r_i) (mod p)
+			c = hash (m.a,m.b,(ciphertexts_i.a,ciphertexts_i.b,a_i,b_i) for each ciphertext (mod q)
+			w = (-factor) * d_choice + r_choice (mod q)
+			sum = sum d_i for each i != choice (mod p)
+			dprimet = c - sum (mod q) ; rprimet = w + factor*dprimet
+			dv_i = d_i for i != choice, and dprimet for r = choice
+			rv_i = r_i for i != choice, and rprimet for r = choice
+			return dv, rv
+			""")
 	void test1() {
 		ElGamalProof1OfL proof = constructElGamalProof1OfL.apply(
 				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, MY_CHOICE.ordinal(),

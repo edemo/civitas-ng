@@ -11,7 +11,7 @@ import civitas.common.VoteChoice;
 import civitas.crypto.CryptoException;
 import io.github.magwas.testing.TestBase;
 
-public class DecodeChoiceTest extends TestBase
+class DecodeChoiceTest extends TestBase
 		implements ElGamalParametersTestData {
 
 	@InjectMocks

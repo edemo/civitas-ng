@@ -7,17 +7,17 @@ import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 public interface ElGamalKeyShareTestData
 		extends ProofKnowDiscLogTestData, ElGamalPublicKeyTestData {
 
-	public static final ElGamalKeyShare EL_GAMAL_KEY_SHARE_E = new ElGamalKeyShare(
+	ElGamalKeyShare EL_GAMAL_KEY_SHARE_E = new ElGamalKeyShare(
 			EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PROOF_KNOWN_DISC_LOG);
-	public static final ElGamalKeyShare EL_GAMAL_KEY_SHARE_EPRIME = new ElGamalKeyShare(
+	ElGamalKeyShare EL_GAMAL_KEY_SHARE_EPRIME = new ElGamalKeyShare(
 			EL_GAMAL_PUBLIC_KEY_EPRIME, EL_GAMAL_PROOF_KNOWN_DISC_LOG);
-	public static final ElGamalKeyShare EL_GAMAL_KEY_SHARE_NOT_GOOD_PUBKEY_TYPE = new ElGamalKeyShare(
+	ElGamalKeyShare EL_GAMAL_KEY_SHARE_NOT_GOOD_PUBKEY_TYPE = new ElGamalKeyShare(
 			EL_GAMAL_PUBLIC_KEY_A_USING_G_OTHER, EL_GAMAL_PROOF_KNOWN_DISC_LOG);
 
-	ElGamalKeyShare[] KEY_SHARES = new ElGamalKeyShare[] {
+	ElGamalKeyShare[] KEY_SHARES = {
 			EL_GAMAL_KEY_SHARE_E,
 			EL_GAMAL_KEY_SHARE_EPRIME };
-	ElGamalKeyShare[] KEY_SHARES_WITH_NOT_GOOD_KEY = new ElGamalKeyShare[] {
+	ElGamalKeyShare[] KEY_SHARES_WITH_NOT_GOOD_KEY = {
 			EL_GAMAL_KEY_SHARE_E,
 			EL_GAMAL_KEY_SHARE_NOT_GOOD_PUBKEY_TYPE };
 

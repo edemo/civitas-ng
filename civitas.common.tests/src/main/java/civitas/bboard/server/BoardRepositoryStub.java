@@ -4,7 +4,6 @@ import static org.mockito.Mockito.mock;
 
 public class BoardRepositoryStub {
 	public static BoardRepository stub() {
-		BoardRepository mock = mock(BoardRepository.class);
-		return mock;
+        return mock(BoardRepository.class);
 	}
 }

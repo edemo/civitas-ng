@@ -13,7 +13,7 @@ import civitas.crypto.CryptoException;
 import civitas.crypto.parameters.encoder.SafePrimeEncode;
 import io.github.magwas.testing.TestBase;
 
-public class SafePrimeEncodeTest extends TestBase implements EncoderTestData {
+class SafePrimeEncodeTest extends TestBase implements EncoderTestData {
 
 	@InjectMocks
 	private SafePrimeEncode encoder;

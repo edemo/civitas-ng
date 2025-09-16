@@ -5,9 +5,9 @@ import civitas.common.mix.elementrevelation.MixElementRevelation;
 
 public interface MixRevelationTestData
 		extends MixCapabilityElementRevelationTestData {
-	boolean[] MIX_REVELATION_DIRECTIONS = new boolean[] { true, false };
-	boolean[] MIX_REVELATION_DIRECTIONS_SHORT = new boolean[] { true };
-	boolean[] MIX_REVELATION_DIRECTIONS_BAD = new boolean[] { false, false };
+	boolean[] MIX_REVELATION_DIRECTIONS = { true, false };
+	boolean[] MIX_REVELATION_DIRECTIONS_SHORT = { true };
+	boolean[] MIX_REVELATION_DIRECTIONS_BAD = { false, false };
 	MixRevelation MIX_REVELATION = new MixRevelation(1, MIX_REVELATION_DIRECTIONS,
 			new MixElementRevelation[] {
 					CAPABILITY_ELEMENT_RELEVATION_RIGHT,

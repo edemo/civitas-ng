@@ -15,10 +15,10 @@ public interface PETCommitmentTestData extends ElGamalCiphertextTestData {
 	CivitasBigInteger PET_COMMITMENT_HASH = CommonUtil
 			.asBigint("cJwI6pCvSZhmplOrKDGHqSkWeGcSByNlMVR6d0IlbAM=");
 
-	public static final PETCommitment PET_COMMITMENT = new PETCommitment(
+	PETCommitment PET_COMMITMENT = new PETCommitment(
 			PET_COMMITMENT_HASH);
 
-	public static final PETCommitment PET_COMMITMENT_BAD_HASH = new PETCommitment(
+	PETCommitment PET_COMMITMENT_BAD_HASH = new PETCommitment(
 			BIGINT_A);
 
 }

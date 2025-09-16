@@ -7,7 +7,7 @@ public interface VoteCapabilityShareTestData extends VoteCapabilityTestData {
 	VoteCapabilityShare VOTE_CAPABILITY_SHARE = new VoteCapabilityShare(
 			MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED);
 
-	VoteCapabilityShare[][] CAPABILITY_SHARE_MATRIX = new VoteCapabilityShare[][] {
+	VoteCapabilityShare[][] CAPABILITY_SHARE_MATRIX = {
 			{
 					new VoteCapabilityShare(CivitasBigIntegerFactory.obtain(2)),
 					new VoteCapabilityShare(CivitasBigIntegerFactory.obtain(3)) },
