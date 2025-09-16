@@ -13,9 +13,9 @@ public class CombineDecryptionShares implements Constants {
 		CivitasBigInteger prod = ONE;
 		for (ElGamalDecryptionShare share2 : shares) {
 			ElGamalDecryptionShare share = share2;
-			prod = prod.modMultiply(share.ai, params.p);
+			prod = prod.modMultiply(share.ai(), params.p());
 		}
-		CivitasBigInteger m = c.getB().modDivide(prod, params.p);
+		CivitasBigInteger m = c.getB().modDivide(prod, params.p());
 		return new ElGamalMsg(m);
 	}
 

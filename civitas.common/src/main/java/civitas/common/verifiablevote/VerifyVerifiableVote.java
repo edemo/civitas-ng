@@ -21,10 +21,10 @@ public class VerifyVerifiableVote {
 		if (pubKey == null) {
 			return false;
 		}
-		return verifyElGamal1OfLReencryption.apply(that.encChoice, pubKey,
+		return verifyElGamal1OfLReencryption.apply(that.encChoice(), pubKey,
 				ciphertexts, l)
-				&& verifyProofVote.apply(that.proofVote, pubKey.params,
-						that.encCapability, that.encChoice.m, that.context);
+				&& verifyProofVote.apply(that.proofVote(), pubKey.params(),
+				that.encCapability(), that.encChoice().m(), that.context());
 	}
 
 }

@@ -8,17 +8,8 @@ package civitas.crypto.petshare;
 
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.util.CivitasBigInteger;
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class PETShare {
-
-	@NonNull
-	public final ElGamalCiphertextish ciphertext1;
-	@NonNull
-	public final ElGamalCiphertextish ciphertext2;
-	@NonNull
-	public final CivitasBigInteger exponent;
-
+public record PETShare(@NonNull ElGamalCiphertextish ciphertext1, @NonNull ElGamalCiphertextish ciphertext2,
+					   @NonNull CivitasBigInteger exponent) {
 }

@@ -23,9 +23,9 @@ public class GetReencryptedVoteFromMix {
 			throw new NullPointerException();
 		}
 		EncryptedVote v = that.votes[i];
-		return new EncryptedVote(v.context,
-				elGamalReencrypt.apply(key, v.encChoice, choiceFactor),
-				elGamalReencrypt.apply(key, v.encCapability, capabilityFactor));
+		return new EncryptedVote(v.context(),
+				elGamalReencrypt.apply(key, v.encChoice(), choiceFactor),
+				elGamalReencrypt.apply(key, v.encCapability(), capabilityFactor));
 	}
 
 }

@@ -24,12 +24,12 @@ public class ConstructElGamalDiscLogEqualityProof {
 	public ElGamalProofDiscLogEquality apply(ElGamalParameters params,
 			CivitasBigInteger g1, CivitasBigInteger g2, CivitasBigInteger x) {
 
-		CivitasBigInteger v = g1.modPow(x, params.p);
-		CivitasBigInteger w = g2.modPow(x, params.p);
+		CivitasBigInteger v = g1.modPow(x, params.p());
+		CivitasBigInteger w = g2.modPow(x, params.p());
 
-		CivitasBigInteger z = cryptoBase.generateRandomElement(params.q);
-		CivitasBigInteger a = g1.modPow(z, params.p);
-		CivitasBigInteger b = g2.modPow(z, params.p);
+		CivitasBigInteger z = cryptoBase.generateRandomElement(params.q());
+		CivitasBigInteger a = g1.modPow(z, params.p());
+		CivitasBigInteger b = g2.modPow(z, params.p());
 
 		List<CivitasBigInteger> l = new ArrayList<>();
 		l.add(v);
@@ -37,9 +37,9 @@ public class ConstructElGamalDiscLogEqualityProof {
 		l.add(a);
 		l.add(b);
 		byte[] hash = cryptoHash.apply(l);
-		CivitasBigInteger c = convertHashToBigInt.apply(hash).mod(params.q);
+		CivitasBigInteger c = convertHashToBigInt.apply(hash).mod(params.q());
 
-		CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q), params.q);
+		CivitasBigInteger r = z.modAdd(c.modMultiply(x, params.q()), params.q());
 
 		return new ElGamalProofDiscLogEquality(g1, g2, v, w, a, b, c, r);
 	}

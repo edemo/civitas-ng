@@ -6,9 +6,5 @@
  */
 package civitas.common.election;
 
-import lombok.Data;
-
-@Data
-public class ElectoralRollEstimate {
-	public final int estimate;
+public record ElectoralRollEstimate(int estimate) {
 }

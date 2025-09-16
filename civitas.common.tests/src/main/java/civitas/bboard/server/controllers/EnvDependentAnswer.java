@@ -24,10 +24,10 @@ public class EnvDependentAnswer<T> implements Answer<T> {
 		if (null == theAnswer) {
 			theAnswer = answer.get(EnvironmentState.NORMAL);
 		}
-		if (null != theAnswer.throwable) {
-			throw theAnswer.throwable;
+		if (null != theAnswer.throwable()) {
+			throw theAnswer.throwable();
 		}
-		return theAnswer.answer;
+		return theAnswer.answer();
 
 	}
 

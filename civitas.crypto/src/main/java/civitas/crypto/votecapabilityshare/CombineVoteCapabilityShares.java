@@ -17,9 +17,9 @@ public class CombineVoteCapabilityShares {
 				for (int j = 0; j < share.length; j++) {
 					VoteCapabilityShare s = share[j];
 					if (accum[j] == null) {
-						accum[j] = s.m;
+						accum[j] = s.m();
 					} else {
-						accum[j] = accum[j].modMultiply(s.m, params.p);
+						accum[j] = accum[j].modMultiply(s.m(), params.p());
 					}
 				}
 			}

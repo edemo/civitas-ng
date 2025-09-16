@@ -24,21 +24,21 @@ class LegendreSymbolTest extends TestBase
 			+ "NOTE: assumes p=2*q+1; use only with safe primes ")
 	void legendreSymbolTest() {
 		assertEquals(1, legendreSymbol.apply(BIGINT_A.add(ONE),
-				EL_GAMAL_PARAMETERS_SAFE.p, EL_GAMAL_PARAMETERS_SAFE.q));
+                EL_GAMAL_PARAMETERS_SAFE.p(), EL_GAMAL_PARAMETERS_SAFE.q()));
 	}
 
 	@Test
 	@DisplayName("legendreSymbol returns -1 if a is not quadratic residue mod p")
 	void legendreSymbolTest1() {
-		assertEquals(-1, legendreSymbol.apply(BIGINT_A, EL_GAMAL_PARAMETERS_SAFE.p,
-				EL_GAMAL_PARAMETERS_SAFE.q));
+		assertEquals(-1, legendreSymbol.apply(BIGINT_A, EL_GAMAL_PARAMETERS_SAFE.p(),
+                EL_GAMAL_PARAMETERS_SAFE.q()));
 	}
 
 	@Test
 	@DisplayName("legendreSymbol returns 0 for zero")
 	void legendreSymbolTest2() {
-		assertEquals(0, legendreSymbol.apply(ZERO, EL_GAMAL_PARAMETERS_SAFE.p,
-				EL_GAMAL_PARAMETERS_SAFE.q));
+		assertEquals(0, legendreSymbol.apply(ZERO, EL_GAMAL_PARAMETERS_SAFE.p(),
+                EL_GAMAL_PARAMETERS_SAFE.q()));
 	}
 
 	@Test

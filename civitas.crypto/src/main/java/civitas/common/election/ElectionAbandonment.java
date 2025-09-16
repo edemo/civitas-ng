@@ -6,12 +6,5 @@
  */
 package civitas.common.election;
 
-import lombok.Data;
-
-@Data
-public class ElectionAbandonment {
-	public final int tellerIndex;
-	public final boolean isTabulationTeller;
-	public final String reason;
-
+public record ElectionAbandonment(int tellerIndex, boolean isTabulationTeller, String reason) {
 }

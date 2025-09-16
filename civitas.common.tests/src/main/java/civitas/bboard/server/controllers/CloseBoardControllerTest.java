@@ -48,7 +48,7 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 		verify(closeBoardController.cryptoHash).apply(BULLETIN_BOARD_ID.getBytes(),
 				"voterSubmission-voterBlock1".getBytes());
 		verify(closeBoardController.getRestTemplate.restTemplate).postForObject(
-				ELECTION_ID.uriBase + "/post", BOARD_CLOSED_CONTENT_COMMITMENT,
+				ELECTION_ID.uriBase() + "/post", BOARD_CLOSED_CONTENT_COMMITMENT,
 				Boolean.class);
 	}
 
@@ -93,7 +93,7 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 		closeBoardController.apply(BULLETIN_BOARD_ID, ELECTION_ID, 0,
 				SIGNATURE_OF_AUTH_NONCE_WITH_KEY);
 		verify(closeBoardController.getRestTemplate.restTemplate).postForObject(
-				ELECTION_ID.uriBase + "/post", new BoardClosedContentCommitment(
+				ELECTION_ID.uriBase() + "/post", new BoardClosedContentCommitment(
 						ELECTION_ID, BULLETIN_BOARD_ID, new ArrayList<>()),
 				Boolean.class);
 	}

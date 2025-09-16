@@ -15,7 +15,7 @@ public class ConstructElGamalDiscLogEqualityProofStub
 				.thenReturn(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT);
 
 		when(mock.apply(EL_GAMAL_PARAMETERS, CIPHERTEXT_E.a, BIGINT_G,
-				EL_GAMAL_PRIVATE_KEY_E.x))
+                EL_GAMAL_PRIVATE_KEY_E.x()))
 				.thenReturn(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE);
 		return mock;
 

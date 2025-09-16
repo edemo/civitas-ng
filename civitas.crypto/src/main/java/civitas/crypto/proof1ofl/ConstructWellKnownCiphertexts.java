@@ -32,7 +32,7 @@ public class ConstructWellKnownCiphertexts implements Constants {
 		CiphertextList cs = new CiphertextList();
 
 		ElGamalReencryptFactor factor = new ElGamalReencryptFactor(ZERO);
-		ElGamalParameters params = key.params;
+		ElGamalParameters params = key.params();
 		for (int i = 0; i < count; i++) {
 			CivitasBigInteger encodedMessage = encodeMessage.apply(i + 1, params);
 			ElGamalCiphertext encrypted = elGamalEncrypt.apply(key,

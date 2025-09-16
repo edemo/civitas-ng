@@ -16,7 +16,7 @@ public interface VoteCapabilityShareTestData extends VoteCapabilityTestData {
 					new VoteCapabilityShare(CivitasBigIntegerFactory.obtain(7)) } };
 
 	VoteCapabilityShare[] VOTE_CAPABILITY_SHARES = VOTE_CAPABILITIES.stream()
-			.map(x -> new VoteCapabilityShare(x.m)).toList()
+			.map(x -> new VoteCapabilityShare(x.m())).toList()
 			.toArray(new VoteCapabilityShare[0]);
 
 }

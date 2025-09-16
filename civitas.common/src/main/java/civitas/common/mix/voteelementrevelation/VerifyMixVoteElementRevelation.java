@@ -29,10 +29,10 @@ public class VerifyMixVoteElementRevelation {
 
 		EncryptedVote fromVote = ((VoteMix) fromMix).votes[fromIndex];
 		EncryptedVote toVote = ((VoteMix) toMix).votes[toIndex];
-		ElGamalCiphertextish fromChoice = fromVote.encChoice;
-		ElGamalCiphertextish fromCapability = fromVote.encCapability;
-		ElGamalCiphertextish toChoice = toVote.encChoice;
-		ElGamalCiphertextish toCapability = toVote.encCapability;
+		ElGamalCiphertextish fromChoice = fromVote.encChoice();
+		ElGamalCiphertextish fromCapability = fromVote.encCapability();
+		ElGamalCiphertextish toChoice = toVote.encChoice();
+		ElGamalCiphertextish toCapability = toVote.encCapability();
 
 		ElGamalCiphertextish rechoice = elGamalReencrypt.apply(key, fromChoice,
 				that.choiceFactor);

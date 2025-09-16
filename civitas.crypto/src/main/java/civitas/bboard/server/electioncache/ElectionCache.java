@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import civitas.common.ServerHost;
@@ -16,21 +17,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
-@Data
-class ElGamalKeyShareStored {
-
-	@NonNull
-	public final BigInteger pubKeyY;
-	@NonNull
-	public final BigInteger proofA;
-	@NonNull
-	public final BigInteger proofC;
-	@NonNull
-	public final BigInteger proofR;
-	@NonNull
-	public final BigInteger proofV;
+record ElGamalKeyShareStored(@NonNull BigInteger pubKeyY,
+		@NonNull BigInteger proofA, @NonNull BigInteger proofC,
+		@NonNull BigInteger proofR, @NonNull BigInteger proofV) {
 }
 
 @Data

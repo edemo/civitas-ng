@@ -25,13 +25,13 @@ public class CombineKeyShares implements Constants {
 			// Check the proofs that this is a valid share
 			try {
 				if (params == null) {
-					params = s.pubKey.params;
+					params = s.pubKey().params();
 				}
 				if (!verifyElGamalKeyShare.apply(s)) {
 					throw new CryptoException("Invalid share");
 				}
 				// accumulate the keys..
-				accum = accum.multiply(s.pubKey.y);
+				accum = accum.multiply(s.pubKey().y());
 			} catch (NullPointerException e) {
 				throw new CryptoException("Invalid share or proof", e);
 			}

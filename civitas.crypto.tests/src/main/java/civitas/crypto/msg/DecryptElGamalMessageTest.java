@@ -25,7 +25,7 @@ class DecryptElGamalMessageTest extends TestBase
 		ElGamalMsg decrypted = decryptElGamalMessage.apply(EL_GAMAL_PRIVATE_KEY_E,
 				SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_ADDITIONALENV,
 				ADDITIONALENV_BYTES);
-		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED, decrypted.m);
+		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED, decrypted.m());
 
 	}
 
@@ -43,7 +43,7 @@ class DecryptElGamalMessageTest extends TestBase
 	void elGamalDecryptTest2() throws Exception {
 
 		assertEquals(MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED,
-				decryptElGamalMessage.apply(EL_GAMAL_PRIVATE_KEY_E, CIPHERTEXT_E).m);
+				decryptElGamalMessage.apply(EL_GAMAL_PRIVATE_KEY_E, CIPHERTEXT_E).m());
 
 	}
 

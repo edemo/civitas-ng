@@ -36,25 +36,25 @@ public class FakeElGamalProofDVR {
 			ElGamalPublicKey key, ElGamalPublicKey verifierKey,
 			ElGamalPrivateKey verifierPrivKey) {
 
-		ElGamalParameters ps = key.params;
+		ElGamalParameters ps = key.params();
 		// CivitasBigInteger hv = verifierKey.y;
-		CivitasBigInteger zv = verifierPrivKey.x;
+		CivitasBigInteger zv = verifierPrivKey.x();
 
-		CivitasBigInteger h = key.y;
+		CivitasBigInteger h = key.y();
 		CivitasBigInteger x = e.getA();
 		CivitasBigInteger y = e.getB();
 		CivitasBigInteger xt = et.getA();
 		CivitasBigInteger yt = et.getB();
 
-		CivitasBigInteger alpha = cryptoBase.generateRandomElement(ps.q);
-		CivitasBigInteger beta = cryptoBase.generateRandomElement(ps.q);
-		CivitasBigInteger ut = cryptoBase.generateRandomElement(ps.q);
+		CivitasBigInteger alpha = cryptoBase.generateRandomElement(ps.q());
+		CivitasBigInteger beta = cryptoBase.generateRandomElement(ps.q());
+		CivitasBigInteger ut = cryptoBase.generateRandomElement(ps.q());
 
-		CivitasBigInteger at = ps.g.modPow(ut, ps.p)
-				.modDivide(xt.modDivide(x, ps.p).modPow(alpha, ps.p), ps.p);
-		CivitasBigInteger bt = h.modPow(ut, ps.p)
-				.modDivide(yt.modDivide(y, ps.p).modPow(alpha, ps.p), ps.p);
-		CivitasBigInteger st = ps.g.modPow(beta, ps.p);
+		CivitasBigInteger at = ps.g().modPow(ut, ps.p())
+				.modDivide(xt.modDivide(x, ps.p()).modPow(alpha, ps.p()), ps.p());
+		CivitasBigInteger bt = h.modPow(ut, ps.p())
+				.modDivide(yt.modDivide(y, ps.p()).modPow(alpha, ps.p()), ps.p());
+		CivitasBigInteger st = ps.g().modPow(beta, ps.p());
 
 		List<CivitasBigInteger> l = new ArrayList<>();
 		l.add(e.getA());
@@ -65,10 +65,10 @@ public class FakeElGamalProofDVR {
 		l.add(bt);
 		l.add(st);
 		CivitasBigInteger ct = convertHashToBigInt.apply(cryptoHash.apply(l))
-				.mod(ps.q);
+				.mod(ps.q());
 
-		CivitasBigInteger wt = alpha.modSubtract(ct, ps.q);
-		CivitasBigInteger rt = beta.modSubtract(wt, ps.q).modDivide(zv, ps.q);
+		CivitasBigInteger wt = alpha.modSubtract(ct, ps.q());
+		CivitasBigInteger rt = beta.modSubtract(wt, ps.q()).modDivide(zv, ps.q());
 
 		return new ElGamalProofDVR(e, et, ct, wt, rt, ut);
 

@@ -24,7 +24,7 @@ public class ConstructTabTellerKeyShareCommitment {
 			throws JAXBException, UnsupportedEncodingException {
 		String xml = convertToXml.apply(that);
 		byte[] hash = cryptoHash.apply(xml.getBytes());
-		return new TabTellerKeyShareCommitment(that.tellerIndex,
+		return new TabTellerKeyShareCommitment(that.tellerIndex(),
 				convertToBase64.apply(hash));
 	}
 

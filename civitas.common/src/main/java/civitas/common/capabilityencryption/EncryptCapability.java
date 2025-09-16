@@ -30,7 +30,7 @@ public class EncryptCapability {
 		}
 
 		ElGamalReencryptFactor encCapFactor = generateElGamalReencryptFactor
-				.apply(key.params);
+				.apply(key.params());
 		ElGamalCiphertextish encCap = elGamalEncrypt.apply(key, c, encCapFactor);
 
 		return new CapabilityEncryption(encCapFactor, encCap);

@@ -7,11 +7,6 @@
 package civitas.common.electionresults;
 
 import civitas.common.tallystatefinal.TallyStateFinal;
-import lombok.Data;
 
-@Data
-public class ElectionResults {
-	public final String computer;
-	public final TallyStateFinal tally;
-
+public record ElectionResults(String computer, TallyStateFinal tally) {
 }

@@ -31,6 +31,6 @@ class CombineDecryptionSharesTest extends TestBase
 		ElGamalMsg result = combineDecryptionShares.apply(CIPHERTEXT_E,
 				EL_GAMAL_DECRYPTION_SHARES, EL_GAMAL_PARAMETERS);
 
-		assertEquals(m, result.m);
+		assertEquals(m, result.m());
 	}
 }

@@ -23,8 +23,8 @@ class ConstructElGamalDecryptionShareTest extends TestBase
 			+ "proof =  ElGamalDiscLogEqualityProof(params, ciphertext.a, params.g,priv.x)")
 	void constructDecryptionShareTest() throws Exception {
 
-		CivitasBigInteger key = EL_GAMAL_PRIVATE_KEY_E.x;
-		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
+		CivitasBigInteger key = EL_GAMAL_PRIVATE_KEY_E.x();
+		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p();
 		CivitasBigInteger c1 = CIPHERTEXT_E.a;
 
 		CivitasBigInteger ai = c1.modPow(key, p);
@@ -33,8 +33,8 @@ class ConstructElGamalDecryptionShareTest extends TestBase
 				.apply(CIPHERTEXT_E, EL_GAMAL_KEYPAIR_SHARE);
 		verify(constructElGamalDecryptionShare.constructElGamalDiscLogEqualityProof)
 				.apply(EL_GAMAL_PARAMETERS, CIPHERTEXT_E.a, BIGINT_G,
-						EL_GAMAL_PRIVATE_KEY_E.x);
-		assertEquals(ai, actual.ai);
+						EL_GAMAL_PRIVATE_KEY_E.x());
+		assertEquals(ai, actual.ai());
 		assertEquals(EL_GAMAL_DECRYPTION_SHARE, actual);
 
 	}

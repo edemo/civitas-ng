@@ -64,12 +64,12 @@ public class DecomposeBallot implements CommonConstants {
 				String desiredContext = context + KIND + i + ":" + j;
 				CapabilityEncryption encryptedCapability = encryptCapability.apply(key,
 						capabilities, desiredContext);
-				ProofVote proofVote = constructProofVote.apply(key.params,
-						encryptedCapability.encCap, encryptedChoice.encChoice.m,
-						desiredContext, encryptedCapability.factor, encryptedChoice.factor);
+				ProofVote proofVote = constructProofVote.apply(key.params(),
+						encryptedCapability.encCap(), encryptedChoice.encChoice().m(),
+						desiredContext, encryptedCapability.factor(), encryptedChoice.factor());
 
 				VerifiableVote v = new VerifiableVote(desiredContext,
-						encryptedChoice.encChoice, encryptedCapability.encCap, proofVote);
+						encryptedChoice.encChoice(), encryptedCapability.encCap(), proofVote);
 
 				votes[pos] = v;
 			}

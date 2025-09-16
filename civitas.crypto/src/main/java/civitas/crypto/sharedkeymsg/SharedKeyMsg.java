@@ -6,12 +6,8 @@
  */
 package civitas.crypto.sharedkeymsg;
 
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class SharedKeyMsg {
-	@NonNull
-	public final String m;
-
+public record SharedKeyMsg(@NonNull String m) {
 }
+

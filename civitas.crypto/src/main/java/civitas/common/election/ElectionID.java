@@ -7,11 +7,6 @@
 package civitas.common.election;
 
 import civitas.common.board.BulletinBoardIDish;
-import lombok.Data;
 
-@Data
-public class ElectionID implements BulletinBoardIDish {
-	public final String id;
-	public final String uriBase;
-
+public record ElectionID(String id, String uriBase) implements BulletinBoardIDish {
 }

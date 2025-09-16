@@ -34,15 +34,15 @@ class VerifyPETDecommitmentTest extends TestBase
 			""")
 	void test() {
 
-		ElGamalProofDiscLogEquality proof = PET_DECOMMITMENT.proof;
+		ElGamalProofDiscLogEquality proof = PET_DECOMMITMENT.proof();
 
 		CivitasBigInteger d = CIPHERTEXT_E.a.modDivide(CIPHERTEXT_EPRIME.a,
 				BIGINT_P);
 		CivitasBigInteger e = CIPHERTEXT_E.b.modDivide(CIPHERTEXT_EPRIME.b,
 				BIGINT_P);
 
-		assertEquals(proof.g1, d);
-		assertEquals(proof.g2, e);
+		assertEquals(proof.g1(), d);
+		assertEquals(proof.g2(), e);
 		assertTrue(verifyPETDecommitment.apply(PET_DECOMMITMENT, PET_COMMITMENT,
 				EL_GAMAL_PARAMETERS, CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 	}

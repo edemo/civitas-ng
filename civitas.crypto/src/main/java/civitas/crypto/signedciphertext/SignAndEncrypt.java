@@ -24,15 +24,15 @@ public class SignAndEncrypt {
 
 	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, CryptMessage msg,
 			ElGamalReencryptFactor r, byte[] additionalEnv) {
-		ElGamalParameters ps = key.params;
-		CivitasBigInteger m = msg.getM();
-		CivitasBigInteger rr = r.r;
-		CivitasBigInteger s = cryptoBase.generateRandomElement(ps.q);
-		CivitasBigInteger a = ps.g.modPow(rr, ps.p);
-		CivitasBigInteger b = m.modMultiply(key.y.modPow(rr, ps.p), ps.p);
+		ElGamalParameters ps = key.params();
+		CivitasBigInteger m = msg.m();
+		CivitasBigInteger rr = r.r();
+		CivitasBigInteger s = cryptoBase.generateRandomElement(ps.q());
+		CivitasBigInteger a = ps.g().modPow(rr, ps.p());
+		CivitasBigInteger b = m.modMultiply(key.y().modPow(rr, ps.p()), ps.p());
 		CivitasBigInteger c = cryptoHash
-				.apply(ps.g.modPow(s, ps.p), a, b, additionalEnv).mod(ps.q);
-		CivitasBigInteger d = s.modAdd(c.modMultiply(rr, ps.q), ps.q);
+				.apply(ps.g().modPow(s, ps.p()), a, b, additionalEnv).mod(ps.q());
+		CivitasBigInteger d = s.modAdd(c.modMultiply(rr, ps.q()), ps.q());
 		return new ElGamalSignedCiphertext(a, b, c, d);
 	}
 

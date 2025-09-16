@@ -21,7 +21,7 @@ public class DecryptElGamalMessage {
 			final ElGamalCiphertextish ciphertext, final byte[] additionalEnv)
 			throws CryptoException {
 		ElGamalPrivateKey k = key;
-		ElGamalParameters ps = key.params;
+		ElGamalParameters ps = key.params();
 
 		if (ciphertext instanceof ElGamalSignedCiphertext && !verifyElGamalSignature
 				.apply(ps, (ElGamalSignedCiphertext) ciphertext, additionalEnv)) {
@@ -31,7 +31,7 @@ public class DecryptElGamalMessage {
 		ElGamalCiphertextish c = ciphertext;
 		CivitasBigInteger a = c.getA();
 		CivitasBigInteger b = c.getB();
-		CivitasBigInteger m = b.modDivide(a.modPow(k.x, ps.p), ps.p);
+		CivitasBigInteger m = b.modDivide(a.modPow(k.x(), ps.p()), ps.p());
 		return new ElGamalMsg(m);
 	}
 

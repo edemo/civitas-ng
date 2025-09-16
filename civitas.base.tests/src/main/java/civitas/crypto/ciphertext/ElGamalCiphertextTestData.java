@@ -11,9 +11,9 @@ public interface ElGamalCiphertextTestData extends ElgamalMsgTestData,
 		ElGamalPublicKeyTestData, ElGamalReencryptFactorTestData {
 
 	ElGamalCiphertext EL_GAMAL_CIPHERTEXT_ONE = new ElGamalCiphertext(ONE,
-			ONE_ENCODED.m);
+			ONE_ENCODED.m());
 	ElGamalCiphertext EL_GAMAL_CIPHERTEXT_TWO = new ElGamalCiphertext(TWO,
-			TWO_ENCODED.m);
+			TWO_ENCODED.m());
 
 	CivitasBigInteger CIPHERTEXT_E_A = BIGINT_G.modPow(FACTOR_E, BIGINT_P);
 	CivitasBigInteger CIPHERTEXT_E_B = MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED

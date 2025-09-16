@@ -8,14 +8,7 @@ package civitas.crypto.sharedkey;
 
 import javax.crypto.SecretKey;
 
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class SharedKey {
-	@NonNull
-	public final SecretKey k;
-	@NonNull
-	final String name;
-
+public record SharedKey(@NonNull SecretKey k, @NonNull String name) {
 }

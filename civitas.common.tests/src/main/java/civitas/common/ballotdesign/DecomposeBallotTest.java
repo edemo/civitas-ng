@@ -50,7 +50,7 @@ class DecomposeBallotTest extends RandomAwareTestBase
 
 				verify(decomposeBallot.constructProofVote).apply(EL_GAMAL_PARAMETERS,
 						ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(pos),
-						EL_GAMAL_1_OF_L_REENCRYPTION_MAP.get(BALLOT.matrix[pos]).m,
+						EL_GAMAL_1_OF_L_REENCRYPTION_MAP.get(BALLOT.matrix[pos]).m(),
 						CONTEXT_MAP.get(pos), ELGAMAL_REENCRYPT_FACTOR_E,
 						ELGAMAL_REENCRYPT_FACTOR_EPRIME);
 			}

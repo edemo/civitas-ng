@@ -14,7 +14,7 @@ public class SetUpDecodeMap {
 			ElGamalParameters params) {
 		Map<CivitasBigInteger, VoteChoice> map = new HashMap<>();
 		choices.forEach(x -> map.put(CivitasBigIntegerFactory.obtain(x.ordinal())
-				.modMultiply(params.g, params.p), x));
+				.modMultiply(params.g(), params.p()), x));
 		return map;
 	}
 

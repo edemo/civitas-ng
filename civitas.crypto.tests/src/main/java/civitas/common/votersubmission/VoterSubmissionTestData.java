@@ -22,8 +22,8 @@ public interface VoterSubmissionTestData extends VerifiableVoteTestData {
 			VOTER_BLOCK,
 			new VerifiableVote[] {
 					VERIFIABLE_VOTES[0],
-					new VerifiableVote(VERIFIABLE_VOTES[1].context,
-							VERIFIABLE_VOTES[1].encChoice, VERIFIABLE_VOTES[1].encCapability,
+					new VerifiableVote(VERIFIABLE_VOTES[1].context(),
+							VERIFIABLE_VOTES[1].encChoice(), VERIFIABLE_VOTES[1].encCapability(),
 							PROOF_VOTE_MAP.get(0)),
 					VERIFIABLE_VOTES[2] });
 

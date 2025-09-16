@@ -50,7 +50,7 @@ class ComputeWinnersFunctionalTest extends RandomAwareTestBase
 				.apply(candidates, winnerList);
 
 		List<String> cws = new ArrayList<>();
-		cloudWords.forEach(x -> cws.add(x.cdr + "," + x.car + ",#ffffff"));
+		cloudWords.forEach(x -> cws.add(x.cdr() + "," + x.car() + ",#ffffff"));
 		assertEquals(CLOUDWORDS_CSV, String.join("\n", cws));
 		String report = formatResult.apply(candidates, winnerList);
 		assertEquals(REPORT, report);

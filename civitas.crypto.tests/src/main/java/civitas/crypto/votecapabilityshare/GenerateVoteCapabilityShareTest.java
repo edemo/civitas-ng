@@ -19,6 +19,6 @@ class GenerateVoteCapabilityShareTest extends RandomAwareTestBase
 	@DisplayName("generates a vote capability share based on a random")
 	void test() throws CryptoException {
 		assertEquals(BIGINT_G.modPow(RANDOMS_0, BIGINT_P),
-				generateVoteCapabilityShare.apply(EL_GAMAL_PARAMETERS).m);
+				generateVoteCapabilityShare.apply(EL_GAMAL_PARAMETERS).m());
 	}
 }

@@ -33,8 +33,8 @@ class ConstructPETDecommitmentTest extends TestBase
 
 		PETDecommitment decommitment = constructPETDecommitment
 				.apply(EL_GAMAL_PARAMETERS, exponent, CIPHERTEXT_E, CIPHERTEXT_EPRIME);
-		assertEquals(di, decommitment.di);
-		assertEquals(ei, decommitment.ei);
+		assertEquals(di, decommitment.di());
+		assertEquals(ei, decommitment.ei());
 
 		verify(constructPETDecommitment.constructElGamalDiscLogEqualityProof).apply(
 				EL_GAMAL_PARAMETERS,

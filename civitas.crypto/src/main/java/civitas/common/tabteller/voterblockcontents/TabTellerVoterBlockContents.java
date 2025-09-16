@@ -6,13 +6,5 @@
  */
 package civitas.common.tabteller.voterblockcontents;
 
-import lombok.Data;
-
-@Data
-public class TabTellerVoterBlockContents {
-
-	public final int tellerIndex;
-	public final int voterBlock;
-	public final String hash;
-
+public record TabTellerVoterBlockContents(int tellerIndex, int voterBlock, String hash) {
 }

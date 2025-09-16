@@ -8,20 +8,8 @@ package civitas.crypto.publickey;
 
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-@Data
-@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
-@AllArgsConstructor
-public class ElGamalPublicKey {
-
-	@NonNull
-	public final CivitasBigInteger y;
-	@NonNull
-	public final ElGamalParameters params;
-
+public record ElGamalPublicKey(@NonNull CivitasBigInteger y,
+		@NonNull ElGamalParameters params) {
 }

@@ -20,7 +20,7 @@ public class ConstructPETShare {
 			return null;
 		}
 		ElGamalParameters params = prms;
-		CivitasBigInteger z = cryptoBase.generateRandomElement(params.q);
+		CivitasBigInteger z = cryptoBase.generateRandomElement(params.q());
 		return new PETShare(a, b, z);
 	}
 

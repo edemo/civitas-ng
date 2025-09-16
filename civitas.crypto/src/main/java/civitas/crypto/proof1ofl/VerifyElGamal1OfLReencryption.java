@@ -15,8 +15,8 @@ public class VerifyElGamal1OfLReencryption {
 
 	public boolean apply(ElGamal1OfLReencryption that, ElGamalPublicKey pubKey,
 			CiphertextList ciphertexts, int l) {
-		return verifyElGamalProof1OfLC.apply(that.proof, pubKey, ciphertexts, l,
-				that.m);
+		return verifyElGamalProof1OfLC.apply(that.proof(), pubKey, ciphertexts, l,
+				that.m());
 	}
 
 }

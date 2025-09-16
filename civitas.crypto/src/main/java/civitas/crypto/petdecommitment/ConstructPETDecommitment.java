@@ -20,11 +20,11 @@ public class ConstructPETDecommitment {
 		ElGamalParameters params = p;
 
 		CivitasBigInteger zi = exponent;
-		CivitasBigInteger d = ciphertext1.a.modDivide(ciphertext2.a, params.p);
-		CivitasBigInteger e = ciphertext1.b.modDivide(ciphertext2.b, params.p);
+		CivitasBigInteger d = ciphertext1.a.modDivide(ciphertext2.a, params.p());
+		CivitasBigInteger e = ciphertext1.b.modDivide(ciphertext2.b, params.p());
 
-		CivitasBigInteger di = d.modPow(zi, params.p);
-		CivitasBigInteger ei = e.modPow(zi, params.p);
+		CivitasBigInteger di = d.modPow(zi, params.p());
+		CivitasBigInteger ei = e.modPow(zi, params.p());
 
 		ElGamalProofDiscLogEquality proof = constructElGamalDiscLogEqualityProof
 				.apply(params, d, e, zi);
