@@ -25,7 +25,7 @@ public class TestUtil {
 		Class<?>[] types = new Class<?>[params.length];
 
 		for (int i = 0; i < types.length; i++) {
-			Class<? extends Object> cl = params[i].getClass();
+			Class<?> cl = params[i].getClass();
 			types[i] = cl;
 		}
 		try {
