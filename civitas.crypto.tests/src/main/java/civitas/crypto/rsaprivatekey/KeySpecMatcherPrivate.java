@@ -7,7 +7,7 @@ import org.mockito.ArgumentMatcher;
 
 public class KeySpecMatcherPrivate
 		implements ArgumentMatcher<PKCS8EncodedKeySpec> {
-	private PKCS8EncodedKeySpec spec;
+	private final PKCS8EncodedKeySpec spec;
 
 	public KeySpecMatcherPrivate(PKCS8EncodedKeySpec keyspecPrivate) {
 		this.spec = keyspecPrivate;

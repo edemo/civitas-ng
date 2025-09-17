@@ -23,8 +23,8 @@ public class CryptoBase implements Constants {
 	public SecretKeyFactory sharedKeyFactory;
 	public KeyFactory publicKeyFactory;
 	public Signature rsaSigner;
-	private GetPublicKeyGenerator getPublicKeyGenerator;
-	private GetSharedKeyGenerator getSharedKeyGenerator;
+	private final GetPublicKeyGenerator getPublicKeyGenerator;
+	private final GetSharedKeyGenerator getSharedKeyGenerator;
 
 	public CryptoBase() {
 		BouncyCastleProvider bc = new BouncyCastleProvider();

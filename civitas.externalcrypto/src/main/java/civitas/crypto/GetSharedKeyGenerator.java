@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.crypto.KeyGenerator;
 
 class GetSharedKeyGenerator {
-	private Map<String, KeyGenerator> sharedKeyGenerators = new HashMap<>();
+	private final Map<String, KeyGenerator> sharedKeyGenerators = new HashMap<>();
 
 	public KeyGenerator apply(int keyLength) {
 		String genKey = String.valueOf(keyLength);

@@ -6,7 +6,7 @@ import java.util.Arrays;
 import org.mockito.ArgumentMatcher;
 
 public class KeySpecMatcher implements ArgumentMatcher<X509EncodedKeySpec> {
-	private X509EncodedKeySpec spec;
+	private final X509EncodedKeySpec spec;
 
 	public KeySpecMatcher(X509EncodedKeySpec spec) {
 		this.spec = spec;

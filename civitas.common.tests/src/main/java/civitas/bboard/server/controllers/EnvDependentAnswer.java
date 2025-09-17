@@ -10,7 +10,7 @@ import civitas.common.RandomAwareTestBase;
 
 public class EnvDependentAnswer<T> implements Answer<T> {
 
-	private Map<EnvironmentState, AnswerOrThrowable<T>> answer;
+	private final Map<EnvironmentState, AnswerOrThrowable<T>> answer;
 
 	public EnvDependentAnswer(
 			Map<EnvironmentState, AnswerOrThrowable<T>> answer) {
