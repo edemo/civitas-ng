@@ -16,7 +16,7 @@ public interface VoteCapabilityTestData
 			.map(x -> new VoteCapability(BIGINT_G.modPow(x, BIGINT_P))).toList();
 
 	Map<String, VoteCapability> CAPABILITY_MAP = Map.of(CONTEXT_0,
-			VOTE_CAPABILITIES.get(0), CONTEXT_1, VOTE_CAPABILITIES.get(1), CONTEXT_2,
+			VOTE_CAPABILITIES.getFirst(), CONTEXT_1, VOTE_CAPABILITIES.get(1), CONTEXT_2,
 			VOTE_CAPABILITIES.get(2));
 
 }

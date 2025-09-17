@@ -11,7 +11,7 @@ import civitas.common.ballotdesign.BallotDesignTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 import io.github.magwas.testing.TestBase;
 
-public class VerifyElGamalSignatureTest extends TestBase
+class VerifyElGamalSignatureTest extends TestBase
 		implements ElGamalSignedCiphertextTestData, BallotDesignTestData {
 	@InjectMocks
 	VerifyElGamalSignature verifyElGamalSignature;

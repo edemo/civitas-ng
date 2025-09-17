@@ -12,7 +12,7 @@ public class GetRestTemplate {
 	@Autowired
 	RestTemplateBuilder restTemplateBuilder;
 
-	RestTemplate restTemplate = null;
+	RestTemplate restTemplate;
 
 	public RestTemplate apply() {
 		if (null == restTemplate) {

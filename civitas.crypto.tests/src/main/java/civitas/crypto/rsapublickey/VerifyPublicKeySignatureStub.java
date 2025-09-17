@@ -11,15 +11,14 @@ import org.bouncycastle.crypto.CryptoException;
 
 import civitas.bboard.common.BBPostTestData;
 import civitas.common.electoralroll.ElectoralRollCapabilitySharesTestData;
-import civitas.crypto.CryptoError;
 import civitas.crypto.signature.SignatureTestData;
 
 public class VerifyPublicKeySignatureStub
 		implements BBPostTestData, PublicKeyTestData,
 		ElectoralRollCapabilitySharesTestData, SignatureTestData {
 	public static VerifyPublicKeySignature stub()
-			throws NoSuchAlgorithmException, InvalidKeySpecException, CryptoError,
-			UnsupportedEncodingException, CryptoException {
+			throws NoSuchAlgorithmException, InvalidKeySpecException,
+            UnsupportedEncodingException, CryptoException {
 		VerifyPublicKeySignature mock = mock(VerifyPublicKeySignature.class);
 		when(mock.apply(BBPOST.sig, ELECTORAL_ROLL_CAPABILITY_SHARES_XML_HASH))
 				.thenReturn(true);

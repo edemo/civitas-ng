@@ -9,7 +9,7 @@ import org.mockito.InjectMocks;
 import civitas.util.BasicValuesTestData;
 import io.github.magwas.testing.TestBase;
 
-public class ConvertToBase64Test extends TestBase
+class ConvertToBase64Test extends TestBase
 		implements BasicValuesTestData {
 
 	@InjectMocks

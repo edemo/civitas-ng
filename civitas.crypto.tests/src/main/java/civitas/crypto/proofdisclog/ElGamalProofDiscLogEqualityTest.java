@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-public class ElGamalProofDiscLogEqualityTest extends RandomAwareTestBase
+class ElGamalProofDiscLogEqualityTest extends RandomAwareTestBase
 		implements ElGamalProofDiscLogEqualityTestData {
 
 	@InjectMocks

@@ -10,7 +10,7 @@ import civitas.common.CommonUtil;
 import civitas.common.RandomAwareTestBase;
 import civitas.crypto.parameters.ElGamalParametersTestData;
 
-public class GenerateElGamalKeyPairTest extends RandomAwareTestBase
+class GenerateElGamalKeyPairTest extends RandomAwareTestBase
 		implements ElGamalParametersTestData {
 
 	@InjectMocks

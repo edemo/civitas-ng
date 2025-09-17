@@ -23,7 +23,7 @@ public interface VerifiableVoteTestData
 
 	Map<Integer, VerifiableVote> VERIFIABLE_VOTE_MAP = ConstructTestData
 			.constructTestData(VOTE_PIECES,
-					(piece) -> new VerifiableVote(CONTEXT_MAP.get(piece),
+                    piece -> new VerifiableVote(CONTEXT_MAP.get(piece),
 							EL_GAMAL_1_OF_L_REENCRYPTION_MAP.get(BALLOT.matrix[piece]),
 							ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(piece),
 							PROOF_VOTE_MAP.get(piece)));

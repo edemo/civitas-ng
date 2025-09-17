@@ -25,7 +25,6 @@ import civitas.common.Configuration;
 import civitas.common.ServerRole;
 import civitas.common.election.ElectionDetails;
 import civitas.common.election.ElectionStatus;
-import civitas.crypto.CryptoError;
 import civitas.crypto.rsapublickey.ConvertStringToPublicKey;
 import jakarta.xml.bind.JAXBException;
 
@@ -44,12 +43,13 @@ public class RequestParticipationController implements CommonConstants {
 	Configuration configuration;
 
 	@PostMapping("/requestParticipation")
-	public @ResponseBody String apply(
+    @ResponseBody
+    public String apply(
 			@RequestBody RequestParticipationDTO participationRequest)
 			throws UnrecoverableKeyException, InvalidKeyException, KeyStoreException,
 			NoSuchAlgorithmException, CertificateException, NoSuchProviderException,
-			SignatureException, JAXBException, IOException, CryptoError,
-			CommunicableException, InvalidKeySpecException, CryptoException {
+			SignatureException, JAXBException, IOException,
+            CommunicableException, InvalidKeySpecException, CryptoException {
 		if (participationRequest == null
 				|| participationRequest.electionID == null) {
 			return null;
@@ -68,8 +68,8 @@ public class RequestParticipationController implements CommonConstants {
 				.apply(participationRequest.supervisorPubkey);
 		String boardId = newBoardController.apply(supervisorPubKey);
 		int myIndex = participationRequest.tellerDetails.stream()
-				.map(host -> (host.getRole().equals(ServerRole.BBS)
-						&& host.getUrlbase().equals(configuration.urlBase)))
+				.map(host -> host.getRole().equals(ServerRole.BBS)
+						&& host.getUrlbase().equals(configuration.urlBase))
 				.toList().indexOf(true);
 		ElectionCache electionCache = new ElectionCache(boardId, myIndex,
 				ElectionStatus.DEFINED, electionDetails);

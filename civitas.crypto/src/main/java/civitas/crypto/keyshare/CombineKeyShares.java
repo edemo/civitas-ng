@@ -14,9 +14,9 @@ public class CombineKeyShares implements Constants {
 	@Autowired
 	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
-	public ElGamalPublicKey apply(ElGamalKeyShare[] shares)
+	public ElGamalPublicKey apply(ElGamalKeyShare... shares)
 			throws CryptoException {
-		if (shares == null) {
+		if (shares.length == 0) {
 			return null;
 		}
 		CivitasBigInteger accum = ONE;

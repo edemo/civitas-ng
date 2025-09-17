@@ -1,8 +1,5 @@
 package civitas.functionaltests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPublicKey;
 
@@ -24,10 +21,12 @@ import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 import civitas.util.BasicValuesTestData;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-public class CryptoFactoryFunctionalTest extends RandomAwareTestBase
+class CryptoFactoryFunctionalTest extends RandomAwareTestBase
 		implements PrivateKeyTestData, BasicValuesTestData {
 
 	@Autowired
@@ -54,7 +53,7 @@ public class CryptoFactoryFunctionalTest extends RandomAwareTestBase
 
 		KeyPairGenerator generator = cryptoBase.getPublicKeyGenerator(KEYSIZE);
 		KeyPairGenerator generator2 = cryptoBase.getPublicKeyGenerator(KEYSIZE);
-		assertTrue(generator == generator2);
+        assertSame(generator, generator2);
 
 	}
 
@@ -75,7 +74,7 @@ public class CryptoFactoryFunctionalTest extends RandomAwareTestBase
 
 		KeyGenerator generator = cryptoBase.getSharedKeyGenerator(KEYSIZE);
 		KeyGenerator generator2 = cryptoBase.getSharedKeyGenerator(KEYSIZE);
-		assertTrue(generator == generator2);
+        assertSame(generator, generator2);
 
 	}
 

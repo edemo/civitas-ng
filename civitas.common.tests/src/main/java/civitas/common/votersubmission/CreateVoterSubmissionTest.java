@@ -26,7 +26,7 @@ class CreateVoterSubmissionTest extends RandomAwareTestBase
 	@DisplayName("if the votes are null, an IllegalArgumentException is thrown")
 	void test1() {
 		assertThrows(IllegalArgumentException.class,
-				() -> createVoterSubmission.apply(VOTER_BLOCK, null));
+				() -> createVoterSubmission.apply(VOTER_BLOCK));
 	}
 
 }

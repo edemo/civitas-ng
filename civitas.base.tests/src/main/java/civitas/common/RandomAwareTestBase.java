@@ -8,6 +8,7 @@ public class RandomAwareTestBase extends TestBase {
 	public static EnvironmentState state;
 
 	@BeforeEach
+	@Override
 	public void setUp() throws Throwable {
 		super.setUp();
 		state = EnvironmentState.NORMAL;

@@ -19,12 +19,14 @@ public class RestTemplateResponseErrorHandler implements ResponseErrorHandler {
 
 	@Override
 	public void handleError(ClientHttpResponse httpResponse) throws IOException {
-		InputStream body = httpResponse.getBody();
-		InputStreamReader inputStreamReader = new InputStreamReader(body);
-		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-		String content = bufferedReader.lines().reduce(String::concat).get();
-		inputStreamReader.close();
-		bufferedReader.close();
+		String content;
+
+		try (InputStream body = httpResponse.getBody();
+				InputStreamReader inputStreamReader = new InputStreamReader(body);
+				BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
+			content = bufferedReader.lines().reduce(String::concat).get();
+		}
+
 		throw new Error(httpResponse.getStatusCode() + ":" + content);
 	}
 }

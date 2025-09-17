@@ -1,8 +1,6 @@
 package civitas.crypto.publickey;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
@@ -14,7 +12,7 @@ import org.mockito.InjectMocks;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import io.github.magwas.testing.TestBase;
 
-public class ElGamalPublicKeyIsAuthorizedTest extends TestBase
+class ElGamalPublicKeyIsAuthorizedTest extends TestBase
 		implements ElGamalPublicKeyTestData {
 
 	@InjectMocks
@@ -53,15 +51,13 @@ public class ElGamalPublicKeyIsAuthorizedTest extends TestBase
 	@DisplayName("not equals to other key with different y but same parameters "
 			+ "FIXME original code did not test for y")
 	void equalsTest2() throws IOException {
-		assertFalse(EL_GAMAL_PUBLIC_KEY_EPRIME
-				.equals(new ElGamalPublicKey(BIGINT_B, EL_GAMAL_PARAMETERS)));
+        assertNotEquals(EL_GAMAL_PUBLIC_KEY_EPRIME, new ElGamalPublicKey(BIGINT_B, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("not equals to anything not ElGamalPublicKeyC")
 	void equalsTest3() throws IOException {
-		assertFalse(
-				EL_GAMAL_PUBLIC_KEY_EPRIME.equals(mock(ElGamalPublicKey.class)));
+        assertNotEquals(EL_GAMAL_PUBLIC_KEY_EPRIME, mock(ElGamalPublicKey.class));
 	}
 
 }

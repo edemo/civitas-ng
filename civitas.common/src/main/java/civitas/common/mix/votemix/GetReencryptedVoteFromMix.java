@@ -18,7 +18,7 @@ public class GetReencryptedVoteFromMix {
 	public EncryptedVote apply(@Nonnull VoteMix that, int i,
 			@Nonnull ElGamalReencryptFactor choiceFactor,
 			@Nonnull ElGamalReencryptFactor capabilityFactor,
-			@Nonnull ElGamalPublicKey key) throws IndexOutOfBoundsException {
+			@Nonnull ElGamalPublicKey key) {
 		if (null == choiceFactor || null == capabilityFactor || null == key) {
 			throw new NullPointerException();
 		}

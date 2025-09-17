@@ -9,7 +9,7 @@ import org.mockito.InjectMocks;
 import civitas.crypto.petshare.PETShareTestData;
 import io.github.magwas.testing.TestBase;
 
-public class ConstructPETCommitmentTest extends TestBase
+class ConstructPETCommitmentTest extends TestBase
 		implements PETShareTestData, PETCommitmentTestData {
 	@InjectMocks
 	ConstructPETCommitment constructPETCommitment;

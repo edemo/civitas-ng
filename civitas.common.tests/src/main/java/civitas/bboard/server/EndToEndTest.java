@@ -90,16 +90,15 @@ class EndToEndTest implements BulletinBoardTestData, BBPostTestData,
 		String url = urlBase + "/boards/" + boardId;
 		Long actual = getRestTemplate.apply().postForObject(url, createPostDTO(),
 				Long.class);
-		Long endTime = System.currentTimeMillis();
+		long endTime = System.currentTimeMillis();
 		assertTrue(actual >= startTime && actual <= endTime);
 	}
 
 	public PostDTO createPostDTO() throws CryptoException {
 		Signature signature = signWithPublicKey.apply(supervisorPriv, supervisorPub,
 				BOARD_CLOSED_CONTENT_COMMITMENT_XML.getBytes());
-		PostDTO postDTO = new PostDTO(BoardClosedContentCommitmentMETA,
+		return new PostDTO(BoardClosedContentCommitmentMETA,
 				BOARD_CLOSED_CONTENT_COMMITMENT_XML, signature);
-		return postDTO;
 	}
 
 	public RequestParticipationDTO createRequestParticipationDTO() {
@@ -110,8 +109,7 @@ class EndToEndTest implements BulletinBoardTestData, BBPostTestData,
 						"https://localhost:" + port + "/", keyStrings.get("tabteller")),
 				new ServerHost(ServerRole.REGISTRATION_TELLER,
 						"https://localhost:" + port + "/", keyStrings.get("regteller")));
-		RequestParticipationDTO requestParticipationDTO = RequestParticipationDTO
-				.builder().electionID(ELECTION_ID_STRING)
+		return RequestParticipationDTO.builder().electionID(ELECTION_ID_STRING)
 				.supervisorPubkey(PUBLIC_KEY_BASE64).registrarPubKey(PUBLIC_KEY2_BASE64)
 				.name(ELECTION_NAME).description(ELECTION_DESCRIPTION)
 				.version(VERSIONSTRING).ballotDesign(BALLOTDESIGN).startTime(START_TIME)
@@ -119,7 +117,6 @@ class EndToEndTest implements BulletinBoardTestData, BBPostTestData,
 				.elGamalQ(BIGINT_Q.i).elGamalG(BIGINT_G.i).sharedKeyLength(KEYSIZE)
 				.nonceLength(NONCE_LENGTH).voterAnonymityParam(BLOCKSIZE)
 				.tellerDetails(tellerDetails).build();
-		return requestParticipationDTO;
 	}
 
 	public void getTestKeys()

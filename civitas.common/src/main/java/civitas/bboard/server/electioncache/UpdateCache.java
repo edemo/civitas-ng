@@ -23,14 +23,13 @@ public class UpdateCache {
 			throws JAXBException, IOException {
 
 		Optional<ElectionCache> cachep = electionCacheRepository.findById(bbid);
-		ElectionCache cache;
 		if (!cachep.isPresent()) {
 			throw new IllegalArgumentException("no cache");
 		}
 
-		cache = cachep.get();
+		ElectionCache cache = cachep.get();
 
-		if (meta.equals(CommonConstants.ElectionEventMETA)) {
+		if (CommonConstants.ElectionEventMETA.equals(meta)) {
 			ElectionEvent e = convertFromXml.apply(mesg, ElectionEvent.class);
 			if (ElectionEvent.EVENT_KIND_FINALIZE.equals(e.getKind())) {
 				// FIXME: tally

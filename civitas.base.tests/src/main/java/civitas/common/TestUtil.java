@@ -8,6 +8,8 @@ import civitas.util.CivitasBigInteger;
 
 public class TestUtil {
 
+	static int n = 0;
+
 	public static void fakeRandomToArray(InvocationOnMock invocation,
 			CivitasBigInteger random) {
 		byte[] array = invocation.getArgument(0);
@@ -15,19 +17,15 @@ public class TestUtil {
 		byte[] aBytes = random.toByteArray();
 		int diff = aBytes.length - array.length;
 		for (int i = 0; i < array.length; i++) {
-			try {
-				array[i] = aBytes[i + diff];
-			} catch (ArrayIndexOutOfBoundsException e) {
-				throw e;
-			}
+			array[i] = aBytes[i + diff];
 		}
 	}
 
 	public static <T> T construct(Class<T> klass, Object... params) {
-		Class<? extends Object>[] types = new Class<?>[params.length];
+		Class<?>[] types = new Class<?>[params.length];
 
 		for (int i = 0; i < types.length; i++) {
-			Class<? extends Object> cl = params[i].getClass();
+			Class<?> cl = params[i].getClass();
 			types[i] = cl;
 		}
 		try {
@@ -37,11 +35,9 @@ public class TestUtil {
 		}
 	}
 
-	static int n = 0;
-
 	public static Function<CivitasBigInteger, CivitasBigInteger> pick(int mod) {
 		n = 0;
-		return (s) -> {
+		return s -> {
 			if (n < 8 && mod == n++ % 2) {
 				return s;
 			} else {

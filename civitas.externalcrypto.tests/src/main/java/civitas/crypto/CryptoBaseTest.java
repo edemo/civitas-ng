@@ -114,7 +114,7 @@ class CryptoBaseTest extends TestBase
 	@DisplayName("we can obtain a probable prime with a given bit length,"
 			+ "and it probably is indeed a prime with the given bit length")
 	void test1() {
-		IntStream.range(0, RANDOM_RUNS).forEach((n) -> {
+		IntStream.range(0, RANDOM_RUNS).forEach(n -> {
 			CivitasBigInteger prime = cryptoBase.obtainProbablePrime(BITLENGTH);
 			assertEquals(BITLENGTH, prime.bitLength());
 			assertTrue(prime.isProbablePrime(CERTAINTY));
@@ -126,7 +126,7 @@ class CryptoBaseTest extends TestBase
 	@DisplayName("we can generate a random element for Q which is less than Q and "
 			+ "their bit lengths are similar")
 	void testGenerate() {
-		IntStream.range(0, RANDOM_RUNS).forEach((n) -> {
+		IntStream.range(0, RANDOM_RUNS).forEach(n -> {
 			CivitasBigInteger element = cryptoBase.generateRandomElement(BIGINT_A);
 			assertTrue(element.compareTo(BIGINT_A) <= 0);
 			assertTrue(BIGINT_A.bitLength() >= element.bitLength());
@@ -156,8 +156,8 @@ class CryptoBaseTest extends TestBase
 		for (byte element : bytes) {
 			int current = element;
 			for (int j = 0; j < 8; j++) {
-				int isOne = (current & 1);
-				current = (current >>> 1);
+				int isOne = current & 1;
+				current = current >>> 1;
 				if (1 == isOne) {
 					sum++;
 				} else {
@@ -165,7 +165,7 @@ class CryptoBaseTest extends TestBase
 				}
 			}
 		}
-		double S = Math.abs(sum) / Math.sqrt(bytes.length * 8) / Math.sqrt(2);
-		assertTrue(S < 1.82, "S=" + S);
+		double s = Math.abs(sum) / Math.sqrt(bytes.length * 8) / Math.sqrt(2);
+		assertTrue(s < 1.82, "S=" + s);
 	}
 }

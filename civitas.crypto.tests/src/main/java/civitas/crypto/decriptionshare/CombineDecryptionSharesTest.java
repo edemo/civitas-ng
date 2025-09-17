@@ -11,15 +11,18 @@ import civitas.crypto.msg.ElGamalMsg;
 import civitas.util.CivitasBigInteger;
 import io.github.magwas.testing.TestBase;
 
-public class CombineDecryptionSharesTest extends TestBase
+class CombineDecryptionSharesTest extends TestBase
 		implements ElGamalDecryptionShareTestData, ElGamalCiphertextTestData {
 
 	@InjectMocks
 	CombineDecryptionShares combineDecryptionShares;
 
 	@Test
-	@DisplayName("Creates a message containing the combination of the ciphertext and the shares"
-			+ "		prod = prod(ai[i] i= 1..n) (mod p)\n" + "		m = c.b/prod (mod p)\n")
+	@DisplayName("""
+			Creates a message containing the combination of the ciphertext and the shares
+			    prod = prod(ai[i] i= 1..n) (mod p)
+			    m = c.b/prod (mod p)
+			""")
 	void test() {
 
 		CivitasBigInteger m = CIPHERTEXT_E.b.modDivide(EL_GAMAL_DECRYPTION_SHARE_AI

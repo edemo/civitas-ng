@@ -1,7 +1,8 @@
 package civitas.common;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -28,7 +29,7 @@ public class GetPrivateKey {
 		if (null == keyCache.get(serverKeyEntry)) {
 			char[] pwdArray = storePassword.toCharArray();
 			KeyStore store = KeyStore.getInstance("JKS");
-			store.load(new FileInputStream(storeFile), pwdArray);
+			store.load(Files.newInputStream(Paths.get(storeFile)), pwdArray);
 			keyCache.put(serverKeyEntry, (PrivateKey) store.getKey(serverKeyEntry, pwdArray));
 		}
 		return keyCache.get(serverKeyEntry);

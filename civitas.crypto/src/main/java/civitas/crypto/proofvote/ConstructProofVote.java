@@ -29,13 +29,13 @@ public class ConstructProofVote {
 
 		CivitasBigInteger r1 = cryptoBase.generateRandomElement(params.q);
 		CivitasBigInteger r2 = cryptoBase.generateRandomElement(params.q);
-		List<CivitasBigInteger> E = calculateProofEnvironment.apply(params,
+		List<CivitasBigInteger> e = calculateProofEnvironment.apply(params,
 				encCapability, encChoice, context);
-		E.add(params.g.modPow(r1, params.p));
-		E.add(params.g.modPow(r2, params.p));
+		e.add(params.g.modPow(r1, params.p));
+		e.add(params.g.modPow(r2, params.p));
 
 		CivitasBigInteger c = CivitasBigIntegerFactory
-				.obtain(1, cryptoHash.apply(E)).mod(params.q);
+				.obtain(1, cryptoHash.apply(e)).mod(params.q);
 		CivitasBigInteger s1 = r1.modSubtract(c.modMultiply(alpha1.r, params.q),
 				params.q);
 		CivitasBigInteger s2 = r2.modSubtract(c.modMultiply(alpha2.r, params.q),

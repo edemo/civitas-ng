@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import civitas.util.BasicValuesTestData;
 import io.github.magwas.testing.TestBase;
 
-public class GenerateRandomIntTest extends TestBase
+class GenerateRandomIntTest extends TestBase
 		implements BasicValuesTestData {
 	@InjectMocks
 	GenerateRandomInt generateRandomInt;

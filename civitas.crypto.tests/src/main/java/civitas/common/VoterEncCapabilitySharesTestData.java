@@ -9,7 +9,7 @@ public interface VoterEncCapabilitySharesTestData extends TellerTestData,
 		BulletinBoardTestData, ElGamalCiphertextListTestData, BallotTestData {
 	VoterEncCapabilityShares VOTER_ENC_CAPABILITY_SHARE = new VoterEncCapabilityShares(
 			TELLER_INDEX, BULLETIN_BOARD_ID, VOTER_BLOCK, POSTED_CAPABILITIES);
-	VoterEncCapabilityShares[] VOTER_ENC_CAPABILITY_SHARES = new VoterEncCapabilityShares[] {
+	VoterEncCapabilityShares[] VOTER_ENC_CAPABILITY_SHARES = {
 			VOTER_ENC_CAPABILITY_SHARE };
 
 }

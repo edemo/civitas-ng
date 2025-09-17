@@ -20,15 +20,15 @@ public class CalculateProofEnvironment {
 	public List<CivitasBigInteger> apply(ElGamalParameters params,
 			ElGamalCiphertextish encCapability, ElGamalCiphertextish encChoice,
 			String context) {
-		List<CivitasBigInteger> E = new LinkedList<>();
-		E.add(params.g);
-		E.add(encCapability.getA());
-		E.add(encCapability.getB());
-		E.add(encChoice.getA());
-		E.add(encChoice.getB());
-		E.add(CivitasBigIntegerFactory.obtain(1,
+		List<CivitasBigInteger> e = new LinkedList<>();
+		e.add(params.g);
+		e.add(encCapability.getA());
+		e.add(encCapability.getB());
+		e.add(encChoice.getA());
+		e.add(encChoice.getB());
+		e.add(CivitasBigIntegerFactory.obtain(1,
 				cryptoHash.apply(context.getBytes())));
-		return E;
+		return e;
 	}
 
 }

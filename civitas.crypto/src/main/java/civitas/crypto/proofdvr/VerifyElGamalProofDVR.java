@@ -20,13 +20,12 @@ public class VerifyElGamalProofDVR {
 	@Autowired
 	ConvertHashToBigInt convertHashToBigInt;
 
-	public boolean apply(ElGamalProofDVR that, ElGamalPublicKey K,
+	public boolean apply(ElGamalProofDVR that, ElGamalPublicKey key,
 			ElGamalPublicKey verifierKey) {
 
-		ElGamalParameters ps = K.params;
-		ElGamalPublicKey key = K;
+		ElGamalParameters ps = key.params;
 
-		CivitasBigInteger hv = verifierKey.y;
+        CivitasBigInteger hv = verifierKey.y;
 		CivitasBigInteger h = key.y;
 		CivitasBigInteger x = that.e.getA();
 		CivitasBigInteger y = that.e.getB();

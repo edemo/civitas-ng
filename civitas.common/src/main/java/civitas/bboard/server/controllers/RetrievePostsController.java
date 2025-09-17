@@ -23,8 +23,7 @@ public class RetrievePostsController {
 			throws IOException {
 		getBoardForId.apply(bbid, true);
 
-		Iterable<BBPost> posts = bBPostRepository.findByBbid(bbid);
-		return posts;
+        return bBPostRepository.findByBbid(bbid);
 
 	}
 

@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import civitas.util.BasicValuesTestData;
 import io.github.magwas.testing.TestBase;
 
-public class CreateFreshNonceTest extends TestBase
+class CreateFreshNonceTest extends TestBase
 		implements BasicValuesTestData {
 
 	@InjectMocks

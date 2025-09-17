@@ -27,7 +27,7 @@ public class FormatResult {
 				winners.add(candidates[winner.candidate] + " (" + strength + ") ("
 						+ String.join(", ", beats) + ") ");
 			}
-			winResult.add("" + stagenum + ":\n\t" + String.join("\n\t", winners));
+			winResult.add(stagenum + ":\n\t" + String.join("\n\t", winners));
 		}
 		return String.join("\n", winResult);
 	}

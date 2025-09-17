@@ -11,7 +11,7 @@ import civitas.common.RandomAwareTestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 
-public class GenerateSafePrimeTest extends RandomAwareTestBase
+class GenerateSafePrimeTest extends RandomAwareTestBase
 		implements Constants, ElGamalParametersTestData, PrivateKeyTestData {
 
 	@InjectMocks

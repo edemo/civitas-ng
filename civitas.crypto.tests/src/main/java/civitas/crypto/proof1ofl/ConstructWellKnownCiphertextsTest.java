@@ -20,11 +20,13 @@ class ConstructWellKnownCiphertextsTest extends TestBase
 	ConstructWellKnownCiphertexts constructWellKnownCiphertexts;
 
 	@Test
-	@DisplayName("generates a ciphertext list using the public key and the count\n"
-			+ "for each number from 1 to n:"
-			+ "- encodes the number: n -> g^n mod p\n"
-			+ "- encrypts it using the public key\n"
-			+ "and returns the list of the results")
+	@DisplayName("""
+			generates a ciphertext list using the public key and the count
+			for each number from 1 to n:
+			- encodes the number: n -> g^n mod p
+			- encrypts it using the public key
+			and returns the list of the results
+			""")
 	void test() throws CryptoException {
 
 		assertEquals(CIPHERTEXTLIST_TWO_LONG,

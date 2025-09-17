@@ -11,7 +11,7 @@ import civitas.crypto.CryptoException;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShareTestData;
 import io.github.magwas.testing.TestBase;
 
-public class EncodeMessageTest extends TestBase
+class EncodeMessageTest extends TestBase
 		implements VoteCapabilityShareTestData {
 	@InjectMocks
 	EncodeMessage encodeMessage;

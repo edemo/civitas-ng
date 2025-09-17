@@ -28,7 +28,7 @@ public interface ElGamalCiphertextListTestData
 	CiphertextList CIPHERTEXTLIST = new CiphertextList(
 			List.of(CIPHERTEXT_E, CIPHERTEXT_EPRIME));
 
-	public static final int NO_OF_WELL_KNOWN_CIPHERTEXTS = 4;
+	int NO_OF_WELL_KNOWN_CIPHERTEXTS = 4;
 
 	CiphertextList CIPHERTEXT_LIST = new CiphertextList(IntStream
 			.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS)

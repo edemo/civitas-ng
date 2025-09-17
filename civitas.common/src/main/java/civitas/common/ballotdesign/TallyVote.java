@@ -24,10 +24,7 @@ public class TallyVote implements CommonConstants {
 
 	public void apply(String additionalcontext, ElGamalMsg msg,
 			String currentcontext, TallyState state,
-			Map<CivitasBigInteger, VoteChoice> decodeMap)
-			throws IllegalArgumentException
-
-	{
+			Map<CivitasBigInteger, VoteChoice> decodeMap) {
 
 		String desiredContext = additionalcontext + KIND;
 		if (currentcontext == null || !currentcontext.startsWith(desiredContext)) {

@@ -11,7 +11,7 @@ import civitas.crypto.ciphertextlist.ElGamalCiphertextListTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactorTestData;
 import io.github.magwas.testing.TestBase;
 
-public class ConstructElGamal1OfLReencryptionTest extends TestBase
+class ConstructElGamal1OfLReencryptionTest extends TestBase
 		implements ElGamal1OfLReencryptionTestData, ElGamalCiphertextListTestData,
 		ElGamalReencryptFactorTestData {
 

@@ -9,7 +9,7 @@ import org.mockito.InjectMocks;
 
 import io.github.magwas.testing.TestBase;
 
-public class VerifyElGamalProofDVRTest extends TestBase
+class VerifyElGamalProofDVRTest extends TestBase
 		implements ElGamalProofDVRTestData {
 
 	@InjectMocks

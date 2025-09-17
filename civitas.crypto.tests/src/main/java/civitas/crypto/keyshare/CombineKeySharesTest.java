@@ -1,7 +1,6 @@
 package civitas.crypto.keyshare;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +12,7 @@ import civitas.crypto.keys.ElGamalKeyShareTestData;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import io.github.magwas.testing.TestBase;
 
-public class CombineKeySharesTest extends TestBase
+class CombineKeySharesTest extends TestBase
 		implements ElGamalKeyShareTestData {
 
 	@InjectMocks
@@ -40,7 +39,7 @@ public class CombineKeySharesTest extends TestBase
 	@Test
 	@DisplayName("returns null if shares is null")
 	void test1() throws CryptoException {
-		assertEquals(null, combineKeyShares.apply(null));
+        assertNull(combineKeyShares.apply());
 	}
 
 	@Test

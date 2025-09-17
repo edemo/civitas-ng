@@ -4,20 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 
-import java.io.UnsupportedEncodingException;
-
 import org.bouncycastle.crypto.CryptoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
-import civitas.crypto.CryptoError;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 import civitas.crypto.signature.SignatureTestData;
 import civitas.util.BasicValuesTestData;
 import io.github.magwas.testing.TestBase;
 
-public class IsPublicKeyAuthorizedTest extends TestBase
+class IsPublicKeyAuthorizedTest extends TestBase
 		implements PublicKeyTestData, BasicValuesTestData, SignatureTestData,
 		PrivateKeyTestData {
 
@@ -25,12 +22,13 @@ public class IsPublicKeyAuthorizedTest extends TestBase
 	IsPublicKeyAuthorized isPublicKeyAuthorized;
 
 	@Test
-	@DisplayName("isAuthorized checks if the private key is belonging to the public key\n"
-			+ "- creates a new base64 nonce\n"
-			+ "- signs the nonce with the private key"
-			+ "- verifies that the signature is verifiable with the public key")
-	void test2()
-			throws UnsupportedEncodingException, CryptoException, CryptoError {
+	@DisplayName("""
+			isAuthorized checks if the private key is belonging to the public key
+			- creates a new base64 nonce
+			- signs the nonce with the private key
+			- verifies that the signature is verifiable with the public key
+			""")
+	void test2() throws CryptoException {
 		boolean actual = isPublicKeyAuthorized.apply(PUBLIC_KEY, PRIVATE_KEY);
 		verify(isPublicKeyAuthorized.createFreshNonceBase64)
 				.apply(AUTHENTICATION_NONCE_LENGTH);
@@ -43,8 +41,7 @@ public class IsPublicKeyAuthorizedTest extends TestBase
 
 	@Test
 	@DisplayName("isAuthorized is false for other private key")
-	void test2_2()
-			throws UnsupportedEncodingException, CryptoException, CryptoError {
+	void test2_2() throws CryptoException {
 		assertFalse(isPublicKeyAuthorized.apply(PUBLIC_KEY, PRIVATE_KEY2));
 	}
 

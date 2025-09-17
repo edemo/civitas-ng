@@ -6,7 +6,7 @@ import civitas.util.CivitasBigIntegerFactory;
 
 public interface ElgamalMsgTestData extends ElGamalParametersTestData {
 
-	public static final String VOTE = "3,(2,5),0,4,1";
+	String VOTE = "3,(2,5),0,4,1";
 
 	ElGamalMsg ONE_ENCODED = new ElGamalMsg(BIGINT_G.modPow(ONE, BIGINT_P));
 	ElGamalMsg TWO_ENCODED = new ElGamalMsg(BIGINT_G.modPow(TWO, BIGINT_P));

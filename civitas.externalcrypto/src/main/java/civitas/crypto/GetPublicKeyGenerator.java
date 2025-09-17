@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class GetPublicKeyGenerator implements Constants {
-	private Map<String, KeyPairGenerator> publicKeyGenerators = new HashMap<>();
+	private final Map<String, KeyPairGenerator> publicKeyGenerators = new HashMap<>();
 
 	public KeyPairGenerator apply(int keyLength) {
 		String genKey = String.valueOf(keyLength);

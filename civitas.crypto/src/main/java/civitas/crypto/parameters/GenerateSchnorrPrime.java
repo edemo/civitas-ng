@@ -32,11 +32,10 @@ public class GenerateSchnorrPrime implements Constants {
 				p.add(l);
 				CivitasBigInteger m = p.mod(q.multiply(TWO));
 				p = p.subtract(m).add(ONE);
-				if (p.bitLength() == pLength) {
-					if (p.isProbablePrime(CERTAINTY)) {
-						done = true;
-					}
+				if (p.bitLength() == pLength && p.isProbablePrime(CERTAINTY)) {
+					done = true;
 				}
+
 			} while (!done && nP < numPTests);
 		} while (!done);
 		return new PrimePair(p, q);

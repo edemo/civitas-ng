@@ -11,7 +11,7 @@ import civitas.crypto.CryptoException;
 import civitas.crypto.parameters.encoder.SchnorrPrimeEncode;
 import io.github.magwas.testing.TestBase;
 
-public class SchnorrPrimeEncodeTest extends TestBase
+class SchnorrPrimeEncodeTest extends TestBase
 		implements EncoderTestData {
 
 	@InjectMocks

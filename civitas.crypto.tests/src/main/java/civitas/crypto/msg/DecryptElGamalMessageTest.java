@@ -12,7 +12,7 @@ import civitas.crypto.CryptoException;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertextTestData;
 import io.github.magwas.testing.TestBase;
 
-public class DecryptElGamalMessageTest extends TestBase
+class DecryptElGamalMessageTest extends TestBase
 		implements ElGamalSignedCiphertextTestData, BallotDesignTestData {
 
 	@InjectMocks

@@ -11,7 +11,7 @@ import civitas.crypto.petshare.PETShareTestData;
 import civitas.util.CivitasBigInteger;
 import io.github.magwas.testing.TestBase;
 
-public class ConstructPETDecommitmentTest extends TestBase
+class ConstructPETDecommitmentTest extends TestBase
 		implements PETDecommitmentTestData, PETShareTestData {
 
 	@InjectMocks

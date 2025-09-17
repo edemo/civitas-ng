@@ -14,8 +14,9 @@ public class XMLAnswer implements Answer<Void> {
 
 	@Override
 	public Void answer(InvocationOnMock invocation) {
-		PrintWriter printWriter = (PrintWriter) invocation.getArguments()[1];
-		printWriter.append(theXML);
+		try (PrintWriter printWriter = (PrintWriter) invocation.getArguments()[1]) {
+			printWriter.append(theXML);
+		}
 		return null;
 	}
 

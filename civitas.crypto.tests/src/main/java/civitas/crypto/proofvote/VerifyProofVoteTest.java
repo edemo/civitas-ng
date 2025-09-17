@@ -10,7 +10,7 @@ import org.mockito.InjectMocks;
 import civitas.common.ballotdesign.BallotDesignTestData;
 import io.github.magwas.testing.TestBase;
 
-public class VerifyProofVoteTest extends TestBase
+class VerifyProofVoteTest extends TestBase
 		implements ProofVoteTestData, BallotDesignTestData {
 
 	@InjectMocks

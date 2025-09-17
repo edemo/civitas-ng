@@ -1,9 +1,14 @@
 package civitas.common.votersubmission;
 
+import civitas.common.capabilityencryption.CapabilityEncryption;
 import civitas.common.verifiablevote.VerifiableVote;
 import civitas.common.verifiablevote.VerifiableVoteTestData;
 
 public interface VoterSubmissionTestData extends VerifiableVoteTestData {
+
+	CapabilityEncryption ENCRYPT_CAPABILITY_RESULT = new CapabilityEncryption(
+			ELGAMAL_REENCRYPT_FACTOR_EPRIME,
+			ENCRYPTED_VOTE_CAPABILITIES_WITH_EPRIME.getFirst());
 
 	VoterSubmission VOTER_SUBMISSION = new VoterSubmission(VOTER_BLOCK,
 			VERIFIABLE_VOTES);
