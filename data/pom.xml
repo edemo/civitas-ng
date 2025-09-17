@@ -37,7 +37,7 @@
 				<dependency>
 			<groupId>io.github.magwas</groupId>
 			<artifactId>konveyor-pmdrules</artifactId>
-			<version>${project.version}</version>
+			<version>0.0.2-3-g5b9385b</version>
 			</dependency>
 
 	</dependencies>
