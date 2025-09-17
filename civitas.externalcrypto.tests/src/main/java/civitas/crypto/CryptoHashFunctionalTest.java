@@ -23,7 +23,7 @@ import civitas.util.CivitasBigIntegerFactory;
 import io.github.magwas.testing.TestBase;
 
 @Tag("functional")
-public class CryptoHashFunctionalTest extends TestBase
+class CryptoHashFunctionalTest extends TestBase
 		implements MessageDigestTestData, BallotDesignTestData,
 		ElGamalSignedCiphertextTestData {
 

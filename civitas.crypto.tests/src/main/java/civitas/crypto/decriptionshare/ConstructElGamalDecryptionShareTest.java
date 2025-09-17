@@ -11,7 +11,7 @@ import civitas.crypto.keypairshare.ElGamalKeyPairShareTestData;
 import civitas.util.CivitasBigInteger;
 import io.github.magwas.testing.TestBase;
 
-public class ConstructElGamalDecryptionShareTest extends TestBase
+class ConstructElGamalDecryptionShareTest extends TestBase
 		implements ElGamalDecryptionShareTestData, ElGamalKeyPairShareTestData {
 
 	@InjectMocks

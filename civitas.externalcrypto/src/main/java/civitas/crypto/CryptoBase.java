@@ -23,8 +23,8 @@ public class CryptoBase implements Constants {
 	public SecretKeyFactory sharedKeyFactory;
 	public KeyFactory publicKeyFactory;
 	public Signature rsaSigner;
-	private GetPublicKeyGenerator getPublicKeyGenerator;
-	private GetSharedKeyGenerator getSharedKeyGenerator;
+	private final GetPublicKeyGenerator getPublicKeyGenerator;
+	private final GetSharedKeyGenerator getSharedKeyGenerator;
 
 	public CryptoBase() {
 		BouncyCastleProvider bc = new BouncyCastleProvider();
@@ -36,7 +36,7 @@ public class CryptoBase implements Constants {
 					SHARED_KEY_PROVIDER);
 			publicKeyFactory = KeyFactory.getInstance(PUBLIC_KEY_ALG,
 					PUBLIC_KEY_PROVIDER);
-			rsaSigner = java.security.Signature.getInstance(PUBLIC_KEY_SIGNATURE_ALG,
+			rsaSigner = Signature.getInstance(PUBLIC_KEY_SIGNATURE_ALG,
 					PUBLIC_KEY_PROVIDER);
 		} catch (Exception e) {
 			throw new CryptoError(e);
@@ -61,7 +61,7 @@ public class CryptoBase implements Constants {
 	}
 
 	public byte[] doCrypto(String alg, String provider, Key skey, int mode,
-			byte[] input) throws CryptoError {
+			byte[] input) {
 		Cipher cipher;
 		try {
 			cipher = Cipher.getInstance(alg, provider);

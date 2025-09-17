@@ -25,7 +25,7 @@ public interface BasicValuesTestData extends Constants {
 	CivitasBigInteger SOME_INT_BIG = CivitasBigIntegerFactory.obtain(SOME_INT);
 	String ONE_BASE64 = "AQ==";
 	long LONG = 0xdeadbeeff001be41L;
-	byte[] LONG_AS_BYTES = new byte[] {
+	byte[] LONG_AS_BYTES = {
 			(byte) 0x41,
 			(byte) 0xbe,
 			(byte) 0x01,
@@ -66,10 +66,10 @@ public interface BasicValuesTestData extends Constants {
 			"KnJKpa62Fm1sRo+qU1RfkGD6heTRBoEgkdL5CIFHKUk=");
 
 	List<CivitasBigInteger> RANDOMS = RANDOMS_BASE64.stream()
-			.map((s) -> CommonUtil.asBigint(s)).toList();
+			.map(CommonUtil::asBigint).toList();
 
-	CivitasBigInteger RANDOMS_0 = RANDOMS.get(0);
-	String RANDOMS_0_BASE64 = RANDOMS_BASE64.get(0);
+	CivitasBigInteger RANDOMS_0 = RANDOMS.getFirst();
+	String RANDOMS_0_BASE64 = RANDOMS_BASE64.getFirst();
 
 	CivitasBigInteger RANDOMS_1 = RANDOMS.get(1);
 	String RANDOMS_1_BASE64 = RANDOMS_BASE64.get(1);
@@ -93,6 +93,6 @@ public interface BasicValuesTestData extends Constants {
 	CivitasBigInteger BIGINT_D = CommonUtil.asBigint(BIGINT_D_BASE64);
 	String AUTHENTICATION_NONCE = "auth nonce";
 
-	int[] INTEGER_PERMUTATION = new int[] { 3, 0, 1, 2, 4 };
+	int[] INTEGER_PERMUTATION = { 3, 0, 1, 2, 4 };
 
 }

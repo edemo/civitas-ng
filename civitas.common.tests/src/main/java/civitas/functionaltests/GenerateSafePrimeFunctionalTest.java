@@ -23,7 +23,7 @@ import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-public class GenerateSafePrimeFunctionalTest extends RandomAwareTestBase
+class GenerateSafePrimeFunctionalTest extends RandomAwareTestBase
 		implements Constants, ElGamalParametersTestData, PrivateKeyTestData {
 
 	@Autowired

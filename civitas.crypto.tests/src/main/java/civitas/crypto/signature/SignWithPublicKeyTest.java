@@ -23,12 +23,14 @@ class SignWithPublicKeyTest extends RandomAwareTestBase
 	SignWithPublicKey signWithPublicKey;
 
 	@Test
-	@DisplayName("signs with public key\n"
-			+ "- initializes the rsa signer with the private key\n"
-			+ "- updates the rsa signer with the byte array to sign\n"
-			+ "- obtains the signature using the rsa signer\n"
-			+ "- converts the public key to string\n"
-			+ "- returns the signature containing the signature and the string version of the public key\n")
+	@DisplayName("""
+			signs with public key
+			- initializes the rsa signer with the private key
+			- updates the rsa signer with the byte array to sign
+			- obtains the signature using the rsa signer
+			- converts the public key to string
+			- returns the signature containing the signature and the string version of the public key
+			""")
 	void test() throws CryptoException, InvalidKeyException, SignatureException {
 		assertEquals(SIGNATURE_OF_AUTH_NONCE_WITH_KEY, signWithPublicKey
 				.apply(PRIVATE_KEY, PUBLIC_KEY, AUTHENTICATION_NONCE.getBytes()));
@@ -46,13 +48,15 @@ class SignWithPublicKeyTest extends RandomAwareTestBase
 	}
 
 	@Test
-	@DisplayName("when signing a string, sings the hash of the string"
-			+ "- computes the hash of the string"
-			+ "- initializes the rsa signer with the private key\n"
-			+ "- updates the rsa signer with the hash\n"
-			+ "- obtains the signature using the rsa signer\n"
-			+ "- converts the public key to string\n"
-			+ "- returns the signature containing the signature and the string version of the public key\n")
+	@DisplayName("""
+			when signing a string, sings the hash of the string
+			- computes the hash of the string
+			- initializes the rsa signer with the private key
+			- updates the rsa signer with the hash
+			- obtains the signature using the rsa signer
+			- converts the public key to string
+			- returns the signature containing the signature and the string version of the public key
+			""")
 	void test1() throws CryptoException, InvalidKeyException, SignatureException {
 		assertEquals(SIGNATURE_OF_AUTH_NONCE_WITH_KEY,
 				signWithPublicKey.apply(PRIVATE_KEY, PUBLIC_KEY, SOMESTRING));

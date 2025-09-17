@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 
 import io.github.magwas.testing.TestBase;
 
-public class SharedKeyToWireTest extends TestBase implements SharedKeyTestData {
+class SharedKeyToWireTest extends TestBase implements SharedKeyTestData {
 
 	@InjectMocks
 	SharedKeyToWire sharedKeyToWire;

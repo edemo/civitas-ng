@@ -10,7 +10,7 @@ import civitas.common.RandomAwareTestBase;
 import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 
-public class ElGamalReencryptTest extends RandomAwareTestBase
+class ElGamalReencryptTest extends RandomAwareTestBase
 		implements ElGamalPublicKeyTestData, ElGamalCiphertextTestData {
 
 	@InjectMocks

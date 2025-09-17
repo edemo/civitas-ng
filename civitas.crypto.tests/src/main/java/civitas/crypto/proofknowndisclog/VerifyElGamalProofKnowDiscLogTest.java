@@ -12,7 +12,7 @@ import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigIntegerFactory;
 import io.github.magwas.testing.TestBase;
 
-public class VerifyElGamalProofKnowDiscLogTest extends TestBase
+class VerifyElGamalProofKnowDiscLogTest extends TestBase
 		implements ProofKnowDiscLogTestData {
 	@InjectMocks
 	VerifyElGamalProofKnowDiscLog verifyElGamalProofKnowDiscLog;

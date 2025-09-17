@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import civitas.common.CommonUtil;
 import civitas.util.BasicValuesTestData;
 
-public class CurrentVersionTest implements BasicValuesTestData {
+class CurrentVersionTest implements BasicValuesTestData {
 
 	private static final Object VERSIONSTRING = "JCivitas-v0.1";
 

@@ -20,7 +20,7 @@ public class CalculateWinnerList {
 	IsFullyIgnored isFullyIgnored;
 
 	public List<List<CandidateResult>> apply(Integer[][] matrix,
-			String[] candidates) {
+			String... candidates) {
 		int size = matrix.length;
 		CandidatePair<Integer, Integer>[][] initial = initialMatrix.apply(matrix, size);
 		transitiveClosure.apply(initial, size);
@@ -44,7 +44,7 @@ public class CalculateWinnerList {
 					lastWinner.beaten.add(beaten);
 
 					int beatSize = lastWinner.beat.size();
-					lastWinner.strength = ((lastWinner.strength * (beatSize - 1))
+					lastWinner.strength = (lastWinner.strength * (beatSize - 1)
 							+ 1.0 * beat / beaten) / beatSize;
 				}
 			}

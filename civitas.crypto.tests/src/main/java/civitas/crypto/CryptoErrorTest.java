@@ -3,7 +3,7 @@ package civitas.crypto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class CryptoErrorTest {
+class CryptoErrorTest {
 
 	@Test
 	@DisplayName("can be instantiated with a message")

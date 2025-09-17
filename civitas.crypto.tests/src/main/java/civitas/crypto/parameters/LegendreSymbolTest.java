@@ -11,7 +11,7 @@ import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import io.github.magwas.testing.TestBase;
 
-public class LegendreSymbolTest extends TestBase
+class LegendreSymbolTest extends TestBase
 		implements Constants, ElGamalParametersTestData {
 
 	@InjectMocks

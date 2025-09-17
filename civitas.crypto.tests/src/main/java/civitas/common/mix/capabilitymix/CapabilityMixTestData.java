@@ -34,19 +34,19 @@ public interface CapabilityMixTestData extends BallotTestData,
 
 	CapabilityMix CAPABILITY_MIX_CAPABILITY_ADDED = new CapabilityMix(VOTER_BLOCK,
 			new byte[0], new byte[][] {},
-			new ElGamalCiphertextish[] { ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(0) });
+			new ElGamalCiphertextish[] { ENCRYPTED_SIGNED_VOTE_CAPABILITIES.getFirst() });
 
 	CapabilityMix CAPABILITY_MIX_CAPABILITIES_ADDED = new CapabilityMix(
 			VOTER_BLOCK, new byte[0], new byte[][] {},
 			new ElGamalCiphertextish[] {
-					ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(0),
+					ENCRYPTED_SIGNED_VOTE_CAPABILITIES.getFirst(),
 					ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(1) });
 
 	CapabilityMix CAPABILITY_MIX_REMIXED = new CapabilityMix(VOTER_BLOCK,
 			new byte[0], new byte[][] {},
 			new ElGamalCiphertextish[] {
 					REENCRYPTED_VOTE_CAPABILITIES.get(1),
-					REENCRYPTED_VOTE_CAPABILITIES.get(0) });
+					REENCRYPTED_VOTE_CAPABILITIES.getFirst() });
 
 	CapabilityMix CAPABILITY_MIX_INITIAL = new CapabilityMix(4, new byte[0],
 			new byte[][] {},
@@ -54,13 +54,13 @@ public interface CapabilityMixTestData extends BallotTestData,
 	CapabilityMix CAPABILITY_MIX_LEFT = new CapabilityMix(2, new byte[0],
 			new byte[][] { null, CAPABILITY_ELEMENT_RELEVATION_LEFT_HASH },
 			new ElGamalCiphertextish[] {
-					ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(0),
+					ENCRYPTED_SIGNED_VOTE_CAPABILITIES.getFirst(),
 					REENCRYPTED_VOTE_CAPABILITIES.get(1) });
 
 	CapabilityMix CAPABILITY_MIX_RIGHT = new CapabilityMix(3, new byte[0],
 			new byte[][] { new byte[0], CAPABILITY_ELEMENT_RELEVATION_RIGHT_HASH },
 			new ElGamalCiphertextish[] {
 					null,
-					REENCRYPTED_VOTE_CAPABILITIES.get(0) });
+					REENCRYPTED_VOTE_CAPABILITIES.getFirst() });
 
 }

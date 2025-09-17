@@ -67,8 +67,9 @@ public class PostController {
 	Configuration configuration;
 
 	@PostMapping("/boards/{bbid}")
-	public @ResponseBody Long apply(@PathVariable("bbid") String bbid,
-			@RequestBody PostDTO dto) throws CommunicableException {
+    @ResponseBody
+    public Long apply(@PathVariable("bbid") String bbid,
+                      @RequestBody PostDTO dto) throws CommunicableException {
 		String objectID = dto.meta + bbid;
 		checkAccess.apply(Operation.POST, dto.signature.getSignerPubKey(),
 				objectID);
@@ -77,7 +78,7 @@ public class PostController {
 					dto.payloadXml.getBytes())) {
 				throw new CommunicableException("bad signature");
 			}
-		} catch (CommunicableException | CryptoException e) {
+		} catch (CryptoException e) {
 			throw new CommunicableException("bad signature (but in blue)");
 		}
 

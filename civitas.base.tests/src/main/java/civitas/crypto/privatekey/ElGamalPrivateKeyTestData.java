@@ -8,15 +8,15 @@ public interface ElGamalPrivateKeyTestData extends ElGamalParametersTestData {
 	CivitasBigInteger PRIVKEY_E = BIGINT_A;
 	CivitasBigInteger PRIVKEY_EPRIME = BIGINT_B;
 
-	public static final ElGamalPrivateKey EL_GAMAL_PRIVATE_KEY_E = new ElGamalPrivateKey(
+	ElGamalPrivateKey EL_GAMAL_PRIVATE_KEY_E = new ElGamalPrivateKey(
 			BIGINT_A, EL_GAMAL_PARAMETERS);
-	public static final ElGamalPrivateKey EL_GAMAL_PRIVATE_KEY_EPRIME = new ElGamalPrivateKey(
+	ElGamalPrivateKey EL_GAMAL_PRIVATE_KEY_EPRIME = new ElGamalPrivateKey(
 			BIGINT_B, EL_GAMAL_PARAMETERS);
-	public static final ElGamalPrivateKey EL_GAMAL_PRIVATE_KEY_C = new ElGamalPrivateKey(
+	ElGamalPrivateKey EL_GAMAL_PRIVATE_KEY_C = new ElGamalPrivateKey(
 			BIGINT_C, EL_GAMAL_PARAMETERS);
 
 	String EL_GAMAL_PRIVATE_KEY_FILE = "el_gamal_private_key.xml";
-	public static final String EL_GAMAL_PRIVATE_KEY_E_XML = "<ElGamalPrivateKey><params>"
+	String EL_GAMAL_PRIVATE_KEY_E_XML = "<ElGamalPrivateKey><params>"
 			+ EL_GAMAL_PARAMETERS_XML + "</params><x>" + BIGINT_A_BASE64
 			+ "</x></ElGamalPrivateKey>";
 

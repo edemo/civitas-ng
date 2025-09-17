@@ -19,9 +19,11 @@ class EncryptChoiceTest extends RandomAwareTestBase
 	@InjectMocks
 	EncryptChoice encryptChoice;
 
-	@DisplayName("encrypts the choice for the ballot\n"
-			+ " - generates a random reencryption factor\n"
-			+ " - constructs an 1 of L reeencryption using the choice in the ballot and the factor")
+	@DisplayName("""
+			encrypts the choice for the ballot
+			 - generates a random reencryption factor
+			 - constructs an 1 of L reeencryption using the choice in the ballot and the factor
+			""")
 	@Test
 	void test() {
 		EncryptedChoice actual = encryptChoice.apply(EL_GAMAL_PUBLIC_KEY_E,

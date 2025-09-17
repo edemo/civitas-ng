@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import civitas.crypto.CryptoBase;
-import civitas.crypto.CryptoError;
 import civitas.crypto.parameters.ElGamalParameters;
 
 @Controller
@@ -13,8 +12,7 @@ public class GenerateElGamalReencryptFactor {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public ElGamalReencryptFactor apply(ElGamalParameters params)
-			throws CryptoError {
+	public ElGamalReencryptFactor apply(ElGamalParameters params) {
 		return new ElGamalReencryptFactor(
 				cryptoBase.generateRandomElement(params.q));
 	}

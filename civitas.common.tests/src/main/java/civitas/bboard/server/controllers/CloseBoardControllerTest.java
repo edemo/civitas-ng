@@ -28,11 +28,13 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 	CloseBoardController closeBoardController;
 
 	@Test
-	@DisplayName("closes the board\n"
-			+ "- verifies the signature based on the owner key stored for the bulletin board\n"
-			+ "- marks the board closed\n"
-			+ "- calculates the BoardClosedContentCommitment for all voter block\n"
-			+ "- posts the BoardClosedContentCommitment for the election master")
+	@DisplayName("""
+			closes the board
+			- verifies the signature based on the owner key stored for the bulletin board
+			- marks the board closed
+			- calculates the BoardClosedContentCommitment for all voter block
+			- posts the BoardClosedContentCommitment for the election master
+			""")
 	void test() throws InvalidKeySpecException, IOException,
 			NoSuchAlgorithmException, CommunicableException, CryptoException {
 		closeBoardController.apply(BULLETIN_BOARD_ID, ELECTION_ID, NUM_VOTER_BLOCKS,

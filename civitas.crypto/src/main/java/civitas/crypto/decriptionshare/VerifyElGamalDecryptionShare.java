@@ -15,16 +15,16 @@ public class VerifyElGamalDecryptionShare {
 	public VerifyElGamalProofDiscLogEquality verifyElGamalProofDiscLogEquality;
 
 	public boolean apply(ElGamalDecryptionShare that, ElGamalCiphertext c,
-			ElGamalPublicKey K) throws Error {
+			ElGamalPublicKey key) throws Error {
 		if (c == null) {
 			throw new IllegalArgumentException("null ciphertext");
 		}
-		if (K == null) {
+		if (key == null) {
 			throw new IllegalArgumentException("null key");
 		}
-		ElGamalParameters params = K.params;
+		ElGamalParameters params = key.params;
 		if (that.proof.g1.equals(c.a) && that.proof.g2.equals(params.g)
-				&& that.proof.v.equals(that.ai) && that.proof.w.equals(K.y)) {
+				&& that.proof.v.equals(that.ai) && that.proof.w.equals(key.y)) {
 			return verifyElGamalProofDiscLogEquality.apply(that.proof, params);
 		}
 

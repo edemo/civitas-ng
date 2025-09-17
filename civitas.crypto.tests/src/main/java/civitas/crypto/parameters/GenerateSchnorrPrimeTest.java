@@ -10,7 +10,7 @@ import civitas.common.RandomAwareTestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
 
-public class GenerateSchnorrPrimeTest extends RandomAwareTestBase
+class GenerateSchnorrPrimeTest extends RandomAwareTestBase
 		implements ElGamalPrivateKeyTestData, Constants {
 
 	@InjectMocks

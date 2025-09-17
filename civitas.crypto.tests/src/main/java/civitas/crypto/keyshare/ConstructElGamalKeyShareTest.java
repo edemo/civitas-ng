@@ -1,7 +1,6 @@
 package civitas.crypto.keyshare;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +12,7 @@ import civitas.crypto.keypairshare.ElGamalKeyPairShareTestData;
 import civitas.crypto.keys.ElGamalKeyShareTestData;
 import io.github.magwas.testing.TestBase;
 
-public class ConstructElGamalKeyShareTest extends TestBase
+class ConstructElGamalKeyShareTest extends TestBase
 		implements ElGamalKeyPairShareTestData, ElGamalKeyShareTestData {
 
 	@InjectMocks
@@ -24,7 +23,7 @@ public class ConstructElGamalKeyShareTest extends TestBase
 	void test() {
 		ElGamalKeyShare actual = constructElGamalKeyShare
 				.apply(EL_GAMAL_KEYPAIR_SHARE);
-		assertTrue(EL_GAMAL_KEY_SHARE_E.equals(actual));
+        assertEquals(EL_GAMAL_KEY_SHARE_E, actual);
 	}
 
 	@Test

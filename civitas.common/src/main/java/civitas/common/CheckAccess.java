@@ -7,10 +7,7 @@ public class CheckAccess {
 
 	public void apply(final Operation operation, final String string,
 			final String objectID) {
-		switch (operation) {
-		case POST:
-			return;
-		default:
+		if (operation != Operation.POST) {
 			throw new SecurityException(
 					operation + " is not authorized for " + objectID + " by " + string);
 		}

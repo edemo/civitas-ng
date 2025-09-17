@@ -20,7 +20,7 @@ class AddEncryptedCapabilityTest extends RandomAwareTestBase
 	void test() {
 		CapabilityMix mix = CAPABILITY_MIX_EMPTY_SUPPLIER.get();
 		addEncryptedCapability.apply(mix,
-				ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(0));
+				ENCRYPTED_SIGNED_VOTE_CAPABILITIES.getFirst());
 		assertEquals(CAPABILITY_MIX_CAPABILITY_ADDED, mix);
 	}
 

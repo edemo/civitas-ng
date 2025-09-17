@@ -6,7 +6,7 @@ import java.util.Arrays;
 import org.mockito.ArgumentMatcher;
 
 public class KeySpecMatcher implements ArgumentMatcher<X509EncodedKeySpec> {
-	private X509EncodedKeySpec spec;
+	private final X509EncodedKeySpec spec;
 
 	public KeySpecMatcher(X509EncodedKeySpec spec) {
 		this.spec = spec;
@@ -15,14 +15,9 @@ public class KeySpecMatcher implements ArgumentMatcher<X509EncodedKeySpec> {
 	@Override
 	public boolean matches(X509EncodedKeySpec argument) {
 		if (null == argument) {
-			if (null == spec) {
-				return true;
-			} else {
-				return false;
-			}
+            return null == spec;
 		}
-		boolean res = Arrays.equals(spec.getEncoded(), argument.getEncoded());
-		return res;
+        return Arrays.equals(spec.getEncoded(), argument.getEncoded());
 	}
 
 }

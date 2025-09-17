@@ -9,11 +9,9 @@ package civitas.crypto.votecapabilityshare;
 import civitas.crypto.msg.CryptMessage;
 import civitas.util.CivitasBigInteger;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 
 @Data
-@EqualsAndHashCode
 public class VoteCapabilityShare implements CryptMessage {
 	@NonNull
 	public final CivitasBigInteger m;

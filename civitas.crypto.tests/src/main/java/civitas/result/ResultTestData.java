@@ -1,7 +1,7 @@
 package civitas.result;
 
 public interface ResultTestData {
-	Integer[][] matrix = new Integer[][] {
+	Integer[][] matrix = {
 			{ 0, 87, 140, 92, 177, 71, 98, 52, 16, 63, 92, 220 },
 			{ 53, 0, 124, 74, 171, 39, 90, 44, 15, 48, 77, 213 },
 			{ 35, 41, 0, 38, 123, 26, 64, 30, 12, 30, 44, 218 },
@@ -15,7 +15,7 @@ public interface ResultTestData {
 			{ 60, 74, 128, 66, 175, 46, 87, 41, 15, 40, 0, 226 },
 			{ 1, 0, 0, 1, 7, 0, 7, 1, 0, 0, 0, 0 } };
 
-	String[] candidates = new String[] {
+	String[] candidates = {
 			"4-es főút szélesítés",
 			"elkerülő út felújítás",
 			"bicikliút Szoboszlóra",
@@ -29,35 +29,43 @@ public interface ResultTestData {
 			"piacfejlesztés",
 			"---" };
 
-	String CLOUDWORDS_CSV = "16421,orvosi ügyelet,#ffffff\n"
-			+ "4300,élelmiszeripari üzem,#ffffff\n"
-			+ "2931,4-es főút szélesítés,#ffffff\n"
-			+ "3442,vízmegtartó gazdálkodás,#ffffff\n"
-			+ "2885,önkormányzati iskola,#ffffff\n" + "1630,fürdőfejlesztés,#ffffff\n"
-			+ "1587,elkerülő út felújítás,#ffffff\n" + "1526,piacfejlesztés,#ffffff\n"
-			+ "1420,cukorgyár újraindítás,#ffffff\n"
-			+ "757,bicikliút Szoboszlóra,#ffffff\n" + "295,szállodaépítés,#ffffff\n"
-			+ "0,---,#ffffff";
-	String REPORT = "1:\n"
-			+ "	orvosi ügyelet (16421.25) (beats élelmiszeripari üzem by 84:22 (3.82)) \n"
-			+ "2:\n"
-			+ "	élelmiszeripari üzem (4300.80) (beats 4-es főút szélesítés by 77:52 (1.48), beats vízmegtartó gazdálkodás by 67:55 (1.22)) \n"
-			+ "3:\n"
-			+ "	4-es főút szélesítés (2931.88) (beats önkormányzati iskola by 63:62 (1.02)) \n"
-			+ "	vízmegtartó gazdálkodás (3442.16) (beats önkormányzati iskola by 68:57 (1.19)) \n"
-			+ "4:\n"
-			+ "	önkormányzati iskola (2885.34) (beats fürdőfejlesztés by 92:52 (1.77)) \n"
-			+ "5:\n"
-			+ "	fürdőfejlesztés (1630.84) (beats elkerülő út felújítás by 76:74 (1.03)) \n"
-			+ "6:\n"
-			+ "	elkerülő út felújítás (1587.93) (beats piacfejlesztés by 77:74 (1.04)) \n"
-			+ "7:\n"
-			+ "	piacfejlesztés (1526.06) (beats cukorgyár újraindítás by 87:81 (1.07)) \n"
-			+ "8:\n"
-			+ "	cukorgyár újraindítás (1420.81) (beats bicikliút Szoboszlóra by 120:64 (1.88)) \n"
-			+ "9:\n"
-			+ "	bicikliút Szoboszlóra (757.77) (beats szállodaépítés by 123:48 (2.56)) \n"
-			+ "10:\n" + "	szállodaépítés (295.71) (beats --- by 207:7 (29.57)) \n"
-			+ "11:\n" + "	--- (0.00) () ";
+	String CLOUDWORDS_CSV = """
+			16421,orvosi ügyelet,#ffffff
+			4300,élelmiszeripari üzem,#ffffff
+			2931,4-es főút szélesítés,#ffffff
+			3442,vízmegtartó gazdálkodás,#ffffff
+			2885,önkormányzati iskola,#ffffff
+			1630,fürdőfejlesztés,#ffffff
+			1587,elkerülő út felújítás,#ffffff
+			1526,piacfejlesztés,#ffffff
+			1420,cukorgyár újraindítás,#ffffff
+			757,bicikliút Szoboszlóra,#ffffff
+			295,szállodaépítés,#ffffff
+			0,---,#ffffff""";
+
+	String REPORT = """
+            1:
+            \torvosi ügyelet (16421.25) (beats élelmiszeripari üzem by 84:22 (3.82))\s
+            2:
+            \télelmiszeripari üzem (4300.80) (beats 4-es főút szélesítés by 77:52 (1.48), beats vízmegtartó gazdálkodás by 67:55 (1.22))\s
+            3:
+            \t4-es főút szélesítés (2931.88) (beats önkormányzati iskola by 63:62 (1.02))\s
+            \tvízmegtartó gazdálkodás (3442.16) (beats önkormányzati iskola by 68:57 (1.19))\s
+            4:
+            \tönkormányzati iskola (2885.34) (beats fürdőfejlesztés by 92:52 (1.77))\s
+            5:
+            \tfürdőfejlesztés (1630.84) (beats elkerülő út felújítás by 76:74 (1.03))\s
+            6:
+            \telkerülő út felújítás (1587.93) (beats piacfejlesztés by 77:74 (1.04))\s
+            7:
+            \tpiacfejlesztés (1526.06) (beats cukorgyár újraindítás by 87:81 (1.07))\s
+            8:
+            \tcukorgyár újraindítás (1420.81) (beats bicikliút Szoboszlóra by 120:64 (1.88))\s
+            9:
+            \tbicikliút Szoboszlóra (757.77) (beats szállodaépítés by 123:48 (2.56))\s
+            10:
+            \tszállodaépítés (295.71) (beats --- by 207:7 (29.57))\s
+            11:
+            \t--- (0.00) ()\s""";
 
 }

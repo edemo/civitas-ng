@@ -9,7 +9,7 @@ public class CalculatePositionInBallot {
 		if (i == 0) {
 			return j - 1;
 		}
-		return (j - i) + apply(i - 1, k - 1, k);
+		return j - i + apply(i - 1, k - 1, k);
 	}
 
 }

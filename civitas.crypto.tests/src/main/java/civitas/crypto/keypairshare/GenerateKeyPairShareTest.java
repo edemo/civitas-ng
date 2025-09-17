@@ -9,7 +9,7 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.crypto.parameters.ElGamalParametersTestData;
 
-public class GenerateKeyPairShareTest extends RandomAwareTestBase
+class GenerateKeyPairShareTest extends RandomAwareTestBase
 		implements ElGamalParametersTestData {
 
 	@InjectMocks

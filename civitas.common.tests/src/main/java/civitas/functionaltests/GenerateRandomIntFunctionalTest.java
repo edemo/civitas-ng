@@ -19,7 +19,7 @@ import civitas.util.BasicValuesTestData;
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-public class GenerateRandomIntFunctionalTest extends RandomAwareTestBase
+class GenerateRandomIntFunctionalTest extends RandomAwareTestBase
 		implements BasicValuesTestData {
 	@Autowired
 	GenerateRandomInt generateRandomInt;
