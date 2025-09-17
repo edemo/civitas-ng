@@ -15,7 +15,7 @@ class GetReencryptedCapabilityMixTest extends RandomAwareTestBase
 
 	@Test
 	void test() {
-		assertEquals(REENCRYPTED_VOTE_CAPABILITIES.get(0),
+		assertEquals(REENCRYPTED_VOTE_CAPABILITIES.getFirst(),
 				getReencryptedCapabilityMix.apply(CAPABILITY_MIX_CAPABILITY_ADDED, 0,
 						ELGAMAL_REENCRYPT_FACTOR_EPRIME, EL_GAMAL_PUBLIC_KEY_EPRIME));
 	}

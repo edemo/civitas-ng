@@ -26,13 +26,13 @@ class EncryptCapabilityTest extends RandomAwareTestBase
 	void test() {
 		CapabilityEncryption encryptCapabilityResult = new CapabilityEncryption(
 				ELGAMAL_REENCRYPT_FACTOR_EPRIME,
-				ENCRYPTED_VOTE_CAPABILITIES_WITH_EPRIME.get(0));
+				ENCRYPTED_VOTE_CAPABILITIES_WITH_EPRIME.getFirst());
 		assertEquals(encryptCapabilityResult, encryptCapability
 				.apply(EL_GAMAL_PUBLIC_KEY_E, CAPABILITY_MAP, CONTEXT_0));
 		verify(encryptCapability.generateElGamalReencryptFactor)
 				.apply(EL_GAMAL_PARAMETERS);
 		verify(encryptCapability.elGamalEncrypt).apply(EL_GAMAL_PUBLIC_KEY_E,
-				VOTE_CAPABILITIES.get(0), ELGAMAL_REENCRYPT_FACTOR_EPRIME);
+				VOTE_CAPABILITIES.getFirst(), ELGAMAL_REENCRYPT_FACTOR_EPRIME);
 	}
 
 	@Test

@@ -68,8 +68,8 @@ public interface BasicValuesTestData extends Constants {
 	List<CivitasBigInteger> RANDOMS = RANDOMS_BASE64.stream()
 			.map(CommonUtil::asBigint).toList();
 
-	CivitasBigInteger RANDOMS_0 = RANDOMS.get(0);
-	String RANDOMS_0_BASE64 = RANDOMS_BASE64.get(0);
+	CivitasBigInteger RANDOMS_0 = RANDOMS.getFirst();
+	String RANDOMS_0_BASE64 = RANDOMS_BASE64.getFirst();
 
 	CivitasBigInteger RANDOMS_1 = RANDOMS.get(1);
 	String RANDOMS_1_BASE64 = RANDOMS_BASE64.get(1);
