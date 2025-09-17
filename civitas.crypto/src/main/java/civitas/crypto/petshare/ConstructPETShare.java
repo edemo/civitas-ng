@@ -14,13 +14,12 @@ public class ConstructPETShare {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public PETShare apply(ElGamalParameters prms, ElGamalCiphertextish a,
+	public PETShare apply(ElGamalParameters params, ElGamalCiphertextish a,
 			ElGamalCiphertextish b) {
-		if (a == null || b == null || prms == null) {
+		if (a == null || b == null || params == null) {
 			return null;
 		}
-		ElGamalParameters params = prms;
-		CivitasBigInteger z = cryptoBase.generateRandomElement(params.q());
+		CivitasBigInteger z = cryptoBase.generateRandomElement(params.q);
 		return new PETShare(a, b, z);
 	}
 

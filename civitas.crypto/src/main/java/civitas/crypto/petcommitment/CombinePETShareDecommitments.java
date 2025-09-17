@@ -15,8 +15,8 @@ public class CombinePETShareDecommitments implements Constants {
 
 		for (int i = 0; i < (decs == null ? 0 : decs.length); i++) {
 			PETDecommitment decom = decs[i];
-			d = d.modMultiply(decom.di(), ps.p());
-			e = e.modMultiply(decom.ei(), ps.p());
+			d = d.modMultiply(decom.di(), ps.p);
+			e = e.modMultiply(decom.ei(), ps.p);
 		}
 		return new ElGamalCiphertext(d, e);
 	}

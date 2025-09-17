@@ -31,7 +31,7 @@ public class DecryptElGamalMessage {
 		ElGamalCiphertextish c = ciphertext;
 		CivitasBigInteger a = c.getA();
 		CivitasBigInteger b = c.getB();
-		CivitasBigInteger m = b.modDivide(a.modPow(k.x(), ps.p()), ps.p());
+		CivitasBigInteger m = b.modDivide(a.modPow(k.x(), ps.p), ps.p);
 		return new ElGamalMsg(m);
 	}
 

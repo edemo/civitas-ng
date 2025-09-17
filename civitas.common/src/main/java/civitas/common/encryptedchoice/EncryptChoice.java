@@ -24,7 +24,7 @@ public class EncryptChoice {
 			final int pos) {
 		VoteChoice choice = cbMatrix[pos];
 		ElGamalReencryptFactor encChoiceFactor = generateElGamalReencryptFactor
-				.apply(key.params());
+				.apply(key.params);
 		ElGamal1OfLReencryption encChoice = constructElGamal1OfLReencryption
 				.apply(key, ciphertexts, choice.ordinal(), encChoiceFactor);
 		return new EncryptedChoice(encChoiceFactor, encChoice);

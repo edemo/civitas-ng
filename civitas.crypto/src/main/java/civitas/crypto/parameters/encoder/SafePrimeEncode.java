@@ -16,9 +16,9 @@ public class SafePrimeEncode {
 	public CivitasBigInteger apply(CivitasBigInteger x,
 			ElGamalParameters elGamalParameters) {
 		CivitasBigInteger encoding = x;
-		if (legendreSymbol.apply(encoding, elGamalParameters.p(),
-                elGamalParameters.q()) == -1) {
-			encoding = elGamalParameters.p().subtract(encoding); // encoding = -m
+		if (legendreSymbol.apply(encoding, elGamalParameters.p,
+                elGamalParameters.q) == -1) {
+			encoding = elGamalParameters.p.subtract(encoding); // encoding = -m
 		}
 		return encoding;
 	}

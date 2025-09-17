@@ -21,8 +21,8 @@ public class MultiplyCiphertexts {
 						aAccum[j] = s.getA();
 						bAccum[j] = s.getB();
 					} else {
-						aAccum[j] = aAccum[j].modMultiply(s.getA(), p.p());
-						bAccum[j] = bAccum[j].modMultiply(s.getB(), p.p());
+						aAccum[j] = aAccum[j].modMultiply(s.getA(), p.p);
+						bAccum[j] = bAccum[j].modMultiply(s.getB(), p.p);
 					}
 				}
 			}

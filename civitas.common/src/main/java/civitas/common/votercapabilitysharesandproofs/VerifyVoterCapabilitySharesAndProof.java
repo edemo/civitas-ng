@@ -44,7 +44,7 @@ public class VerifyVoterCapabilitySharesAndProof {
 			return false;
 		}
 
-		ElGamalParameters params = tabTellerSharedPublicKey.params();
+		ElGamalParameters params = tabTellerSharedPublicKey.params;
 		byte[] hash = cryptoHash.apply((tellerIndex + voterName).getBytes());
 
 		for (int i = 0; i < that.capabilities.length; i++) {

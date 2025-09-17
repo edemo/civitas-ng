@@ -24,7 +24,7 @@ class GenerateKeyPairShareTest extends RandomAwareTestBase
 				.apply(EL_GAMAL_PARAMETERS);
 
 		assertEquals(RANDOMS_0, keyPair.privKey().x());
-		assertEquals(RANDOMS_0_PUBLISHED, keyPair.pubKey().y());
+		assertEquals(RANDOMS_0_PUBLISHED, keyPair.pubKey().y);
 
 	}
 

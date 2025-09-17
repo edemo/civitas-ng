@@ -16,23 +16,23 @@ public class ElGamalEncrypt {
 	CryptoBase cryptoBase;
 
 	public ElGamalCiphertext apply(final ElGamalPublicKey key,
-			final CryptMessage msg) {
-		ElGamalParameters ps = key.params();
+								   final CryptMessage msg) {
+		ElGamalParameters ps = key.params;
 		CivitasBigInteger m = msg.m();
-		CivitasBigInteger r = cryptoBase.generateRandomElement(ps.q());
-		CivitasBigInteger a = ps.g().modPow(r, ps.p());
-		CivitasBigInteger b = m.modMultiply(key.y().modPow(r, ps.p()), ps.p());
+		CivitasBigInteger r = cryptoBase.generateRandomElement(ps.q);
+		CivitasBigInteger a = ps.g.modPow(r, ps.p);
+		CivitasBigInteger b = m.modMultiply(key.y.modPow(r, ps.p), ps.p);
 		return new ElGamalCiphertext(a, b);
 	}
 
 	public ElGamalCiphertext apply(final ElGamalPublicKey key,
-			final CryptMessage msg, final ElGamalReencryptFactor encryptFactor) {
-		ElGamalParameters ps = key.params();
+								   final CryptMessage msg, final ElGamalReencryptFactor encryptFactor) {
+		ElGamalParameters ps = key.params;
 		CivitasBigInteger r = encryptFactor.r();
 		CivitasBigInteger m = msg.m();
-		CivitasBigInteger a = ps.g().modPow(r, ps.p());
-		CivitasBigInteger s = key.y().modPow(r, ps.p());
-		CivitasBigInteger b = m.modMultiply(s, ps.p());
+		CivitasBigInteger a = ps.g.modPow(r, ps.p);
+		CivitasBigInteger s = key.y.modPow(r, ps.p);
+		CivitasBigInteger b = m.modMultiply(s, ps.p);
 		return new ElGamalCiphertext(a, b);
 	}
 

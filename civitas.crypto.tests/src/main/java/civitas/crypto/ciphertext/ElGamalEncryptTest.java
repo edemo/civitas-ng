@@ -24,7 +24,7 @@ class ElGamalEncryptTest extends RandomAwareTestBase
 		ElGamalCiphertext encrypted = new ElGamalCiphertext(
 				BIGINT_G.modPow(RANDOMS_0, BIGINT_P),
 				BIGINT_G.modPow(BIGINT_B, BIGINT_P).modMultiply(
-						EL_GAMAL_PUBLIC_KEY_EPRIME.y().modPow(RANDOMS_0, BIGINT_P),
+						EL_GAMAL_PUBLIC_KEY_EPRIME.y.modPow(RANDOMS_0, BIGINT_P),
 						BIGINT_P));
 
 		assertEquals(encrypted,

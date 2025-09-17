@@ -46,7 +46,7 @@ class SafePrimeDecodeTest extends TestBase implements EncoderTestData {
 	@DisplayName("decoder cannot decode messages bigger than p")
 	void test4() {
 		assertThrows(CryptoException.class,
-				() -> decoder.apply(EL_GAMAL_PARAMETERS_SAFE.p().add(BIGINT_A),
+				() -> decoder.apply(EL_GAMAL_PARAMETERS_SAFE.p.add(BIGINT_A),
 						EL_GAMAL_PARAMETERS_SAFE));
 	}
 

@@ -21,7 +21,7 @@ public class CalculateProofEnvironment {
 			ElGamalCiphertextish encCapability, ElGamalCiphertextish encChoice,
 			String context) {
 		List<CivitasBigInteger> e = new LinkedList<>();
-		e.add(params.g());
+		e.add(params.g);
 		e.add(encCapability.getA());
 		e.add(encCapability.getB());
 		e.add(encChoice.getA());

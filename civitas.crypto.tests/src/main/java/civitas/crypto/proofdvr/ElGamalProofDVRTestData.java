@@ -29,7 +29,7 @@ public interface ElGamalProofDVRTestData extends ElGamalCiphertextListTestData {
 					.modPow(EL_GAMAL_PROOF_DVR.c().modAdd(EL_GAMAL_PROOF_DVR.w(), BIGINT_Q),
 							BIGINT_P),
 					BIGINT_P);
-	CivitasBigInteger EL_GAMAL_PROOF_DVR_BP = EL_GAMAL_PUBLIC_KEY_E.y()
+	CivitasBigInteger EL_GAMAL_PROOF_DVR_BP = EL_GAMAL_PUBLIC_KEY_E.y
 			.modPow(EL_GAMAL_PROOF_DVR.u(), BIGINT_P)
 			.modDivide(EL_GAMAL_PROOF_DVR.eprime().b
 					.modDivide(EL_GAMAL_PROOF_DVR.e().getB(), BIGINT_P)
@@ -38,7 +38,7 @@ public interface ElGamalProofDVRTestData extends ElGamalCiphertextListTestData {
 					BIGINT_P);
 	CivitasBigInteger EL_GAMAL_PROOF_DVR_SP = BIGINT_G
 			.modPow(EL_GAMAL_PROOF_DVR.w(), BIGINT_P).modMultiply(
-					EL_GAMAL_PUBLIC_KEY_EPRIME.y().modPow(EL_GAMAL_PROOF_DVR.r(), BIGINT_P),
+					EL_GAMAL_PUBLIC_KEY_EPRIME.y.modPow(EL_GAMAL_PROOF_DVR.r(), BIGINT_P),
 					BIGINT_P);
 
 	List<CivitasBigInteger> EL_GAMAL_PROOF_DVR_ENV = List.of(
@@ -49,7 +49,7 @@ public interface ElGamalProofDVRTestData extends ElGamalCiphertextListTestData {
 	CivitasBigInteger FAKE_PROOF_DVR_AT = BIGINT_G.modPow(RANDOMS_2, BIGINT_P)
 			.modDivide(CIPHERTEXT_EPRIME.a.modDivide(CIPHERTEXT_E.a, BIGINT_P)
 					.modPow(RANDOMS_0, BIGINT_P), BIGINT_P);
-	CivitasBigInteger FAKE_PROOF_DVR_BT = EL_GAMAL_PUBLIC_KEY_E.y()
+	CivitasBigInteger FAKE_PROOF_DVR_BT = EL_GAMAL_PUBLIC_KEY_E.y
 			.modPow(RANDOMS_2, BIGINT_P).modDivide(CIPHERTEXT_EPRIME.b
 					.modDivide(CIPHERTEXT_E.b, BIGINT_P).modPow(RANDOMS_0, BIGINT_P),
 					BIGINT_P);

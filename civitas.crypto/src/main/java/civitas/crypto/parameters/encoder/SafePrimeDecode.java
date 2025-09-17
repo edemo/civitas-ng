@@ -7,11 +7,11 @@ import civitas.util.CivitasBigInteger;
 public class SafePrimeDecode {
 	public CivitasBigInteger apply(CivitasBigInteger i,
 			ElGamalParameters elGamalParameters) throws CryptoException {
-		if (i.compareTo(elGamalParameters.p()) > 0) {
+		if (i.compareTo(elGamalParameters.p) > 0) {
 			throw new CryptoException("Message is too large for parameters");
 		}
-		if (i.compareTo(elGamalParameters.q()) > 0) {
-			i = elGamalParameters.p().subtract(i);
+		if (i.compareTo(elGamalParameters.q) > 0) {
+			i = elGamalParameters.p.subtract(i);
 		}
 		return i;
 	}

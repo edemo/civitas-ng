@@ -18,8 +18,8 @@ public class GenerateKeyPairShare {
 	public ElGamalKeyPairShare apply(ElGamalParameters params) {
 		ElGamalParameters ps = params;
 
-		CivitasBigInteger x = cryptoBase.generateRandomElement(ps.q());
-		CivitasBigInteger y = ps.g().modPow(x, ps.p());
+		CivitasBigInteger x = cryptoBase.generateRandomElement(ps.q);
+		CivitasBigInteger y = ps.g.modPow(x, ps.p);
 
 		ElGamalPublicKey pub = new ElGamalPublicKey(y, params);
 		ElGamalPrivateKey priv = new ElGamalPrivateKey(x, params);

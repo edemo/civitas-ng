@@ -16,8 +16,8 @@ public class VerifyElGamalKeyShare {
 	public boolean apply(ElGamalKeyShare that) {
 		ElGamalProofKnowDiscLog prf = that.proof();
 		ElGamalPublicKey key = that.pubKey();
-		return prf.v().equals(key.y())
-				&& verifyElGamalProofKnowDiscLog.apply(prf, that.pubKey().params());
+		return prf.v().equals(key.y)
+				&& verifyElGamalProofKnowDiscLog.apply(prf, that.pubKey().params);
 	}
 
 }

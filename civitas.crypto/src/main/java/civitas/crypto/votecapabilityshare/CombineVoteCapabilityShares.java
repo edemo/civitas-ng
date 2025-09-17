@@ -19,7 +19,7 @@ public class CombineVoteCapabilityShares {
 					if (accum[j] == null) {
 						accum[j] = s.m();
 					} else {
-						accum[j] = accum[j].modMultiply(s.m(), params.p());
+						accum[j] = accum[j].modMultiply(s.m(), params.p);
 					}
 				}
 			}

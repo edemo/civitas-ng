@@ -15,12 +15,12 @@ public class VerifyElGamalSignature {
 
 	public boolean apply(ElGamalParameters params,
 			ElGamalSignedCiphertext ciphertext, byte[] additionalEnv) {
-		CivitasBigInteger x = params.g().modPow(ciphertext.d.mod(params.q()), params.p())
+		CivitasBigInteger x = params.g.modPow(ciphertext.d.mod(params.q), params.p)
 				.modMultiply(
-						ciphertext.a.modPow(ciphertext.c.modNegate(params.q()), params.p()),
-                        params.p());
+						ciphertext.a.modPow(ciphertext.c.modNegate(params.q), params.p),
+                        params.p);
 		CivitasBigInteger v = cryptoHash
-				.apply(x, ciphertext.a, ciphertext.b, additionalEnv).mod(params.q());
+				.apply(x, ciphertext.a, ciphertext.b, additionalEnv).mod(params.q);
 		return ciphertext.c.equals(v);
 	}
 

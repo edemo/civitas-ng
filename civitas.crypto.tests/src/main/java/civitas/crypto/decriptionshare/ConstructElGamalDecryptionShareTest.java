@@ -24,7 +24,7 @@ class ConstructElGamalDecryptionShareTest extends TestBase
 	void constructDecryptionShareTest() throws Exception {
 
 		CivitasBigInteger key = EL_GAMAL_PRIVATE_KEY_E.x();
-		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p();
+		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;
 		CivitasBigInteger c1 = CIPHERTEXT_E.a;
 
 		CivitasBigInteger ai = c1.modPow(key, p);

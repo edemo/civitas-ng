@@ -21,12 +21,12 @@ public class VerifyElGamalProofDVR {
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public boolean apply(ElGamalProofDVR that, ElGamalPublicKey key,
-			ElGamalPublicKey verifierKey) {
+						 ElGamalPublicKey verifierKey) {
 
-		ElGamalParameters ps = key.params();
+		ElGamalParameters ps = key.params;
 
-        CivitasBigInteger hv = verifierKey.y();
-		CivitasBigInteger h = key.y();
+		CivitasBigInteger hv = verifierKey.y;
+		CivitasBigInteger h = key.y;
 		CivitasBigInteger x = that.e().getA();
 		CivitasBigInteger y = that.e().getB();
 		CivitasBigInteger xp = that.eprime().getA();
@@ -37,12 +37,12 @@ public class VerifyElGamalProofDVR {
 		 * (g^w)*((h_v)^r) c' = hash(E||a'||b'||s')
 		 */
 
-		CivitasBigInteger ap = ps.g().modPow(that.u(), ps.p()).modDivide(
-				xp.modDivide(x, ps.p()).modPow(that.c().modAdd(that.w(), ps.q()), ps.p()), ps.p());
-		CivitasBigInteger bp = h.modPow(that.u(), ps.p()).modDivide(
-				yp.modDivide(y, ps.p()).modPow(that.c().modAdd(that.w(), ps.q()), ps.p()), ps.p());
-		CivitasBigInteger sp = ps.g().modPow(that.w(), ps.p())
-				.modMultiply(hv.modPow(that.r(), ps.p()), ps.p());
+		CivitasBigInteger ap = ps.g.modPow(that.u(), ps.p).modDivide(
+				xp.modDivide(x, ps.p).modPow(that.c().modAdd(that.w(), ps.q), ps.p), ps.p);
+		CivitasBigInteger bp = h.modPow(that.u(), ps.p).modDivide(
+				yp.modDivide(y, ps.p).modPow(that.c().modAdd(that.w(), ps.q), ps.p), ps.p);
+		CivitasBigInteger sp = ps.g.modPow(that.w(), ps.p)
+				.modMultiply(hv.modPow(that.r(), ps.p), ps.p);
 
 		List<CivitasBigInteger> l = new ArrayList<>();
 		l.add(that.e().getA());
@@ -53,7 +53,7 @@ public class VerifyElGamalProofDVR {
 		l.add(bp);
 		l.add(sp);
 		CivitasBigInteger cp = convertHashToBigInt.apply(cryptoHash.apply(l))
-				.mod(ps.q());
+				.mod(ps.q);
 
 		return cp.equals(that.c());
 	}

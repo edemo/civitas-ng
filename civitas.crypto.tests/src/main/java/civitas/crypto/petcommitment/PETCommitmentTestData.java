@@ -8,7 +8,7 @@ public interface PETCommitmentTestData extends ElGamalCiphertextTestData {
 
 	CivitasBigInteger PET_COMMITMENT_DI = CIPHERTEXT_E_A
 			.modDivide(CIPHERTEXT_EPRIME_A, BIGINT_P)
-			.modPow(FACTOR_E, EL_GAMAL_PARAMETERS.p());
+			.modPow(FACTOR_E, EL_GAMAL_PARAMETERS.p);
 	CivitasBigInteger PET_COMMITMENT_EI = CIPHERTEXT_E_B
 			.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P).modPow(FACTOR_E, BIGINT_P);
 

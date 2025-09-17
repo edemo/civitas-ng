@@ -16,25 +16,25 @@ public class ElGamalReencrypt {
 	CryptoBase cryptoBase;
 
 	public ElGamalCiphertextish apply(final ElGamalPublicKey key,
-			final ElGamalCiphertextish ciphertext) {
-		ElGamalParameters ps = key.params();
+									  final ElGamalCiphertextish ciphertext) {
+		ElGamalParameters ps = key.params;
 		CivitasBigInteger c1 = ciphertext.getA();
 		CivitasBigInteger c2 = ciphertext.getB();
-		CivitasBigInteger y = cryptoBase.generateRandomElement(ps.q());
-		c1 = c1.modMultiply(ps.g().modPow(y, ps.p()), ps.p());
-		c2 = c2.modMultiply(key.y().modPow(y, ps.p()), ps.p());
+		CivitasBigInteger y = cryptoBase.generateRandomElement(ps.q);
+		c1 = c1.modMultiply(ps.g.modPow(y, ps.p), ps.p);
+		c2 = c2.modMultiply(key.y.modPow(y, ps.p), ps.p);
 		return new ElGamalCiphertext(c1, c2);
 	}
 
 	public ElGamalCiphertextish apply(final ElGamalPublicKey key,
-			final ElGamalCiphertextish ciphertext,
-			final ElGamalReencryptFactor factor) {
-		ElGamalParameters ps = key.params();
+									  final ElGamalCiphertextish ciphertext,
+									  final ElGamalReencryptFactor factor) {
+		ElGamalParameters ps = key.params;
 		CivitasBigInteger a = ciphertext.getA();
 		CivitasBigInteger b = ciphertext.getB();
 		CivitasBigInteger r = factor.r();
-		a = a.modMultiply(ps.g().modPow(r, ps.p()), ps.p());
-		b = b.modMultiply(key.y().modPow(r, ps.p()), ps.p());
+		a = a.modMultiply(ps.g.modPow(r, ps.p), ps.p);
+		b = b.modMultiply(key.y.modPow(r, ps.p), ps.p);
 		return new ElGamalCiphertext(a, b);
 
 	}

@@ -28,11 +28,11 @@ public class ConstructElGamalProof1OfL implements Constants {
 	private ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProof1OfL apply(ElGamalPublicKey key,
-			CiphertextList ciphertexts, int choice, ElGamalCiphertextish m,
-			ElGamalReencryptFactor factor) {
+								  CiphertextList ciphertexts, int choice, ElGamalCiphertextish m,
+								  ElGamalReencryptFactor factor) {
 
 		int l = ciphertexts.size();
-		ElGamalParameters ps = key.params();
+		ElGamalParameters ps = key.params;
 		CivitasBigInteger u = m.getA();
 		CivitasBigInteger v = m.getB();
 		CivitasBigInteger r = factor.r();
@@ -45,21 +45,21 @@ public class ConstructElGamalProof1OfL implements Constants {
 		// choose d1 .. dL, and r1 ... rL at random.
 		CivitasBigInteger[] ds = new CivitasBigInteger[l];
 		for (int i = 0; i < l; i++) {
-			ds[i] = cryptoBase.generateRandomElement(ps.q());
+			ds[i] = cryptoBase.generateRandomElement(ps.q);
 		}
 		CivitasBigInteger[] rs = new CivitasBigInteger[l];
 		for (int i = 0; i < l; i++) {
-			rs[i] = cryptoBase.generateRandomElement(ps.q());
+			rs[i] = cryptoBase.generateRandomElement(ps.q);
 		}
 
 		// compute a_i's and b_i's
 		CivitasBigInteger[] as = new CivitasBigInteger[l];
 		CivitasBigInteger[] bs = new CivitasBigInteger[l];
 		for (int i = 0; i < l; i++) {
-			as[i] = ms[i].getA().modDivide(u, ps.p()).modPow(ds[i], ps.p())
-					.modMultiply(ps.g().modPow(rs[i], ps.p()), ps.p()).mod(ps.p());
-			bs[i] = ms[i].getB().modDivide(v, ps.p()).modPow(ds[i], ps.p())
-					.modMultiply(key.y().modPow(rs[i], ps.p()), ps.p()).mod(ps.p());
+			as[i] = ms[i].getA().modDivide(u, ps.p).modPow(ds[i], ps.p)
+					.modMultiply(ps.g.modPow(rs[i], ps.p), ps.p).mod(ps.p);
+			bs[i] = ms[i].getB().modDivide(v, ps.p).modPow(ds[i], ps.p)
+					.modMultiply(key.y.modPow(rs[i], ps.p), ps.p).mod(ps.p);
 		}
 
 		List<CivitasBigInteger> env = new ArrayList<>();
@@ -72,18 +72,18 @@ public class ConstructElGamalProof1OfL implements Constants {
 			env.add(bs[i]);
 		}
 		CivitasBigInteger c = convertHashToBigInt.apply(cryptoHash.apply(env))
-				.mod(ps.q());
-		CivitasBigInteger w = r.modNegate(ps.q()).modMultiply(ds[choice], ps.q())
-				.modAdd(rs[choice], ps.q());
+				.mod(ps.q);
+		CivitasBigInteger w = r.modNegate(ps.q).modMultiply(ds[choice], ps.q)
+				.modAdd(rs[choice], ps.q);
 		CivitasBigInteger sum = ZERO;
 		for (int i = 0; i < l; i++) {
 			if (i != choice) {
-				sum = sum.modAdd(ds[i], ps.q());
+				sum = sum.modAdd(ds[i], ps.q);
 			}
 		}
 
-		CivitasBigInteger dprimet = c.modSubtract(sum, ps.q());
-		CivitasBigInteger rprimet = w.modAdd(r.modMultiply(dprimet, ps.q()), ps.q());
+		CivitasBigInteger dprimet = c.modSubtract(sum, ps.q);
+		CivitasBigInteger rprimet = w.modAdd(r.modMultiply(dprimet, ps.q), ps.q);
 
 		CivitasBigInteger[] dvs = new CivitasBigInteger[l];
 		CivitasBigInteger[] rvs = new CivitasBigInteger[l];

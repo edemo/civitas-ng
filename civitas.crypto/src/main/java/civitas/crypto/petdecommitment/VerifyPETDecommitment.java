@@ -28,8 +28,8 @@ public class VerifyPETDecommitment {
 		ElGamalCiphertext m1 = ciphertext1;
 		ElGamalCiphertext m2 = ciphertext2;
 
-		CivitasBigInteger d = m1.a.modDivide(m2.a, ps.p());
-		CivitasBigInteger e = m1.b.modDivide(m2.b, ps.p());
+		CivitasBigInteger d = m1.a.modDivide(m2.a, ps.p);
+		CivitasBigInteger e = m1.b.modDivide(m2.b, ps.p);
 
 		if (self.di() == null || self.ei() == null || !d.equals(prf.g1())
 				|| !e.equals(prf.g2())) {

@@ -20,7 +20,7 @@ class GenerateElGamalParametersTest extends TestBase
 	void test_1() {
 
 		assertEquals(SAFE_G, generateElGamalParameters.apply(SAFE_KEY_LENGTH,
-                SAFE_KEY_LENGTH + 1).g());
+                SAFE_KEY_LENGTH + 1).g);
 	}
 
 	@Test
@@ -28,7 +28,7 @@ class GenerateElGamalParametersTest extends TestBase
 	void test_2() {
 		assertEquals(BIGINT_G,
                 generateElGamalParameters.apply(Constants.EL_GAMAL_KEY_LENGTH,
-                        Constants.EL_GAMAL_GROUP_LENGTH).g());
+                        Constants.EL_GAMAL_GROUP_LENGTH).g);
 	}
 
 	@Test
@@ -38,7 +38,7 @@ class GenerateElGamalParametersTest extends TestBase
 			Constants.EL_GAMAL_GROUP_LENGTH
 			""")
 	void test_3() {
-		assertEquals(BIGINT_G, generateElGamalParameters.apply().g());
+		assertEquals(BIGINT_G, generateElGamalParameters.apply().g);
 	}
 
 }

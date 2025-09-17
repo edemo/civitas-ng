@@ -18,7 +18,7 @@ public class ConstructElGamalKeyShare {
 
 	public ElGamalKeyShare apply(final ElGamalKeyPairShare kps) {
 		ElGamalKeyShare egks = apply(kps.pubKey(),
-				constructProofKnowDiscLog.apply(kps.pubKey().params(), kps.privKey()));
+				constructProofKnowDiscLog.apply(kps.pubKey().params, kps.privKey()));
 		if (!verifyElGamalKeyShare.apply(egks)) {
 			throw new CryptoError("Cannot verify a newly created key share!");
 		}

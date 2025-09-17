@@ -24,7 +24,7 @@ public class VerifyElGamalProof1OfL {
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public boolean apply(ElGamalProof1OfL self, ElGamalPublicKey pubKey,
-			CiphertextList ciphertexts, int l, ElGamalCiphertextish msg) {
+						 CiphertextList ciphertexts, int l, ElGamalCiphertextish msg) {
 		if (self.L != l) {
 			return false;
 		}
@@ -32,7 +32,7 @@ public class VerifyElGamalProof1OfL {
 		CivitasBigInteger u = m.getA();
 		CivitasBigInteger v = m.getB();
 		ElGamalPublicKey key = pubKey;
-		ElGamalParameters ps = key.params();
+		ElGamalParameters ps = key.params;
 		ElGamalCiphertextish[] ms = new ElGamalCiphertext[l];
 
 		for (int i = 0; i < l; i++) {
@@ -43,11 +43,11 @@ public class VerifyElGamalProof1OfL {
 		CivitasBigInteger[] bs = new CivitasBigInteger[l];
 		CivitasBigInteger sum = Constants.ZERO;
 		for (int i = 0; i < l; i++) {
-			as[i] = ms[i].getA().modDivide(u, ps.p()).modPow(self.dvs[i], ps.p())
-					.modMultiply(ps.g().modPow(self.rvs[i], ps.p()), ps.p());
-			bs[i] = ms[i].getB().modDivide(v, ps.p()).modPow(self.dvs[i], ps.p())
-					.modMultiply(key.y().modPow(self.rvs[i], ps.p()), ps.p());
-			sum = sum.modAdd(self.dvs[i], ps.q());
+			as[i] = ms[i].getA().modDivide(u, ps.p).modPow(self.dvs[i], ps.p)
+					.modMultiply(ps.g.modPow(self.rvs[i], ps.p), ps.p);
+			bs[i] = ms[i].getB().modDivide(v, ps.p).modPow(self.dvs[i], ps.p)
+					.modMultiply(key.y.modPow(self.rvs[i], ps.p), ps.p);
+			sum = sum.modAdd(self.dvs[i], ps.q);
 		}
 
 		// construct the hash of the environment
@@ -62,7 +62,7 @@ public class VerifyElGamalProof1OfL {
 		}
 
 		byte[] hashBytes = cryptoHash.apply(env);
-		CivitasBigInteger c = convertHashToBigInt.apply(hashBytes).mod(ps.q());
+		CivitasBigInteger c = convertHashToBigInt.apply(hashBytes).mod(ps.q);
 		return sum.equals(c);
 	}
 
