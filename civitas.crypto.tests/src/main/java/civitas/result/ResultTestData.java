@@ -41,33 +41,31 @@ public interface ResultTestData {
 			1420,cukorgyár újraindítás,#ffffff
 			757,bicikliút Szoboszlóra,#ffffff
 			295,szállodaépítés,#ffffff
-			0,---,#ffffff
-			""";
+			0,---,#ffffff""";
 
 	String REPORT = """
             1:
-                orvosi ügyelet (16421.25) (beats élelmiszeripari üzem by 84:22 (3.82))
+            \torvosi ügyelet (16421.25) (beats élelmiszeripari üzem by 84:22 (3.82))\s
             2:
-                élelmiszeripari üzem (4300.80) (beats 4-es főút szélesítés by 77:52 (1.48), beats vízmegtartó gazdálkodás by 67:55 (1.22))
+            \télelmiszeripari üzem (4300.80) (beats 4-es főút szélesítés by 77:52 (1.48), beats vízmegtartó gazdálkodás by 67:55 (1.22))\s
             3:
-                4-es főút szélesítés (2931.88) (beats önkormányzati iskola by 63:62 (1.02))
-                vízmegtartó gazdálkodás (3442.16) (beats önkormányzati iskola by 68:57 (1.19))
+            \t4-es főút szélesítés (2931.88) (beats önkormányzati iskola by 63:62 (1.02))\s
+            \tvízmegtartó gazdálkodás (3442.16) (beats önkormányzati iskola by 68:57 (1.19))\s
             4:
-                önkormányzati iskola (2885.34) (beats fürdőfejlesztés by 92:52 (1.77))
+            \tönkormányzati iskola (2885.34) (beats fürdőfejlesztés by 92:52 (1.77))\s
             5:
-                fürdőfejlesztés (1630.84) (beats elkerülő út felújítás by 76:74 (1.03))
+            \tfürdőfejlesztés (1630.84) (beats elkerülő út felújítás by 76:74 (1.03))\s
             6:
-                elkerülő út felújítás (1587.93) (beats piacfejlesztés by 77:74 (1.04))
+            \telkerülő út felújítás (1587.93) (beats piacfejlesztés by 77:74 (1.04))\s
             7:
-                piacfejlesztés (1526.06) (beats cukorgyár újraindítás by 87:81 (1.07))
+            \tpiacfejlesztés (1526.06) (beats cukorgyár újraindítás by 87:81 (1.07))\s
             8:
-                cukorgyár újraindítás (1420.81) (beats bicikliút Szoboszlóra by 120:64 (1.88))
+            \tcukorgyár újraindítás (1420.81) (beats bicikliút Szoboszlóra by 120:64 (1.88))\s
             9:
-                bicikliút Szoboszlóra (757.77) (beats szállodaépítés by 123:48 (2.56))
+            \tbicikliút Szoboszlóra (757.77) (beats szállodaépítés by 123:48 (2.56))\s
             10:
-                szállodaépítés (295.71) (beats --- by 207:7 (29.57))
+            \tszállodaépítés (295.71) (beats --- by 207:7 (29.57))\s
             11:
-                --- (0.00) ()
-            """;
+            \t--- (0.00) ()\s""";
 
 }
