@@ -37,7 +37,7 @@ public interface ResultTestData {
 			2885,önkormányzati iskola,#ffffff
 			1630,fürdőfejlesztés,#ffffff
 			1587,elkerülő út felújítás,#ffffff
-			526,piacfejlesztés,#ffffff
+			1526,piacfejlesztés,#ffffff
 			1420,cukorgyár újraindítás,#ffffff
 			757,bicikliút Szoboszlóra,#ffffff
 			295,szállodaépítés,#ffffff
