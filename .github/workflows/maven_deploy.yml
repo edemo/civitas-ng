@@ -24,6 +24,8 @@ jobs:
         server-password: MAVEN_CENTRAL_TOKEN
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
+    - name: Make sure gpg is correctly set up
+      run: gpg --list-secret-keys ; echo $MAVEN_USERNAME |sha512sum ; echo MAVEN_GPG_PASSPHRASE | sha512sum
     - uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809
       with:
         path: ~/.m2/repository
