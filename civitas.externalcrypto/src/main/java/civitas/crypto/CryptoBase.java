@@ -61,7 +61,7 @@ public class CryptoBase implements Constants {
 	}
 
 	public byte[] doCrypto(String alg, String provider, Key skey, int mode,
-			byte[] input) throws CryptoError {
+			byte[] input) {
 		Cipher cipher;
 		try {
 			cipher = Cipher.getInstance(alg, provider);

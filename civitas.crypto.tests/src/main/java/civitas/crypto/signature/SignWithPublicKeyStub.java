@@ -10,7 +10,6 @@ import java.security.SignatureException;
 
 import org.bouncycastle.crypto.CryptoException;
 
-import civitas.crypto.CryptoError;
 import civitas.crypto.rsapublickey.PublicKeyTestData;
 import civitas.util.BasicValuesTestData;
 
@@ -18,7 +17,7 @@ public class SignWithPublicKeyStub
 		implements PublicKeyTestData, BasicValuesTestData, SignatureTestData {
 	public static SignWithPublicKey stub() throws InvalidKeyException,
 			NoSuchAlgorithmException, NoSuchProviderException, SignatureException,
-			CryptoError, CryptoException {
+            CryptoException {
 		SignWithPublicKey mock = mock(SignWithPublicKey.class);
 
 		when(mock.apply(PRIVATE_KEY, PUBLIC_KEY, AUTHENTICATION_NONCE))

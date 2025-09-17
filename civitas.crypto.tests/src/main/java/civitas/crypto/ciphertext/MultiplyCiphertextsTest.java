@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
-import civitas.crypto.CryptoError;
-import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertextlist.CiphertextList;
 import civitas.crypto.ciphertextlist.ElGamalCiphertextListTestData;
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
@@ -31,7 +29,7 @@ class MultiplyCiphertextsTest extends RandomAwareTestBase
 			by multiplying a's and b's in each row
 			gives one ciphertext for each rows
 			""")
-	void test() throws CryptoError, CryptoException {
+	void test() {
 		CiphertextList actual = multiplyCiphertexts.apply(CIPHERTEXT_MATRIX,
 				EL_GAMAL_PARAMETERS);
 		assertEquals(CivitasBigIntegerFactory.obtain(2 * 11), actual.get(0).getA());

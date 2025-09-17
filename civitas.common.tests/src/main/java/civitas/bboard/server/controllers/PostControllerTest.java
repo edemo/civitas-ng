@@ -6,8 +6,6 @@ import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 import org.bouncycastle.crypto.CryptoException;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +18,6 @@ import civitas.common.EnvironmentState;
 import civitas.common.Operation;
 import civitas.common.RandomAwareTestBase;
 import civitas.common.board.BulletinBoardTestData;
-import civitas.crypto.CryptoError;
 import jakarta.xml.bind.JAXBException;
 
 class PostControllerTest extends RandomAwareTestBase
@@ -41,7 +38,6 @@ class PostControllerTest extends RandomAwareTestBase
 			- logs the transaction with its meta and board id
 			""")
 	void test() throws CommunicableException, JAXBException, IOException,
-			NoSuchAlgorithmException, InvalidKeySpecException, CryptoError,
 			CryptoException {
 		assertEquals(CURRENT_TIME,
 				postController.apply(BULLETIN_BOARD_ID,
@@ -72,7 +68,7 @@ class PostControllerTest extends RandomAwareTestBase
 
 	@Test
 	@DisplayName("if the signature does not check, a CommunicableException is thrown")
-	void test1() throws IOException, SecurityException {
+	void test1() {
 		assertThrows(CommunicableException.class,
 				() -> postController.apply(BULLETIN_BOARD_ID,
 						new PostDTO(BoardClosedContentCommitmentMETA,
@@ -82,7 +78,7 @@ class PostControllerTest extends RandomAwareTestBase
 
 	@Test
 	@DisplayName("if the signer is not authorized to post, a SecurityException is thrown")
-	void test2() throws IOException, SecurityException {
+	void test2() {
 		assertThrows(SecurityException.class,
 				() -> postController.apply(BULLETIN_BOARD_ID,
 						new PostDTO(BoardClosedContentCommitmentMETA,

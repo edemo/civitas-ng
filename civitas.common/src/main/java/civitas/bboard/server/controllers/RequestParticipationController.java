@@ -25,7 +25,6 @@ import civitas.common.Configuration;
 import civitas.common.ServerRole;
 import civitas.common.election.ElectionDetails;
 import civitas.common.election.ElectionStatus;
-import civitas.crypto.CryptoError;
 import civitas.crypto.rsapublickey.ConvertStringToPublicKey;
 import jakarta.xml.bind.JAXBException;
 
@@ -49,8 +48,8 @@ public class RequestParticipationController implements CommonConstants {
 			@RequestBody RequestParticipationDTO participationRequest)
 			throws UnrecoverableKeyException, InvalidKeyException, KeyStoreException,
 			NoSuchAlgorithmException, CertificateException, NoSuchProviderException,
-			SignatureException, JAXBException, IOException, CryptoError,
-			CommunicableException, InvalidKeySpecException, CryptoException {
+			SignatureException, JAXBException, IOException,
+            CommunicableException, InvalidKeySpecException, CryptoException {
 		if (participationRequest == null
 				|| participationRequest.electionID == null) {
 			return null;

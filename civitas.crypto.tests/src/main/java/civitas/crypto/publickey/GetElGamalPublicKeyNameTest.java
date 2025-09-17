@@ -2,8 +2,6 @@ package civitas.crypto.publickey;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,7 +16,7 @@ class GetElGamalPublicKeyNameTest extends TestBase
 
 	@Test
 	@DisplayName("name returns a name")
-	void test2() throws IllegalArgumentException, IOException {
+	void test2() {
 		assertEquals(EL_GAMALPUBLIC_KEY_NAME,
 				getElGamalPublicKeyName.apply(EL_GAMAL_PUBLIC_KEY_E));
 	}

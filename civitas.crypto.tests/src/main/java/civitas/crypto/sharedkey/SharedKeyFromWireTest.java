@@ -20,7 +20,7 @@ class SharedKeyFromWireTest extends TestBase
 
 	@Test
 	@DisplayName("fromWire works as expected")
-	void test3() throws IllegalArgumentException, IOException {
+	void test3() throws IOException {
 		try (BufferedReader br = new BufferedReader(
 				new StringReader(SHARED_KEY_ON_WIRE))) {
 			SharedKey fromWire = sharedKeyFromWire.apply(br);

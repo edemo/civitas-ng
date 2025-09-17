@@ -13,7 +13,7 @@ public class SharedKeyFromWire {
 	CreateSharedKeyFromBytes createSharedKeyFromBytes;
 
 	public SharedKey apply(BufferedReader br)
-			throws IllegalArgumentException, IOException {
+			throws IOException {
 		String name = br.readLine();
 		String s = br.readLine();
 		byte[] bs = Base64.getDecoder().decode(s);

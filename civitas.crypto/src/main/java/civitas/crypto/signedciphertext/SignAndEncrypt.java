@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import civitas.crypto.CryptoBase;
-import civitas.crypto.CryptoError;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.msg.CryptMessage;
 import civitas.crypto.parameters.ElGamalParameters;
@@ -24,7 +23,7 @@ public class SignAndEncrypt {
 	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
 
 	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, CryptMessage msg,
-			ElGamalReencryptFactor r, byte[] additionalEnv) throws CryptoError {
+			ElGamalReencryptFactor r, byte[] additionalEnv) {
 		ElGamalParameters ps = key.params;
 		CivitasBigInteger m = msg.getM();
 		CivitasBigInteger rr = r.r;

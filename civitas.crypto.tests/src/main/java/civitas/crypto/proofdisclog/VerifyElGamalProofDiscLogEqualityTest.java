@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -36,7 +34,7 @@ class VerifyElGamalProofDiscLogEqualityTest extends TestBase
 
 	@Test
 	@DisplayName("verify is false for a bad proof (other branch)")
-	void test0_3() throws IllegalArgumentException, IOException {
+	void test0_3() {
 		assertFalse(verifyElGamalProofDiscLogEquality
 				.apply(EL_GAMAL_DISC_LOG_EQUALITY_BAD_W, EL_GAMAL_PARAMETERS));
 	}

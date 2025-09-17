@@ -3,8 +3,6 @@ package civitas.crypto.proof1ofl;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -20,14 +18,14 @@ class VerifyElGamal1OfLReencryptionTest extends TestBase
 
 	@Test
 	@DisplayName("verifies the proof in teh Reencryption")
-	void test1() throws IllegalArgumentException, IOException {
+	void test1() {
 		assertTrue(verifyElGamal1OfLReencryption.apply(EL_GAMAL_1_OF_L_REENCRYPTION,
 				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
 	}
 
 	@Test
 	@DisplayName("if the proof is bad, false is returned")
-	void test2() throws IllegalArgumentException, IOException {
+	void test2() {
 		assertFalse(verifyElGamal1OfLReencryption.apply(
 				EL_GAMAL_1_OF_L_REENCRYPTION, EL_GAMAL_PUBLIC_KEY_EPRIME,
 				CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
