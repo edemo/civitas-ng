@@ -24,10 +24,7 @@ class EncryptCapabilityTest extends RandomAwareTestBase
 			 - encrypts the capability associated with the context using the key and the reencrypt factor
 			""")
 	void test() {
-		CapabilityEncryption encryptCapabilityResult = new CapabilityEncryption(
-				ELGAMAL_REENCRYPT_FACTOR_EPRIME,
-				ENCRYPTED_VOTE_CAPABILITIES_WITH_EPRIME.getFirst());
-		assertEquals(encryptCapabilityResult, encryptCapability
+		assertEquals(ENCRYPT_CAPABILITY_RESULT, encryptCapability
 				.apply(EL_GAMAL_PUBLIC_KEY_E, CAPABILITY_MAP, CONTEXT_0));
 		verify(encryptCapability.generateElGamalReencryptFactor)
 				.apply(EL_GAMAL_PARAMETERS);
