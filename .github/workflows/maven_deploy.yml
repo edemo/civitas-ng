@@ -25,7 +25,7 @@ jobs:
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
         gpg-passphrase: ${{secrets.GPG_PASSPHRASE}}
     - name: Make sure gpg is correctly set up
-      run: find ~/.gnupg -ls; which gpg;gpg --list-secret-keys; gpg --sign /home/runner/.gnupg/trustdb.gpg;find ~/.gnupg -ls
+      run: find ~/.gnupg -ls; which gpg;gpg --list-keys --verbose; gpg --sign /home/runner/.gnupg/trustdb.gpg;find ~/.gnupg -ls
     - uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809
       with:
         path: ~/.m2/repository
