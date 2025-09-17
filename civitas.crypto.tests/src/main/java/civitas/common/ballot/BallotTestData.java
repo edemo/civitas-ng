@@ -1,10 +1,12 @@
 package civitas.common.ballot;
 
+import java.util.function.Supplier;
+
 import civitas.common.VoteChoice;
 
 public interface BallotTestData {
 
-	Ballot BALLOT_EMPTY = new Ballot(3, new VoteChoice[3]);
+	Supplier<Ballot> BALLOT_EMPTY = () -> new Ballot(3, new VoteChoice[3]);
 
 	Ballot BALLOT_ONE_RECORD = new Ballot(3,
 			new VoteChoice[] { null, VoteChoice.I_BEATS_J, null });

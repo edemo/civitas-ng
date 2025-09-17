@@ -17,7 +17,7 @@ class CreateEmptyBallotTest extends RandomAwareTestBase
 	@Test
 	@DisplayName("creates an empty ballot for n candidates")
 	void test() {
-		assertEquals(BALLOT_EMPTY, createEmptyBallot.apply(3));
+		assertEquals(BALLOT_EMPTY.get(), createEmptyBallot.apply(3));
 	}
 
 	@Test

@@ -19,29 +19,30 @@ class RecordOnePairInBallotTest extends RandomAwareTestBase
 	@Test
 	@DisplayName("records whether candidate i beats candidate j")
 	void test() {
-		recordOnePairInBallot.apply(BALLOT_EMPTY, 0, 2, VoteChoice.I_BEATS_J);
-		assertEquals(BALLOT_ONE_RECORD, BALLOT_EMPTY);
+		Ballot ballot = BALLOT_EMPTY.get();
+		recordOnePairInBallot.apply(ballot, 0, 2, VoteChoice.I_BEATS_J);
+		assertEquals(BALLOT_ONE_RECORD, ballot);
 	}
 
 	@Test
 	@DisplayName("i must be >= 0, else IllegalArgumentException is thrown")
 	void test2() {
 		assertThrows(IllegalArgumentException.class, () -> recordOnePairInBallot
-				.apply(BALLOT_EMPTY, -1, 2, VoteChoice.I_BEATS_J));
+				.apply(BALLOT_EMPTY.get(), -1, 2, VoteChoice.I_BEATS_J));
 	}
 
 	@Test
 	@DisplayName("j must be > i, else IllegalArgumentException is thrown")
 	void test3() {
 		assertThrows(IllegalArgumentException.class, () -> recordOnePairInBallot
-				.apply(BALLOT_EMPTY, 1, 1, VoteChoice.I_BEATS_J));
+				.apply(BALLOT_EMPTY.get(), 1, 1, VoteChoice.I_BEATS_J));
 	}
 
 	@Test
 	@DisplayName("j must be < k, else IllegalArgumentException is thrown")
 	void test4() {
 		assertThrows(IllegalArgumentException.class, () -> recordOnePairInBallot
-				.apply(BALLOT_EMPTY, 0, 3, VoteChoice.I_BEATS_J));
+				.apply(BALLOT_EMPTY.get(), 0, 3, VoteChoice.I_BEATS_J));
 	}
 
 	@Test
