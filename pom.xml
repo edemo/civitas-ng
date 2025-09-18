@@ -5,10 +5,10 @@
 	<parent>
 		<groupId>io.github.magwas</groupId>
 		<artifactId>konveyor-parent</artifactId>
-		<version>0.4.20</version>
+		<version>0.4.22</version>
 	</parent>
 	<properties>
-		<konveyor-version>0.4.20</konveyor-version>
+		<konveyor-version>0.4.22</konveyor-version>
 		<mpir.skip>true</mpir.skip>
 	</properties>
 
