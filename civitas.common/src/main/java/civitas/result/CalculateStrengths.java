@@ -18,7 +18,7 @@ public class CalculateStrengths {
 					result.strength *= base;
 				}
 				avg /= step.size();
-				base = base * avg;
+				base *= avg;
 			} else {
 				for (CandidateResult result : step) {
 					if (result.candidate == noneOfABove) {
