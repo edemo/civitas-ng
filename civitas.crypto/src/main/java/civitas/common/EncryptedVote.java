@@ -7,11 +7,7 @@
 package civitas.common;
 
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
-import lombok.Data;
 
-@Data
-public class EncryptedVote {
-	public final String context;
-	public final ElGamalCiphertextish encChoice;
-	public final ElGamalCiphertextish encCapability;
+public record EncryptedVote(String context, ElGamalCiphertextish encChoice,
+		ElGamalCiphertextish encCapability) {
 }

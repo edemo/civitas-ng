@@ -25,8 +25,8 @@ class ConstructElGamal1OfLReencryptionTest extends TestBase
 		ElGamal1OfLReencryption encChoice = constructElGamal1OfLReencryption.apply(
 				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, MY_CHOICE.ordinal(),
 				ELGAMAL_REENCRYPT_FACTOR_E);
-		assertEquals(EL_GAMAL_PROOF_1_OF_L, encChoice.proof);
-		assertEquals(REENCRYPTED_WELL_KNOWN_CHOICE, encChoice.m);
+		assertEquals(EL_GAMAL_PROOF_1_OF_L, encChoice.proof());
+		assertEquals(REENCRYPTED_WELL_KNOWN_CHOICE, encChoice.m());
 	}
 
 	@Test

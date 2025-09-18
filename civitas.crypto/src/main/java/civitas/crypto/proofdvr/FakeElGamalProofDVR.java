@@ -27,18 +27,18 @@ public class FakeElGamalProofDVR {
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProofDVR apply(ElGamalPublicKey key,
-			ElGamalPublicKey verifierKey, ElGamalPrivateKey verifierPrivKey,
-			ElGamalCiphertextish e, ElGamalCiphertext ePrime) {
+								 ElGamalPublicKey verifierKey, ElGamalPrivateKey verifierPrivKey,
+								 ElGamalCiphertextish e, ElGamalCiphertext ePrime) {
 		return apply(e, ePrime, key, verifierKey, verifierPrivKey);
 	}
 
 	public ElGamalProofDVR apply(ElGamalCiphertextish e, ElGamalCiphertext et,
-			ElGamalPublicKey key, ElGamalPublicKey verifierKey,
-			ElGamalPrivateKey verifierPrivKey) {
+								 ElGamalPublicKey key, ElGamalPublicKey verifierKey,
+								 ElGamalPrivateKey verifierPrivKey) {
 
 		ElGamalParameters ps = key.params;
 		// CivitasBigInteger hv = verifierKey.y;
-		CivitasBigInteger zv = verifierPrivKey.x;
+		CivitasBigInteger zv = verifierPrivKey.x();
 
 		CivitasBigInteger h = key.y;
 		CivitasBigInteger x = e.getA();

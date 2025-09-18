@@ -12,7 +12,7 @@ public class ElGamalPublicKeyisAuthorized {
 		if (prf instanceof ElGamalPrivateKey) {
 			ElGamalPrivateKey k = (ElGamalPrivateKey) prf;
 			ElGamalParameters param = that.params;
-			return that.y.equals(param.g.modPow(k.x, param.p));
+			return that.y.equals(param.g.modPow(k.x(), param.p));
 		}
 		return false;
 	}

@@ -23,9 +23,9 @@ public class VerifyElGamalDecryptionShare {
 			throw new IllegalArgumentException("null key");
 		}
 		ElGamalParameters params = key.params;
-		if (that.proof.g1.equals(c.a) && that.proof.g2.equals(params.g)
-				&& that.proof.v.equals(that.ai) && that.proof.w.equals(key.y)) {
-			return verifyElGamalProofDiscLogEquality.apply(that.proof, params);
+		if (that.proof().g1().equals(c.a) && that.proof().g2().equals(params.g)
+				&& that.proof().v().equals(that.ai()) && that.proof().w().equals(key.y)) {
+			return verifyElGamalProofDiscLogEquality.apply(that.proof(), params);
 		}
 
 		return false;

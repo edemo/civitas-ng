@@ -16,7 +16,7 @@ public class ElGamalReencrypt {
 	CryptoBase cryptoBase;
 
 	public ElGamalCiphertextish apply(final ElGamalPublicKey key,
-			final ElGamalCiphertextish ciphertext) {
+									  final ElGamalCiphertextish ciphertext) {
 		ElGamalParameters ps = key.params;
 		CivitasBigInteger c1 = ciphertext.getA();
 		CivitasBigInteger c2 = ciphertext.getB();
@@ -27,12 +27,12 @@ public class ElGamalReencrypt {
 	}
 
 	public ElGamalCiphertextish apply(final ElGamalPublicKey key,
-			final ElGamalCiphertextish ciphertext,
-			final ElGamalReencryptFactor factor) {
+									  final ElGamalCiphertextish ciphertext,
+									  final ElGamalReencryptFactor factor) {
 		ElGamalParameters ps = key.params;
 		CivitasBigInteger a = ciphertext.getA();
 		CivitasBigInteger b = ciphertext.getB();
-		CivitasBigInteger r = factor.r;
+		CivitasBigInteger r = factor.r();
 		a = a.modMultiply(ps.g.modPow(r, ps.p), ps.p);
 		b = b.modMultiply(key.y.modPow(r, ps.p), ps.p);
 		return new ElGamalCiphertext(a, b);

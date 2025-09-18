@@ -46,7 +46,7 @@ public class CheckVoterSubmission implements CommonConstants {
 				if (vv == null) {
 					throw new IllegalArgumentException("Invalid verifiable vote.");
 				}
-				String vvcontext = vv.context;
+				String vvcontext = vv.context();
 				String desiredContext = context + KIND + i + ":" + j;
 				if (!desiredContext.equals(vvcontext)) {
 					throw new IllegalArgumentException(

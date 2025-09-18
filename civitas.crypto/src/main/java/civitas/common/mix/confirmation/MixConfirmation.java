@@ -7,14 +7,7 @@
 package civitas.common.mix.confirmation;
 
 import civitas.common.election.ElectionID;
-import lombok.Data;
 
-@Data
-public class MixConfirmation {
-
-	public final int speakerIndex;
-	public final int tellerIndex;
-	public final boolean isVoteMix;
-	public final ElectionID electionID;
-
+public record MixConfirmation(int speakerIndex, int tellerIndex,
+		boolean isVoteMix, ElectionID electionID) {
 }

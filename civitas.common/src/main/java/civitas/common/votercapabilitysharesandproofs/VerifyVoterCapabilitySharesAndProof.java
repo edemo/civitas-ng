@@ -51,14 +51,14 @@ public class VerifyVoterCapabilitySharesAndProof {
 			VoteCapabilityShare vc = that.capabilities[i];
 			ElGamalReencryptFactor r = that.rencryptFactors[i];
 			ElGamalProofDVR p = that.proofs[i];
-			if (!p.getE().equals(postedCapabilities[i]) || !verifyElGamalSignature
+			if (!p.e().equals(postedCapabilities[i]) || !verifyElGamalSignature
 					.apply(params, postedCapabilities[i], hash)) {
 				return false;
 			}
 
 			ElGamalCiphertext encrypted = elGamalEncrypt
 					.apply(tabTellerSharedPublicKey, vc, r);
-			if (!encrypted.equals(p.getEprime()) || !verifyElGamalProofDVR.apply(p,
+			if (!encrypted.equals(p.eprime()) || !verifyElGamalProofDVR.apply(p,
 					tabTellerSharedPublicKey, voterPublicKey)) {
 				return false;
 			}

@@ -17,7 +17,7 @@ public class SafePrimeEncode {
 			ElGamalParameters elGamalParameters) {
 		CivitasBigInteger encoding = x;
 		if (legendreSymbol.apply(encoding, elGamalParameters.p,
-				elGamalParameters.q) == -1) {
+                elGamalParameters.q) == -1) {
 			encoding = elGamalParameters.p.subtract(encoding); // encoding = -m
 		}
 		return encoding;

@@ -6,11 +6,5 @@
  */
 package civitas.common.tabteller.keysharecommitment;
 
-import lombok.Data;
-
-@Data
-public class TabTellerKeyShareCommitment {
-	public final int tellerIndex;
-	public final String keyShareHash;
-
+public record TabTellerKeyShareCommitment(int tellerIndex, String keyShareHash) {
 }

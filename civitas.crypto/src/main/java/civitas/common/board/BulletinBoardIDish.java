@@ -1,8 +1,8 @@
 package civitas.common.board;
 
 public interface BulletinBoardIDish {
-	String getUriBase();
+	String uriBase();
 
-	String getId();
+	String id();
 
 }

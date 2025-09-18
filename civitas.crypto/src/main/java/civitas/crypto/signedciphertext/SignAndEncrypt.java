@@ -23,10 +23,10 @@ public class SignAndEncrypt {
 	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
 
 	public ElGamalSignedCiphertext apply(ElGamalPublicKey key, CryptMessage msg,
-			ElGamalReencryptFactor r, byte[] additionalEnv) {
+										 ElGamalReencryptFactor r, byte[] additionalEnv) {
 		ElGamalParameters ps = key.params;
-		CivitasBigInteger m = msg.getM();
-		CivitasBigInteger rr = r.r;
+		CivitasBigInteger m = msg.m();
+		CivitasBigInteger rr = r.r();
 		CivitasBigInteger s = cryptoBase.generateRandomElement(ps.q);
 		CivitasBigInteger a = ps.g.modPow(rr, ps.p);
 		CivitasBigInteger b = m.modMultiply(key.y.modPow(rr, ps.p), ps.p);

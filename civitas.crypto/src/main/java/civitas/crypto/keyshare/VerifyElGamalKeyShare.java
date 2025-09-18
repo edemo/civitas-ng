@@ -14,10 +14,10 @@ public class VerifyElGamalKeyShare {
 	VerifyElGamalProofKnowDiscLog verifyElGamalProofKnowDiscLog;
 
 	public boolean apply(ElGamalKeyShare that) {
-		ElGamalProofKnowDiscLog prf = that.proof;
-		ElGamalPublicKey key = that.pubKey;
-		return prf.v.equals(key.y)
-				&& verifyElGamalProofKnowDiscLog.apply(prf, that.pubKey.params);
+		ElGamalProofKnowDiscLog prf = that.proof();
+		ElGamalPublicKey key = that.pubKey();
+		return prf.v().equals(key.y)
+				&& verifyElGamalProofKnowDiscLog.apply(prf, that.pubKey().params);
 	}
 
 }

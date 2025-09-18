@@ -8,12 +8,7 @@ package civitas.crypto.petcommitment;
 
 import civitas.crypto.Constants;
 import civitas.util.CivitasBigInteger;
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class PETCommitment implements Constants {
-	@NonNull
-	public final CivitasBigInteger hash;
-
+public record PETCommitment(@NonNull CivitasBigInteger hash) implements Constants {
 }

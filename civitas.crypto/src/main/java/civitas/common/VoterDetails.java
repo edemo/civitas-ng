@@ -9,17 +9,7 @@ package civitas.common;
 import java.security.PublicKey;
 
 import civitas.crypto.publickey.ElGamalPublicKey;
-import lombok.Data;
 
-@Data
-public class VoterDetails {
+public record VoterDetails(String name, ElGamalPublicKey egPublicKey, PublicKey publicKey, int voterBlock) {
 	public static final String OPENING_TAG = "voterDetails";
-
-	public final String name;
-
-	public final ElGamalPublicKey egPublicKey;
-	public final PublicKey publicKey;
-
-	public final int voterBlock;
-
 }

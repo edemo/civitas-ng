@@ -19,7 +19,7 @@ public class GetRestTemplateStub implements ElectionDetailsTestData {
 		RestTemplate restTemplateMock = mock(RestTemplate.class);
 		mock.restTemplate = restTemplateMock;
 		when(mock.apply()).thenReturn(restTemplateMock);
-		when(restTemplateMock.postForObject(eq(ELECTION_ID.uriBase + "/post"),
+		when(restTemplateMock.postForObject(eq(ELECTION_ID.uriBase() + "/post"),
 				any(), any()))
 				.then(new EnvDependentAnswer<>(
 						Map.of(EnvironmentState.NORMAL, new AnswerOrThrowable<>(null, true),

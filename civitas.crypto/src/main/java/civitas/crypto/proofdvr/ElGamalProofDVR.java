@@ -9,23 +9,10 @@ package civitas.crypto.proofdvr;
 import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.util.CivitasBigInteger;
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class ElGamalProofDVR {
-
-	@NonNull
-	public final ElGamalCiphertextish e;
-	@NonNull
-	public final ElGamalCiphertext eprime;
-	@NonNull
-	public final CivitasBigInteger c;
-	@NonNull
-	public final CivitasBigInteger w;
-	@NonNull
-	public final CivitasBigInteger r;
-	@NonNull
-	public final CivitasBigInteger u;
-
+public record ElGamalProofDVR(@NonNull ElGamalCiphertextish e,
+		@NonNull ElGamalCiphertext eprime, @NonNull CivitasBigInteger c,
+		@NonNull CivitasBigInteger w, @NonNull CivitasBigInteger r,
+		@NonNull CivitasBigInteger u) {
 }

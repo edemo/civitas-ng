@@ -9,15 +9,7 @@ package civitas.crypto.rsakeypair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class KeyPair {
-
-	@NonNull
-	public final PublicKey publicKey;
-	@NonNull
-	public final PrivateKey privateKey;
-
+public record KeyPair(@NonNull PublicKey publicKey, @NonNull PrivateKey privateKey) {
 }

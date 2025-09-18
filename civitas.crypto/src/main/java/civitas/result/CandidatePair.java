@@ -1,9 +1,4 @@
 package civitas.result;
 
-import lombok.Data;
-
-@Data
-public class CandidatePair<C, D> {
-	final C car;
-	final D cdr;
+public record CandidatePair<C, D>(C car, D cdr) {
 }

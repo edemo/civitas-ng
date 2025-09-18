@@ -20,15 +20,15 @@ class GenerateElGamalParametersTest extends TestBase
 	void test_1() {
 
 		assertEquals(SAFE_G, generateElGamalParameters.apply(SAFE_KEY_LENGTH,
-				SAFE_KEY_LENGTH + 1).g);
+                SAFE_KEY_LENGTH + 1).g);
 	}
 
 	@Test
 	@DisplayName("makes a Schnorr prime pair if groupLength != keyLength + 1")
 	void test_2() {
 		assertEquals(BIGINT_G,
-				generateElGamalParameters.apply(Constants.EL_GAMAL_KEY_LENGTH,
-						Constants.EL_GAMAL_GROUP_LENGTH).g);
+                generateElGamalParameters.apply(Constants.EL_GAMAL_KEY_LENGTH,
+                        Constants.EL_GAMAL_GROUP_LENGTH).g);
 	}
 
 	@Test

@@ -8,15 +8,7 @@ package civitas.crypto.decriptionshare;
 
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class ElGamalDecryptionShare {
-
-	@NonNull
-	public final CivitasBigInteger ai;
-	@NonNull
-	public final ElGamalProofDiscLogEquality proof;
-
+public record ElGamalDecryptionShare(@NonNull CivitasBigInteger ai, @NonNull ElGamalProofDiscLogEquality proof) {
 }

@@ -70,7 +70,7 @@ public class CloseBoardController {
 			}
 			BoardClosedContentCommitment bccc = new BoardClosedContentCommitment(
 					postHashTo, bbid, hashes);
-			String uriBase = postHashTo.uriBase;
+			String uriBase = postHashTo.uriBase();
 			String uri = uriBase + "/post";
 
 			getRestTemplate.apply().postForObject(uri, bccc, Boolean.class);

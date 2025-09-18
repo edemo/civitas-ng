@@ -9,16 +9,8 @@ package civitas.crypto.keypairshare;
 import civitas.crypto.parameters.ElGamalParameters;
 import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.publickey.ElGamalPublicKey;
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class ElGamalKeyPairShare {
-	@NonNull
-	public final ElGamalParameters params;
-	@NonNull
-	public final ElGamalPublicKey pubKey;
-	@NonNull
-	public final ElGamalPrivateKey privKey;
-
+public record ElGamalKeyPairShare(@NonNull ElGamalParameters params,
+		@NonNull ElGamalPublicKey pubKey, @NonNull ElGamalPrivateKey privKey) {
 }

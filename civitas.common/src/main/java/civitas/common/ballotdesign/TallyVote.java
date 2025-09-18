@@ -36,7 +36,7 @@ public class TallyVote implements CommonConstants {
 		}
 
 		try {
-			VoteChoice choice = decodeChoice.apply(decodeMap, msg.m);
+			VoteChoice choice = decodeChoice.apply(decodeMap, msg.m());
 			String suffix = currentcontext.substring(desiredContext.length());
 			int ind = suffix.indexOf(':');
 			try {

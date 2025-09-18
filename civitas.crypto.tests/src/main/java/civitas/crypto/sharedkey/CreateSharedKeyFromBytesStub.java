@@ -10,7 +10,7 @@ public class CreateSharedKeyFromBytesStub implements SharedKeyTestData {
 	public static CreateSharedKeyFromBytes stub() {
 		CreateSharedKeyFromBytes mock = mock(CreateSharedKeyFromBytes.class);
 		when(mock.apply(Base64.getDecoder().decode(SHARED_KEY_BASE64)))
-				.thenReturn(SHARED_KEY.k);
+				.thenReturn(SHARED_KEY.k());
 		return mock;
 	}
 

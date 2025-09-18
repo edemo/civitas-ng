@@ -24,7 +24,7 @@ public class VerifyElGamalProof1OfL {
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public boolean apply(ElGamalProof1OfL self, ElGamalPublicKey pubKey,
-			CiphertextList ciphertexts, int l, ElGamalCiphertextish msg) {
+						 CiphertextList ciphertexts, int l, ElGamalCiphertextish msg) {
 		if (self.L != l) {
 			return false;
 		}

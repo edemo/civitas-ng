@@ -6,11 +6,5 @@
  */
 package civitas.common.board;
 
-import lombok.Data;
-
-@Data
-public class BulletinBoardID implements BulletinBoardIDish {
-	public final String id;
-	public final String uriBase;
-
+public record BulletinBoardID(String id, String uriBase) implements BulletinBoardIDish {
 }

@@ -16,9 +16,9 @@ public class ElGamalEncrypt {
 	CryptoBase cryptoBase;
 
 	public ElGamalCiphertext apply(final ElGamalPublicKey key,
-			final CryptMessage msg) {
+								   final CryptMessage msg) {
 		ElGamalParameters ps = key.params;
-		CivitasBigInteger m = msg.getM();
+		CivitasBigInteger m = msg.m();
 		CivitasBigInteger r = cryptoBase.generateRandomElement(ps.q);
 		CivitasBigInteger a = ps.g.modPow(r, ps.p);
 		CivitasBigInteger b = m.modMultiply(key.y.modPow(r, ps.p), ps.p);
@@ -26,10 +26,10 @@ public class ElGamalEncrypt {
 	}
 
 	public ElGamalCiphertext apply(final ElGamalPublicKey key,
-			final CryptMessage msg, final ElGamalReencryptFactor encryptFactor) {
+								   final CryptMessage msg, final ElGamalReencryptFactor encryptFactor) {
 		ElGamalParameters ps = key.params;
-		CivitasBigInteger r = encryptFactor.r;
-		CivitasBigInteger m = msg.getM();
+		CivitasBigInteger r = encryptFactor.r();
+		CivitasBigInteger m = msg.m();
 		CivitasBigInteger a = ps.g.modPow(r, ps.p);
 		CivitasBigInteger s = key.y.modPow(r, ps.p);
 		CivitasBigInteger b = m.modMultiply(s, ps.p);

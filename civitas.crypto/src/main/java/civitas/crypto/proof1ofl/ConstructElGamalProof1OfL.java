@@ -28,14 +28,14 @@ public class ConstructElGamalProof1OfL implements Constants {
 	private ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProof1OfL apply(ElGamalPublicKey key,
-			CiphertextList ciphertexts, int choice, ElGamalCiphertextish m,
-			ElGamalReencryptFactor factor) {
+								  CiphertextList ciphertexts, int choice, ElGamalCiphertextish m,
+								  ElGamalReencryptFactor factor) {
 
 		int l = ciphertexts.size();
 		ElGamalParameters ps = key.params;
 		CivitasBigInteger u = m.getA();
 		CivitasBigInteger v = m.getB();
-		CivitasBigInteger r = factor.r;
+		CivitasBigInteger r = factor.r();
 
 		ElGamalCiphertextish[] ms = new ElGamalCiphertext[l];
 		for (int i = 0; i < l; i++) {

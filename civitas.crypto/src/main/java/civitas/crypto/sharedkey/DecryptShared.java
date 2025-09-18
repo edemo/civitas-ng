@@ -23,7 +23,7 @@ public class DecryptShared implements Constants {
 		SharedKey keyc = key;
 		SharedKeyCiphertext ciphertextc = ciphertext;
 		byte[] plaintext = cryptoBase.doCrypto(SHARED_KEY_CIPHER_ALG,
-				SHARED_KEY_PROVIDER, keyc.k, Cipher.DECRYPT_MODE,
+				SHARED_KEY_PROVIDER, keyc.k(), Cipher.DECRYPT_MODE,
 				ciphertextc.encryptedBytes);
 		return new SharedKeyMsg(new String(plaintext, CHARSET_NAME));
 	}

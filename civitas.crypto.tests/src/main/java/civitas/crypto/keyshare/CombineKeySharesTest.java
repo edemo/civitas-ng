@@ -24,7 +24,7 @@ class CombineKeySharesTest extends TestBase
 	void test() throws CryptoException {
 		ElGamalPublicKey actual = combineKeyShares.apply(KEY_SHARES);
 		assertEquals(EL_GAMAL_PUBLIC_KEY_E.y.multiply(EL_GAMAL_PUBLIC_KEY_EPRIME.y),
-				actual.y);
+                actual.y);
 	}
 
 	@Test

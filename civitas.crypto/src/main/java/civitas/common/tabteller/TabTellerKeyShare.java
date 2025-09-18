@@ -6,10 +6,5 @@
  */
 package civitas.common.tabteller;
 
-import lombok.Data;
-
-@Data
-public class TabTellerKeyShare {
-	public final int tellerIndex;
-
+public record TabTellerKeyShare(int tellerIndex) {
 }

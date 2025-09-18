@@ -7,19 +7,9 @@
 package civitas.crypto.proofknowndisclog;
 
 import civitas.util.CivitasBigInteger;
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class ElGamalProofKnowDiscLog {
-
-	@NonNull
-	public final CivitasBigInteger a;
-	@NonNull
-	public final CivitasBigInteger c;
-	@NonNull
-	public final CivitasBigInteger r;
-	@NonNull
-	public final CivitasBigInteger v;
-
+public record ElGamalProofKnowDiscLog(@NonNull CivitasBigInteger a,
+		@NonNull CivitasBigInteger c, @NonNull CivitasBigInteger r,
+		@NonNull CivitasBigInteger v) {
 }

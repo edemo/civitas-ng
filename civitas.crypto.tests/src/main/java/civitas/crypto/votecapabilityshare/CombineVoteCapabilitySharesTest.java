@@ -22,8 +22,8 @@ class CombineVoteCapabilitySharesTest extends TestBase
 	void test() {
 		VoteCapability[] actual = combineVoteCapabilityShares
 				.apply(CAPABILITY_SHARE_MATRIX, EL_GAMAL_PARAMETERS);
-		assertEquals(CivitasBigIntegerFactory.obtain(2 * 5), actual[0].m);
-		assertEquals(CivitasBigIntegerFactory.obtain(3 * 7), actual[1].m);
+		assertEquals(CivitasBigIntegerFactory.obtain(2 * 5), actual[0].m());
+		assertEquals(CivitasBigIntegerFactory.obtain(3 * 7), actual[1].m());
 	}
 
 	@Test

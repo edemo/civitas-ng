@@ -7,13 +7,7 @@
 package civitas.crypto.reencryptfactor;
 
 import civitas.util.CivitasBigInteger;
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class ElGamalReencryptFactor {
-
-	@NonNull
-	public final CivitasBigInteger r;
-
+public record ElGamalReencryptFactor(@NonNull CivitasBigInteger r) {
 }

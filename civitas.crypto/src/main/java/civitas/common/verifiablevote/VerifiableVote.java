@@ -9,18 +9,9 @@ package civitas.common.verifiablevote;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.proofvote.ProofVote;
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class VerifiableVote {
-	@NonNull
-	public final String context;
-	@NonNull
-	public final ElGamal1OfLReencryption encChoice;
-	@NonNull
-	public final ElGamalCiphertextish encCapability;
-	@NonNull
-	public final ProofVote proofVote;
-
+public record VerifiableVote(@NonNull String context,
+		@NonNull ElGamal1OfLReencryption encChoice,
+		@NonNull ElGamalCiphertextish encCapability, @NonNull ProofVote proofVote) {
 }

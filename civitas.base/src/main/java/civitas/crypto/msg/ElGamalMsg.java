@@ -7,12 +7,7 @@
 package civitas.crypto.msg;
 
 import civitas.util.CivitasBigInteger;
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class ElGamalMsg implements CryptMessage {
-	@NonNull
-	public final CivitasBigInteger m;
-
+public record ElGamalMsg(@NonNull CivitasBigInteger m) implements CryptMessage {
 }

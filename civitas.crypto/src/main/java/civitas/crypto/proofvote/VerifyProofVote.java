@@ -31,12 +31,12 @@ public class VerifyProofVote {
 
 		List<CivitasBigInteger> e = calculateProofEnvironment.apply(params,
 				encCapability, encChoice, context);
-		e.add(params.g.modPow(that.s1, p).modMultiply(a1.modPow(that.c, p), p));
-		e.add(params.g.modPow(that.s2, p).modMultiply(a2.modPow(that.c, p), p));
+		e.add(params.g.modPow(that.getS1(), p).modMultiply(a1.modPow(that.getC(), p), p));
+		e.add(params.g.modPow(that.getS2(), p).modMultiply(a2.modPow(that.getC(), p), p));
 
 		byte[] hash = cryptoHash.apply(e);
 		CivitasBigInteger x = convertHashToBigInt.apply(hash).mod(q);
-        return that.c.equals(x);
+        return that.getC().equals(x);
 	}
 
 }

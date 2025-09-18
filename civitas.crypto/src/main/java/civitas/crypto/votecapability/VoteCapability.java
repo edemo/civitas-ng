@@ -8,12 +8,7 @@ package civitas.crypto.votecapability;
 
 import civitas.crypto.msg.CryptMessage;
 import civitas.util.CivitasBigInteger;
-import lombok.Data;
 import lombok.NonNull;
 
-@Data
-public class VoteCapability implements CryptMessage {
-	@NonNull
-	public final CivitasBigInteger m;
-
+public record VoteCapability(@NonNull CivitasBigInteger m) implements CryptMessage {
 }

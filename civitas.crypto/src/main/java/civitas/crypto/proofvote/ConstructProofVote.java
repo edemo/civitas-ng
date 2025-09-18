@@ -36,9 +36,9 @@ public class ConstructProofVote {
 
 		CivitasBigInteger c = CivitasBigIntegerFactory
 				.obtain(1, cryptoHash.apply(e)).mod(params.q);
-		CivitasBigInteger s1 = r1.modSubtract(c.modMultiply(alpha1.r, params.q),
+		CivitasBigInteger s1 = r1.modSubtract(c.modMultiply(alpha1.r(), params.q),
 				params.q);
-		CivitasBigInteger s2 = r2.modSubtract(c.modMultiply(alpha2.r, params.q),
+		CivitasBigInteger s2 = r2.modSubtract(c.modMultiply(alpha2.r(), params.q),
 				params.q);
 		return new ProofVote(c, s1, s2);
 	}
