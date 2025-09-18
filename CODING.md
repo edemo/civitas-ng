@@ -78,3 +78,14 @@ These should be kept at the minimum, and should not contain any code which is re
   (can be called business logic in any sense)
 The class is marked with @Boilerplate
 
+Formatting:
+
+Code style is enforced automatically using [palantir-java-format](https://github.com/palantir/palantir-java-format), integrated via [Spotless](https://github.com/diffplug/spotless).  
+Additionally, some best practices are checked and applied through Spotless' [Cleanthat](https://github.com/solven-eu/cleanthat) plugin.
+
+- Formatting is automatically verified during the GitHub pipeline.  
+- The build will fail if the code is not formatted or violates enforced best practices.
+- You can run it manually any time with:
+
+  ```bash
+  mvn spotless:apply
