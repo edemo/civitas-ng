@@ -103,6 +103,28 @@
 						</indent>
 						<formatAnnotations/>
 						<removeUnusedImports/>
+						<cleanthat>
+							<version>2.24</version>
+							<sourceJdk>${jdk.version}</sourceJdk>
+							<includeDraft>true</includeDraft>
+							<mutators>
+								<mutator>ImportQualifiedTokens</mutator>
+								<mutator>OptionalMapIdentity</mutator>
+								<mutator>PMDMutators</mutator>
+								<mutator>SafeAndConsensual</mutator>
+								<mutator>SafeButNotConsensual</mutator>
+								<mutator>SimplifyBooleanInitialization</mutator>
+								<mutator>SonarMutators</mutator>
+								<mutator>StreamMapIdentity</mutator>
+							</mutators>
+							<excludedMutators>
+								<mutator>AvoidInlineConditionals</mutator>
+								<mutator>CastMathOperandBeforeAssignement</mutator>
+								<mutator>LocalVariableTypeInference</mutator>
+								<mutator>SimplifyStartsWith</mutator>
+								<mutator>UseTextBlocks</mutator>
+							</excludedMutators>
+						</cleanthat>
 					</java>
 				</configuration>
 			</plugin>
