@@ -43,18 +43,16 @@ class CheckGroupTest extends TestBase implements ElGamalParametersTestData {
 	void checkGroupTest1() {
 		CivitasBigInteger p;
 		p = BIGINT_Q.multiply(CivitasBigIntegerFactory.obtain(2)).add(ONE);
-		CryptoError t = assertThrows(CryptoError.class, () -> {
-			checkGroup.apply(new ElGamalParameters(p, BIGINT_Q, GENERATOR_FOR_UNPRIME_P));
-		});
+		CryptoError t = assertThrows(
+				CryptoError.class, () -> checkGroup.apply(new ElGamalParameters(p, BIGINT_Q, GENERATOR_FOR_UNPRIME_P)));
 		assertEquals("p is not prime", t.getMessage());
 	}
 
 	@Test
 	@DisplayName("checkGroup throws CryptoException if q is not prime")
 	void checkGroupTest5() {
-		CryptoError t = assertThrows(CryptoError.class, () -> {
-			checkGroup.apply(new ElGamalParameters(BIGINT_P, BIGINT_A, BIGINT_G));
-		});
+		CryptoError t = assertThrows(
+				CryptoError.class, () -> checkGroup.apply(new ElGamalParameters(BIGINT_P, BIGINT_A, BIGINT_G)));
 		assertEquals("q is not prime", t.getMessage());
 	}
 

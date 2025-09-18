@@ -30,26 +30,22 @@ public interface ElGamalProof1OfLTestData extends ElGamalCiphertextListTestData 
 			.modAdd(RS.get(MY_CHOICE.ordinal()), BIGINT_Q);
 
 	List<CivitasBigInteger> EL_GAMAL_PROOF_1_OF_L_AS = IntStream.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS)
-			.mapToObj(i -> {
-				return CIPHERTEXT_LIST
-						.get(i)
-						.getA()
-						.modDivide(REENCRYPTED_WELL_KNOWN_CHOICE_A, BIGINT_P)
-						.modPow(DS.get(i), BIGINT_P)
-						.modMultiply(BIGINT_G.modPow(RS.get(i), BIGINT_P), BIGINT_P)
-						.mod(BIGINT_P);
-			})
+			.mapToObj(i -> CIPHERTEXT_LIST
+					.get(i)
+					.getA()
+					.modDivide(REENCRYPTED_WELL_KNOWN_CHOICE_A, BIGINT_P)
+					.modPow(DS.get(i), BIGINT_P)
+					.modMultiply(BIGINT_G.modPow(RS.get(i), BIGINT_P), BIGINT_P)
+					.mod(BIGINT_P))
 			.toList();
 	List<CivitasBigInteger> EL_GAMAL_PROOF_1_OF_L_BS = IntStream.range(0, NO_OF_WELL_KNOWN_CIPHERTEXTS)
-			.mapToObj(i -> {
-				return CIPHERTEXT_LIST
-						.get(i)
-						.getB()
-						.modDivide(REENCRYPTED_WELL_KNOWN_CHOICE_B, BIGINT_P)
-						.modPow(DS.get(i), BIGINT_P)
-						.modMultiply(PUBKEY_E.modPow(RS.get(i), BIGINT_P), BIGINT_P)
-						.mod(BIGINT_P);
-			})
+			.mapToObj(i -> CIPHERTEXT_LIST
+					.get(i)
+					.getB()
+					.modDivide(REENCRYPTED_WELL_KNOWN_CHOICE_B, BIGINT_P)
+					.modPow(DS.get(i), BIGINT_P)
+					.modMultiply(PUBKEY_E.modPow(RS.get(i), BIGINT_P), BIGINT_P)
+					.mod(BIGINT_P))
 			.toList();
 
 	List<CivitasBigInteger> EL_GAMAL_PROOF_1_OF_L_ENV = ((Supplier<List<CivitasBigInteger>>) () -> {

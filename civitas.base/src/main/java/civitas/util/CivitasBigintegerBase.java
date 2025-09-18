@@ -7,7 +7,6 @@ public class CivitasBigintegerBase implements CivitasBigIntegerInterface {
 	public final BigInteger i;
 
 	public CivitasBigintegerBase(final BigInteger i) {
-		super();
 		this.i = i;
 	}
 
