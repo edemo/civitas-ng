@@ -85,7 +85,7 @@ public interface ElGamalParametersTestData extends BasicValuesTestData {
 	PrimePair SAFE_PRIMES = new PrimePair(SAFE_P, SAFE_Q);
 	PrimePair SCHNORR_PRIMES = new PrimePair(BIGINT_P, BIGINT_Q);
 	ElGamalParameters EL_GAMAL_PARAMETERS_SAFE = new ElGamalParameters(SAFE_P, SAFE_Q, SAFE_G);
-	CivitasBigInteger PLAINTEXT_WITH_LEGENDRE_MINUS_ONE = CivitasBigIntegerFactory.obtain(251121);
+	CivitasBigInteger PLAINTEXT_WITH_LEGENDRE_MINUS_ONE = CivitasBigIntegerFactory.obtain(251_121);
 	CivitasBigInteger PUBLICIZED_SAFE_LEGENDRE = SAFE_P.subtract(PLAINTEXT_WITH_LEGENDRE_MINUS_ONE);
 	CivitasBigInteger D_EXP_TWOK_FROMP = BIGINT_D.modPow(BIGINT_P.subtract(ONE).divide(BIGINT_Q), BIGINT_P);
 

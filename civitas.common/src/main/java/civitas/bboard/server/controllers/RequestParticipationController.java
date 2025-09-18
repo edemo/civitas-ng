@@ -75,7 +75,7 @@ public class RequestParticipationController implements CommonConstants {
 		PublicKey supervisorPubKey = convertStringToPublicKey.apply(participationRequest.supervisorPubkey);
 		String boardId = newBoardController.apply(supervisorPubKey);
 		int myIndex = participationRequest.tellerDetails.stream()
-				.map(host -> host.getRole().equals(ServerRole.BBS)
+				.map(host -> ServerRole.BBS.equals(host.getRole())
 						&& host.getUrlbase().equals(configuration.urlBase))
 				.toList()
 				.indexOf(true);

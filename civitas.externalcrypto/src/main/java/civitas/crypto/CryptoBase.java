@@ -48,7 +48,7 @@ public class CryptoBase implements Constants {
 		CivitasBigInteger r = null;
 		do {
 			r = CivitasBigIntegerFactory.obtain(n.bitLength(), RANDOM);
-		} while (r.equals(Constants.ZERO) || r.compareTo(n) >= 0);
+		} while (Constants.ZERO.equals(r) || r.compareTo(n) >= 0);
 		return r;
 	}
 
