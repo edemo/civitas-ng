@@ -17,14 +17,11 @@ public class DecryptPublic implements Constants {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public String apply(final PrivateKey key,
-			final PublicKeyCiphertext ciphertext)
+	public String apply(final PrivateKey key, final PublicKeyCiphertext ciphertext)
 			throws UnsupportedEncodingException {
 		PublicKeyCiphertext ciphertextc = ciphertext;
-		byte[] plaintext = cryptoBase.doCrypto(PUBLIC_KEY_CIPHER_ALG,
-				PUBLIC_KEY_PROVIDER, key, Cipher.DECRYPT_MODE,
-				ciphertextc.encryptedBytes);
+		byte[] plaintext = cryptoBase.doCrypto(
+				PUBLIC_KEY_CIPHER_ALG, PUBLIC_KEY_PROVIDER, key, Cipher.DECRYPT_MODE, ciphertextc.encryptedBytes);
 		return new String(plaintext, Constants.CHARSET_NAME);
 	}
-
 }

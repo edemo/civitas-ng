@@ -6,8 +6,7 @@ import civitas.util.CivitasBigInteger;
 
 public class CombineVoteCapabilityShares {
 
-	public VoteCapability[] apply(VoteCapabilityShare[][] shares,
-			ElGamalParameters params) {
+	public VoteCapability[] apply(VoteCapabilityShare[][] shares, ElGamalParameters params) {
 		if (shares == null) {
 			return null;
 		}
@@ -33,5 +32,4 @@ public class CombineVoteCapabilityShares {
 			return null;
 		}
 	}
-
 }

@@ -9,9 +9,12 @@ public class GenerateRandomIntStub implements BasicValuesTestData {
 
 	public static GenerateRandomInt stub() {
 		GenerateRandomInt mock = mock(GenerateRandomInt.class);
-		when(mock.apply(5)).thenReturn(3).thenReturn(2).thenReturn(1).thenReturn(4)
+		when(mock.apply(5))
+				.thenReturn(3)
+				.thenReturn(2)
+				.thenReturn(1)
+				.thenReturn(4)
 				.thenReturn(0);
 		return mock;
 	}
-
 }

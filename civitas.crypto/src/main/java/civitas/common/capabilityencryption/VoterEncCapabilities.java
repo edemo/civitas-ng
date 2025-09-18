@@ -14,5 +14,4 @@ public class VoterEncCapabilities {
 	public final String name;
 	public final int voterBlock;
 	public final ElGamalCiphertext[] encCapabilities;
-
 }

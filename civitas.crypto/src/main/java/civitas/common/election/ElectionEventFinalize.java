@@ -16,5 +16,4 @@ public class ElectionEventFinalize implements ElectionEvent {
 	public final int sequence;
 	public final TallyStateFinal tally;
 	public final String message;
-
 }

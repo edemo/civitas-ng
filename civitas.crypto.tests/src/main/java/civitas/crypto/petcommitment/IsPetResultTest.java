@@ -27,5 +27,4 @@ class IsPetResultTest extends TestBase implements Constants {
 	void test1() {
 		assertFalse(isPetResult.apply(new ElGamalMsg(TWO)));
 	}
-
 }

@@ -11,9 +11,7 @@ import lombok.NonNull;
 
 @Data
 public class TallyState {
-	@NonNull
-	public final Integer size;
-	@NonNull
-	public final Integer[][] matrix;
+	@NonNull public final Integer size;
 
+	@NonNull public final Integer[][] matrix;
 }

@@ -11,7 +11,6 @@ import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
 import lombok.NonNull;
 
-public record PETDecommitment(@NonNull CivitasBigInteger di,
-		@NonNull CivitasBigInteger ei, @NonNull ElGamalProofDiscLogEquality proof)
-		implements Constants {
-}
+public record PETDecommitment(
+		@NonNull CivitasBigInteger di, @NonNull CivitasBigInteger ei, @NonNull ElGamalProofDiscLogEquality proof)
+		implements Constants {}

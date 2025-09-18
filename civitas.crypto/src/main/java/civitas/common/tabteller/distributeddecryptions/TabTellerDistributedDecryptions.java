@@ -14,9 +14,8 @@ import lombok.NonNull;
 @Data
 public class TabTellerDistributedDecryptions {
 	public final int tellerIndex;
-	@NonNull
-	public final ElGamalDecryptionShare[] decrypts;
-	@NonNull
-	public final ElGamalProofDiscLogEquality[] proofs;
 
+	@NonNull public final ElGamalDecryptionShare[] decrypts;
+
+	@NonNull public final ElGamalProofDiscLogEquality[] proofs;
 }

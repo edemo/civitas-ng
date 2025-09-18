@@ -15,23 +15,23 @@ import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
 import civitas.crypto.signedciphertext.SignAndEncrypt;
 import civitas.util.CivitasBigIntegerFactory;
 
-class MultiplyCiphertextsTest extends RandomAwareTestBase
-		implements ElGamalCiphertextListTestData {
+class MultiplyCiphertextsTest extends RandomAwareTestBase implements ElGamalCiphertextListTestData {
 
 	@InjectMocks
 	MultiplyCiphertexts multiplyCiphertexts;
+
 	@InjectMocks
 	SignAndEncrypt signAndEncrypt;
 
 	@Test
-	@DisplayName("""
+	@DisplayName(
+			"""
 			multiplies a matrix of ciphertexts
 			by multiplying a's and b's in each row
 			gives one ciphertext for each rows
 			""")
 	void test() {
-		CiphertextList actual = multiplyCiphertexts.apply(CIPHERTEXT_MATRIX,
-				EL_GAMAL_PARAMETERS);
+		CiphertextList actual = multiplyCiphertexts.apply(CIPHERTEXT_MATRIX, EL_GAMAL_PARAMETERS);
 		assertEquals(CivitasBigIntegerFactory.obtain(2 * 11), actual.get(0).getA());
 		assertEquals(CivitasBigIntegerFactory.obtain(5 * 17), actual.get(1).getA());
 		assertEquals(CivitasBigIntegerFactory.obtain(3 * 13), actual.get(0).getB());
@@ -41,24 +41,19 @@ class MultiplyCiphertextsTest extends RandomAwareTestBase
 	@Test
 	@DisplayName("returns null if the matrix is null")
 	void test2() {
-        assertNull(multiplyCiphertexts.apply(null, EL_GAMAL_PARAMETERS));
+		assertNull(multiplyCiphertexts.apply(null, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("returns null if encounters a null in the matrix")
 	void test3() {
-        assertNull(multiplyCiphertexts
-                .apply(new ElGamalSignedCiphertext[][]{null}, EL_GAMAL_PARAMETERS));
+		assertNull(multiplyCiphertexts.apply(new ElGamalSignedCiphertext[][] {null}, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("returns null if a ciphertext is not castable to ElGamalCiphertextC")
 	void test4() {
-		assertNull(
-				multiplyCiphertexts.apply(
-						new ElGamalSignedCiphertext[][] {
-								{ mock(ElGamalSignedCiphertext.class) } },
-						EL_GAMAL_PARAMETERS));
+		assertNull(multiplyCiphertexts.apply(
+				new ElGamalSignedCiphertext[][] {{mock(ElGamalSignedCiphertext.class)}}, EL_GAMAL_PARAMETERS));
 	}
-
 }

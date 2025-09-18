@@ -18,7 +18,5 @@ public class CheckGroup implements Constants {
 		if (!that.g.modPow(that.q, that.p).equals(ONE)) {
 			throw new CryptoError("g is not order q");
 		}
-
 	}
-
 }

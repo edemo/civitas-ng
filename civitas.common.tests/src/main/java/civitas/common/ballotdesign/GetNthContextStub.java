@@ -13,5 +13,4 @@ public class GetNthContextStub implements ElectionDetailsTestData {
 		when(mock.apply(BALLOTDESIGN, 2)).thenReturn(BARE_CONTEXT_2);
 		return mock;
 	}
-
 }

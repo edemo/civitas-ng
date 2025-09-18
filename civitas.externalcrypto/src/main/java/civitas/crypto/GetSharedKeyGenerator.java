@@ -17,8 +17,7 @@ class GetSharedKeyGenerator {
 			return g;
 		}
 		try {
-			g = KeyGenerator.getInstance(Constants.SHARED_KEY_ALG,
-					Constants.SHARED_KEY_PROVIDER);
+			g = KeyGenerator.getInstance(Constants.SHARED_KEY_ALG, Constants.SHARED_KEY_PROVIDER);
 		} catch (NoSuchAlgorithmException | NoSuchProviderException impossible) {
 			throw new CryptoError(impossible);
 		}

@@ -10,19 +10,15 @@ import civitas.common.RandomAwareTestBase;
 import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 
-class ElGamalReencryptTest extends RandomAwareTestBase
-		implements ElGamalPublicKeyTestData, ElGamalCiphertextTestData {
+class ElGamalReencryptTest extends RandomAwareTestBase implements ElGamalPublicKeyTestData, ElGamalCiphertextTestData {
 
 	@InjectMocks
 	ElGamalReencrypt elGamalReencrypt;
 
 	@Test
-	@DisplayName("elGamalReencrypt works as expected: "
-			+ "c1:=c1*g^y, c2:=c2*m^y, where y is random, all mod p")
+	@DisplayName("elGamalReencrypt works as expected: " + "c1:=c1*g^y, c2:=c2*m^y, where y is random, all mod p")
 	void test1() throws Exception {
-		assertEquals(CIPHERTEXT_E_REENCRYPTED,
-				elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_E));
-
+		assertEquals(CIPHERTEXT_E_REENCRYPTED, elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_E));
 	}
 
 	@Test
@@ -30,10 +26,9 @@ class ElGamalReencryptTest extends RandomAwareTestBase
 			+ "c1:=c1*g^y, c2:=c2*m^y, where y is random, all mod p")
 	void test1_1() throws Exception {
 
-		assertEquals(CIPHERTEXT_E_REENCRYPTED,
-				elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_E,
-						new ElGamalReencryptFactor(RANDOMS_0)));
-
+		assertEquals(
+				CIPHERTEXT_E_REENCRYPTED,
+				elGamalReencrypt.apply(
+						EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_E, new ElGamalReencryptFactor(RANDOMS_0)));
 	}
-
 }

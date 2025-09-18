@@ -11,5 +11,4 @@ import java.security.PublicKey;
 
 import lombok.NonNull;
 
-public record KeyPair(@NonNull PublicKey publicKey, @NonNull PrivateKey privateKey) {
-}
+public record KeyPair(@NonNull PublicKey publicKey, @NonNull PrivateKey privateKey) {}

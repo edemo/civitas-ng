@@ -16,5 +16,4 @@ public class SharedKeyToWire {
 		s.print(base64);
 		s.print('\n');
 	}
-
 }

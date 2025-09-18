@@ -9,8 +9,8 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class GetContentCommitmentForBoardTest extends RandomAwareTestBase implements
-		BoardsForTabulationTestData, BoardClosedContentCommitmentTestData {
+class GetContentCommitmentForBoardTest extends RandomAwareTestBase
+		implements BoardsForTabulationTestData, BoardClosedContentCommitmentTestData {
 
 	@InjectMocks
 	GetContentCommitmentForBoard getContentCommitmentForBoard;
@@ -18,29 +18,28 @@ class GetContentCommitmentForBoardTest extends RandomAwareTestBase implements
 	@Test
 	@DisplayName("chooses the closed content commitment for the board with the right index")
 	void test() {
-		assertEquals(BOARD_CLOSED_CONTENT_COMMITMENTS.get(2),
+		assertEquals(
+				BOARD_CLOSED_CONTENT_COMMITMENTS.get(2),
 				getContentCommitmentForBoard.apply(BOARDS_FOR_TABULATION, "board1"));
 	}
 
 	@Test
 	@DisplayName("if there is no commitment with the board index, null is returned ")
 	void test1() {
-		assertEquals(null,
-				getContentCommitmentForBoard.apply(BOARDS_FOR_TABULATION, "board3"));
+		assertEquals(null, getContentCommitmentForBoard.apply(BOARDS_FOR_TABULATION, "board3"));
 	}
 
 	@Test
 	@DisplayName("if there is a null in the boards, NullPointerException is thrown")
 	void test2() {
-		assertThrows(NullPointerException.class, () -> getContentCommitmentForBoard
-				.apply(BOARDS_FOR_TABULATION_WITH_NULL, "board1"));
+		assertThrows(
+				NullPointerException.class,
+				() -> getContentCommitmentForBoard.apply(BOARDS_FOR_TABULATION_WITH_NULL, "board1"));
 	}
 
 	@Test
 	@DisplayName("if the boards is null, NullPointerException is thrown")
 	void test3() {
-		assertThrows(NullPointerException.class,
-				() -> getContentCommitmentForBoard.apply(null, "board1"));
+		assertThrows(NullPointerException.class, () -> getContentCommitmentForBoard.apply(null, "board1"));
 	}
-
 }

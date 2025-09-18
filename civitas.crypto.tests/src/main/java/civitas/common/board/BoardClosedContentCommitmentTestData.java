@@ -5,13 +5,10 @@ import java.util.List;
 
 import civitas.common.election.ElectionIdTestData;
 
-public interface BoardClosedContentCommitmentTestData
-		extends ElectionIdTestData, BulletinBoardTestData {
+public interface BoardClosedContentCommitmentTestData extends ElectionIdTestData, BulletinBoardTestData {
 
-	List<BoardClosedContentCommitment> BOARD_CLOSED_CONTENT_COMMITMENTS = List
-			.of(0, 2, 1).stream()
-			.map(x -> new BoardClosedContentCommitment(ELECTION_ID, "board" + x,
-					List.of()))
+	List<BoardClosedContentCommitment> BOARD_CLOSED_CONTENT_COMMITMENTS = List.of(0, 2, 1).stream()
+			.map(x -> new BoardClosedContentCommitment(ELECTION_ID, "board" + x, List.of()))
 			.toList();
 	String BLOCK0_META = "voterSubmission-voterBlock0";
 	byte[] BLOCK0_HASH = "bbblock0 hash".getBytes();
@@ -21,9 +18,7 @@ public interface BoardClosedContentCommitmentTestData
 	String BLOCK1_HASH_BASE64 = Base64.getEncoder().encodeToString(BLOCK1_HASH);
 
 	BoardClosedContentCommitment BOARD_CLOSED_CONTENT_COMMITMENT = new BoardClosedContentCommitment(
-			ELECTION_ID, BULLETIN_BOARD_ID,
-			List.of(BLOCK0_HASH_BASE64, BLOCK1_HASH_BASE64));
+			ELECTION_ID, BULLETIN_BOARD_ID, List.of(BLOCK0_HASH_BASE64, BLOCK1_HASH_BASE64));
 
 	String BOARD_CLOSED_CONTENT_COMMITMENT_XML = "mock BOARD_CLOSED_CONTENT_COMMITMENT_XML";
-
 }

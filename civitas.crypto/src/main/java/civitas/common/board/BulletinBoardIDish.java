@@ -4,5 +4,4 @@ public interface BulletinBoardIDish {
 	String uriBase();
 
 	String id();
-
 }

@@ -9,7 +9,6 @@ import civitas.util.CivitasBigIntegerFactory;
 public class ConvertHashToBigInt {
 
 	public CivitasBigInteger apply(byte[] hash) {
-        return CivitasBigIntegerFactory.obtain(1, hash);
+		return CivitasBigIntegerFactory.obtain(1, hash);
 	}
-
 }

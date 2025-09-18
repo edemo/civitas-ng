@@ -19,8 +19,10 @@ public class NewBoardController implements CommonConstants {
 
 	@Autowired
 	CreateFreshNonce createFreshNonce;
+
 	@Autowired
 	BoardRepository boardRepository;
+
 	@Autowired
 	ConvertPublicKeyToString convertPublicKeyToString;
 
@@ -36,5 +38,4 @@ public class NewBoardController implements CommonConstants {
 		boardRepository.save(new Board(newBoardName, keyString, true));
 		return newBoardName;
 	}
-
 }

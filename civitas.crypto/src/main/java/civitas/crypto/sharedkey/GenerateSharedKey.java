@@ -16,5 +16,4 @@ public class GenerateSharedKey {
 		SecretKey k = cryptoBase.getSharedKeyGenerator(keyLength).generateKey();
 		return new SharedKey(k, "sharedKey-civitas");
 	}
-
 }

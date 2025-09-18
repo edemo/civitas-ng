@@ -13,16 +13,15 @@ public class GenerateKeyPair {
 
 	@Autowired
 	CryptoBase cryptoBase;
+
 	@Autowired
 	CreateFreshNonceBase64 createFreshNonceBase64;
 
 	public KeyPair apply(int keyLength) {
-		java.security.KeyPair kp = cryptoBase.getPublicKeyGenerator(keyLength)
-				.generateKeyPair();
+		java.security.KeyPair kp = cryptoBase.getPublicKeyGenerator(keyLength).generateKeyPair();
 		PublicKey pubk = kp.getPublic();
 		java.security.PrivateKey prvk = kp.getPrivate();
 
 		return new KeyPair(pubk, prvk);
 	}
-
 }

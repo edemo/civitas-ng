@@ -12,8 +12,10 @@ import civitas.util.CivitasBigInteger;
 public class GenerateSchnorrPrime implements Constants {
 	@Autowired
 	CryptoHash cryptoHash;
+
 	@Autowired
 	CalculateNumberOfPrimeTests calculateNumberOfPrimeTests;
+
 	@Autowired
 	CryptoBase cryptoBase;
 
@@ -40,5 +42,4 @@ public class GenerateSchnorrPrime implements Constants {
 		} while (!done);
 		return new PrimePair(p, q);
 	}
-
 }

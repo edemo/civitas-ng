@@ -11,8 +11,7 @@ import civitas.crypto.keys.ElGamalKeyShareTestData;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import io.github.magwas.testing.TestBase;
 
-class VerifyElGamalKeyShareTest extends TestBase
-		implements ElGamalKeyShareTestData {
+class VerifyElGamalKeyShareTest extends TestBase implements ElGamalKeyShareTestData {
 	@InjectMocks
 	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
@@ -26,16 +25,14 @@ class VerifyElGamalKeyShareTest extends TestBase
 	@Test
 	@DisplayName("verify is false if the key is not for the proof")
 	void test1_3() {
-		assertFalse(verifyElGamalKeyShare.apply(
-				new ElGamalKeyShare(new ElGamalPublicKey(BIGINT_B, EL_GAMAL_PARAMETERS),
-						EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
+		assertFalse(verifyElGamalKeyShare.apply(new ElGamalKeyShare(
+				new ElGamalPublicKey(BIGINT_B, EL_GAMAL_PARAMETERS), EL_GAMAL_PROOF_KNOWN_DISC_LOG)));
 	}
 
 	@Test
 	@DisplayName("verify is false if the proof fails")
 	void test1_4() {
-		assertFalse(verifyElGamalKeyShare.apply(new ElGamalKeyShare(
-				EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PROOF_KNOWN_DISC_LOG_BAD)));
+		assertFalse(verifyElGamalKeyShare.apply(
+				new ElGamalKeyShare(EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PROOF_KNOWN_DISC_LOG_BAD)));
 	}
-
 }

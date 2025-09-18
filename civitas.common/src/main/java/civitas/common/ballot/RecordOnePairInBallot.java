@@ -19,5 +19,4 @@ public class RecordOnePairInBallot {
 		}
 		that.matrix[calculatePositionInBallot.apply(i, j, that.k)] = voteChoice;
 	}
-
 }

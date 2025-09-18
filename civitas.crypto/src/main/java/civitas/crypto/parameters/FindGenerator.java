@@ -26,5 +26,4 @@ public class FindGenerator implements Constants {
 
 		return g;
 	}
-
 }

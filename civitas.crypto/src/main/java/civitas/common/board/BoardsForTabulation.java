@@ -11,6 +11,5 @@ import lombok.Data;
 
 @Data
 public class BoardsForTabulation {
-	@NonNull
-	public final BoardClosedContentCommitment[] contentComs;
+	@NonNull public final BoardClosedContentCommitment[] contentComs;
 }

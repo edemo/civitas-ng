@@ -13,8 +13,7 @@ import lombok.NonNull;
 
 @Data
 public class Ballot implements CommonConstants {
-	@NonNull
-	public final Integer k;
-	@NonNull
-	public final VoteChoice[] matrix;
+	@NonNull public final Integer k;
+
+	@NonNull public final VoteChoice[] matrix;
 }
