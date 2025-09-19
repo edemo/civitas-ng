@@ -6,6 +6,8 @@
  */
 package civitas.crypto;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.Random;
 
@@ -55,6 +57,6 @@ public interface Constants {
 	String VoteCapabilityOPENING_TAG = "voteCapability";
 	String VoteCapabilityShareOPENING_TAG = "voteCapabilityShare";
 
-	String CHARSET_NAME = "UTF-8";
+	Charset CHARSET = StandardCharsets.UTF_8;
 
 }
