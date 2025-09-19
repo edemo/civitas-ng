@@ -28,13 +28,13 @@ class CombineVoteCapabilitySharesTest extends TestBase
 	}
 
 	@Test
-	@DisplayName("returns null if the matrix is null")
+	@DisplayName("returns empty array if the matrix is null")
 	void test1() {
         assertEquals(EMPTY_ARRAY, combineVoteCapabilityShares.apply(null, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
-	@DisplayName("returns null if the matrix contains null")
+	@DisplayName("returns empty array if the matrix contains null")
 	void test2() {
 		assertEquals(EMPTY_ARRAY, combineVoteCapabilityShares.apply(new VoteCapabilityShare[][] { null }, EL_GAMAL_PARAMETERS));
 	}
