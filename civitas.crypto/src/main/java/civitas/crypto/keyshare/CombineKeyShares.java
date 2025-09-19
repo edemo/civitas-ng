@@ -16,27 +16,26 @@ public class CombineKeyShares implements Constants {
 
 	public ElGamalPublicKey apply(ElGamalKeyShare... shares)
 			throws CryptoException {
-		if (shares.length == 0) {
+		if (shares == null || shares.length == 0) {
 			return null;
 		}
-		CivitasBigInteger accum = ONE;
+		CivitasBigInteger product = ONE;
 		ElGamalParameters params = null;
-		for (ElGamalKeyShare s : shares) {
-			// Check the proofs that this is a valid share
-			try {
-				if (params == null) {
-					params = s.pubKey().params;
-				}
-				if (!verifyElGamalKeyShare.apply(s)) {
-					throw new CryptoException("Invalid share");
-				}
-				// accumulate the keys..
-				accum = accum.multiply(s.pubKey().y);
-			} catch (NullPointerException e) {
-				throw new CryptoException("Invalid share or proof", e);
+		for (ElGamalKeyShare share : shares) {
+			if (share == null) {
+				throw new CryptoException("Share is null");
 			}
+			// Check the proofs that this is a valid share
+			if (params == null) {
+				params = share.pubKey().params;
+			}
+			if (!verifyElGamalKeyShare.apply(share)) {
+				throw new CryptoException("Invalid share");
+			}
+			// accumulate the keys...
+			product = product.multiply(share.pubKey().y);
 		}
-		return new ElGamalPublicKey(accum, params);
+		return new ElGamalPublicKey(product, params);
 	}
 
 }

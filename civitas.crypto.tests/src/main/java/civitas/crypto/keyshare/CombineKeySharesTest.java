@@ -39,21 +39,26 @@ class CombineKeySharesTest extends TestBase
 	@Test
 	@DisplayName("returns null if shares is null")
 	void test1() throws CryptoException {
-        assertNull(combineKeyShares.apply());
+        assertNull(combineKeyShares.apply(null));
 	}
 
 	@Test
 	@DisplayName("if a key share does not verify, throws CryptoException")
-	void test2() throws CryptoException {
-		assertThrows(CryptoException.class, () -> combineKeyShares.apply(
-				new ElGamalKeyShare[] { EL_GAMAL_KEY_SHARE_NOT_GOOD_PUBKEY_TYPE }));
+	void test2() {
+		assertThrows(CryptoException.class, () -> combineKeyShares.apply(EL_GAMAL_KEY_SHARE_NOT_GOOD_PUBKEY_TYPE));
 	}
 
 	@Test
 	@DisplayName("if a key share is invalid throws CryptoException")
-	void test3() throws CryptoException {
+	void test3() {
 		assertThrows(CryptoException.class,
 				() -> combineKeyShares.apply(new ElGamalKeyShare[] { null }));
+	}
+
+	@Test
+	@DisplayName("returns null if shares is empty")
+	void test4() throws CryptoException {
+		assertNull(combineKeyShares.apply());
 	}
 
 }
