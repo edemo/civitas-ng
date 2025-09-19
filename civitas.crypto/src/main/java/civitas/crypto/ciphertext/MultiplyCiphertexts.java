@@ -9,31 +9,31 @@ public class MultiplyCiphertexts {
 	public CiphertextList apply(ElGamalCiphertextish[][] ciphertexts,
 			ElGamalParameters p) {
 		if (ciphertexts == null) {
-			return null;
+			return new CiphertextList();
 		}
 		try {
 			CivitasBigInteger[] aAccum = new CivitasBigInteger[ciphertexts[0].length];
 			CivitasBigInteger[] bAccum = new CivitasBigInteger[ciphertexts[0].length];
 			for (ElGamalCiphertextish[] ciphertext : ciphertexts) {
-				for (int j = 0; j < ciphertext.length; j++) {
-					ElGamalCiphertextish s = ciphertext[j];
-					if (aAccum[j] == null) {
-						aAccum[j] = s.getA();
-						bAccum[j] = s.getB();
+				for (int index = 0; index < ciphertext.length; index++) {
+					ElGamalCiphertextish s = ciphertext[index];
+					if (aAccum[index] == null) {
+						aAccum[index] = s.getA();
+						bAccum[index] = s.getB();
 					} else {
-						aAccum[j] = aAccum[j].modMultiply(s.getA(), p.p);
-						bAccum[j] = bAccum[j].modMultiply(s.getB(), p.p);
+						aAccum[index] = aAccum[index].modMultiply(s.getA(), p.p);
+						bAccum[index] = bAccum[index].modMultiply(s.getB(), p.p);
 					}
 				}
 			}
-			CiphertextList ret = new CiphertextList();
-			for (int j = 0; j < aAccum.length; j++) {
-				ret.add(new ElGamalCiphertext(aAccum[j], bAccum[j]));
+			CiphertextList result = new CiphertextList();
+			for (int index = 0; index < aAccum.length; index++) {
+				result.add(new ElGamalCiphertext(aAccum[index], bAccum[index]));
 			}
-			return ret;
+			return result;
 
 		} catch (NullPointerException e) {
-			return null;
+			return new CiphertextList();
 		}
 	}
 

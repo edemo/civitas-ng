@@ -1,7 +1,6 @@
 package civitas.crypto.votecapabilityshare;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,8 @@ import io.github.magwas.testing.TestBase;
 
 class CombineVoteCapabilitySharesTest extends TestBase
 		implements VoteCapabilityShareTestData {
+
+	private static final VoteCapability[] EMPTY_ARRAY = new VoteCapability[0];
 
 	@InjectMocks
 	CombineVoteCapabilityShares combineVoteCapabilityShares;
@@ -29,14 +30,13 @@ class CombineVoteCapabilitySharesTest extends TestBase
 	@Test
 	@DisplayName("returns null if the matrix is null")
 	void test1() {
-        assertNull(combineVoteCapabilityShares.apply(null, EL_GAMAL_PARAMETERS));
+        assertEquals(EMPTY_ARRAY, combineVoteCapabilityShares.apply(null, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("returns null if the matrix contains null")
 	void test2() {
-		assertNull(combineVoteCapabilityShares
-				.apply(new VoteCapabilityShare[][] { null }, EL_GAMAL_PARAMETERS));
+		assertEquals(EMPTY_ARRAY, combineVoteCapabilityShares.apply(new VoteCapabilityShare[][] { null }, EL_GAMAL_PARAMETERS));
 	}
 
 }

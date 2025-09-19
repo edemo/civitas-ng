@@ -9,7 +9,7 @@ public class CombineVoteCapabilityShares {
 	public VoteCapability[] apply(VoteCapabilityShare[][] shares,
 			ElGamalParameters params) {
 		if (shares == null) {
-			return null;
+			return new VoteCapability[0];
 		}
 		try {
 			CivitasBigInteger[] accum = new CivitasBigInteger[shares[0].length];
@@ -30,7 +30,7 @@ public class CombineVoteCapabilityShares {
 			return ret;
 
 		} catch (NullPointerException e) {
-			return null;
+			return new VoteCapability[0];
 		}
 	}
 
