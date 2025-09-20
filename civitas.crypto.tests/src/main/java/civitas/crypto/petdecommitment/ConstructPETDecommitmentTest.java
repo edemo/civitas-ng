@@ -11,8 +11,7 @@ import civitas.crypto.petshare.PETShareTestData;
 import civitas.util.CivitasBigInteger;
 import io.github.magwas.testing.TestBase;
 
-class ConstructPETDecommitmentTest extends TestBase
-		implements PETDecommitmentTestData, PETShareTestData {
+class ConstructPETDecommitmentTest extends TestBase implements PETDecommitmentTestData, PETShareTestData {
 
 	@InjectMocks
 	ConstructPETDecommitment constructPETDecommitment;
@@ -26,22 +25,22 @@ class ConstructPETDecommitmentTest extends TestBase
 	void decommitmentTest() {
 		CivitasBigInteger exponent = FACTOR_E;
 
-		CivitasBigInteger di = CIPHERTEXT_E_A
-				.modDivide(CIPHERTEXT_EPRIME_A, BIGINT_P).modPow(exponent, BIGINT_P);
-		CivitasBigInteger ei = CIPHERTEXT_E_B
-				.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P).modPow(exponent, BIGINT_P);
+		CivitasBigInteger di =
+				CIPHERTEXT_E_A.modDivide(CIPHERTEXT_EPRIME_A, BIGINT_P).modPow(exponent, BIGINT_P);
+		CivitasBigInteger ei =
+				CIPHERTEXT_E_B.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P).modPow(exponent, BIGINT_P);
 
-		PETDecommitment decommitment = constructPETDecommitment
-				.apply(EL_GAMAL_PARAMETERS, exponent, CIPHERTEXT_E, CIPHERTEXT_EPRIME);
+		PETDecommitment decommitment =
+				constructPETDecommitment.apply(EL_GAMAL_PARAMETERS, exponent, CIPHERTEXT_E, CIPHERTEXT_EPRIME);
 		assertEquals(di, decommitment.di());
 		assertEquals(ei, decommitment.ei());
 
-		verify(constructPETDecommitment.constructElGamalDiscLogEqualityProof).apply(
-				EL_GAMAL_PARAMETERS,
-				CIPHERTEXT_E_A.modDivide(CIPHERTEXT_EPRIME_A, BIGINT_P),
-				CIPHERTEXT_E_B.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P), FACTOR_E);
+		verify(constructPETDecommitment.constructElGamalDiscLogEqualityProof)
+				.apply(
+						EL_GAMAL_PARAMETERS,
+						CIPHERTEXT_E_A.modDivide(CIPHERTEXT_EPRIME_A, BIGINT_P),
+						CIPHERTEXT_E_B.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P),
+						FACTOR_E);
 		assertEquals(PET_DECOMMITMENT, decommitment);
-
 	}
-
 }

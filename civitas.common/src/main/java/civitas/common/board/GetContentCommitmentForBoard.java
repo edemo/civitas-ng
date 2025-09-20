@@ -1,8 +1,7 @@
 package civitas.common.board;
 
 public class GetContentCommitmentForBoard {
-	public BoardClosedContentCommitment apply(final BoardsForTabulation that,
-			final String boardName) {
+	public BoardClosedContentCommitment apply(final BoardsForTabulation that, final String boardName) {
 		for (BoardClosedContentCommitment cc : that.contentComs) {
 			if (cc.boardName.equals(boardName)) {
 				return cc;
@@ -10,5 +9,4 @@ public class GetContentCommitmentForBoard {
 		}
 		return null;
 	}
-
 }

@@ -19,5 +19,4 @@ class CalculatePositionInBallotTest extends RandomAwareTestBase {
 	void test() {
 		assertEquals(2, calculatePositionInBallot.apply(2, 2, 3));
 	}
-
 }

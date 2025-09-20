@@ -6,5 +6,4 @@
  */
 package civitas.common.tabteller;
 
-public record TabTellerKeyShare(int tellerIndex) {
-}
+public record TabTellerKeyShare(int tellerIndex) {}

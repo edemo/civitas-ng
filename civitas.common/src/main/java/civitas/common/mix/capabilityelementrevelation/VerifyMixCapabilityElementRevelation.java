@@ -15,14 +15,17 @@ public class VerifyMixCapabilityElementRevelation {
 	@Autowired
 	ElGamalReencrypt elGamalReencrypt;
 
-	public boolean apply(@Nonnull MixCapabilityElementRevelation that,
-			@Nonnull ElGamalPublicKey key, int fromIndex, int toIndex,
-			@Nonnull CapabilityMix fromMix, @Nonnull CapabilityMix toMix) {
+	public boolean apply(
+			@Nonnull MixCapabilityElementRevelation that,
+			@Nonnull ElGamalPublicKey key,
+			int fromIndex,
+			int toIndex,
+			@Nonnull CapabilityMix fromMix,
+			@Nonnull CapabilityMix toMix) {
 		ElGamalCiphertextish toCipher = toMix.capabilities[toIndex];
 
-		ElGamalCiphertextish recipher = elGamalReencrypt.apply(key,
-				fromMix.capabilities[fromIndex], that.reencryptFactor);
+		ElGamalCiphertextish recipher =
+				elGamalReencrypt.apply(key, fromMix.capabilities[fromIndex], that.reencryptFactor);
 		return recipher.equals(toCipher);
 	}
-
 }

@@ -8,5 +8,4 @@ package civitas.common.electionresults;
 
 import civitas.common.tallystatefinal.TallyStateFinal;
 
-public record ElectionResults(String computer, TallyStateFinal tally) {
-}
+public record ElectionResults(String computer, TallyStateFinal tally) {}

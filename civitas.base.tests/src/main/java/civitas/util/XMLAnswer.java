@@ -19,5 +19,4 @@ public class XMLAnswer implements Answer<Void> {
 		}
 		return null;
 	}
-
 }

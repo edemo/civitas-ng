@@ -21,10 +21,7 @@ class CivitasBigIntegerSerializer extends StdSerializer<CivitasBigInteger> {
 	}
 
 	@Override
-	public void serialize(CivitasBigInteger value, JsonGenerator gen,
-			SerializerProvider provider) throws IOException {
+	public void serialize(CivitasBigInteger value, JsonGenerator gen, SerializerProvider provider) throws IOException {
 		gen.writeString(CommonUtil.fromBigInt(value));
-
 	}
-
 }

@@ -17,5 +17,4 @@ public class GenerateRandomInt {
 		}
 		return cryptoBase.getRandomGenerator().nextInt(n);
 	}
-
 }

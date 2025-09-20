@@ -8,8 +8,7 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class GetComputerForTellerTest extends RandomAwareTestBase
-		implements TellerTestData {
+class GetComputerForTellerTest extends RandomAwareTestBase implements TellerTestData {
 
 	@InjectMocks
 	GetComputerForTeller getComputerForTeller;
@@ -19,5 +18,4 @@ class GetComputerForTellerTest extends RandomAwareTestBase
 	void test() {
 		assertEquals(TELLER_COMPUTER, getComputerForTeller.apply(TELLER_INDEX));
 	}
-
 }

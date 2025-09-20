@@ -13,8 +13,6 @@ public class GenerateElGamalReencryptFactor {
 	CryptoBase cryptoBase;
 
 	public ElGamalReencryptFactor apply(ElGamalParameters params) {
-		return new ElGamalReencryptFactor(
-				cryptoBase.generateRandomElement(params.q));
+		return new ElGamalReencryptFactor(cryptoBase.generateRandomElement(params.q));
 	}
-
 }

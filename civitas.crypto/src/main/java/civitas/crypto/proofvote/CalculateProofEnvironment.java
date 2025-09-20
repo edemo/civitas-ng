@@ -17,8 +17,10 @@ public class CalculateProofEnvironment {
 	@Autowired
 	CryptoHash cryptoHash;
 
-	public List<CivitasBigInteger> apply(ElGamalParameters params,
-			ElGamalCiphertextish encCapability, ElGamalCiphertextish encChoice,
+	public List<CivitasBigInteger> apply(
+			ElGamalParameters params,
+			ElGamalCiphertextish encCapability,
+			ElGamalCiphertextish encChoice,
 			String context) {
 		List<CivitasBigInteger> e = new LinkedList<>();
 		e.add(params.g);
@@ -26,9 +28,7 @@ public class CalculateProofEnvironment {
 		e.add(encCapability.getB());
 		e.add(encChoice.getA());
 		e.add(encChoice.getB());
-		e.add(CivitasBigIntegerFactory.obtain(1,
-				cryptoHash.apply(context.getBytes())));
+		e.add(CivitasBigIntegerFactory.obtain(1, cryptoHash.apply(context.getBytes())));
 		return e;
 	}
-
 }

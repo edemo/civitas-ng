@@ -13,8 +13,8 @@ import civitas.crypto.publickeyciphertext.PublicKeyCiphertextTestData;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 import civitas.util.BasicValuesTestData;
 
-class DecryptPublicTest extends RandomAwareTestBase implements
-		PublicKeyCiphertextTestData, PrivateKeyTestData, BasicValuesTestData {
+class DecryptPublicTest extends RandomAwareTestBase
+		implements PublicKeyCiphertextTestData, PrivateKeyTestData, BasicValuesTestData {
 
 	@InjectMocks
 	DecryptPublic decryptPublic;
@@ -22,8 +22,6 @@ class DecryptPublicTest extends RandomAwareTestBase implements
 	@Test
 	@DisplayName("decrypts a ciphertext using the private key")
 	void test() throws UnsupportedEncodingException {
-		assertEquals(SOMESTRING,
-				decryptPublic.apply(PRIVATE_KEY, SOMESTRING_ENCRYPTED));
+		assertEquals(SOMESTRING, decryptPublic.apply(PRIVATE_KEY, SOMESTRING_ENCRYPTED));
 	}
-
 }

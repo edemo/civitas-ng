@@ -16,8 +16,6 @@ class GetTabTellerVoterBlockContentsMetaTest extends RandomAwareTestBase
 	@Test
 	@DisplayName("the form of the meta is ttVoterBlockContents:teller<tellerIndex>:voterBlock<VoterBlock>")
 	void test() {
-		assertEquals(TAB_TELLER_VOTER_BLOCK_CONTENTS_META,
-				getTabTellerVoterBlockContentsMeta.apply(7, 9));
+		assertEquals(TAB_TELLER_VOTER_BLOCK_CONTENTS_META, getTabTellerVoterBlockContentsMeta.apply(7, 9));
 	}
-
 }

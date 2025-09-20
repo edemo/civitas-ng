@@ -16,5 +16,4 @@ public class ElGamalPublicKeyisAuthorized {
 		}
 		return false;
 	}
-
 }
