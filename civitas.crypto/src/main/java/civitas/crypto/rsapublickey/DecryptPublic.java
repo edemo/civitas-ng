@@ -1,6 +1,5 @@
 package civitas.crypto.rsapublickey;
 
-import java.io.UnsupportedEncodingException;
 import java.security.PrivateKey;
 
 import javax.crypto.Cipher;
@@ -17,14 +16,11 @@ public class DecryptPublic implements Constants {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public String apply(final PrivateKey key,
-			final PublicKeyCiphertext ciphertext)
-			throws UnsupportedEncodingException {
-		PublicKeyCiphertext ciphertextc = ciphertext;
+	public String apply(final PrivateKey key, final PublicKeyCiphertext ciphertext) {
 		byte[] plaintext = cryptoBase.doCrypto(PUBLIC_KEY_CIPHER_ALG,
 				PUBLIC_KEY_PROVIDER, key, Cipher.DECRYPT_MODE,
-				ciphertextc.encryptedBytes);
-		return new String(plaintext, Constants.CHARSET_NAME);
+				ciphertext.encryptedBytes);
+		return new String(plaintext, CHARSET);
 	}
 
 }

@@ -1,7 +1,7 @@
 package civitas.crypto.votecapabilityshare;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,16 +27,15 @@ class CombineVoteCapabilitySharesTest extends TestBase
 	}
 
 	@Test
-	@DisplayName("returns null if the matrix is null")
+	@DisplayName("returns empty array if the matrix is null")
 	void test1() {
-        assertNull(combineVoteCapabilityShares.apply(null, EL_GAMAL_PARAMETERS));
+        assertArrayEquals(EMPTY_ARRAY, combineVoteCapabilityShares.apply(null, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
-	@DisplayName("returns null if the matrix contains null")
+	@DisplayName("returns empty array if the matrix contains null")
 	void test2() {
-		assertNull(combineVoteCapabilityShares
-				.apply(new VoteCapabilityShare[][] { null }, EL_GAMAL_PARAMETERS));
+		assertArrayEquals(EMPTY_ARRAY, combineVoteCapabilityShares.apply(new VoteCapabilityShare[][] { null }, EL_GAMAL_PARAMETERS));
 	}
 
 }

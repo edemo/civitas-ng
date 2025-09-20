@@ -1,7 +1,6 @@
 package civitas.crypto.ciphertext;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.DisplayName;
@@ -39,22 +38,22 @@ class MultiplyCiphertextsTest extends RandomAwareTestBase
 	}
 
 	@Test
-	@DisplayName("returns null if the matrix is null")
+	@DisplayName("returns empty list if the matrix is null")
 	void test2() {
-        assertNull(multiplyCiphertexts.apply(null, EL_GAMAL_PARAMETERS));
+        assertEquals(EMPTY_LIST, multiplyCiphertexts.apply(null, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
-	@DisplayName("returns null if encounters a null in the matrix")
+	@DisplayName("returns empty list if encounters a null in the matrix")
 	void test3() {
-        assertNull(multiplyCiphertexts
-                .apply(new ElGamalSignedCiphertext[][]{null}, EL_GAMAL_PARAMETERS));
+        assertEquals(EMPTY_LIST,
+				multiplyCiphertexts.apply(new ElGamalSignedCiphertext[][]{null}, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
-	@DisplayName("returns null if a ciphertext is not castable to ElGamalCiphertextC")
+	@DisplayName("returns empty list if a ciphertext is not castable to ElGamalCiphertextC")
 	void test4() {
-		assertNull(
+		assertEquals(EMPTY_LIST,
 				multiplyCiphertexts.apply(
 						new ElGamalSignedCiphertext[][] {
 								{ mock(ElGamalSignedCiphertext.class) } },

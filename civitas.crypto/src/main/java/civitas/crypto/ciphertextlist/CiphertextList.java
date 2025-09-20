@@ -6,6 +6,7 @@
  */
 package civitas.crypto.ciphertextlist;
 
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import civitas.crypto.ciphertext.ElGamalCiphertext;
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 
 public class CiphertextList extends ArrayList<ElGamalCiphertextish> {
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	public CiphertextList(final List<ElGamalCiphertext> list) {

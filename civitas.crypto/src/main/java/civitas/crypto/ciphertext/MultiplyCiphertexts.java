@@ -7,34 +7,33 @@ import civitas.util.CivitasBigInteger;
 public class MultiplyCiphertexts {
 
 	public CiphertextList apply(ElGamalCiphertextish[][] ciphertexts,
-			ElGamalParameters p) {
-		if (ciphertexts == null) {
-			return null;
+			ElGamalParameters parameters) {
+		if (ciphertexts == null || ciphertexts[0] == null) {
+			return new CiphertextList();
 		}
-		try {
-			CivitasBigInteger[] aAccum = new CivitasBigInteger[ciphertexts[0].length];
-			CivitasBigInteger[] bAccum = new CivitasBigInteger[ciphertexts[0].length];
-			for (ElGamalCiphertextish[] ciphertext : ciphertexts) {
-				for (int j = 0; j < ciphertext.length; j++) {
-					ElGamalCiphertextish s = ciphertext[j];
-					if (aAccum[j] == null) {
-						aAccum[j] = s.getA();
-						bAccum[j] = s.getB();
-					} else {
-						aAccum[j] = aAccum[j].modMultiply(s.getA(), p.p);
-						bAccum[j] = bAccum[j].modMultiply(s.getB(), p.p);
-					}
+
+		CivitasBigInteger[] aAccum = new CivitasBigInteger[ciphertexts[0].length];
+		CivitasBigInteger[] bAccum = new CivitasBigInteger[ciphertexts[0].length];
+		for (ElGamalCiphertextish[] ciphertext : ciphertexts) {
+			for (int index = 0; index < ciphertext.length; index++) {
+				ElGamalCiphertextish s = ciphertext[index];
+				if (aAccum[index] == null) {
+					aAccum[index] = s.getA();
+					bAccum[index] = s.getB();
+				} else {
+					aAccum[index] = aAccum[index].modMultiply(s.getA(), parameters.p);
+					bAccum[index] = bAccum[index].modMultiply(s.getB(), parameters.p);
 				}
 			}
-			CiphertextList ret = new CiphertextList();
-			for (int j = 0; j < aAccum.length; j++) {
-				ret.add(new ElGamalCiphertext(aAccum[j], bAccum[j]));
-			}
-			return ret;
-
-		} catch (NullPointerException e) {
-			return null;
 		}
+		CiphertextList result = new CiphertextList();
+		for (int index = 0; index < aAccum.length; index++) {
+			if (aAccum[index] == null || bAccum[index] == null) {
+				return new CiphertextList();
+			}
+			result.add(new ElGamalCiphertext(aAccum[index], bAccum[index]));
+		}
+		return result;
 	}
 
 }
