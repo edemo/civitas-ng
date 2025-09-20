@@ -1,8 +1,11 @@
 package civitas.crypto.votecapabilityshare;
 
+import civitas.crypto.votecapability.VoteCapability;
 import civitas.util.CivitasBigIntegerFactory;
 
 public interface VoteCapabilityShareTestData extends VoteCapabilityTestData {
+
+	VoteCapability[] EMPTY_ARRAY = new VoteCapability[0];
 
 	VoteCapabilityShare VOTE_CAPABILITY_SHARE = new VoteCapabilityShare(
 			MESSAGE_VOTE_CAPABILITY_SHARE_ENCODED);

@@ -17,8 +17,6 @@ import civitas.util.CivitasBigIntegerFactory;
 class MultiplyCiphertextsTest extends RandomAwareTestBase
 		implements ElGamalCiphertextListTestData {
 
-	private static final CiphertextList EMPTY_LIST = new CiphertextList();
-
 	@InjectMocks
 	MultiplyCiphertexts multiplyCiphertexts;
 	@InjectMocks

@@ -14,8 +14,6 @@ import io.github.magwas.testing.TestBase;
 class CombineVoteCapabilitySharesTest extends TestBase
 		implements VoteCapabilityShareTestData {
 
-	private static final VoteCapability[] EMPTY_ARRAY = new VoteCapability[0];
-
 	@InjectMocks
 	CombineVoteCapabilityShares combineVoteCapabilityShares;
 
