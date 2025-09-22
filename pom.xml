@@ -46,7 +46,7 @@
     </issueManagement>
     <properties>
         <mpir.skip>true</mpir.skip>
-        <version.konveyor>${project.parent.version}</version.konveyor>
+        <version.konveyor>0.4.26</version.konveyor>
     </properties>
     <dependencyManagement>
         <dependencies>
