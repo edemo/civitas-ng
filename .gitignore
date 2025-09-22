@@ -2,3 +2,4 @@ target/
 .git-versioned-pom.xml
 .idea/
 .konveyor/
+.settings
