@@ -16,11 +16,17 @@ import civitas.crypto.publickey.ElGamalPublicKey;
 public class VerifyMixRevelation {
 	@Autowired
 	VerifyMixElementRevelation verifyMixElementRevelation;
+
 	@Autowired
 	CryptoHash cryptoHash;
 
-	public boolean apply(MixRevelation that, ElGamalPublicKey key, VoterMix initialMix,
-			VoterMix leftMix, VoterMix rightMix, boolean[] revelationDirections) {
+	public boolean apply(
+			MixRevelation that,
+			ElGamalPublicKey key,
+			VoterMix initialMix,
+			VoterMix leftMix,
+			VoterMix rightMix,
+			boolean[] revelationDirections) {
 		if (revelationDirections == null
 				|| that.revelations.length != revelationDirections.length
 				|| that.revelations.length != that.indicators.length) {
@@ -56,15 +62,13 @@ public class VerifyMixRevelation {
 			}
 			byte[] commitment = toMix.getCommitments()[toIndex].clone();
 			byte[] mappingBytes = BigInteger.valueOf(mer.getMapping()).toByteArray();
-			byte[] hash = cryptoHash.apply(mer.getNonce(),
-					mappingBytes);
-			if (!Arrays.equals(commitment, hash) || !verifyMixElementRevelation
-					.apply(mer, key, fromIndex, toIndex, fromMix, toMix)) {
+			byte[] hash = cryptoHash.apply(mer.getNonce(), mappingBytes);
+			if (!Arrays.equals(commitment, hash)
+					|| !verifyMixElementRevelation.apply(mer, key, fromIndex, toIndex, fromMix, toMix)) {
 				return false;
 			}
 		}
 
 		return true;
 	}
-
 }

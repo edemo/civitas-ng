@@ -9,18 +9,16 @@ import civitas.util.CivitasBigInteger;
 @Controller
 public class LegendreSymbol implements Constants {
 
-	public int apply(CivitasBigInteger a, CivitasBigInteger p,
-			CivitasBigInteger q) {
+	public int apply(CivitasBigInteger a, CivitasBigInteger p, CivitasBigInteger q) {
 		CivitasBigInteger j = a.modPow(q, p);
-		if (j.equals(ONE)) {
+		if (ONE.equals(j)) {
 			return 1;
 		} else if (j.equals(p.subtract(ONE))) {
 			return -1;
-		} else if (j.equals(ZERO)) {
+		} else if (ZERO.equals(j)) {
 			return 0;
 		} else {
 			throw new CryptoError("Impossible Legendre symbol");
 		}
 	}
-
 }

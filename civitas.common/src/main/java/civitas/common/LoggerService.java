@@ -17,5 +17,4 @@ public class LoggerService {
 	public void apply(Marker marker, String msg, Throwable throwable) {
 		logger.info(marker, msg, throwable);
 	}
-
 }

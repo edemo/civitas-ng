@@ -15,5 +15,4 @@ public class VoterEncCapabilityShares {
 	public final String name;
 	public final int voterBlock;
 	public final ElGamalSignedCiphertext[] encCapabilityShares;
-
 }

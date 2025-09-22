@@ -8,8 +8,7 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class GetMetaForTellerTest extends RandomAwareTestBase
-		implements TellerTestData {
+class GetMetaForTellerTest extends RandomAwareTestBase implements TellerTestData {
 
 	@InjectMocks
 	GetMetaForTeller getMetaForTeller;
@@ -19,5 +18,4 @@ class GetMetaForTellerTest extends RandomAwareTestBase
 	void test() {
 		assertEquals(TELLER_META, getMetaForTeller.appply(TELLER_INDEX));
 	}
-
 }

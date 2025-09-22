@@ -10,8 +10,7 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.common.VoteTestData;
 
-class AddVoteToVoteMixTest extends RandomAwareTestBase
-		implements VoteMixTestData, VoteTestData {
+class AddVoteToVoteMixTest extends RandomAwareTestBase implements VoteMixTestData, VoteTestData {
 	@InjectMocks
 	AddVoteToVoteMix addVoteToVoteMix;
 
@@ -26,15 +25,12 @@ class AddVoteToVoteMixTest extends RandomAwareTestBase
 	@Test
 	@DisplayName("if the mix is null, throws NullPointerException")
 	void test1() {
-		assertThrows(NullPointerException.class,
-				() -> addVoteToVoteMix.apply(null, VOTE_MOCK));
+		assertThrows(NullPointerException.class, () -> addVoteToVoteMix.apply(null, VOTE_MOCK));
 	}
 
 	@Test
 	@DisplayName("if the vote is null, throws NullPointerException")
 	void test2() {
-		assertThrows(NullPointerException.class,
-				() -> addVoteToVoteMix.apply(VOTE_MIX_MOCK, null));
+		assertThrows(NullPointerException.class, () -> addVoteToVoteMix.apply(VOTE_MIX_MOCK, null));
 	}
-
 }

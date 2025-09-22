@@ -17,10 +17,8 @@ public class DecryptPublic implements Constants {
 	CryptoBase cryptoBase;
 
 	public String apply(final PrivateKey key, final PublicKeyCiphertext ciphertext) {
-		byte[] plaintext = cryptoBase.doCrypto(PUBLIC_KEY_CIPHER_ALG,
-				PUBLIC_KEY_PROVIDER, key, Cipher.DECRYPT_MODE,
-				ciphertext.encryptedBytes);
+		byte[] plaintext = cryptoBase.doCrypto(
+				PUBLIC_KEY_CIPHER_ALG, PUBLIC_KEY_PROVIDER, key, Cipher.DECRYPT_MODE, ciphertext.encryptedBytes);
 		return new String(plaintext, CHARSET);
 	}
-
 }

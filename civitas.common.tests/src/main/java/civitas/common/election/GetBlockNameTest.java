@@ -7,16 +7,13 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class GetBlockNameTest extends RandomAwareTestBase
-		implements ElectionDetailsTestData {
+class GetBlockNameTest extends RandomAwareTestBase implements ElectionDetailsTestData {
 
 	@InjectMocks
 	GetBlockName getBlockName;
 
 	@Test
 	void test() {
-		assertEquals("voterBlock-4-context-" + BARE_CONTEXT_2,
-				getBlockName.apply(ELECTION_DETAILS, 4 * 3 + 2));
+		assertEquals("voterBlock-4-context-" + BARE_CONTEXT_2, getBlockName.apply(ELECTION_DETAILS, 4 * 3 + 2));
 	}
-
 }

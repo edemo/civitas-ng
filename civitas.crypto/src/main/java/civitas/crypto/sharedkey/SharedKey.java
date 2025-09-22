@@ -10,5 +10,4 @@ import javax.crypto.SecretKey;
 
 import lombok.NonNull;
 
-public record SharedKey(@NonNull SecretKey k, @NonNull String name) {
-}
+public record SharedKey(@NonNull SecretKey k, @NonNull String name) {}

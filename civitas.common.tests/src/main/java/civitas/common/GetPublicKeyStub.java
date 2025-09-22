@@ -13,8 +13,8 @@ import java.security.cert.CertificateException;
 import civitas.crypto.rsapublickey.PublicKeyTestData;
 
 public class GetPublicKeyStub implements PublicKeyTestData {
-	public static GetPublicKey stub() throws KeyStoreException,
-			NoSuchAlgorithmException, CertificateException, IOException {
+	public static GetPublicKey stub()
+			throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
 		GetPublicKey mock = mock(GetPublicKey.class);
 		when(mock.apply(any(), any(), eq("bbs"))).thenReturn(PUBLIC_KEY);
 		return mock;

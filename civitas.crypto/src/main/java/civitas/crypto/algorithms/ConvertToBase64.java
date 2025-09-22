@@ -15,5 +15,4 @@ public class ConvertToBase64 {
 	public String apply(CivitasBigInteger i) {
 		return Base64.getEncoder().encodeToString(i.toByteArray());
 	}
-
 }

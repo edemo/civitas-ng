@@ -13,5 +13,4 @@ public class CreateVoterSubmission {
 		}
 		return new VoterSubmission(voterBlock, votes.clone());
 	}
-
 }

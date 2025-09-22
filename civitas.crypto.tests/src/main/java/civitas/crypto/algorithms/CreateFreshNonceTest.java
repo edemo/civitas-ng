@@ -11,8 +11,7 @@ import org.mockito.InjectMocks;
 import civitas.util.BasicValuesTestData;
 import io.github.magwas.testing.TestBase;
 
-class CreateFreshNonceTest extends TestBase
-		implements BasicValuesTestData {
+class CreateFreshNonceTest extends TestBase implements BasicValuesTestData {
 
 	@InjectMocks
 	CreateFreshNonce createFreshNonce;
@@ -35,5 +34,4 @@ class CreateFreshNonceTest extends TestBase
 		createFreshNonce.apply(BITLENGTH);
 		verify(createFreshNonce.cryptoBase).nextBytes(any());
 	}
-
 }

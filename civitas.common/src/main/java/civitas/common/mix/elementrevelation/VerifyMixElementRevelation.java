@@ -19,29 +19,36 @@ public class VerifyMixElementRevelation {
 
 	@Autowired
 	ElGamalReencrypt elGamalReencrypt;
+
 	@Autowired
 	VerifyMixCapabilityElementRevelation verifyMixCapabilityElementRevelation;
+
 	@Autowired
 	VerifyMixVoteElementRevelation VerifyMixVoteElementRevelation;
 
-	public boolean apply(@Nonnull MixElementRevelation that,
-			@Nonnull ElGamalPublicKey key, int fromIndex, int toIndex,
-			@Nonnull VoterMix fromMix, @Nonnull VoterMix toMix) {
+	public boolean apply(
+			@Nonnull MixElementRevelation that,
+			@Nonnull ElGamalPublicKey key,
+			int fromIndex,
+			int toIndex,
+			@Nonnull VoterMix fromMix,
+			@Nonnull VoterMix toMix) {
 		if (key == null || fromMix == null || toMix == null) {
 			throw new NullPointerException();
 		}
 		if (that.getClass().equals(MixCapabilityElementRevelation.class)) {
 			return verifyMixCapabilityElementRevelation.apply(
-					(MixCapabilityElementRevelation) that, key, fromIndex, toIndex,
-					(CapabilityMix) fromMix, (CapabilityMix) toMix);
+					(MixCapabilityElementRevelation) that,
+					key,
+					fromIndex,
+					toIndex,
+					(CapabilityMix) fromMix,
+					(CapabilityMix) toMix);
 		}
 		if (that.getClass().equals(MixVoteElementRevelation.class)) {
 			return VerifyMixVoteElementRevelation.apply(
-					(MixVoteElementRevelation) that, key, fromIndex, toIndex,
-					(VoteMix) fromMix, (VoteMix) toMix);
+					(MixVoteElementRevelation) that, key, fromIndex, toIndex, (VoteMix) fromMix, (VoteMix) toMix);
 		}
 		throw new IllegalArgumentException("I do not know this type of revelation");
-
 	}
-
 }

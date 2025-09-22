@@ -14,5 +14,4 @@ public class MixHashRevelation {
 	public final int tellerIndex;
 
 	public final byte[] mixNonce;
-
 }

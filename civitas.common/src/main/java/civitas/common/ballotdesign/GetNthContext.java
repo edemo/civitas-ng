@@ -20,5 +20,4 @@ public class GetNthContext implements CommonConstants {
 		}
 		return null;
 	}
-
 }

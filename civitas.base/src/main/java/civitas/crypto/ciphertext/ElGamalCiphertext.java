@@ -14,9 +14,7 @@ import lombok.NonNull;
 @Data
 @AllArgsConstructor
 public class ElGamalCiphertext implements ElGamalCiphertextish {
-	@NonNull
-	public CivitasBigInteger a;
-	@NonNull
-	public CivitasBigInteger b;
+	@NonNull public CivitasBigInteger a;
 
+	@NonNull public CivitasBigInteger b;
 }

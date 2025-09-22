@@ -15,5 +15,4 @@ public class ElGamalProof1OfL {
 	public final int L;
 	public final CivitasBigInteger[] dvs;
 	public final CivitasBigInteger[] rvs;
-
 }

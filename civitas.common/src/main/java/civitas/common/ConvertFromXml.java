@@ -14,8 +14,7 @@ import jakarta.xml.bind.annotation.adapters.NormalizedStringAdapter;
 @Controller
 public class ConvertFromXml {
 
-	public <T> T apply(String xmlString, Class<T> klass)
-			throws JAXBException, IOException {
+	public <T> T apply(String xmlString, Class<T> klass) throws JAXBException, IOException {
 		JAXBContext context = JAXBContext.newInstance(klass);
 		Unmarshaller unmarshaller = context.createUnmarshaller();
 		unmarshaller.setAdapter(new NormalizedStringAdapter());
@@ -24,6 +23,5 @@ public class ConvertFromXml {
 			Object o = unmarshaller.unmarshal(reader);
 			return klass.cast(o);
 		}
-
 	}
 }

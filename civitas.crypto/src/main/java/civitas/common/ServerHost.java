@@ -17,5 +17,4 @@ public class ServerHost {
 	ServerRole role;
 	String urlbase;
 	String publicKey;
-
 }

@@ -6,7 +6,6 @@ import civitas.crypto.ciphertext.ElGamalCiphertext;
 
 public interface VoterEncCapabilitiesTestData extends BallotTestData {
 
-	VoterEncCapabilities VOTER_ENC_CAPABILITIES = new VoterEncCapabilities("joe",
-			VOTER_BLOCK, new ElGamalCiphertext[0]);
-
+	VoterEncCapabilities VOTER_ENC_CAPABILITIES =
+			new VoterEncCapabilities("joe", VOTER_BLOCK, new ElGamalCiphertext[0]);
 }

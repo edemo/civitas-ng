@@ -13,13 +13,11 @@ import lombok.NonNull;
 
 @Data
 public class ElGamalSignedCiphertext implements ElGamalCiphertextish {
-	@NonNull
-	public CivitasBigInteger a;
-	@NonNull
-	public CivitasBigInteger b;
-	@NonNull
-	public final CivitasBigInteger c;
-	@NonNull
-	public final CivitasBigInteger d;
+	@NonNull public CivitasBigInteger a;
 
+	@NonNull public CivitasBigInteger b;
+
+	@NonNull public final CivitasBigInteger c;
+
+	@NonNull public final CivitasBigInteger d;
 }

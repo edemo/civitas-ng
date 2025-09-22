@@ -28,23 +28,32 @@ public class CloseBoardController {
 
 	@Autowired
 	VerifyPublicKeySignature verifyPublicKeySignature;
+
 	@Autowired
 	BoardRepository boardRepository;
+
 	@Autowired
 	CryptoBase cryptoBase;
+
 	@Autowired
 	CryptoHash cryptoHash;
+
 	@Autowired
 	GetBoardForId getBoardForId;
+
 	@Autowired
 	GetRestTemplate getRestTemplate;
+
 	@Autowired
 	ConvertStringToPublicKey convertStringToPublicKey;
 
 	@PostMapping("/boards/close/{bbid}")
-	public boolean apply(@PathVariable("bbid") String bbid,
-			@Nonnull ElectionID postHashTo, int numVoterBlocks,
-			@Nonnull Signature sig) throws CommunicableException {
+	public boolean apply(
+			@PathVariable("bbid") String bbid,
+			@Nonnull ElectionID postHashTo,
+			int numVoterBlocks,
+			@Nonnull Signature sig)
+			throws CommunicableException {
 		if (null == sig) {
 			throw new NullPointerException();
 		}
@@ -65,20 +74,16 @@ public class CloseBoardController {
 			List<String> hashes = new ArrayList<>();
 			for (int i = 0; i < numVoterBlocks; i++) {
 				String meta = "voterSubmission-voterBlock" + i;
-				hashes.add(Base64.getEncoder().encodeToString(
-						cryptoHash.apply(bbid.getBytes(), meta.getBytes())));
+				hashes.add(Base64.getEncoder().encodeToString(cryptoHash.apply(bbid.getBytes(), meta.getBytes())));
 			}
-			BoardClosedContentCommitment bccc = new BoardClosedContentCommitment(
-					postHashTo, bbid, hashes);
+			BoardClosedContentCommitment bccc = new BoardClosedContentCommitment(postHashTo, bbid, hashes);
 			String uriBase = postHashTo.uriBase();
 			String uri = uriBase + "/post";
 
 			getRestTemplate.apply().postForObject(uri, bccc, Boolean.class);
 			board.isOpen = false;
 			boardRepository.save(board);
-
 		}
 		return res;
 	}
-
 }

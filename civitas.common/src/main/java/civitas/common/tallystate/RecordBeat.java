@@ -11,5 +11,4 @@ public class RecordBeat {
 
 		that.matrix[i][j]++;
 	}
-
 }

@@ -21,8 +21,7 @@ import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-class GenerateSchnorrPrimeFunctionalTest extends RandomAwareTestBase
-		implements ElGamalPrivateKeyTestData, Constants {
+class GenerateSchnorrPrimeFunctionalTest extends RandomAwareTestBase implements ElGamalPrivateKeyTestData, Constants {
 
 	@Autowired
 	GenerateSchnorrPrime generateSchnorrPrimeReal;
@@ -31,13 +30,11 @@ class GenerateSchnorrPrimeFunctionalTest extends RandomAwareTestBase
 	@DisplayName("making sure that we get a correct pair using the real random generator"
 			+ "FIXME: uses random, should make a multirun verification test, but it takes a lot of time")
 	void schnorrPrimeTest() {
-		PrimePair sp = generateSchnorrPrimeReal.apply(Constants.EL_GAMAL_KEY_LENGTH,
-				Constants.EL_GAMAL_GROUP_LENGTH);
+		PrimePair sp = generateSchnorrPrimeReal.apply(Constants.EL_GAMAL_KEY_LENGTH, Constants.EL_GAMAL_GROUP_LENGTH);
 		assertTrue(sp.p.isProbablePrime(CERTAINTY));
 		assertTrue(sp.q.isProbablePrime(CERTAINTY));
 		assertEquals(ZERO, sp.p.subtract(ONE).mod(sp.q));
 		assertEquals(Constants.EL_GAMAL_GROUP_LENGTH, sp.p.bitLength());
 		assertEquals(Constants.EL_GAMAL_KEY_LENGTH, sp.q.bitLength());
 	}
-
 }

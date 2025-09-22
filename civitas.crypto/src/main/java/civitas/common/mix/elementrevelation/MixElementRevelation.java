@@ -7,13 +7,13 @@
 package civitas.common.mix.elementrevelation;
 
 public interface MixElementRevelation {
-//	protected final int mapping;
-//	protected final byte[] nonce;
+	//	protected final int mapping;
+	//	protected final byte[] nonce;
 	int getMapping();
 
 	byte[] getNonce();
 
-//	boolean verify(ElGamalPublicKey key, int fromIndex, int toIndex, Mix fromMix,
-//			Mix toMix);
+	//	boolean verify(ElGamalPublicKey key, int fromIndex, int toIndex, Mix fromMix,
+	//			Mix toMix);
 
 }

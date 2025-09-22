@@ -17,5 +17,4 @@ class GenerateKeyPairTest extends TestBase implements KeyPairTestData {
 	void test() {
 		assertEquals(KEYPAIR, generateKeyPair.apply(KEYSIZE));
 	}
-
 }

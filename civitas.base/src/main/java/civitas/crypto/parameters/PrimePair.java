@@ -14,8 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @EqualsAndHashCode
 public class PrimePair {
-	@NonNull
-	public CivitasBigInteger p;
-	@NonNull
-	public CivitasBigInteger q;
+	@NonNull public CivitasBigInteger p;
+
+	@NonNull public CivitasBigInteger q;
 }

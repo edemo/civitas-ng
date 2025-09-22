@@ -25,36 +25,30 @@ class RecordBeatTest extends RandomAwareTestBase implements TallyStateTestData {
 	@DisplayName("if the first candidate index is < 0, an IllegalArgumentException is thrown")
 	@Test
 	void test1() {
-		assertThrows(IllegalArgumentException.class,
-				() -> recordBeat.apply(TALLY_STATE_EMPTY_SUPPLIER.get(), -1, 2));
+		assertThrows(IllegalArgumentException.class, () -> recordBeat.apply(TALLY_STATE_EMPTY_SUPPLIER.get(), -1, 2));
 	}
 
 	@DisplayName("if the first candidate index is too big, an IllegalArgumentException is thrown")
 	@Test
 	void test2() {
-		assertThrows(IllegalArgumentException.class,
-				() -> recordBeat.apply(TALLY_STATE_EMPTY_SUPPLIER.get(), 3, 2));
+		assertThrows(IllegalArgumentException.class, () -> recordBeat.apply(TALLY_STATE_EMPTY_SUPPLIER.get(), 3, 2));
 	}
 
 	@DisplayName("if the second candidate index <0, an IllegalArgumentException is thrown")
 	@Test
 	void test3() {
-		assertThrows(IllegalArgumentException.class,
-				() -> recordBeat.apply(TALLY_STATE_EMPTY_SUPPLIER.get(), 1, -2));
+		assertThrows(IllegalArgumentException.class, () -> recordBeat.apply(TALLY_STATE_EMPTY_SUPPLIER.get(), 1, -2));
 	}
 
 	@DisplayName("if the second candidate index is too big, an IllegalArgumentException is thrown")
 	@Test
 	void test4() {
-		assertThrows(IllegalArgumentException.class,
-				() -> recordBeat.apply(TALLY_STATE_EMPTY_SUPPLIER.get(), 1, 3));
+		assertThrows(IllegalArgumentException.class, () -> recordBeat.apply(TALLY_STATE_EMPTY_SUPPLIER.get(), 1, 3));
 	}
 
 	@DisplayName("if the two candidates are the same, an IllegalArgumentException is thrown")
 	@Test
 	void test5() {
-		assertThrows(IllegalArgumentException.class,
-				() -> recordBeat.apply(TALLY_STATE_EMPTY_SUPPLIER.get(), 1, 1));
+		assertThrows(IllegalArgumentException.class, () -> recordBeat.apply(TALLY_STATE_EMPTY_SUPPLIER.get(), 1, 1));
 	}
-
 }

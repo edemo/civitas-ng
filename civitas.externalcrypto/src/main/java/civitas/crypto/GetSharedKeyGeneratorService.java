@@ -7,7 +7,10 @@ import java.util.Map;
 
 import javax.crypto.KeyGenerator;
 
-class GetSharedKeyGenerator {
+import org.springframework.stereotype.Service;
+
+@Service
+public class GetSharedKeyGeneratorService {
 	private final Map<String, KeyGenerator> sharedKeyGenerators = new HashMap<>();
 
 	public KeyGenerator apply(int keyLength) {
@@ -17,8 +20,7 @@ class GetSharedKeyGenerator {
 			return g;
 		}
 		try {
-			g = KeyGenerator.getInstance(Constants.SHARED_KEY_ALG,
-					Constants.SHARED_KEY_PROVIDER);
+			g = KeyGenerator.getInstance(Constants.SHARED_KEY_ALG, Constants.SHARED_KEY_PROVIDER);
 		} catch (NoSuchAlgorithmException | NoSuchProviderException impossible) {
 			throw new CryptoError(impossible);
 		}

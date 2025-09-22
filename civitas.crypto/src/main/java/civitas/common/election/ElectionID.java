@@ -8,5 +8,4 @@ package civitas.common.election;
 
 import civitas.common.board.BulletinBoardIDish;
 
-public record ElectionID(String id, String uriBase) implements BulletinBoardIDish {
-}
+public record ElectionID(String id, String uriBase) implements BulletinBoardIDish {}

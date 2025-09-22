@@ -11,7 +11,8 @@ import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryption;
 import civitas.crypto.proofvote.ProofVote;
 import lombok.NonNull;
 
-public record VerifiableVote(@NonNull String context,
+public record VerifiableVote(
+		@NonNull String context,
 		@NonNull ElGamal1OfLReencryption encChoice,
-		@NonNull ElGamalCiphertextish encCapability, @NonNull ProofVote proofVote) {
-}
+		@NonNull ElGamalCiphertextish encCapability,
+		@NonNull ProofVote proofVote) {}

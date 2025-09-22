@@ -8,17 +8,14 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class GetContextForBlockTest extends RandomAwareTestBase
-		implements ElectionDetailsTestData {
+class GetContextForBlockTest extends RandomAwareTestBase implements ElectionDetailsTestData {
 
 	@InjectMocks
 	GetContextForBlock getContextForBlock;
 
 	@Test
-	@DisplayName("gets the context index for a vote index in a block\n"
-			+ "this is simply vote index mod vote length")
+	@DisplayName("gets the context index for a vote index in a block\n" + "this is simply vote index mod vote length")
 	void test() {
 		assertEquals(2, getContextForBlock.apply(ELECTION_DETAILS, 5));
 	}
-
 }

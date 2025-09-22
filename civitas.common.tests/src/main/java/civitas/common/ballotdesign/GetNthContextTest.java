@@ -8,8 +8,7 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class GetNthContextTest extends RandomAwareTestBase
-		implements BallotDesignTestData {
+class GetNthContextTest extends RandomAwareTestBase implements BallotDesignTestData {
 
 	@InjectMocks
 	GetNthContext getNthContext;
@@ -25,5 +24,4 @@ class GetNthContextTest extends RandomAwareTestBase
 	void test1() {
 		assertEquals(null, getNthContext.apply(BALLOTDESIGN, 4));
 	}
-
 }

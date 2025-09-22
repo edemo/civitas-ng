@@ -28,21 +28,28 @@ import civitas.crypto.signature.Signature;
 public class RetrieveHashController {
 	@Autowired
 	GetBoardForId getBoardForId;
+
 	@Autowired
 	BBPostRepository bBPostRepository;
+
 	@Autowired
 	CryptoHash cryptoHash;
+
 	@Autowired
 	SignWithPublicKey signWithPublicKey;
+
 	@Autowired
 	GetPrivateKey getPrivateKey;
+
 	@Autowired
 	Configuration configuration;
+
 	@Autowired
 	GetPublicKey getServerPublicKey;
 
 	@GetMapping("/boards/{bbid}/signature-{fromTime}-{toTime}-{metaCriteria}")
-	private Signature apply(@PathVariable("bbid") String bbid,
+	private Signature apply(
+			@PathVariable("bbid") String bbid,
 			@PathVariable("fromTime") Long fromTime,
 			@PathVariable("toTime") Long toTime,
 			@PathVariable("metaCriteria") String metaCriteria)
@@ -50,31 +57,31 @@ public class RetrieveHashController {
 
 		getBoardForId.apply(bbid, true);
 
-		Iterable<BBPost> posts = bBPostRepository
-				.findByBbidAndTimestampBetweenAndMeta(bbid, fromTime, toTime,
-						metaCriteria);
+		Iterable<BBPost> posts =
+				bBPostRepository.findByBbidAndTimestampBetweenAndMeta(bbid, fromTime, toTime, metaCriteria);
 
 		byte[] hash = null;
-		for (BBPost post : posts) {// FIXME probably this should be something else
+		for (BBPost post : posts) { // FIXME probably this should be something else
 			hash = cryptoHash.apply(post.sig.signatureBytes, hash);
 		}
 
 		Signature signature;
 		try {
 			PrivateKey privKey;
-			privKey = getPrivateKey.apply(configuration.storePassword,
-					configuration.storeFile, configuration.serverKeyEntry);
-			PublicKey pubKey = getServerPublicKey.apply(configuration.storePassword,
-					configuration.storeFile, configuration.serverKeyEntry);
+			privKey = getPrivateKey.apply(
+					configuration.storePassword, configuration.storeFile, configuration.serverKeyEntry);
+			PublicKey pubKey = getServerPublicKey.apply(
+					configuration.storePassword, configuration.storeFile, configuration.serverKeyEntry);
 			signature = signWithPublicKey.apply(privKey, pubKey, hash);
-		} catch (UnrecoverableKeyException | KeyStoreException
-				| NoSuchAlgorithmException | CertificateException | IOException
+		} catch (UnrecoverableKeyException
+				| KeyStoreException
+				| NoSuchAlgorithmException
+				| CertificateException
+				| IOException
 				| CryptoException e) {
 			throw new CommunicableException("internal error");
 		}
 
 		return signature;
-
 	}
-
 }

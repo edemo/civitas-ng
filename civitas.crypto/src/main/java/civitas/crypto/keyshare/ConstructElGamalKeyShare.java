@@ -13,21 +13,19 @@ import civitas.crypto.publickey.ElGamalPublicKey;
 public class ConstructElGamalKeyShare {
 	@Autowired
 	ConstructProofKnowDiscLog constructProofKnowDiscLog;
+
 	@Autowired
 	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
 	public ElGamalKeyShare apply(final ElGamalKeyPairShare kps) {
-		ElGamalKeyShare egks = apply(kps.pubKey(),
-				constructProofKnowDiscLog.apply(kps.pubKey().params, kps.privKey()));
+		ElGamalKeyShare egks = apply(kps.pubKey(), constructProofKnowDiscLog.apply(kps.pubKey().params, kps.privKey()));
 		if (!verifyElGamalKeyShare.apply(egks)) {
 			throw new CryptoError("Cannot verify a newly created key share!");
 		}
 		return egks;
 	}
 
-	public ElGamalKeyShare apply(final ElGamalPublicKey k,
-			final ElGamalProofKnowDiscLog proof) {
+	public ElGamalKeyShare apply(final ElGamalPublicKey k, final ElGamalProofKnowDiscLog proof) {
 		return new ElGamalKeyShare(k, proof);
 	}
-
 }
