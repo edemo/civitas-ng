@@ -8,13 +8,11 @@ public class Configuration {
 
 	@Value("${storeFile}")
 	public String storeFile;
-
 	@Value("${storePassword}")
 	public String storePassword;
-
 	@Value("${serverKeyEntry}")
 	public String serverKeyEntry;
-
 	@Value("${urlBase}")
 	public String urlBase;
+
 }

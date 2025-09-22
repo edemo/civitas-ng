@@ -15,4 +15,5 @@ public class MixCapabilityElementRevelation implements MixElementRevelation {
 	final int mapping;
 	final byte[] nonce;
 	public final ElGamalReencryptFactor reencryptFactor;
+
 }

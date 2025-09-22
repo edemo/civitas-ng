@@ -22,7 +22,8 @@ import civitas.util.BasicValuesTestData;
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-class CreatePermutationFunctionalTest extends RandomAwareTestBase implements PrivateKeyTestData, BasicValuesTestData {
+class CreatePermutationFunctionalTest extends RandomAwareTestBase
+		implements PrivateKeyTestData, BasicValuesTestData {
 
 	@Autowired
 	CreatePermutation createPermutation;
@@ -44,4 +45,5 @@ class CreatePermutationFunctionalTest extends RandomAwareTestBase implements Pri
 		}
 		assertTrue(true);
 	}
+
 }

@@ -7,7 +7,8 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class FormatResult {
-	public String apply(String[] candidates, List<List<CandidateResult>> winnerList) {
+	public String apply(String[] candidates,
+			List<List<CandidateResult>> winnerList) {
 		List<String> winResult = new ArrayList<>();
 		int stagenum = 0;
 		for (List<CandidateResult> stage : winnerList) {
@@ -19,14 +20,16 @@ public class FormatResult {
 					Integer beat = winner.beat.get(i);
 					Integer beaten = winner.beaten.get(i);
 					String b = String.format("%.2f", 1.0 * beat / beaten);
-					beats.add("beats " + candidates[winner.beatenCandidates.get(i)] + " by " + beat + ":" + beaten
-							+ " (" + b + ")");
+					beats.add("beats " + candidates[winner.beatenCandidates.get(i)]
+							+ " by " + beat + ":" + beaten + " (" + b + ")");
 				}
 				String strength = String.format("%.2f", winner.strength);
-				winners.add(candidates[winner.candidate] + " (" + strength + ") (" + String.join(", ", beats) + ") ");
+				winners.add(candidates[winner.candidate] + " (" + strength + ") ("
+						+ String.join(", ", beats) + ") ");
 			}
 			winResult.add(stagenum + ":\n\t" + String.join("\n\t", winners));
 		}
 		return String.join("\n", winResult);
 	}
+
 }

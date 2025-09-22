@@ -7,4 +7,5 @@ public class CommunicableException extends Exception {
 	public CommunicableException(final String msg) {
 		super(msg);
 	}
+
 }

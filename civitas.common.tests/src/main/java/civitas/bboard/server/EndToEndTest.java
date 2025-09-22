@@ -44,34 +44,27 @@ import civitas.crypto.signature.SignWithPublicKey;
 import civitas.crypto.signature.Signature;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-class EndToEndTest implements BulletinBoardTestData, BBPostTestData, ElectionDetailsTestData, PublicKeyTestData {
+class EndToEndTest implements BulletinBoardTestData, BBPostTestData,
+		ElectionDetailsTestData, PublicKeyTestData {
 	@LocalServerPort
 	private int port;
 
 	@Autowired
 	GetRestTemplate getRestTemplate;
-
 	@Autowired
 	SignWithPublicKey signWithPublicKey;
-
 	@Autowired
 	CryptoBase cryptoBase;
-
 	@Autowired
 	PostController postController;
-
 	@Autowired
 	NewBoardController newBoardController;
-
 	@Autowired
 	RequestParticipationController requestParticipationController;
-
 	@Autowired
 	Configuration configuration;
-
 	@Autowired
 	GetPrivateKey getPrivateKey;
-
 	@Autowired
 	ConvertPublicKeyToString convertPublicKeyToString;
 
@@ -90,63 +83,54 @@ class EndToEndTest implements BulletinBoardTestData, BBPostTestData, ElectionDet
 		Long startTime = System.currentTimeMillis();
 		String urlBase = "http://localhost:" + port;
 		getTestKeys();
-		String boardId = getRestTemplate
-				.apply()
-				.postForObject(urlBase + "/requestParticipation", createRequestParticipationDTO(), String.class);
+		String boardId = getRestTemplate.apply().postForObject(
+				urlBase + "/requestParticipation", createRequestParticipationDTO(),
+				String.class);
 
 		String url = urlBase + "/boards/" + boardId;
-		Long actual = getRestTemplate.apply().postForObject(url, createPostDTO(), Long.class);
+		Long actual = getRestTemplate.apply().postForObject(url, createPostDTO(),
+				Long.class);
 		long endTime = System.currentTimeMillis();
 		assertTrue(actual >= startTime && actual <= endTime);
 	}
 
 	public PostDTO createPostDTO() throws CryptoException {
-		Signature signature =
-				signWithPublicKey.apply(supervisorPriv, supervisorPub, BOARD_CLOSED_CONTENT_COMMITMENT_XML.getBytes());
-		return new PostDTO(BoardClosedContentCommitmentMETA, BOARD_CLOSED_CONTENT_COMMITMENT_XML, signature);
+		Signature signature = signWithPublicKey.apply(supervisorPriv, supervisorPub,
+				BOARD_CLOSED_CONTENT_COMMITMENT_XML.getBytes());
+		return new PostDTO(BoardClosedContentCommitmentMETA,
+				BOARD_CLOSED_CONTENT_COMMITMENT_XML, signature);
 	}
 
 	public RequestParticipationDTO createRequestParticipationDTO() {
 		List<ServerHost> tellerDetails = List.of(
-				new ServerHost(ServerRole.BBS, "https://localhost/", keyStrings.get("bbs")),
-				new ServerHost(
-						ServerRole.TABULATION_TELLER, "https://localhost:" + port + "/", keyStrings.get("tabteller")),
-				new ServerHost(
-						ServerRole.REGISTRATION_TELLER,
-						"https://localhost:" + port + "/",
-						keyStrings.get("regteller")));
-		return RequestParticipationDTO.builder()
-				.electionID(ELECTION_ID_STRING)
-				.supervisorPubkey(PUBLIC_KEY_BASE64)
-				.registrarPubKey(PUBLIC_KEY2_BASE64)
-				.name(ELECTION_NAME)
-				.description(ELECTION_DESCRIPTION)
-				.version(VERSIONSTRING)
-				.ballotDesign(BALLOTDESIGN)
-				.startTime(START_TIME)
-				.stopTime(STOP_TIME)
-				.finalizeTime(FINALIZE_TIME)
-				.elGamalP(BIGINT_P.i)
-				.elGamalQ(BIGINT_Q.i)
-				.elGamalG(BIGINT_G.i)
-				.sharedKeyLength(KEYSIZE)
-				.nonceLength(NONCE_LENGTH)
-				.voterAnonymityParam(BLOCKSIZE)
-				.tellerDetails(tellerDetails)
-				.build();
+				new ServerHost(ServerRole.BBS, "https://localhost/",
+						keyStrings.get("bbs")),
+				new ServerHost(ServerRole.TABULATION_TELLER,
+						"https://localhost:" + port + "/", keyStrings.get("tabteller")),
+				new ServerHost(ServerRole.REGISTRATION_TELLER,
+						"https://localhost:" + port + "/", keyStrings.get("regteller")));
+		return RequestParticipationDTO.builder().electionID(ELECTION_ID_STRING)
+				.supervisorPubkey(PUBLIC_KEY_BASE64).registrarPubKey(PUBLIC_KEY2_BASE64)
+				.name(ELECTION_NAME).description(ELECTION_DESCRIPTION)
+				.version(VERSIONSTRING).ballotDesign(BALLOTDESIGN).startTime(START_TIME)
+				.stopTime(STOP_TIME).finalizeTime(FINALIZE_TIME).elGamalP(BIGINT_P.i)
+				.elGamalQ(BIGINT_Q.i).elGamalG(BIGINT_G.i).sharedKeyLength(KEYSIZE)
+				.nonceLength(NONCE_LENGTH).voterAnonymityParam(BLOCKSIZE)
+				.tellerDetails(tellerDetails).build();
 	}
 
 	public void getTestKeys()
-			throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException,
-					UnrecoverableKeyException {
+			throws KeyStoreException, IOException, NoSuchAlgorithmException,
+			CertificateException, UnrecoverableKeyException {
 		char[] pwdArray = "test12345".toCharArray();
 		KeyStore store = KeyStore.getInstance(new File("lib/server.jks"), pwdArray);
-		supervisorPriv = (java.security.PrivateKey) store.getKey("supervisor", pwdArray);
+		supervisorPriv = (java.security.PrivateKey) store.getKey("supervisor",
+				pwdArray);
 		keys = new HashMap<>();
 		keyStrings = new HashMap<>();
 
-		for (String name : List.of(
-				"supervisor", "registrar", "bbs", "regteller", "tabteller", "user1", "user2", "user3", "user4")) {
+		for (String name : List.of("supervisor", "registrar", "bbs", "regteller",
+				"tabteller", "user1", "user2", "user3", "user4")) {
 			PublicKey publicKey = store.getCertificate(name).getPublicKey();
 			keys.put(name, publicKey);
 			keyStrings.put(name, convertPublicKeyToString.apply(publicKey));

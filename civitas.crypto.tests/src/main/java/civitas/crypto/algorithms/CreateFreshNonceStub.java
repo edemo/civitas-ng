@@ -14,4 +14,5 @@ public class CreateFreshNonceStub implements BasicValuesTestData {
 		when(mock.apply(BITLENGTH - 1)).thenReturn(Arrays.copyOfRange(BYTES, 0, 8));
 		return mock;
 	}
+
 }

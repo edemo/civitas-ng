@@ -15,4 +15,5 @@ public interface VoterMix {
 	byte[][] getCommitments();
 
 	void setCommitments(byte[][] commitments);
+
 }

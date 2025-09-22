@@ -7,19 +7,17 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class GetReencryptedCapabilityMixTest extends RandomAwareTestBase implements CapabilityMixTestData {
+class GetReencryptedCapabilityMixTest extends RandomAwareTestBase
+		implements CapabilityMixTestData {
 
 	@InjectMocks
 	GetReencryptedCapabilityMix getReencryptedCapabilityMix;
 
 	@Test
 	void test() {
-		assertEquals(
-				REENCRYPTED_VOTE_CAPABILITIES.getFirst(),
-				getReencryptedCapabilityMix.apply(
-						CAPABILITY_MIX_CAPABILITY_ADDED,
-						0,
-						ELGAMAL_REENCRYPT_FACTOR_EPRIME,
-						EL_GAMAL_PUBLIC_KEY_EPRIME));
+		assertEquals(REENCRYPTED_VOTE_CAPABILITIES.getFirst(),
+				getReencryptedCapabilityMix.apply(CAPABILITY_MIX_CAPABILITY_ADDED, 0,
+						ELGAMAL_REENCRYPT_FACTOR_EPRIME, EL_GAMAL_PUBLIC_KEY_EPRIME));
 	}
+
 }

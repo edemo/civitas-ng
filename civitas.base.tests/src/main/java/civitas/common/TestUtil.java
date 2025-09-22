@@ -10,7 +10,8 @@ public class TestUtil {
 
 	static int n = 0;
 
-	public static void fakeRandomToArray(InvocationOnMock invocation, CivitasBigInteger random) {
+	public static void fakeRandomToArray(InvocationOnMock invocation,
+			CivitasBigInteger random) {
 		byte[] array = invocation.getArgument(0);
 		java.util.Arrays.fill(array, (byte) 0);
 		byte[] aBytes = random.toByteArray();
@@ -44,4 +45,5 @@ public class TestUtil {
 			}
 		};
 	}
+
 }

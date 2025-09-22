@@ -8,12 +8,15 @@ import static org.mockito.Mockito.when;
 
 import civitas.common.mix.capabilitymixrevelation.MixCapabilityElementRevelationTestData;
 
-public class VerifyMixCapabilityElementRevelationStub implements MixCapabilityElementRevelationTestData {
+public class VerifyMixCapabilityElementRevelationStub
+		implements MixCapabilityElementRevelationTestData {
 
 	public static VerifyMixCapabilityElementRevelation stub() {
-		VerifyMixCapabilityElementRevelation mock = mock(VerifyMixCapabilityElementRevelation.class);
-		when(mock.apply(eq(CAPABILITY_ELEMENT_RELEVATION_MOCK), any(), anyInt(), anyInt(), any(), any()))
-				.thenReturn(true);
+		VerifyMixCapabilityElementRevelation mock = mock(
+				VerifyMixCapabilityElementRevelation.class);
+		when(mock.apply(eq(CAPABILITY_ELEMENT_RELEVATION_MOCK), any(), anyInt(),
+				anyInt(), any(), any())).thenReturn(true);
 		return mock;
 	}
+
 }

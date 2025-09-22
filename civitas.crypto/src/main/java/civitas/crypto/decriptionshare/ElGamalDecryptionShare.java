@@ -10,4 +10,5 @@ import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
 import civitas.util.CivitasBigInteger;
 import lombok.NonNull;
 
-public record ElGamalDecryptionShare(@NonNull CivitasBigInteger ai, @NonNull ElGamalProofDiscLogEquality proof) {}
+public record ElGamalDecryptionShare(@NonNull CivitasBigInteger ai, @NonNull ElGamalProofDiscLogEquality proof) {
+}

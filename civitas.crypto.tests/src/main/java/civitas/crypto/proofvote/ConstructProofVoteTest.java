@@ -9,7 +9,8 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.crypto.CryptoException;
 
-class ConstructProofVoteTest extends RandomAwareTestBase implements ProofVoteTestData {
+class ConstructProofVoteTest extends RandomAwareTestBase
+		implements ProofVoteTestData {
 
 	@InjectMocks
 	ConstructProofVote constructProofVote;
@@ -25,13 +26,10 @@ class ConstructProofVoteTest extends RandomAwareTestBase implements ProofVoteTes
 			+ "		 s2 = r2-c*alpha2 (mod q) ")
 	void test2() throws CryptoException {
 
-		ProofVote proofVote = constructProofVote.apply(
-				EL_GAMAL_PARAMETERS,
-				CIPHERTEXT_ENCCAP,
-				REENCRYPTED_WELL_KNOWN_CHOICE,
-				ADDITIONALENV,
-				ELGAMAL_REENCRYPT_FACTOR_EPRIME,
-				ELGAMAL_REENCRYPT_FACTOR_E);
+		ProofVote proofVote = constructProofVote.apply(EL_GAMAL_PARAMETERS,
+				CIPHERTEXT_ENCCAP, REENCRYPTED_WELL_KNOWN_CHOICE, ADDITIONALENV,
+				ELGAMAL_REENCRYPT_FACTOR_EPRIME, ELGAMAL_REENCRYPT_FACTOR_E);
 		assertEquals(PROOF_VOTE, proofVote);
 	}
+
 }

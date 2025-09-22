@@ -16,15 +16,13 @@ import civitas.util.CivitasBigInteger;
 public class ConstructElGamalDiscLogEqualityProof {
 	@Autowired
 	CryptoBase cryptoBase;
-
 	@Autowired
 	CryptoHash cryptoHash;
-
 	@Autowired
 	ConvertHashToBigInt convertHashToBigInt;
 
-	public ElGamalProofDiscLogEquality apply(
-			ElGamalParameters params, CivitasBigInteger g1, CivitasBigInteger g2, CivitasBigInteger x) {
+	public ElGamalProofDiscLogEquality apply(ElGamalParameters params,
+											 CivitasBigInteger g1, CivitasBigInteger g2, CivitasBigInteger x) {
 
 		CivitasBigInteger v = g1.modPow(x, params.p);
 		CivitasBigInteger w = g2.modPow(x, params.p);
@@ -45,4 +43,5 @@ public class ConstructElGamalDiscLogEqualityProof {
 
 		return new ElGamalProofDiscLogEquality(g1, g2, v, w, a, b, c, r);
 	}
+
 }

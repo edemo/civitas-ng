@@ -9,7 +9,8 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.crypto.CryptoException;
 
-class GenerateVoteCapabilityShareTest extends RandomAwareTestBase implements VoteCapabilityShareTestData {
+class GenerateVoteCapabilityShareTest extends RandomAwareTestBase
+		implements VoteCapabilityShareTestData {
 
 	@InjectMocks
 	GenerateVoteCapabilityShare generateVoteCapabilityShare;
@@ -17,8 +18,7 @@ class GenerateVoteCapabilityShareTest extends RandomAwareTestBase implements Vot
 	@Test
 	@DisplayName("generates a vote capability share based on a random")
 	void test() throws CryptoException {
-		assertEquals(
-				BIGINT_G.modPow(RANDOMS_0, BIGINT_P),
+		assertEquals(BIGINT_G.modPow(RANDOMS_0, BIGINT_P),
 				generateVoteCapabilityShare.apply(EL_GAMAL_PARAMETERS).m());
 	}
 }

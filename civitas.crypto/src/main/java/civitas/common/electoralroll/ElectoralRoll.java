@@ -14,4 +14,5 @@ public class ElectoralRoll {
 	public static final String META = "electoralRoll";
 
 	public final VoterDetails[] roll;
+
 }

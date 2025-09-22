@@ -9,19 +9,19 @@ import civitas.crypto.proofdvr.ElGamalProofDVRTestData;
 import civitas.crypto.proofvote.ProofVoteTestData;
 
 public class ConvertHashToBigIntStub
-		implements ElGamalProof1OfLTestData,
-				ElGamalProofDiscLogEqualityTestData,
-				ProofVoteTestData,
-				ElGamalProofDVRTestData {
+		implements ElGamalProof1OfLTestData, ElGamalProofDiscLogEqualityTestData,
+		ProofVoteTestData, ElGamalProofDVRTestData {
 
 	public static ConvertHashToBigInt stub() {
 		ConvertHashToBigInt mock = mock(ConvertHashToBigInt.class);
-		when(mock.apply(EL_GAMAL_PROOF_1_OF_L_HASH.toByteArray())).thenReturn(EL_GAMAL_PROOF_1_OF_L_HASH);
+		when(mock.apply(EL_GAMAL_PROOF_1_OF_L_HASH.toByteArray()))
+				.thenReturn(EL_GAMAL_PROOF_1_OF_L_HASH);
 		when(mock.apply(PROOF_VOTE_C.toByteArray())).thenReturn(PROOF_VOTE_C);
 		when(mock.apply(EL_GAMAL_PROOF_DVR_HASH)).thenReturn(DVR_HASH);
 		when(mock.apply(FAKE_PROOF_DVR_HASH)).thenReturn(FAKE_PROOF_DVR_CT);
 		when(mock.apply(SOMESTRING_HASH)).thenReturn(BIGINT_A);
-		when(mock.apply(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C.toByteArray()))
+		when(
+				mock.apply(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C.toByteArray()))
 				.thenReturn(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C);
 
 		return mock;

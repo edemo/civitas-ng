@@ -18,7 +18,8 @@ import civitas.common.RandomAwareTestBase;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
 @Tag("functional")
-class ComputeWinnersFunctionalTest extends RandomAwareTestBase implements ResultTestData {
+class ComputeWinnersFunctionalTest extends RandomAwareTestBase
+		implements ResultTestData {
 
 	@Autowired
 	ComputeWinners computeWinners;
@@ -31,23 +32,22 @@ class ComputeWinnersFunctionalTest extends RandomAwareTestBase implements Result
 
 	@Autowired
 	MakeCloudWordList makeCloudWordList;
-
 	@Autowired
 	CalculateWinnerList calculateWinnerList;
-
 	@Autowired
 	CalculateStrengths calculateStrengths;
-
 	@Autowired
 	FormatResult formatResult;
 
 	@Test
 	void test() {
-		List<List<CandidateResult>> winnerList = calculateWinnerList.apply(matrix, candidates);
+		List<List<CandidateResult>> winnerList = calculateWinnerList.apply(matrix,
+				candidates);
 
 		calculateStrengths.apply(candidates, winnerList);
 
-		List<CandidatePair<String, Long>> cloudWords = makeCloudWordList.apply(candidates, winnerList);
+		List<CandidatePair<String, Long>> cloudWords = makeCloudWordList
+				.apply(candidates, winnerList);
 
 		List<String> cws = new ArrayList<>();
 		cloudWords.forEach(x -> cws.add(x.cdr() + "," + x.car() + ",#ffffff"));
@@ -55,4 +55,5 @@ class ComputeWinnersFunctionalTest extends RandomAwareTestBase implements Result
 		String report = formatResult.apply(candidates, winnerList);
 		assertEquals(REPORT, report);
 	}
+
 }

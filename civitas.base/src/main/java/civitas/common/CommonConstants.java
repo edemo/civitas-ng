@@ -31,4 +31,5 @@ public interface CommonConstants {
 
 	String KIND = "condorcet";
 	String NONE_OF_ABOVE = "none of the above";
+
 }

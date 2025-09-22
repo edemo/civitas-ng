@@ -11,11 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import civitas.common.RandomAwareTestBase;
 import civitas.crypto.messagedigest.CryptoHash;
 
-class ConstructProofKnowDiscLogTest extends RandomAwareTestBase implements ProofKnowDiscLogTestData {
+class ConstructProofKnowDiscLogTest extends RandomAwareTestBase
+		implements ProofKnowDiscLogTestData {
 
 	@InjectMocks
 	ConstructProofKnowDiscLog constructProofKnowDiscLog;
-
 	@Autowired
 	CryptoHash cryptoHash;
 
@@ -25,9 +25,9 @@ class ConstructProofKnowDiscLogTest extends RandomAwareTestBase implements Proof
 			+ "c:=hash(v,a)%q, " + "r:=z+c*key (mod q)")
 	void constructProofKnowDiscLogTest() throws Exception {
 
-		assertEquals(
-				EL_GAMAL_PROOF_KNOWN_DISC_LOG,
-				constructProofKnowDiscLog.apply(EL_GAMAL_PARAMETERS, EL_GAMAL_PRIVATE_KEY_E));
+		assertEquals(EL_GAMAL_PROOF_KNOWN_DISC_LOG, constructProofKnowDiscLog
+				.apply(EL_GAMAL_PARAMETERS, EL_GAMAL_PRIVATE_KEY_E));
+
 	}
 
 	@Test
@@ -35,6 +35,7 @@ class ConstructProofKnowDiscLogTest extends RandomAwareTestBase implements Proof
 	void constructProofKnowDiscLogTest1() throws Exception {
 
 		assertNull(constructProofKnowDiscLog.apply(EL_GAMAL_PARAMETERS, null));
+
 	}
 
 	@Test
@@ -42,5 +43,7 @@ class ConstructProofKnowDiscLogTest extends RandomAwareTestBase implements Proof
 	void constructProofKnowDiscLogTest3() throws Exception {
 
 		assertNull(constructProofKnowDiscLog.apply(null, EL_GAMAL_PRIVATE_KEY_E));
+
 	}
+
 }

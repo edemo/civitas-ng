@@ -9,4 +9,5 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:test.properties")
 @EnableAutoConfiguration
 @ComponentScan("civitas")
-public class AppTestConfig {}
+public class AppTestConfig {
+}

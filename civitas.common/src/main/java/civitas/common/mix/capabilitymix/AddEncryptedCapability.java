@@ -1,8 +1,8 @@
 package civitas.common.mix.capabilitymix;
 
-import java.util.Arrays;
-
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
+
+import java.util.Arrays;
 
 public class AddEncryptedCapability {
 
@@ -14,4 +14,5 @@ public class AddEncryptedCapability {
 
 		that.capabilities = n;
 	}
+
 }

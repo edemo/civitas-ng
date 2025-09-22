@@ -12,7 +12,9 @@ import lombok.NonNull;
 
 @Data
 public class VoterSubmission {
-	@NonNull public final Integer voterBlock;
+	@NonNull
+	public final Integer voterBlock;
+	@NonNull
+	public final VerifiableVote[] votes;
 
-	@NonNull public final VerifiableVote[] votes;
 }

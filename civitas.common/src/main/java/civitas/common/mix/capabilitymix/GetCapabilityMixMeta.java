@@ -13,11 +13,14 @@ public class GetCapabilityMixMeta implements CommonConstants {
 	@Autowired
 	GetBlockName getBlockName;
 
-	public String apply(final ElectionDetails details, int block, int mixNumber, boolean rightMix) {
+	public String apply(final ElectionDetails details, int block, int mixNumber,
+			boolean rightMix) {
 		if (null == details) {
 			throw new IllegalArgumentException("null block");
 		}
 		String blockDesc = getBlockName.apply(details, block);
-		return CapabilityMixMETA + blockDesc + ":" + mixNumber + (rightMix ? "R" : "L");
+		return CapabilityMixMETA + blockDesc + ":" + mixNumber
+				+ (rightMix ? "R" : "L");
 	}
+
 }

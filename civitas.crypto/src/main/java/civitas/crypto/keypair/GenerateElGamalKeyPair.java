@@ -16,10 +16,11 @@ public class GenerateElGamalKeyPair {
 	CryptoBase cryptoBase;
 
 	public ElGamalKeyPair apply(ElGamalParameters parameters) {
-		CivitasBigInteger x = cryptoBase.generateRandomElement(parameters.q);
+        CivitasBigInteger x = cryptoBase.generateRandomElement(parameters.q);
 		CivitasBigInteger y = parameters.g.modPow(x, parameters.p);
 		ElGamalPrivateKey privateKey = new ElGamalPrivateKey(x, parameters);
 		ElGamalPublicKey publicKey = new ElGamalPublicKey(y, parameters);
 		return new ElGamalKeyPair(publicKey, privateKey);
 	}
+
 }

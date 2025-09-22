@@ -10,4 +10,5 @@ import civitas.crypto.msg.CryptMessage;
 import civitas.util.CivitasBigInteger;
 import lombok.NonNull;
 
-public record VoteCapabilityShare(@NonNull CivitasBigInteger m) implements CryptMessage {}
+public record VoteCapabilityShare(@NonNull CivitasBigInteger m) implements CryptMessage {
+}

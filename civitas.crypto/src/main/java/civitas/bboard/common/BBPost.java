@@ -16,18 +16,20 @@ import lombok.NonNull;
 @Data
 @XmlRootElement(name = "bbpost")
 public final class BBPost {
-	@NonNull @Id
+	@NonNull
+	@Id
 	public final String bbid;
+	@NonNull
+	public final Long serial;
+	@NonNull
+	public final Long timestamp;
+	@NonNull
+	public final String meta;
+	@NonNull
+	public final String msg;
+	@NonNull
+	public final Signature sig;
+	@NonNull
+	public final byte[] hash;
 
-	@NonNull public final Long serial;
-
-	@NonNull public final Long timestamp;
-
-	@NonNull public final String meta;
-
-	@NonNull public final String msg;
-
-	@NonNull public final Signature sig;
-
-	@NonNull public final byte[] hash;
 }

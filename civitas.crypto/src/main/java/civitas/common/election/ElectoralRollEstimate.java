@@ -6,4 +6,5 @@
  */
 package civitas.common.election;
 
-public record ElectoralRollEstimate(int estimate) {}
+public record ElectoralRollEstimate(int estimate) {
+}

@@ -16,4 +16,5 @@ public class RandomAnswer implements Answer<CivitasBigInteger> {
 		step++;
 		return random;
 	}
+
 }

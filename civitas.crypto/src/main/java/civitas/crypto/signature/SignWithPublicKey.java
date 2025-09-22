@@ -18,19 +18,19 @@ import civitas.crypto.rsapublickey.ConvertPublicKeyToString;
 public class SignWithPublicKey implements Constants {
 	@Autowired
 	CryptoHash cryptoHash;
-
 	@Autowired
 	CryptoBase cryptoBase;
-
 	@Autowired
 	ConvertPublicKeyToString convertPublicKeyToString;
 
-	public Signature apply(PrivateKey k, PublicKey publicKey, String hash) throws CryptoException {
+	public Signature apply(PrivateKey k, PublicKey publicKey, String hash)
+			throws CryptoException {
 		byte[] bytes = cryptoHash.apply(hash.getBytes());
 		return apply(k, publicKey, bytes);
 	}
 
-	public Signature apply(PrivateKey k, PublicKey principal, byte[] bytes) throws CryptoException {
+	public Signature apply(PrivateKey k, PublicKey principal, byte[] bytes)
+			throws CryptoException {
 		try {
 			cryptoBase.rsaSigner.initSign(k);
 			cryptoBase.rsaSigner.update(bytes);
@@ -41,4 +41,5 @@ public class SignWithPublicKey implements Constants {
 			throw new CryptoException("cannot sign", e);
 		}
 	}
+
 }

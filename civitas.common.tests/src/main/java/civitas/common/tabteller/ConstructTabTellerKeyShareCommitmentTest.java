@@ -19,6 +19,8 @@ class ConstructTabTellerKeyShareCommitmentTest extends RandomAwareTestBase
 
 	@Test
 	void test() throws JAXBException, UnsupportedEncodingException {
-		assertEquals(TAB_TELLER_KEY_SHARE_COMMITMENT, constructTabTellerKeyShareCommitment.apply(TAB_TELLER_KEY_SHARE));
+		assertEquals(TAB_TELLER_KEY_SHARE_COMMITMENT,
+				constructTabTellerKeyShareCommitment.apply(TAB_TELLER_KEY_SHARE));
 	}
+
 }

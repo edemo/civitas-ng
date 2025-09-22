@@ -13,4 +13,5 @@ public class GetMetaForTeller implements CommonConstants {
 	public String appply(int tellerIndex) {
 		return ElectionResultsMETA + getComputerForTeller.apply(tellerIndex);
 	}
+
 }

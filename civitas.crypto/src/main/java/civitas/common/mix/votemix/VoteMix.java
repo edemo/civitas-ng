@@ -15,16 +15,18 @@ import lombok.NonNull;
 @Data
 @Builder(toBuilder = true)
 public class VoteMix implements VoterMix {
-	@NonNull public Integer number;
-
-	@NonNull public byte[] mixNonceHash;
-
-	@NonNull public byte[][] commitments;
-
-	@NonNull public EncryptedVote[] votes;
+	@NonNull
+	public Integer number;
+	@NonNull
+	public byte[] mixNonceHash;
+	@NonNull
+	public byte[][] commitments;
+	@NonNull
+	public EncryptedVote[] votes;
 
 	@Deprecated
 	public int size() {
 		return votes.length;
 	}
+
 }

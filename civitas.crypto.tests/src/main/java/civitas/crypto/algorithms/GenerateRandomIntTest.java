@@ -11,7 +11,8 @@ import org.mockito.InjectMocks;
 import civitas.util.BasicValuesTestData;
 import io.github.magwas.testing.TestBase;
 
-class GenerateRandomIntTest extends TestBase implements BasicValuesTestData {
+class GenerateRandomIntTest extends TestBase
+		implements BasicValuesTestData {
 	@InjectMocks
 	GenerateRandomInt generateRandomInt;
 
@@ -19,7 +20,8 @@ class GenerateRandomIntTest extends TestBase implements BasicValuesTestData {
 	@DisplayName("uses the right random number generator")
 	void test4() {
 		int actual = generateRandomInt.apply(SOME_SMALL_INT);
-		verify(generateRandomInt.cryptoBase.getRandomGenerator()).nextInt(SOME_SMALL_INT);
+		verify(generateRandomInt.cryptoBase.getRandomGenerator())
+				.nextInt(SOME_SMALL_INT);
 		assertEquals(SOME_SMALL_INT - 1, actual, "actual:" + actual);
 	}
 
@@ -38,4 +40,5 @@ class GenerateRandomIntTest extends TestBase implements BasicValuesTestData {
 		verifyNoInteractions(generateRandomInt.cryptoBase.getRandomGenerator());
 		assertEquals(0, actual);
 	}
+
 }

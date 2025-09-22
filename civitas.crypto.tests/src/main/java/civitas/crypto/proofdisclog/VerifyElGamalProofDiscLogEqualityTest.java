@@ -11,7 +11,8 @@ import org.mockito.InjectMocks;
 import civitas.crypto.parameters.ElGamalParameters;
 import io.github.magwas.testing.TestBase;
 
-class VerifyElGamalProofDiscLogEqualityTest extends TestBase implements ElGamalProofDiscLogEqualityTestData {
+class VerifyElGamalProofDiscLogEqualityTest extends TestBase
+		implements ElGamalProofDiscLogEqualityTestData {
 
 	@InjectMocks
 	VerifyElGamalProofDiscLogEquality verifyElGamalProofDiscLogEquality;
@@ -27,26 +28,31 @@ class VerifyElGamalProofDiscLogEqualityTest extends TestBase implements ElGamalP
 	@Test
 	@DisplayName("verify is false for a bad proof ")
 	void test0_2() {
-		assertFalse(verifyElGamalProofDiscLogEquality.apply(EL_GAMAL_DISC_LOG_EQUALITY_BAD_G1, EL_GAMAL_PARAMETERS));
+		assertFalse(verifyElGamalProofDiscLogEquality
+				.apply(EL_GAMAL_DISC_LOG_EQUALITY_BAD_G1, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("verify is false for a bad proof (other branch)")
 	void test0_3() {
-		assertFalse(verifyElGamalProofDiscLogEquality.apply(EL_GAMAL_DISC_LOG_EQUALITY_BAD_W, EL_GAMAL_PARAMETERS));
+		assertFalse(verifyElGamalProofDiscLogEquality
+				.apply(EL_GAMAL_DISC_LOG_EQUALITY_BAD_W, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("verify is false something is null")
 	void test0_5() {
 		assertFalse(verifyElGamalProofDiscLogEquality.apply(
-				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT, mock(ElGamalParameters.class)));
+				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT,
+				mock(ElGamalParameters.class)));
 	}
 
 	@Test
 	@DisplayName("verify is false if an arithmetic exception happens")
 	void test0_6() {
 		assertFalse(verifyElGamalProofDiscLogEquality.apply(
-				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT, EL_GAMAL_PARAMETERS_NEGATIVE_P));
+				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT,
+				EL_GAMAL_PARAMETERS_NEGATIVE_P));
 	}
+
 }

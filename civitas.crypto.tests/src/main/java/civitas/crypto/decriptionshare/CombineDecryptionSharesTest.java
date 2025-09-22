@@ -18,19 +18,18 @@ class CombineDecryptionSharesTest extends TestBase
 	CombineDecryptionShares combineDecryptionShares;
 
 	@Test
-	@DisplayName(
-			"""
+	@DisplayName("""
 			Creates a message containing the combination of the ciphertext and the shares
-				prod = prod(ai[i] i= 1..n) (mod p)
-				m = c.b/prod (mod p)
+			    prod = prod(ai[i] i= 1..n) (mod p)
+			    m = c.b/prod (mod p)
 			""")
 	void test() {
 
-		CivitasBigInteger m = CIPHERTEXT_E.b.modDivide(
-				EL_GAMAL_DECRYPTION_SHARE_AI.modMultiply(EL_GAMAL_DECRYPTION_SHARE_AI, BIGINT_P), BIGINT_P);
+		CivitasBigInteger m = CIPHERTEXT_E.b.modDivide(EL_GAMAL_DECRYPTION_SHARE_AI
+				.modMultiply(EL_GAMAL_DECRYPTION_SHARE_AI, BIGINT_P), BIGINT_P);
 
-		ElGamalMsg result =
-				combineDecryptionShares.apply(CIPHERTEXT_E, EL_GAMAL_DECRYPTION_SHARES, EL_GAMAL_PARAMETERS);
+		ElGamalMsg result = combineDecryptionShares.apply(CIPHERTEXT_E,
+				EL_GAMAL_DECRYPTION_SHARES, EL_GAMAL_PARAMETERS);
 
 		assertEquals(m, result.m());
 	}

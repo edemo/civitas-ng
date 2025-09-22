@@ -14,4 +14,5 @@ public class ElectoralRollCapabilityShares {
 	public final VoterEncCapabilityShares[] roll;
 	public final int tellerIndex;
 	public final int voterBlock;
+
 }

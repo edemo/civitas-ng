@@ -5,7 +5,8 @@ import static org.mockito.Mockito.when;
 
 import civitas.common.mix.hashrevelation.MixHashRevelationTestData;
 
-public class GetBlockNameStub implements ElectionDetailsTestData, MixHashRevelationTestData {
+public class GetBlockNameStub
+		implements ElectionDetailsTestData, MixHashRevelationTestData {
 	public static GetBlockName stub() {
 		GetBlockName mock = mock(GetBlockName.class);
 		when(mock.apply(ELECTION_DETAILS, 14)).thenReturn(BLOCKNAME_14);

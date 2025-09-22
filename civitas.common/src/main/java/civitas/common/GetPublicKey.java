@@ -30,5 +30,7 @@ public class GetPublicKey {
 			cache.put(serverKeyEntry, store.getCertificate(serverKeyEntry).getPublicKey());
 		}
 		return cache.get(serverKeyEntry);
+
 	}
+
 }

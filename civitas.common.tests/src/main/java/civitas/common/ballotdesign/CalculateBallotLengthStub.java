@@ -11,4 +11,5 @@ public class CalculateBallotLengthStub {
 		when(mock.apply(4)).thenReturn(6);
 		return mock;
 	}
+
 }

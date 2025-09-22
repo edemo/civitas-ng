@@ -9,10 +9,14 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class CommunicableExceptionHandler extends ResponseEntityExceptionHandler {
+public class CommunicableExceptionHandler
+		extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(CommunicableException.class)
-	ResponseEntity<Object> handleException(CommunicableException ex, WebRequest request) {
-		return super.handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+	ResponseEntity<Object> handleException(CommunicableException ex,
+			WebRequest request) {
+		return super.handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(),
+				HttpStatus.BAD_REQUEST, request);
 	}
+
 }

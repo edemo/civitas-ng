@@ -22,18 +22,17 @@ class SafePrimeDecodeTest extends TestBase implements EncoderTestData {
 	@Test
 	@DisplayName("decoder works as expected")
 	void test3() throws CryptoException {
-		assertEquals(
-				BIGINT_A,
+		assertEquals(BIGINT_A,
 				decoder.apply(
-						CivitasBigIntegerFactory.obtain(Base64.getDecoder().decode(SAFE_P_MINUS_A_BASE64)),
+						CivitasBigIntegerFactory
+								.obtain(Base64.getDecoder().decode(SAFE_P_MINUS_A_BASE64)),
 						EL_GAMAL_PARAMETERS_SAFE));
 	}
 
 	@Test
 	@DisplayName("decoder works as expected for encoded text > q")
 	void test3_1() throws CryptoException {
-		assertEquals(
-				SAFE_P.subtract(SAFE_Q).subtract(BIGINT_A),
+		assertEquals(SAFE_P.subtract(SAFE_Q).subtract(BIGINT_A),
 				decoder.apply(SAFE_Q.add(BIGINT_A), EL_GAMAL_PARAMETERS_SAFE));
 	}
 
@@ -46,9 +45,9 @@ class SafePrimeDecodeTest extends TestBase implements EncoderTestData {
 	@Test
 	@DisplayName("decoder cannot decode messages bigger than p")
 	void test4() {
-		assertThrows(
-				CryptoException.class,
-				() -> decoder.apply(EL_GAMAL_PARAMETERS_SAFE.p.add(BIGINT_A), EL_GAMAL_PARAMETERS_SAFE));
+		assertThrows(CryptoException.class,
+				() -> decoder.apply(EL_GAMAL_PARAMETERS_SAFE.p.add(BIGINT_A),
+						EL_GAMAL_PARAMETERS_SAFE));
 	}
 
 	@Test
@@ -56,4 +55,5 @@ class SafePrimeDecodeTest extends TestBase implements EncoderTestData {
 	void test() throws CryptoException {
 		assertEquals(ZERO, decoder.apply(SAFE_P, EL_GAMAL_PARAMETERS_SAFE));
 	}
+
 }

@@ -26,4 +26,5 @@ public class ConvertStringToPublicKey {
 			throw new CryptoException("cannot convert", e);
 		}
 	}
+
 }

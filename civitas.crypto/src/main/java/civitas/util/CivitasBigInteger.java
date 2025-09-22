@@ -30,14 +30,16 @@ public class CivitasBigInteger extends CivitasBigintegerBase {
 		return new CivitasBigInteger(m);
 	}
 
-	public CivitasBigInteger modAdd(final CivitasBigInteger x, final CivitasBigInteger p) {
+	public CivitasBigInteger modAdd(final CivitasBigInteger x,
+			final CivitasBigInteger p) {
 		if (x == ZERO) {
 			return this.mod(p);
 		}
 		return new CivitasBigInteger(i.add(x.i).mod(p.i));
 	}
 
-	public CivitasBigInteger modPow(final CivitasBigInteger x, final CivitasBigInteger p) {
+	public CivitasBigInteger modPow(final CivitasBigInteger x,
+			final CivitasBigInteger p) {
 		return new CivitasBigInteger(this.i.modPow(x.i, p.i));
 	}
 
@@ -51,7 +53,8 @@ public class CivitasBigInteger extends CivitasBigintegerBase {
 		return new CivitasBigInteger(this.i.multiply(x.i));
 	}
 
-	public CivitasBigInteger modMultiply(final CivitasBigInteger x, final CivitasBigInteger p) {
+	public CivitasBigInteger modMultiply(final CivitasBigInteger x,
+			final CivitasBigInteger p) {
 		if (x == ZERO) {
 			return ZERO;
 		}
@@ -61,7 +64,8 @@ public class CivitasBigInteger extends CivitasBigintegerBase {
 		return new CivitasBigInteger(this.i.multiply(x.i).mod(p.i));
 	}
 
-	public CivitasBigInteger modDivide(final CivitasBigInteger x, final CivitasBigInteger p) {
+	public CivitasBigInteger modDivide(final CivitasBigInteger x,
+			final CivitasBigInteger p) {
 		if (x == ONE) {
 			return this.mod(p);
 		}
@@ -75,10 +79,12 @@ public class CivitasBigInteger extends CivitasBigintegerBase {
 		return new CivitasBigInteger(this.i.subtract(x.i));
 	}
 
-	public CivitasBigInteger modSubtract(final CivitasBigInteger x, final CivitasBigInteger p) {
+	public CivitasBigInteger modSubtract(final CivitasBigInteger x,
+			final CivitasBigInteger p) {
 		if (x == ZERO) {
 			return this.mod(p);
 		}
 		return new CivitasBigInteger(this.i.subtract(x.i).mod(p.i));
 	}
+
 }

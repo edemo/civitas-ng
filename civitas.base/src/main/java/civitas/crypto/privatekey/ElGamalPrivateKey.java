@@ -10,4 +10,6 @@ import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 import lombok.NonNull;
 
-public record ElGamalPrivateKey(@NonNull CivitasBigInteger x, @NonNull ElGamalParameters params) {}
+public record ElGamalPrivateKey(@NonNull CivitasBigInteger x,
+		@NonNull ElGamalParameters params) {
+}

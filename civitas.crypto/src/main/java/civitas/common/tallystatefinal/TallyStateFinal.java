@@ -13,4 +13,5 @@ import lombok.Data;
 public class TallyStateFinal implements CommonConstants {
 	private final Integer size;
 	private final Integer[][] matrix;
+
 }

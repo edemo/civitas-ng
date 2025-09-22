@@ -17,31 +17,30 @@ import civitas.util.CivitasBigIntegerFactory;
 public class ConstructProofVote {
 	@Autowired
 	CryptoBase cryptoBase;
-
 	@Autowired
 	CryptoHash cryptoHash;
-
 	@Autowired
 	CalculateProofEnvironment calculateProofEnvironment;
 
-	public ProofVote apply(
-			ElGamalParameters params,
-			ElGamalCiphertextish encCapability,
-			ElGamalCiphertextish encChoice,
-			String context,
-			ElGamalReencryptFactor alpha1,
+	public ProofVote apply(ElGamalParameters params,
+			ElGamalCiphertextish encCapability, ElGamalCiphertextish encChoice,
+			String context, ElGamalReencryptFactor alpha1,
 			ElGamalReencryptFactor alpha2) {
 
 		CivitasBigInteger r1 = cryptoBase.generateRandomElement(params.q);
 		CivitasBigInteger r2 = cryptoBase.generateRandomElement(params.q);
-		List<CivitasBigInteger> e = calculateProofEnvironment.apply(params, encCapability, encChoice, context);
+		List<CivitasBigInteger> e = calculateProofEnvironment.apply(params,
+				encCapability, encChoice, context);
 		e.add(params.g.modPow(r1, params.p));
 		e.add(params.g.modPow(r2, params.p));
 
-		CivitasBigInteger c =
-				CivitasBigIntegerFactory.obtain(1, cryptoHash.apply(e)).mod(params.q);
-		CivitasBigInteger s1 = r1.modSubtract(c.modMultiply(alpha1.r(), params.q), params.q);
-		CivitasBigInteger s2 = r2.modSubtract(c.modMultiply(alpha2.r(), params.q), params.q);
+		CivitasBigInteger c = CivitasBigIntegerFactory
+				.obtain(1, cryptoHash.apply(e)).mod(params.q);
+		CivitasBigInteger s1 = r1.modSubtract(c.modMultiply(alpha1.r(), params.q),
+				params.q);
+		CivitasBigInteger s2 = r2.modSubtract(c.modMultiply(alpha2.r(), params.q),
+				params.q);
 		return new ProofVote(c, s1, s2);
 	}
+
 }

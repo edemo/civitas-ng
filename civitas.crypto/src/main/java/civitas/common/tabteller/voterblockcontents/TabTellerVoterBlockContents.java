@@ -6,4 +6,5 @@
  */
 package civitas.common.tabteller.voterblockcontents;
 
-public record TabTellerVoterBlockContents(int tellerIndex, int voterBlock, String hash) {}
+public record TabTellerVoterBlockContents(int tellerIndex, int voterBlock, String hash) {
+}

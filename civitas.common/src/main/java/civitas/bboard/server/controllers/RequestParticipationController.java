@@ -33,56 +33,50 @@ public class RequestParticipationController implements CommonConstants {
 
 	@Autowired
 	ElectionCacheRepository electionCacheRepository;
-
 	@Autowired
 	PostController postController;
-
 	@Autowired
 	NewBoardController newBoardController;
-
 	@Autowired
 	ConvertStringToPublicKey convertStringToPublicKey;
-
 	@Autowired
 	Configuration configuration;
 
 	@PostMapping("/requestParticipation")
-	@ResponseBody
-	public String apply(@RequestBody RequestParticipationDTO participationRequest)
-			throws UnrecoverableKeyException, InvalidKeyException, KeyStoreException, NoSuchAlgorithmException,
-					CertificateException, NoSuchProviderException, SignatureException, JAXBException, IOException,
-					CommunicableException, InvalidKeySpecException, CryptoException {
-		if (participationRequest == null || participationRequest.electionID == null) {
+    @ResponseBody
+    public String apply(
+			@RequestBody RequestParticipationDTO participationRequest)
+			throws UnrecoverableKeyException, InvalidKeyException, KeyStoreException,
+			NoSuchAlgorithmException, CertificateException, NoSuchProviderException,
+			SignatureException, JAXBException, IOException,
+            CommunicableException, InvalidKeySpecException, CryptoException {
+		if (participationRequest == null
+				|| participationRequest.electionID == null) {
 			return null;
 		}
 		ElectionDetails electionDetails = new ElectionDetails(
-				participationRequest.electionID,
-				participationRequest.supervisorPubkey,
-				participationRequest.registrarPubKey,
-				participationRequest.name,
-				participationRequest.description,
-				participationRequest.version,
-				participationRequest.ballotDesign,
-				participationRequest.startTime,
-				participationRequest.stopTime,
-				participationRequest.finalizeTime,
-				participationRequest.elGamalP,
-				participationRequest.elGamalQ,
-				participationRequest.elGamalG,
-				participationRequest.sharedKeyLength,
+				participationRequest.electionID, participationRequest.supervisorPubkey,
+				participationRequest.registrarPubKey, participationRequest.name,
+				participationRequest.description, participationRequest.version,
+				participationRequest.ballotDesign, participationRequest.startTime,
+				participationRequest.stopTime, participationRequest.finalizeTime,
+				participationRequest.elGamalP, participationRequest.elGamalQ,
+				participationRequest.elGamalG, participationRequest.sharedKeyLength,
 				participationRequest.nonceLength,
 				participationRequest.voterAnonymityParam);
-		PublicKey supervisorPubKey = convertStringToPublicKey.apply(participationRequest.supervisorPubkey);
+		PublicKey supervisorPubKey = convertStringToPublicKey
+				.apply(participationRequest.supervisorPubkey);
 		String boardId = newBoardController.apply(supervisorPubKey);
 		int myIndex = participationRequest.tellerDetails.stream()
-				.map(host -> ServerRole.BBS.equals(host.getRole())
+				.map(host -> host.getRole().equals(ServerRole.BBS)
 						&& host.getUrlbase().equals(configuration.urlBase))
-				.toList()
-				.indexOf(true);
-		ElectionCache electionCache = new ElectionCache(boardId, myIndex, ElectionStatus.DEFINED, electionDetails);
+				.toList().indexOf(true);
+		ElectionCache electionCache = new ElectionCache(boardId, myIndex,
+				ElectionStatus.DEFINED, electionDetails);
 		electionCacheRepository.save(electionCache);
 
 		postController.apply(boardId, ElectionDetailsMETA, electionDetails);
 		return boardId;
 	}
+
 }

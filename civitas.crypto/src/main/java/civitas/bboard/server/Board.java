@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Board {
-	@NonNull @Id
+	@NonNull
+	@Id
 	public String boardName;
-
-	@NonNull public String keyString;
-
+	@NonNull
+	public String keyString;
 	public boolean isOpen = true;
 }

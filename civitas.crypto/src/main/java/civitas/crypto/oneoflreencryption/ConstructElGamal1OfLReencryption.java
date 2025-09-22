@@ -16,17 +16,19 @@ public class ConstructElGamal1OfLReencryption {
 
 	@Autowired
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
-
 	@Autowired
 	ElGamalReencrypt elGamalReencrypt;
 
-	public ElGamal1OfLReencryption apply(
-			ElGamalPublicKey key, CiphertextList ciphertexts, int choice, ElGamalReencryptFactor factor) {
+	public ElGamal1OfLReencryption apply(ElGamalPublicKey key,
+			CiphertextList ciphertexts, int choice, ElGamalReencryptFactor factor) {
 		if (ciphertexts == null || choice >= ciphertexts.size()) {
 			return null;
 		}
-		ElGamalCiphertextish m = elGamalReencrypt.apply(key, ciphertexts.get(choice), factor);
-		ElGamalProof1OfL proof = constructElGamalProof1OfL.apply(key, ciphertexts, choice, m, factor);
+		ElGamalCiphertextish m = elGamalReencrypt.apply(key,
+				ciphertexts.get(choice), factor);
+		ElGamalProof1OfL proof = constructElGamalProof1OfL.apply(key, ciphertexts,
+				choice, m, factor);
 		return new ElGamal1OfLReencryption(m, proof);
 	}
+
 }

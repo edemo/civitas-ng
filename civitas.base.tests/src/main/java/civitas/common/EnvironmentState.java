@@ -1,7 +1,6 @@
 package civitas.common;
 
 public enum EnvironmentState {
-	NORMAL,
-	ELECTION_SERVER_IS_UNREACHEABLE,
-	EMPTY_BOARD
+	NORMAL, ELECTION_SERVER_IS_UNREACHEABLE, EMPTY_BOARD
+
 }

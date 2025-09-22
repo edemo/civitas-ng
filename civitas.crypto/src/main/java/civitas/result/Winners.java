@@ -7,7 +7,9 @@ import lombok.NonNull;
 
 @Data
 public class Winners {
-	@NonNull List<List<Integer>> result;
+	@NonNull
+	List<List<Integer>> result;
+	@NonNull
+	CandidatePair<Integer, Integer>[][] beatpaths;
 
-	@NonNull CandidatePair<Integer, Integer>[][] beatpaths;
 }

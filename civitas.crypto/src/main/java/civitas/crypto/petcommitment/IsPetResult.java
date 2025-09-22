@@ -10,4 +10,5 @@ public class IsPetResult implements Constants {
 	public boolean apply(ElGamalMsg petResult) {
 		return ONE.equals(petResult.m());
 	}
+
 }

@@ -8,7 +8,6 @@ public class TransitiveClosure {
 
 	@Autowired
 	Min min;
-
 	@Autowired
 	Max max;
 
@@ -21,4 +20,5 @@ public class TransitiveClosure {
 			}
 		}
 	}
+
 }

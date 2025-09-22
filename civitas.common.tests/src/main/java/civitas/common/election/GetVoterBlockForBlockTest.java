@@ -8,7 +8,8 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class GetVoterBlockForBlockTest extends RandomAwareTestBase implements ElectionDetailsTestData {
+class GetVoterBlockForBlockTest extends RandomAwareTestBase
+		implements ElectionDetailsTestData {
 
 	@InjectMocks
 	GetVoterBlockForBlock getVoterBlockForBlock;
@@ -19,4 +20,5 @@ class GetVoterBlockForBlockTest extends RandomAwareTestBase implements ElectionD
 	void test() {
 		assertEquals(1, getVoterBlockForBlock.apply(ELECTION_DETAILS, 4));
 	}
+
 }

@@ -29,10 +29,14 @@ class ConstructElGamalDecryptionShareTest extends TestBase
 
 		CivitasBigInteger ai = c1.modPow(key, p);
 
-		ElGamalDecryptionShare actual = constructElGamalDecryptionShare.apply(CIPHERTEXT_E, EL_GAMAL_KEYPAIR_SHARE);
+		ElGamalDecryptionShare actual = constructElGamalDecryptionShare
+				.apply(CIPHERTEXT_E, EL_GAMAL_KEYPAIR_SHARE);
 		verify(constructElGamalDecryptionShare.constructElGamalDiscLogEqualityProof)
-				.apply(EL_GAMAL_PARAMETERS, CIPHERTEXT_E.a, BIGINT_G, EL_GAMAL_PRIVATE_KEY_E.x());
+				.apply(EL_GAMAL_PARAMETERS, CIPHERTEXT_E.a, BIGINT_G,
+						EL_GAMAL_PRIVATE_KEY_E.x());
 		assertEquals(ai, actual.ai());
 		assertEquals(EL_GAMAL_DECRYPTION_SHARE, actual);
+
 	}
+
 }

@@ -9,4 +9,5 @@ public interface BulletinBoardTestData extends PublicKeyTestData {
 	int BOARD_INDEX = 5;
 
 	Board BULLETIN_BOARD = new Board(BULLETIN_BOARD_ID, PUBLIC_KEY_BASE64, true);
+
 }

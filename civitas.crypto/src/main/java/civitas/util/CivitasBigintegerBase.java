@@ -7,6 +7,7 @@ public class CivitasBigintegerBase implements CivitasBigIntegerInterface {
 	public final BigInteger i;
 
 	public CivitasBigintegerBase(final BigInteger i) {
+		super();
 		this.i = i;
 	}
 
@@ -29,7 +30,8 @@ public class CivitasBigintegerBase implements CivitasBigIntegerInterface {
 
 	@Override
 	public boolean equals(final Object o) {
-		return o instanceof CivitasBigInteger && this.i.equals(((CivitasBigInteger) o).i);
+		return o instanceof CivitasBigInteger
+				&& this.i.equals(((CivitasBigInteger) o).i);
 	}
 
 	@Override
@@ -45,4 +47,5 @@ public class CivitasBigintegerBase implements CivitasBigIntegerInterface {
 	public BigInteger asBigint() {
 		return i;
 	}
+
 }

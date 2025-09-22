@@ -11,10 +11,8 @@ public class GenerateElGamalParameters implements Constants {
 
 	@Autowired
 	GenerateSafePrime generateSafePrime;
-
 	@Autowired
 	GenerateSchnorrPrime generateSchnorrPrime;
-
 	@Autowired
 	FindGenerator findGenerator;
 
@@ -32,4 +30,5 @@ public class GenerateElGamalParameters implements Constants {
 	public ElGamalParameters apply() {
 		return apply(EL_GAMAL_KEY_LENGTH, EL_GAMAL_GROUP_LENGTH);
 	}
+
 }

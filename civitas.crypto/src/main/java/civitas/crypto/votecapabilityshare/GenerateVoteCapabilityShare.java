@@ -14,7 +14,6 @@ public class GenerateVoteCapabilityShare {
 
 	@Autowired
 	CryptoBase cryptoBase;
-
 	@Autowired
 	EncodeMessage encodeMessage;
 
@@ -23,4 +22,5 @@ public class GenerateVoteCapabilityShare {
 		CivitasBigInteger x = cryptoBase.generateRandomElement(ps.q);
 		return new VoteCapabilityShare(encodeMessage.apply(x, ps));
 	}
+
 }

@@ -10,7 +10,8 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class ConvertStringToPublicKeyTest extends RandomAwareTestBase implements PublicKeyTestData {
+class ConvertStringToPublicKeyTest extends RandomAwareTestBase
+		implements PublicKeyTestData {
 
 	@InjectMocks
 	ConvertStringToPublicKey convertStringToPublicKey;
@@ -24,6 +25,8 @@ class ConvertStringToPublicKeyTest extends RandomAwareTestBase implements Public
 	@Test
 	@DisplayName("inalid key material results in CryptoException")
 	void test1() throws CryptoException {
-		assertThrows(CryptoException.class, () -> convertStringToPublicKey.apply(PUBLIC_KEY_BAD_BASE64));
+		assertThrows(CryptoException.class,
+				() -> convertStringToPublicKey.apply(PUBLIC_KEY_BAD_BASE64));
 	}
+
 }

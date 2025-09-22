@@ -9,12 +9,9 @@ package civitas.crypto.proofdisclog;
 import civitas.util.CivitasBigInteger;
 import lombok.NonNull;
 
-public record ElGamalProofDiscLogEquality(
-		@NonNull CivitasBigInteger g1,
-		@NonNull CivitasBigInteger g2,
-		@NonNull CivitasBigInteger v,
-		@NonNull CivitasBigInteger w,
-		@NonNull CivitasBigInteger a,
-		@NonNull CivitasBigInteger b,
-		@NonNull CivitasBigInteger c,
-		@NonNull CivitasBigInteger r) {}
+public record ElGamalProofDiscLogEquality(@NonNull CivitasBigInteger g1,
+		@NonNull CivitasBigInteger g2, @NonNull CivitasBigInteger v,
+		@NonNull CivitasBigInteger w, @NonNull CivitasBigInteger a,
+		@NonNull CivitasBigInteger b, @NonNull CivitasBigInteger c,
+		@NonNull CivitasBigInteger r) {
+}

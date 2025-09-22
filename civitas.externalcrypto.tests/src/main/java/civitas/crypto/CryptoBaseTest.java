@@ -28,7 +28,8 @@ import civitas.util.BasicValuesTestData;
 import civitas.util.CivitasBigInteger;
 import io.github.magwas.testing.TestBase;
 
-class CryptoBaseTest extends TestBase implements Constants, BasicValuesTestData {
+class CryptoBaseTest extends TestBase
+		implements Constants, BasicValuesTestData {
 
 	@InjectMocks
 	CryptoBase cryptoBase;
@@ -39,17 +40,18 @@ class CryptoBaseTest extends TestBase implements Constants, BasicValuesTestData 
 			+ "with the first key and decrypt it with the second one, we get our bytes back")
 	void test() throws InvalidKeySpecException {
 
-		SecretKey sharedKey =
-				cryptoBase.getSharedKeyGenerator(SHARED_KEY_LENGTH).generateKey();
-		SecretKeySpec skeySpec = new SecretKeySpec(sharedKey.getEncoded(), SHARED_KEY_ALG);
+		SecretKey sharedKey = cryptoBase.getSharedKeyGenerator(SHARED_KEY_LENGTH)
+				.generateKey();
+		SecretKeySpec skeySpec = new SecretKeySpec(sharedKey.getEncoded(),
+				SHARED_KEY_ALG);
 
 		SecretKey sharedKey2 = cryptoBase.sharedKeyFactory.generateSecret(skeySpec);
 
-		byte[] encrypted =
-				cryptoBase.doCrypto(SHARED_KEY_ALG, SHARED_KEY_PROVIDER, sharedKey, Cipher.ENCRYPT_MODE, BYTES);
+		byte[] encrypted = cryptoBase.doCrypto(SHARED_KEY_ALG, SHARED_KEY_PROVIDER,
+				sharedKey, Cipher.ENCRYPT_MODE, BYTES);
 
-		byte[] decrypted =
-				cryptoBase.doCrypto(SHARED_KEY_ALG, SHARED_KEY_PROVIDER, sharedKey2, Cipher.DECRYPT_MODE, encrypted);
+		byte[] decrypted = cryptoBase.doCrypto(SHARED_KEY_ALG, SHARED_KEY_PROVIDER,
+				sharedKey2, Cipher.DECRYPT_MODE, encrypted);
 
 		assertArrayEquals(BYTES, decrypted);
 	}
@@ -57,16 +59,14 @@ class CryptoBaseTest extends TestBase implements Constants, BasicValuesTestData 
 	@Test
 	@DisplayName("getSharedKeyGenerator caches its result")
 	void test4() {
-		assertEquals(
-				cryptoBase.getSharedKeyGenerator(SHARED_KEY_LENGTH),
+		assertEquals(cryptoBase.getSharedKeyGenerator(SHARED_KEY_LENGTH),
 				cryptoBase.getSharedKeyGenerator(SHARED_KEY_LENGTH));
 	}
 
 	@Test
 	@DisplayName("getPublicKeyGenerator caches its result")
 	void test5() {
-		assertEquals(
-				cryptoBase.getPublicKeyGenerator(PUBLIC_KEY_LENGTH),
+		assertEquals(cryptoBase.getPublicKeyGenerator(PUBLIC_KEY_LENGTH),
 				cryptoBase.getPublicKeyGenerator(PUBLIC_KEY_LENGTH));
 	}
 
@@ -79,10 +79,10 @@ class CryptoBaseTest extends TestBase implements Constants, BasicValuesTestData 
 	@Test
 	@DisplayName("doCrypto throws CryptoError if anything goes wrong")
 	void test6() {
-		SecretKeySpec skeySpec = new SecretKeySpec(SOMESTRING.getBytes(), SHARED_KEY_ALG);
-		assertThrows(
-				CryptoError.class,
-				() -> cryptoBase.doCrypto(PUBLIC_KEY_ALG, PUBLIC_KEY_PROVIDER, skeySpec, Cipher.ENCRYPT_MODE, BYTES));
+		SecretKeySpec skeySpec = new SecretKeySpec(SOMESTRING.getBytes(),
+				SHARED_KEY_ALG);
+		assertThrows(CryptoError.class, () -> cryptoBase.doCrypto(PUBLIC_KEY_ALG,
+				PUBLIC_KEY_PROVIDER, skeySpec, Cipher.ENCRYPT_MODE, BYTES));
 	}
 
 	@Test
@@ -90,19 +90,22 @@ class CryptoBaseTest extends TestBase implements Constants, BasicValuesTestData 
 			+ "recover them from the byte arrays, encrypt some bytes and "
 			+ "decrypt the ciphertext correctly")
 	void testPublic() throws InvalidKeySpecException {
-		KeyPair keypair = cryptoBase.getPublicKeyGenerator(PUBLIC_KEY_LENGTH).generateKeyPair();
+		KeyPair keypair = cryptoBase.getPublicKeyGenerator(PUBLIC_KEY_LENGTH)
+				.generateKeyPair();
 		PublicKey pubKey = keypair.getPublic();
 		PrivateKey privKey = keypair.getPrivate();
 		byte[] pubkeyBytes = pubKey.getEncoded();
 		byte[] privkeyBytes = privKey.getEncoded();
-		PublicKey pubKey2 = cryptoBase.publicKeyFactory.generatePublic(new X509EncodedKeySpec(pubkeyBytes));
-		PrivateKey privKey2 = cryptoBase.publicKeyFactory.generatePrivate(new PKCS8EncodedKeySpec(privkeyBytes));
+		PublicKey pubKey2 = cryptoBase.publicKeyFactory
+				.generatePublic(new X509EncodedKeySpec(pubkeyBytes));
+		PrivateKey privKey2 = cryptoBase.publicKeyFactory
+				.generatePrivate(new PKCS8EncodedKeySpec(privkeyBytes));
 
-		byte[] encrypted =
-				cryptoBase.doCrypto(PUBLIC_KEY_ALG, PUBLIC_KEY_PROVIDER, pubKey2, Cipher.ENCRYPT_MODE, BYTES);
+		byte[] encrypted = cryptoBase.doCrypto(PUBLIC_KEY_ALG, PUBLIC_KEY_PROVIDER,
+				pubKey2, Cipher.ENCRYPT_MODE, BYTES);
 
-		byte[] decrypted =
-				cryptoBase.doCrypto(PUBLIC_KEY_ALG, PUBLIC_KEY_PROVIDER, privKey2, Cipher.DECRYPT_MODE, encrypted);
+		byte[] decrypted = cryptoBase.doCrypto(PUBLIC_KEY_ALG, PUBLIC_KEY_PROVIDER,
+				privKey2, Cipher.DECRYPT_MODE, encrypted);
 
 		assertArrayEquals(BYTES, decrypted);
 	}
@@ -116,10 +119,12 @@ class CryptoBaseTest extends TestBase implements Constants, BasicValuesTestData 
 			assertEquals(BITLENGTH, prime.bitLength());
 			assertTrue(prime.isProbablePrime(CERTAINTY));
 		});
+
 	}
 
 	@Test
-	@DisplayName("we can generate a random element for Q which is less than Q and " + "their bit lengths are similar")
+	@DisplayName("we can generate a random element for Q which is less than Q and "
+			+ "their bit lengths are similar")
 	void testGenerate() {
 		IntStream.range(0, RANDOM_RUNS).forEach(n -> {
 			CivitasBigInteger element = cryptoBase.generateRandomElement(BIGINT_A);
@@ -134,10 +139,12 @@ class CryptoBaseTest extends TestBase implements Constants, BasicValuesTestData 
 		Random generator = cryptoBase.getRandomGenerator();
 		assertFalse(generator.isDeprecated());
 		assertEquals(SecureRandom.class, generator.getClass());
+
 	}
 
 	@Test
-	@DisplayName("we can get byte arrays of random numbers" + "(tested with the monoBit test from NIST 800-22 at 1%)")
+	@DisplayName("we can get byte arrays of random numbers"
+			+ "(tested with the monoBit test from NIST 800-22 at 1%)")
 	void test3() {
 		byte[] bytes = new byte[SHARED_KEY_LENGTH];
 		cryptoBase.nextBytes(bytes);

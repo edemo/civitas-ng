@@ -7,13 +7,15 @@ import lombok.NonNull;
 
 @Data
 public class CandidateResult {
-	@NonNull Integer candidate;
+	@NonNull
+	Integer candidate;
+	@NonNull
+	List<Integer> beatenCandidates;
+	@NonNull
+	List<Integer> beat;
+	@NonNull
+	List<Integer> beaten;
+	@NonNull
+	Double strength;
 
-	@NonNull List<Integer> beatenCandidates;
-
-	@NonNull List<Integer> beat;
-
-	@NonNull List<Integer> beaten;
-
-	@NonNull Double strength;
 }

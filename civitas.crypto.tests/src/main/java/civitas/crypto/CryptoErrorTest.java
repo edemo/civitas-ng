@@ -22,4 +22,5 @@ class CryptoErrorTest {
 	void test2() {
 		new CryptoError(new Error());
 	}
+
 }

@@ -12,4 +12,5 @@ public class IsFullyIgnored {
 		}
 		return ignored;
 	}
+
 }

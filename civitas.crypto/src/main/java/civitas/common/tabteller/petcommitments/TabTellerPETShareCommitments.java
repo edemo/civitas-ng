@@ -13,4 +13,5 @@ import lombok.Data;
 public class TabTellerPETShareCommitments {
 	public final int tellerIndex;
 	public final PETCommitment[] commitments;
+
 }

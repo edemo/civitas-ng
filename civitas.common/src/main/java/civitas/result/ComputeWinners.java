@@ -12,7 +12,8 @@ public class ComputeWinners {
 	@Autowired
 	CompareBeats compareBeats;
 
-	List<Integer> apply(CandidatePair<Integer, Integer>[][] m, Integer n, Boolean[] ignore) {
+	List<Integer> apply(CandidatePair<Integer, Integer>[][] m, Integer n,
+			Boolean[] ignore) {
 		List<Integer> winners = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
 			if (!ignore[i] && didWin(m, n, ignore, i)) {
@@ -23,7 +24,8 @@ public class ComputeWinners {
 		return winners;
 	}
 
-	private Boolean didWin(CandidatePair<Integer, Integer>[][] m, Integer n, Boolean[] ignore, int i) {
+	private Boolean didWin(CandidatePair<Integer, Integer>[][] m, Integer n,
+			Boolean[] ignore, int i) {
 		for (int j = 0; j < n; j++) {
 			if (!ignore[j] && compareBeats.apply(m[j][i], m[i][j]) > 0) {
 				return false;

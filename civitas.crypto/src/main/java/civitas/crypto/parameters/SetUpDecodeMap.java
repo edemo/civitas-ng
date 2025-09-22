@@ -10,10 +10,12 @@ import civitas.util.CivitasBigIntegerFactory;
 
 public class SetUpDecodeMap {
 
-	public Map<CivitasBigInteger, VoteChoice> apply(List<VoteChoice> choices, ElGamalParameters params) {
+	public Map<CivitasBigInteger, VoteChoice> apply(List<VoteChoice> choices,
+			ElGamalParameters params) {
 		Map<CivitasBigInteger, VoteChoice> map = new HashMap<>();
-		choices.forEach(
-				x -> map.put(CivitasBigIntegerFactory.obtain(x.ordinal()).modMultiply(params.g, params.p), x));
+		choices.forEach(x -> map.put(CivitasBigIntegerFactory.obtain(x.ordinal())
+				.modMultiply(params.g, params.p), x));
 		return map;
 	}
+
 }

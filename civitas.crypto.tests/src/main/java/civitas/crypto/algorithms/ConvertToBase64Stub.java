@@ -3,6 +3,6 @@ package civitas.crypto.algorithms;
 public class ConvertToBase64Stub {
 
 	public static ConvertToBase64 stub() {
-		return new ConvertToBase64();
+        return new ConvertToBase64();
 	}
 }

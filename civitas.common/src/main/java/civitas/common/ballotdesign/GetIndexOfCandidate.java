@@ -10,4 +10,5 @@ public class GetIndexOfCandidate {
 		}
 		return -1;
 	}
+
 }

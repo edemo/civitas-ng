@@ -16,11 +16,11 @@ public class UpdateCache {
 
 	@Autowired
 	ConvertFromXml convertFromXml;
-
 	@Autowired
 	ElectionCacheRepository electionCacheRepository;
 
-	public void apply(String bbid, String meta, String mesg, long t) throws JAXBException, IOException {
+	public void apply(String bbid, String meta, String mesg, long t)
+			throws JAXBException, IOException {
 
 		Optional<ElectionCache> cachep = electionCacheRepository.findById(bbid);
 		if (!cachep.isPresent()) {
@@ -43,4 +43,5 @@ public class UpdateCache {
 
 		electionCacheRepository.save(cache);
 	}
+
 }

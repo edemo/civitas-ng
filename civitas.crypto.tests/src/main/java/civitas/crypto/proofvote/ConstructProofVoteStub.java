@@ -10,7 +10,8 @@ public class ConstructProofVoteStub implements ProofVoteTestData {
 		ConstructProofVote mock = mock(ConstructProofVote.class);
 
 		for (Integer piece : VOTE_PIECES) {
-			when(mock.apply(eq(EL_GAMAL_PARAMETERS), any(), any(), eq(CONTEXT_MAP.get(piece)), any(), any()))
+			when(mock.apply(eq(EL_GAMAL_PARAMETERS), any(), any(),
+					eq(CONTEXT_MAP.get(piece)), any(), any()))
 					.thenReturn(PROOF_VOTE_MAP.get(piece));
 		}
 

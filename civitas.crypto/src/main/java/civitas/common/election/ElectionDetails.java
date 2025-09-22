@@ -20,35 +20,36 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @XmlRootElement(name = "electiondetails")
 public class ElectionDetails {
-	@NonNull String electionID;
-
-	@NonNull String supervisorPubkey;
-
-	@NonNull String registrarPubKey;
-
-	@NonNull String name;
-
-	@NonNull String description;
-
-	@NonNull String version;
-
-	@NonNull BallotDesign ballotDesign;
-
-	@NonNull String startTime;
-
-	@NonNull String stopTime;
-
-	@NonNull String finalizeTime;
-
-	@NonNull BigInteger elGamalP;
-
-	@NonNull BigInteger elGamalQ;
-
-	@NonNull BigInteger elGamalG;
-
-	@NonNull Integer sharedKeyLength;
-
-	@NonNull Integer nonceLength;
-
-	@NonNull Integer voterAnonymityParam;
+	@NonNull
+	String electionID;
+	@NonNull
+	String supervisorPubkey;
+	@NonNull
+	String registrarPubKey;
+	@NonNull
+	String name;
+	@NonNull
+	String description;
+	@NonNull
+	String version;
+	@NonNull
+	BallotDesign ballotDesign;
+	@NonNull
+	String startTime;
+	@NonNull
+	String stopTime;
+	@NonNull
+	String finalizeTime;
+	@NonNull
+	BigInteger elGamalP;
+	@NonNull
+	BigInteger elGamalQ;
+	@NonNull
+	BigInteger elGamalG;
+	@NonNull
+	Integer sharedKeyLength;
+	@NonNull
+	Integer nonceLength;
+	@NonNull
+	Integer voterAnonymityParam;
 }

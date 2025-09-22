@@ -20,18 +20,22 @@ class GetMixRevelationMetaTest extends RandomAwareTestBase
 	@Test
 	@DisplayName("if isVoteMix, then gives 'mixRevelation:vote:<block description>:<teller index>'")
 	void test() {
-		assertEquals(VOTE_REVELATION_META, getMixRevelationMeta.apply(ELECTION_DETAILS, true, 14, 2));
+		assertEquals(VOTE_REVELATION_META,
+				getMixRevelationMeta.apply(ELECTION_DETAILS, true, 14, 2));
 	}
 
 	@Test
 	@DisplayName("if not VoteMix, then gives 'mixRevelation:elecRoll:<block description>:<teller index>'")
 	void test1() {
-		assertEquals(ROLL_REVELATION_META, getMixRevelationMeta.apply(ELECTION_DETAILS, false, 14, 2));
+		assertEquals(ROLL_REVELATION_META,
+				getMixRevelationMeta.apply(ELECTION_DETAILS, false, 14, 2));
 	}
 
 	@Test
 	@DisplayName("if the election details is null, a NullPointerException is thrown")
 	void test2() {
-		assertThrows(NullPointerException.class, () -> getMixRevelationMeta.apply(null, false, 1, 2));
+		assertThrows(NullPointerException.class,
+				() -> getMixRevelationMeta.apply(null, false, 1, 2));
 	}
+
 }

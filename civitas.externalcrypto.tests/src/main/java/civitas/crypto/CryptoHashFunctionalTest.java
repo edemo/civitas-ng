@@ -24,7 +24,8 @@ import io.github.magwas.testing.TestBase;
 
 @Tag("functional")
 class CryptoHashFunctionalTest extends TestBase
-		implements MessageDigestTestData, BallotDesignTestData, ElGamalSignedCiphertextTestData {
+		implements MessageDigestTestData, BallotDesignTestData,
+		ElGamalSignedCiphertextTestData {
 
 	@InjectMocks
 	CryptoHash cryptoHash;
@@ -32,7 +33,8 @@ class CryptoHashFunctionalTest extends TestBase
 	@Test
 	@DisplayName("if updated with (byte[]) null, nothing happens")
 	void test2() {
-		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply((byte[]) null));
+		assertArrayEquals(BASELINE_DIGEST.digest(),
+				cryptoHash.apply((byte[]) null));
 	}
 
 	@Test
@@ -42,7 +44,8 @@ class CryptoHashFunctionalTest extends TestBase
 		BASELINE_DIGEST.update(BIGINT_B.toByteArray());
 		BASELINE_DIGEST.update(BIGINT_C.toByteArray());
 		BASELINE_DIGEST.update(BIGINT_D.toByteArray());
-		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash.apply(List.of(BIGINT_A, BIGINT_B, BIGINT_C, BIGINT_D)));
+		assertArrayEquals(BASELINE_DIGEST.digest(),
+				cryptoHash.apply(List.of(BIGINT_A, BIGINT_B, BIGINT_C, BIGINT_D)));
 	}
 
 	@Test
@@ -52,33 +55,27 @@ class CryptoHashFunctionalTest extends TestBase
 		BASELINE_DIGEST.update(BIGINT_C.toByteArray());
 		BASELINE_DIGEST.update(BIGINT_D.toByteArray());
 
-		assertArrayEquals(
-				BASELINE_DIGEST.digest(),
-				cryptoHash.apply(Stream.of(BIGINT_A, null, BIGINT_C, BIGINT_D).toList()));
+		assertArrayEquals(BASELINE_DIGEST.digest(), cryptoHash
+				.apply(Stream.of(BIGINT_A, null, BIGINT_C, BIGINT_D).toList()));
 	}
 
 	@Test
 	@Tag("testdata")
 	@DisplayName("CURRENT_TIME")
 	void test10() throws IOException {
-		assertEquals(
-				CURRENT_TIME,
-				new DataInputStream(new ByteArrayInputStream(CURRENT_TIME_STRINGBASE.getBytes())).readLong());
+		assertEquals(CURRENT_TIME,
+				new DataInputStream(
+						new ByteArrayInputStream(CURRENT_TIME_STRINGBASE.getBytes()))
+						.readLong());
 	}
 
 	@Test
 	@DisplayName("hash for three bigintegers and an environment byte array is correct")
 	void test8() {
-		assertEquals(
-				EL_GAMAL_SIGNED_CIPHERTEXT_C_BASE64,
-				Base64.getEncoder()
-						.encodeToString(cryptoHash
-								.apply(
-										EL_GAMAL_SIGNED_CIPHERTEXT_HASH1,
-										EL_GAMAL_SIGNED_CIPHERTEXT_A,
-										EL_GAMAL_SIGNED_CIPHERTEXT_B,
-										ADDITIONALENV_BYTES)
-								.toByteArray()));
+		assertEquals(EL_GAMAL_SIGNED_CIPHERTEXT_C_BASE64, Base64.getEncoder()
+				.encodeToString(cryptoHash.apply(EL_GAMAL_SIGNED_CIPHERTEXT_HASH1,
+						EL_GAMAL_SIGNED_CIPHERTEXT_A, EL_GAMAL_SIGNED_CIPHERTEXT_B,
+						ADDITIONALENV_BYTES).toByteArray()));
 	}
 
 	@Test
@@ -88,8 +85,8 @@ class CryptoHashFunctionalTest extends TestBase
 		BASELINE_DIGEST.update(BIGINT_B.toByteArray());
 		BASELINE_DIGEST.update(ADDITIONALENV_BYTES);
 
-		assertEquals(
-				CivitasBigIntegerFactory.obtain(BASELINE_DIGEST.digest()),
+		assertEquals(CivitasBigIntegerFactory.obtain(BASELINE_DIGEST.digest()),
 				cryptoHash.apply(BIGINT_A, BIGINT_B, null, ADDITIONALENV_BYTES));
 	}
+
 }

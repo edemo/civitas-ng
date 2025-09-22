@@ -11,10 +11,8 @@ import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.util.CivitasBigInteger;
 import lombok.NonNull;
 
-public record ElGamalProofDVR(
-		@NonNull ElGamalCiphertextish e,
-		@NonNull ElGamalCiphertext eprime,
-		@NonNull CivitasBigInteger c,
-		@NonNull CivitasBigInteger w,
-		@NonNull CivitasBigInteger r,
-		@NonNull CivitasBigInteger u) {}
+public record ElGamalProofDVR(@NonNull ElGamalCiphertextish e,
+		@NonNull ElGamalCiphertext eprime, @NonNull CivitasBigInteger c,
+		@NonNull CivitasBigInteger w, @NonNull CivitasBigInteger r,
+		@NonNull CivitasBigInteger u) {
+}

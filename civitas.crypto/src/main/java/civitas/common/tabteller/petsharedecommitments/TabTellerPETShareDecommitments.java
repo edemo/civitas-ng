@@ -15,4 +15,5 @@ public class TabTellerPETShareDecommitments {
 	public final int tellerIndex;
 	public final PETDecommitment[] decommitments;
 	public final ElGamalProofDiscLogEquality[] proofs;
+
 }

@@ -8,7 +8,8 @@ import civitas.util.CivitasBigInteger;
 
 public class CombinePETShareDecommitments implements Constants {
 
-	public ElGamalCiphertext apply(PETDecommitment[] decs, ElGamalParameters params, CivitasBigInteger d) {
+	public ElGamalCiphertext apply(PETDecommitment[] decs,
+			ElGamalParameters params, CivitasBigInteger d) {
 		CivitasBigInteger e = ONE;
 		ElGamalParameters ps = params;
 
@@ -20,7 +21,9 @@ public class CombinePETShareDecommitments implements Constants {
 		return new ElGamalCiphertext(d, e);
 	}
 
-	public ElGamalCiphertext apply(PETDecommitment[] decs, ElGamalParameters params) {
+	public ElGamalCiphertext apply(PETDecommitment[] decs,
+			ElGamalParameters params) {
 		return apply(decs, params, ONE);
 	}
+
 }

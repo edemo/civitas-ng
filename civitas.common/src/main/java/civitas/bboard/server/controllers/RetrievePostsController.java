@@ -15,14 +15,16 @@ import civitas.bboard.server.GetBoardForId;
 public class RetrievePostsController {
 	@Autowired
 	GetBoardForId getBoardForId;
-
 	@Autowired
 	BBPostRepository bBPostRepository;
 
 	@GetMapping("/boards/{bbid}")
-	private Iterable<BBPost> apply(@PathVariable("bbid") String bbid) throws IOException {
+	private Iterable<BBPost> apply(@PathVariable("bbid") String bbid)
+			throws IOException {
 		getBoardForId.apply(bbid, true);
 
-		return bBPostRepository.findByBbid(bbid);
+        return bBPostRepository.findByBbid(bbid);
+
 	}
+
 }

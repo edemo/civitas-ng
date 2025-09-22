@@ -8,7 +8,9 @@ import civitas.util.BasicValuesTestData;
 public class CreateFreshNonceBase64Stub implements BasicValuesTestData {
 	public static CreateFreshNonceBase64 stub() {
 		CreateFreshNonceBase64 mock = mock(CreateFreshNonceBase64.class);
-		when(mock.apply(AUTHENTICATION_NONCE_LENGTH)).thenReturn(AUTHENTICATION_NONCE);
+		when(mock.apply(AUTHENTICATION_NONCE_LENGTH))
+				.thenReturn(AUTHENTICATION_NONCE);
 		return mock;
 	}
+
 }

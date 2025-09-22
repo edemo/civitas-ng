@@ -17,4 +17,5 @@ public class MixVoteElementRevelation implements MixElementRevelation {
 	public final ElGamalReencryptFactor reencryptFactor;
 	public final int mapping;
 	public final byte[] nonce;
+
 }

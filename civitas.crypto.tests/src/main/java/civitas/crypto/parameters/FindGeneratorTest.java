@@ -8,14 +8,14 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class FindGeneratorTest extends RandomAwareTestBase implements ElGamalParametersTestData {
+class FindGeneratorTest extends RandomAwareTestBase
+		implements ElGamalParametersTestData {
 
 	@InjectMocks
 	FindGenerator findGenerator;
 
 	@Test
-	@DisplayName(
-			"""
+	@DisplayName("""
 			finds the generator for a prime pair
 			Implementation of step 3 of Algorithm 11.54 from Handbook of Applied Cryptography
 			x is a random < p, r = (p-1)/q, g = x^r % p
@@ -23,6 +23,8 @@ class FindGeneratorTest extends RandomAwareTestBase implements ElGamalParameters
 			FIXME: can be a case when g = -1 mod p?
 			""")
 	void test() {
-		assertEquals(D_EXP_TWOK_FROMP, findGenerator.apply(new PrimePair(BIGINT_P, BIGINT_Q)));
+		assertEquals(D_EXP_TWOK_FROMP,
+				findGenerator.apply(new PrimePair(BIGINT_P, BIGINT_Q)));
 	}
+
 }

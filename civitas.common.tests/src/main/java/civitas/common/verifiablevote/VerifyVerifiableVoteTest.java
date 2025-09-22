@@ -9,13 +9,13 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class VerifyVerifiableVoteTest extends RandomAwareTestBase implements VerifiableVoteTestData {
+class VerifyVerifiableVoteTest extends RandomAwareTestBase
+		implements VerifiableVoteTestData {
 	@InjectMocks
 	VerifyVerifiableVote verifyVerifiableVote;
 
 	@Test
-	@DisplayName(
-			"""
+	@DisplayName("""
 			if the vote is correct, returns true
 			the ciphertexts in the vote are 1 of L reencryption for
 			the encrypted choice in the vote and the public key, and
@@ -23,27 +23,29 @@ class VerifyVerifiableVoteTest extends RandomAwareTestBase implements Verifiable
 			and the encrypted choice using the context and the el gamal parameters of the public key
 			""")
 	void test() {
-		assertTrue(verifyVerifiableVote.apply(
-				VERIFIABLE_VOTE, EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
+		assertTrue(verifyVerifiableVote.apply(VERIFIABLE_VOTE,
+				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
 	}
 
 	@Test
 	@DisplayName("if pubkey is null, false is returned")
 	void test_2() {
-		assertFalse(verifyVerifiableVote.apply(VERIFIABLE_VOTE, null, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
+		assertFalse(verifyVerifiableVote.apply(VERIFIABLE_VOTE, null,
+				CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
 	}
 
 	@Test
 	@DisplayName("if the encrypted choice does not verify, false is returned")
 	void test_1() {
-		assertFalse(verifyVerifiableVote.apply(
-				VERIFIABLE_VOTE_BAD_CHOICE, EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
+		assertFalse(verifyVerifiableVote.apply(VERIFIABLE_VOTE_BAD_CHOICE,
+				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
 	}
 
 	@Test
 	@DisplayName("if the vote proof does not verify, false is returned")
 	void test_3() {
-		assertFalse(verifyVerifiableVote.apply(
-				VERIFIABLE_VOTE_BAD_PROOF, EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
+		assertFalse(verifyVerifiableVote.apply(VERIFIABLE_VOTE_BAD_PROOF,
+				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
 	}
+
 }

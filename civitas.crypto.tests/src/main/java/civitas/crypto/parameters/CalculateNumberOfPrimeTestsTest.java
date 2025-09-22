@@ -15,6 +15,8 @@ class CalculateNumberOfPrimeTestsTest extends TestBase {
 
 	@Test
 	void test() {
-		assertEquals(1024, calculateNumberOfPrimeTests.apply(Constants.EL_GAMAL_KEY_LENGTH));
+		assertEquals(1024,
+				calculateNumberOfPrimeTests.apply(Constants.EL_GAMAL_KEY_LENGTH));
 	}
+
 }

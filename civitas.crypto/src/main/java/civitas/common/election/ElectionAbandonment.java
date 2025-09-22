@@ -6,4 +6,5 @@
  */
 package civitas.common.election;
 
-public record ElectionAbandonment(int tellerIndex, boolean isTabulationTeller, String reason) {}
+public record ElectionAbandonment(int tellerIndex, boolean isTabulationTeller, String reason) {
+}

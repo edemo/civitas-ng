@@ -20,8 +20,7 @@ class ConstructWellKnownCiphertextsTest extends TestBase
 	ConstructWellKnownCiphertexts constructWellKnownCiphertexts;
 
 	@Test
-	@DisplayName(
-			"""
+	@DisplayName("""
 			generates a ciphertext list using the public key and the count
 			for each number from 1 to n:
 			- encodes the number: n -> g^n mod p
@@ -30,9 +29,12 @@ class ConstructWellKnownCiphertextsTest extends TestBase
 			""")
 	void test() throws CryptoException {
 
-		assertEquals(CIPHERTEXTLIST_TWO_LONG, constructWellKnownCiphertexts.apply(EL_GAMAL_PUBLIC_KEY_E, 2));
-		verify(constructWellKnownCiphertexts.encodeMessage).apply(1, EL_GAMAL_PARAMETERS);
-		verify(constructWellKnownCiphertexts.encodeMessage).apply(2, EL_GAMAL_PARAMETERS);
+		assertEquals(CIPHERTEXTLIST_TWO_LONG,
+				constructWellKnownCiphertexts.apply(EL_GAMAL_PUBLIC_KEY_E, 2));
+		verify(constructWellKnownCiphertexts.encodeMessage).apply(1,
+				EL_GAMAL_PARAMETERS);
+		verify(constructWellKnownCiphertexts.encodeMessage).apply(2,
+				EL_GAMAL_PARAMETERS);
 		verify(constructWellKnownCiphertexts.elGamalEncrypt)
 				.apply(EL_GAMAL_PUBLIC_KEY_E, ONE_ENCODED, ENCRYPT_FACTOR_ZERO);
 		verify(constructWellKnownCiphertexts.elGamalEncrypt)
@@ -42,18 +44,22 @@ class ConstructWellKnownCiphertextsTest extends TestBase
 	@Test
 	@DisplayName("if the length is 1, a single ciphertext is returned as a list")
 	void test1() throws CryptoException {
-		assertEquals(CIPHERTEXTLIST_ONE_LONG, constructWellKnownCiphertexts.apply(EL_GAMAL_PUBLIC_KEY_E, 1));
+		assertEquals(CIPHERTEXTLIST_ONE_LONG,
+				constructWellKnownCiphertexts.apply(EL_GAMAL_PUBLIC_KEY_E, 1));
 	}
 
 	@Test
 	@DisplayName("if the length is less than 1, a CryptoException is thrown ")
 	void test1_1() throws CryptoException {
-		assertThrows(CryptoException.class, () -> constructWellKnownCiphertexts.apply(EL_GAMAL_PUBLIC_KEY_E, 0));
+		assertThrows(CryptoException.class,
+				() -> constructWellKnownCiphertexts.apply(EL_GAMAL_PUBLIC_KEY_E, 0));
 	}
 
 	@Test
 	@DisplayName("if the key is null, a CryptoException is thrown")
 	void test2() throws CryptoException {
-		assertThrows(CryptoException.class, () -> constructWellKnownCiphertexts.apply(null, 2));
+		assertThrows(CryptoException.class,
+				() -> constructWellKnownCiphertexts.apply(null, 2));
 	}
+
 }

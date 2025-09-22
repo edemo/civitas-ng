@@ -11,13 +11,10 @@ import civitas.common.votersubmission.VoterSubmission;
 public class IsVoterSubmissionInBlock {
 	@Autowired
 	GetVoterBlockForBlock getVoterBlockForBlock;
-
 	@Autowired
 	GetNthContext getNthContext;
-
 	@Autowired
 	GetContextForBlock getContextForBlock;
-
 	@Autowired
 	GetBaseContext getBaseContext;
 
@@ -29,7 +26,8 @@ public class IsVoterSubmissionInBlock {
 		return voterBlock == voter.voterBlock;
 	}
 
-	public boolean apply(ElectionDetails that, VoterEncCapabilities voter, String context, int block) {
+	public boolean apply(ElectionDetails that, VoterEncCapabilities voter,
+			String context, int block) {
 		if (voter == null) {
 			throw new IllegalArgumentException("null voter");
 		}
@@ -39,15 +37,17 @@ public class IsVoterSubmissionInBlock {
 		return voterBlock == voter.voterBlock && targetContext.equals(context);
 	}
 
-	public boolean apply(ElectionDetails that, VoterSubmission voter, String context, int block) {
+	public boolean apply(ElectionDetails that, VoterSubmission voter,
+			String context, int block) {
 		if (voter == null) {
 			throw new IllegalArgumentException("null voter");
 		}
 
 		int voterBlock = getVoterBlockForBlock.apply(that, block);
 		int contextN = getContextForBlock.apply(that, block);
-		String targetContext =
-				getBaseContext.apply(that, voterBlock) + getNthContext.apply(that.ballotDesign, contextN);
+		String targetContext = getBaseContext.apply(that, voterBlock)
+				+ getNthContext.apply(that.ballotDesign, contextN);
 		return voterBlock == voter.voterBlock && targetContext.equals(context);
 	}
+
 }

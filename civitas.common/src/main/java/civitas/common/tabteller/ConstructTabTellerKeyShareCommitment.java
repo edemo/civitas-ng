@@ -15,10 +15,8 @@ import jakarta.xml.bind.JAXBException;
 public class ConstructTabTellerKeyShareCommitment {
 	@Autowired
 	CryptoHash cryptoHash;
-
 	@Autowired
 	ConvertToBase64 convertToBase64;
-
 	@Autowired
 	ConvertToXml convertToXml;
 
@@ -26,6 +24,8 @@ public class ConstructTabTellerKeyShareCommitment {
 			throws JAXBException, UnsupportedEncodingException {
 		String xml = convertToXml.apply(that);
 		byte[] hash = cryptoHash.apply(xml.getBytes());
-		return new TabTellerKeyShareCommitment(that.tellerIndex(), convertToBase64.apply(hash));
+		return new TabTellerKeyShareCommitment(that.tellerIndex(),
+				convertToBase64.apply(hash));
 	}
+
 }

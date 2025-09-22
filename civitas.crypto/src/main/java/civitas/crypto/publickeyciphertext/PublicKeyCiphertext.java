@@ -11,5 +11,7 @@ import lombok.NonNull;
 
 @Data
 public class PublicKeyCiphertext {
-	@NonNull public final byte[] encryptedBytes;
+	@NonNull
+	public final byte[] encryptedBytes;
+
 }

@@ -1,7 +1,5 @@
 package civitas.functionaltests;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPublicKey;
 
@@ -23,10 +21,13 @@ import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
 import civitas.util.BasicValuesTestData;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-class CryptoFactoryFunctionalTest extends RandomAwareTestBase implements PrivateKeyTestData, BasicValuesTestData {
+class CryptoFactoryFunctionalTest extends RandomAwareTestBase
+		implements PrivateKeyTestData, BasicValuesTestData {
 
 	@Autowired
 	CryptoHash cryptoHash;
@@ -40,8 +41,10 @@ class CryptoFactoryFunctionalTest extends RandomAwareTestBase implements Private
 
 		KeyPairGenerator generator = cryptoBase.getPublicKeyGenerator(KEYSIZE);
 
-		RSAPublicKey publicKey = (RSAPublicKey) generator.generateKeyPair().getPublic();
+		RSAPublicKey publicKey = (RSAPublicKey) generator.generateKeyPair()
+				.getPublic();
 		assertEquals(KEYSIZE, publicKey.getModulus().bitLength());
+
 	}
 
 	@Test
@@ -50,7 +53,8 @@ class CryptoFactoryFunctionalTest extends RandomAwareTestBase implements Private
 
 		KeyPairGenerator generator = cryptoBase.getPublicKeyGenerator(KEYSIZE);
 		KeyPairGenerator generator2 = cryptoBase.getPublicKeyGenerator(KEYSIZE);
-		assertSame(generator, generator2);
+        assertSame(generator, generator2);
+
 	}
 
 	@Test
@@ -61,6 +65,7 @@ class CryptoFactoryFunctionalTest extends RandomAwareTestBase implements Private
 
 		SecretKeySpec key = (SecretKeySpec) generator.generateKey();
 		assertEquals(KEYSIZE / 8, key.getEncoded().length);
+
 	}
 
 	@Test
@@ -69,6 +74,8 @@ class CryptoFactoryFunctionalTest extends RandomAwareTestBase implements Private
 
 		KeyGenerator generator = cryptoBase.getSharedKeyGenerator(KEYSIZE);
 		KeyGenerator generator2 = cryptoBase.getSharedKeyGenerator(KEYSIZE);
-		assertSame(generator, generator2);
+        assertSame(generator, generator2);
+
 	}
+
 }

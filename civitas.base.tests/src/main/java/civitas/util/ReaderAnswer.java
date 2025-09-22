@@ -20,8 +20,8 @@ public class ReaderAnswer<T> implements Answer<T> {
 	@Override
 	public T answer(InvocationOnMock invocation) throws IOException {
 		Reader reader = (Reader) invocation.getArguments()[0];
-		for (Entry<String, T> entry : mockingMap.entrySet().stream()
-				.sorted(Comparator.comparingInt(o -> o.getKey().length()))
+		for (Entry<String, T> entry : mockingMap
+				.entrySet().stream().sorted(Comparator.comparingInt(o -> o.getKey().length()))
 				.toList()) {
 			T value = mockValueFromStream(reader, entry.getKey(), entry.getValue());
 			if (null != value) {
@@ -31,7 +31,8 @@ public class ReaderAnswer<T> implements Answer<T> {
 		return null;
 	}
 
-	T mockValueFromStream(Reader reader, String theString, T theValue) throws IOException {
+	T mockValueFromStream(Reader reader, String theString, T theValue)
+			throws IOException {
 		int len = theString.length();
 		reader.mark(len + 1);
 		char[] buf = new char[len];
@@ -43,4 +44,5 @@ public class ReaderAnswer<T> implements Answer<T> {
 			return null;
 		}
 	}
+
 }

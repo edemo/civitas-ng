@@ -10,7 +10,8 @@ import civitas.crypto.CryptoException;
 import civitas.crypto.parameters.encoder.SchnorrPrimeDecode;
 import io.github.magwas.testing.TestBase;
 
-class SchnorrPrimeDecodeTest extends TestBase implements EncoderTestData {
+class SchnorrPrimeDecodeTest extends TestBase
+		implements EncoderTestData {
 
 	@InjectMocks
 	SchnorrPrimeDecode schnorrPrimeDecoder;
@@ -18,6 +19,8 @@ class SchnorrPrimeDecodeTest extends TestBase implements EncoderTestData {
 	@Test
 	@DisplayName("no decoding for Schnorr primes")
 	void test2() throws CryptoException {
-		assertThrows(CryptoException.class, () -> schnorrPrimeDecoder.apply(BIGINT_A, EL_GAMAL_PARAMETERS));
+		assertThrows(CryptoException.class,
+				() -> schnorrPrimeDecoder.apply(BIGINT_A, EL_GAMAL_PARAMETERS));
 	}
+
 }

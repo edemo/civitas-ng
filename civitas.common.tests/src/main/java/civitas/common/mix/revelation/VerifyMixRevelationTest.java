@@ -12,7 +12,8 @@ import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
 import civitas.crypto.publickey.ElGamalPublicKeyTestData;
 
 class VerifyMixRevelationTest extends RandomAwareTestBase
-		implements ElGamalPublicKeyTestData, CapabilityMixTestData, ElGamalCiphertextTestData, MixRevelationTestData {
+		implements ElGamalPublicKeyTestData, CapabilityMixTestData,
+		ElGamalCiphertextTestData, MixRevelationTestData {
 
 	@InjectMocks
 	VerifyMixRevelation verifyMixRevelation;
@@ -23,24 +24,16 @@ class VerifyMixRevelationTest extends RandomAwareTestBase
 			+ "- checks that the revelation verifies")
 	void test() {
 
-		assertTrue(verifyMixRevelation.apply(
-				MIX_REVELATION,
-				EL_GAMAL_PUBLIC_KEY_EPRIME,
-				CAPABILITY_MIX_INITIAL,
-				CAPABILITY_MIX_LEFT,
-				CAPABILITY_MIX_RIGHT,
-				MIX_REVELATION_DIRECTIONS));
+		assertTrue(verifyMixRevelation.apply(MIX_REVELATION,
+				EL_GAMAL_PUBLIC_KEY_EPRIME, CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_LEFT,
+				CAPABILITY_MIX_RIGHT, MIX_REVELATION_DIRECTIONS));
 	}
 
 	@Test
 	@DisplayName("fails if verifyMixElementRevelation fails")
 	void test1() {
-		verifyMixRevelation.apply(
-				MIX_REVELATION,
-				EL_GAMAL_PUBLIC_KEY_E,
-				CAPABILITY_MIX_INITIAL,
-				CAPABILITY_MIX_LEFT,
-				CAPABILITY_MIX_RIGHT,
+		verifyMixRevelation.apply(MIX_REVELATION, EL_GAMAL_PUBLIC_KEY_E,
+				CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_LEFT, CAPABILITY_MIX_RIGHT,
 				MIX_REVELATION_DIRECTIONS);
 	}
 
@@ -48,72 +41,49 @@ class VerifyMixRevelationTest extends RandomAwareTestBase
 	@DisplayName("fails if the hashes do not match")
 	void test2() {
 		// hash nonequal
-		verifyMixRevelation.apply(
-				MIX_REVELATION,
-				EL_GAMAL_PUBLIC_KEY_E,
-				CAPABILITY_MIX_INITIAL,
-				CAPABILITY_MIX_RIGHT,
-				CAPABILITY_MIX_LEFT,
+		verifyMixRevelation.apply(MIX_REVELATION, EL_GAMAL_PUBLIC_KEY_E,
+				CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_RIGHT, CAPABILITY_MIX_LEFT,
 				MIX_REVELATION_DIRECTIONS);
 	}
 
 	@Test
 	@DisplayName("fails if a revelation is null")
 	void test3() {
-		verifyMixRevelation.apply(
-				MIX_REVELATION_WITH_NULL_REVELATION,
-				EL_GAMAL_PUBLIC_KEY_E,
-				CAPABILITY_MIX_INITIAL,
-				CAPABILITY_MIX_RIGHT,
-				CAPABILITY_MIX_LEFT,
-				MIX_REVELATION_DIRECTIONS);
+		verifyMixRevelation.apply(MIX_REVELATION_WITH_NULL_REVELATION,
+				EL_GAMAL_PUBLIC_KEY_E, CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_RIGHT,
+				CAPABILITY_MIX_LEFT, MIX_REVELATION_DIRECTIONS);
 	}
 
 	@Test
 	@DisplayName("fails if the indicator in a revelation does not match the corresponding direction")
 	void test4() {
-		verifyMixRevelation.apply(
-				MIX_REVELATION,
-				EL_GAMAL_PUBLIC_KEY_E,
-				CAPABILITY_MIX_INITIAL,
-				CAPABILITY_MIX_RIGHT,
-				CAPABILITY_MIX_LEFT,
+		verifyMixRevelation.apply(MIX_REVELATION, EL_GAMAL_PUBLIC_KEY_E,
+				CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_RIGHT, CAPABILITY_MIX_LEFT,
 				MIX_REVELATION_DIRECTIONS_BAD);
 	}
 
 	@Test
 	@DisplayName("fails if the length of indicators in the revelation does not match the length of relevations there")
 	void test5() {
-		verifyMixRevelation.apply(
-				MIX_REVELATION_WITH_BAD_INDICATOR_LENGTH,
-				EL_GAMAL_PUBLIC_KEY_EPRIME,
-				CAPABILITY_MIX_INITIAL,
-				CAPABILITY_MIX_LEFT,
-				CAPABILITY_MIX_RIGHT,
-				MIX_REVELATION_DIRECTIONS);
+		verifyMixRevelation.apply(MIX_REVELATION_WITH_BAD_INDICATOR_LENGTH,
+				EL_GAMAL_PUBLIC_KEY_EPRIME, CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_LEFT,
+				CAPABILITY_MIX_RIGHT, MIX_REVELATION_DIRECTIONS);
 	}
 
 	@Test
 	@DisplayName("fails if the length of indicators in the revelation does not match the length of directions")
 	void test6() {
-		verifyMixRevelation.apply(
-				MIX_REVELATION,
-				EL_GAMAL_PUBLIC_KEY_EPRIME,
-				CAPABILITY_MIX_INITIAL,
-				CAPABILITY_MIX_LEFT,
-				CAPABILITY_MIX_RIGHT,
+		verifyMixRevelation.apply(MIX_REVELATION, EL_GAMAL_PUBLIC_KEY_EPRIME,
+				CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_LEFT, CAPABILITY_MIX_RIGHT,
 				MIX_REVELATION_DIRECTIONS_SHORT);
 	}
 
 	@Test
 	@DisplayName("fails if directions is null")
 	void test7() {
-		verifyMixRevelation.apply(
-				MIX_REVELATION,
-				EL_GAMAL_PUBLIC_KEY_EPRIME,
-				CAPABILITY_MIX_INITIAL,
-				CAPABILITY_MIX_LEFT,
-				CAPABILITY_MIX_RIGHT,
+		verifyMixRevelation.apply(MIX_REVELATION, EL_GAMAL_PUBLIC_KEY_EPRIME,
+				CAPABILITY_MIX_INITIAL, CAPABILITY_MIX_LEFT, CAPABILITY_MIX_RIGHT,
 				null);
 	}
+
 }

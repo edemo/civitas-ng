@@ -8,4 +8,6 @@ package civitas.common;
 
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 
-public record EncryptedVote(String context, ElGamalCiphertextish encChoice, ElGamalCiphertextish encCapability) {}
+public record EncryptedVote(String context, ElGamalCiphertextish encChoice,
+		ElGamalCiphertextish encCapability) {
+}

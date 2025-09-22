@@ -20,4 +20,5 @@ class GetRandomGeneratorTest extends TestBase implements Constants {
 	void test() {
 		assertEquals(RANDOM, cryptoBase.getRandomGenerator());
 	}
+
 }

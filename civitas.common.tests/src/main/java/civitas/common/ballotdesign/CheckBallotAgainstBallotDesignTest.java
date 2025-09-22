@@ -10,7 +10,8 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.common.ballot.BallotTestData;
 
-class CheckBallotAgainstBallotDesignTest extends RandomAwareTestBase implements BallotDesignTestData, BallotTestData {
+class CheckBallotAgainstBallotDesignTest extends RandomAwareTestBase
+		implements BallotDesignTestData, BallotTestData {
 
 	@InjectMocks
 	CheckBallotAgainstBallotDesign checkBallotAgainstBallotDesign;
@@ -18,30 +19,32 @@ class CheckBallotAgainstBallotDesignTest extends RandomAwareTestBase implements 
 	@Test
 	@DisplayName("does not throw an exception for a correct ballot")
 	void test0() {
-		assertDoesNotThrow(() -> checkBallotAgainstBallotDesign.apply(BALLOTDESIGN, BALLOT));
+		assertDoesNotThrow(
+				() -> checkBallotAgainstBallotDesign.apply(BALLOTDESIGN, BALLOT));
 	}
 
 	@Test
 	@DisplayName("checks whether the ballot is for the right number of candidates")
 	void test() {
-		assertThrows(
-				IllegalArgumentException.class,
-				() -> checkBallotAgainstBallotDesign.apply(BALLOTDESIGN, BALLOT_2_CANDIDATES));
+		assertThrows(IllegalArgumentException.class,
+				() -> checkBallotAgainstBallotDesign.apply(BALLOTDESIGN,
+						BALLOT_2_CANDIDATES));
 	}
 
 	@Test
 	@DisplayName("checks whether the ballot contains the right number of pairs")
 	void test1() {
-		assertThrows(
-				IllegalArgumentException.class,
-				() -> checkBallotAgainstBallotDesign.apply(BALLOTDESIGN, BALLOT_SHORT_MATRIX));
+		assertThrows(IllegalArgumentException.class,
+				() -> checkBallotAgainstBallotDesign.apply(BALLOTDESIGN,
+						BALLOT_SHORT_MATRIX));
 	}
 
 	@Test
 	@DisplayName("checks whether all the pairs are valid")
 	void test3() {
-		assertThrows(
-				IllegalArgumentException.class,
-				() -> checkBallotAgainstBallotDesign.apply(BALLOTDESIGN, BALLOT_ONE_RECORD));
+		assertThrows(IllegalArgumentException.class,
+				() -> checkBallotAgainstBallotDesign.apply(BALLOTDESIGN,
+						BALLOT_ONE_RECORD));
 	}
+
 }

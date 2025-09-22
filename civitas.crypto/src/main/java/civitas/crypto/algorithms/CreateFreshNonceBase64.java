@@ -8,11 +8,11 @@ public class CreateFreshNonceBase64 {
 
 	@Autowired
 	CreateFreshNonce createFreshNonce;
-
 	@Autowired
 	ConvertToBase64 convertToBase64;
 
 	public String apply(int bitlength) {
 		return convertToBase64.apply(createFreshNonce.apply(bitlength));
 	}
+
 }

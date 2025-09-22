@@ -11,4 +11,5 @@ public class ConvertPublicKeyToString {
 	public String apply(PublicKey pub) {
 		return Base64.getEncoder().encodeToString(pub.getEncoded());
 	}
+
 }

@@ -11,7 +11,8 @@ import civitas.crypto.votecapability.VoteCapability;
 import civitas.util.CivitasBigIntegerFactory;
 import io.github.magwas.testing.TestBase;
 
-class CombineVoteCapabilitySharesTest extends TestBase implements VoteCapabilityShareTestData {
+class CombineVoteCapabilitySharesTest extends TestBase
+		implements VoteCapabilityShareTestData {
 
 	@InjectMocks
 	CombineVoteCapabilityShares combineVoteCapabilityShares;
@@ -19,7 +20,8 @@ class CombineVoteCapabilitySharesTest extends TestBase implements VoteCapability
 	@Test
 	@DisplayName("multiplies each row of a matrix of vote capability shares")
 	void test() {
-		VoteCapability[] actual = combineVoteCapabilityShares.apply(CAPABILITY_SHARE_MATRIX, EL_GAMAL_PARAMETERS);
+		VoteCapability[] actual = combineVoteCapabilityShares
+				.apply(CAPABILITY_SHARE_MATRIX, EL_GAMAL_PARAMETERS);
 		assertEquals(CivitasBigIntegerFactory.obtain(2 * 5), actual[0].m());
 		assertEquals(CivitasBigIntegerFactory.obtain(3 * 7), actual[1].m());
 	}
@@ -27,14 +29,13 @@ class CombineVoteCapabilitySharesTest extends TestBase implements VoteCapability
 	@Test
 	@DisplayName("returns empty array if the matrix is null")
 	void test1() {
-		assertArrayEquals(EMPTY_ARRAY, combineVoteCapabilityShares.apply(null, EL_GAMAL_PARAMETERS));
+        assertArrayEquals(EMPTY_ARRAY, combineVoteCapabilityShares.apply(null, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("returns empty array if the matrix contains null")
 	void test2() {
-		assertArrayEquals(
-				EMPTY_ARRAY,
-				combineVoteCapabilityShares.apply(new VoteCapabilityShare[][] {null}, EL_GAMAL_PARAMETERS));
+		assertArrayEquals(EMPTY_ARRAY, combineVoteCapabilityShares.apply(new VoteCapabilityShare[][] { null }, EL_GAMAL_PARAMETERS));
 	}
+
 }

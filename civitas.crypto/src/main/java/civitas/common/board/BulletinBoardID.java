@@ -6,4 +6,5 @@
  */
 package civitas.common.board;
 
-public record BulletinBoardID(String id, String uriBase) implements BulletinBoardIDish {}
+public record BulletinBoardID(String id, String uriBase) implements BulletinBoardIDish {
+}

@@ -23,4 +23,5 @@ public class ConvertToXml {
 		marshaller.marshal(that, writer);
 		return writer.toString();
 	}
+
 }

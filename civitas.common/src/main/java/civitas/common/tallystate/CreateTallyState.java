@@ -9,4 +9,5 @@ public class CreateTallyState {
 		Integer[][] matrix = new Integer[size][size];
 		return new TallyState(size, matrix);
 	}
+
 }

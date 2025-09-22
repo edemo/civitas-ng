@@ -12,7 +12,8 @@ import org.mockito.InjectMocks;
 
 import io.github.magwas.testing.TestBase;
 
-class SharedKeyFromWireTest extends TestBase implements SharedKeyTestData {
+class SharedKeyFromWireTest extends TestBase
+		implements SharedKeyTestData {
 
 	@InjectMocks
 	SharedKeyFromWire sharedKeyFromWire;
@@ -20,9 +21,11 @@ class SharedKeyFromWireTest extends TestBase implements SharedKeyTestData {
 	@Test
 	@DisplayName("fromWire works as expected")
 	void test3() throws IOException {
-		try (BufferedReader br = new BufferedReader(new StringReader(SHARED_KEY_ON_WIRE))) {
+		try (BufferedReader br = new BufferedReader(
+				new StringReader(SHARED_KEY_ON_WIRE))) {
 			SharedKey fromWire = sharedKeyFromWire.apply(br);
 			assertEquals(SHARED_KEY, fromWire);
 		}
 	}
+
 }

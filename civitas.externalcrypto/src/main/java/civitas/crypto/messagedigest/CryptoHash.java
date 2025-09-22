@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import civitas.util.CivitasBigintegerBase;
 import org.springframework.stereotype.Service;
 
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoError;
 import civitas.util.CivitasBigInteger;
 import civitas.util.CivitasBigIntegerFactory;
-import civitas.util.CivitasBigintegerBase;
 
 @Service
 public class CryptoHash implements Constants {
@@ -22,23 +22,22 @@ public class CryptoHash implements Constants {
 
 	CryptoHash() {
 		try {
-			messageDigest = MessageDigest.getInstance(MESSAGE_DIGEST_ALG);
+			messageDigest = MessageDigest
+					.getInstance(MESSAGE_DIGEST_ALG);
 		} catch (NoSuchAlgorithmException e) {
 			throw new CryptoError(e);
 		}
 	}
 
 	public byte[] apply(List<CivitasBigInteger> list) {
-		return apply(list.stream()
-				.filter(Objects::nonNull)
-				.map(CivitasBigintegerBase::toByteArray)
-				.toList()
-				.toArray(new byte[0][0]));
+		return apply(list.stream().filter(Objects::nonNull).map(CivitasBigintegerBase::toByteArray)
+				.toList().toArray(new byte[0][0]));
 	}
 
-	public CivitasBigInteger apply(CivitasBigInteger a, CivitasBigInteger b, CivitasBigInteger c, byte[] d) {
-		Stream<byte[]> bigintStream =
-				Stream.of(a, b, c).filter(Objects::nonNull).map(CivitasBigintegerBase::toByteArray);
+	public CivitasBigInteger apply(CivitasBigInteger a, CivitasBigInteger b,
+			CivitasBigInteger c, byte[] d) {
+		Stream<byte[]> bigintStream = Stream.of(a, b, c).filter(Objects::nonNull)
+				.map(CivitasBigintegerBase::toByteArray);
 		List<byte[]> nums = Stream.concat(bigintStream, Stream.of(d)).toList();
 		return CivitasBigIntegerFactory.obtain(apply(nums.toArray(new byte[0][0])));
 	}
@@ -51,4 +50,5 @@ public class CryptoHash implements Constants {
 		});
 		return messageDigest.digest();
 	}
+
 }

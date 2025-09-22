@@ -10,7 +10,8 @@ import civitas.common.RandomAwareTestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
 
-class GenerateSchnorrPrimeTest extends RandomAwareTestBase implements ElGamalPrivateKeyTestData, Constants {
+class GenerateSchnorrPrimeTest extends RandomAwareTestBase
+		implements ElGamalPrivateKeyTestData, Constants {
 
 	@InjectMocks
 	GenerateSchnorrPrime generateSchnorrPrime;
@@ -19,8 +20,10 @@ class GenerateSchnorrPrimeTest extends RandomAwareTestBase implements ElGamalPri
 	@DisplayName("schnorrPrime returns two primes p,q where p=q*r+1, and "
 			+ "length of q is qLength, length of p is pLength ")
 	void schnorrPrimeTest2() {
-		PrimePair sp = generateSchnorrPrime.apply(Constants.EL_GAMAL_KEY_LENGTH, Constants.EL_GAMAL_GROUP_LENGTH);
+		PrimePair sp = generateSchnorrPrime.apply(Constants.EL_GAMAL_KEY_LENGTH,
+				Constants.EL_GAMAL_GROUP_LENGTH);
 		assertEquals(BIGINT_Q, sp.q);
 		assertEquals(BIGINT_P, sp.p);
 	}
+
 }

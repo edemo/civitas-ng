@@ -8,7 +8,8 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.util.BasicValuesTestData;
 
-class GenerateSharedKeyTest extends RandomAwareTestBase implements SharedKeyTestData, BasicValuesTestData {
+class GenerateSharedKeyTest extends RandomAwareTestBase
+		implements SharedKeyTestData, BasicValuesTestData {
 
 	@InjectMocks
 	GenerateSharedKey generateSharedKey;
@@ -17,4 +18,5 @@ class GenerateSharedKeyTest extends RandomAwareTestBase implements SharedKeyTest
 	void test() {
 		assertEquals(SHARED_KEY, generateSharedKey.apply(SHARED_KEY_SIZE));
 	}
+
 }

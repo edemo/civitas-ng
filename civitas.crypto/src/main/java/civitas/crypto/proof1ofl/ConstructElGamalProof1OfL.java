@@ -22,19 +22,14 @@ import civitas.util.CivitasBigInteger;
 public class ConstructElGamalProof1OfL implements Constants {
 	@Autowired
 	CryptoBase cryptoBase;
-
 	@Autowired
 	CryptoHash cryptoHash;
-
 	@Autowired
 	private ConvertHashToBigInt convertHashToBigInt;
 
-	public ElGamalProof1OfL apply(
-			ElGamalPublicKey key,
-			CiphertextList ciphertexts,
-			int choice,
-			ElGamalCiphertextish m,
-			ElGamalReencryptFactor factor) {
+	public ElGamalProof1OfL apply(ElGamalPublicKey key,
+								  CiphertextList ciphertexts, int choice, ElGamalCiphertextish m,
+								  ElGamalReencryptFactor factor) {
 
 		int l = ciphertexts.size();
 		ElGamalParameters ps = key.params;
@@ -61,16 +56,10 @@ public class ConstructElGamalProof1OfL implements Constants {
 		CivitasBigInteger[] as = new CivitasBigInteger[l];
 		CivitasBigInteger[] bs = new CivitasBigInteger[l];
 		for (int i = 0; i < l; i++) {
-			as[i] = ms[i].getA()
-					.modDivide(u, ps.p)
-					.modPow(ds[i], ps.p)
-					.modMultiply(ps.g.modPow(rs[i], ps.p), ps.p)
-					.mod(ps.p);
-			bs[i] = ms[i].getB()
-					.modDivide(v, ps.p)
-					.modPow(ds[i], ps.p)
-					.modMultiply(key.y.modPow(rs[i], ps.p), ps.p)
-					.mod(ps.p);
+			as[i] = ms[i].getA().modDivide(u, ps.p).modPow(ds[i], ps.p)
+					.modMultiply(ps.g.modPow(rs[i], ps.p), ps.p).mod(ps.p);
+			bs[i] = ms[i].getB().modDivide(v, ps.p).modPow(ds[i], ps.p)
+					.modMultiply(key.y.modPow(rs[i], ps.p), ps.p).mod(ps.p);
 		}
 
 		List<CivitasBigInteger> env = new ArrayList<>();
@@ -82,8 +71,10 @@ public class ConstructElGamalProof1OfL implements Constants {
 			env.add(as[i]);
 			env.add(bs[i]);
 		}
-		CivitasBigInteger c = convertHashToBigInt.apply(cryptoHash.apply(env)).mod(ps.q);
-		CivitasBigInteger w = r.modNegate(ps.q).modMultiply(ds[choice], ps.q).modAdd(rs[choice], ps.q);
+		CivitasBigInteger c = convertHashToBigInt.apply(cryptoHash.apply(env))
+				.mod(ps.q);
+		CivitasBigInteger w = r.modNegate(ps.q).modMultiply(ds[choice], ps.q)
+				.modAdd(rs[choice], ps.q);
 		CivitasBigInteger sum = ZERO;
 		for (int i = 0; i < l; i++) {
 			if (i != choice) {
@@ -108,4 +99,5 @@ public class ConstructElGamalProof1OfL implements Constants {
 
 		return new ElGamalProof1OfL(l, dvs, rvs);
 	}
+
 }

@@ -19,7 +19,8 @@ import civitas.crypto.parameters.ElGamalParametersTestData;
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-class ObtainProbablePrimeFunctionalTest extends RandomAwareTestBase implements ElGamalParametersTestData {
+class ObtainProbablePrimeFunctionalTest extends RandomAwareTestBase
+		implements ElGamalParametersTestData {
 
 	@Autowired
 	CryptoBase cryptoBase;
@@ -31,4 +32,5 @@ class ObtainProbablePrimeFunctionalTest extends RandomAwareTestBase implements E
 		assertTrue(p.isProbablePrime(CERTAINTY));
 		assertEquals(EL_GAMAL_KEY_LENGTH, p.bitLength());
 	}
+
 }

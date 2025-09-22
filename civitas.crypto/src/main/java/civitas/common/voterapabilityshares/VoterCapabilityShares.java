@@ -13,4 +13,5 @@ import lombok.Data;
 public class VoterCapabilityShares {
 	public final VoteCapabilityShare[] capabilities;
 	public final int voterBlock;
+
 }

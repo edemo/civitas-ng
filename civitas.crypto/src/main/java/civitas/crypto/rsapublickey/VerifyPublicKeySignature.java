@@ -15,10 +15,8 @@ import civitas.crypto.signature.Signature;
 public class VerifyPublicKeySignature implements Constants {
 	@Autowired
 	CryptoHash cryptoHash;
-
 	@Autowired
 	CryptoBase cryptoBase;
-
 	@Autowired
 	ConvertStringToPublicKey convertStringToPublicKey;
 
@@ -27,7 +25,8 @@ public class VerifyPublicKeySignature implements Constants {
 		return apply(s, bytes);
 	}
 
-	public boolean apply(Signature s, PublicKey pubKey, String msg) throws CryptoException {
+	public boolean apply(Signature s, PublicKey pubKey, String msg)
+			throws CryptoException {
 		byte[] bytes = cryptoHash.apply(msg.getBytes());
 		return apply(s, pubKey, bytes);
 	}
@@ -38,7 +37,8 @@ public class VerifyPublicKeySignature implements Constants {
 		return apply(s, pubKey, bytes);
 	}
 
-	public boolean apply(Signature s, PublicKey signer, byte[] bytes) throws CryptoException {
+	public boolean apply(Signature s, PublicKey signer, byte[] bytes)
+			throws CryptoException {
 		try {
 			cryptoBase.rsaSigner.initVerify(signer);
 			cryptoBase.rsaSigner.update(bytes);
@@ -47,4 +47,5 @@ public class VerifyPublicKeySignature implements Constants {
 			throw new CryptoException("cannot verify signature", e);
 		}
 	}
+
 }

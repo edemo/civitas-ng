@@ -16,4 +16,5 @@ public interface ElectionEvent {
 	ElectionID getElectionID();
 
 	int getSequence();
+
 }

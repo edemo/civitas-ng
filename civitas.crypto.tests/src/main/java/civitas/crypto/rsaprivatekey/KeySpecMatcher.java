@@ -15,8 +15,9 @@ public class KeySpecMatcher implements ArgumentMatcher<X509EncodedKeySpec> {
 	@Override
 	public boolean matches(X509EncodedKeySpec argument) {
 		if (null == argument) {
-			return null == spec;
+            return null == spec;
 		}
-		return Arrays.equals(spec.getEncoded(), argument.getEncoded());
+        return Arrays.equals(spec.getEncoded(), argument.getEncoded());
 	}
+
 }

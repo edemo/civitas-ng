@@ -10,7 +10,8 @@ import org.mockito.InjectMocks;
 import civitas.crypto.oneoflreencryption.ElGamal1OfLReencryptionTestData;
 import io.github.magwas.testing.TestBase;
 
-class VerifyElGamal1OfLReencryptionTest extends TestBase implements ElGamal1OfLReencryptionTestData {
+class VerifyElGamal1OfLReencryptionTest extends TestBase
+		implements ElGamal1OfLReencryptionTestData {
 
 	@InjectMocks
 	VerifyElGamal1OfLReencryption verifyElGamal1OfLReencryption;
@@ -18,8 +19,8 @@ class VerifyElGamal1OfLReencryptionTest extends TestBase implements ElGamal1OfLR
 	@Test
 	@DisplayName("verifies the proof in teh Reencryption")
 	void test1() {
-		assertTrue(verifyElGamal1OfLReencryption.apply(
-				EL_GAMAL_1_OF_L_REENCRYPTION, EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
+		assertTrue(verifyElGamal1OfLReencryption.apply(EL_GAMAL_1_OF_L_REENCRYPTION,
+				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
 	}
 
 	@Test
@@ -29,4 +30,5 @@ class VerifyElGamal1OfLReencryptionTest extends TestBase implements ElGamal1OfLR
 				EL_GAMAL_1_OF_L_REENCRYPTION, EL_GAMAL_PUBLIC_KEY_EPRIME,
 				CIPHERTEXT_LIST, NO_OF_WELL_KNOWN_CIPHERTEXTS));
 	}
+
 }

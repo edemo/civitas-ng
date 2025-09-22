@@ -17,14 +17,14 @@ public class DecryptElGamalMessage {
 	@Autowired
 	VerifyElGamalSignature verifyElGamalSignature;
 
-	public ElGamalMsg apply(
-			final ElGamalPrivateKey key, final ElGamalCiphertextish ciphertext, final byte[] additionalEnv)
+	public ElGamalMsg apply(final ElGamalPrivateKey key,
+			final ElGamalCiphertextish ciphertext, final byte[] additionalEnv)
 			throws CryptoException {
 		ElGamalPrivateKey k = key;
 		ElGamalParameters ps = key.params();
 
-		if (ciphertext instanceof ElGamalSignedCiphertext
-				&& !verifyElGamalSignature.apply(ps, (ElGamalSignedCiphertext) ciphertext, additionalEnv)) {
+		if (ciphertext instanceof ElGamalSignedCiphertext && !verifyElGamalSignature
+				.apply(ps, (ElGamalSignedCiphertext) ciphertext, additionalEnv)) {
 			throw new CryptoException("Ciphertext failed verification");
 		}
 
@@ -35,7 +35,9 @@ public class DecryptElGamalMessage {
 		return new ElGamalMsg(m);
 	}
 
-	public ElGamalMsg apply(final ElGamalPrivateKey key, final ElGamalCiphertextish ciphertext) throws CryptoException {
+	public ElGamalMsg apply(final ElGamalPrivateKey key,
+			final ElGamalCiphertextish ciphertext) throws CryptoException {
 		return apply(key, ciphertext, null);
 	}
+
 }

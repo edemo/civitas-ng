@@ -6,4 +6,5 @@ public interface ElGamalCiphertextish {
 	CivitasBigInteger getA();
 
 	CivitasBigInteger getB();
+
 }

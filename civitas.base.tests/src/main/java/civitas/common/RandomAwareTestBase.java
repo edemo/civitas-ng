@@ -13,9 +13,11 @@ public class RandomAwareTestBase extends TestBase {
 		super.setUp();
 		state = EnvironmentState.NORMAL;
 		RandomAnswer.step = 0;
+
 	}
 
 	protected void given(EnvironmentState newState) {
 		state = newState;
 	}
+
 }

@@ -12,8 +12,8 @@ public class EncryptCapabilityStub implements VoterSubmissionTestData {
 		EncryptCapability mock = mock(EncryptCapability.class);
 		for (Integer piece : VOTE_PIECES) {
 			when(mock.apply(any(), any(), eq(CONTEXT_MAP.get(piece))))
-					.thenReturn(new CapabilityEncryption(
-							ELGAMAL_REENCRYPT_FACTOR_E, ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(piece)));
+					.thenReturn(new CapabilityEncryption(ELGAMAL_REENCRYPT_FACTOR_E,
+							ENCRYPTED_SIGNED_VOTE_CAPABILITIES.get(piece)));
 		}
 		return mock;
 	}

@@ -6,4 +6,5 @@
  */
 package civitas.common.tabteller.keysharecommitment;
 
-public record TabTellerKeyShareCommitment(int tellerIndex, String keyShareHash) {}
+public record TabTellerKeyShareCommitment(int tellerIndex, String keyShareHash) {
+}

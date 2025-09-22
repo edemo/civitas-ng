@@ -21,9 +21,10 @@ public class FindGenerator implements Constants {
 		do {
 			g = cryptoBase.generateRandomElement(p);
 			g = g.modPow(twoK, p);
-			reject = ONE.equals(g) || g.equals(negONE);
+			reject = g.equals(ONE) || g.equals(negONE);
 		} while (reject);
 
 		return g;
 	}
+
 }

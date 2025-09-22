@@ -13,9 +13,11 @@ import lombok.NonNull;
 @Data
 public class ProofVote {
 
-	@NonNull public final CivitasBigInteger c;
+	@NonNull
+	public final CivitasBigInteger c;
+	@NonNull
+	public final CivitasBigInteger s1;
+	@NonNull
+	public final CivitasBigInteger s2;
 
-	@NonNull public final CivitasBigInteger s1;
-
-	@NonNull public final CivitasBigInteger s2;
 }

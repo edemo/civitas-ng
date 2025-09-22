@@ -13,11 +13,14 @@ public class SafePrimeEncode {
 	@Autowired
 	LegendreSymbol legendreSymbol;
 
-	public CivitasBigInteger apply(CivitasBigInteger x, ElGamalParameters elGamalParameters) {
+	public CivitasBigInteger apply(CivitasBigInteger x,
+			ElGamalParameters elGamalParameters) {
 		CivitasBigInteger encoding = x;
-		if (legendreSymbol.apply(encoding, elGamalParameters.p, elGamalParameters.q) == -1) {
+		if (legendreSymbol.apply(encoding, elGamalParameters.p,
+                elGamalParameters.q) == -1) {
 			encoding = elGamalParameters.p.subtract(encoding); // encoding = -m
 		}
 		return encoding;
 	}
+
 }

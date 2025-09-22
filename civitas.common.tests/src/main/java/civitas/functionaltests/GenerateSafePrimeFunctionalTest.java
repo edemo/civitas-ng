@@ -28,7 +28,6 @@ class GenerateSafePrimeFunctionalTest extends RandomAwareTestBase
 
 	@Autowired
 	GenerateSafePrime generateSafePrimeReal;
-
 	@Autowired
 	GenerateElGamalParameters generateElGamalParameters;
 
@@ -42,4 +41,5 @@ class GenerateSafePrimeFunctionalTest extends RandomAwareTestBase
 		assertEquals(sp.p, sp.q.multiply(TWO).add(ONE));
 		assertEquals(SAFE_KEY_LENGTH, sp.q.bitLength());
 	}
+
 }

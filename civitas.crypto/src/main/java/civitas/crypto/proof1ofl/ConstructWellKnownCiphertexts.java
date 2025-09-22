@@ -20,13 +20,14 @@ public class ConstructWellKnownCiphertexts implements Constants {
 
 	@Autowired
 	ElGamalEncrypt elGamalEncrypt;
-
 	@Autowired
 	EncodeMessage encodeMessage;
 
-	public CiphertextList apply(ElGamalPublicKey key, int count) throws CryptoException {
+	public CiphertextList apply(ElGamalPublicKey key, int count)
+			throws CryptoException {
 		if (count < 1 || key == null) {
-			throw new CryptoException("bad parameters for constructWellKnownCiphertexts");
+			throw new CryptoException(
+					"bad parameters for constructWellKnownCiphertexts");
 		}
 		CiphertextList cs = new CiphertextList();
 
@@ -34,9 +35,12 @@ public class ConstructWellKnownCiphertexts implements Constants {
 		ElGamalParameters params = key.params;
 		for (int i = 0; i < count; i++) {
 			CivitasBigInteger encodedMessage = encodeMessage.apply(i + 1, params);
-			ElGamalCiphertext encrypted = elGamalEncrypt.apply(key, new ElGamalMsg(encodedMessage), factor);
+			ElGamalCiphertext encrypted = elGamalEncrypt.apply(key,
+					new ElGamalMsg(encodedMessage), factor);
 			cs.add(encrypted);
 		}
 		return cs;
+
 	}
+
 }

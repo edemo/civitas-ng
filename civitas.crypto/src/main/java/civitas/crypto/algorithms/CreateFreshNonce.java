@@ -20,4 +20,5 @@ public class CreateFreshNonce {
 		cryptoBase.nextBytes(bs);
 		return bs;
 	}
+
 }

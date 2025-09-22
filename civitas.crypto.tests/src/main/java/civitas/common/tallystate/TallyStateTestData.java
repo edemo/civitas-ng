@@ -9,13 +9,15 @@ public interface TallyStateTestData extends BallotDesignTestData {
 	Supplier<TallyState> TALLY_STATE_EMPTY_SUPPLIER = new Supplier<>() {
 		@Override
 		public TallyState get() {
-			return new TallyState(CANDIDATES.size(), new Integer[][] {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}});
+			return new TallyState(CANDIDATES.size(),
+					new Integer[][] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } });
 		}
 	};
 
-	TallyState TALLY_STATE_0_BEATS_1 =
-			new TallyState(CANDIDATES.size(), new Integer[][] {{0, 1, 0}, {0, 0, 0}, {0, 0, 0}});
+	TallyState TALLY_STATE_0_BEATS_1 = new TallyState(CANDIDATES.size(),
+			new Integer[][] { { 0, 1, 0 }, { 0, 0, 0 }, { 0, 0, 0 } });
 
-	TallyState TALLY_STATE_1_BEATS_0 =
-			new TallyState(CANDIDATES.size(), new Integer[][] {{0, 0, 0}, {1, 0, 0}, {0, 0, 0}});
+	TallyState TALLY_STATE_1_BEATS_0 = new TallyState(CANDIDATES.size(),
+			new Integer[][] { { 0, 0, 0 }, { 1, 0, 0 }, { 0, 0, 0 } });
+
 }

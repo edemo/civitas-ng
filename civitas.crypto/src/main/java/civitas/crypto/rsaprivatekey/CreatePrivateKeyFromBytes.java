@@ -24,4 +24,5 @@ public class CreatePrivateKeyFromBytes {
 			throw new CryptoError(e);
 		}
 	}
+
 }

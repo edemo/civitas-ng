@@ -8,4 +8,5 @@ public class CalculateNumberOfPrimeTests {
 		int k = (int) Math.ceil(Math.log(pLength) / Math.log(2));
 		return (int) Math.pow(2, k + 2);
 	}
+
 }

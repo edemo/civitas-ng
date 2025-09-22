@@ -12,7 +12,8 @@ public class GetVoterBlockForBlock {
 	CalculateBallotLength calculateBallotLength;
 
 	public int apply(ElectionDetails that, int block) {
-		int numberContexts = calculateBallotLength.apply(that.ballotDesign.getCandidates().length);
+		int numberContexts = calculateBallotLength
+				.apply(that.ballotDesign.getCandidates().length);
 		return block / numberContexts;
 	}
 }

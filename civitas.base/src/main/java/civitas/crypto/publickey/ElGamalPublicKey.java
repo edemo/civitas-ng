@@ -19,7 +19,9 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class ElGamalPublicKey {
 
-	@NonNull public final CivitasBigInteger y;
+	@NonNull
+	public final CivitasBigInteger y;
+	@NonNull
+	public final ElGamalParameters params;
 
-	@NonNull public final ElGamalParameters params;
 }

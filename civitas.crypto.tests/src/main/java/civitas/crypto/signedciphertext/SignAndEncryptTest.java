@@ -9,7 +9,8 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.common.ballotdesign.BallotDesignTestData;
 
-class SignAndEncryptTest extends RandomAwareTestBase implements ElGamalSignedCiphertextTestData, BallotDesignTestData {
+class SignAndEncryptTest extends RandomAwareTestBase
+		implements ElGamalSignedCiphertextTestData, BallotDesignTestData {
 
 	@InjectMocks
 	SignAndEncrypt signAndEncrypt;
@@ -20,12 +21,11 @@ class SignAndEncryptTest extends RandomAwareTestBase implements ElGamalSignedCip
 			+ "c:=hash(g^s,a,b,env) % q, " + "d:=s+c*y (mod q)")
 	void elGamalSignedEncryptTest() throws Exception {
 
-		assertEquals(
-				EL_GAMAL_SIGNED_CIPHERTEXT,
-				signAndEncrypt.apply(
-						EL_GAMAL_PUBLIC_KEY_E,
-						EL_GAMAL_MESSAGE_VOTE_CAPABILITY_SHARE,
-						ELGAMAL_REENCRYPT_FACTOR_E,
+		assertEquals(EL_GAMAL_SIGNED_CIPHERTEXT,
+				signAndEncrypt.apply(EL_GAMAL_PUBLIC_KEY_E,
+						EL_GAMAL_MESSAGE_VOTE_CAPABILITY_SHARE, ELGAMAL_REENCRYPT_FACTOR_E,
 						ADDITIONALENV_BYTES));
+
 	}
+
 }

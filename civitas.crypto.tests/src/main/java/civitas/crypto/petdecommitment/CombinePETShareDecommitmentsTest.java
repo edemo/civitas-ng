@@ -14,7 +14,8 @@ import civitas.crypto.petcommitment.CombinePETShareDecommitments;
 import civitas.crypto.proofdisclog.VerifyElGamalProofDiscLogEquality;
 import io.github.magwas.testing.TestBase;
 
-class CombinePETShareDecommitmentsTest extends TestBase implements PETDecommitmentTestData {
+class CombinePETShareDecommitmentsTest extends TestBase
+		implements PETDecommitmentTestData {
 
 	@InjectMocks
 	CombinePETShareDecommitments combinePETShareDecommitments;
@@ -22,7 +23,8 @@ class CombinePETShareDecommitmentsTest extends TestBase implements PETDecommitme
 	@Test
 	@DisplayName("multiplies di and ei fields")
 	void test() {
-		ElGamalCiphertext actual = combinePETShareDecommitments.apply(PET_DECOMMITMENTS, EL_GAMAL_PARAMETERS);
+		ElGamalCiphertext actual = combinePETShareDecommitments
+				.apply(PET_DECOMMITMENTS, EL_GAMAL_PARAMETERS);
 		assertEquals(PET_DECOMMITMENT_D.modMultiply(BIGINT_A, BIGINT_P), actual.a);
 		assertEquals(PET_DECOMMITMENT_E.modMultiply(BIGINT_B, BIGINT_P), actual.b);
 	}
@@ -41,14 +43,18 @@ class CombinePETShareDecommitmentsTest extends TestBase implements PETDecommitme
 	@Test
 	@DisplayName("returns a ciphertext with a=ONE, b=ONE if decs is null")
 	void test3() {
-		assertEquals(new ElGamalCiphertext(ONE, ONE), combinePETShareDecommitments.apply(null, EL_GAMAL_PARAMETERS));
+		assertEquals(new ElGamalCiphertext(ONE, ONE),
+				combinePETShareDecommitments.apply(null, EL_GAMAL_PARAMETERS));
 	}
 
 	@Test
 	@DisplayName("the three parameter version uses d to multiply a of the ciphertext")
 	void test4() {
-		ElGamalCiphertext actual = combinePETShareDecommitments.apply(PET_DECOMMITMENTS, EL_GAMAL_PARAMETERS, TWO);
-		assertEquals(PET_DECOMMITMENT_D.modMultiply(BIGINT_A, BIGINT_P).modMultiply(TWO, BIGINT_P), actual.a);
+		ElGamalCiphertext actual = combinePETShareDecommitments
+				.apply(PET_DECOMMITMENTS, EL_GAMAL_PARAMETERS, TWO);
+		assertEquals(PET_DECOMMITMENT_D.modMultiply(BIGINT_A, BIGINT_P)
+				.modMultiply(TWO, BIGINT_P), actual.a);
 		assertEquals(PET_DECOMMITMENT_E.modMultiply(BIGINT_B, BIGINT_P), actual.b);
 	}
+
 }

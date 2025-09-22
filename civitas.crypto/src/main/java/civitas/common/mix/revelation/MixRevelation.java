@@ -13,8 +13,9 @@ import lombok.NonNull;
 @Data
 public class MixRevelation {
 	public final int tellerIndex;
+	@NonNull
+	public final boolean[] indicators;
+	@NonNull
+	public final MixElementRevelation[] revelations;
 
-	@NonNull public final boolean[] indicators;
-
-	@NonNull public final MixElementRevelation[] revelations;
 }

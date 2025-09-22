@@ -16,8 +16,9 @@ public class EncryptPublic implements Constants {
 	CryptoBase cryptoBase;
 
 	public PublicKeyCiphertext apply(PublicKey key, String msg) {
-		byte[] encrypted = cryptoBase.doCrypto(
-				PUBLIC_KEY_CIPHER_ALG, PUBLIC_KEY_PROVIDER, key, Cipher.ENCRYPT_MODE, msg.getBytes());
+		byte[] encrypted = cryptoBase.doCrypto(PUBLIC_KEY_CIPHER_ALG,
+				PUBLIC_KEY_PROVIDER, key, Cipher.ENCRYPT_MODE, msg.getBytes());
 		return new PublicKeyCiphertext(encrypted);
 	}
+
 }
