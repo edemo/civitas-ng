@@ -5,10 +5,11 @@
 	<parent>
 		<groupId>io.github.magwas</groupId>
 		<artifactId>konveyor-parent</artifactId>
-		<version>0.4.25</version>
+		<version>0.4.22</version>
 	</parent>
 	<properties>
-		<konveyor-version>0.4.25</konveyor-version>
+		<konveyor-version>0.4.22</konveyor-version>
+		<tycho-version>5.0.0</tycho-version>
 		<mpir.skip>true</mpir.skip>
 	</properties>
 
