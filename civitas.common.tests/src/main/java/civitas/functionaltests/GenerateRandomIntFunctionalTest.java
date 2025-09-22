@@ -19,8 +19,7 @@ import civitas.util.BasicValuesTestData;
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-class GenerateRandomIntFunctionalTest extends RandomAwareTestBase
-		implements BasicValuesTestData {
+class GenerateRandomIntFunctionalTest extends RandomAwareTestBase implements BasicValuesTestData {
 	@Autowired
 	GenerateRandomInt generateRandomInt;
 
@@ -39,5 +38,4 @@ class GenerateRandomIntFunctionalTest extends RandomAwareTestBase
 			assertEquals(0, generateRandomInt.apply(-SOME_SMALL_INT));
 		}
 	}
-
 }

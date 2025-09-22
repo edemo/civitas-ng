@@ -23,18 +23,24 @@ public class VerifyVoterCapabilitySharesAndProof {
 
 	@Autowired
 	VerifyElGamalSignature verifyElGamalSignature;
+
 	@Autowired
 	CryptoHash cryptoHash;
+
 	@Autowired
 	ElGamalEncrypt elGamalEncrypt;
+
 	@Autowired
 	VerifyElGamalProofDVR verifyElGamalProofDVR;
 
-	public boolean apply(@Nonnull VoterCapabilitySharesAndProof that,
+	public boolean apply(
+			@Nonnull VoterCapabilitySharesAndProof that,
 			@Nonnull ElGamalSignedCiphertext[] postedCapabilities,
 			@Nonnull ElGamalPublicKey voterPublicKey,
-			@Nonnull ElGamalPublicKey tabTellerSharedPublicKey, String voterName,
-			int tellerIndex) throws UnsupportedEncodingException {
+			@Nonnull ElGamalPublicKey tabTellerSharedPublicKey,
+			String voterName,
+			int tellerIndex)
+			throws UnsupportedEncodingException {
 		if (null == voterPublicKey) {
 			throw new NullPointerException();
 		}
@@ -51,19 +57,17 @@ public class VerifyVoterCapabilitySharesAndProof {
 			VoteCapabilityShare vc = that.capabilities[i];
 			ElGamalReencryptFactor r = that.rencryptFactors[i];
 			ElGamalProofDVR p = that.proofs[i];
-			if (!p.e().equals(postedCapabilities[i]) || !verifyElGamalSignature
-					.apply(params, postedCapabilities[i], hash)) {
+			if (!p.e().equals(postedCapabilities[i])
+					|| !verifyElGamalSignature.apply(params, postedCapabilities[i], hash)) {
 				return false;
 			}
 
-			ElGamalCiphertext encrypted = elGamalEncrypt
-					.apply(tabTellerSharedPublicKey, vc, r);
-			if (!encrypted.equals(p.eprime()) || !verifyElGamalProofDVR.apply(p,
-					tabTellerSharedPublicKey, voterPublicKey)) {
+			ElGamalCiphertext encrypted = elGamalEncrypt.apply(tabTellerSharedPublicKey, vc, r);
+			if (!encrypted.equals(p.eprime())
+					|| !verifyElGamalProofDVR.apply(p, tabTellerSharedPublicKey, voterPublicKey)) {
 				return false;
 			}
 		}
 		return true;
 	}
-
 }

@@ -9,8 +9,7 @@ import org.mockito.InjectMocks;
 import civitas.util.BasicValuesTestData;
 import io.github.magwas.testing.TestBase;
 
-class ConvertToBase64Test extends TestBase
-		implements BasicValuesTestData {
+class ConvertToBase64Test extends TestBase implements BasicValuesTestData {
 
 	@InjectMocks
 	ConvertToBase64 convertToBase64;
@@ -24,8 +23,6 @@ class ConvertToBase64Test extends TestBase
 	@Test
 	@DisplayName("converts a byte array to base64")
 	void test2() {
-		assertEquals(SOMESTRING_BASE64,
-				convertToBase64.apply(SOMESTRING.getBytes()));
+		assertEquals(SOMESTRING_BASE64, convertToBase64.apply(SOMESTRING.getBytes()));
 	}
-
 }

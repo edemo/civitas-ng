@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class GetReaderForFile {
 	public BufferedReader apply(String keyFile) throws IOException {
-        return Files.newBufferedReader(Paths.get(keyFile));
+		return Files.newBufferedReader(Paths.get(keyFile));
 	}
-
 }

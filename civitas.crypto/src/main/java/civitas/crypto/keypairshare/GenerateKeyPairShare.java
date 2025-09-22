@@ -25,5 +25,4 @@ public class GenerateKeyPairShare {
 		ElGamalPrivateKey priv = new ElGamalPrivateKey(x, params);
 		return new ElGamalKeyPairShare(params, pub, priv);
 	}
-
 }

@@ -16,18 +16,16 @@ public class EncryptChoice {
 
 	@Autowired
 	ConstructElGamal1OfLReencryption constructElGamal1OfLReencryption;
+
 	@Autowired
 	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
 
-	public EncryptedChoice apply(final ElGamalPublicKey key,
-			final CiphertextList ciphertexts, final VoteChoice[] cbMatrix,
-			final int pos) {
+	public EncryptedChoice apply(
+			final ElGamalPublicKey key, final CiphertextList ciphertexts, final VoteChoice[] cbMatrix, final int pos) {
 		VoteChoice choice = cbMatrix[pos];
-		ElGamalReencryptFactor encChoiceFactor = generateElGamalReencryptFactor
-				.apply(key.params);
-		ElGamal1OfLReencryption encChoice = constructElGamal1OfLReencryption
-				.apply(key, ciphertexts, choice.ordinal(), encChoiceFactor);
+		ElGamalReencryptFactor encChoiceFactor = generateElGamalReencryptFactor.apply(key.params);
+		ElGamal1OfLReencryption encChoice =
+				constructElGamal1OfLReencryption.apply(key, ciphertexts, choice.ordinal(), encChoiceFactor);
 		return new EncryptedChoice(encChoiceFactor, encChoice);
 	}
-
 }

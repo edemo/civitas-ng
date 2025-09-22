@@ -1,6 +1,4 @@
 package civitas.util;
 
 @Boilerplate
-public @interface Boilerplate {
-
-}
+public @interface Boilerplate {}

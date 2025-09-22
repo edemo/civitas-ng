@@ -12,8 +12,7 @@ public class EnvDependentAnswer<T> implements Answer<T> {
 
 	private final Map<EnvironmentState, AnswerOrThrowable<T>> answer;
 
-	public EnvDependentAnswer(
-			Map<EnvironmentState, AnswerOrThrowable<T>> answer) {
+	public EnvDependentAnswer(Map<EnvironmentState, AnswerOrThrowable<T>> answer) {
 		this.answer = answer;
 	}
 
@@ -28,7 +27,5 @@ public class EnvDependentAnswer<T> implements Answer<T> {
 			throw theAnswer.throwable();
 		}
 		return theAnswer.answer();
-
 	}
-
 }

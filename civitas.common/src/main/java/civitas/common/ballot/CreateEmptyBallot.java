@@ -14,12 +14,10 @@ public class CreateEmptyBallot {
 
 	public Ballot apply(int numCandidates) {
 		if (numCandidates < 2) {
-			throw new IllegalArgumentException(
-					"A ballot must contain at least one candidate and none of above");
+			throw new IllegalArgumentException("A ballot must contain at least one candidate and none of above");
 		}
 		int size = calculateBallotLength.apply(numCandidates);
 		VoteChoice[] matrix = new VoteChoice[size];
 		return new Ballot(size, matrix);
 	}
-
 }

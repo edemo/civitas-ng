@@ -9,5 +9,4 @@ public class GetMetaForVoterSubmission {
 	public final String apply(int voterBlock) {
 		return "voterSubmission-voterBlock" + voterBlock;
 	}
-
 }

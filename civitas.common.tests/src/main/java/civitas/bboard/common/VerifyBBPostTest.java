@@ -13,8 +13,8 @@ import civitas.common.RandomAwareTestBase;
 import civitas.common.electoralroll.ElectoralRollCapabilitySharesTestData;
 import civitas.crypto.rsapublickey.PublicKeyTestData;
 
-class VerifyBBPostTest extends RandomAwareTestBase implements BBPostTestData,
-		ElectoralRollCapabilitySharesTestData, PublicKeyTestData {
+class VerifyBBPostTest extends RandomAwareTestBase
+		implements BBPostTestData, ElectoralRollCapabilitySharesTestData, PublicKeyTestData {
 
 	@InjectMocks
 	VerifyBBPost verifyBBPost;
@@ -25,10 +25,8 @@ class VerifyBBPostTest extends RandomAwareTestBase implements BBPostTestData,
 			+ "- verifies that the signature is the signature of the hash using the key")
 	void test() throws CryptoException {
 		assertTrue(verifyBBPost.apply(BBPOST));
-		verify(verifyBBPost.cryptoHash)
-				.apply(ELECTORAL_ROLL_CAPABILITY_SHARES_XML.getBytes());
-		verify(verifyBBPost.verifyPublicKeySignature).apply(BBPOST.sig,
-				ELECTORAL_ROLL_CAPABILITY_SHARES_XML_HASH);
+		verify(verifyBBPost.cryptoHash).apply(ELECTORAL_ROLL_CAPABILITY_SHARES_XML.getBytes());
+		verify(verifyBBPost.verifyPublicKeySignature).apply(BBPOST.sig, ELECTORAL_ROLL_CAPABILITY_SHARES_XML_HASH);
 	}
 
 	@Test
@@ -36,5 +34,4 @@ class VerifyBBPostTest extends RandomAwareTestBase implements BBPostTestData,
 	void test1() throws CryptoException {
 		assertFalse(verifyBBPost.apply(BBPOST_BAD_SIG));
 	}
-
 }

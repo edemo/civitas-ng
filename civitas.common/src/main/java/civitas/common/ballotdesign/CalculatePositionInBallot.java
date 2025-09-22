@@ -11,5 +11,4 @@ public class CalculatePositionInBallot {
 		}
 		return j - i + apply(i - 1, k - 1, k);
 	}
-
 }

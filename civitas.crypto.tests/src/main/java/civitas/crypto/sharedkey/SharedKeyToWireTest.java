@@ -24,5 +24,4 @@ class SharedKeyToWireTest extends TestBase implements SharedKeyTestData {
 		sharedKeyToWire.apply(SHARED_KEY, pw);
 		assertEquals(SHARED_KEY_ON_WIRE, sw.toString());
 	}
-
 }

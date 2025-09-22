@@ -14,17 +14,14 @@ public class GetMixRevelationMeta implements CommonConstants {
 	@Autowired
 	GetBlockName getBlockName;
 
-	public String apply(@Nonnull final ElectionDetails electionDetails,
-			boolean isVoteMix, int block, int tellerIndex) {
+	public String apply(@Nonnull final ElectionDetails electionDetails, boolean isVoteMix, int block, int tellerIndex) {
 		if (null == electionDetails) {
 			throw new NullPointerException();
 		}
 
 		String blockDesc = getBlockName.apply(electionDetails, block);
 		return mixRevelationMETA_PREFIX
-				+ (isVoteMix ? mixRevelationMETA_VOTE_REVELATION
-						: mixRevelationMETA_ER_REVELATION)
+				+ (isVoteMix ? mixRevelationMETA_VOTE_REVELATION : mixRevelationMETA_ER_REVELATION)
 				+ ":" + blockDesc + ":" + tellerIndex;
 	}
-
 }

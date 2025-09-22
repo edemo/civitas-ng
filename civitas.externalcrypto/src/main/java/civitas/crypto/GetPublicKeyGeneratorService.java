@@ -4,7 +4,10 @@ import java.security.KeyPairGenerator;
 import java.util.HashMap;
 import java.util.Map;
 
-class GetPublicKeyGenerator implements Constants {
+import org.springframework.stereotype.Service;
+
+@Service
+public class GetPublicKeyGeneratorService implements Constants {
 	private final Map<String, KeyPairGenerator> publicKeyGenerators = new HashMap<>();
 
 	public KeyPairGenerator apply(int keyLength) {
@@ -22,5 +25,4 @@ class GetPublicKeyGenerator implements Constants {
 			throw new CryptoError(impossible);
 		}
 	}
-
 }

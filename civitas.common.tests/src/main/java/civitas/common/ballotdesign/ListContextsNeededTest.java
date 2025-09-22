@@ -8,8 +8,7 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class ListContextsNeededTest extends RandomAwareTestBase
-		implements BallotDesignTestData {
+class ListContextsNeededTest extends RandomAwareTestBase implements BallotDesignTestData {
 
 	@InjectMocks
 	ListContextsNeeded listContextsNeeded;
@@ -17,8 +16,6 @@ class ListContextsNeededTest extends RandomAwareTestBase
 	@DisplayName("generates a list of contexts needed for a ballot design")
 	@Test
 	void test() {
-		assertEquals(CONTEXTS,
-				listContextsNeeded.apply(BALLOTDESIGN, ADDITIONALENV));
+		assertEquals(CONTEXTS, listContextsNeeded.apply(BALLOTDESIGN, ADDITIONALENV));
 	}
-
 }

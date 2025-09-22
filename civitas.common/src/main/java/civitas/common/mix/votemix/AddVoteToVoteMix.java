@@ -14,5 +14,4 @@ public class AddVoteToVoteMix {
 		n[that.votes.length] = v;
 		that.votes = n;
 	}
-
 }

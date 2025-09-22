@@ -78,3 +78,16 @@ These should be kept at the minimum, and should not contain any code which is re
   (can be called business logic in any sense)
 The class is marked with @Boilerplate
 
+Requirements:
+
+- JDK 21
+- [GnuPG](https://www.gnupg.org/index.html)
+
+Formatting:
+
+Code style is enforced automatically using [palantir-java-format](https://github.com/palantir/palantir-java-format), integrated via [Spotless](https://github.com/diffplug/spotless). Additionally, some best practices are checked and applied through Spotless' [Cleanthat](https://github.com/solven-eu/cleanthat) plugin.  
+Spotless is configured to run locally as part of the Maven build lifecycle and is verified in the GitLab pipeline, meaning that any formatting violations will cause the build to fail.  
+To format your code manually, run the below command or set up your IDE to use palantir-java-format (see the link above).
+
+  ```bash
+  mvn spotless:apply

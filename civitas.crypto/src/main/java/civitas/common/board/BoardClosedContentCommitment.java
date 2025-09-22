@@ -24,10 +24,9 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class BoardClosedContentCommitment implements CommonConstants {
 	@Id
-	@NonNull
-	ElectionID electionID;
-	@NonNull
-	String boardName;
-	@NonNull
-	List<String> voterBlockContentHash;
+	@NonNull ElectionID electionID;
+
+	@NonNull String boardName;
+
+	@NonNull List<String> voterBlockContentHash;
 }

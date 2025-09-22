@@ -9,8 +9,7 @@ import org.mockito.InjectMocks;
 import civitas.common.election.ElectionAbandonmentTestData;
 import civitas.common.election.GetElectionAbandonmentReporter;
 
-class GetElectionAbandonmentReporterTest extends RandomAwareTestBase
-		implements ElectionAbandonmentTestData {
+class GetElectionAbandonmentReporterTest extends RandomAwareTestBase implements ElectionAbandonmentTestData {
 
 	@InjectMocks
 	GetElectionAbandonmentReporter getElectionAbandonmentReporter;
@@ -18,15 +17,14 @@ class GetElectionAbandonmentReporterTest extends RandomAwareTestBase
 	@Test
 	@DisplayName("in case of tabulation teller, the string contains that fact and the index of the teller")
 	void test() {
-		assertEquals(ELECTION_ABANDONMENT_REPORTER,
-				getElectionAbandonmentReporter.apply(ELECTION_ABANDONMENT));
+		assertEquals(ELECTION_ABANDONMENT_REPORTER, getElectionAbandonmentReporter.apply(ELECTION_ABANDONMENT));
 	}
 
 	@Test
 	@DisplayName("otherwise gives 'unknown entity'")
 	void test1() {
-		assertEquals(ELECTION_ABANDONMENT_REPORTER_UNKNOWN,
+		assertEquals(
+				ELECTION_ABANDONMENT_REPORTER_UNKNOWN,
 				getElectionAbandonmentReporter.apply(ELECTION_ABANDONMENT_NONTELLER));
 	}
-
 }

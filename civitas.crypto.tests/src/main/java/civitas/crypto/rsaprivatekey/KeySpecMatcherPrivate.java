@@ -5,8 +5,7 @@ import java.util.Arrays;
 
 import org.mockito.ArgumentMatcher;
 
-public class KeySpecMatcherPrivate
-		implements ArgumentMatcher<PKCS8EncodedKeySpec> {
+public class KeySpecMatcherPrivate implements ArgumentMatcher<PKCS8EncodedKeySpec> {
 	private final PKCS8EncodedKeySpec spec;
 
 	public KeySpecMatcherPrivate(PKCS8EncodedKeySpec keyspecPrivate) {
@@ -16,9 +15,8 @@ public class KeySpecMatcherPrivate
 	@Override
 	public boolean matches(PKCS8EncodedKeySpec argument) {
 		if (null == argument) {
-            return null == spec;
+			return null == spec;
 		}
-        return Arrays.equals(spec.getEncoded(), argument.getEncoded());
+		return Arrays.equals(spec.getEncoded(), argument.getEncoded());
 	}
-
 }

@@ -12,8 +12,8 @@ import java.security.cert.CertificateException;
 import civitas.crypto.rsapublickey.PublicKeyTestData;
 
 public class GetServerPublicKeyStub implements PublicKeyTestData {
-	public static GetPublicKey stub() throws KeyStoreException,
-			NoSuchAlgorithmException, CertificateException, IOException {
+	public static GetPublicKey stub()
+			throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
 		GetPublicKey mock = mock(GetPublicKey.class);
 		when(mock.apply(any(), any(), any())).thenReturn(PUBLIC_KEY);
 		return mock;

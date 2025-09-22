@@ -37,45 +37,54 @@ import civitas.util.GetCurrentTime;
 import jakarta.xml.bind.JAXBException;
 
 @Controller
-//@RestController
+// @RestController
 public class PostController {
 	@Autowired
 	GetBoardForId getBoardForId;
+
 	@Autowired
 	BBPostRepository bBPostRepository;
+
 	@Autowired
 	CryptoHash cryptoHash;
+
 	@Autowired
 	LoggerService loggerController;
+
 	@Autowired
 	UpdateCache updateCache;
+
 	@Autowired
 	ConvertToXml convertToXml;
+
 	@Autowired
 	SignWithPublicKey signWithPublicKey;
+
 	@Autowired
 	GetPrivateKey getPrivateKey;
+
 	@Autowired
 	GetPublicKey getPublicKey;
+
 	@Autowired
 	GetCurrentTime getCurrentTime;
+
 	@Autowired
 	VerifyPublicKeySignature verifyPublicKeySignature;
+
 	@Autowired
 	CheckAccess checkAccess;
+
 	@Autowired
 	Configuration configuration;
 
 	@PostMapping("/boards/{bbid}")
-    @ResponseBody
-    public Long apply(@PathVariable("bbid") String bbid,
-                      @RequestBody PostDTO dto) throws CommunicableException {
+	@ResponseBody
+	public Long apply(@PathVariable("bbid") String bbid, @RequestBody PostDTO dto) throws CommunicableException {
 		String objectID = dto.meta + bbid;
-		checkAccess.apply(Operation.POST, dto.signature.getSignerPubKey(),
-				objectID);
+		checkAccess.apply(Operation.POST, dto.signature.getSignerPubKey(), objectID);
 		try {
-			if (!verifyPublicKeySignature.apply(dto.signature,
-					dto.payloadXml.getBytes())) {
+			if (!verifyPublicKeySignature.apply(dto.signature, dto.payloadXml.getBytes())) {
 				throw new CommunicableException("bad signature");
 			}
 		} catch (CryptoException e) {
@@ -88,8 +97,7 @@ public class PostController {
 
 		long t = getCurrentTime.apply();
 
-		Iterable<BBPost> lastPosts = bBPostRepository
-				.findByBbidOrderBySerialDesc(bbid);
+		Iterable<BBPost> lastPosts = bBPostRepository.findByBbidOrderBySerialDesc(bbid);
 
 		BBPost lastPost = null;
 		byte[] hash = new byte[0];
@@ -97,8 +105,7 @@ public class PostController {
 			lastPost = lastPosts.iterator().next();
 			hash = lastPost.hash;
 		}
-		byte[] newhash = cryptoHash.apply(hash, BigInteger.valueOf(t).toByteArray(),
-				dto.signature.signatureBytes);
+		byte[] newhash = cryptoHash.apply(hash, BigInteger.valueOf(t).toByteArray(), dto.signature.signatureBytes);
 
 		try {
 			updateCache.apply(bbid, dto.meta, dto.payloadXml, t);
@@ -110,21 +117,19 @@ public class PostController {
 		if (lastPost != null) {
 			serial = lastPost.serial;
 		}
-		bBPostRepository.save(new BBPost(bbid, serial + 1, t, dto.meta,
-				dto.payloadXml, dto.signature, newhash));
+		bBPostRepository.save(new BBPost(bbid, serial + 1, t, dto.meta, dto.payloadXml, dto.signature, newhash));
 
 		return t;
 	}
 
 	public long apply(String bbid, String meta, Object mesg)
-			throws JAXBException, UnrecoverableKeyException, KeyStoreException,
-			NoSuchAlgorithmException, CertificateException, IOException,
-			CryptoException, CommunicableException {
+			throws JAXBException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException,
+					CertificateException, IOException, CryptoException, CommunicableException {
 		String msg = convertToXml.apply(mesg);
-		PrivateKey privKey = getPrivateKey.apply(configuration.storeFile,
-				configuration.storePassword, configuration.serverKeyEntry);
-		PublicKey pubKey = getPublicKey.apply(configuration.storeFile,
-				configuration.storePassword, configuration.serverKeyEntry);
+		PrivateKey privKey =
+				getPrivateKey.apply(configuration.storeFile, configuration.storePassword, configuration.serverKeyEntry);
+		PublicKey pubKey =
+				getPublicKey.apply(configuration.storeFile, configuration.storePassword, configuration.serverKeyEntry);
 		Signature sign = signWithPublicKey.apply(privKey, pubKey, msg.getBytes());
 		return apply(bbid, new PostDTO(meta, msg, sign));
 	}

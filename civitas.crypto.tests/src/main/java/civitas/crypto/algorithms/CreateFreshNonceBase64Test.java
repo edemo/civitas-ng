@@ -12,8 +12,7 @@ import org.mockito.InjectMocks;
 import civitas.util.BasicValuesTestData;
 import io.github.magwas.testing.TestBase;
 
-class CreateFreshNonceBase64Test extends TestBase
-		implements BasicValuesTestData {
+class CreateFreshNonceBase64Test extends TestBase implements BasicValuesTestData {
 
 	@InjectMocks
 	CreateFreshNonceBase64 createFreshNonceBase64;
@@ -22,15 +21,13 @@ class CreateFreshNonceBase64Test extends TestBase
 	@DisplayName("creates bitlenght/8 random bytes")
 	void test() {
 
-		assertEquals(BYTELENGTH, Base64.getDecoder()
-				.decode(createFreshNonceBase64.apply(BITLENGTH)).length);
+		assertEquals(BYTELENGTH, Base64.getDecoder().decode(createFreshNonceBase64.apply(BITLENGTH)).length);
 	}
 
 	@Test
 	@DisplayName("if bitlength is not divisible by 8, the number of bytes is rounded up")
 	void test2() {
-		assertEquals(BYTELENGTH, Base64.getDecoder()
-				.decode(createFreshNonceBase64.apply(BITLENGTH - 1)).length);
+		assertEquals(BYTELENGTH, Base64.getDecoder().decode(createFreshNonceBase64.apply(BITLENGTH - 1)).length);
 	}
 
 	@Test
@@ -39,5 +36,4 @@ class CreateFreshNonceBase64Test extends TestBase
 		createFreshNonceBase64.apply(BITLENGTH);
 		verify(createFreshNonceBase64.createFreshNonce).apply(BITLENGTH);
 	}
-
 }

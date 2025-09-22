@@ -8,8 +8,7 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.common.mix.AddCommitmentToMix;
 
-class AddCommitmentToMixTest extends RandomAwareTestBase
-		implements CapabilityMixTestData {
+class AddCommitmentToMixTest extends RandomAwareTestBase implements CapabilityMixTestData {
 
 	@InjectMocks
 	AddCommitmentToMix addCommitmentToMix;
@@ -21,5 +20,4 @@ class AddCommitmentToMixTest extends RandomAwareTestBase
 		addCommitmentToMix.apply(mix, SOMESTRING.getBytes());
 		assertEquals(CAPABILITY_MIX_COMMITMENT_ADDED_SUPPLIER.get(), mix);
 	}
-
 }

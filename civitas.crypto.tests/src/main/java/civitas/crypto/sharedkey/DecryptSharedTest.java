@@ -12,16 +12,14 @@ import civitas.common.RandomAwareTestBase;
 import civitas.crypto.sharedkeyciphertext.SharedKeyCiphertextTestData;
 import civitas.crypto.sharedkeyciphertext.SharedKeyMsgTestData;
 
-class DecryptSharedTest extends RandomAwareTestBase implements
-		SharedKeyTestData, SharedKeyCiphertextTestData, SharedKeyMsgTestData {
+class DecryptSharedTest extends RandomAwareTestBase
+		implements SharedKeyTestData, SharedKeyCiphertextTestData, SharedKeyMsgTestData {
 	@InjectMocks
 	DecryptShared decryptShared;
 
 	@Test
 	@DisplayName("decrypts a shared key cyphertext")
 	void test() throws UnsupportedEncodingException {
-		assertEquals(SHARED_KEY_MSG,
-				decryptShared.apply(SHARED_KEY, SHARED_KEY_CIPHERTEXT));
+		assertEquals(SHARED_KEY_MSG, decryptShared.apply(SHARED_KEY, SHARED_KEY_CIPHERTEXT));
 	}
-
 }

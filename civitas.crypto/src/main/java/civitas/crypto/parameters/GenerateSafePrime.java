@@ -21,5 +21,4 @@ public class GenerateSafePrime implements Constants {
 		} while (!possibleP.isProbablePrime(CERTAINTY));
 		return new PrimePair(possibleP, possibleQ);
 	}
-
 }

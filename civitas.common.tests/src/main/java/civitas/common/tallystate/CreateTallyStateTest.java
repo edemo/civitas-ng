@@ -8,8 +8,7 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class CreateTallyStateTest extends RandomAwareTestBase
-		implements TallyStateTestData {
+class CreateTallyStateTest extends RandomAwareTestBase implements TallyStateTestData {
 
 	@InjectMocks
 	CreateTallyState createTallyState;
@@ -17,22 +16,18 @@ class CreateTallyStateTest extends RandomAwareTestBase
 	@DisplayName("creates a tally state the sized to the number of candidates")
 	@Test
 	void test() {
-		assertEquals(CANDIDATES.size(),
-				createTallyState.newTallyState(BALLOTDESIGN).size);
+		assertEquals(CANDIDATES.size(), createTallyState.newTallyState(BALLOTDESIGN).size);
 	}
 
 	@DisplayName("the number of rows in the matrix is the number of candidates")
 	@Test
 	void test1() {
-		assertEquals(CANDIDATES.size(),
-				createTallyState.newTallyState(BALLOTDESIGN).matrix.length);
+		assertEquals(CANDIDATES.size(), createTallyState.newTallyState(BALLOTDESIGN).matrix.length);
 	}
 
 	@DisplayName("the number of columns in the matrix is the number of candidates")
 	@Test
 	void test2() {
-		assertEquals(CANDIDATES.size(),
-				createTallyState.newTallyState(BALLOTDESIGN).matrix[0].length);
+		assertEquals(CANDIDATES.size(), createTallyState.newTallyState(BALLOTDESIGN).matrix[0].length);
 	}
-
 }

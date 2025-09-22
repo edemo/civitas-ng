@@ -4,6 +4,6 @@ import static org.mockito.Mockito.mock;
 
 public class UpdateCacheStub {
 	public static UpdateCache stub() {
-        return mock(UpdateCache.class);
+		return mock(UpdateCache.class);
 	}
 }

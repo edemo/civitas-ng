@@ -10,7 +10,6 @@ import io.github.magwas.kodekonveyorannotations.Glue;
 public class InitialTests {
 
 	static {
-
 		try {
 			doTests();
 		} catch (Exception e) {

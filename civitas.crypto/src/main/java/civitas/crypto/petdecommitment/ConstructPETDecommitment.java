@@ -15,8 +15,11 @@ public class ConstructPETDecommitment {
 	@Autowired
 	ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
 
-	public PETDecommitment apply(ElGamalParameters params, CivitasBigInteger exponent,
-			ElGamalCiphertext ciphertext1, ElGamalCiphertext ciphertext2) {
+	public PETDecommitment apply(
+			ElGamalParameters params,
+			CivitasBigInteger exponent,
+			ElGamalCiphertext ciphertext1,
+			ElGamalCiphertext ciphertext2) {
 
 		CivitasBigInteger zi = exponent;
 		CivitasBigInteger d = ciphertext1.a.modDivide(ciphertext2.a, params.p);
@@ -25,9 +28,7 @@ public class ConstructPETDecommitment {
 		CivitasBigInteger di = d.modPow(zi, params.p);
 		CivitasBigInteger ei = e.modPow(zi, params.p);
 
-		ElGamalProofDiscLogEquality proof = constructElGamalDiscLogEqualityProof
-				.apply(params, d, e, zi);
+		ElGamalProofDiscLogEquality proof = constructElGamalDiscLogEqualityProof.apply(params, d, e, zi);
 		return new PETDecommitment(di, ei, proof);
 	}
-
 }

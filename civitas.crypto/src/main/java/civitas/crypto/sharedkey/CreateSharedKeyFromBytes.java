@@ -26,5 +26,4 @@ public class CreateSharedKeyFromBytes implements Constants {
 			throw new CryptoError(e);
 		}
 	}
-
 }
