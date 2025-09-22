@@ -10,5 +10,4 @@ import civitas.crypto.proofknowndisclog.ElGamalProofKnowDiscLog;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import lombok.NonNull;
 
-public record ElGamalKeyShare(@NonNull ElGamalPublicKey pubKey, @NonNull ElGamalProofKnowDiscLog proof) {
-}
+public record ElGamalKeyShare(@NonNull ElGamalPublicKey pubKey, @NonNull ElGamalProofKnowDiscLog proof) {}

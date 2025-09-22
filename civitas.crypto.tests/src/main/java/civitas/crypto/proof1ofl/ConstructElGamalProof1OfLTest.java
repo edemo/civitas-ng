@@ -8,14 +8,14 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class ConstructElGamalProof1OfLTest extends RandomAwareTestBase
-		implements ElGamalProof1OfLTestData {
+class ConstructElGamalProof1OfLTest extends RandomAwareTestBase implements ElGamalProof1OfLTestData {
 
 	@InjectMocks
 	ConstructElGamalProof1OfL constructElGamalProof1OfL;
 
 	@Test
-	@DisplayName("""
+	@DisplayName(
+			"""
 			returns a proof that the ciphertext is a reencription of one of the well-known ciphertexts with the key and factor
 			r_i, d_i random for each ciphertexts
 			a_i = ((ciphertexts_i.a/m.a)^d_i) * (g^r_i) (mod p)
@@ -30,10 +30,12 @@ class ConstructElGamalProof1OfLTest extends RandomAwareTestBase
 			""")
 	void test1() {
 		ElGamalProof1OfL proof = constructElGamalProof1OfL.apply(
-				EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, MY_CHOICE.ordinal(),
-				REENCRYPTED_WELL_KNOWN_CHOICE, ELGAMAL_REENCRYPT_FACTOR_E);
+				EL_GAMAL_PUBLIC_KEY_E,
+				CIPHERTEXT_LIST,
+				MY_CHOICE.ordinal(),
+				REENCRYPTED_WELL_KNOWN_CHOICE,
+				ELGAMAL_REENCRYPT_FACTOR_E);
 
 		assertEquals(EL_GAMAL_PROOF_1_OF_L, proof);
 	}
-
 }

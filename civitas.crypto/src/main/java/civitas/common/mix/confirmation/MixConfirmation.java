@@ -8,6 +8,4 @@ package civitas.common.mix.confirmation;
 
 import civitas.common.election.ElectionID;
 
-public record MixConfirmation(int speakerIndex, int tellerIndex,
-		boolean isVoteMix, ElectionID electionID) {
-}
+public record MixConfirmation(int speakerIndex, int tellerIndex, boolean isVoteMix, ElectionID electionID) {}

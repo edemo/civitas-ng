@@ -19,5 +19,4 @@ class ConvertHashToBigIntTest extends TestBase implements BasicValuesTestData {
 	void test() {
 		assertEquals(BIGINT_A, convertHashToBigInt.apply(BIGINT_A.toByteArray()));
 	}
-
 }

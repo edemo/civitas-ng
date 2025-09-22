@@ -21,20 +21,28 @@ public class FakeElGamalProofDVR {
 
 	@Autowired
 	CryptoBase cryptoBase;
+
 	@Autowired
 	CryptoHash cryptoHash;
+
 	@Autowired
 	ConvertHashToBigInt convertHashToBigInt;
 
-	public ElGamalProofDVR apply(ElGamalPublicKey key,
-								 ElGamalPublicKey verifierKey, ElGamalPrivateKey verifierPrivKey,
-								 ElGamalCiphertextish e, ElGamalCiphertext ePrime) {
+	public ElGamalProofDVR apply(
+			ElGamalPublicKey key,
+			ElGamalPublicKey verifierKey,
+			ElGamalPrivateKey verifierPrivKey,
+			ElGamalCiphertextish e,
+			ElGamalCiphertext ePrime) {
 		return apply(e, ePrime, key, verifierKey, verifierPrivKey);
 	}
 
-	public ElGamalProofDVR apply(ElGamalCiphertextish e, ElGamalCiphertext et,
-								 ElGamalPublicKey key, ElGamalPublicKey verifierKey,
-								 ElGamalPrivateKey verifierPrivKey) {
+	public ElGamalProofDVR apply(
+			ElGamalCiphertextish e,
+			ElGamalCiphertext et,
+			ElGamalPublicKey key,
+			ElGamalPublicKey verifierKey,
+			ElGamalPrivateKey verifierPrivKey) {
 
 		ElGamalParameters ps = key.params;
 		// CivitasBigInteger hv = verifierKey.y;
@@ -50,10 +58,10 @@ public class FakeElGamalProofDVR {
 		CivitasBigInteger beta = cryptoBase.generateRandomElement(ps.q);
 		CivitasBigInteger ut = cryptoBase.generateRandomElement(ps.q);
 
-		CivitasBigInteger at = ps.g.modPow(ut, ps.p)
-				.modDivide(xt.modDivide(x, ps.p).modPow(alpha, ps.p), ps.p);
-		CivitasBigInteger bt = h.modPow(ut, ps.p)
-				.modDivide(yt.modDivide(y, ps.p).modPow(alpha, ps.p), ps.p);
+		CivitasBigInteger at =
+				ps.g.modPow(ut, ps.p).modDivide(xt.modDivide(x, ps.p).modPow(alpha, ps.p), ps.p);
+		CivitasBigInteger bt =
+				h.modPow(ut, ps.p).modDivide(yt.modDivide(y, ps.p).modPow(alpha, ps.p), ps.p);
 		CivitasBigInteger st = ps.g.modPow(beta, ps.p);
 
 		List<CivitasBigInteger> l = new ArrayList<>();
@@ -64,14 +72,11 @@ public class FakeElGamalProofDVR {
 		l.add(at);
 		l.add(bt);
 		l.add(st);
-		CivitasBigInteger ct = convertHashToBigInt.apply(cryptoHash.apply(l))
-				.mod(ps.q);
+		CivitasBigInteger ct = convertHashToBigInt.apply(cryptoHash.apply(l)).mod(ps.q);
 
 		CivitasBigInteger wt = alpha.modSubtract(ct, ps.q);
 		CivitasBigInteger rt = beta.modSubtract(wt, ps.q).modDivide(zv, ps.q);
 
 		return new ElGamalProofDVR(e, et, ct, wt, rt, ut);
-
 	}
-
 }

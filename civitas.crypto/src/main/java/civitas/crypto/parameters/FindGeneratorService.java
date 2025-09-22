@@ -1,14 +1,14 @@
 package civitas.crypto.parameters;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import civitas.crypto.Constants;
 import civitas.crypto.CryptoBase;
 import civitas.util.CivitasBigInteger;
 
-@Controller
-public class FindGenerator implements Constants {
+@Service
+public class FindGeneratorService implements Constants {
 	@Autowired
 	CryptoBase cryptoBase;
 
@@ -21,10 +21,9 @@ public class FindGenerator implements Constants {
 		do {
 			g = cryptoBase.generateRandomElement(p);
 			g = g.modPow(twoK, p);
-			reject = g.equals(ONE) || g.equals(negONE);
+			reject = ONE.equals(g) || g.equals(negONE);
 		} while (reject);
 
 		return g;
 	}
-
 }

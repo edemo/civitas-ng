@@ -19,11 +19,15 @@ public class TallyVote implements CommonConstants {
 
 	@Autowired
 	RecordBeat recordBeat;
+
 	@Autowired
 	DecodeChoice decodeChoice;
 
-	public void apply(String additionalcontext, ElGamalMsg msg,
-			String currentcontext, TallyState state,
+	public void apply(
+			String additionalcontext,
+			ElGamalMsg msg,
+			String currentcontext,
+			TallyState state,
 			Map<CivitasBigInteger, VoteChoice> decodeMap) {
 
 		String desiredContext = additionalcontext + KIND;
@@ -59,5 +63,4 @@ public class TallyVote implements CommonConstants {
 			throw new IllegalArgumentException("Invalid index", e);
 		}
 	}
-
 }

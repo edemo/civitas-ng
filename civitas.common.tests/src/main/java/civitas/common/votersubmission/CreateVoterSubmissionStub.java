@@ -7,8 +7,7 @@ public class CreateVoterSubmissionStub implements VoterSubmissionTestData {
 
 	public static CreateVoterSubmission stub() {
 		CreateVoterSubmission mock = mock(CreateVoterSubmission.class);
-		when(mock.apply(VOTER_BLOCK, VERIFIABLE_VOTES))
-				.thenReturn(VOTER_SUBMISSION);
+		when(mock.apply(VOTER_BLOCK, VERIFIABLE_VOTES)).thenReturn(VOTER_SUBMISSION);
 		return mock;
 	}
 }

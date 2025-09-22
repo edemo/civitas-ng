@@ -13,13 +13,11 @@ import lombok.NonNull;
 
 @Data
 public class CapabilityMix implements VoterMix {
-	@NonNull
-	public final Integer number;
-	@NonNull
-	public final byte[] mixNonceHash;
-	@NonNull
-	public byte[][] commitments;
-	@NonNull
-	public ElGamalCiphertextish[] capabilities;
+	@NonNull public final Integer number;
 
+	@NonNull public final byte[] mixNonceHash;
+
+	@NonNull public byte[][] commitments;
+
+	@NonNull public ElGamalCiphertextish[] capabilities;
 }

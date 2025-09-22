@@ -12,8 +12,7 @@ import org.mockito.InjectMocks;
 
 import io.github.magwas.testing.TestBase;
 
-class ConvertPublicKeyToStringTest extends TestBase
-		implements PublicKeyTestData {
+class ConvertPublicKeyToStringTest extends TestBase implements PublicKeyTestData {
 
 	@InjectMocks
 	ConvertPublicKeyToString convertPublicKeyToString;
@@ -21,9 +20,7 @@ class ConvertPublicKeyToStringTest extends TestBase
 	@Test
 	void test() {
 		PublicKey pub = mock(PublicKey.class);
-		when(pub.getEncoded())
-				.thenReturn(Base64.getDecoder().decode(PUBLIC_KEY_BASE64));
+		when(pub.getEncoded()).thenReturn(Base64.getDecoder().decode(PUBLIC_KEY_BASE64));
 		assertEquals(PUBLIC_KEY_BASE64, convertPublicKeyToString.apply(pub));
 	}
-
 }

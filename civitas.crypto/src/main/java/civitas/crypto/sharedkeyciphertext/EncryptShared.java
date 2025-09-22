@@ -18,9 +18,12 @@ public class EncryptShared implements Constants {
 	public SharedKeyCiphertext apply(SharedKey key, SharedKeyMsg msg) {
 		SharedKey keyc = key;
 		SharedKeyMsg msgc = msg;
-		byte[] encrypted = cryptoBase.doCrypto(SHARED_KEY_CIPHER_ALG,
-				SHARED_KEY_PROVIDER, keyc.k(), Cipher.ENCRYPT_MODE, msgc.m().getBytes());
+		byte[] encrypted = cryptoBase.doCrypto(
+				SHARED_KEY_CIPHER_ALG,
+				SHARED_KEY_PROVIDER,
+				keyc.k(),
+				Cipher.ENCRYPT_MODE,
+				msgc.m().getBytes());
 		return new SharedKeyCiphertext(encrypted);
 	}
-
 }

@@ -25,5 +25,4 @@ public class CommonUtil {
 	public static String fromBigInt(final CivitasBigInteger a) {
 		return Base64.getEncoder().encodeToString(a.toByteArray());
 	}
-
 }

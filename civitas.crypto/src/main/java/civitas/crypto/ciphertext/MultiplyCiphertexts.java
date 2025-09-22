@@ -6,8 +6,7 @@ import civitas.util.CivitasBigInteger;
 
 public class MultiplyCiphertexts {
 
-	public CiphertextList apply(ElGamalCiphertextish[][] ciphertexts,
-			ElGamalParameters parameters) {
+	public CiphertextList apply(ElGamalCiphertextish[][] ciphertexts, ElGamalParameters parameters) {
 		if (ciphertexts == null || ciphertexts[0] == null) {
 			return new CiphertextList();
 		}
@@ -35,5 +34,4 @@ public class MultiplyCiphertexts {
 		}
 		return result;
 	}
-
 }

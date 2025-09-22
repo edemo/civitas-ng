@@ -19,21 +19,27 @@ class FakeElGamalProofDVRTest extends RandomAwareTestBase
 	@DisplayName("creates a fake proof with the private key of the verifier which verifies")
 	void test1_1() {
 
-		assertEquals(FAKE_PROOF_DVR,
-				fakeElGamalProofDVRC.apply(CIPHERTEXT_E, CIPHERTEXT_EPRIME,
-						EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME,
+		assertEquals(
+				FAKE_PROOF_DVR,
+				fakeElGamalProofDVRC.apply(
+						CIPHERTEXT_E,
+						CIPHERTEXT_EPRIME,
+						EL_GAMAL_PUBLIC_KEY_E,
+						EL_GAMAL_PUBLIC_KEY_EPRIME,
 						EL_GAMAL_PRIVATE_KEY_EPRIME));
 	}
 
 	@Test
-	@DisplayName("the version with arguments in different order also works"
-			+ " FIXME: why do we have two versions?")
+	@DisplayName("the version with arguments in different order also works" + " FIXME: why do we have two versions?")
 	void test1_2() {
 
-		assertEquals(FAKE_PROOF_DVR,
-				fakeElGamalProofDVRC.apply(EL_GAMAL_PUBLIC_KEY_E,
-						EL_GAMAL_PUBLIC_KEY_EPRIME, EL_GAMAL_PRIVATE_KEY_EPRIME,
-						CIPHERTEXT_E, CIPHERTEXT_EPRIME));
+		assertEquals(
+				FAKE_PROOF_DVR,
+				fakeElGamalProofDVRC.apply(
+						EL_GAMAL_PUBLIC_KEY_E,
+						EL_GAMAL_PUBLIC_KEY_EPRIME,
+						EL_GAMAL_PRIVATE_KEY_EPRIME,
+						CIPHERTEXT_E,
+						CIPHERTEXT_EPRIME));
 	}
-
 }

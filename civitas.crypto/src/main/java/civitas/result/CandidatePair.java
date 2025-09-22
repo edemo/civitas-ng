@@ -1,4 +1,3 @@
 package civitas.result;
 
-public record CandidatePair<C, D>(C car, D cdr) {
-}
+public record CandidatePair<C, D>(C car, D cdr) {}

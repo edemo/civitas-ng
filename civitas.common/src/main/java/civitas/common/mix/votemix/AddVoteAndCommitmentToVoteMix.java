@@ -15,13 +15,11 @@ public class AddVoteAndCommitmentToVoteMix {
 	@Autowired
 	AddVoteToVoteMix addVoteToVoteMix;
 
-	public void apply(@Nonnull final VoteMix that, @Nonnull final EncryptedVote v,
-			@Nonnull final byte[] commitment) {
+	public void apply(@Nonnull final VoteMix that, @Nonnull final EncryptedVote v, @Nonnull final byte[] commitment) {
 		if (null == that || null == v || null == commitment) {
 			throw new NullPointerException();
 		}
 		addVoteToVoteMix.apply(that, v);
 		addCommitmentToMix.apply(that, commitment);
 	}
-
 }

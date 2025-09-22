@@ -17,9 +17,13 @@ public class VerifyMixVoteElementRevelation {
 	@Autowired
 	ElGamalReencrypt elGamalReencrypt;
 
-	public boolean apply(@Nonnull MixVoteElementRevelation that,
-			@Nonnull ElGamalPublicKey key, int fromIndex, int toIndex,
-			@Nonnull VoterMix fromMix, @Nonnull VoterMix toMix) {
+	public boolean apply(
+			@Nonnull MixVoteElementRevelation that,
+			@Nonnull ElGamalPublicKey key,
+			int fromIndex,
+			int toIndex,
+			@Nonnull VoterMix fromMix,
+			@Nonnull VoterMix toMix) {
 		if (null == fromMix || null == toMix) {
 			throw new NullPointerException();
 		}
@@ -34,11 +38,8 @@ public class VerifyMixVoteElementRevelation {
 		ElGamalCiphertextish toChoice = toVote.encChoice();
 		ElGamalCiphertextish toCapability = toVote.encCapability();
 
-		ElGamalCiphertextish rechoice = elGamalReencrypt.apply(key, fromChoice,
-				that.choiceFactor);
-		ElGamalCiphertextish recapability = elGamalReencrypt.apply(key,
-				fromCapability, that.reencryptFactor);
+		ElGamalCiphertextish rechoice = elGamalReencrypt.apply(key, fromChoice, that.choiceFactor);
+		ElGamalCiphertextish recapability = elGamalReencrypt.apply(key, fromCapability, that.reencryptFactor);
 		return rechoice.equals(toChoice) && recapability.equals(toCapability);
 	}
-
 }

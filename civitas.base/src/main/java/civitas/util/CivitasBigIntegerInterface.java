@@ -31,5 +31,4 @@ public interface CivitasBigIntegerInterface extends Constants {
 	default CivitasBigInteger pow(final int j) {
 		return new CivitasBigInteger(asBigint().pow(j));
 	}
-
 }

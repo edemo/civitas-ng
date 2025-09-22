@@ -17,5 +17,4 @@ class CreatePermutationTest extends TestBase implements BasicValuesTestData {
 	void test() {
 		assertArrayEquals(INTEGER_PERMUTATION, createPermutation.apply(5));
 	}
-
 }

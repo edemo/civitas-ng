@@ -58,5 +58,4 @@ public interface Constants {
 	String VoteCapabilityShareOPENING_TAG = "voteCapabilityShare";
 
 	Charset CHARSET = StandardCharsets.UTF_8;
-
 }

@@ -10,20 +10,20 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class ConstructElGamalProofDVRTest extends RandomAwareTestBase
-		implements ElGamalProofDVRTestData {
+class ConstructElGamalProofDVRTest extends RandomAwareTestBase implements ElGamalProofDVRTestData {
 
 	@InjectMocks
 	ConstructElGamalProofDVR constructElGamalProofDVR;
 
 	@Test
-	@DisplayName("""
+	@DisplayName(
+			"""
 			proofs that we know the unencrypted value of the message
 			both ciphertexts e, eprime are encrypted with the key
 			zeta is the difference of the factors used for encription:
 			zeta = factor_eprime - factor_e such that
-			   eprime.a = g^ factor_eprime
-			   e.a = g^ factor_e
+			eprime.a = g^ factor_eprime
+			e.a = g^ factor_e
 			d,w,r are randoms in Z_q
 			a = g^d (mod p)
 			b = key^d (mod p)
@@ -34,9 +34,8 @@ class ConstructElGamalProofDVRTest extends RandomAwareTestBase
 			""")
 	void test1() throws IOException {
 
-		ElGamalProofDVR proof = constructElGamalProofDVR.apply(CIPHERTEXT_E,
-				CIPHERTEXT_EPRIME, EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME,
-				ZETA);
+		ElGamalProofDVR proof = constructElGamalProofDVR.apply(
+				CIPHERTEXT_E, CIPHERTEXT_EPRIME, EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME, ZETA);
 		assertEquals(EL_GAMAL_PROOF_DVR, proof);
 	}
 
@@ -44,10 +43,12 @@ class ConstructElGamalProofDVRTest extends RandomAwareTestBase
 	@DisplayName("the version where factors are given computes zeta")
 	void test1_1() throws IOException {
 		ElGamalProofDVR proof = constructElGamalProofDVR.apply(
-				EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_E,
-				CIPHERTEXT_EPRIME, ELGAMAL_REENCRYPT_FACTOR_E,
+				EL_GAMAL_PUBLIC_KEY_E,
+				EL_GAMAL_PUBLIC_KEY_EPRIME,
+				CIPHERTEXT_E,
+				CIPHERTEXT_EPRIME,
+				ELGAMAL_REENCRYPT_FACTOR_E,
 				ELGAMAL_REENCRYPT_FACTOR_EPRIME);
 		assertEquals(EL_GAMAL_PROOF_DVR, proof);
 	}
-
 }
