@@ -11,8 +11,8 @@ import civitas.common.election.ElectionDetailsTestData;
 import civitas.common.mix.hashrevelation.GetMetaForMixHashRevelation;
 import civitas.common.mix.hashrevelation.MixHashRevelationTestData;
 
-class GetMetaForMixHashRevelationTest extends RandomAwareTestBase implements
-		CapabilityMixTestData, ElectionDetailsTestData, MixHashRevelationTestData {
+class GetMetaForMixHashRevelationTest extends RandomAwareTestBase
+		implements CapabilityMixTestData, ElectionDetailsTestData, MixHashRevelationTestData {
 
 	@InjectMocks
 	GetMetaForMixHashRevelation getMetaForMixHashRevelation;
@@ -20,15 +20,12 @@ class GetMetaForMixHashRevelationTest extends RandomAwareTestBase implements
 	@Test
 	@DisplayName("the meta is in the format 'mixHashRevelation:vote:<blockname>:<tellerIndex>' for a vote")
 	void test() {
-		assertEquals(MIX_HASH_REVELATION_VOTE,
-				getMetaForMixHashRevelation.apply(ELECTION_DETAILS, true, 14, 2));
+		assertEquals(MIX_HASH_REVELATION_VOTE, getMetaForMixHashRevelation.apply(ELECTION_DETAILS, true, 14, 2));
 	}
 
 	@Test
 	@DisplayName("the meta is in the format 'mixHashRevelation:elecRoll:<blockname>:<tellerIndex>' for a roll")
 	void test1() {
-		assertEquals(MIX_HASH_REVELATION_ROLL,
-				getMetaForMixHashRevelation.apply(ELECTION_DETAILS, false, 14, 2));
+		assertEquals(MIX_HASH_REVELATION_ROLL, getMetaForMixHashRevelation.apply(ELECTION_DETAILS, false, 14, 2));
 	}
-
 }

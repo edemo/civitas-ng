@@ -9,5 +9,4 @@ public class GetElGamalPublicKeyName {
 	public String apply(final ElGamalPublicKey that) {
 		return "ElGamalPublicKey-" + CommonUtil.fromBigInt(that.y);
 	}
-
 }

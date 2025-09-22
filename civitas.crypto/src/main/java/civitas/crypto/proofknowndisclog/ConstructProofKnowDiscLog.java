@@ -13,13 +13,12 @@ import civitas.util.CivitasBigInteger;
 public class ConstructProofKnowDiscLog {
 	@Autowired
 	CryptoBase cryptoBase;
+
 	@Autowired
 	CryptoHash cryptoHash;
 
-	public ElGamalProofKnowDiscLog apply(ElGamalParameters prms,
-										 ElGamalPrivateKey k) {
-		if (!(k instanceof ElGamalPrivateKey) || prms == null
-				|| !(prms instanceof ElGamalParameters)) {
+	public ElGamalProofKnowDiscLog apply(ElGamalParameters prms, ElGamalPrivateKey k) {
+		if (!(k instanceof ElGamalPrivateKey) || prms == null || !(prms instanceof ElGamalParameters)) {
 			return null;
 		}
 		CivitasBigInteger v = prms.g.modPow(k.x(), prms.p);
@@ -29,5 +28,4 @@ public class ConstructProofKnowDiscLog {
 		CivitasBigInteger r = z.modAdd(c.modMultiply(k.x(), prms.q), prms.q);
 		return new ElGamalProofKnowDiscLog(a, c, r, v);
 	}
-
 }

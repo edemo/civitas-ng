@@ -25,5 +25,4 @@ public class InitialMatrix {
 		}
 		return r;
 	}
-
 }

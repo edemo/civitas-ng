@@ -13,9 +13,7 @@ public class GetReencryptedCapabilityMix {
 	@Autowired
 	ElGamalReencrypt elGamalReencrypt;
 
-	public ElGamalCiphertextish apply(CapabilityMix that, int i,
-			ElGamalReencryptFactor factor, ElGamalPublicKey key) {
+	public ElGamalCiphertextish apply(CapabilityMix that, int i, ElGamalReencryptFactor factor, ElGamalPublicKey key) {
 		return elGamalReencrypt.apply(key, that.capabilities[i], factor);
 	}
-
 }

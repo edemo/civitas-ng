@@ -17,5 +17,4 @@ class CurrentVersionTest implements BasicValuesTestData {
 	void test() {
 		assertEquals(VERSIONSTRING, CommonUtil.currentVersion());
 	}
-
 }

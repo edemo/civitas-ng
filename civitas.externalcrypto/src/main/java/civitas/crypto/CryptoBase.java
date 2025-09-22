@@ -32,27 +32,23 @@ public class CryptoBase implements Constants {
 		try {
 			getPublicKeyGenerator = new GetPublicKeyGenerator();
 			getSharedKeyGenerator = new GetSharedKeyGenerator();
-			sharedKeyFactory = SecretKeyFactory.getInstance(SHARED_KEY_ALG,
-					SHARED_KEY_PROVIDER);
-			publicKeyFactory = KeyFactory.getInstance(PUBLIC_KEY_ALG,
-					PUBLIC_KEY_PROVIDER);
-			rsaSigner = Signature.getInstance(PUBLIC_KEY_SIGNATURE_ALG,
-					PUBLIC_KEY_PROVIDER);
+			sharedKeyFactory = SecretKeyFactory.getInstance(SHARED_KEY_ALG, SHARED_KEY_PROVIDER);
+			publicKeyFactory = KeyFactory.getInstance(PUBLIC_KEY_ALG, PUBLIC_KEY_PROVIDER);
+			rsaSigner = Signature.getInstance(PUBLIC_KEY_SIGNATURE_ALG, PUBLIC_KEY_PROVIDER);
 		} catch (Exception e) {
 			throw new CryptoError(e);
 		}
 	}
 
 	public CivitasBigInteger obtainProbablePrime(int bitLenght) {
-		return CivitasBigIntegerFactory
-				.obtain(new BigInteger(bitLenght, CERTAINTY, RANDOM));
+		return CivitasBigIntegerFactory.obtain(new BigInteger(bitLenght, CERTAINTY, RANDOM));
 	}
 
 	public CivitasBigInteger generateRandomElement(CivitasBigInteger n) {
 		CivitasBigInteger r = null;
 		do {
 			r = CivitasBigIntegerFactory.obtain(n.bitLength(), RANDOM);
-		} while (r.equals(Constants.ZERO) || r.compareTo(n) >= 0);
+		} while (Constants.ZERO.equals(r) || r.compareTo(n) >= 0);
 		return r;
 	}
 
@@ -60,8 +56,7 @@ public class CryptoBase implements Constants {
 		return RANDOM;
 	}
 
-	public byte[] doCrypto(String alg, String provider, Key skey, int mode,
-			byte[] input) {
+	public byte[] doCrypto(String alg, String provider, Key skey, int mode, byte[] input) {
 		Cipher cipher;
 		try {
 			cipher = Cipher.getInstance(alg, provider);

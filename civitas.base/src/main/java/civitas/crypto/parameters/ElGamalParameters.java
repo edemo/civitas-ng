@@ -18,11 +18,9 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class ElGamalParameters {
 
-	@NonNull
-	public final CivitasBigInteger p;
-	@NonNull
-	public final CivitasBigInteger q;
-	@NonNull
-	public final CivitasBigInteger g;
+	@NonNull public final CivitasBigInteger p;
 
+	@NonNull public final CivitasBigInteger q;
+
+	@NonNull public final CivitasBigInteger g;
 }

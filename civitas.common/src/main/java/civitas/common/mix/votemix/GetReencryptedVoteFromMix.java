@@ -15,7 +15,9 @@ public class GetReencryptedVoteFromMix {
 	@Autowired
 	ElGamalReencrypt elGamalReencrypt;
 
-	public EncryptedVote apply(@Nonnull VoteMix that, int i,
+	public EncryptedVote apply(
+			@Nonnull VoteMix that,
+			int i,
 			@Nonnull ElGamalReencryptFactor choiceFactor,
 			@Nonnull ElGamalReencryptFactor capabilityFactor,
 			@Nonnull ElGamalPublicKey key) {
@@ -23,9 +25,9 @@ public class GetReencryptedVoteFromMix {
 			throw new NullPointerException();
 		}
 		EncryptedVote v = that.votes[i];
-		return new EncryptedVote(v.context(),
+		return new EncryptedVote(
+				v.context(),
 				elGamalReencrypt.apply(key, v.encChoice(), choiceFactor),
 				elGamalReencrypt.apply(key, v.encCapability(), capabilityFactor));
 	}
-
 }

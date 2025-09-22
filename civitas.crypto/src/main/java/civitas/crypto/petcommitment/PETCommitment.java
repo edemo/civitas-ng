@@ -10,5 +10,4 @@ import civitas.crypto.Constants;
 import civitas.util.CivitasBigInteger;
 import lombok.NonNull;
 
-public record PETCommitment(@NonNull CivitasBigInteger hash) implements Constants {
-}
+public record PETCommitment(@NonNull CivitasBigInteger hash) implements Constants {}

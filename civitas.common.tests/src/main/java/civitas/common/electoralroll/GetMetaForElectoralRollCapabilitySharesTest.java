@@ -15,8 +15,6 @@ class GetMetaForElectoralRollCapabilitySharesTest extends RandomAwareTestBase
 
 	@Test
 	void test() {
-		assertEquals(META_FOR_ELECTORAL_ROLL_CAPABILITY_SHARES,
-				getMetaForElectoralRollCapabilityShares.apply(1, 3));
+		assertEquals(META_FOR_ELECTORAL_ROLL_CAPABILITY_SHARES, getMetaForElectoralRollCapabilityShares.apply(1, 3));
 	}
-
 }

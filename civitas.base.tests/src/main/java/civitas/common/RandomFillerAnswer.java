@@ -10,10 +10,8 @@ public class RandomFillerAnswer implements Answer<Void> {
 	@Override
 	public Void answer(InvocationOnMock invocation) {
 
-		TestUtil.fakeRandomToArray(invocation,
-				BasicValuesTestData.RANDOMS.get(RandomAnswer.step));
+		TestUtil.fakeRandomToArray(invocation, BasicValuesTestData.RANDOMS.get(RandomAnswer.step));
 		RandomAnswer.step++;
 		return null;
 	}
-
 }

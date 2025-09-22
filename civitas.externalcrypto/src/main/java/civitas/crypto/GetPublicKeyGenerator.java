@@ -22,5 +22,4 @@ class GetPublicKeyGenerator implements Constants {
 			throw new CryptoError(impossible);
 		}
 	}
-
 }

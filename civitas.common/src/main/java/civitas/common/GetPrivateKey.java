@@ -23,8 +23,9 @@ public class GetPrivateKey {
 
 	Map<String, PrivateKey> keyCache = new HashMap<>();
 
-	public PrivateKey apply(String storeFile, String storePassword, String serverKeyEntry) throws KeyStoreException,
-			NoSuchAlgorithmException, CertificateException, IOException, UnrecoverableKeyException {
+	public PrivateKey apply(String storeFile, String storePassword, String serverKeyEntry)
+			throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException,
+					UnrecoverableKeyException {
 
 		if (null == keyCache.get(serverKeyEntry)) {
 			char[] pwdArray = storePassword.toCharArray();

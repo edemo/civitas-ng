@@ -9,12 +9,10 @@ public class Max {
 	@Autowired
 	CompareBeats compareBeats;
 
-	CandidatePair<Integer, Integer> apply(CandidatePair<Integer, Integer> xr,
-			CandidatePair<Integer, Integer> yr) {
+	CandidatePair<Integer, Integer> apply(CandidatePair<Integer, Integer> xr, CandidatePair<Integer, Integer> yr) {
 		if (compareBeats.apply(xr, yr) > 0) {
 			return xr;
 		}
 		return yr;
-
 	}
 }

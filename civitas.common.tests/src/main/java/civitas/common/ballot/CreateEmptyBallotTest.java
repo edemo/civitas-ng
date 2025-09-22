@@ -9,8 +9,7 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class CreateEmptyBallotTest extends RandomAwareTestBase
-		implements BallotTestData {
+class CreateEmptyBallotTest extends RandomAwareTestBase implements BallotTestData {
 	@InjectMocks
 	CreateEmptyBallot createEmptyBallot;
 
@@ -23,8 +22,6 @@ class CreateEmptyBallotTest extends RandomAwareTestBase
 	@Test
 	@DisplayName("the number of candidates must be at least 2: one candidate and none of above")
 	void test2() {
-		assertThrows(IllegalArgumentException.class,
-				() -> createEmptyBallot.apply(1));
+		assertThrows(IllegalArgumentException.class, () -> createEmptyBallot.apply(1));
 	}
-
 }

@@ -9,8 +9,7 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.common.mix.confirmation.MixConfirmationTestData;
 
-class GetMixConfirmationMetaTest extends RandomAwareTestBase
-		implements MixConfirmationTestData {
+class GetMixConfirmationMetaTest extends RandomAwareTestBase implements MixConfirmationTestData {
 
 	@InjectMocks
 	GetMixConfirmationMeta getMixConfirmationMeta;
@@ -18,15 +17,12 @@ class GetMixConfirmationMetaTest extends RandomAwareTestBase
 	@Test
 	@DisplayName("if vote mix, the format is 'mixConfirm:vote:<speakerindex>:<tellerindex>'")
 	void test() {
-		assertEquals(MIX_CONFIRM_VOTE_META,
-				getMixConfirmationMeta.apply(true, 1, 2));
+		assertEquals(MIX_CONFIRM_VOTE_META, getMixConfirmationMeta.apply(true, 1, 2));
 	}
 
 	@Test
 	@DisplayName("if not vote mix, the format is 'mixConfirm:elecRoll:<speakerindex>:<tellerindex>'")
 	void test1() {
-		assertEquals(MIX_CONFIRM_ROLL_META,
-				getMixConfirmationMeta.apply(false, 1, 2));
+		assertEquals(MIX_CONFIRM_ROLL_META, getMixConfirmationMeta.apply(false, 1, 2));
 	}
-
 }

@@ -10,5 +10,4 @@ import civitas.crypto.privatekey.ElGamalPrivateKey;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import lombok.NonNull;
 
-public record ElGamalKeyPair(@NonNull ElGamalPublicKey publicKey, @NonNull ElGamalPrivateKey privateKey) {
-}
+public record ElGamalKeyPair(@NonNull ElGamalPublicKey publicKey, @NonNull ElGamalPrivateKey privateKey) {}

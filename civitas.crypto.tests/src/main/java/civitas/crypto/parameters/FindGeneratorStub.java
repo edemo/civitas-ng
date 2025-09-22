@@ -10,7 +10,5 @@ public class FindGeneratorStub implements ElGamalParametersTestData {
 		when(findGenerator.apply(SCHNORR_PRIMES)).thenReturn(BIGINT_G);
 		when(findGenerator.apply(SAFE_PRIMES)).thenReturn(SAFE_G);
 		return findGenerator;
-
 	}
-
 }

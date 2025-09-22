@@ -7,5 +7,4 @@ public class GetElectionAbandonmentReporter {
 		}
 		return "unknown entity";
 	}
-
 }

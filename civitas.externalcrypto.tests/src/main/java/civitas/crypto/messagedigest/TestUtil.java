@@ -11,5 +11,4 @@ public class TestUtil {
 			throw new Error();
 		}
 	}
-
 }

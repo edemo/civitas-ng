@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import civitas.common.ServerHost;
@@ -17,11 +16,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-record ElGamalKeyShareStored(@NonNull BigInteger pubKeyY,
-		@NonNull BigInteger proofA, @NonNull BigInteger proofC,
-		@NonNull BigInteger proofR, @NonNull BigInteger proofV) {
-}
+record ElGamalKeyShareStored(
+		@NonNull BigInteger pubKeyY,
+		@NonNull BigInteger proofA,
+		@NonNull BigInteger proofC,
+		@NonNull BigInteger proofR,
+		@NonNull BigInteger proofV) {}
 
 @Data
 @NoArgsConstructor
@@ -29,14 +31,14 @@ record ElGamalKeyShareStored(@NonNull BigInteger pubKeyY,
 @RequiredArgsConstructor
 public class ElectionCache {
 	@Id
-	@NonNull
-	String boardID;
-	@NonNull
-	Integer myIndex;
-	@NonNull
-	ElectionStatus status;
-	@NonNull
-	ElectionDetails electionDetails;
+	@NonNull String boardID;
+
+	@NonNull Integer myIndex;
+
+	@NonNull ElectionStatus status;
+
+	@NonNull ElectionDetails electionDetails;
+
 	List<ServerHost> hosts;
 	Long electionStartTime;
 	Long electionStopTime;

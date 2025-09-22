@@ -16,10 +16,8 @@ public class DecryptShared implements Constants {
 	CryptoBase cryptoBase;
 
 	public SharedKeyMsg apply(final SharedKey key, final SharedKeyCiphertext ciphertext) {
-		byte[] plaintext = cryptoBase.doCrypto(SHARED_KEY_CIPHER_ALG,
-				SHARED_KEY_PROVIDER, key.k(), Cipher.DECRYPT_MODE,
-				ciphertext.encryptedBytes);
+		byte[] plaintext = cryptoBase.doCrypto(
+				SHARED_KEY_CIPHER_ALG, SHARED_KEY_PROVIDER, key.k(), Cipher.DECRYPT_MODE, ciphertext.encryptedBytes);
 		return new SharedKeyMsg(new String(plaintext, CHARSET));
 	}
-
 }

@@ -8,8 +8,7 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class ElGamalProofDiscLogEqualityTest extends RandomAwareTestBase
-		implements ElGamalProofDiscLogEqualityTestData {
+class ElGamalProofDiscLogEqualityTest extends RandomAwareTestBase implements ElGamalProofDiscLogEqualityTestData {
 
 	@InjectMocks
 	private static ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
@@ -21,12 +20,11 @@ class ElGamalProofDiscLogEqualityTest extends RandomAwareTestBase
 			+ "r = (z + cx) mod q		  The proof is (a,b,c,r). ")
 	void construcProofTest() {
 
-		ElGamalProofDiscLogEquality proof = constructElGamalDiscLogEqualityProof
-				.apply(EL_GAMAL_PARAMETERS,
-						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G1,
-						EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G2, PRIVKEY_E);
+		ElGamalProofDiscLogEquality proof = constructElGamalDiscLogEqualityProof.apply(
+				EL_GAMAL_PARAMETERS,
+				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G1,
+				EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_G2,
+				PRIVKEY_E);
 		assertEquals(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT, proof);
-
 	}
-
 }

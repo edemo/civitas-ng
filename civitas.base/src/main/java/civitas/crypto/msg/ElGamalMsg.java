@@ -9,5 +9,4 @@ package civitas.crypto.msg;
 import civitas.util.CivitasBigInteger;
 import lombok.NonNull;
 
-public record ElGamalMsg(@NonNull CivitasBigInteger m) implements CryptMessage {
-}
+public record ElGamalMsg(@NonNull CivitasBigInteger m) implements CryptMessage {}

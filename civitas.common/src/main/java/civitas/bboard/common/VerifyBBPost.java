@@ -12,6 +12,7 @@ public class VerifyBBPost {
 
 	@Autowired
 	VerifyPublicKeySignature verifyPublicKeySignature;
+
 	@Autowired
 	CryptoHash cryptoHash;
 

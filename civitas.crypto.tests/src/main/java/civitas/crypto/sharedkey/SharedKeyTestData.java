@@ -14,12 +14,9 @@ public interface SharedKeyTestData {
 	byte[] SHARED_KEY_BYTES = Base64.getDecoder().decode(SHARED_KEY_BASE64);
 	byte[] SHARED_KEY_BYTES_BAD = "bad bytes".getBytes();
 	SecretKeySpec SHARED_KEY_SPEC = new SecretKeySpec(SHARED_KEY_BYTES, "AES");
-	SecretKeySpec SHARED_KEY_SPEC_BAD = new SecretKeySpec(SHARED_KEY_BYTES_BAD,
-			"AES");
+	SecretKeySpec SHARED_KEY_SPEC_BAD = new SecretKeySpec(SHARED_KEY_BYTES_BAD, "AES");
 	SecretKey SHARED_KEY_JS = mock(SecretKey.class);
 
 	SharedKey SHARED_KEY = new SharedKey(SHARED_KEY_SPEC, SHARED_KEY_NAME);
-	String SHARED_KEY_ON_WIRE = SHARED_KEY_NAME + "\n"
-			+ SHARED_KEY_BASE64 + "\n";
-
+	String SHARED_KEY_ON_WIRE = SHARED_KEY_NAME + "\n" + SHARED_KEY_BASE64 + "\n";
 }

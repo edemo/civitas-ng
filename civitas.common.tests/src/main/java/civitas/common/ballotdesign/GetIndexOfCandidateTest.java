@@ -9,8 +9,7 @@ import org.mockito.InjectMocks;
 import civitas.common.RandomAwareTestBase;
 import civitas.util.BasicValuesTestData;
 
-class GetIndexOfCandidateTest extends RandomAwareTestBase
-		implements BallotDesignTestData, BasicValuesTestData {
+class GetIndexOfCandidateTest extends RandomAwareTestBase implements BallotDesignTestData, BasicValuesTestData {
 
 	@InjectMocks
 	GetIndexOfCandidate getIndexOfCandidate;
@@ -24,8 +23,7 @@ class GetIndexOfCandidateTest extends RandomAwareTestBase
 	@Test
 	@DisplayName("finds the candidate even when case does not match")
 	void test1() {
-		assertEquals(1,
-				getIndexOfCandidate.apply(BALLOTDESIGN, CANDIDATE.toLowerCase()));
+		assertEquals(1, getIndexOfCandidate.apply(BALLOTDESIGN, CANDIDATE.toLowerCase()));
 	}
 
 	@Test
@@ -33,5 +31,4 @@ class GetIndexOfCandidateTest extends RandomAwareTestBase
 	void test2() {
 		assertEquals(-1, getIndexOfCandidate.apply(BALLOTDESIGN, SOMESTRING));
 	}
-
 }

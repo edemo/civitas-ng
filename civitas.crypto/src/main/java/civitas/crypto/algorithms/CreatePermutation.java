@@ -27,5 +27,4 @@ public class CreatePermutation {
 
 		return perm;
 	}
-
 }

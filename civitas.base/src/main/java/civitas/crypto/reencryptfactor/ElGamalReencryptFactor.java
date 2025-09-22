@@ -9,5 +9,4 @@ package civitas.crypto.reencryptfactor;
 import civitas.util.CivitasBigInteger;
 import lombok.NonNull;
 
-public record ElGamalReencryptFactor(@NonNull CivitasBigInteger r) {
-}
+public record ElGamalReencryptFactor(@NonNull CivitasBigInteger r) {}

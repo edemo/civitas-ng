@@ -8,8 +8,7 @@ import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
 
-class CreateBallotDesignTest extends RandomAwareTestBase
-		implements BallotDesignTestData {
+class CreateBallotDesignTest extends RandomAwareTestBase implements BallotDesignTestData {
 
 	@InjectMocks
 	CreateBallotDesign createBallotDesign;
@@ -17,8 +16,6 @@ class CreateBallotDesignTest extends RandomAwareTestBase
 	@DisplayName("creates a ballot design from the list of candidates")
 	@Test
 	void test() {
-		assertEquals(BALLOTDESIGN,
-				createBallotDesign.apply(CANDIDATES.toArray(new String[0])));
+		assertEquals(BALLOTDESIGN, createBallotDesign.apply(CANDIDATES.toArray(new String[0])));
 	}
-
 }

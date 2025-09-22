@@ -23,5 +23,4 @@ public interface CivitasBigIntegerFactory {
 	static CivitasBigInteger obtain(final int i) {
 		return new CivitasBigInteger(BigInteger.valueOf(i));
 	}
-
 }
