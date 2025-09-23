@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class GetPublicKeyGeneratorService implements Constants {
 	private final Map<String, KeyPairGenerator> publicKeyGenerators = new HashMap<>();
 
-	public KeyPairGenerator apply(int keyLength) {
+	public KeyPairGenerator apply(final int keyLength) {
 		String genKey = String.valueOf(keyLength);
 		KeyPairGenerator g = publicKeyGenerators.get(genKey);
 		if (g != null) {

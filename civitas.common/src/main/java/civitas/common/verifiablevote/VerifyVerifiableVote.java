@@ -16,7 +16,8 @@ public class VerifyVerifiableVote {
 	@Autowired
 	VerifyElGamal1OfLReencryption verifyElGamal1OfLReencryption;
 
-	public boolean apply(VerifiableVote that, ElGamalPublicKey pubKey, CiphertextList ciphertexts, int l) {
+	public boolean apply(
+			final VerifiableVote that, final ElGamalPublicKey pubKey, final CiphertextList ciphertexts, final int l) {
 		if (pubKey == null) {
 			return false;
 		}

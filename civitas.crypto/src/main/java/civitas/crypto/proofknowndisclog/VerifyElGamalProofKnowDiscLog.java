@@ -7,7 +7,7 @@ import civitas.util.CivitasBigInteger;
 
 @Controller
 public class VerifyElGamalProofKnowDiscLog {
-	public boolean apply(ElGamalProofKnowDiscLog that, ElGamalParameters params) {
+	public boolean apply(final ElGamalProofKnowDiscLog that, final ElGamalParameters params) {
 		try {
 			CivitasBigInteger u = params.g.modPow(that.r(), params.p);
 			CivitasBigInteger w = that.a().modMultiply(that.v().modPow(that.c(), params.p), params.p);

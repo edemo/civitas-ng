@@ -8,7 +8,8 @@ import civitas.util.CivitasBigInteger;
 
 @Controller
 public class SchnorrPrimeEncode {
-	public CivitasBigInteger apply(CivitasBigInteger x, ElGamalParameters elGamalParameters) throws CryptoException {
+	public CivitasBigInteger apply(final CivitasBigInteger x, final ElGamalParameters elGamalParameters)
+			throws CryptoException {
 		if (x.compareTo(elGamalParameters.q) > 0) {
 			throw new CryptoException("Message is too large for parameters");
 		}

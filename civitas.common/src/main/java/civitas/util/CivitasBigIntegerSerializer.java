@@ -16,12 +16,13 @@ class CivitasBigIntegerSerializer extends StdSerializer<CivitasBigInteger> {
 		this(null);
 	}
 
-	protected CivitasBigIntegerSerializer(Class<CivitasBigInteger> t) {
+	protected CivitasBigIntegerSerializer(final Class<CivitasBigInteger> t) {
 		super(t);
 	}
 
 	@Override
-	public void serialize(CivitasBigInteger value, JsonGenerator gen, SerializerProvider provider) throws IOException {
+	public void serialize(final CivitasBigInteger value, final JsonGenerator gen, final SerializerProvider provider)
+			throws IOException {
 		gen.writeString(CommonUtil.fromBigInt(value));
 	}
 }

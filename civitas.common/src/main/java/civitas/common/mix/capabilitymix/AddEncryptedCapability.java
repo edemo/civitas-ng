@@ -6,7 +6,7 @@ import civitas.crypto.ciphertext.ElGamalCiphertextish;
 
 public class AddEncryptedCapability {
 
-	public void apply(CapabilityMix that, ElGamalCiphertextish v) {
+	public void apply(final CapabilityMix that, final ElGamalCiphertextish v) {
 		ElGamalCiphertextish[] caps = that.capabilities;
 
 		ElGamalCiphertextish[] n = Arrays.copyOf(caps, caps.length + 1, ElGamalCiphertextish[].class);

@@ -7,7 +7,7 @@ import civitas.crypto.parameters.ElGamalParameters;
 @Controller
 public class VerifyElGamalProofDiscLogEquality {
 
-	public boolean apply(ElGamalProofDiscLogEquality that, ElGamalParameters prms) {
+	public boolean apply(final ElGamalProofDiscLogEquality that, final ElGamalParameters prms) {
 		ElGamalParameters params = prms;
 		try {
 			return that.g1()

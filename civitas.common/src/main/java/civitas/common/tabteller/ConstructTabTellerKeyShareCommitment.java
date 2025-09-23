@@ -22,7 +22,7 @@ public class ConstructTabTellerKeyShareCommitment {
 	@Autowired
 	ConvertToXml convertToXml;
 
-	public TabTellerKeyShareCommitment apply(TabTellerKeyShare that)
+	public TabTellerKeyShareCommitment apply(final TabTellerKeyShare that)
 			throws JAXBException, UnsupportedEncodingException {
 		String xml = convertToXml.apply(that);
 		byte[] hash = cryptoHash.apply(xml.getBytes());

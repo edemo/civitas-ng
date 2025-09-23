@@ -8,7 +8,7 @@ import civitas.util.CivitasBigIntegerFactory;
 @Controller
 public class ConvertHashToBigInt {
 
-	public CivitasBigInteger apply(byte[] hash) {
+	public CivitasBigInteger apply(final byte[] hash) {
 		return CivitasBigIntegerFactory.obtain(1, hash);
 	}
 }

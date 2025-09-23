@@ -11,7 +11,7 @@ public class CreateFreshNonce {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public byte[] apply(int bitlength) {
+	public byte[] apply(final int bitlength) {
 		int bytelength = bitlength / 8;
 		if (bitlength % 8 != 0) {
 			bytelength++;

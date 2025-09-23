@@ -24,11 +24,11 @@ public class TallyVote implements CommonConstants {
 	DecodeChoice decodeChoice;
 
 	public void apply(
-			String additionalcontext,
-			ElGamalMsg msg,
-			String currentcontext,
-			TallyState state,
-			Map<CivitasBigInteger, VoteChoice> decodeMap) {
+			final String additionalcontext,
+			final ElGamalMsg msg,
+			final String currentcontext,
+			final TallyState state,
+			final Map<CivitasBigInteger, VoteChoice> decodeMap) {
 
 		String desiredContext = additionalcontext + KIND;
 		if (currentcontext == null || !currentcontext.startsWith(desiredContext)) {

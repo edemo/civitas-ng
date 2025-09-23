@@ -13,7 +13,7 @@ public class GenerateSafePrime implements Constants {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public PrimePair apply(int length) {
+	public PrimePair apply(final int length) {
 		CivitasBigInteger possibleP, possibleQ;
 		do {
 			possibleQ = cryptoBase.obtainProbablePrime(length);

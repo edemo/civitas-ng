@@ -15,7 +15,7 @@ public class GenerateKeyPairShare {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public ElGamalKeyPairShare apply(ElGamalParameters params) {
+	public ElGamalKeyPairShare apply(final ElGamalParameters params) {
 		ElGamalParameters ps = params;
 
 		CivitasBigInteger x = cryptoBase.generateRandomElement(ps.q);

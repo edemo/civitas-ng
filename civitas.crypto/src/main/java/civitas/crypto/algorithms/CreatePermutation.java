@@ -12,7 +12,7 @@ public class CreatePermutation {
 	@Autowired
 	GenerateRandomInt generateRandomInt;
 
-	public int[] apply(int size) {
+	public int[] apply(final int size) {
 		List<Integer> l = new LinkedList<>();
 		for (int i = 0; i < size; i++) {
 			l.add(i);

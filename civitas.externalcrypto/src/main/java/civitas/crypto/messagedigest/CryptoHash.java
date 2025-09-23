@@ -28,7 +28,7 @@ public class CryptoHash implements Constants {
 		}
 	}
 
-	public byte[] apply(List<CivitasBigInteger> list) {
+	public byte[] apply(final List<CivitasBigInteger> list) {
 		return apply(list.stream()
 				.filter(Objects::nonNull)
 				.map(CivitasBigintegerBase::toByteArray)
@@ -36,14 +36,15 @@ public class CryptoHash implements Constants {
 				.toArray(new byte[0][0]));
 	}
 
-	public CivitasBigInteger apply(CivitasBigInteger a, CivitasBigInteger b, CivitasBigInteger c, byte[] d) {
+	public CivitasBigInteger apply(
+			final CivitasBigInteger a, final CivitasBigInteger b, final CivitasBigInteger c, final byte[] d) {
 		Stream<byte[]> bigintStream =
 				Stream.of(a, b, c).filter(Objects::nonNull).map(CivitasBigintegerBase::toByteArray);
 		List<byte[]> nums = Stream.concat(bigintStream, Stream.of(d)).toList();
 		return CivitasBigIntegerFactory.obtain(apply(nums.toArray(new byte[0][0])));
 	}
 
-	public byte[] apply(byte[]... bytearrays) {
+	public byte[] apply(final byte[]... bytearrays) {
 		Arrays.asList(bytearrays).forEach(x -> {
 			if (null != x) {
 				messageDigest.update(x);

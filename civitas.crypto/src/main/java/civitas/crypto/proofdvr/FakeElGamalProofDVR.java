@@ -29,20 +29,20 @@ public class FakeElGamalProofDVR {
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProofDVR apply(
-			ElGamalPublicKey key,
-			ElGamalPublicKey verifierKey,
-			ElGamalPrivateKey verifierPrivKey,
-			ElGamalCiphertextish e,
-			ElGamalCiphertext ePrime) {
+			final ElGamalPublicKey key,
+			final ElGamalPublicKey verifierKey,
+			final ElGamalPrivateKey verifierPrivKey,
+			final ElGamalCiphertextish e,
+			final ElGamalCiphertext ePrime) {
 		return apply(e, ePrime, key, verifierKey, verifierPrivKey);
 	}
 
 	public ElGamalProofDVR apply(
-			ElGamalCiphertextish e,
-			ElGamalCiphertext et,
-			ElGamalPublicKey key,
-			ElGamalPublicKey verifierKey,
-			ElGamalPrivateKey verifierPrivKey) {
+			final ElGamalCiphertextish e,
+			final ElGamalCiphertext et,
+			final ElGamalPublicKey key,
+			final ElGamalPublicKey verifierKey,
+			final ElGamalPrivateKey verifierPrivKey) {
 
 		ElGamalParameters ps = key.params;
 		// CivitasBigInteger hv = verifierKey.y;

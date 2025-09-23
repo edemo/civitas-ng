@@ -12,7 +12,7 @@ import org.springframework.data.map.repository.config.EnableMapRepositories;
 @EnableMapRepositories("civitas")
 public class WebAppTestConfig {
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		SpringApplication.run(WebAppTestConfig.class, args);
 	}
 }

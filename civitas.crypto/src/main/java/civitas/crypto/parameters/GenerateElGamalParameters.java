@@ -18,7 +18,7 @@ public class GenerateElGamalParameters implements Constants {
 	@Autowired
 	FindGeneratorService findGenerator;
 
-	public ElGamalParameters apply(int keyLength, int groupLength) {
+	public ElGamalParameters apply(final int keyLength, final int groupLength) {
 		PrimePair sp;
 		if (groupLength == keyLength + 1) {
 			sp = generateSafePrime.apply(keyLength);

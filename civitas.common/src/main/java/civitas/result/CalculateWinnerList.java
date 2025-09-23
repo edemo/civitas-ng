@@ -21,7 +21,7 @@ public class CalculateWinnerList {
 	@Autowired
 	IsFullyIgnored isFullyIgnored;
 
-	public List<List<CandidateResult>> apply(Integer[][] matrix, String... candidates) {
+	public List<List<CandidateResult>> apply(final Integer[][] matrix, final String... candidates) {
 		int size = matrix.length;
 		CandidatePair<Integer, Integer>[][] initial = initialMatrix.apply(matrix, size);
 		transitiveClosure.apply(initial, size);

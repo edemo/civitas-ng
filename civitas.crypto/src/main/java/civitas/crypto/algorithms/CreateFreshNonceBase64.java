@@ -12,7 +12,7 @@ public class CreateFreshNonceBase64 {
 	@Autowired
 	ConvertToBase64 convertToBase64;
 
-	public String apply(int bitlength) {
+	public String apply(final int bitlength) {
 		return convertToBase64.apply(createFreshNonce.apply(bitlength));
 	}
 }

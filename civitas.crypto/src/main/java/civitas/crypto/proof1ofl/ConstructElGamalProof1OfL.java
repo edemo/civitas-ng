@@ -30,11 +30,11 @@ public class ConstructElGamalProof1OfL implements Constants {
 	private ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProof1OfL apply(
-			ElGamalPublicKey key,
-			CiphertextList ciphertexts,
-			int choice,
-			ElGamalCiphertextish m,
-			ElGamalReencryptFactor factor) {
+			final ElGamalPublicKey key,
+			final CiphertextList ciphertexts,
+			final int choice,
+			final ElGamalCiphertextish m,
+			final ElGamalReencryptFactor factor) {
 
 		int l = ciphertexts.size();
 		ElGamalParameters ps = key.params;

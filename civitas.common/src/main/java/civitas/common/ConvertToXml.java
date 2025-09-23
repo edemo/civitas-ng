@@ -11,7 +11,7 @@ import jakarta.xml.bind.Marshaller;
 @Controller
 public class ConvertToXml {
 
-	public <T> String apply(T that) throws JAXBException {
+	public <T> String apply(final T that) throws JAXBException {
 		JAXBContext context = JAXBContext.newInstance(that.getClass());
 
 		Marshaller marshaller = context.createMarshaller();

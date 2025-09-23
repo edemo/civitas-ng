@@ -14,7 +14,8 @@ public class VerifyElGamalDecryptionShare {
 	@Autowired
 	public VerifyElGamalProofDiscLogEquality verifyElGamalProofDiscLogEquality;
 
-	public boolean apply(ElGamalDecryptionShare that, ElGamalCiphertext c, ElGamalPublicKey key) throws Error {
+	public boolean apply(final ElGamalDecryptionShare that, final ElGamalCiphertext c, final ElGamalPublicKey key)
+			throws Error {
 		if (c == null) {
 			throw new IllegalArgumentException("null ciphertext");
 		}

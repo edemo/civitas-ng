@@ -25,7 +25,10 @@ public class SignAndEncrypt {
 	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
 
 	public ElGamalSignedCiphertext apply(
-			ElGamalPublicKey key, CryptMessage msg, ElGamalReencryptFactor r, byte[] additionalEnv) {
+			final ElGamalPublicKey key,
+			final CryptMessage msg,
+			final ElGamalReencryptFactor r,
+			final byte[] additionalEnv) {
 		ElGamalParameters ps = key.params;
 		CivitasBigInteger m = msg.m();
 		CivitasBigInteger rr = r.r();

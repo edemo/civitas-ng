@@ -28,23 +28,23 @@ public class ConstructElGamalProofDVR {
 	private ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProofDVR apply(
-			ElGamalPublicKey k,
-			ElGamalPublicKey verifierKey,
-			ElGamalCiphertextish e,
-			ElGamalCiphertext ePrime,
-			ElGamalReencryptFactor er,
-			ElGamalReencryptFactor erPrime) {
+			final ElGamalPublicKey k,
+			final ElGamalPublicKey verifierKey,
+			final ElGamalCiphertextish e,
+			final ElGamalCiphertext ePrime,
+			final ElGamalReencryptFactor er,
+			final ElGamalReencryptFactor erPrime) {
 		ElGamalParameters ps = k.params;
 		CivitasBigInteger zeta = erPrime.r().modSubtract(er.r(), ps.q);
 		return apply(e, ePrime, k, verifierKey, zeta);
 	}
 
 	public ElGamalProofDVR apply(
-			ElGamalCiphertextish e,
-			ElGamalCiphertext eprime,
-			ElGamalPublicKey key,
-			ElGamalPublicKey verifierKey,
-			CivitasBigInteger zeta) {
+			final ElGamalCiphertextish e,
+			final ElGamalCiphertext eprime,
+			final ElGamalPublicKey key,
+			final ElGamalPublicKey verifierKey,
+			final CivitasBigInteger zeta) {
 
 		ElGamalParameters ps = key.params;
 		CivitasBigInteger d = cryptoBase.generateRandomElement(ps.q);

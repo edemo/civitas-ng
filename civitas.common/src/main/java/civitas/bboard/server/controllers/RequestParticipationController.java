@@ -48,7 +48,7 @@ public class RequestParticipationController implements CommonConstants {
 
 	@PostMapping("/requestParticipation")
 	@ResponseBody
-	public String apply(@RequestBody RequestParticipationDTO participationRequest)
+	public String apply(@RequestBody final RequestParticipationDTO participationRequest)
 			throws UnrecoverableKeyException, InvalidKeyException, KeyStoreException, NoSuchAlgorithmException,
 					CertificateException, NoSuchProviderException, SignatureException, JAXBException, IOException,
 					CommunicableException, InvalidKeySpecException, CryptoException {

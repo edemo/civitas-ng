@@ -12,12 +12,12 @@ public class EnvDependentAnswer<T> implements Answer<T> {
 
 	private final Map<EnvironmentState, AnswerOrThrowable<T>> answer;
 
-	public EnvDependentAnswer(Map<EnvironmentState, AnswerOrThrowable<T>> answer) {
+	public EnvDependentAnswer(final Map<EnvironmentState, AnswerOrThrowable<T>> answer) {
 		this.answer = answer;
 	}
 
 	@Override
-	public T answer(InvocationOnMock invocation) throws Throwable {
+	public T answer(final InvocationOnMock invocation) throws Throwable {
 
 		AnswerOrThrowable<T> theAnswer = answer.get(RandomAwareTestBase.state);
 		if (null == theAnswer) {

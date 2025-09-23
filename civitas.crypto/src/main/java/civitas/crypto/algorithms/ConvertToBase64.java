@@ -8,11 +8,11 @@ import civitas.util.CivitasBigInteger;
 
 @Controller
 public class ConvertToBase64 {
-	public String apply(byte[] a) {
+	public String apply(final byte[] a) {
 		return Base64.getEncoder().encodeToString(a);
 	}
 
-	public String apply(CivitasBigInteger i) {
+	public String apply(final CivitasBigInteger i) {
 		return Base64.getEncoder().encodeToString(i.toByteArray());
 	}
 }

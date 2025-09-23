@@ -14,7 +14,8 @@ public class GetVoteMixMeta implements CommonConstants {
 	@Autowired
 	GetBlockName getBlockName;
 
-	public String apply(@Nonnull final ElectionDetails details, int block, int mixNumber, boolean rightMix) {
+	public String apply(
+			@Nonnull final ElectionDetails details, final int block, final int mixNumber, final boolean rightMix) {
 		if (null == details) {
 			throw new NullPointerException();
 		}

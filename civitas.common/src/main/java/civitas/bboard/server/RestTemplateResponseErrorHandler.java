@@ -13,12 +13,12 @@ import org.springframework.web.client.ResponseErrorHandler;
 public class RestTemplateResponseErrorHandler implements ResponseErrorHandler {
 
 	@Override
-	public boolean hasError(ClientHttpResponse httpResponse) throws IOException {
+	public boolean hasError(final ClientHttpResponse httpResponse) throws IOException {
 		return httpResponse.getStatusCode().isError();
 	}
 
 	@Override
-	public void handleError(ClientHttpResponse httpResponse) throws IOException {
+	public void handleError(final ClientHttpResponse httpResponse) throws IOException {
 		String content;
 
 		try (InputStream body = httpResponse.getBody();
