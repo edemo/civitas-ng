@@ -14,7 +14,7 @@ public class ConstructPETShare {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public PETShare apply(ElGamalParameters params, ElGamalCiphertextish a, ElGamalCiphertextish b) {
+	public PETShare apply(final ElGamalParameters params, final ElGamalCiphertextish a, final ElGamalCiphertextish b) {
 		if (a == null || b == null || params == null) {
 			return null;
 		}

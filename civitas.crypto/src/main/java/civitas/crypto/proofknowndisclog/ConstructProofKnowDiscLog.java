@@ -17,7 +17,7 @@ public class ConstructProofKnowDiscLog {
 	@Autowired
 	CryptoHash cryptoHash;
 
-	public ElGamalProofKnowDiscLog apply(ElGamalParameters prms, ElGamalPrivateKey k) {
+	public ElGamalProofKnowDiscLog apply(final ElGamalParameters prms, final ElGamalPrivateKey k) {
 		if (!(k instanceof ElGamalPrivateKey) || prms == null || !(prms instanceof ElGamalParameters)) {
 			return null;
 		}

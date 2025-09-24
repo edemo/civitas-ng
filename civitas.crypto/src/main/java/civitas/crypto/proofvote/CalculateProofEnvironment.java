@@ -18,10 +18,10 @@ public class CalculateProofEnvironment {
 	CryptoHash cryptoHash;
 
 	public List<CivitasBigInteger> apply(
-			ElGamalParameters params,
-			ElGamalCiphertextish encCapability,
-			ElGamalCiphertextish encChoice,
-			String context) {
+			final ElGamalParameters params,
+			final ElGamalCiphertextish encCapability,
+			final ElGamalCiphertextish encChoice,
+			final String context) {
 		List<CivitasBigInteger> e = new LinkedList<>();
 		e.add(params.g);
 		e.add(encCapability.getA());

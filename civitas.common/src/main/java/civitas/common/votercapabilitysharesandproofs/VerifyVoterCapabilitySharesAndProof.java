@@ -34,12 +34,12 @@ public class VerifyVoterCapabilitySharesAndProof {
 	VerifyElGamalProofDVR verifyElGamalProofDVR;
 
 	public boolean apply(
-			@Nonnull VoterCapabilitySharesAndProof that,
-			@Nonnull ElGamalSignedCiphertext[] postedCapabilities,
-			@Nonnull ElGamalPublicKey voterPublicKey,
-			@Nonnull ElGamalPublicKey tabTellerSharedPublicKey,
-			String voterName,
-			int tellerIndex)
+			@Nonnull final VoterCapabilitySharesAndProof that,
+			@Nonnull final ElGamalSignedCiphertext[] postedCapabilities,
+			@Nonnull final ElGamalPublicKey voterPublicKey,
+			@Nonnull final ElGamalPublicKey tabTellerSharedPublicKey,
+			final String voterName,
+			final int tellerIndex)
 			throws UnsupportedEncodingException {
 		if (null == voterPublicKey) {
 			throw new NullPointerException();

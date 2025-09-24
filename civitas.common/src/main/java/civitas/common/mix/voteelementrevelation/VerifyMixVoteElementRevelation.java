@@ -18,12 +18,12 @@ public class VerifyMixVoteElementRevelation {
 	ElGamalReencrypt elGamalReencrypt;
 
 	public boolean apply(
-			@Nonnull MixVoteElementRevelation that,
-			@Nonnull ElGamalPublicKey key,
-			int fromIndex,
-			int toIndex,
-			@Nonnull VoterMix fromMix,
-			@Nonnull VoterMix toMix) {
+			@Nonnull final MixVoteElementRevelation that,
+			@Nonnull final ElGamalPublicKey key,
+			final int fromIndex,
+			final int toIndex,
+			@Nonnull final VoterMix fromMix,
+			@Nonnull final VoterMix toMix) {
 		if (null == fromMix || null == toMix) {
 			throw new NullPointerException();
 		}

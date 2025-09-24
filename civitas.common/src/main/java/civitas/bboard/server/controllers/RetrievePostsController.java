@@ -20,7 +20,7 @@ public class RetrievePostsController {
 	BBPostRepository bBPostRepository;
 
 	@GetMapping("/boards/{bbid}")
-	private Iterable<BBPost> apply(@PathVariable("bbid") String bbid) throws IOException {
+	private Iterable<BBPost> apply(@PathVariable("bbid") final String bbid) throws IOException {
 		getBoardForId.apply(bbid, true);
 
 		return bBPostRepository.findByBbid(bbid);

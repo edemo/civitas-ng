@@ -80,7 +80,8 @@ public class PostController {
 
 	@PostMapping("/boards/{bbid}")
 	@ResponseBody
-	public Long apply(@PathVariable("bbid") String bbid, @RequestBody PostDTO dto) throws CommunicableException {
+	public Long apply(@PathVariable("bbid") final String bbid, @RequestBody final PostDTO dto)
+			throws CommunicableException {
 		String objectID = dto.meta + bbid;
 		checkAccess.apply(Operation.POST, dto.signature.getSignerPubKey(), objectID);
 		try {
@@ -122,7 +123,7 @@ public class PostController {
 		return t;
 	}
 
-	public long apply(String bbid, String meta, Object mesg)
+	public long apply(final String bbid, final String meta, final Object mesg)
 			throws JAXBException, UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException,
 					CertificateException, IOException, CryptoException, CommunicableException {
 		String msg = convertToXml.apply(mesg);

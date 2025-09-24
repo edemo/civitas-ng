@@ -12,7 +12,7 @@ public class FindGeneratorService implements Constants {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public CivitasBigInteger apply(PrimePair sp) {
+	public CivitasBigInteger apply(final PrimePair sp) {
 		CivitasBigInteger g = null;
 		boolean reject = false;
 		CivitasBigInteger p = sp.p;

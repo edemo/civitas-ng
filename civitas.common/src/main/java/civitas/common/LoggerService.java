@@ -10,11 +10,11 @@ public class LoggerService {
 
 	Logger logger = LoggerFactory.getLogger("civitas");
 
-	public void apply(Marker marker, String msg) {
+	public void apply(final Marker marker, final String msg) {
 		logger.info(marker, msg);
 	}
 
-	public void apply(Marker marker, String msg, Throwable throwable) {
+	public void apply(final Marker marker, final String msg, final Throwable throwable) {
 		logger.info(marker, msg, throwable);
 	}
 }

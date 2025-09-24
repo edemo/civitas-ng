@@ -8,12 +8,12 @@ import org.mockito.ArgumentMatcher;
 public class KeySpecMatcherPrivate implements ArgumentMatcher<PKCS8EncodedKeySpec> {
 	private final PKCS8EncodedKeySpec spec;
 
-	public KeySpecMatcherPrivate(PKCS8EncodedKeySpec keyspecPrivate) {
+	public KeySpecMatcherPrivate(final PKCS8EncodedKeySpec keyspecPrivate) {
 		this.spec = keyspecPrivate;
 	}
 
 	@Override
-	public boolean matches(PKCS8EncodedKeySpec argument) {
+	public boolean matches(final PKCS8EncodedKeySpec argument) {
 		if (null == argument) {
 			return null == spec;
 		}

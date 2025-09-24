@@ -12,7 +12,7 @@ public class TransitiveClosure {
 	@Autowired
 	Max max;
 
-	void apply(CandidatePair<Integer, Integer>[][] m, Integer n) {
+	void apply(final CandidatePair<Integer, Integer>[][] m, final Integer n) {
 		for (int k = 0; k < n; k++) {
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j++) {

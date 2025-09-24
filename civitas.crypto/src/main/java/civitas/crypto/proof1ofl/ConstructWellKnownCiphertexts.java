@@ -24,7 +24,7 @@ public class ConstructWellKnownCiphertexts implements Constants {
 	@Autowired
 	EncodeMessage encodeMessage;
 
-	public CiphertextList apply(ElGamalPublicKey key, int count) throws CryptoException {
+	public CiphertextList apply(final ElGamalPublicKey key, final int count) throws CryptoException {
 		if (count < 1 || key == null) {
 			throw new CryptoException("bad parameters for constructWellKnownCiphertexts");
 		}

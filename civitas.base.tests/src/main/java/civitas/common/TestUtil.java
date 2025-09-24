@@ -10,7 +10,7 @@ public class TestUtil {
 
 	static int n = 0;
 
-	public static void fakeRandomToArray(InvocationOnMock invocation, CivitasBigInteger random) {
+	public static void fakeRandomToArray(final InvocationOnMock invocation, final CivitasBigInteger random) {
 		byte[] array = invocation.getArgument(0);
 		java.util.Arrays.fill(array, (byte) 0);
 		byte[] aBytes = random.toByteArray();
@@ -20,7 +20,7 @@ public class TestUtil {
 		}
 	}
 
-	public static <T> T construct(Class<T> klass, Object... params) {
+	public static <T> T construct(final Class<T> klass, final Object... params) {
 		Class<?>[] types = new Class<?>[params.length];
 
 		for (int i = 0; i < types.length; i++) {
@@ -34,7 +34,7 @@ public class TestUtil {
 		}
 	}
 
-	public static Function<CivitasBigInteger, CivitasBigInteger> pick(int mod) {
+	public static Function<CivitasBigInteger, CivitasBigInteger> pick(final int mod) {
 		n = 0;
 		return s -> {
 			if (n < 8 && mod == n++ % 2) {

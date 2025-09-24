@@ -21,7 +21,7 @@ public class IsVoterSubmissionInBlock {
 	@Autowired
 	GetBaseContext getBaseContext;
 
-	public boolean apply(ElectionDetails that, VoterSubmission voter, int block) {
+	public boolean apply(final ElectionDetails that, final VoterSubmission voter, final int block) {
 		if (voter == null) {
 			throw new IllegalArgumentException("null voter");
 		}
@@ -29,7 +29,8 @@ public class IsVoterSubmissionInBlock {
 		return voterBlock == voter.voterBlock;
 	}
 
-	public boolean apply(ElectionDetails that, VoterEncCapabilities voter, String context, int block) {
+	public boolean apply(
+			final ElectionDetails that, final VoterEncCapabilities voter, final String context, final int block) {
 		if (voter == null) {
 			throw new IllegalArgumentException("null voter");
 		}
@@ -39,7 +40,8 @@ public class IsVoterSubmissionInBlock {
 		return voterBlock == voter.voterBlock && targetContext.equals(context);
 	}
 
-	public boolean apply(ElectionDetails that, VoterSubmission voter, String context, int block) {
+	public boolean apply(
+			final ElectionDetails that, final VoterSubmission voter, final String context, final int block) {
 		if (voter == null) {
 			throw new IllegalArgumentException("null voter");
 		}

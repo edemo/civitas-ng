@@ -5,7 +5,8 @@ import civitas.crypto.parameters.ElGamalParameters;
 import civitas.util.CivitasBigInteger;
 
 public class SafePrimeDecode {
-	public CivitasBigInteger apply(CivitasBigInteger i, ElGamalParameters elGamalParameters) throws CryptoException {
+	public CivitasBigInteger apply(CivitasBigInteger i, final ElGamalParameters elGamalParameters)
+			throws CryptoException {
 		if (i.compareTo(elGamalParameters.p) > 0) {
 			throw new CryptoException("Message is too large for parameters");
 		}

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class FormatResult {
-	public String apply(String[] candidates, List<List<CandidateResult>> winnerList) {
+	public String apply(final String[] candidates, final List<List<CandidateResult>> winnerList) {
 		List<String> winResult = new ArrayList<>();
 		int stagenum = 0;
 		for (List<CandidateResult> stage : winnerList) {

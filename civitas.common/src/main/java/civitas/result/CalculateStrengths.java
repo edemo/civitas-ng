@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class CalculateStrengths {
-	public void apply(String[] candidates, List<List<CandidateResult>> winnerList) {
+	public void apply(final String[] candidates, final List<List<CandidateResult>> winnerList) {
 		int noneOfABove = candidates.length - 1;
 		Double base = null;
 		for (int i = winnerList.size() - 1; i >= 0; i--) {

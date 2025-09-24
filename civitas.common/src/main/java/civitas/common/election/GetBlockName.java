@@ -17,7 +17,7 @@ public class GetBlockName {
 	@Autowired
 	GetContextForBlock getContextForBlock;
 
-	public String apply(ElectionDetails that, int block) {
+	public String apply(final ElectionDetails that, final int block) {
 		int voterBlock = getVoterBlockForBlock.apply(that, block);
 		int context = getContextForBlock.apply(that, block);
 		return "voterBlock-" + voterBlock + "-context-" + getNthContext.apply(that.ballotDesign, context);

@@ -21,11 +21,11 @@ public class VerifyPETDecommitment {
 	VerifyElGamalProofDiscLogEquality verifyElGamalProofDiscLogEquality;
 
 	public boolean apply(
-			PETDecommitment self,
-			PETCommitment c,
-			ElGamalParameters params,
-			ElGamalCiphertext ciphertext1,
-			ElGamalCiphertext ciphertext2) {
+			final PETDecommitment self,
+			final PETCommitment c,
+			final ElGamalParameters params,
+			final ElGamalCiphertext ciphertext1,
+			final ElGamalCiphertext ciphertext2) {
 		ElGamalProofDiscLogEquality prf = self.proof();
 		ElGamalParameters ps = params;
 		PETCommitment com = c;

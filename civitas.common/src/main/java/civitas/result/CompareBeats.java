@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class CompareBeats {
-	Integer apply(CandidatePair<Integer, Integer> b1, CandidatePair<Integer, Integer> b2) {
+	Integer apply(final CandidatePair<Integer, Integer> b1, final CandidatePair<Integer, Integer> b2) {
 		if (b1.car() > b2.car()) {
 			return 1;
 		}

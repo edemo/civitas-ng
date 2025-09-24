@@ -12,7 +12,7 @@ public class GenerateSharedKey {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public SharedKey apply(int keyLength) {
+	public SharedKey apply(final int keyLength) {
 		SecretKey k = cryptoBase.getSharedKeyGenerator(keyLength).generateKey();
 		return new SharedKey(k, "sharedKey-civitas");
 	}

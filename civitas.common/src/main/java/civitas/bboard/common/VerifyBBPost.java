@@ -16,7 +16,7 @@ public class VerifyBBPost {
 	@Autowired
 	CryptoHash cryptoHash;
 
-	public boolean apply(BBPost that) throws CryptoException {
+	public boolean apply(final BBPost that) throws CryptoException {
 		byte[] hash = cryptoHash.apply(that.msg.getBytes());
 		return verifyPublicKeySignature.apply(that.sig, hash);
 	}

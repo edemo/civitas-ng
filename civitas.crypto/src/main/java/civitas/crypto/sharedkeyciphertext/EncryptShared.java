@@ -15,7 +15,7 @@ public class EncryptShared implements Constants {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public SharedKeyCiphertext apply(SharedKey key, SharedKeyMsg msg) {
+	public SharedKeyCiphertext apply(final SharedKey key, final SharedKeyMsg msg) {
 		SharedKey keyc = key;
 		SharedKeyMsg msgc = msg;
 		byte[] encrypted = cryptoBase.doCrypto(

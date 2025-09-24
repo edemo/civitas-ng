@@ -13,7 +13,7 @@ public class VerifyElGamalKeyShare {
 	@Autowired
 	VerifyElGamalProofKnowDiscLog verifyElGamalProofKnowDiscLog;
 
-	public boolean apply(ElGamalKeyShare that) {
+	public boolean apply(final ElGamalKeyShare that) {
 		ElGamalProofKnowDiscLog prf = that.proof();
 		ElGamalPublicKey key = that.pubKey();
 		return prf.v().equals(key.y) && verifyElGamalProofKnowDiscLog.apply(prf, that.pubKey().params);

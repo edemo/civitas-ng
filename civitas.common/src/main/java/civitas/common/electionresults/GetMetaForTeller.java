@@ -10,7 +10,7 @@ public class GetMetaForTeller implements CommonConstants {
 	@Autowired
 	GetComputerForTeller getComputerForTeller;
 
-	public String appply(int tellerIndex) {
+	public String appply(final int tellerIndex) {
 		return ElectionResultsMETA + getComputerForTeller.apply(tellerIndex);
 	}
 }

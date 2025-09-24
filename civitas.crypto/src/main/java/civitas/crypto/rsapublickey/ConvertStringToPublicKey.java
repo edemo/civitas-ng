@@ -17,7 +17,7 @@ public class ConvertStringToPublicKey {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public PublicKey apply(String publicK) throws CryptoException {
+	public PublicKey apply(final String publicK) throws CryptoException {
 		byte[] publicBytes = Base64.getDecoder().decode(publicK);
 		X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicBytes);
 		try {

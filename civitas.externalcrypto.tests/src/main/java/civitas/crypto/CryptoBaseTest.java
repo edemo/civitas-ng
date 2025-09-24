@@ -144,7 +144,7 @@ class CryptoBaseTest extends TestBase implements Constants, BasicValuesTestData 
 		monoBitTest(bytes);
 	}
 
-	public void monoBitTest(byte[] bytes) {
+	public void monoBitTest(final byte[] bytes) {
 		int sum = 0;
 		for (byte element : bytes) {
 			int current = element;

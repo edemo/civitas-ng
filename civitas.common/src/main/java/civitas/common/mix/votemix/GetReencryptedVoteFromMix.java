@@ -16,11 +16,11 @@ public class GetReencryptedVoteFromMix {
 	ElGamalReencrypt elGamalReencrypt;
 
 	public EncryptedVote apply(
-			@Nonnull VoteMix that,
-			int i,
-			@Nonnull ElGamalReencryptFactor choiceFactor,
-			@Nonnull ElGamalReencryptFactor capabilityFactor,
-			@Nonnull ElGamalPublicKey key) {
+			@Nonnull final VoteMix that,
+			final int i,
+			@Nonnull final ElGamalReencryptFactor choiceFactor,
+			@Nonnull final ElGamalReencryptFactor capabilityFactor,
+			@Nonnull final ElGamalPublicKey key) {
 		if (null == choiceFactor || null == capabilityFactor || null == key) {
 			throw new NullPointerException();
 		}

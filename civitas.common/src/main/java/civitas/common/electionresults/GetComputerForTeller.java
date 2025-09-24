@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class GetComputerForTeller {
 
-	public String apply(int tellerIndex) {
+	public String apply(final int tellerIndex) {
 		return "Teller" + tellerIndex;
 	}
 }

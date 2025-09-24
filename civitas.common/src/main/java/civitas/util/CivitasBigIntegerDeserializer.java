@@ -18,12 +18,12 @@ class CivitasBigIntegerDeserializer extends StdDeserializer<CivitasBigInteger> {
 		this(null);
 	}
 
-	protected CivitasBigIntegerDeserializer(Class<CivitasBigInteger> vc) {
+	protected CivitasBigIntegerDeserializer(final Class<CivitasBigInteger> vc) {
 		super(vc);
 	}
 
 	@Override
-	public CivitasBigInteger deserialize(JsonParser p, DeserializationContext ctxt)
+	public CivitasBigInteger deserialize(final JsonParser p, final DeserializationContext ctxt)
 			throws IOException, JacksonException {
 		JsonNode node = p.getCodec().readTree(p);
 		return CommonUtil.asBigint(node.asText());

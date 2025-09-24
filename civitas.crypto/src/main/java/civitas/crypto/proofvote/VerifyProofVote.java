@@ -24,11 +24,11 @@ public class VerifyProofVote {
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public boolean apply(
-			ProofVote that,
-			ElGamalParameters params,
-			ElGamalCiphertextish encCapability,
-			ElGamalCiphertextish encChoice,
-			String context) {
+			final ProofVote that,
+			final ElGamalParameters params,
+			final ElGamalCiphertextish encCapability,
+			final ElGamalCiphertextish encChoice,
+			final String context) {
 		CivitasBigInteger a1 = encCapability.getA();
 		CivitasBigInteger a2 = encChoice.getA();
 		CivitasBigInteger p = params.p;

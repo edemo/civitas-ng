@@ -49,10 +49,10 @@ public class CloseBoardController {
 
 	@PostMapping("/boards/close/{bbid}")
 	public boolean apply(
-			@PathVariable("bbid") String bbid,
-			@Nonnull ElectionID postHashTo,
-			int numVoterBlocks,
-			@Nonnull Signature sig)
+			@PathVariable("bbid") final String bbid,
+			@Nonnull final ElectionID postHashTo,
+			final int numVoterBlocks,
+			@Nonnull final Signature sig)
 			throws CommunicableException {
 		if (null == sig) {
 			throw new NullPointerException();

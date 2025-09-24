@@ -8,12 +8,12 @@ import org.mockito.ArgumentMatcher;
 public class KeySpecMatcher implements ArgumentMatcher<X509EncodedKeySpec> {
 	private final X509EncodedKeySpec spec;
 
-	public KeySpecMatcher(X509EncodedKeySpec spec) {
+	public KeySpecMatcher(final X509EncodedKeySpec spec) {
 		this.spec = spec;
 	}
 
 	@Override
-	public boolean matches(X509EncodedKeySpec argument) {
+	public boolean matches(final X509EncodedKeySpec argument) {
 		if (null == argument) {
 			return null == spec;
 		}

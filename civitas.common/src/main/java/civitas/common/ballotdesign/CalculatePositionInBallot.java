@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class CalculatePositionInBallot {
 
-	public Integer apply(Integer i, Integer j, Integer k) {
+	public Integer apply(final Integer i, final Integer j, final Integer k) {
 		if (i == 0) {
 			return j - 1;
 		}

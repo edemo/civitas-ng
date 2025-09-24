@@ -23,7 +23,7 @@ public class ConfirmParticipationController {
 	ElectionCacheRepository electionCacheRepository;
 
 	@PostMapping("/confirmParticipation")
-	boolean apply(ElectionDetails elecDetails, int index) throws IOException {
+	boolean apply(final ElectionDetails elecDetails, final int index) throws IOException {
 		getBoardForId.apply(elecDetails.getElectionID(), true);
 		Optional<ElectionCache> electionp = electionCacheRepository.findById(elecDetails.getElectionID());
 		if (electionp.isPresent()) {

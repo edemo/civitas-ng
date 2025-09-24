@@ -13,12 +13,12 @@ public class ReaderAnswer<T> implements Answer<T> {
 
 	private final Map<String, T> mockingMap;
 
-	public ReaderAnswer(Map<String, T> mockingMap) {
+	public ReaderAnswer(final Map<String, T> mockingMap) {
 		this.mockingMap = mockingMap;
 	}
 
 	@Override
-	public T answer(InvocationOnMock invocation) throws IOException {
+	public T answer(final InvocationOnMock invocation) throws IOException {
 		Reader reader = (Reader) invocation.getArguments()[0];
 		for (Entry<String, T> entry : mockingMap.entrySet().stream()
 				.sorted(Comparator.comparingInt(o -> o.getKey().length()))
@@ -31,7 +31,7 @@ public class ReaderAnswer<T> implements Answer<T> {
 		return null;
 	}
 
-	T mockValueFromStream(Reader reader, String theString, T theValue) throws IOException {
+	T mockValueFromStream(final Reader reader, final String theString, final T theValue) throws IOException {
 		int len = theString.length();
 		reader.mark(len + 1);
 		char[] buf = new char[len];

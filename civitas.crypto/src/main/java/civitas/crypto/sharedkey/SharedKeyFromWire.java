@@ -12,7 +12,7 @@ public class SharedKeyFromWire {
 	@Autowired
 	CreateSharedKeyFromBytes createSharedKeyFromBytes;
 
-	public SharedKey apply(BufferedReader br) throws IOException {
+	public SharedKey apply(final BufferedReader br) throws IOException {
 		String name = br.readLine();
 		String s = br.readLine();
 		byte[] bs = Base64.getDecoder().decode(s);

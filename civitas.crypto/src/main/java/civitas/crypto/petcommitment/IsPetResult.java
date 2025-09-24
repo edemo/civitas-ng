@@ -7,7 +7,7 @@ import civitas.crypto.msg.ElGamalMsg;
 
 @Controller
 public class IsPetResult implements Constants {
-	public boolean apply(ElGamalMsg petResult) {
+	public boolean apply(final ElGamalMsg petResult) {
 		return ONE.equals(petResult.m());
 	}
 }

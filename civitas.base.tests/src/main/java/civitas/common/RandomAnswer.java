@@ -10,7 +10,7 @@ public class RandomAnswer implements Answer<CivitasBigInteger> {
 	public static int step = 0;
 
 	@Override
-	public CivitasBigInteger answer(InvocationOnMock invocation) {
+	public CivitasBigInteger answer(final InvocationOnMock invocation) {
 
 		CivitasBigInteger random = BasicValuesTestData.RANDOMS.get(step);
 		step++;

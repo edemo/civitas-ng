@@ -12,7 +12,7 @@ public class GenerateElGamalReencryptFactor {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public ElGamalReencryptFactor apply(ElGamalParameters params) {
+	public ElGamalReencryptFactor apply(final ElGamalParameters params) {
 		return new ElGamalReencryptFactor(cryptoBase.generateRandomElement(params.q));
 	}
 }

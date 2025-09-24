@@ -14,7 +14,7 @@ public class ConstructPETCommitment {
 	@Autowired
 	CryptoHash cryptoHash;
 
-	public PETCommitment apply(PETShare that, ElGamalParameters params) {
+	public PETCommitment apply(final PETShare that, final ElGamalParameters params) {
 		CivitasBigInteger d =
 				that.ciphertext1().getA().modDivide(that.ciphertext2().getA(), params.p);
 		CivitasBigInteger e =

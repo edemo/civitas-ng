@@ -12,7 +12,7 @@ public class CreateEmptyBallot {
 	@Autowired
 	CalculateBallotLength calculateBallotLength;
 
-	public Ballot apply(int numCandidates) {
+	public Ballot apply(final int numCandidates) {
 		if (numCandidates < 2) {
 			throw new IllegalArgumentException("A ballot must contain at least one candidate and none of above");
 		}

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class GetSharedKeyGeneratorService {
 	private final Map<String, KeyGenerator> sharedKeyGenerators = new HashMap<>();
 
-	public KeyGenerator apply(int keyLength) {
+	public KeyGenerator apply(final int keyLength) {
 		String genKey = String.valueOf(keyLength);
 		KeyGenerator g = sharedKeyGenerators.get(genKey);
 		if (g != null) {

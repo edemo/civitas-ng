@@ -23,7 +23,7 @@ public class GetPrivateKey {
 
 	Map<String, PrivateKey> keyCache = new HashMap<>();
 
-	public PrivateKey apply(String storeFile, String storePassword, String serverKeyEntry)
+	public PrivateKey apply(final String storeFile, final String storePassword, final String serverKeyEntry)
 			throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException,
 					UnrecoverableKeyException {
 

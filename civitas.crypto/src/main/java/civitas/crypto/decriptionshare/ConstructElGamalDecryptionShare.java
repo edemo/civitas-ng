@@ -16,7 +16,7 @@ public class ConstructElGamalDecryptionShare {
 	@Autowired
 	ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
 
-	public ElGamalDecryptionShare apply(ElGamalCiphertextish c, ElGamalKeyPairShare keyShare) {
+	public ElGamalDecryptionShare apply(final ElGamalCiphertextish c, final ElGamalKeyPairShare keyShare) {
 		ElGamalPrivateKey priv = keyShare.privKey();
 		ElGamalParameters params = priv.params();
 		CivitasBigInteger ai = c.getA().modPow(priv.x(), params.p);

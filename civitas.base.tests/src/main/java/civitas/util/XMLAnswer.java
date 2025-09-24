@@ -8,12 +8,12 @@ import org.mockito.stubbing.Answer;
 public class XMLAnswer implements Answer<Void> {
 	String theXML;
 
-	public XMLAnswer(String theXML) {
+	public XMLAnswer(final String theXML) {
 		this.theXML = theXML;
 	}
 
 	@Override
-	public Void answer(InvocationOnMock invocation) {
+	public Void answer(final InvocationOnMock invocation) {
 		try (PrintWriter printWriter = (PrintWriter) invocation.getArguments()[1]) {
 			printWriter.append(theXML);
 		}
