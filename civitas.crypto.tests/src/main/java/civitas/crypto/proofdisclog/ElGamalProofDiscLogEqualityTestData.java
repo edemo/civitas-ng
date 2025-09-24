@@ -4,7 +4,6 @@ import java.util.List;
 
 import civitas.common.CommonUtil;
 import civitas.crypto.ciphertext.ElGamalCiphertextTestData;
-import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
 import civitas.util.CivitasBigInteger;
 
 public interface ElGamalProofDiscLogEqualityTestData extends ElGamalCiphertextTestData {
@@ -24,9 +23,8 @@ public interface ElGamalProofDiscLogEqualityTestData extends ElGamalCiphertextTe
 	String EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C_BASE64 = "AIm6aE5Q/X4ya4j3tjffpAIv6omtGzqwN5+HmeJJerGy";
 	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C =
 			CommonUtil.asBigint(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C_BASE64);
-	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R = RANDOMS_0.modAdd(
-			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C.modMultiply(ElGamalPrivateKeyTestData.PRIVKEY_E, BIGINT_Q),
-			BIGINT_Q);
+	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R =
+			RANDOMS_0.modAdd(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_C.modMultiply(PRIVKEY_E, BIGINT_Q), BIGINT_Q);
 	String EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R_BASE64 =
 			CommonUtil.fromBigInt(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECOMMITMENT_R);
 
@@ -59,8 +57,7 @@ public interface ElGamalProofDiscLogEqualityTestData extends ElGamalCiphertextTe
 	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_C =
 			CommonUtil.asBigint(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_C_BASE64);
 	CivitasBigInteger EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_R = RANDOMS_0.modAdd(
-			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_C.modMultiply(ElGamalPrivateKeyTestData.PRIVKEY_E, BIGINT_Q),
-			BIGINT_Q);
+			EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_C.modMultiply(PRIVKEY_E, BIGINT_Q), BIGINT_Q);
 	String EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_R_BASE64 =
 			CommonUtil.fromBigInt(EL_GAMAL_DISC_LOG_EQUALITY_FOR_DECRIPTIONSHARE_R);
 

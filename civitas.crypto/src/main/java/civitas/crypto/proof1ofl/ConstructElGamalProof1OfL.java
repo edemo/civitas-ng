@@ -97,12 +97,12 @@ public class ConstructElGamalProof1OfL implements Constants {
 		CivitasBigInteger[] dvs = new CivitasBigInteger[l];
 		CivitasBigInteger[] rvs = new CivitasBigInteger[l];
 		for (int i = 0; i < l; i++) {
-			if (i != choice) {
-				dvs[i] = ds[i];
-				rvs[i] = rs[i];
-			} else {
+			if (i == choice) {
 				dvs[i] = dprimet;
 				rvs[i] = rprimet;
+			} else {
+				dvs[i] = ds[i];
+				rvs[i] = rs[i];
 			}
 		}
 
