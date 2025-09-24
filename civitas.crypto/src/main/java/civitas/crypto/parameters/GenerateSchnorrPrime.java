@@ -20,7 +20,8 @@ public class GenerateSchnorrPrime implements Constants {
 	CryptoBase cryptoBase;
 
 	public PrimePair apply(final int qLength, final int pLength) {
-		CivitasBigInteger p, q;
+		CivitasBigInteger p;
+		CivitasBigInteger q;
 
 		final int numPTests = calculateNumberOfPrimeTests.apply(pLength);
 		CivitasBigInteger l = TWO.pow(pLength);

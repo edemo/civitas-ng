@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
-import civitas.crypto.Constants;
 import io.github.magwas.testing.TestBase;
 
 class GenerateElGamalParametersTest extends TestBase implements ElGamalParametersTestData {
@@ -24,9 +23,7 @@ class GenerateElGamalParametersTest extends TestBase implements ElGamalParameter
 	@Test
 	@DisplayName("makes a Schnorr prime pair if groupLength != keyLength + 1")
 	void test_2() {
-		assertEquals(
-				BIGINT_G,
-				generateElGamalParameters.apply(Constants.EL_GAMAL_KEY_LENGTH, Constants.EL_GAMAL_GROUP_LENGTH).g);
+		assertEquals(BIGINT_G, generateElGamalParameters.apply(EL_GAMAL_KEY_LENGTH, EL_GAMAL_GROUP_LENGTH).g);
 	}
 
 	@Test

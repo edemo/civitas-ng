@@ -48,11 +48,11 @@ public class CryptoBase implements Constants {
 	}
 
 	public CivitasBigInteger generateRandomElement(final CivitasBigInteger n) {
-		CivitasBigInteger r = null;
+		CivitasBigInteger randomElement;
 		do {
-			r = CivitasBigIntegerFactory.obtain(n.bitLength(), RANDOM);
-		} while (Constants.ZERO.equals(r) || r.compareTo(n) >= 0);
-		return r;
+			randomElement = CivitasBigIntegerFactory.obtain(n.bitLength(), RANDOM);
+		} while (ZERO.equals(randomElement) || randomElement.compareTo(n) >= 0);
+		return randomElement;
 	}
 
 	public Random getRandomGenerator() {

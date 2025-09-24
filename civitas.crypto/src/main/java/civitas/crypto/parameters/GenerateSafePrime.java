@@ -14,7 +14,8 @@ public class GenerateSafePrime implements Constants {
 	CryptoBase cryptoBase;
 
 	public PrimePair apply(final int length) {
-		CivitasBigInteger possibleP, possibleQ;
+		CivitasBigInteger possibleP;
+		CivitasBigInteger possibleQ;
 		do {
 			possibleQ = cryptoBase.obtainProbablePrime(length);
 			possibleP = possibleQ.multiply(TWO).add(ONE);
