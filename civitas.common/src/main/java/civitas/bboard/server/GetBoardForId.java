@@ -11,7 +11,7 @@ public class GetBoardForId {
 	@Autowired
 	BoardRepository boardRepository;
 
-	public Board apply(String bbid, boolean mustBeOpen) {
+	public Board apply(final String bbid, final boolean mustBeOpen) {
 		Optional<Board> boardp = boardRepository.findById(bbid);
 		if (!boardp.isPresent()) {
 			throw new IllegalArgumentException("no such board is open");

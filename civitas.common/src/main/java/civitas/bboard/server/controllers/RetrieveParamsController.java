@@ -27,10 +27,10 @@ public class RetrieveParamsController {
 
 	@GetMapping("/boards/{bbid}/{fromTime}-{toTime}-{metaCriteria}")
 	Iterable<BBPost> apply(
-			@PathVariable("bbid") String bbid,
-			@PathVariable("fromTime") Long fromTime,
-			@PathVariable("toTime") Long toTime,
-			@PathVariable("metaCriteria") String metaCriteria)
+			@PathVariable("bbid") final String bbid,
+			@PathVariable("fromTime") final Long fromTime,
+			@PathVariable("toTime") final Long toTime,
+			@PathVariable("metaCriteria") final String metaCriteria)
 			throws IOException {
 
 		getBoardForId.apply(bbid, true);

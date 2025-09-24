@@ -7,7 +7,8 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class MakeCloudWordList {
-	public List<CandidatePair<String, Long>> apply(String[] candidates, List<List<CandidateResult>> winnerList) {
+	public List<CandidatePair<String, Long>> apply(
+			final String[] candidates, final List<List<CandidateResult>> winnerList) {
 		List<CandidatePair<String, Long>> cloudWords = new ArrayList<>();
 		for (List<CandidateResult> step : winnerList) {
 			for (CandidateResult result : step) {

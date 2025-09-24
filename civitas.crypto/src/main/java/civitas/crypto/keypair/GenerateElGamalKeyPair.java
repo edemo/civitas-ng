@@ -15,7 +15,7 @@ public class GenerateElGamalKeyPair {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public ElGamalKeyPair apply(ElGamalParameters parameters) {
+	public ElGamalKeyPair apply(final ElGamalParameters parameters) {
 		CivitasBigInteger x = cryptoBase.generateRandomElement(parameters.q);
 		CivitasBigInteger y = parameters.g.modPow(x, parameters.p);
 		ElGamalPrivateKey privateKey = new ElGamalPrivateKey(x, parameters);

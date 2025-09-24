@@ -24,7 +24,7 @@ public class IsPublicKeyAuthorized implements Constants {
 	@Autowired
 	CreateFreshNonceBase64 createFreshNonceBase64;
 
-	public boolean apply(PublicKey that, PrivateKey privKey) throws CryptoException {
+	public boolean apply(final PublicKey that, final PrivateKey privKey) throws CryptoException {
 		String m = createFreshNonceBase64.apply(AUTHENTICATION_NONCE_LENGTH);
 		Signature sig;
 		sig = signWithPublicKey.apply(privKey, that, m);

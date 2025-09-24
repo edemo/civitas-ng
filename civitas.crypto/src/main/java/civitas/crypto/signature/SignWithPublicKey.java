@@ -25,12 +25,12 @@ public class SignWithPublicKey implements Constants {
 	@Autowired
 	ConvertPublicKeyToString convertPublicKeyToString;
 
-	public Signature apply(PrivateKey k, PublicKey publicKey, String hash) throws CryptoException {
+	public Signature apply(final PrivateKey k, final PublicKey publicKey, final String hash) throws CryptoException {
 		byte[] bytes = cryptoHash.apply(hash.getBytes());
 		return apply(k, publicKey, bytes);
 	}
 
-	public Signature apply(PrivateKey k, PublicKey principal, byte[] bytes) throws CryptoException {
+	public Signature apply(final PrivateKey k, final PublicKey principal, final byte[] bytes) throws CryptoException {
 		try {
 			cryptoBase.rsaSigner.initSign(k);
 			cryptoBase.rsaSigner.update(bytes);

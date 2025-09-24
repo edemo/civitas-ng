@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class CalculateBallotLength {
 
-	public int apply(Integer k) {
+	public int apply(final Integer k) {
 		return (int) ((k - 1) * (k / 2.0));
 	}
 }

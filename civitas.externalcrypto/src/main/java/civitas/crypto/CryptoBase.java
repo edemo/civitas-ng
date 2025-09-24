@@ -43,11 +43,11 @@ public class CryptoBase implements Constants {
 		}
 	}
 
-	public CivitasBigInteger obtainProbablePrime(int bitLenght) {
+	public CivitasBigInteger obtainProbablePrime(final int bitLenght) {
 		return CivitasBigIntegerFactory.obtain(new BigInteger(bitLenght, CERTAINTY, RANDOM));
 	}
 
-	public CivitasBigInteger generateRandomElement(CivitasBigInteger n) {
+	public CivitasBigInteger generateRandomElement(final CivitasBigInteger n) {
 		CivitasBigInteger r = null;
 		do {
 			r = CivitasBigIntegerFactory.obtain(n.bitLength(), RANDOM);
@@ -59,7 +59,8 @@ public class CryptoBase implements Constants {
 		return RANDOM;
 	}
 
-	public byte[] doCrypto(String alg, String provider, Key skey, int mode, byte[] input) {
+	public byte[] doCrypto(
+			final String alg, final String provider, final Key skey, final int mode, final byte[] input) {
 		Cipher cipher;
 		try {
 			cipher = Cipher.getInstance(alg, provider);
@@ -70,15 +71,15 @@ public class CryptoBase implements Constants {
 		}
 	}
 
-	public void nextBytes(byte[] bs) {
+	public void nextBytes(final byte[] bs) {
 		RANDOM.nextBytes(bs);
 	}
 
-	public KeyPairGenerator getPublicKeyGenerator(int keysize) {
+	public KeyPairGenerator getPublicKeyGenerator(final int keysize) {
 		return getPublicKeyGenerator.apply(keysize);
 	}
 
-	public KeyGenerator getSharedKeyGenerator(int sharedKeySize) {
+	public KeyGenerator getSharedKeyGenerator(final int sharedKeySize) {
 		return getSharedKeyGenerator.apply(sharedKeySize);
 	}
 }

@@ -15,7 +15,7 @@ public class RandomAwareTestBase extends TestBase {
 		RandomAnswer.step = 0;
 	}
 
-	protected void given(EnvironmentState newState) {
+	protected void given(final EnvironmentState newState) {
 		state = newState;
 	}
 }

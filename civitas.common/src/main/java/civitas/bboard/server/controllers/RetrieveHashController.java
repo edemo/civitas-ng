@@ -49,10 +49,10 @@ public class RetrieveHashController {
 
 	@GetMapping("/boards/{bbid}/signature-{fromTime}-{toTime}-{metaCriteria}")
 	private Signature apply(
-			@PathVariable("bbid") String bbid,
-			@PathVariable("fromTime") Long fromTime,
-			@PathVariable("toTime") Long toTime,
-			@PathVariable("metaCriteria") String metaCriteria)
+			@PathVariable("bbid") final String bbid,
+			@PathVariable("fromTime") final Long fromTime,
+			@PathVariable("toTime") final Long toTime,
+			@PathVariable("metaCriteria") final String metaCriteria)
 			throws CommunicableException {
 
 		getBoardForId.apply(bbid, true);

@@ -7,7 +7,7 @@ import civitas.common.verifiablevote.VerifiableVote;
 @Controller
 public class CreateVoterSubmission {
 
-	public VoterSubmission apply(int voterBlock, VerifiableVote... votes) {
+	public VoterSubmission apply(final int voterBlock, final VerifiableVote... votes) {
 		if (votes.length == 0) {
 			throw new IllegalArgumentException("votes are null");
 		}

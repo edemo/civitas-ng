@@ -14,7 +14,11 @@ public class GetMixRevelationMeta implements CommonConstants {
 	@Autowired
 	GetBlockName getBlockName;
 
-	public String apply(@Nonnull final ElectionDetails electionDetails, boolean isVoteMix, int block, int tellerIndex) {
+	public String apply(
+			@Nonnull final ElectionDetails electionDetails,
+			final boolean isVoteMix,
+			final int block,
+			final int tellerIndex) {
 		if (null == electionDetails) {
 			throw new NullPointerException();
 		}

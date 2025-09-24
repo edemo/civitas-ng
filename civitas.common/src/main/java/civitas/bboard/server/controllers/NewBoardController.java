@@ -27,7 +27,7 @@ public class NewBoardController implements CommonConstants {
 	ConvertPublicKeyToString convertPublicKeyToString;
 
 	@PostMapping("/boards/newBoard")
-	public String apply(PublicKey key) throws IOException {
+	public String apply(final PublicKey key) throws IOException {
 		String newBoardName;
 		do {
 			byte[] bs = createFreshNonce.apply(ELECTION_ID_LENGTH);

@@ -22,23 +22,23 @@ public class VerifyPublicKeySignature implements Constants {
 	@Autowired
 	ConvertStringToPublicKey convertStringToPublicKey;
 
-	public boolean apply(Signature s, String msg) throws CryptoException {
+	public boolean apply(final Signature s, final String msg) throws CryptoException {
 		byte[] bytes = cryptoHash.apply(msg.getBytes());
 		return apply(s, bytes);
 	}
 
-	public boolean apply(Signature s, PublicKey pubKey, String msg) throws CryptoException {
+	public boolean apply(final Signature s, final PublicKey pubKey, final String msg) throws CryptoException {
 		byte[] bytes = cryptoHash.apply(msg.getBytes());
 		return apply(s, pubKey, bytes);
 	}
 
-	public boolean apply(Signature s, byte[] bytes) throws CryptoException {
+	public boolean apply(final Signature s, final byte[] bytes) throws CryptoException {
 		String pubkeyString = s.getSignerPubKey();
 		PublicKey pubKey = convertStringToPublicKey.apply(pubkeyString);
 		return apply(s, pubKey, bytes);
 	}
 
-	public boolean apply(Signature s, PublicKey signer, byte[] bytes) throws CryptoException {
+	public boolean apply(final Signature s, final PublicKey signer, final byte[] bytes) throws CryptoException {
 		try {
 			cryptoBase.rsaSigner.initVerify(signer);
 			cryptoBase.rsaSigner.update(bytes);

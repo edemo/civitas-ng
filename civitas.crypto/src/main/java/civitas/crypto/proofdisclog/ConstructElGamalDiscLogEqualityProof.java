@@ -24,7 +24,10 @@ public class ConstructElGamalDiscLogEqualityProof {
 	ConvertHashToBigInt convertHashToBigInt;
 
 	public ElGamalProofDiscLogEquality apply(
-			ElGamalParameters params, CivitasBigInteger g1, CivitasBigInteger g2, CivitasBigInteger x) {
+			final ElGamalParameters params,
+			final CivitasBigInteger g1,
+			final CivitasBigInteger g2,
+			final CivitasBigInteger x) {
 
 		CivitasBigInteger v = g1.modPow(x, params.p);
 		CivitasBigInteger w = g2.modPow(x, params.p);

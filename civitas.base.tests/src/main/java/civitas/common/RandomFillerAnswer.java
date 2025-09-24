@@ -8,7 +8,7 @@ import civitas.util.BasicValuesTestData;
 public class RandomFillerAnswer implements Answer<Void> {
 
 	@Override
-	public Void answer(InvocationOnMock invocation) {
+	public Void answer(final InvocationOnMock invocation) {
 
 		TestUtil.fakeRandomToArray(invocation, BasicValuesTestData.RANDOMS.get(RandomAnswer.step));
 		RandomAnswer.step++;

@@ -16,15 +16,16 @@ public class EncodeMessage {
 	@Autowired
 	SchnorrPrimeEncode schnorrPrimeEncoder;
 
-	public CivitasBigInteger apply(CivitasBigInteger plaintext, ElGamalParameters params) throws CryptoException {
+	public CivitasBigInteger apply(final CivitasBigInteger plaintext, final ElGamalParameters params)
+			throws CryptoException {
 		return schnorrPrimeEncoder.apply(plaintext, params);
 	}
 
-	public CivitasBigInteger apply(int i, ElGamalParameters params) throws CryptoException {
+	public CivitasBigInteger apply(final int i, final ElGamalParameters params) throws CryptoException {
 		return apply(CivitasBigIntegerFactory.obtain(i), params);
 	}
 
-	public CivitasBigInteger apply(String s, ElGamalParameters params) throws CryptoException {
+	public CivitasBigInteger apply(final String s, final ElGamalParameters params) throws CryptoException {
 		try {
 			return apply(CivitasBigIntegerFactory.obtain(s.getBytes(CHARSET)), params);
 		} catch (Exception e) {

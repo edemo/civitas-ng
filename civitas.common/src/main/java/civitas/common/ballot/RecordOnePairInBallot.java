@@ -13,7 +13,7 @@ public class RecordOnePairInBallot {
 	@Autowired
 	CalculatePositionInBallot calculatePositionInBallot;
 
-	public void apply(@Nonnull Ballot that, int i, int j, VoteChoice voteChoice) {
+	public void apply(@Nonnull final Ballot that, final int i, final int j, final VoteChoice voteChoice) {
 		if (0 > i || i >= j || j >= that.k) {
 			throw new IllegalArgumentException();
 		}

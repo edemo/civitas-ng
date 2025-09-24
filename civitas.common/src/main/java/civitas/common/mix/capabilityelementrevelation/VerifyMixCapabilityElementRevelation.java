@@ -16,12 +16,12 @@ public class VerifyMixCapabilityElementRevelation {
 	ElGamalReencrypt elGamalReencrypt;
 
 	public boolean apply(
-			@Nonnull MixCapabilityElementRevelation that,
-			@Nonnull ElGamalPublicKey key,
-			int fromIndex,
-			int toIndex,
-			@Nonnull CapabilityMix fromMix,
-			@Nonnull CapabilityMix toMix) {
+			@Nonnull final MixCapabilityElementRevelation that,
+			@Nonnull final ElGamalPublicKey key,
+			final int fromIndex,
+			final int toIndex,
+			@Nonnull final CapabilityMix fromMix,
+			@Nonnull final CapabilityMix toMix) {
 		ElGamalCiphertextish toCipher = toMix.capabilities[toIndex];
 
 		ElGamalCiphertextish recipher =

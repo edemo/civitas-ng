@@ -21,7 +21,10 @@ public class ConstructElGamal1OfLReencryption {
 	ElGamalReencrypt elGamalReencrypt;
 
 	public ElGamal1OfLReencryption apply(
-			ElGamalPublicKey key, CiphertextList ciphertexts, int choice, ElGamalReencryptFactor factor) {
+			final ElGamalPublicKey key,
+			final CiphertextList ciphertexts,
+			final int choice,
+			final ElGamalReencryptFactor factor) {
 		if (ciphertexts == null || choice >= ciphertexts.size()) {
 			return null;
 		}

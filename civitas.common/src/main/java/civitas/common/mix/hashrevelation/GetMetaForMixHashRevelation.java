@@ -13,7 +13,8 @@ public class GetMetaForMixHashRevelation implements CommonConstants {
 	@Autowired
 	GetBlockName getBlockName;
 
-	public String apply(final ElectionDetails electionDetails, boolean isVoteMix, int block, int tellerIndex) {
+	public String apply(
+			final ElectionDetails electionDetails, final boolean isVoteMix, final int block, final int tellerIndex) {
 		String blockDesc = getBlockName.apply(electionDetails, block);
 		return mixHashRevelationMETA_PREFIX
 				+ (isVoteMix ? mixHashRevelationMETA_VOTE_REVELATION : mixHashRevelationMETA_ER_REVELATION)

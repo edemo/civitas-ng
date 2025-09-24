@@ -21,7 +21,7 @@ public class GetPublicKey {
 
 	Map<String, PublicKey> cache = new HashMap<>();
 
-	public PublicKey apply(String storeFile, String storePassword, String serverKeyEntry)
+	public PublicKey apply(final String storeFile, final String storePassword, final String serverKeyEntry)
 			throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
 		if (null == cache.get(serverKeyEntry)) {
 			char[] pwdArray = storePassword.toCharArray();

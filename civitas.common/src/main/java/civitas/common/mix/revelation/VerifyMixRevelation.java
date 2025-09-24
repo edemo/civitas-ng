@@ -21,12 +21,12 @@ public class VerifyMixRevelation {
 	CryptoHash cryptoHash;
 
 	public boolean apply(
-			MixRevelation that,
-			ElGamalPublicKey key,
-			VoterMix initialMix,
-			VoterMix leftMix,
-			VoterMix rightMix,
-			boolean[] revelationDirections) {
+			final MixRevelation that,
+			final ElGamalPublicKey key,
+			final VoterMix initialMix,
+			final VoterMix leftMix,
+			final VoterMix rightMix,
+			final boolean[] revelationDirections) {
 		if (revelationDirections == null
 				|| that.revelations.length != revelationDirections.length
 				|| that.revelations.length != that.indicators.length) {

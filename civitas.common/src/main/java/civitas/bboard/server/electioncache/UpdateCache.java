@@ -20,7 +20,8 @@ public class UpdateCache {
 	@Autowired
 	ElectionCacheRepository electionCacheRepository;
 
-	public void apply(String bbid, String meta, String mesg, long t) throws JAXBException, IOException {
+	public void apply(final String bbid, final String meta, final String mesg, final long t)
+			throws JAXBException, IOException {
 
 		Optional<ElectionCache> cachep = electionCacheRepository.findById(bbid);
 		if (!cachep.isPresent()) {

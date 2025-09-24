@@ -7,7 +7,7 @@ import civitas.common.CommonConstants;
 @Controller
 public class GetNthContext implements CommonConstants {
 
-	public String apply(BallotDesign that, int n) {
+	public String apply(final BallotDesign that, final int n) {
 		int c = 0;
 		int k = that.candidates.length;
 		for (int i = 0; i < k; i++) {

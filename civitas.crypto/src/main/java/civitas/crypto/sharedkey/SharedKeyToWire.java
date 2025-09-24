@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class SharedKeyToWire {
 
-	public void apply(SharedKey that, PrintWriter s) {
+	public void apply(final SharedKey that, final PrintWriter s) {
 		s.print(that.name());
 		s.print('\n');
 		byte[] bs = that.k().getEncoded();

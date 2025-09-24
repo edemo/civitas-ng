@@ -11,7 +11,7 @@ public class GenerateRandomInt {
 	@Autowired
 	CryptoBase cryptoBase;
 
-	public int apply(int n) {
+	public int apply(final int n) {
 		if (n <= 0) {
 			return 0;
 		}

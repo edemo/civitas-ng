@@ -13,7 +13,8 @@ public class VerifyElGamalSignature {
 	@Autowired
 	CryptoHash cryptoHash;
 
-	public boolean apply(ElGamalParameters params, ElGamalSignedCiphertext ciphertext, byte[] additionalEnv) {
+	public boolean apply(
+			final ElGamalParameters params, final ElGamalSignedCiphertext ciphertext, final byte[] additionalEnv) {
 		CivitasBigInteger x = params.g
 				.modPow(ciphertext.d.mod(params.q), params.p)
 				.modMultiply(ciphertext.a.modPow(ciphertext.c.modNegate(params.q), params.p), params.p);
@@ -22,7 +23,7 @@ public class VerifyElGamalSignature {
 		return ciphertext.c.equals(v);
 	}
 
-	public boolean apply(ElGamalParameters params, ElGamalSignedCiphertext ciphertext) {
+	public boolean apply(final ElGamalParameters params, final ElGamalSignedCiphertext ciphertext) {
 		return apply(params, ciphertext, null);
 	}
 }

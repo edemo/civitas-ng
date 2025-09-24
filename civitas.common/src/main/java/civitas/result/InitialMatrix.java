@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class InitialMatrix {
 
-	CandidatePair<Integer, Integer>[][] apply(Integer[][] m, Integer n) {
+	CandidatePair<Integer, Integer>[][] apply(final Integer[][] m, final Integer n) {
 		@SuppressWarnings("unchecked")
 		CandidatePair<Integer, Integer>[][] r = new CandidatePair[n][n];
 		for (int i = 0; i < n; i++) {

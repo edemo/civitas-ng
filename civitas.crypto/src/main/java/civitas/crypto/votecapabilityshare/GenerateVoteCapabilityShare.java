@@ -18,7 +18,7 @@ public class GenerateVoteCapabilityShare {
 	@Autowired
 	EncodeMessage encodeMessage;
 
-	public VoteCapabilityShare apply(ElGamalParameters p) throws CryptoException {
+	public VoteCapabilityShare apply(final ElGamalParameters p) throws CryptoException {
 		ElGamalParameters ps = p;
 		CivitasBigInteger x = cryptoBase.generateRandomElement(ps.q);
 		return new VoteCapabilityShare(encodeMessage.apply(x, ps));

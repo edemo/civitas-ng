@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 public class GetMetaForVoterSubmission {
 
 	@Deprecated
-	public final String apply(int voterBlock) {
+	public final String apply(final int voterBlock) {
 		return "voterSubmission-voterBlock" + voterBlock;
 	}
 }

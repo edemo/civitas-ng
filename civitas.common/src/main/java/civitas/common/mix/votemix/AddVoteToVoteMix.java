@@ -9,7 +9,7 @@ import jakarta.annotation.Nonnull;
 
 @Controller
 public class AddVoteToVoteMix {
-	public void apply(@Nonnull VoteMix that, @Nonnull EncryptedVote v) {
+	public void apply(@Nonnull final VoteMix that, @Nonnull final EncryptedVote v) {
 		EncryptedVote[] n = Arrays.copyOf(that.votes, that.votes.length + 1);
 		n[that.votes.length] = v;
 		that.votes = n;

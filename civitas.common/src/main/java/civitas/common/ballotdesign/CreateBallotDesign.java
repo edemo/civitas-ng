@@ -2,7 +2,7 @@ package civitas.common.ballotdesign;
 
 public class CreateBallotDesign {
 
-	public BallotDesign apply(String... candidates) {
+	public BallotDesign apply(final String... candidates) {
 		return new BallotDesign(candidates.clone());
 	}
 }

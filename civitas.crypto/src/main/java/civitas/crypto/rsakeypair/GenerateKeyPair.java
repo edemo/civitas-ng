@@ -17,7 +17,7 @@ public class GenerateKeyPair {
 	@Autowired
 	CreateFreshNonceBase64 createFreshNonceBase64;
 
-	public KeyPair apply(int keyLength) {
+	public KeyPair apply(final int keyLength) {
 		java.security.KeyPair kp = cryptoBase.getPublicKeyGenerator(keyLength).generateKeyPair();
 		PublicKey pubk = kp.getPublic();
 		java.security.PrivateKey prvk = kp.getPrivate();

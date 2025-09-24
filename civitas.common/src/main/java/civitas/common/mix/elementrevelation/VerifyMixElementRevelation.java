@@ -27,12 +27,12 @@ public class VerifyMixElementRevelation {
 	VerifyMixVoteElementRevelation VerifyMixVoteElementRevelation;
 
 	public boolean apply(
-			@Nonnull MixElementRevelation that,
-			@Nonnull ElGamalPublicKey key,
-			int fromIndex,
-			int toIndex,
-			@Nonnull VoterMix fromMix,
-			@Nonnull VoterMix toMix) {
+			@Nonnull final MixElementRevelation that,
+			@Nonnull final ElGamalPublicKey key,
+			final int fromIndex,
+			final int toIndex,
+			@Nonnull final VoterMix fromMix,
+			@Nonnull final VoterMix toMix) {
 		if (key == null || fromMix == null || toMix == null) {
 			throw new NullPointerException();
 		}

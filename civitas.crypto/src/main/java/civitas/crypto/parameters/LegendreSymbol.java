@@ -9,7 +9,7 @@ import civitas.util.CivitasBigInteger;
 @Controller
 public class LegendreSymbol implements Constants {
 
-	public int apply(CivitasBigInteger a, CivitasBigInteger p, CivitasBigInteger q) {
+	public int apply(final CivitasBigInteger a, final CivitasBigInteger p, final CivitasBigInteger q) {
 		CivitasBigInteger j = a.modPow(q, p);
 		if (ONE.equals(j)) {
 			return 1;

@@ -25,12 +25,12 @@ public class ConstructProofVote {
 	CalculateProofEnvironment calculateProofEnvironment;
 
 	public ProofVote apply(
-			ElGamalParameters params,
-			ElGamalCiphertextish encCapability,
-			ElGamalCiphertextish encChoice,
-			String context,
-			ElGamalReencryptFactor alpha1,
-			ElGamalReencryptFactor alpha2) {
+			final ElGamalParameters params,
+			final ElGamalCiphertextish encCapability,
+			final ElGamalCiphertextish encChoice,
+			final String context,
+			final ElGamalReencryptFactor alpha1,
+			final ElGamalReencryptFactor alpha2) {
 
 		CivitasBigInteger r1 = cryptoBase.generateRandomElement(params.q);
 		CivitasBigInteger r2 = cryptoBase.generateRandomElement(params.q);
