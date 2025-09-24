@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import civitas.common.CommonUtil;
 import civitas.common.VoteChoice;
-import civitas.crypto.Constants;
 import civitas.util.BasicValuesTestData;
 import civitas.util.CivitasBigInteger;
 import civitas.util.CivitasBigIntegerFactory;
@@ -102,8 +101,8 @@ public interface ElGamalParametersTestData extends BasicValuesTestData {
 			CivitasBigIntegerFactory.obtain(VoteChoice.J_BEATS_I.ordinal()).modMultiply(BIGINT_G, BIGINT_P);
 
 	Integer TWO_INT = 2;
-	CivitasBigInteger TWO_EXP_GROUP_LENGTH = TWO.pow(Constants.EL_GAMAL_GROUP_LENGTH);
-	CivitasBigInteger TWO_EXP_KEY_LENGTH = TWO.pow(Constants.EL_GAMAL_KEY_LENGTH);
+	CivitasBigInteger TWO_EXP_GROUP_LENGTH = TWO.pow(EL_GAMAL_GROUP_LENGTH);
+	CivitasBigInteger TWO_EXP_KEY_LENGTH = TWO.pow(EL_GAMAL_KEY_LENGTH);
 	String BIGINT_NO_PRIME_OF_GROUPLENGTH_BASE64 =
 			"AJzqQEe12aps6eODiQVPjfuBv2XCZ3zXJqNgJWBndSevG1TaxCQ6uE0Qo77OGE9uNOTIpYqDm0RVpW8+o5ILWI/s9CqZe2XKzsv2KzQBeaemnMxPgJ59BJ+TJ5yZSrowzR012Yic6fwUdn2a11AFfHRpHX9mw0dPjbpNIImzULSbEXU5ZNuWUx2RVNE2VMtcaGmj9P2FkOAwjU9zGDfenkc2WhywT0SP2qDXnaBwc3U4ucAmr/9URAggOIbbQv0fH2v6uVmIG9vaPLhUiZCfygm6j4VqFe936iHUD4cLV+pB68l9Ajh5qpBw1xceNZJBW6dOuUzSB1V/qcsMbvgyA3JylX5dBQTNpFaps95rcGKOAh4QyB9xuPI9Bmza0f3rMBK7zcRTrbD1OlkssrZhk1xB+0vKCIGzMEBy6QAwOv/Ymi8CgsHBpDamD4A9xmoMXGKnrQKzv4yPccARLtAyr8unzYKJcrgc2r6bLxgodbRTpCQnqUOhR936mfWzFRl62Q==";
 	String BIGINT_NO_PRIME_OF_KEYLENGTH_BASE64 = "AJew5gc10pHDbzKQUm2+rIFj7hYrP7aHqAfLkHdwDlnQ";
