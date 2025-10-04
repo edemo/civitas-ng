@@ -9,18 +9,18 @@ package civitas.crypto.parameters;
 import civitas.util.CivitasBigInteger;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
+@Value
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class ElGamalParameters {
 
-	@NonNull public final CivitasBigInteger p;
+	@NonNull public CivitasBigInteger p;
 
-	@NonNull public final CivitasBigInteger q;
+	@NonNull public CivitasBigInteger q;
 
-	@NonNull public final CivitasBigInteger g;
+	@NonNull public CivitasBigInteger g;
 }

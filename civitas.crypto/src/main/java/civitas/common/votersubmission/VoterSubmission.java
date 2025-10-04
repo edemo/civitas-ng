@@ -7,12 +7,12 @@
 package civitas.common.votersubmission;
 
 import civitas.common.verifiablevote.VerifiableVote;
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
+@Value
 public class VoterSubmission {
-	@NonNull public final Integer voterBlock;
+	@NonNull public Integer voterBlock;
 
-	@NonNull public final VerifiableVote[] votes;
+	@NonNull public VerifiableVote[] votes;
 }

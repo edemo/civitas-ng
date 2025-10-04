@@ -7,10 +7,10 @@
 package civitas.common.voterapabilityshares;
 
 import civitas.crypto.votecapabilityshare.VoteCapabilityShare;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class VoterCapabilityShares {
-	public final VoteCapabilityShare[] capabilities;
-	public final int voterBlock;
+	public VoteCapabilityShare[] capabilities;
+	public int voterBlock;
 }

@@ -8,11 +8,11 @@ package civitas.common.tabteller.petsharedecommitments;
 
 import civitas.crypto.petdecommitment.PETDecommitment;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class TabTellerPETShareDecommitments {
-	public final int tellerIndex;
-	public final PETDecommitment[] decommitments;
-	public final ElGamalProofDiscLogEquality[] proofs;
+	public int tellerIndex;
+	public PETDecommitment[] decommitments;
+	public ElGamalProofDiscLogEquality[] proofs;
 }

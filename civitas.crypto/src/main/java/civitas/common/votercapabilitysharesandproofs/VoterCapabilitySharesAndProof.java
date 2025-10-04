@@ -9,16 +9,16 @@ package civitas.common.votercapabilitysharesandproofs;
 import civitas.crypto.proofdvr.ElGamalProofDVR;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
 import civitas.crypto.votecapabilityshare.VoteCapabilityShare;
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
+@Value
 public class VoterCapabilitySharesAndProof {
-	@NonNull public final VoteCapabilityShare[] capabilities;
+	@NonNull public VoteCapabilityShare[] capabilities;
 
-	@NonNull public final ElGamalReencryptFactor[] rencryptFactors;
+	@NonNull public ElGamalReencryptFactor[] rencryptFactors;
 
-	@NonNull public final ElGamalProofDVR[] proofs;
+	@NonNull public ElGamalProofDVR[] proofs;
 
-	public final int voterBlock;
+	public int voterBlock;
 }

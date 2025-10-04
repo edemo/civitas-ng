@@ -7,14 +7,14 @@
 package civitas.common.mix.revelation;
 
 import civitas.common.mix.elementrevelation.MixElementRevelation;
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
+@Value
 public class MixRevelation {
-	public final int tellerIndex;
+	public int tellerIndex;
 
-	@NonNull public final boolean[] indicators;
+	@NonNull public boolean[] indicators;
 
-	@NonNull public final MixElementRevelation[] revelations;
+	@NonNull public MixElementRevelation[] revelations;
 }

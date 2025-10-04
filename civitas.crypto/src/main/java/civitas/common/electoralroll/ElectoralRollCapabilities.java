@@ -7,9 +7,9 @@
 package civitas.common.electoralroll;
 
 import civitas.common.capabilityencryption.VoterEncCapabilities;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class ElectoralRollCapabilities {
-	public final VoterEncCapabilities[] roll;
+	public VoterEncCapabilities[] roll;
 }

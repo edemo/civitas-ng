@@ -6,12 +6,12 @@
  */
 package civitas.common.mix.hashrevelation;
 
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class MixHashRevelation {
 
-	public final int tellerIndex;
+	public int tellerIndex;
 
-	public final byte[] mixNonce;
+	public byte[] mixNonce;
 }

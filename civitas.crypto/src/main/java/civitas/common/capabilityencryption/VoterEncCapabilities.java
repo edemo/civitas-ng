@@ -7,11 +7,11 @@
 package civitas.common.capabilityencryption;
 
 import civitas.crypto.ciphertext.ElGamalCiphertext;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class VoterEncCapabilities {
-	public final String name;
-	public final int voterBlock;
-	public final ElGamalCiphertext[] encCapabilities;
+	public String name;
+	public int voterBlock;
+	public ElGamalCiphertext[] encCapabilities;
 }

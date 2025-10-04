@@ -6,12 +6,12 @@
  */
 package civitas.common.tallystate;
 
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
+@Value
 public class TallyState {
-	@NonNull public final Integer size;
+	@NonNull public Integer size;
 
-	@NonNull public final Integer[][] matrix;
+	@NonNull public Integer[][] matrix;
 }

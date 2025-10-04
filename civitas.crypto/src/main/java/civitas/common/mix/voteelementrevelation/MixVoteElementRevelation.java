@@ -8,13 +8,13 @@ package civitas.common.mix.voteelementrevelation;
 
 import civitas.common.mix.elementrevelation.MixElementRevelation;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class MixVoteElementRevelation implements MixElementRevelation {
 
-	public final ElGamalReencryptFactor choiceFactor;
-	public final ElGamalReencryptFactor reencryptFactor;
-	public final int mapping;
-	public final byte[] nonce;
+	public ElGamalReencryptFactor choiceFactor;
+	public ElGamalReencryptFactor reencryptFactor;
+	public int mapping;
+	public byte[] nonce;
 }

@@ -8,12 +8,12 @@ package civitas.common.ballot;
 
 import civitas.common.CommonConstants;
 import civitas.common.VoteChoice;
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
+@Value
 public class Ballot implements CommonConstants {
-	@NonNull public final Integer k;
+	@NonNull public Integer k;
 
-	@NonNull public final VoteChoice[] matrix;
+	@NonNull public VoteChoice[] matrix;
 }

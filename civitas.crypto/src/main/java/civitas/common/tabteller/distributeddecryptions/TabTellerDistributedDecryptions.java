@@ -8,14 +8,14 @@ package civitas.common.tabteller.distributeddecryptions;
 
 import civitas.crypto.decriptionshare.ElGamalDecryptionShare;
 import civitas.crypto.proofdisclog.ElGamalProofDiscLogEquality;
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
+@Value
 public class TabTellerDistributedDecryptions {
-	public final int tellerIndex;
+	public int tellerIndex;
 
-	@NonNull public final ElGamalDecryptionShare[] decrypts;
+	@NonNull public ElGamalDecryptionShare[] decrypts;
 
-	@NonNull public final ElGamalProofDiscLogEquality[] proofs;
+	@NonNull public ElGamalProofDiscLogEquality[] proofs;
 }

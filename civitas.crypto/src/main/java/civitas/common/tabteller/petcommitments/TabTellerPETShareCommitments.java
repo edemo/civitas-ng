@@ -7,10 +7,10 @@
 package civitas.common.tabteller.petcommitments;
 
 import civitas.crypto.petcommitment.PETCommitment;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class TabTellerPETShareCommitments {
-	public final int tellerIndex;
-	public final PETCommitment[] commitments;
+	public int tellerIndex;
+	public PETCommitment[] commitments;
 }

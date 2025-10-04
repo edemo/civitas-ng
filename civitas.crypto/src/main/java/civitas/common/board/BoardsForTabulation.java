@@ -7,9 +7,9 @@
 package civitas.common.board;
 
 import io.micrometer.common.lang.NonNull;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class BoardsForTabulation {
-	@NonNull public final BoardClosedContentCommitment[] contentComs;
+	@NonNull public BoardClosedContentCommitment[] contentComs;
 }
