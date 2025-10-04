@@ -11,9 +11,9 @@ public interface ElectionEvent {
 	String EVENT_KIND_STOP = "stop";
 	String EVENT_KIND_FINALIZE = "finalize";
 
-	String getKind();
+	String kind();
 
-	ElectionID getElectionID();
+	ElectionID electionID();
 
-	int getSequence();
+	int sequence();
 }
