@@ -11,5 +11,5 @@ import lombok.Value;
 
 @Value
 public class PublicKeyCiphertext {
-	@NonNull public byte[] encryptedBytes;
+	public byte @NonNull [] encryptedBytes;
 }

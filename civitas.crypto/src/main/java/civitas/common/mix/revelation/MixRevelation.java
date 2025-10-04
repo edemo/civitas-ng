@@ -14,7 +14,7 @@ import lombok.Value;
 public class MixRevelation {
 	public int tellerIndex;
 
-	@NonNull public boolean[] indicators;
+	public boolean @NonNull [] indicators;
 
 	@NonNull public MixElementRevelation[] revelations;
 }

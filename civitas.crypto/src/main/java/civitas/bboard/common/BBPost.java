@@ -29,5 +29,5 @@ public class BBPost {
 
 	@NonNull public Signature sig;
 
-	@NonNull public byte[] hash;
+	public byte @NonNull [] hash;
 }
