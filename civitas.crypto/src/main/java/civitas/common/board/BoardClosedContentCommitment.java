@@ -14,15 +14,8 @@ import civitas.common.CommonConstants;
 import civitas.common.election.ElectionID;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.NonNull;
-import lombok.Value;
 
-@Value
 @XmlRootElement(name = "boardclosedcontentcommitment")
-public class BoardClosedContentCommitment implements CommonConstants {
-	@Id
-	@NonNull public ElectionID electionID;
-
-	@NonNull public String boardName;
-
-	@NonNull public List<String> voterBlockContentHash;
-}
+public record BoardClosedContentCommitment(
+		@Id @NonNull ElectionID electionID, @NonNull String boardName, @NonNull List<String> voterBlockContentHash)
+		implements CommonConstants {}
