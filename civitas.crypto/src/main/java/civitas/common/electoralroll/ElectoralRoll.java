@@ -7,11 +7,11 @@
 package civitas.common.electoralroll;
 
 import civitas.common.VoterDetails;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class ElectoralRoll {
 	public static final String META = "electoralRoll";
 
-	public final VoterDetails[] roll;
+	public VoterDetails[] roll;
 }

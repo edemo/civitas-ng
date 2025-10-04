@@ -32,12 +32,12 @@ public class UpdateCache {
 
 		if (CommonConstants.ElectionEventMETA.equals(meta)) {
 			ElectionEvent e = convertFromXml.apply(mesg, ElectionEvent.class);
-			if (ElectionEvent.EVENT_KIND_FINALIZE.equals(e.getKind())) {
+			if (ElectionEvent.EVENT_KIND_FINALIZE.equals(e.kind())) {
 				// FIXME: tally
 				cache.electionFinalizeTime = t;
-			} else if (ElectionEvent.EVENT_KIND_START.equals(e.getKind())) {
+			} else if (ElectionEvent.EVENT_KIND_START.equals(e.kind())) {
 				cache.electionStartTime = t;
-			} else if (ElectionEvent.EVENT_KIND_STOP.equals(e.getKind())) {
+			} else if (ElectionEvent.EVENT_KIND_STOP.equals(e.kind())) {
 				cache.electionStopTime = t;
 			}
 		}

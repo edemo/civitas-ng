@@ -7,12 +7,12 @@
 package civitas.crypto.proof1ofl;
 
 import civitas.util.CivitasBigInteger;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class ElGamalProof1OfL {
 
-	public final int L;
-	public final CivitasBigInteger[] dvs;
-	public final CivitasBigInteger[] rvs;
+	public int L;
+	public CivitasBigInteger[] dvs;
+	public CivitasBigInteger[] rvs;
 }

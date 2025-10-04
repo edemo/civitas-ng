@@ -7,10 +7,10 @@
 package civitas.common.tallystatefinal;
 
 import civitas.common.CommonConstants;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class TallyStateFinal implements CommonConstants {
-	private final Integer size;
-	private final Integer[][] matrix;
+	Integer size;
+	Integer[][] matrix;
 }

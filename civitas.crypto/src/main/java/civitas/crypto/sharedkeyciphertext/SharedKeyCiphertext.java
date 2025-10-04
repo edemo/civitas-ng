@@ -6,10 +6,10 @@
  */
 package civitas.crypto.sharedkeyciphertext;
 
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
+@Value
 public class SharedKeyCiphertext {
-	@NonNull public final byte[] encryptedBytes;
+	public byte @NonNull [] encryptedBytes;
 }

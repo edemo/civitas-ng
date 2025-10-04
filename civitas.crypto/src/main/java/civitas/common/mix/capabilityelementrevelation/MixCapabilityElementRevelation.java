@@ -8,11 +8,11 @@ package civitas.common.mix.capabilityelementrevelation;
 
 import civitas.common.mix.elementrevelation.MixElementRevelation;
 import civitas.crypto.reencryptfactor.ElGamalReencryptFactor;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class MixCapabilityElementRevelation implements MixElementRevelation {
-	final int mapping;
-	final byte[] nonce;
-	public final ElGamalReencryptFactor reencryptFactor;
+	int mapping;
+	byte[] nonce;
+	public ElGamalReencryptFactor reencryptFactor;
 }

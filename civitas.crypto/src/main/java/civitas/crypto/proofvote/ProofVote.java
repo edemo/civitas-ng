@@ -7,15 +7,15 @@
 package civitas.crypto.proofvote;
 
 import civitas.util.CivitasBigInteger;
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
+@Value
 public class ProofVote {
 
-	@NonNull public final CivitasBigInteger c;
+	@NonNull public CivitasBigInteger c;
 
-	@NonNull public final CivitasBigInteger s1;
+	@NonNull public CivitasBigInteger s1;
 
-	@NonNull public final CivitasBigInteger s2;
+	@NonNull public CivitasBigInteger s2;
 }

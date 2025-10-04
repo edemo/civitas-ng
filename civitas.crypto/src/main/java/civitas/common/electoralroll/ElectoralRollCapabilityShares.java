@@ -7,11 +7,11 @@
 package civitas.common.electoralroll;
 
 import civitas.common.VoterEncCapabilityShares;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class ElectoralRollCapabilityShares {
-	public final VoterEncCapabilityShares[] roll;
-	public final int tellerIndex;
-	public final int voterBlock;
+	public VoterEncCapabilityShares[] roll;
+	public int tellerIndex;
+	public int voterBlock;
 }

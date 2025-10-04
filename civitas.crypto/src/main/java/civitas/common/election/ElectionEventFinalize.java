@@ -7,13 +7,12 @@
 package civitas.common.election;
 
 import civitas.common.tallystatefinal.TallyStateFinal;
-import lombok.Data;
 
-@Data
-public class ElectionEventFinalize implements ElectionEvent {
-	public final String kind = EVENT_KIND_FINALIZE;
-	public final ElectionID electionID;
-	public final int sequence;
-	public final TallyStateFinal tally;
-	public final String message;
+public record ElectionEventFinalize(ElectionID electionID, int sequence, TallyStateFinal tally, String message)
+		implements ElectionEvent {
+
+	@Override
+	public String kind() {
+		return EVENT_KIND_FINALIZE;
+	}
 }

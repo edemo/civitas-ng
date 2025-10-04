@@ -10,24 +10,24 @@ import org.springframework.data.annotation.Id;
 
 import civitas.crypto.signature.Signature;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
+@Value
 @XmlRootElement(name = "bbpost")
-public final class BBPost {
+public class BBPost {
 	@NonNull @Id
-	public final String bbid;
+	public String bbid;
 
-	@NonNull public final Long serial;
+	@NonNull public Long serial;
 
-	@NonNull public final Long timestamp;
+	@NonNull public Long timestamp;
 
-	@NonNull public final String meta;
+	@NonNull public String meta;
 
-	@NonNull public final String msg;
+	@NonNull public String msg;
 
-	@NonNull public final Signature sig;
+	@NonNull public Signature sig;
 
-	@NonNull public final byte[] hash;
+	public byte @NonNull [] hash;
 }

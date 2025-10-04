@@ -17,9 +17,9 @@ import lombok.NonNull;
 public class VoteMix implements VoterMix {
 	@NonNull public Integer number;
 
-	@NonNull public byte[] mixNonceHash;
+	public byte @NonNull [] mixNonceHash;
 
-	@NonNull public byte[][] commitments;
+	public byte[][] commitments;
 
 	@NonNull public EncryptedVote[] votes;
 

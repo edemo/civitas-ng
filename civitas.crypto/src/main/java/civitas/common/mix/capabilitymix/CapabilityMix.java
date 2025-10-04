@@ -15,7 +15,7 @@ import lombok.NonNull;
 public class CapabilityMix implements VoterMix {
 	@NonNull public final Integer number;
 
-	@NonNull public final byte[] mixNonceHash;
+	public final byte @NonNull [] mixNonceHash;
 
 	@NonNull public byte[][] commitments;
 

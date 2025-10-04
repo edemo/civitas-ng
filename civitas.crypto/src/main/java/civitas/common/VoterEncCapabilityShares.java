@@ -7,12 +7,12 @@
 package civitas.common;
 
 import civitas.crypto.signedciphertext.ElGamalSignedCiphertext;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class VoterEncCapabilityShares {
-	public final int regTellerIndex;
-	public final String name;
-	public final int voterBlock;
-	public final ElGamalSignedCiphertext[] encCapabilityShares;
+	public int regTellerIndex;
+	public String name;
+	public int voterBlock;
+	public ElGamalSignedCiphertext[] encCapabilityShares;
 }
