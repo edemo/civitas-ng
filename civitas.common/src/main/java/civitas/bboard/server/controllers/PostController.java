@@ -82,10 +82,11 @@ public class PostController {
 	@ResponseBody
 	public Long apply(@PathVariable("bbid") final String bbid, @RequestBody final PostDTO dto)
 			throws CommunicableException {
-		String objectID = dto.meta + bbid;
-		checkAccess.apply(Operation.POST, dto.signature.getSignerPubKey(), objectID);
+		String objectID = dto.meta() + bbid;
+		checkAccess.apply(Operation.POST, dto.signature().getSignerPubKey(), objectID);
 		try {
-			if (!verifyPublicKeySignature.apply(dto.signature, dto.payloadXml.getBytes())) {
+			if (!verifyPublicKeySignature.apply(
+					dto.signature(), dto.payloadXml().getBytes())) {
 				throw new CommunicableException("bad signature");
 			}
 		} catch (CryptoException e) {
@@ -106,10 +107,10 @@ public class PostController {
 			lastPost = lastPosts.iterator().next();
 			hash = lastPost.hash;
 		}
-		byte[] newhash = cryptoHash.apply(hash, BigInteger.valueOf(t).toByteArray(), dto.signature.signatureBytes);
+		byte[] newhash = cryptoHash.apply(hash, BigInteger.valueOf(t).toByteArray(), dto.signature().signatureBytes);
 
 		try {
-			updateCache.apply(bbid, dto.meta, dto.payloadXml, t);
+			updateCache.apply(bbid, dto.meta(), dto.payloadXml(), t);
 		} catch (IOException | JAXBException e) {
 			throw new CommunicableException("bad payload xml");
 		}
@@ -118,7 +119,7 @@ public class PostController {
 		if (lastPost != null) {
 			serial = lastPost.serial;
 		}
-		bBPostRepository.save(new BBPost(bbid, serial + 1, t, dto.meta, dto.payloadXml, dto.signature, newhash));
+		bBPostRepository.save(new BBPost(bbid, serial + 1, t, dto.meta(), dto.payloadXml(), dto.signature(), newhash));
 
 		return t;
 	}
