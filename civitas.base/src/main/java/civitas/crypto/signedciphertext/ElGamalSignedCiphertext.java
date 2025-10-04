@@ -8,16 +8,16 @@ package civitas.crypto.signedciphertext;
 
 import civitas.crypto.ciphertext.ElGamalCiphertextish;
 import civitas.util.CivitasBigInteger;
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
+@Value
 public class ElGamalSignedCiphertext implements ElGamalCiphertextish {
 	@NonNull public CivitasBigInteger a;
 
 	@NonNull public CivitasBigInteger b;
 
-	@NonNull public final CivitasBigInteger c;
+	@NonNull public CivitasBigInteger c;
 
-	@NonNull public final CivitasBigInteger d;
+	@NonNull public CivitasBigInteger d;
 }

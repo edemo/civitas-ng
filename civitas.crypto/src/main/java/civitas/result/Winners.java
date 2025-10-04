@@ -2,10 +2,10 @@ package civitas.result;
 
 import java.util.List;
 
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
+@Value
 public class Winners {
 	@NonNull List<List<Integer>> result;
 

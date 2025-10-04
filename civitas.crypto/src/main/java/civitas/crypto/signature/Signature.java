@@ -15,7 +15,7 @@ import lombok.NonNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Signature {
-	@NonNull public byte[] signatureBytes;
+	public byte @NonNull [] signatureBytes;
 
 	@NonNull String signerPubKey;
 }

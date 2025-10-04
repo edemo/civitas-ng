@@ -7,12 +7,10 @@
 package civitas.crypto.ciphertext;
 
 import civitas.util.CivitasBigInteger;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
-@AllArgsConstructor
+@Value
 public class ElGamalCiphertext implements ElGamalCiphertextish {
 	@NonNull public CivitasBigInteger a;
 
