@@ -20,6 +20,6 @@ public class GetVoteMixMeta implements CommonConstants {
 			throw new NullPointerException();
 		}
 		String blockDesc = getBlockName.apply(details, block);
-		return VoteMixMETA + blockDesc + ":" + mixNumber + (rightMix ? "R" : "L");
+		return VOTE_MIX_META + blockDesc + ":" + mixNumber + (rightMix ? "R" : "L");
 	}
 }

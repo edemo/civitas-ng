@@ -39,7 +39,7 @@ class EncodeMessageTest extends TestBase implements VoteCapabilityShareTestData 
 
 	@Test
 	@DisplayName("empty string cannot be used in encodeMessage")
-	void test1_1_1() throws CryptoException {
+	void test1_1_1() {
 		assertThrows(CryptoException.class, () -> encodeMessage.apply("", EL_GAMAL_PARAMETERS));
 	}
 

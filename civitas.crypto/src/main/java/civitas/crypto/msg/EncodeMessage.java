@@ -1,5 +1,8 @@
 package civitas.crypto.msg;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -11,7 +14,7 @@ import civitas.util.CivitasBigIntegerFactory;
 
 @Controller
 public class EncodeMessage {
-	protected static final String CHARSET = "UTF-8";
+	protected static final Charset CHARSET = StandardCharsets.UTF_8;
 
 	@Autowired
 	SchnorrPrimeEncode schnorrPrimeEncoder;

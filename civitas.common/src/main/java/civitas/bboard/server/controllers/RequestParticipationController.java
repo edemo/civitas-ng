@@ -1,15 +1,11 @@
 package civitas.bboard.server.controllers;
 
 import java.io.IOException;
-import java.security.InvalidKeyException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.security.PublicKey;
-import java.security.SignatureException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
-import java.security.spec.InvalidKeySpecException;
 
 import org.bouncycastle.crypto.CryptoException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,10 +45,9 @@ public class RequestParticipationController implements CommonConstants {
 	@PostMapping("/requestParticipation")
 	@ResponseBody
 	public String apply(@RequestBody final RequestParticipationDTO participationRequest)
-			throws UnrecoverableKeyException, InvalidKeyException, KeyStoreException, NoSuchAlgorithmException,
-					CertificateException, NoSuchProviderException, SignatureException, JAXBException, IOException,
-					CommunicableException, InvalidKeySpecException, CryptoException {
-		if (participationRequest == null || participationRequest.electionID() == null) {
+			throws UnrecoverableKeyException, KeyStoreException, NoSuchAlgorithmException, CertificateException,
+					JAXBException, IOException, CommunicableException, CryptoException {
+		if (participationRequest == null) {
 			return null;
 		}
 		ElectionDetails electionDetails = new ElectionDetails(
@@ -82,7 +77,7 @@ public class RequestParticipationController implements CommonConstants {
 		ElectionCache electionCache = new ElectionCache(boardId, myIndex, ElectionStatus.DEFINED, electionDetails);
 		electionCacheRepository.save(electionCache);
 
-		postController.apply(boardId, ElectionDetailsMETA, electionDetails);
+		postController.apply(boardId, ELECTION_DETAILS_META, electionDetails);
 		return boardId;
 	}
 }

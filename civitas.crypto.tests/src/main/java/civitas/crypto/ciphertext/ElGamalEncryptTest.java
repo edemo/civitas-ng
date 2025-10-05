@@ -17,7 +17,7 @@ class ElGamalEncryptTest extends RandomAwareTestBase implements ElGamalCiphertex
 
 	@Test
 	@DisplayName("elGamalEncrypt with a random factor works as expected")
-	void test0_1() throws Exception {
+	void test0_1() {
 
 		ElGamalMsg msg = new ElGamalMsg(BIGINT_G.modPow(BIGINT_B, BIGINT_P));
 		ElGamalCiphertext encrypted = new ElGamalCiphertext(
@@ -31,7 +31,7 @@ class ElGamalEncryptTest extends RandomAwareTestBase implements ElGamalCiphertex
 	@Test
 	@DisplayName(
 			"elGamalEncrypt with a factor works as expected:" + "c1:=g^factor ; s:=pubkey^factor ; c2:=m * s  (mod p)")
-	void test0() throws Exception {
+	void test0() {
 		assertEquals(
 				ENCRYPTED_WITH_FACTOR_EPRIME,
 				elGamalEncrypt.apply(
@@ -50,7 +50,7 @@ class ElGamalEncryptTest extends RandomAwareTestBase implements ElGamalCiphertex
 					// using the encryption factor 0. This is assumed by some of the
 					// zero knowledge proofs.
 			""")
-	void test() throws Exception {
+	void test() {
 		ElGamalMsg msg = new ElGamalMsg(BIGINT_G.modPow(BIGINT_B, BIGINT_P));
 		assertEquals(ENCRYPTED_ZERO_FACTOR, elGamalEncrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, msg, ENCRYPT_FACTOR_ZERO));
 	}

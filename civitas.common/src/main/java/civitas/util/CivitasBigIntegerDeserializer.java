@@ -2,7 +2,6 @@ package civitas.util;
 
 import java.io.IOException;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -23,8 +22,7 @@ class CivitasBigIntegerDeserializer extends StdDeserializer<CivitasBigInteger> {
 	}
 
 	@Override
-	public CivitasBigInteger deserialize(final JsonParser p, final DeserializationContext ctxt)
-			throws IOException, JacksonException {
+	public CivitasBigInteger deserialize(final JsonParser p, final DeserializationContext ctxt) throws IOException {
 		JsonNode node = p.getCodec().readTree(p);
 		return CommonUtil.asBigint(node.asText());
 	}

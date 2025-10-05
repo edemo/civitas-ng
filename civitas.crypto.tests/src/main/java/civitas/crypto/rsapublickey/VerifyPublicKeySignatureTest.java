@@ -33,14 +33,14 @@ class VerifyPublicKeySignatureTest extends RandomAwareTestBase implements Signat
 
 	@Test
 	@DisplayName("if the verification fails, returns false")
-	void test_1() throws CryptoException, InvalidKeyException, SignatureException {
+	void test_1() throws CryptoException {
 		assertFalse(
 				verifyPublicKeySignature.apply(SIGNATURE_BAD_WITH_KEY, PUBLIC_KEY, AUTHENTICATION_NONCE.getBytes()));
 	}
 
 	@Test
 	@DisplayName("if the key or the signature is bad, a  CryptoException is thrown")
-	void test2() throws CryptoException, InvalidKeyException, SignatureException {
+	void test2() {
 		assertThrows(
 				CryptoException.class,
 				() -> verifyPublicKeySignature.apply(
@@ -51,14 +51,14 @@ class VerifyPublicKeySignatureTest extends RandomAwareTestBase implements Signat
 	@DisplayName("in case no public key given, the one in the signature is used"
 			+ "- converts the string in the sigature to a public key\n"
 			+ "- uses the check expecting the public key")
-	void test1() throws CryptoException, InvalidKeyException, SignatureException {
+	void test1() throws CryptoException {
 		assertTrue(verifyPublicKeySignature.apply(SIGNATURE_OF_AUTH_NONCE_WITH_KEY, AUTHENTICATION_NONCE.getBytes()));
 		verify(verifyPublicKeySignature.convertStringToPublicKey).apply(PUBLIC_KEY_BASE64);
 	}
 
 	@Test
 	@DisplayName("bad signature does not check in case no public key given")
-	void test1_1() throws CryptoException, InvalidKeyException, SignatureException {
+	void test1_1() throws CryptoException {
 		assertFalse(verifyPublicKeySignature.apply(SIGNATURE_OF_AUTH_NONCE_WITH_KEY2, AUTHENTICATION_NONCE.getBytes()));
 	}
 
@@ -75,14 +75,14 @@ class VerifyPublicKeySignatureTest extends RandomAwareTestBase implements Signat
 
 	@Test
 	@DisplayName("bad signature does not check when the message is a string")
-	void test3_1() throws CryptoException, InvalidKeyException, SignatureException {
+	void test3_1() throws CryptoException {
 		assertFalse(verifyPublicKeySignature.apply(SIGNATURE_BAD_WITH_KEY, PUBLIC_KEY, SOMESTRING));
 	}
 
 	@Test
 	@DisplayName(
 			"when the message is a string and no explicit public key is given, then the check uses the hash of the string and the public key from the signature")
-	void test4() throws CryptoException, InvalidKeyException, SignatureException {
+	void test4() throws CryptoException {
 		boolean expected = verifyPublicKeySignature.apply(SIGNATURE_OF_SOMESTRING_WITH_KEY, SOMESTRING);
 		verify(verifyPublicKeySignature.cryptoHash).apply(SOMESTRING.getBytes());
 		assertTrue(expected);
@@ -90,7 +90,7 @@ class VerifyPublicKeySignatureTest extends RandomAwareTestBase implements Signat
 
 	@Test
 	@DisplayName("bad signature does not check when the message is a string and no explicit public key is given")
-	void test4_1() throws CryptoException, InvalidKeyException, SignatureException {
+	void test4_1() throws CryptoException {
 		assertFalse(verifyPublicKeySignature.apply(SIGNATURE_BAD_WITH_KEY, SOMESTRING_BASE64));
 	}
 }

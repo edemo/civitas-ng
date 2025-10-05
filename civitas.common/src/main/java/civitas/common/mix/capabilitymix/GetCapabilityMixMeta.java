@@ -18,6 +18,6 @@ public class GetCapabilityMixMeta implements CommonConstants {
 			throw new IllegalArgumentException("null block");
 		}
 		String blockDesc = getBlockName.apply(details, block);
-		return CapabilityMixMETA + blockDesc + ":" + mixNumber + (rightMix ? "R" : "L");
+		return CAPABILITY_MIX_META + blockDesc + ":" + mixNumber + (rightMix ? "R" : "L");
 	}
 }

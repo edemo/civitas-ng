@@ -18,7 +18,7 @@ class SignAndEncryptTest extends RandomAwareTestBase implements ElGamalSignedCip
 	@DisplayName("elGamalSignedEncrypt works as expected:" + "s:= random, "
 			+ "a:=g^y (mod p), " + "b:=m*key^y (mod p), "
 			+ "c:=hash(g^s,a,b,env) % q, " + "d:=s+c*y (mod q)")
-	void elGamalSignedEncryptTest() throws Exception {
+	void elGamalSignedEncryptTest() {
 
 		assertEquals(
 				EL_GAMAL_SIGNED_CIPHERTEXT,

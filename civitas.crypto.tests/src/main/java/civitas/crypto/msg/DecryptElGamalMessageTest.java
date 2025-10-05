@@ -30,7 +30,7 @@ class DecryptElGamalMessageTest extends TestBase implements ElGamalSignedCiphert
 
 	@Test
 	@DisplayName("elGamalDecrypt throws CryptoException when the verification fails")
-	void elGamalDecryptTest1() throws Exception {
+	void elGamalDecryptTest1() {
 
 		assertThrows(
 				CryptoException.class,

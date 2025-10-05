@@ -23,7 +23,7 @@ class ConvertStringToPublicKeyTest extends RandomAwareTestBase implements Public
 
 	@Test
 	@DisplayName("inalid key material results in CryptoException")
-	void test1() throws CryptoException {
+	void test1() {
 		assertThrows(CryptoException.class, () -> convertStringToPublicKey.apply(PUBLIC_KEY_BAD_BASE64));
 	}
 }

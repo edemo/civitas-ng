@@ -9,8 +9,7 @@ import civitas.crypto.privatekey.ElGamalPrivateKey;
 public class ElGamalPublicKeyisAuthorized {
 
 	public boolean apply(final ElGamalPublicKey that, final Object prf) {
-		if (prf instanceof ElGamalPrivateKey) {
-			ElGamalPrivateKey k = (ElGamalPrivateKey) prf;
+		if (prf instanceof ElGamalPrivateKey k) {
 			ElGamalParameters param = that.params;
 			return that.y.equals(param.g.modPow(k.x(), param.p));
 		}

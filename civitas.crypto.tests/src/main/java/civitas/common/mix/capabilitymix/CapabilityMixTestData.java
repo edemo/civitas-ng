@@ -15,21 +15,11 @@ public interface CapabilityMixTestData
 
 	CapabilityMix CAPABILITY_MIX_MOCK = mock(CapabilityMix.class);
 
-	Supplier<CapabilityMix> CAPABILITY_MIX_EMPTY_SUPPLIER = new Supplier<>() {
+	Supplier<CapabilityMix> CAPABILITY_MIX_EMPTY_SUPPLIER =
+			() -> new CapabilityMix(VOTER_BLOCK, new byte[0], new byte[][] {}, new ElGamalCiphertext[0]);
 
-		@Override
-		public CapabilityMix get() {
-			return new CapabilityMix(VOTER_BLOCK, new byte[0], new byte[][] {}, new ElGamalCiphertext[0]);
-		}
-	};
-
-	Supplier<CapabilityMix> CAPABILITY_MIX_COMMITMENT_ADDED_SUPPLIER = new Supplier<>() {
-		@Override
-		public CapabilityMix get() {
-			return new CapabilityMix(
-					VOTER_BLOCK, new byte[0], new byte[][] {SOMESTRING.getBytes()}, new ElGamalCiphertext[0]);
-		}
-	};
+	Supplier<CapabilityMix> CAPABILITY_MIX_COMMITMENT_ADDED_SUPPLIER = () ->
+			new CapabilityMix(VOTER_BLOCK, new byte[0], new byte[][] {SOMESTRING.getBytes()}, new ElGamalCiphertext[0]);
 
 	CapabilityMix CAPABILITY_MIX_CAPABILITY_ADDED =
 			new CapabilityMix(VOTER_BLOCK, new byte[0], new byte[][] {}, new ElGamalCiphertextish[] {

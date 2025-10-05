@@ -1,6 +1,5 @@
 package civitas.bboard.server.controllers;
 
-import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class ConfirmParticipationController {
 	ElectionCacheRepository electionCacheRepository;
 
 	@PostMapping("/confirmParticipation")
-	boolean apply(final ElectionDetails elecDetails, final int index) throws IOException {
+	boolean apply(final ElectionDetails elecDetails, final int index) {
 		getBoardForId.apply(elecDetails.getElectionID(), true);
 		Optional<ElectionCache> electionp = electionCacheRepository.findById(elecDetails.getElectionID());
 		if (electionp.isPresent()) {

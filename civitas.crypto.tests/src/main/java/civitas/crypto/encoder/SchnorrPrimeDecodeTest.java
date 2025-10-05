@@ -17,7 +17,7 @@ class SchnorrPrimeDecodeTest extends TestBase implements EncoderTestData {
 
 	@Test
 	@DisplayName("no decoding for Schnorr primes")
-	void test2() throws CryptoException {
+	void test2() {
 		assertThrows(CryptoException.class, () -> schnorrPrimeDecoder.apply(BIGINT_A, EL_GAMAL_PARAMETERS));
 	}
 }

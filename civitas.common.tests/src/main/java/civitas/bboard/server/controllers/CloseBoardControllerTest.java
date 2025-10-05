@@ -6,8 +6,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 
 import org.bouncycastle.crypto.CryptoException;
@@ -36,9 +34,7 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 			- calculates the BoardClosedContentCommitment for all voter block
 			- posts the BoardClosedContentCommitment for the election master
 			""")
-	void test()
-			throws InvalidKeySpecException, IOException, NoSuchAlgorithmException, CommunicableException,
-					CryptoException {
+	void test() throws CommunicableException, CryptoException {
 		closeBoardController.apply(BULLETIN_BOARD_ID, ELECTION_ID, NUM_VOTER_BLOCKS, SIGNATURE_OF_AUTH_NONCE_WITH_KEY);
 		verify(closeBoardController.getBoardForId).apply(BULLETIN_BOARD_ID, true);
 		verify(closeBoardController.verifyPublicKeySignature)
@@ -54,7 +50,7 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 
 	@Test
 	@DisplayName("if the signature does not verify, does nothing")
-	void test2() throws InvalidKeySpecException, IOException, NoSuchAlgorithmException, CommunicableException {
+	void test2() throws CommunicableException {
 		closeBoardController.apply(BULLETIN_BOARD_ID, ELECTION_ID, NUM_VOTER_BLOCKS, SIGNATURE_OF_AUTH_NONCE_WITH_KEY2);
 		verify(closeBoardController.boardRepository, times(0)).save(BULLETIN_BOARD);
 		verifyNoInteractions(closeBoardController.cryptoHash);
@@ -63,7 +59,7 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 
 	@Test
 	@DisplayName("if the election is null, a NullPointerException is thrown")
-	void test3() throws InvalidKeySpecException, IOException {
+	void test3() {
 		assertThrows(
 				NullPointerException.class,
 				() -> closeBoardController.apply(
@@ -72,7 +68,7 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 
 	@Test
 	@DisplayName("if the signature is null, a NullPointerException is thrown")
-	void test4() throws InvalidKeySpecException, IOException {
+	void test4() {
 		assertThrows(
 				NullPointerException.class,
 				() -> closeBoardController.apply(BULLETIN_BOARD_ID, ELECTION_ID, NUM_VOTER_BLOCKS, null));
@@ -80,7 +76,7 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 
 	@Test
 	@DisplayName("if the number of voter blocks is negative, an IllegalArgumentException is thrown")
-	void test5() throws InvalidKeySpecException, IOException {
+	void test5() {
 		assertThrows(
 				IllegalArgumentException.class,
 				() -> closeBoardController.apply(BULLETIN_BOARD_ID, ELECTION_ID, -1, SIGNATURE_OF_AUTH_NONCE_WITH_KEY));
@@ -88,7 +84,7 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 
 	@Test
 	@DisplayName("if the number of voter blocks is zero, the BoardClosedContentCommitment posted has empty hashes")
-	void test6() throws InvalidKeySpecException, IOException, NoSuchAlgorithmException, CommunicableException {
+	void test6() throws CommunicableException {
 		closeBoardController.apply(BULLETIN_BOARD_ID, ELECTION_ID, 0, SIGNATURE_OF_AUTH_NONCE_WITH_KEY);
 		verify(closeBoardController.getRestTemplate.restTemplate)
 				.postForObject(
@@ -99,7 +95,7 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 
 	@Test
 	@DisplayName("if the election server is unreachable, an IOException is thrown and the board is not closed")
-	void test7() throws InvalidKeySpecException, IOException {
+	void test7() {
 		given(EnvironmentState.ELECTION_SERVER_IS_UNREACHEABLE);
 		assertThrows(
 				IOException.class,

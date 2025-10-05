@@ -24,8 +24,8 @@ public class GetMixRevelationMeta implements CommonConstants {
 		}
 
 		String blockDesc = getBlockName.apply(electionDetails, block);
-		return mixRevelationMETA_PREFIX
-				+ (isVoteMix ? mixRevelationMETA_VOTE_REVELATION : mixRevelationMETA_ER_REVELATION)
+		return MIX_REVELATION_META_PREFIX
+				+ (isVoteMix ? MIX_REVELATION_META_VOTE_REVELATION : MIX_REVELATION_META_ER_REVELATION)
 				+ ":" + blockDesc + ":" + tellerIndex;
 	}
 }

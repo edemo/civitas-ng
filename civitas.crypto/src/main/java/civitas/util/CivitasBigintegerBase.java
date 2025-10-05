@@ -28,8 +28,8 @@ public class CivitasBigintegerBase implements CivitasBigIntegerInterface {
 	}
 
 	@Override
-	public boolean equals(final Object o) {
-		return o instanceof CivitasBigInteger && this.i.equals(((CivitasBigInteger) o).i);
+	public boolean equals(final Object object) {
+		return object instanceof CivitasBigInteger other && this.i.equals(other.i);
 	}
 
 	@Override

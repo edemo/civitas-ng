@@ -1,7 +1,5 @@
 package civitas.common.tabteller;
 
-import java.io.UnsupportedEncodingException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -22,8 +20,7 @@ public class ConstructTabTellerKeyShareCommitment {
 	@Autowired
 	ConvertToXml convertToXml;
 
-	public TabTellerKeyShareCommitment apply(final TabTellerKeyShare that)
-			throws JAXBException, UnsupportedEncodingException {
+	public TabTellerKeyShareCommitment apply(final TabTellerKeyShare that) throws JAXBException {
 		String xml = convertToXml.apply(that);
 		byte[] hash = cryptoHash.apply(xml.getBytes());
 		return new TabTellerKeyShareCommitment(that.tellerIndex(), convertToBase64.apply(hash));

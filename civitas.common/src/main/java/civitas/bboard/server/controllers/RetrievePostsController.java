@@ -1,7 +1,5 @@
 package civitas.bboard.server.controllers;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +18,7 @@ public class RetrievePostsController {
 	BBPostRepository bBPostRepository;
 
 	@GetMapping("/boards/{bbid}")
-	private Iterable<BBPost> apply(@PathVariable("bbid") final String bbid) throws IOException {
+	private Iterable<BBPost> apply(@PathVariable("bbid") final String bbid) {
 		getBoardForId.apply(bbid, true);
 
 		return bBPostRepository.findByBbid(bbid);

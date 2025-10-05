@@ -23,7 +23,7 @@ class ConstructProofKnowDiscLogTest extends RandomAwareTestBase implements Proof
 	@DisplayName("constructProofKnowDiscLog constructs the proof correctly:"
 			+ "v:=g^key (mod p), " + "z:=random, " + "a:=g^z (mod p), "
 			+ "c:=hash(v,a)%q, " + "r:=z+c*key (mod q)")
-	void constructProofKnowDiscLogTest() throws Exception {
+	void constructProofKnowDiscLogTest() {
 
 		assertEquals(
 				EL_GAMAL_PROOF_KNOWN_DISC_LOG,
@@ -32,14 +32,14 @@ class ConstructProofKnowDiscLogTest extends RandomAwareTestBase implements Proof
 
 	@Test
 	@DisplayName("constructProofKnowDiscLog returns null if the key is null")
-	void constructProofKnowDiscLogTest1() throws Exception {
+	void constructProofKnowDiscLogTest1() {
 
 		assertNull(constructProofKnowDiscLog.apply(EL_GAMAL_PARAMETERS, null));
 	}
 
 	@Test
 	@DisplayName("constructProofKnowDiscLog returns null if the parameters is null")
-	void constructProofKnowDiscLogTest3() throws Exception {
+	void constructProofKnowDiscLogTest3() {
 
 		assertNull(constructProofKnowDiscLog.apply(null, EL_GAMAL_PRIVATE_KEY_E));
 	}

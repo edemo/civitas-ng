@@ -2,8 +2,6 @@ package civitas.crypto.proofdvr;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -32,7 +30,7 @@ class ConstructElGamalProofDVRTest extends RandomAwareTestBase implements ElGama
 			u = d^(zeta*c+w)
 			ElGamalProofDVRC(e, eprime, c, w, r, u
 			""")
-	void test1() throws IOException {
+	void test1() {
 
 		ElGamalProofDVR proof = constructElGamalProofDVR.apply(
 				CIPHERTEXT_E, CIPHERTEXT_EPRIME, EL_GAMAL_PUBLIC_KEY_E, EL_GAMAL_PUBLIC_KEY_EPRIME, ZETA);
@@ -41,7 +39,7 @@ class ConstructElGamalProofDVRTest extends RandomAwareTestBase implements ElGama
 
 	@Test
 	@DisplayName("the version where factors are given computes zeta")
-	void test1_1() throws IOException {
+	void test1_1() {
 		ElGamalProofDVR proof = constructElGamalProofDVR.apply(
 				EL_GAMAL_PUBLIC_KEY_E,
 				EL_GAMAL_PUBLIC_KEY_EPRIME,

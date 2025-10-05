@@ -1,7 +1,5 @@
 package civitas.bboard.server.controllers;
 
-import java.io.IOException;
-
 import org.slf4j.MarkerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,8 +28,7 @@ public class RetrieveParamsController {
 			@PathVariable("bbid") final String bbid,
 			@PathVariable("fromTime") final Long fromTime,
 			@PathVariable("toTime") final Long toTime,
-			@PathVariable("metaCriteria") final String metaCriteria)
-			throws IOException {
+			@PathVariable("metaCriteria") final String metaCriteria) {
 
 		getBoardForId.apply(bbid, true);
 

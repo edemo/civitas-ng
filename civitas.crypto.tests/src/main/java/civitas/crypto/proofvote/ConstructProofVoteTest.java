@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 import civitas.common.RandomAwareTestBase;
-import civitas.crypto.CryptoException;
 
 class ConstructProofVoteTest extends RandomAwareTestBase implements ProofVoteTestData {
 
@@ -23,7 +22,7 @@ class ConstructProofVoteTest extends RandomAwareTestBase implements ProofVoteTes
 			+ "		 c = hash(g, encCapability (a and b), encChoice (a and b), context,a,b,g^r1,g^r2) mod q, "
 			+ "		 s1 = r1-c*alpha1 (mod q),                           "
 			+ "		 s2 = r2-c*alpha2 (mod q) ")
-	void test2() throws CryptoException {
+	void test2() {
 
 		ProofVote proofVote = constructProofVote.apply(
 				EL_GAMAL_PARAMETERS,
