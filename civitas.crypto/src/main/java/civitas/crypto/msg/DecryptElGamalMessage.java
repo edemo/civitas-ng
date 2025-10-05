@@ -23,8 +23,8 @@ public class DecryptElGamalMessage {
 		ElGamalPrivateKey k = key;
 		ElGamalParameters ps = key.params();
 
-		if (ciphertext instanceof ElGamalSignedCiphertext
-				&& !verifyElGamalSignature.apply(ps, (ElGamalSignedCiphertext) ciphertext, additionalEnv)) {
+		if (ciphertext instanceof ElGamalSignedCiphertext elGamalSignedCiphertext
+				&& !verifyElGamalSignature.apply(ps, elGamalSignedCiphertext, additionalEnv)) {
 			throw new CryptoException("Ciphertext failed verification");
 		}
 

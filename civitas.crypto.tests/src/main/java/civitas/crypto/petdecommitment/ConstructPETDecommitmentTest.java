@@ -1,6 +1,7 @@
 package civitas.crypto.petdecommitment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.DisplayName;
@@ -42,5 +43,11 @@ class ConstructPETDecommitmentTest extends TestBase implements PETDecommitmentTe
 						CIPHERTEXT_E_B.modDivide(CIPHERTEXT_EPRIME_B, BIGINT_P),
 						FACTOR_E);
 		assertEquals(PET_DECOMMITMENT, decommitment);
+	}
+
+	@Test
+	@DisplayName("decommitment cannot be instantiated with null arguments")
+	void decommitmentNullTest() {
+		assertThrows(NullPointerException.class, () -> new PETDecommitment(null, null, null));
 	}
 }

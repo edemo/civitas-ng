@@ -23,13 +23,9 @@ import civitas.crypto.ElGamalSignedCiphertext;
 import civitas.crypto.PublicKey;
 
 /**
- * Utility methods for examining eand processing lections
+ * Utility methods for examining and processing elections
  */
 public class ElectionUtil {
-	/*
-	 * Election statuses
-	 */
-
 
 	/**
 	 * Retrieves the election status.
@@ -59,7 +55,7 @@ public class ElectionUtil {
 		int numTabTellers = 0;
 		try {
 			numTabTellers = tellerDetails.tabulationTellers.length;
-		} catch (NullPointerException ignore) {
+		} catch (NullPointerException ignored) {
 		}
 
 		// definitely initialized. has it been started, stopped, finalized, or tabulated
@@ -74,7 +70,7 @@ public class ElectionUtil {
 				ElectionEvent e = null;
 				try {
 					e = events[i];
-				} catch (ArrayIndexOutOfBoundsException imposs) {
+				} catch (ArrayIndexOutOfBoundsException ignored) {
 				}
 
 				if (e != null && e.kind != null) {
@@ -133,14 +129,12 @@ public class ElectionUtil {
 		if (cachedEvents != null && cachedEvents.length > 0) {
 			try {
 				ElectionEvent last = cachedEvents[cachedEvents.length - 1];
-				if (last != null) {
-					if (ElectionEvent.EVENT_KIND_FINALIZE.equals(last.kind)) {
-						// it's a finalzed event, this means that we've got
+				if (last != null && ElectionEvent.EVENT_KIND_FINALIZE.equals(last.kind)) {
+						// it's a finalized event, this means that we've got
 						// all the events we're going to
 						return cachedEvents;
 					}
-				}
-			} catch (ArrayIndexOutOfBoundsException|NullPointerException imposs) {
+			} catch (ArrayIndexOutOfBoundsException|NullPointerException ignored) {
 			}
 		}
 		// look for a start, stop or finalize event.
@@ -169,8 +163,7 @@ public class ElectionUtil {
 					// the message isn't signed by the supervisor
 					post = null;
 				}
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 
 			if (post != null) {
@@ -178,7 +171,7 @@ public class ElectionUtil {
 				ElectionEvent e = null;
 				try {
 					e = (ElectionEvent) post.msg;
-				} catch (ClassCastException ignore) {
+				} catch (ClassCastException ignored) {
 					// we will not process this event.
 					e = null;
 				}
@@ -191,7 +184,7 @@ public class ElectionUtil {
 					lastSeq = e.sequence;
 					try {
 						events[count++] = e;
-					} catch (ArrayIndexOutOfBoundsException imposs) {
+					} catch (ArrayIndexOutOfBoundsException ignored) {
 					}
 				}
 			}
@@ -203,7 +196,7 @@ public class ElectionUtil {
 			for (int i = 0; i < count; i++) {
 				try {
 					n[i] = events[i];
-				} catch (ArrayIndexOutOfBoundsException imposs) {
+				} catch (ArrayIndexOutOfBoundsException ignored) {
 				}
 			}
 
@@ -221,9 +214,8 @@ public class ElectionUtil {
 	 * Retrieves the election details from the specified bulletin board. Returns
 	 * null if no details. Returns the first details that successfully parses.
 	 */
-	public static ElectionDetails
-
-			retrieveElectionDetails(ElectionID electionID, ElectionCache electionCache) throws IOException {
+	public static ElectionDetails retrieveElectionDetails(ElectionID electionID, ElectionCache electionCache)
+			throws IOException {
 		if (electionID == null)
 			return null;
 		if (electionCache != null && electionCache.getElectionDetails() != null)
@@ -246,8 +238,7 @@ public class ElectionUtil {
 			BBPost post = null;
 			try {
 				post = l.get(i);
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 
 			if (post != null) {
@@ -356,13 +347,12 @@ public class ElectionUtil {
 					// the message isn't signed by the supervisor
 					post = null;
 				}
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 
 			if (post != null) {
 				// check it parses, and check the sequence number
-				ElectionEvent e = null;
+				ElectionEvent e;
 				try {
 					e = (ElectionEvent) post.msg;
 				} catch (ClassCastException ex) {
@@ -374,9 +364,8 @@ public class ElectionUtil {
 					// the sequence number is not strictly increasing.
 					// It may be a replay attack, so ignore it.
 					e = null;
-				} else if (e != null && e.kind != null) {
-					if (e.kind.equals(eventKind)) {
-						Long time = new Long(post.timestamp);
+				} else if (e != null && e.kind != null && e.kind.equals(eventKind)) {
+						Long time = post.timestamp;
 
 						try {
 							if (electionCache != null && ElectionEvent.EVENT_KIND_START.equals(eventKind)) {
@@ -384,11 +373,10 @@ public class ElectionUtil {
 							} else if (electionCache != null && ElectionEvent.EVENT_KIND_STOP.equals(eventKind)) {
 								electionCache.setElectionStopTime(time);
 							}
-						} catch (NullPointerException ignore) {
+						} catch (NullPointerException ignored) {
 						}
 						return time;
 					}
-				}
 			}
 		}
 
@@ -446,8 +434,7 @@ public class ElectionUtil {
 				if (post == null || !post.verify(electionDetails.supervisor)) {
 					post = null;
 				}
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 
 			if (post != null) {
@@ -508,8 +495,7 @@ public class ElectionUtil {
 						bccc = null;
 					}
 				}
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 
 			if (bccc != null) {
@@ -577,14 +563,12 @@ public class ElectionUtil {
 			String verifiedM = null;
 			try {
 				post = l.get(i);
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 			if (post != null && post.verify(supPubKey)) {
 				try {
-					BoardsForTabulation bft = (BoardsForTabulation) post.msg;
-					return bft;
-				} catch (ClassCastException e) {
+					return (BoardsForTabulation) post.msg;
+				} catch (ClassCastException ignored) {
 					// ignore, and try the next one...
 				}
 			}
@@ -615,10 +599,9 @@ public class ElectionUtil {
 						// the message isn't signed by the teller
 						post = null;
 					}
-				} catch (ClassCastException imposs) {
-				} catch (IndexOutOfBoundsException imposs) {
+				} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 				}
-				if (post == null)
+                if (post == null)
 					continue;
 				// parse and validate
 				try {
@@ -694,25 +677,24 @@ public class ElectionUtil {
 		}
 		BBClientUtil bb = new BBClientUtil(electionID);
 
-		List l = null;
+		List<BBPost> bbPosts;
 		try {
-			l = bb.retrieveParams(XMLDeserializers.TellerDetails(), TellerDetails.META, null, null);
+			bbPosts = bb.retrieveParams(XMLDeserializers.TellerDetails(), TellerDetails.META, null, null);
 		} catch (IllegalArgumentException e) {
 			throw new IOException(e.getMessage());
 		}
-		if (l == null || l.isEmpty()) {
+		if (bbPosts == null || bbPosts.isEmpty()) {
 			// no results!
 			return null;
 		}
 
 		final PublicKey supPubKey = electionDetails.supervisor;
 
-		for (int i = 0; i < l.size(); i++) {
+		for (int i = 0; i < bbPosts.size(); i++) {
 			BBPost post = null;
 			try {
-				post = (BBPost) l.get(i);
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+				post = bbPosts.get(i);
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 			if (post != null && post.verify(supPubKey)) {
 				try {
@@ -827,8 +809,7 @@ public class ElectionUtil {
 			BBPost post = null;
 			try {
 				post = l.get(i);
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 
 			if (post != null) {
@@ -877,11 +858,11 @@ public class ElectionUtil {
 			BBPost post = null;
 			try {
 				post = l.get(i);
-			} catch (ClassCastException imposs) {
-			} catch (IndexOutOfBoundsException imposs) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
-			if (post == null)
-				continue;
+            if (post == null) {
+                continue;
+            }
 
 			// parse and validate
 			try {
@@ -980,8 +961,7 @@ public class ElectionUtil {
 					// the message isn't signed by the registration teller
 					post = null;
 				}
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 
 			if (post != null) {
@@ -1002,8 +982,7 @@ public class ElectionUtil {
 							for (int j = 0; j < er.roll.length; j++) {
 								vd[retSize + j] = er.roll[j];
 							}
-						} catch (NullPointerException imposs) {
-						} catch (ArrayIndexOutOfBoundsException imposs) {
+						} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 						}
 						ret = new ElectoralRollCapabilityShares(vd, tellerIndex, voterBlock);
 					}
@@ -1066,13 +1045,13 @@ public class ElectionUtil {
 			return null;
 
 		VoterEncCapabilities[] roll = new VoterEncCapabilities[teller0.roll.length];
-		Set processedVoters = new HashSet();
+		Set<String> processedVoters = new HashSet<>();
 		int count = 0;
 		for (int i = 0; i < teller0.roll.length; i++) {
 			VoterEncCapabilityShares voter = null;
 			try {
 				voter = teller0.roll[i];
-			} catch (ArrayIndexOutOfBoundsException imposs) {
+			} catch (ArrayIndexOutOfBoundsException ignored) {
 			}
 			if (voter == null || voter.voterBlock != voterBlock)
 				continue;
@@ -1084,7 +1063,7 @@ public class ElectionUtil {
 			ElGamalSignedCiphertext[][] voterShares = new ElGamalSignedCiphertext[numRegTellers][];
 			try {
 				voterShares[0] = voter.encCapabilityShares;
-			} catch (ArrayIndexOutOfBoundsException imposs) {
+			} catch (ArrayIndexOutOfBoundsException ignored) {
 			}
 
 			boolean foundAll = true;
@@ -1105,7 +1084,7 @@ public class ElectionUtil {
 						foundAll = false;
 						break;
 					}
-				} catch (ArrayIndexOutOfBoundsException imposs) {
+				} catch (ArrayIndexOutOfBoundsException ignored) {
 				} catch (NullPointerException e) {
 					foundAll = false;
 				}
@@ -1126,16 +1105,14 @@ public class ElectionUtil {
 
 					ElGamalCiphertext[] encCapabilities = CryptoUtil.factory().multiplyCiphertexts(voterShares, params);
 					roll[count++] = new VoterEncCapabilities(voter.name, voterBlock, encCapabilities);
-				} catch (ArrayIndexOutOfBoundsException imposs) {
-				} catch (NullPointerException imposs) {
+				} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 				}
 			}
 
 			// add voter to the set of processed voters
 			try {
 				processedVoters.add(voter.name);
-			} catch (IllegalArgumentException imposs) {
-			} catch (ClassCastException imposs) {
+			} catch (ClassCastException | IllegalArgumentException ignored) {
 			}
 		}
 
@@ -1145,7 +1122,7 @@ public class ElectionUtil {
 			for (int i = 0; i < count; i++) {
 				try {
 					n[i] = roll[i];
-				} catch (ArrayIndexOutOfBoundsException imposs) {
+				} catch (ArrayIndexOutOfBoundsException ignored) {
 				}
 			}
 			roll = n;
@@ -1206,8 +1183,7 @@ public class ElectionUtil {
 					vcs[vcsCount++] = vc;
 				}
 			}
-		} catch (NullPointerException imposs) {
-		} catch (ArrayIndexOutOfBoundsException imposs) {
+		} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 		}
 
 		if (vcsCount != vcs.length) {
@@ -1321,8 +1297,7 @@ public class ElectionUtil {
 			BBPost post = null;
 			try {
 				post = l.get(i);
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 
 			if (post != null) {
@@ -1347,19 +1322,16 @@ public class ElectionUtil {
 							if (d.tellerIndex == tellerIndex) {
 								// check the signature too
 								if (post.verify(tabTellerPublicKey(tellerDetails, d.tellerIndex))
-										&& d.keyShare.verify()) {
-									if (com != null && com2 != null && com.keyShareHash != null
-											&& com.keyShareHash.equals(com2.keyShareHash)) {
+									&& d.keyShare.verify() && com != null && com2 != null && com.keyShareHash != null
+									&& com.keyShareHash.equals(com2.keyShareHash)) {
 										return d.keyShare;
-									}
 								}
 							}
 						}
 					}
-				} catch (ClassCastException ignore) {
-				} catch (NullPointerException imposs) {
+				} catch (ClassCastException | NullPointerException ignored) {
 				}
-			}
+            }
 		}
 		if (electionCache != null && electionCache.getTabTellerKeyShare(tellerIndex) != null) {
 			return electionCache.getTabTellerKeyShare(tellerIndex);
@@ -1402,8 +1374,7 @@ public class ElectionUtil {
 			BBPost post = null;
 			try {
 				post = l.get(i);
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 
 			if (post != null) {
@@ -1426,10 +1397,9 @@ public class ElectionUtil {
 							}
 						}
 					}
-				} catch (ClassCastException ignore) {
-				} catch (NullPointerException imposs) {
+				} catch (ClassCastException | NullPointerException ignored) {
 				}
-			}
+            }
 		}
 		if (electionCache != null && electionCache.getTabTellerKeyShareCommitment(tellerIndex) != null) {
 			return electionCache.getTabTellerKeyShareCommitment(tellerIndex);
@@ -1478,8 +1448,7 @@ public class ElectionUtil {
 			try {
 				post = l.get(i);
 
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 
 			if (post != null) {
@@ -1536,36 +1505,34 @@ public class ElectionUtil {
 		XMLDeserializer deserializer = isVoteMix ? XMLDeserializers.VoteMix() : XMLDeserializers.CapabilityMix();
 		BBClientUtil bb = new BBClientUtil(electionID);
 
-		List<BBPost> l = null;
+		List<BBPost> bbPosts;
 		try {
-			l = bb.retrieveParams(deserializer, meta, null, null);
+			bbPosts = bb.retrieveParams(deserializer, meta, null, null);
 		} catch (IllegalArgumentException e) {
 			throw new IOException(e.getMessage());
 		}
-		if (l == null || l.isEmpty()) {
+		if (bbPosts == null || bbPosts.isEmpty()) {
 			// no results!
 			return null;
 		}
 
-		for (int i = 0; i < l.size(); i++) {
+		for (int i = 0; i < bbPosts.size(); i++) {
 			BBPost post = null;
 			try {
-				post = l.get(i);
+				post = bbPosts.get(i);
 				// check the signature on the message.
 				if (post != null && !post.verify(tabTellerPublicKey(tellerDetails, n))) {
 					post = null;
 				}
 
-			} catch (IndexOutOfBoundsException imposs) {
-			} catch (ClassCastException ignore) {
+			} catch (ClassCastException | IndexOutOfBoundsException ignored) {
 			}
 
 			if (post != null) {
 				try {
-					Mix ret = (Mix) post.msg;
-					return ret;
+					return (Mix) post.msg;
 
-				} catch (ClassCastException ignore) {
+				} catch (ClassCastException ignored) {
 				}
 			}
 		}

@@ -53,8 +53,7 @@ class FileBasedDistDecryptCache implements DistDecryptCache {
 		BufferedReader reader = this.electionCache.getFileContents(cachename);
 		if (reader != null) {
 			try {
-				TabTellerDistributedDecryptions dd = TabTellerDistributedDecryptions.fromXML(reader);
-				return dd;
+				return TabTellerDistributedDecryptions.fromXML(reader);
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 				this.electionCache.failedCaching(cachename);
@@ -85,8 +84,7 @@ class FileBasedDistDecryptCache implements DistDecryptCache {
 				d.toXML(out);
 				out.close();
 			}
-		} catch (NullPointerException e) {
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 		}
 	}
 
@@ -116,8 +114,7 @@ class FileBasedDistDecryptCache implements DistDecryptCache {
 					this.electionCache.closedFilePrintStream(cachename);
 				}
 			}
-		} catch (NullPointerException e) {
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 		}
 	}
 

@@ -74,8 +74,7 @@ public class ThreadAwareTabTeller {
             pubKey_ = CryptoUtil.factory().publicKeyFromFile(pubKeyFile);
             privKey = CryptoUtil.factory().privateKeyFromFile(privKeyFile);
         }
-        catch (NullPointerException imposs) { }
-        catch (FileNotFoundException ignore) { }
+        catch (FileNotFoundException | NullPointerException ignored) { }
         catch (IOException e) { 
             e.printStackTrace();
         }
@@ -181,11 +180,11 @@ public class ThreadAwareTabTeller {
         private final PrintStream debugLog;
 
         // map from electionIDs to the Thread that is actively processing it.
-        private static final Map<String, Thread> electionIDsInProcess = new ConcurrentHashMap<String, Thread>();
+        private static final Map<String, Thread> electionIDsInProcess = new ConcurrentHashMap<>();
 
         // Thread local variable of the electionID that the thread is currently processing.
         // Used to make sure we can clean up electionIDsInProcess as appropriate.
-        private static final ThreadLocal<String> electionId = new ThreadLocal<String>();
+        private static final ThreadLocal<String> electionId = new ThreadLocal<>();
 
         TTSocketAcceptor(PublicKey pubKey, PrivateKey privKey, TTStore ttstore, int port, PrintStream debugLog) {
             this.pubKey = pubKey;
@@ -286,8 +285,7 @@ public class ThreadAwareTabTeller {
             
             try {
                 Object o = ttt.invoke();
-                if (o != null && o instanceof Exception) {
-                    Exception e = (Exception)o;
+                if (o != null && o instanceof Exception e) {
                     e.printStackTrace();
                     if (debugLog != null) e.printStackTrace(debugLog);
                 }
@@ -300,12 +298,13 @@ public class ThreadAwareTabTeller {
                     electionIDsInProcess.remove(id);
                 }
                 if (DEBUG) {
-                    System.err.println(Thread.currentThread().toString() + " on port " + port + " finished (election id: " + id + ")");                
+                    System.err.println(Thread.currentThread() + " on port " + port + " finished (election id: " + id + ")");
                 }
-                electionId.set(null);                
+                electionId.remove();
             }
         }
     }
+
     /**
      * PrintStream that prints the time elapsed since the last println was called. Used
      * for debugging.
@@ -320,6 +319,7 @@ public class ThreadAwareTabTeller {
             super(file);
         }
 
+        @Override
         public void println(String x) {
             long next = System.currentTimeMillis();
             if (last < 0) last = next;
@@ -329,5 +329,4 @@ public class ThreadAwareTabTeller {
         }
 
     }
-    
 }

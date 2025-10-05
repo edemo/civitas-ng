@@ -1,6 +1,5 @@
 package civitas.bboard.server.controllers;
 
-import java.io.IOException;
 import java.math.BigInteger;
 import java.security.PublicKey;
 
@@ -27,7 +26,7 @@ public class NewBoardController implements CommonConstants {
 	ConvertPublicKeyToString convertPublicKeyToString;
 
 	@PostMapping("/boards/newBoard")
-	public String apply(final PublicKey key) throws IOException {
+	public String apply(final PublicKey key) {
 		String newBoardName;
 		do {
 			byte[] bs = createFreshNonce.apply(ELECTION_ID_LENGTH);

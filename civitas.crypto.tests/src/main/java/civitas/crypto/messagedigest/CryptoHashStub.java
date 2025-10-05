@@ -4,7 +4,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.util.Base64;
 import java.util.List;
@@ -31,7 +30,7 @@ public class CryptoHashStub
 				BBPostTestData,
 				ProofVoteTestData {
 
-	public static CryptoHash stub() throws UnsupportedEncodingException {
+	public static CryptoHash stub() {
 		CryptoHash mock = mock(CryptoHash.class);
 		@SuppressWarnings("unchecked")
 		List<CivitasBigInteger> any = (List<CivitasBigInteger>) any();

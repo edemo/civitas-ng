@@ -158,7 +158,7 @@ class CryptoBaseTest extends TestBase implements Constants, BasicValuesTestData 
 				}
 			}
 		}
-		double s = Math.abs(sum) / Math.sqrt(bytes.length * 8) / Math.sqrt(2);
+		double s = Math.abs(sum) / Math.sqrt(bytes.length * 8d) / Math.sqrt(2);
 		assertTrue(s < 1.82, "S=" + s);
 	}
 }

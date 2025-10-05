@@ -2,8 +2,6 @@ package civitas.common.tabteller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.UnsupportedEncodingException;
-
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
@@ -18,7 +16,7 @@ class ConstructTabTellerKeyShareCommitmentTest extends RandomAwareTestBase
 	ConstructTabTellerKeyShareCommitment constructTabTellerKeyShareCommitment;
 
 	@Test
-	void test() throws JAXBException, UnsupportedEncodingException {
+	void test() throws JAXBException {
 		assertEquals(TAB_TELLER_KEY_SHARE_COMMITMENT, constructTabTellerKeyShareCommitment.apply(TAB_TELLER_KEY_SHARE));
 	}
 }

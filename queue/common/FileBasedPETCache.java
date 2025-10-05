@@ -60,8 +60,7 @@ class FileBasedPETCache extends FileBasedDistDecryptCache implements PETCache {
 				}
 			}
 			return null;
-		} catch (NullPointerException e) {
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 		}
 		return null;
 	}
@@ -79,8 +78,7 @@ class FileBasedPETCache extends FileBasedDistDecryptCache implements PETCache {
 				c.toXML(out);
 				out.close();
 			}
-		} catch (NullPointerException e) {
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 		}
 	}
 
@@ -125,8 +123,7 @@ class FileBasedPETCache extends FileBasedDistDecryptCache implements PETCache {
 				}
 			}
 			return null;
-		} catch (NullPointerException e) {
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 		}
 		return null;
 	}
@@ -144,8 +141,7 @@ class FileBasedPETCache extends FileBasedDistDecryptCache implements PETCache {
 				c.toXML(out);
 				out.close();
 			}
-		} catch (NullPointerException e) {
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 		}
 	}
 

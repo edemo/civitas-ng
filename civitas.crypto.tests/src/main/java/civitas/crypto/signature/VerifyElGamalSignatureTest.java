@@ -18,7 +18,7 @@ class VerifyElGamalSignatureTest extends TestBase implements ElGamalSignedCipher
 	@Test
 	@DisplayName("elGamalVerify works as expected: "
 			+ "c == hash(g^d * a^(-c), a, b, env) %q, where c and d are used mod q, others mod p")
-	void elGamalVerifyTest() throws Exception {
+	void elGamalVerifyTest() {
 
 		assertTrue(verifyElGamalSignature.apply(
 				EL_GAMAL_PARAMETERS,
@@ -28,7 +28,7 @@ class VerifyElGamalSignatureTest extends TestBase implements ElGamalSignedCipher
 
 	@Test
 	@DisplayName("if the verification fails, false is returned")
-	void test() throws Exception {
+	void test() {
 
 		assertFalse(verifyElGamalSignature.apply(
 				EL_GAMAL_PARAMETERS,
@@ -38,13 +38,13 @@ class VerifyElGamalSignatureTest extends TestBase implements ElGamalSignedCipher
 
 	@Test
 	@DisplayName("the version without env does the same without including env in the hash")
-	void elGamalVerifyTest1() throws Exception {
+	void elGamalVerifyTest1() {
 		assertTrue(verifyElGamalSignature.apply(EL_GAMAL_PARAMETERS, SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0));
 	}
 
 	@Test
 	@DisplayName("when the version without env fails false returned")
-	void t1() throws Exception {
+	void t1() {
 		assertFalse(verifyElGamalSignature.apply(
 				EL_GAMAL_PARAMETERS, SIGNED_CIPHERTEXT_OF_MESSAGE_WITH_FACTOR_RANDOM0_BAD));
 	}

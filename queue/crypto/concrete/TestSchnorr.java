@@ -113,7 +113,7 @@ public class TestSchnorr {
 	public static void qrTest() {
 		ElGamalParametersC ps2 = (ElGamalParametersC) f.generateElGamalParameters(160);
 		try {
-			ElGamalMsgC m2 = (ElGamalMsgC) f.elGamalMsg("Attack at dawn", ps2); 
+			ElGamalMsgC m2 = (ElGamalMsgC) f.elGamalMsg(attack, ps2);
 			test("Decode QR", m2.plaintextStringValue(ps2).equals(attack));
 		} catch (CryptoException ce) {
 			System.out.println("oops: " + ce);

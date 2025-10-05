@@ -19,7 +19,6 @@ import civitas.crypto.PublicKey;
 /**
  * Implements file-based bulletin board storage. Best effort is
  * made for persistent writes.
- *
  */
 class FileBBStorage extends Protocol implements BBStorage {
     /**
@@ -62,7 +61,7 @@ class FileBBStorage extends Protocol implements BBStorage {
             }
         }            
     }
-    
+
     /**
      * Return the appropraite directory to store posts with metadata 
      * meta in bulletin board directory bboardDir.
@@ -82,9 +81,7 @@ class FileBBStorage extends Protocol implements BBStorage {
             }
         }
 
-        File f = new File(bboardDir, sb.toString());
-
-        return f;
+        return new File(bboardDir, sb.toString());
     }
 
     /*
@@ -110,12 +107,7 @@ class FileBBStorage extends Protocol implements BBStorage {
         return new File(bboardRoot, BOARD_CLOSED_FILENAME).exists();
     }
 
-    private static final Comparator<File> filenameComparator = new Comparator<File>() {
-        public int compare(File o1, File o2) {
-            return o1.getName().compareTo(o2.getName());
-        }
-
-    };
+    private static final Comparator<File> filenameComparator = Comparator.comparing(File::getName);
 
     public void processPosts(PostProcessor pp, String bbName, String meta, String fromTime, String toTime) throws IOException {
         File bboardRoot = new File(root,bbName);
@@ -123,7 +115,7 @@ class FileBBStorage extends Protocol implements BBStorage {
         File[] posts = getPostsMatchingCriteria(bboardRoot, meta, fromTime, toTime);
 
         for(File m : posts) {
-            BBStoragePost post = readPostFromFile(bbName, m);            
+            BBStoragePost post = readPostFromFile(bbName, m);
             if (post == null) continue;
             if (metaMatches(meta, post.meta)) {
                 pp.processPost(post);
@@ -142,7 +134,7 @@ class FileBBStorage extends Protocol implements BBStorage {
         // create file at path board/meta
         // make sure that we have a unique file name by taking a hash of the meta and msg.
         long t = System.currentTimeMillis();
-        int unique = (meta==null?0:meta.hashCode()) ^ 
+        int unique = meta.hashCode() ^
                      (mesg==null?0:mesg.hashCode()) ^
                      (sign==null?0:sign.hashCode());
         String filename = filenameForPost(t, unique);
@@ -185,18 +177,13 @@ class FileBBStorage extends Protocol implements BBStorage {
             fin.close();
             return new BBStoragePost(Long.parseLong(stamp), meta, mesg, sig);
         }
-        catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-        catch (IllegalArgumentException e) {
+        catch (IllegalArgumentException | IOException e) {
             e.printStackTrace();
             return null;
         }
     }
     private boolean metaMatches(String metaCriteria, String meta) {
-        return metaCriteria == null || metaCriteria.length() == 0 ||
-        metaCriteria.equals(meta);
+        return metaCriteria == null || metaCriteria.isEmpty() || metaCriteria.equals(meta);
     }
 
     private File[] getPostsMatchingCriteria(File bboardRoot, String metaCriteria, String fromTime, String toTime) {
@@ -204,7 +191,7 @@ class FileBBStorage extends Protocol implements BBStorage {
                                                 toTime);
 
         File[] posts = null;
-        if (metaCriteria != null && metaCriteria.length() > 0) {
+        if (metaCriteria != null && !metaCriteria.isEmpty()) {
             File dir = getMetaDir(bboardRoot, metaCriteria);
             posts = dir.listFiles(tff);
             if (posts == null) {
@@ -214,7 +201,7 @@ class FileBBStorage extends Protocol implements BBStorage {
         }
         else {
             File[] dirs = bboardRoot.listFiles();            
-            ArrayList<File> allFiles = new ArrayList<File>();
+            ArrayList<File> allFiles = new ArrayList<>();
             if (dirs != null) {
                 for (int i = 0; i < dirs.length; i++) {
                     if (dirs[i].isDirectory()) {
@@ -230,7 +217,7 @@ class FileBBStorage extends Protocol implements BBStorage {
             else {
                 System.err.println("dirs was null for " + bboardRoot);
             }
-            posts = allFiles.toArray(new File[0]);            
+            posts = allFiles.toArray(new File[0]);
         }
 
         Arrays.sort(posts, filenameComparator);
@@ -254,15 +241,16 @@ class FileBBStorage extends Protocol implements BBStorage {
         out.close();
         tempFile.renameTo(indexFile);
     }
+
     public int retrieveIndex(String id) throws IOException {
         File bboardRoot = new File(root,id);
         File indexFile = new File(bboardRoot, INDEX_FILENAME);
         FileInputStream fis = new FileInputStream(indexFile);
-        BufferedReader r = new BufferedReader(new InputStreamReader(fis));
-        String s = r.readLine();
-        r.close();
-        return Integer.parseInt(s);
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(fis))) {
+            return Integer.parseInt(reader.readLine());
+        }
     }
+
     public void storeOwnerPublicKey(String id, PublicKey ownerPublicKey) throws IOException {
         // put a file into the BB directory
         File bboardRoot = new File(root,id);
@@ -285,8 +273,11 @@ class FileBBStorage extends Protocol implements BBStorage {
     public String storageDir(String bbid) {
         return new File(root,bbid).getAbsolutePath();
     }
+
     private static class TimeFileFilter implements FilenameFilter {
-        private final long fromCriteria, toCriteria;
+        private final long fromCriteria;
+        private final long toCriteria;
+
         public TimeFileFilter(long fromCriteria, long toCriteria) { 
             this.fromCriteria = fromCriteria; 
             this.toCriteria = toCriteria; 
@@ -294,7 +285,7 @@ class FileBBStorage extends Protocol implements BBStorage {
 
         public TimeFileFilter(String fromTime, String toTime) {
             long fr = Long.MIN_VALUE;
-            if (fromTime != null && fromTime.length() > 0) {
+            if (fromTime != null && !fromTime.isEmpty()) {
                 try {
                     fr = Long.parseLong(fromTime);
                 }
@@ -304,7 +295,7 @@ class FileBBStorage extends Protocol implements BBStorage {
             this.fromCriteria = fr;
 
             long t = Long.MAX_VALUE;
-            if (toTime != null && toTime.length() > 0) {
+            if (toTime != null && !toTime.isEmpty()) {
                 try {
                     t = Long.parseLong(toTime);
                 }

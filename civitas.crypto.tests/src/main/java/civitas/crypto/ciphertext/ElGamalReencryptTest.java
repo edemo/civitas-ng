@@ -17,14 +17,14 @@ class ElGamalReencryptTest extends RandomAwareTestBase implements ElGamalPublicK
 
 	@Test
 	@DisplayName("elGamalReencrypt works as expected: " + "c1:=c1*g^y, c2:=c2*m^y, where y is random, all mod p")
-	void test1() throws Exception {
+	void test1() {
 		assertEquals(CIPHERTEXT_E_REENCRYPTED, elGamalReencrypt.apply(EL_GAMAL_PUBLIC_KEY_EPRIME, CIPHERTEXT_E));
 	}
 
 	@Test
 	@DisplayName("elGamalReencrypt with a factor works as expected: "
 			+ "c1:=c1*g^y, c2:=c2*m^y, where y is random, all mod p")
-	void test1_1() throws Exception {
+	void test1_1() {
 
 		assertEquals(
 				CIPHERTEXT_E_REENCRYPTED,

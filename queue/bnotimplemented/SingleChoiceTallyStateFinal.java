@@ -50,8 +50,7 @@ public class SingleChoiceTallyStateFinal extends TallyStateFinal {
 				sb.print("</tally>");
 				sb.print("</candidate>");
 			}
-		} catch (NullPointerException imposs) {
-		} catch (ArrayIndexOutOfBoundsException imposs) {
+		} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 		}
 		sb.print("</candidateCounts>");
 		sb.print("</" + OPENING_TAG + ">");
@@ -70,13 +69,11 @@ public class SingleChoiceTallyStateFinal extends TallyStateFinal {
 				candidates[i] = Util.readSimpleTag(r, "name");
 				counts[i] = Util.readSimpleIntTag(r, "tally");
 				Util.swallowEndTag(r, "candidate");
-			} catch (ArrayIndexOutOfBoundsException imposs) {
-			} catch (NullPointerException imposs) {
+			} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 			}
-		}
+        }
 
 		Util.swallowEndTag(r, "candidateCounts");
-		SingleChoiceTallyStateFinal b = new SingleChoiceTallyStateFinal(candidates.clone(), counts);
-		return b;
+		return new SingleChoiceTallyStateFinal(candidates.clone(), counts);
 	}
 }

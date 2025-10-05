@@ -43,21 +43,21 @@ class PostControllerTest extends RandomAwareTestBase implements BulletinBoardTes
 				postController.apply(
 						BULLETIN_BOARD_ID,
 						new PostDTO(
-								BoardClosedContentCommitmentMETA,
+								BOARD_CLOSED_CONTENT_COMMITMENT_META,
 								BOARD_CLOSED_CONTENT_COMMITMENT_XML,
 								BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE)));
 		verify(postController.checkAccess)
 				.apply(
 						Operation.POST,
 						BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE.getSignerPubKey(),
-						BoardClosedContentCommitmentMETA + BULLETIN_BOARD_ID);
+						BOARD_CLOSED_CONTENT_COMMITMENT_META + BULLETIN_BOARD_ID);
 		verify(postController.verifyPublicKeySignature)
 				.apply(BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE, BOARD_CLOSED_CONTENT_COMMITMENT_XML.getBytes());
 		verify(postController.getBoardForId).apply(BULLETIN_BOARD_ID, true);
 		verify(postController.updateCache)
 				.apply(
 						BULLETIN_BOARD_ID,
-						BoardClosedContentCommitmentMETA,
+						BOARD_CLOSED_CONTENT_COMMITMENT_META,
 						BOARD_CLOSED_CONTENT_COMMITMENT_XML,
 						CURRENT_TIME);
 		verify(postController.bBPostRepository).findByBbidOrderBySerialDesc(BULLETIN_BOARD_ID);
@@ -67,7 +67,7 @@ class PostControllerTest extends RandomAwareTestBase implements BulletinBoardTes
 						BigInteger.valueOf(CURRENT_TIME).toByteArray(),
 						BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE.signatureBytes);
 		verify(postController.loggerController)
-				.apply(MarkerFactory.getMarker("bbs_post"), BoardClosedContentCommitmentMETA + BULLETIN_BOARD_ID);
+				.apply(MarkerFactory.getMarker("bbs_post"), BOARD_CLOSED_CONTENT_COMMITMENT_META + BULLETIN_BOARD_ID);
 		verify(postController.bBPostRepository).save(NEXT_POST);
 	}
 
@@ -79,7 +79,7 @@ class PostControllerTest extends RandomAwareTestBase implements BulletinBoardTes
 				() -> postController.apply(
 						BULLETIN_BOARD_ID,
 						new PostDTO(
-								BoardClosedContentCommitmentMETA,
+								BOARD_CLOSED_CONTENT_COMMITMENT_META,
 								BOARD_CLOSED_CONTENT_COMMITMENT_XML,
 								BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE_BAD)));
 	}
@@ -92,7 +92,7 @@ class PostControllerTest extends RandomAwareTestBase implements BulletinBoardTes
 				() -> postController.apply(
 						BULLETIN_BOARD_ID,
 						new PostDTO(
-								BoardClosedContentCommitmentMETA,
+								BOARD_CLOSED_CONTENT_COMMITMENT_META,
 								BOARD_CLOSED_CONTENT_COMMITMENT_XML,
 								BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE_BAD_ACTOR)));
 	}
@@ -104,7 +104,7 @@ class PostControllerTest extends RandomAwareTestBase implements BulletinBoardTes
 		Long actual = postController.apply(
 				BULLETIN_BOARD_ID,
 				new PostDTO(
-						BoardClosedContentCommitmentMETA,
+						BOARD_CLOSED_CONTENT_COMMITMENT_META,
 						BOARD_CLOSED_CONTENT_COMMITMENT_XML,
 						BOARD_CLOSED_CONTENT_COMMITMENT_SIGNATURE));
 		verify(postController.cryptoHash)

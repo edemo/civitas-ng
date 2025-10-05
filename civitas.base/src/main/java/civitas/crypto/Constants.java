@@ -43,19 +43,19 @@ public interface Constants {
 
 	int AUTHENTICATION_NONCE_LENGTH = 64;
 
-	String ElGamalCiphertextOPENING_TAG = "ElGamalCiphertext";
-	String ElGamalDecryptionShareOPENING_TAG = "elGamalDecryptionShare";
-	String PETCommitmentOPENING_TAG = "petC";
-	String PETDecommitmentOPENING_TAG = "petD";
-	String ElGamalPublicKeyOPENING_TAG = "elGamalPublicKey";
-	String PublicKeyCiphertextOPENING_TAG = "publicKeyCiphertext";
-	String PrivateKeyOPENING_TAG = "privateKey";
-	String PublicKeyOPENING_TAG = "publicKey";
-	String SharedKeyOPENING_TAG = "sharedKey";
-	String SharedKeyCiphertextOPENING_TAG = "sharedKeyCiphertext";
-	String SignatureOPENING_TAG = "signature";
-	String VoteCapabilityOPENING_TAG = "voteCapability";
-	String VoteCapabilityShareOPENING_TAG = "voteCapabilityShare";
+	String EL_GAMAL_CIPHERTEXT_OPENING_TAG = "ElGamalCiphertext";
+	String EL_GAMAL_DECRYPTION_SHARE_OPENING_TAG = "elGamalDecryptionShare";
+	String PET_COMMITMENT_OPENING_TAG = "petC";
+	String PET_DECOMMITMENT_OPENING_TAG = "petD";
+	String EL_GAMAL_PUBLIC_KEY_OPENING_TAG = "elGamalPublicKey";
+	String PUBLIC_KEY_CIPHERTEXT_OPENING_TAG = "publicKeyCiphertext";
+	String PRIVATE_KEY_OPENING_TAG = "privateKey";
+	String PUBLIC_KEY_OPENING_TAG = "publicKey";
+	String SHARED_KEY_OPENING_TAG = "sharedKey";
+	String SHARED_KEY_CIPHERTEXT_OPENING_TAG = "sharedKeyCiphertext";
+	String SIGNATURE_OPENING_TAG = "signature";
+	String VOTE_CAPABILITY_OPENING_TAG = "voteCapability";
+	String VOTE_CAPABILITY_SHARE_OPENING_TAG = "voteCapabilityShare";
 
 	Charset CHARSET = StandardCharsets.UTF_8;
 }

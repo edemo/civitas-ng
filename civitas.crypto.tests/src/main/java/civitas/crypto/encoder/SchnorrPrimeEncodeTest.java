@@ -24,7 +24,7 @@ class SchnorrPrimeEncodeTest extends TestBase implements EncoderTestData {
 
 	@Test
 	@DisplayName("encode won't encode plaintext bigger than q")
-	void test1() throws CryptoException {
+	void test1() {
 		assertThrows(CryptoException.class, () -> schnorrPrimeEncoder
 				.apply(BIGINT_Q.add(BIGINT_A), EL_GAMAL_PARAMETERS)
 				.toString());

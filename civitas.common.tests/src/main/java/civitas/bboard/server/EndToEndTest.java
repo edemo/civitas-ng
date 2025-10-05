@@ -103,7 +103,7 @@ class EndToEndTest implements BulletinBoardTestData, BBPostTestData, ElectionDet
 	public PostDTO createPostDTO() throws CryptoException {
 		Signature signature =
 				signWithPublicKey.apply(supervisorPriv, supervisorPub, BOARD_CLOSED_CONTENT_COMMITMENT_XML.getBytes());
-		return new PostDTO(BoardClosedContentCommitmentMETA, BOARD_CLOSED_CONTENT_COMMITMENT_XML, signature);
+		return new PostDTO(BOARD_CLOSED_CONTENT_COMMITMENT_META, BOARD_CLOSED_CONTENT_COMMITMENT_XML, signature);
 	}
 
 	public RequestParticipationDTO createRequestParticipationDTO() {

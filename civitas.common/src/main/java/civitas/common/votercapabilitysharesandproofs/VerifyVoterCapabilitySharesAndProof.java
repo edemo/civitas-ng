@@ -1,7 +1,5 @@
 package civitas.common.votercapabilitysharesandproofs;
 
-import java.io.UnsupportedEncodingException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -39,8 +37,7 @@ public class VerifyVoterCapabilitySharesAndProof {
 			@Nonnull final ElGamalPublicKey voterPublicKey,
 			@Nonnull final ElGamalPublicKey tabTellerSharedPublicKey,
 			final String voterName,
-			final int tellerIndex)
-			throws UnsupportedEncodingException {
+			final int tellerIndex) {
 		if (null == voterPublicKey) {
 			throw new NullPointerException();
 		}

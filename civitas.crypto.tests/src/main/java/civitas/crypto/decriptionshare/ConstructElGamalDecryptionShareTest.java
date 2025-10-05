@@ -21,7 +21,7 @@ class ConstructElGamalDecryptionShareTest extends TestBase
 	@DisplayName("constructDecryptionShare works as expected: "
 			+ "ai:=ciphertext.a^key (mod p)"
 			+ "proof =  ElGamalDiscLogEqualityProof(params, ciphertext.a, params.g,priv.x)")
-	void constructDecryptionShareTest() throws Exception {
+	void constructDecryptionShareTest() {
 
 		CivitasBigInteger key = EL_GAMAL_PRIVATE_KEY_E.x();
 		CivitasBigInteger p = EL_GAMAL_PARAMETERS.p;

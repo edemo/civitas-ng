@@ -24,7 +24,7 @@ class DecodeChoiceTest extends TestBase implements ElGamalParametersTestData {
 
 	@Test
 	@DisplayName("throws CryptoException if the message value is invalid")
-	void test2() throws CryptoException {
+	void test2() {
 		assertThrows(CryptoException.class, () -> decodeChoice.apply(DECODEMAP, BIGINT_A));
 	}
 }

@@ -30,7 +30,7 @@ public class UpdateCache {
 
 		ElectionCache cache = cachep.get();
 
-		if (CommonConstants.ElectionEventMETA.equals(meta)) {
+		if (CommonConstants.ELECTION_EVENT_META.equals(meta)) {
 			ElectionEvent e = convertFromXml.apply(mesg, ElectionEvent.class);
 			if (ElectionEvent.EVENT_KIND_FINALIZE.equals(e.kind())) {
 				// FIXME: tally

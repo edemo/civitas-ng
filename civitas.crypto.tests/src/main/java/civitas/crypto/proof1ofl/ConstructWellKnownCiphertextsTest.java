@@ -47,13 +47,13 @@ class ConstructWellKnownCiphertextsTest extends TestBase
 
 	@Test
 	@DisplayName("if the length is less than 1, a CryptoException is thrown ")
-	void test1_1() throws CryptoException {
+	void test1_1() {
 		assertThrows(CryptoException.class, () -> constructWellKnownCiphertexts.apply(EL_GAMAL_PUBLIC_KEY_E, 0));
 	}
 
 	@Test
 	@DisplayName("if the key is null, a CryptoException is thrown")
-	void test2() throws CryptoException {
+	void test2() {
 		assertThrows(CryptoException.class, () -> constructWellKnownCiphertexts.apply(null, 2));
 	}
 }

@@ -11,6 +11,6 @@ public class GetMetaForTeller implements CommonConstants {
 	GetComputerForTeller getComputerForTeller;
 
 	public String appply(final int tellerIndex) {
-		return ElectionResultsMETA + getComputerForTeller.apply(tellerIndex);
+		return ELECTION_RESULTS_META + getComputerForTeller.apply(tellerIndex);
 	}
 }

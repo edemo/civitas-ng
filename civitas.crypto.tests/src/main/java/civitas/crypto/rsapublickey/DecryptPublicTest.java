@@ -2,8 +2,6 @@ package civitas.crypto.rsapublickey;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.UnsupportedEncodingException;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -21,7 +19,7 @@ class DecryptPublicTest extends RandomAwareTestBase
 
 	@Test
 	@DisplayName("decrypts a ciphertext using the private key")
-	void test() throws UnsupportedEncodingException {
+	void test() {
 		assertEquals(SOMESTRING, decryptPublic.apply(PRIVATE_KEY, SOMESTRING_ENCRYPTED));
 	}
 }

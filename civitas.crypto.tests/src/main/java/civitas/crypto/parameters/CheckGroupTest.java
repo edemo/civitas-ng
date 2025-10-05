@@ -26,7 +26,7 @@ class CheckGroupTest extends TestBase implements ElGamalParametersTestData {
 
 	@Test
 	@DisplayName("checkGroup throws CryptoError if parameters are not a group")
-	void test_1() throws Exception {
+	void test_1() {
 		assertThrows(CryptoError.class, () -> checkGroup.apply(new ElGamalParameters(BIGINT_A, BIGINT_B, BIGINT_C)));
 	}
 

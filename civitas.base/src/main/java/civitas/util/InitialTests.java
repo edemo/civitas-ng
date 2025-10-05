@@ -1,6 +1,6 @@
 package civitas.util;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
@@ -17,13 +17,13 @@ public class InitialTests {
 		}
 	}
 
-	public static void doTests() throws UnsupportedEncodingException {
+	public static void doTests() {
 		testUTF8Support();
 		checkBouncyCastle();
 	}
 
-	public static byte[] testUTF8Support() throws UnsupportedEncodingException {
-		return "árvíztűrő tükörfúrógép".getBytes("UTF-8");
+	public static byte[] testUTF8Support() {
+		return "árvíztűrő tükörfúrógép".getBytes(StandardCharsets.UTF_8);
 	}
 
 	public static void checkBouncyCastle() {

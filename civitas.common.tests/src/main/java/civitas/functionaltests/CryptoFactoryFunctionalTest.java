@@ -36,7 +36,7 @@ class CryptoFactoryFunctionalTest extends RandomAwareTestBase implements Private
 
 	@Test
 	@DisplayName("publicKeyGenerator gives a generator which generates a public key with the given length")
-	void publicKeyGeneratorTest() throws Exception {
+	void publicKeyGeneratorTest() {
 
 		KeyPairGenerator generator = cryptoBase.getPublicKeyGenerator(KEYSIZE);
 
@@ -46,7 +46,7 @@ class CryptoFactoryFunctionalTest extends RandomAwareTestBase implements Private
 
 	@Test
 	@DisplayName("publicKeyGenerator returns the same object for two consecutive calls")
-	void publicKeyGeneratorTest1() throws Exception {
+	void publicKeyGeneratorTest1() {
 
 		KeyPairGenerator generator = cryptoBase.getPublicKeyGenerator(KEYSIZE);
 		KeyPairGenerator generator2 = cryptoBase.getPublicKeyGenerator(KEYSIZE);
@@ -55,7 +55,7 @@ class CryptoFactoryFunctionalTest extends RandomAwareTestBase implements Private
 
 	@Test
 	@DisplayName("sharedKeyGenerator returns a generator for the given key size")
-	void sharedKeyGenerator() throws Exception {
+	void sharedKeyGenerator() {
 
 		KeyGenerator generator = cryptoBase.getSharedKeyGenerator(KEYSIZE);
 
@@ -65,7 +65,7 @@ class CryptoFactoryFunctionalTest extends RandomAwareTestBase implements Private
 
 	@Test
 	@DisplayName("sharedKeyGenerator returns the same object for two consecutive calls")
-	void sharedKeyGenerator1() throws Exception {
+	void sharedKeyGenerator1() {
 
 		KeyGenerator generator = cryptoBase.getSharedKeyGenerator(KEYSIZE);
 		KeyGenerator generator2 = cryptoBase.getSharedKeyGenerator(KEYSIZE);
