@@ -145,8 +145,7 @@ public class BBClientUtil extends Protocol {
 		try {
 			sig = CryptoUtil.factory().signature(supervisorPrivateKey,
 					CryptoUtil.factory().publicKeyMsg(electionID.id));
-		} catch (NullPointerException imposs) {
-		} catch (CryptoException ignore) {
+		} catch (CryptoException | NullPointerException ignored) {
 		}
 		return closeBoard(sig, electionID, numVoters);
 	}
@@ -447,7 +446,7 @@ public class BBClientUtil extends Protocol {
 			}
 		}
 
-		List<BBPost> list = new ArrayList<BBPost>();
+		List<BBPost> list = new ArrayList<>();
 		String timestamp = input.readLine();
 		while (!"<END>".equals(timestamp)) {
 			// read in the next post
@@ -462,9 +461,7 @@ public class BBClientUtil extends Protocol {
 			XMLSerializable msg = null;
 			try {
 				msg = deserializer.fromXML(input);
-			} catch (IllegalArgumentException ignore) {
-				succesfulParse = false;
-			} catch (IOException ignore) {
+			} catch (IllegalArgumentException | IOException exception) {
 				succesfulParse = false;
 			}
 
@@ -473,9 +470,7 @@ public class BBClientUtil extends Protocol {
 				if (Util.isNextTag(input, Signature.OPENING_TAG)) {
 					try {
 						signature = CryptoUtil.factory().signatureFromXML(input);
-					} catch (NullPointerException imposs) {
-					} catch (IllegalArgumentException ignore) {
-					} catch (IOException ignore) {
+					} catch (IllegalArgumentException | IOException | NullPointerException ignored) {
 					}
 				}
 				if (md != null && stamp > 0) {
@@ -493,8 +488,7 @@ public class BBClientUtil extends Protocol {
 				BBPost p = new BBPost(bbid, stamp, meta, msg, signature);
 				try {
 					list.add(p);
-				} catch (ClassCastException imposs) {
-				} catch (IllegalArgumentException imposs) {
+				} catch (ClassCastException | IllegalArgumentException ignored) {
 				}
 			}
 			Util.skipUntil(input, "<EOP>");
@@ -538,7 +532,7 @@ public class BBClientUtil extends Protocol {
 	 */
 	public boolean confirmParticipation(int index, ElectionDetails details, TellerDetails tellers)
 			throws IOException, IllegalArgumentException {
-		return participation("CONFIRM_PARTICIPATION", details, tellers, new Integer(index));
+		return participation("CONFIRM_PARTICIPATION", details, tellers, index);
 	}
 
 	private boolean participation(String kind, ElectionDetails details, TellerDetails tellers, Integer index)

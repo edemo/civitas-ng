@@ -122,30 +122,27 @@ public class FileBasedElectionCache extends ElectionCache {
     void closedFilePrintStream(String filename) {
         File ftarget = fileForName(filename);
         File f = tempFileForName(filename);
-        f.renameTo(ftarget);        
+        f.renameTo(ftarget);
     }
     String getFileContentsAsString(String filename) {
         if (cacheDir == null) return null;
         File f = fileForName(filename);
         if (!f.exists()) return null;
         StringWriter fileData = new StringWriter();
-        try {
-            FileInputStream fis = new FileInputStream(f);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+        try (FileInputStream fis = new FileInputStream(f);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(fis))) {
             char[] buf = new char[1024];
-            int numRead=0;
-            while((numRead=reader.read(buf)) != -1){
+            int numRead;
+            while ((numRead = reader.read(buf)) != -1) {
                 String readData = String.valueOf(buf, 0, numRead);
                 fileData.append(readData);
             }
-            reader.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();  
+        } catch (IOException e) {
+            e.printStackTrace();
             failedCaching(f);
         }
 
-        return fileData.toString();    
+        return fileData.toString();
     }
 
     BufferedReader getFileContents(String filename) {
@@ -168,12 +165,11 @@ public class FileBasedElectionCache extends ElectionCache {
      * We failed to cache. Try to clean up.
      */
     void failedCaching(File f) {
-        if (f.exists()) {
-            if (!f.delete()) {
-                f.deleteOnExit();
-            }
+        if (f.exists() && !f.delete()) {
+            f.deleteOnExit();
         }
     }
+
     void failedCaching(String filename) {
         if (cacheDir == null) return;
         File f = fileForName(filename);
@@ -257,11 +253,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     super.setElectionDetails(d);
                     return d;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -273,7 +265,7 @@ public class FileBasedElectionCache extends ElectionCache {
                         e.printStackTrace();
                     }
                 }
-            }            
+            }
         }
         return super.getElectionDetails();
     }
@@ -295,27 +287,20 @@ public class FileBasedElectionCache extends ElectionCache {
             Reader reader = getFileContents(cachename);
             if (reader != null) {
                 try {
-                    CiphertextList ciphertextList = CiphertextList.fromXML(  reader);
+                    CiphertextList ciphertextList = CiphertextList.fromXML(reader);
                     super.setCiphertextList(ciphertextList);
                     return ciphertextList;
-                }
-                catch (IllegalArgumentException e) {
+                } catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                finally {
+                } finally {
                     try {
                         reader.close();
-                    }
-                    catch (IOException e) {
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-            }            
+            }
         }
         return super.getCiphertextList();
     }
@@ -341,11 +326,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     super.setBoardsForTabulation(bft);
                     return bft;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -383,11 +364,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     super.setElectoralRollEstimate(ere);
                     return ere;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -426,11 +403,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     super.setTabTellerSharedKey(pk);
                     return pk;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -469,11 +442,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     super.setTellerDetails(d);
                     return d;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -517,11 +486,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     super.setElectionEvents(events);
                     return events;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -554,7 +519,7 @@ public class FileBasedElectionCache extends ElectionCache {
         super.setElectionEvents(electionEvents);
     }
 
-    private Map<Integer, Integer> blockVerifiableVoteSize = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> blockVerifiableVoteSize = new HashMap<>();
     
     public int getValidVerifiableVoteSizeForBlock(int block) {
         if (blockVerifiableVoteSize.containsKey(block)) {
@@ -580,11 +545,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     blockVerifiableVoteSize.put(block, vv.length);
                     return vv;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -635,11 +596,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     super.setVoterSubmissionsForVoterBlock(voterBlock, voterSubmissions);
                     return voterSubmissions;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -700,11 +657,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     }
                     return d;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -747,11 +700,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     }
                     return d;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -768,8 +717,8 @@ public class FileBasedElectionCache extends ElectionCache {
         return super.getInitialVoteMix(block);
     }
 
-    private Map<Integer, Integer> initialVoteMixSize = new HashMap<Integer, Integer>();
-    private Map<Integer, Integer> initialCapabilityMixSize = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> initialVoteMixSize = new HashMap<>();
+    private Map<Integer, Integer> initialCapabilityMixSize = new HashMap<>();
     public int getInitialVoteMixSize(int block) {
         if (initialVoteMixSize.containsKey(block)) {
             return initialVoteMixSize.get(block);
@@ -801,11 +750,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     super.setMix(block, n, isRightMix, isVoteMix, d);
                     return d;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -863,11 +808,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     super.setElectoralRollCapabilities(block, d);
                     return d;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -903,11 +844,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     super.setElectoralRollCapabilitySharesForVoterBlock(voterBlock, tellerIndex, d);
                     return d;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -951,11 +888,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     super.setElectoralRollCapabilities(voterBlock, d);
                     return d;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -1006,11 +939,7 @@ public class FileBasedElectionCache extends ElectionCache {
                     super.setTTMixHashRevelation(tellerIndex, isVoteMix, block, d);
                     return d;
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }
@@ -1051,14 +980,9 @@ public class FileBasedElectionCache extends ElectionCache {
             Reader reader = getFileContents(cachename);
             if (reader != null) {
                 try {
-                    TabTellerVoterBlockContents c = TabTellerVoterBlockContents.fromXML(  reader);
-                    return c;
+                    return TabTellerVoterBlockContents.fromXML(  reader);
                 }
-                catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                    failedCaching(cachename);
-                }
-                catch (IOException e) {
+                catch (IllegalArgumentException | IOException e) {
                     e.printStackTrace();
                     failedCaching(cachename);
                 }

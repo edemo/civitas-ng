@@ -20,20 +20,17 @@ class TransientBBStorage  implements BBStorage {
     /**
      * Set of bbids of open bulletin boards
      */
-    private Set<String> openBoards = new HashSet<String>();
+    private Set<String> openBoards = new HashSet<>();
     
     /**
      * Map from bulletin board ids to boards.
      */
-    private Map<String, Board> boards = new HashMap<String, Board>();
+    private Map<String, Board> boards = new HashMap<>();
 
-    TransientBBStorage() {
-    }
-
-
-    public void closeBoard(String bbid) throws IOException {
+    public void closeBoard(String bbid) {
         openBoards.remove(bbid);
     }
+
     public boolean isBoardClosed(String bbid) {
         return !openBoards.contains(bbid);
     }
@@ -72,6 +69,7 @@ class TransientBBStorage  implements BBStorage {
             }
         }
     }
+
     public void storeAcceptance(String bbid, PublicKey ownerPublicKey) throws IOException {
         Board b = boards.get(bbid);
         if (b == null) {
@@ -81,6 +79,7 @@ class TransientBBStorage  implements BBStorage {
         b.ownerPK = ownerPublicKey;
         openBoards.add(bbid);        
     }
+
     public void storeIndex(String bbid, int index) throws IOException {
         Board b = boards.get(bbid);
         if (b == null) {
@@ -88,6 +87,7 @@ class TransientBBStorage  implements BBStorage {
         }
         b.index = index;
     }
+
     public int retrieveIndex(String bbid) throws IOException {
         Board b = boards.get(bbid);
         if (b == null) {
@@ -95,6 +95,7 @@ class TransientBBStorage  implements BBStorage {
         }
         return b.index;
     }
+
     public PublicKey retrieveOwnerPublicKey(String bbid) throws IOException {
         Board b = boards.get(bbid);
         if (b == null) {
@@ -113,8 +114,8 @@ class TransientBBStorage  implements BBStorage {
      * with that meta data.
      */
     private class Board {
-        Map<String, List<BBStoragePost>> metaIndex = new HashMap<String, List<BBStoragePost>>();
-        List<BBStoragePost> allPosts = new ArrayList<BBStoragePost>(1000);
+        Map<String, List<BBStoragePost>> metaIndex = new HashMap<>();
+        List<BBStoragePost> allPosts = new ArrayList<>(1000);
         PublicKey ownerPK;
         int index;
     }    

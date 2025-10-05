@@ -30,14 +30,13 @@ public class FileTTStore implements TTStore {
     private final File root;
     private final String cacheRootDir;
 
-    private Map<String, ElectionCache> cacheStore = new HashMap<String, ElectionCache>();
-    private Map<String, String> abandonmentStore = new HashMap<String, String>();
-    private Map<String, Integer> indexStore = new HashMap<String, Integer>();
-    private Map<String, ElGamalKeyPairShare> keyStore = new HashMap<String, ElGamalKeyPairShare>();
-    private Map<String, MixInfoHolder> erMixInfoStore = new HashMap<String, MixInfoHolder>();
-    private Map<String, MixInfoHolder> vMixInfoStore = new HashMap<String, MixInfoHolder>();
-    private Set<String> tellerMixOK = new HashSet<String>();
-
+    private Map<String, ElectionCache> cacheStore = new HashMap<>();
+    private Map<String, String> abandonmentStore = new HashMap<>();
+    private Map<String, Integer> indexStore = new HashMap<>();
+    private Map<String, ElGamalKeyPairShare> keyStore = new HashMap<>();
+    private Map<String, MixInfoHolder> erMixInfoStore = new HashMap<>();
+    private Map<String, MixInfoHolder> vMixInfoStore = new HashMap<>();
+    private Set<String> tellerMixOK = new HashSet<>();
 
     FileTTStore(PublicKey publicKey, File root, String cacheRootDir) {
         this.publicKey = publicKey;
@@ -223,19 +222,13 @@ public class FileTTStore implements TTStore {
                     try {
                         ret[i] = CryptoUtil.factory().petShareFromXML(LabelUtil.singleton().noComponents(), reader);
                     }
-                    catch (IOException e) { 
-                        e.printStackTrace();
-                    }
-                    catch (IllegalArgumentException e) { 
+                    catch (IllegalArgumentException | IOException e) {
                         e.printStackTrace();
                     }
                 }
                 return ret;
             }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-            catch (IllegalArgumentException e) {
+            catch (IllegalArgumentException | IOException e) {
                 e.printStackTrace();
             }
         }
@@ -295,31 +288,22 @@ public class FileTTStore implements TTStore {
                     try {
                         ret[i] = CryptoUtil.factory().petShareFromXML(LabelUtil.singleton().noComponents(), reader);
                     }
-                    catch (IOException e) { 
+                    catch (IllegalArgumentException | IOException e) {
                         e.printStackTrace();
                     }
-                    catch (IllegalArgumentException e) { 
-                        e.printStackTrace();
-                    }
-                }            
+                }
                 return ret;
             }
-            catch (IOException e) {
+            catch (IllegalArgumentException | IOException e) {
                 e.printStackTrace();
             }
-            catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            }
-
         }
         return null;
     }
 
-
     public void clearRollVotePETShares(ElectionID election, int block, int ballotIndex) {
         // do nothing
     }
-
 
     public void clearVoteVotePETShares(ElectionID election, int block, int ballotIndex) {
         // do nothing

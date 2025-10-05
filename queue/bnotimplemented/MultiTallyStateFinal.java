@@ -50,8 +50,7 @@ public class MultiTallyStateFinal extends TallyStateFinal {
 			for (int i = 0; i < states.length; i++) {
 				states[i].toXML(sb);
 			}
-		} catch (NullPointerException imposs) {
-		} catch (ArrayIndexOutOfBoundsException imposs) {
+		} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 		}
 		sb.print("</tallyStates>");
 		sb.print("</" + OPENING_TAG + ">");

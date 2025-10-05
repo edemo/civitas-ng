@@ -64,9 +64,7 @@ public class RegTeller {
             pubKey = CryptoUtil.factory().publicKeyFromFile(pubKeyFile);
             privKey = CryptoUtil.factory().privateKeyFromFile(privKeyFile);
         }
-        catch (NullPointerException imposs) { }
-        catch (FileNotFoundException ignore) { }
-        catch (IOException ignore) { }
+        catch (IOException | NullPointerException ignored) { }
 
         final RTStore rtstore = new TransientStore(pubKey).civitas$registration$server$TransientStore$(cacheRootDir);
 

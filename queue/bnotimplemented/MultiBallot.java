@@ -30,8 +30,7 @@ public class MultiBallot extends Ballot {
 			}
 			n[ballots.length] = bd;
 			ballots = n;
-		} catch (NullPointerException imposs) {
-		} catch (ArrayIndexOutOfBoundsException imposs) {
+		} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 		}
 	}
 
@@ -48,8 +47,7 @@ public class MultiBallot extends Ballot {
 			for (int i = 0; i < ballots.length; i++) {
 				ballots[i].toXML(sb);
 			}
-		} catch (NullPointerException imposs) {
-		} catch (ArrayIndexOutOfBoundsException imposs) {
+		} catch (ArrayIndexOutOfBoundsException | NullPointerException ignored) {
 		}
 		sb.print("</ballots>");
 		sb.print("</" + OPENING_TAG + ">");

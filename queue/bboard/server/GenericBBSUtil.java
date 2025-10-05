@@ -55,15 +55,12 @@ public class GenericBBSUtil {
     }
 
     private static boolean heartbeat(String host, int port) {
-        try {
-            Socket s = new Socket(host, port);
-            BufferedReader input = new BufferedReader(new InputStreamReader(s
-                                                                            .getInputStream()));
+        try (Socket s = new Socket(host, port)){
+            BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             PrintStream output = new PrintStream(s.getOutputStream());
             output.println("HEARTBEAT");
             output.flush();
             input.readLine();
-            s.close();
             return true;
         }
         catch (IOException e) {
@@ -71,8 +68,7 @@ public class GenericBBSUtil {
         }
     }
     private static boolean experimentResults(String host, int port) {
-        try {
-            Socket s = new Socket(host, port);
+        try (Socket s = new Socket(host, port)) {
             BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
             PrintStream output = new PrintStream(s.getOutputStream());
             output.println("EXPERIMENT_RESULTS");
@@ -82,7 +78,6 @@ public class GenericBBSUtil {
                 System.out.println(r);
                 r = input.readLine();
             }
-            s.close();
             return true;
         }
         catch (IOException e) {
