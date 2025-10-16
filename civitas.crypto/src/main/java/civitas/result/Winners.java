@@ -9,5 +9,5 @@ import lombok.Value;
 public class Winners {
 	@NonNull List<List<Integer>> result;
 
-	@NonNull CandidatePair<Integer, Integer>[][] beatpaths;
+	@NonNull CandidatePair[][] beatpaths;
 }

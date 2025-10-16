@@ -21,6 +21,13 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>io.github.magwas</groupId>
+            <artifactId>civitas.base</artifactId>
+            <version>${project.version}</version>
+            <classifier>testing</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk18on</artifactId>
         </dependency>

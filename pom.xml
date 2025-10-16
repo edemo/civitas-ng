@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.magwas</groupId>
-        <artifactId>konveyor-parent</artifactId>
-        <version>0.4.30</version>
+        <artifactId>konveyor.parent</artifactId>
+        <version>0.5.2</version>
     </parent>
     <artifactId>civitas-ng</artifactId>
     <version>0.0.1</version>
@@ -27,13 +27,9 @@
     </developers>
     <modules>
         <module>civitas.base</module>
-        <module>civitas.base.tests</module>
         <module>civitas.externalcrypto</module>
-        <module>civitas.externalcrypto.tests</module>
         <module>civitas.crypto</module>
-        <module>civitas.crypto.tests</module>
         <module>civitas.common</module>
-        <module>civitas.common.tests</module>
     </modules>
     <scm>
         <connection>scm:git:https://github.com/magwas/civitas-ng.git</connection>
@@ -46,35 +42,19 @@
     </issueManagement>
     <properties>
         <mpir.skip>true</mpir.skip>
-        <version.konveyor>0.4.30</version.konveyor>
+        <version.konveyor>0.5.2</version.konveyor>
     </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.github.magwas</groupId>
-                <artifactId>konveyor-base-testing</artifactId>
-                <version>${version.konveyor}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
-            <groupId>net.sourceforge.pmd</groupId>
-            <artifactId>pmd-java</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.httpcomponents.client5</groupId>
-                    <artifactId>httpclient5</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents.client5</groupId>
-            <artifactId>httpclient5</artifactId>
+            <groupId>io.github.magwas</groupId>
+            <artifactId>konveyor.base</artifactId>
+            <version>${version.konveyor}</version>
+            <classifier>testing</classifier>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

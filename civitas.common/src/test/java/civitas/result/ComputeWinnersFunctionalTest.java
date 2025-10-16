@@ -47,7 +47,7 @@ class ComputeWinnersFunctionalTest extends RandomAwareTestBase implements Result
 
 		calculateStrengths.apply(candidates, winnerList);
 
-		List<CandidatePair<String, Long>> cloudWords = makeCloudWordList.apply(candidates, winnerList);
+		List<NameAndStrength> cloudWords = makeCloudWordList.apply(candidates, winnerList);
 
 		List<String> cws = new ArrayList<>();
 		cloudWords.forEach(x -> cws.add(x.cdr() + "," + x.car() + ",#ffffff"));

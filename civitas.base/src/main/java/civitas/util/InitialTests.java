@@ -28,7 +28,7 @@ public class InitialTests {
 
 	public static void checkBouncyCastle() {
 		String info = new BouncyCastleProvider().getInfo();
-		if (!"BouncyCastle Security Provider v1.80".equals(info)) {
+		if (!"BouncyCastle Security Provider v1.82".equals(info)) {
 			throw new SecurityException("unexpected crypto provider: " + info);
 		}
 	}
