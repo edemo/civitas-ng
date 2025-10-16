@@ -35,7 +35,7 @@ class CombineKeySharesTest extends TestBase implements ElGamalKeyShareTestData {
 	@Test
 	@DisplayName("returns null if shares is null")
 	void test1() throws CryptoException {
-		assertNull(combineKeyShares.apply(null));
+		assertNull(combineKeyShares.apply((ElGamalKeyShare[]) null));
 	}
 
 	@Test

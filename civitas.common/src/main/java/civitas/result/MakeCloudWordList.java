@@ -7,14 +7,13 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class MakeCloudWordList {
-	public List<CandidatePair<String, Long>> apply(
-			final String[] candidates, final List<List<CandidateResult>> winnerList) {
-		List<CandidatePair<String, Long>> cloudWords = new ArrayList<>();
+	public List<NameAndStrength> apply(final String[] candidates, final List<List<CandidateResult>> winnerList) {
+		List<NameAndStrength> cloudWords = new ArrayList<>();
 		for (List<CandidateResult> step : winnerList) {
 			for (CandidateResult result : step) {
 				String name = candidates[result.candidate];
 				Long strength = result.strength.longValue();
-				CandidatePair<String, Long> e = new CandidatePair<>(name, strength);
+				NameAndStrength e = new NameAndStrength(name, strength);
 				cloudWords.add(e);
 			}
 		}

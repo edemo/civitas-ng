@@ -9,8 +9,7 @@ public class Min {
 	@Autowired
 	CompareBeats compareBeats;
 
-	CandidatePair<Integer, Integer> apply(
-			final CandidatePair<Integer, Integer> xr, final CandidatePair<Integer, Integer> yr) {
+	CandidatePair apply(final CandidatePair xr, final CandidatePair yr) {
 		if (compareBeats.apply(xr, yr) > 0) {
 			return yr;
 		}

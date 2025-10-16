@@ -23,7 +23,7 @@ public class CalculateWinnerList {
 
 	public List<List<CandidateResult>> apply(final Integer[][] matrix, final String... candidates) {
 		int size = matrix.length;
-		CandidatePair<Integer, Integer>[][] initial = initialMatrix.apply(matrix, size);
+		CandidatePair[][] initial = initialMatrix.apply(matrix, size);
 		transitiveClosure.apply(initial, size);
 		Boolean[] ignore = new Boolean[size];
 		Arrays.fill(ignore, false);

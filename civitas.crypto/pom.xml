@@ -21,6 +21,25 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>io.github.magwas</groupId>
+            <artifactId>civitas.externalcrypto</artifactId>
+            <version>${project.version}</version>
+            <classifier>testing</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.magwas</groupId>
+            <artifactId>civitas.base</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.magwas</groupId>
+            <artifactId>civitas.base</artifactId>
+            <version>${project.version}</version>
+            <classifier>testing</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
         </dependency>

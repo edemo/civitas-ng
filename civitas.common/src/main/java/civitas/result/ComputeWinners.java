@@ -12,7 +12,7 @@ public class ComputeWinners {
 	@Autowired
 	CompareBeats compareBeats;
 
-	List<Integer> apply(final CandidatePair<Integer, Integer>[][] m, final Integer n, final Boolean[] ignore) {
+	List<Integer> apply(final CandidatePair[][] m, final Integer n, final Boolean[] ignore) {
 		List<Integer> winners = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
 			if (!ignore[i] && didWin(m, n, ignore, i)) {
@@ -23,8 +23,7 @@ public class ComputeWinners {
 		return winners;
 	}
 
-	private Boolean didWin(
-			final CandidatePair<Integer, Integer>[][] m, final Integer n, final Boolean[] ignore, final int i) {
+	private Boolean didWin(final CandidatePair[][] m, final Integer n, final Boolean[] ignore, final int i) {
 		for (int j = 0; j < n; j++) {
 			if (!ignore[j] && compareBeats.apply(m[j][i], m[i][j]) > 0) {
 				return false;
