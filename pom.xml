@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.github.magwas</groupId>
         <artifactId>konveyor.parent</artifactId>
-        <version>0.5.2</version>
+        <version>0.5.3</version>
     </parent>
     <artifactId>civitas-ng</artifactId>
     <version>0.0.1</version>
@@ -42,7 +42,7 @@
     </issueManagement>
     <properties>
         <mpir.skip>true</mpir.skip>
-        <version.konveyor>0.5.2</version.konveyor>
+        <version.konveyor>0.5.3</version.konveyor>
     </properties>
     <dependencies>
         <dependency>
@@ -53,7 +53,7 @@
             <groupId>io.github.magwas</groupId>
             <artifactId>konveyor.base</artifactId>
             <version>${version.konveyor}</version>
-            <classifier>testing</classifier>
+            <type>test-jar</type>
             <scope>test</scope>
         </dependency>
     </dependencies>
