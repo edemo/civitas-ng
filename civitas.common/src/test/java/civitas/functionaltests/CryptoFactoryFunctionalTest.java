@@ -17,11 +17,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import civitas.AppTestConfig;
-import civitas.common.RandomAwareTestBase;
+import civitas.common.tests.RandomAwareTestBase;
 import civitas.crypto.CryptoBase;
 import civitas.crypto.messagedigest.CryptoHash;
-import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
-import civitas.util.BasicValuesTestData;
+import civitas.crypto.rsaprivatekey.tests.PrivateKeyTestData;
+import civitas.util.tests.BasicValuesTestData;
 
 @Tag("functional")
 @ExtendWith(SpringExtension.class)

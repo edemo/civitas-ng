@@ -10,7 +10,7 @@ import java.util.Base64;
 
 import civitas.util.CivitasBigInteger;
 import civitas.util.CivitasBigIntegerFactory;
-import io.github.magwas.kodekonveyorannotations.Glue;
+import io.github.magwas.konveyor.annotations.Glue;
 
 @Glue
 public class CommonUtil {

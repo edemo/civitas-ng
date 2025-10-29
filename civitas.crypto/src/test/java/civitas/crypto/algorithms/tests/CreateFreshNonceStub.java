@@ -1,0 +1,18 @@
+package civitas.crypto.algorithms.tests;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+
+import civitas.crypto.algorithms.CreateFreshNonce;
+import civitas.util.tests.BasicValuesTestData;
+
+public class CreateFreshNonceStub implements BasicValuesTestData {
+	public static CreateFreshNonce stub() {
+		CreateFreshNonce mock = mock(CreateFreshNonce.class);
+		when(mock.apply(BITLENGTH)).thenReturn(Arrays.copyOfRange(BYTES, 0, 8));
+		when(mock.apply(BITLENGTH - 1)).thenReturn(Arrays.copyOfRange(BYTES, 0, 8));
+		return mock;
+	}
+}

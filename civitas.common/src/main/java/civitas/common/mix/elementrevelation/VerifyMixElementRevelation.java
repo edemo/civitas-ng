@@ -23,7 +23,7 @@ public class VerifyMixElementRevelation {
 	VerifyMixCapabilityElementRevelation verifyMixCapabilityElementRevelation;
 
 	@Autowired
-	VerifyMixVoteElementRevelation VerifyMixVoteElementRevelation;
+	VerifyMixVoteElementRevelation verifyMixVoteElementRevelation;
 
 	public boolean apply(
 			@Nonnull final MixElementRevelation that,
@@ -45,7 +45,7 @@ public class VerifyMixElementRevelation {
 					(CapabilityMix) toMix);
 		}
 		if (that.getClass().equals(MixVoteElementRevelation.class)) {
-			return VerifyMixVoteElementRevelation.apply(
+			return verifyMixVoteElementRevelation.apply(
 					(MixVoteElementRevelation) that, key, fromIndex, toIndex, fromMix, toMix);
 		}
 		throw new IllegalArgumentException("I do not know this type of revelation");

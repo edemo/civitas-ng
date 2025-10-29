@@ -12,13 +12,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import civitas.AppTestConfig;
-import civitas.common.RandomAwareTestBase;
+import civitas.common.tests.RandomAwareTestBase;
 import civitas.crypto.Constants;
-import civitas.crypto.parameters.ElGamalParametersTestData;
 import civitas.crypto.parameters.GenerateElGamalParameters;
 import civitas.crypto.parameters.GenerateSafePrime;
 import civitas.crypto.parameters.PrimePair;
-import civitas.crypto.rsaprivatekey.PrivateKeyTestData;
+import civitas.crypto.parameters.tests.ElGamalParametersTestData;
+import civitas.crypto.rsaprivatekey.tests.PrivateKeyTestData;
 
 @Tag("functional")
 @ExtendWith(SpringExtension.class)

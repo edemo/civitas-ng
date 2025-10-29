@@ -49,7 +49,7 @@ public class PostController {
 	CryptoHash cryptoHash;
 
 	@Autowired
-	LoggerService loggerController;
+	LoggerService logger;
 
 	@Autowired
 	UpdateCache updateCache;
@@ -93,7 +93,7 @@ public class PostController {
 			throw new CommunicableException("bad signature (but in blue)");
 		}
 
-		loggerController.apply(MarkerFactory.getMarker("bbs_post"), objectID);
+		logger.apply(MarkerFactory.getMarker("bbs_post"), objectID);
 
 		getBoardForId.apply(bbid, true);
 

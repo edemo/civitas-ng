@@ -8,7 +8,7 @@ package civitas.util;
 
 import java.math.BigInteger;
 
-import io.github.magwas.kodekonveyorannotations.Glue;
+import io.github.magwas.konveyor.annotations.Glue;
 
 @Glue
 public class CivitasBigInteger extends CivitasBigintegerBase {
