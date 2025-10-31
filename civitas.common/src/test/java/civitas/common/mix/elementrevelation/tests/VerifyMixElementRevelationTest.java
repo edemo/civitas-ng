@@ -3,10 +3,10 @@ package civitas.common.mix.elementrevelation.tests;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import civitas.common.mix.capabilityelementrevelation.VerifyMixCapabilityElementRevelation;
 import civitas.common.mix.capabilitymix.tests.CapabilityMixTestData;
@@ -17,7 +17,6 @@ import civitas.common.mix.voteelementrevelation.tests.MixVoteElementRevelationTe
 import civitas.common.mix.votemix.tests.VoteMixTestData;
 import civitas.common.tests.RandomAwareTestBase;
 import civitas.crypto.publickey.tests.ElGamalPublicKeyTestData;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class VerifyMixElementRevelationTest extends RandomAwareTestBase
 		implements ElGamalPublicKeyTestData,
@@ -30,18 +29,11 @@ class VerifyMixElementRevelationTest extends RandomAwareTestBase
 	@InjectMocks
 	VerifyMixElementRevelation verifyMixElementRevelation;
 
-	private VerifyMixCapabilityElementRevelation verifyMixCapabilityElementRevelation;
-	private VerifyMixVoteElementRevelation verifyMixVoteElementRevelation;
+	@Mock
+	VerifyMixCapabilityElementRevelation verifyMixCapabilityElementRevelation;
 
-	@BeforeEach
-	@Override
-	public void setUp() throws Throwable {
-		super.setUp();
-		verifyMixCapabilityElementRevelation =
-				TestUtil.dependency(verifyMixElementRevelation, VerifyMixCapabilityElementRevelation.class);
-		verifyMixVoteElementRevelation =
-				TestUtil.dependency(verifyMixElementRevelation, VerifyMixVoteElementRevelation.class);
-	}
+	@Mock
+	VerifyMixVoteElementRevelation verifyMixVoteElementRevelation;
 
 	@Test
 	@DisplayName("If the revelation is about capability, uses verifyMixCapabilityElementRevelation")

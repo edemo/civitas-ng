@@ -8,6 +8,7 @@ import org.bouncycastle.crypto.CryptoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import civitas.crypto.algorithms.CreateFreshNonceBase64;
 import civitas.crypto.rsaprivatekey.tests.PrivateKeyTestData;
@@ -17,13 +18,21 @@ import civitas.crypto.signature.SignWithPublicKey;
 import civitas.crypto.signature.tests.SignatureTestData;
 import civitas.util.tests.BasicValuesTestData;
 import io.github.magwas.konveyor.testing.TestBase;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class IsPublicKeyAuthorizedTest extends TestBase
 		implements PublicKeyTestData, BasicValuesTestData, SignatureTestData, PrivateKeyTestData {
 
 	@InjectMocks
 	IsPublicKeyAuthorized isPublicKeyAuthorized;
+
+	@Mock
+	CreateFreshNonceBase64 createFreshNonceBase64;
+
+	@Mock
+	SignWithPublicKey signWithPublicKey;
+
+	@Mock
+	VerifyPublicKeySignature verifyPublicKeySignature;
 
 	@Test
 	@DisplayName(
@@ -35,11 +44,6 @@ class IsPublicKeyAuthorizedTest extends TestBase
 			""")
 	void test2() throws CryptoException, IllegalAccessException {
 		boolean actual = isPublicKeyAuthorized.apply(PUBLIC_KEY, PRIVATE_KEY);
-		CreateFreshNonceBase64 createFreshNonceBase64 =
-				TestUtil.dependency(isPublicKeyAuthorized, CreateFreshNonceBase64.class);
-		SignWithPublicKey signWithPublicKey = TestUtil.dependency(isPublicKeyAuthorized, SignWithPublicKey.class);
-		VerifyPublicKeySignature verifyPublicKeySignature =
-				TestUtil.dependency(isPublicKeyAuthorized, VerifyPublicKeySignature.class);
 		verify(createFreshNonceBase64).apply(AUTHENTICATION_NONCE_LENGTH);
 		verify(signWithPublicKey).apply(PRIVATE_KEY, PUBLIC_KEY, AUTHENTICATION_NONCE);
 		verify(verifyPublicKeySignature).apply(SIGNATURE_OF_AUTH_NONCE_WITH_KEY, PUBLIC_KEY, AUTHENTICATION_NONCE);

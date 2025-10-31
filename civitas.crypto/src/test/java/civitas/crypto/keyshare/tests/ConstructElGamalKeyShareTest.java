@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import civitas.crypto.CryptoError;
 import civitas.crypto.keypairshare.tests.ElGamalKeyPairShareTestData;
@@ -14,12 +15,14 @@ import civitas.crypto.keyshare.ConstructElGamalKeyShare;
 import civitas.crypto.keyshare.ElGamalKeyShare;
 import civitas.crypto.keyshare.VerifyElGamalKeyShare;
 import io.github.magwas.konveyor.testing.TestBase;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class ConstructElGamalKeyShareTest extends TestBase implements ElGamalKeyPairShareTestData, ElGamalKeyShareTestData {
 
 	@InjectMocks
 	ConstructElGamalKeyShare constructElGamalKeyShare;
+
+	@Mock
+	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
 	@Test
 	@DisplayName("the one-parameter version returns the public key with the proof of knowledge for the private key")
@@ -30,10 +33,9 @@ class ConstructElGamalKeyShareTest extends TestBase implements ElGamalKeyPairSha
 
 	@Test
 	@DisplayName("the one-parameter version tests the created proof")
-	void test_1() throws IllegalAccessException {
+	void test_1() {
 		constructElGamalKeyShare.apply(EL_GAMAL_KEYPAIR_SHARE);
-		verify(TestUtil.dependency(constructElGamalKeyShare, VerifyElGamalKeyShare.class))
-				.apply(EL_GAMAL_KEY_SHARE_E);
+		verify(verifyElGamalKeyShare).apply(EL_GAMAL_KEY_SHARE_E);
 	}
 
 	@Test

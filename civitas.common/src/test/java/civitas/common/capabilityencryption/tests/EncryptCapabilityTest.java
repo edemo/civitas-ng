@@ -7,18 +7,24 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import civitas.common.capabilityencryption.EncryptCapability;
 import civitas.common.tests.RandomAwareTestBase;
 import civitas.common.votersubmission.tests.VoterSubmissionTestData;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
 import civitas.crypto.reencryptfactor.GenerateElGamalReencryptFactor;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class EncryptCapabilityTest extends RandomAwareTestBase implements VoterSubmissionTestData {
 
 	@InjectMocks
 	EncryptCapability encryptCapability;
+
+	@Mock
+	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
+
+	@Mock
+	ElGamalEncrypt elGamalEncrypt;
 
 	@Test
 	@DisplayName(
@@ -30,9 +36,6 @@ class EncryptCapabilityTest extends RandomAwareTestBase implements VoterSubmissi
 	void test() throws IllegalAccessException {
 		assertEquals(
 				ENCRYPT_CAPABILITY_RESULT, encryptCapability.apply(EL_GAMAL_PUBLIC_KEY_E, CAPABILITY_MAP, CONTEXT_0));
-		GenerateElGamalReencryptFactor generateElGamalReencryptFactor =
-				TestUtil.dependency(encryptCapability, GenerateElGamalReencryptFactor.class);
-		ElGamalEncrypt elGamalEncrypt = TestUtil.dependency(encryptCapability, ElGamalEncrypt.class);
 		verify(generateElGamalReencryptFactor).apply(EL_GAMAL_PARAMETERS);
 		verify(elGamalEncrypt)
 				.apply(EL_GAMAL_PUBLIC_KEY_E, VOTE_CAPABILITIES.getFirst(), ELGAMAL_REENCRYPT_FACTOR_EPRIME);

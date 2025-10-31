@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import civitas.crypto.CryptoException;
 import civitas.crypto.keys.tests.ElGamalKeyShareTestData;
@@ -14,12 +15,14 @@ import civitas.crypto.keyshare.ElGamalKeyShare;
 import civitas.crypto.keyshare.VerifyElGamalKeyShare;
 import civitas.crypto.publickey.ElGamalPublicKey;
 import io.github.magwas.konveyor.testing.TestBase;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class CombineKeySharesTest extends TestBase implements ElGamalKeyShareTestData {
 
 	@InjectMocks
 	CombineKeyShares combineKeyShares;
+
+	@Mock
+	VerifyElGamalKeyShare verifyElGamalKeyShare;
 
 	@Test
 	@DisplayName("combines an array of key shares to one " + "by multiplying the public keys")
@@ -30,10 +33,8 @@ class CombineKeySharesTest extends TestBase implements ElGamalKeyShareTestData {
 
 	@Test
 	@DisplayName("verifies the proofs")
-	void test_1() throws CryptoException, IllegalAccessException {
+	void test_1() throws CryptoException {
 		combineKeyShares.apply(KEY_SHARES);
-		VerifyElGamalKeyShare verifyElGamalKeyShare =
-				TestUtil.dependency(combineKeyShares, VerifyElGamalKeyShare.class);
 		verify(verifyElGamalKeyShare).apply(EL_GAMAL_KEY_SHARE_E);
 		verify(verifyElGamalKeyShare).apply(EL_GAMAL_KEY_SHARE_EPRIME);
 	}

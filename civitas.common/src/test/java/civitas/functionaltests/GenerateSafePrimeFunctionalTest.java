@@ -12,7 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import civitas.AppTestConfig;
-import civitas.common.tests.RandomAwareTestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.parameters.GenerateElGamalParameters;
 import civitas.crypto.parameters.GenerateSafePrime;
@@ -23,8 +22,7 @@ import civitas.crypto.rsaprivatekey.tests.PrivateKeyTestData;
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-class GenerateSafePrimeFunctionalTest extends RandomAwareTestBase
-		implements Constants, ElGamalParametersTestData, PrivateKeyTestData {
+class GenerateSafePrimeFunctionalTest implements Constants, ElGamalParametersTestData, PrivateKeyTestData {
 
 	@Autowired
 	GenerateSafePrime generateSafePrimeReal;

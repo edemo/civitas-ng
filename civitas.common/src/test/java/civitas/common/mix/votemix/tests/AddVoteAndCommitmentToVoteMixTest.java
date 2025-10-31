@@ -6,26 +6,29 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import civitas.common.mix.AddCommitmentToMix;
 import civitas.common.mix.votemix.AddVoteAndCommitmentToVoteMix;
 import civitas.common.mix.votemix.AddVoteToVoteMix;
 import civitas.common.tests.RandomAwareTestBase;
 import civitas.common.tests.VoteTestData;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class AddVoteAndCommitmentToVoteMixTest extends RandomAwareTestBase implements VoteMixTestData, VoteTestData {
 
 	@InjectMocks
 	AddVoteAndCommitmentToVoteMix addVoteAndCommitmentToVoteMix;
 
+	@Mock
+	AddVoteToVoteMix addVoteToVoteMix;
+
+	@Mock
+	AddCommitmentToMix addCommitmentToMix;
+
 	@Test
 	@DisplayName("adds the vote to the mix and adds the commitment to the mix")
 	void test() throws IllegalAccessException {
 		addVoteAndCommitmentToVoteMix.apply(VOTE_MIX_MOCK, VOTE_MOCK, BYTES);
-		AddCommitmentToMix addCommitmentToMix =
-				TestUtil.dependency(addVoteAndCommitmentToVoteMix, AddCommitmentToMix.class);
-		AddVoteToVoteMix addVoteToVoteMix = TestUtil.dependency(addVoteAndCommitmentToVoteMix, AddVoteToVoteMix.class);
 		verify(addCommitmentToMix).apply(VOTE_MIX_MOCK, BYTES);
 		verify(addVoteToVoteMix).apply(VOTE_MIX_MOCK, VOTE_MOCK);
 	}

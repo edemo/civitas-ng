@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import civitas.common.ballot.tests.BallotTestData;
 import civitas.common.encryptedchoice.EncryptChoice;
@@ -15,13 +16,18 @@ import civitas.crypto.ciphertextlist.tests.ElGamalCiphertextListTestData;
 import civitas.crypto.oneoflreencryption.ConstructElGamal1OfLReencryption;
 import civitas.crypto.oneoflreencryption.tests.ElGamal1OfLReencryptionTestData;
 import civitas.crypto.reencryptfactor.GenerateElGamalReencryptFactor;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class EncryptChoiceTest extends RandomAwareTestBase
 		implements ElGamalCiphertextListTestData, BallotTestData, ElGamal1OfLReencryptionTestData {
 
 	@InjectMocks
 	EncryptChoice encryptChoice;
+
+	@Mock
+	GenerateElGamalReencryptFactor generateElGamalReencryptFactor;
+
+	@Mock
+	ConstructElGamal1OfLReencryption constructElGamal1OfLReencryption;
 
 	@DisplayName(
 			"""
@@ -30,7 +36,7 @@ class EncryptChoiceTest extends RandomAwareTestBase
 			- constructs an 1 of L reeencryption using the choice in the ballot and the factor
 			""")
 	@Test
-	void test() throws IllegalAccessException {
+	void test() {
 		EncryptedChoice actual = encryptChoice.apply(EL_GAMAL_PUBLIC_KEY_E, CIPHERTEXT_LIST, BALLOT.matrix, 0);
 
 		assertEquals(
@@ -38,10 +44,6 @@ class EncryptChoiceTest extends RandomAwareTestBase
 						ELGAMAL_REENCRYPT_FACTOR_EPRIME, EL_GAMAL_1_OF_L_REENCRYPTION_MAP.get(BALLOT.matrix[0])),
 				actual);
 
-		GenerateElGamalReencryptFactor generateElGamalReencryptFactor =
-				TestUtil.dependency(encryptChoice, GenerateElGamalReencryptFactor.class);
-		ConstructElGamal1OfLReencryption constructElGamal1OfLReencryption =
-				TestUtil.dependency(encryptChoice, ConstructElGamal1OfLReencryption.class);
 		verify(generateElGamalReencryptFactor).apply(EL_GAMAL_PARAMETERS);
 		verify(constructElGamal1OfLReencryption)
 				.apply(

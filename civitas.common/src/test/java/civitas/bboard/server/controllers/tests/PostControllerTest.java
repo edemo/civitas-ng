@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.math.BigInteger;
 
 import org.bouncycastle.crypto.CryptoException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.slf4j.MarkerFactory;
 
 import civitas.bboard.common.BBPostRepository;
@@ -29,7 +29,6 @@ import civitas.common.tests.EnvironmentState;
 import civitas.common.tests.RandomAwareTestBase;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.rsapublickey.VerifyPublicKeySignature;
-import io.github.magwas.konveyor.testing.TestUtil;
 import jakarta.xml.bind.JAXBException;
 
 class PostControllerTest extends RandomAwareTestBase implements BulletinBoardTestData, BBPostTestData {
@@ -37,26 +36,26 @@ class PostControllerTest extends RandomAwareTestBase implements BulletinBoardTes
 	@InjectMocks
 	PostController postController;
 
-	private CheckAccess checkAccess;
-	private GetBoardForId getBoardForId;
-	private UpdateCache updateCache;
-	private BBPostRepository bBPostRepository;
-	private CryptoHash cryptoHash;
-	private LoggerService logger;
-	private VerifyPublicKeySignature verifyPublicKeySignature;
+	@Mock
+	CheckAccess checkAccess;
 
-	@BeforeEach
-	@Override
-	public void setUp() throws Throwable {
-		super.setUp();
-		checkAccess = TestUtil.dependency(postController, CheckAccess.class);
-		getBoardForId = TestUtil.dependency(postController, GetBoardForId.class);
-		updateCache = TestUtil.dependency(postController, UpdateCache.class);
-		bBPostRepository = TestUtil.dependency(postController, BBPostRepository.class);
-		cryptoHash = TestUtil.dependency(postController, CryptoHash.class);
-		logger = TestUtil.dependency(postController, LoggerService.class);
-		verifyPublicKeySignature = TestUtil.dependency(postController, VerifyPublicKeySignature.class);
-	}
+	@Mock
+	GetBoardForId getBoardForId;
+
+	@Mock
+	UpdateCache updateCache;
+
+	@Mock
+	BBPostRepository bBPostRepository;
+
+	@Mock
+	CryptoHash cryptoHash;
+
+	@Mock
+	LoggerService logger;
+
+	@Mock
+	VerifyPublicKeySignature verifyPublicKeySignature;
 
 	@Test
 	@DisplayName(

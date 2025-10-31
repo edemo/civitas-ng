@@ -11,6 +11,7 @@ import org.bouncycastle.crypto.CryptoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import civitas.common.tests.RandomAwareTestBase;
 import civitas.crypto.CryptoBase;
@@ -19,13 +20,21 @@ import civitas.crypto.rsapublickey.ConvertPublicKeyToString;
 import civitas.crypto.rsapublickey.tests.PublicKeyTestData;
 import civitas.crypto.signature.SignWithPublicKey;
 import civitas.util.tests.BasicValuesTestData;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class SignWithPublicKeyTest extends RandomAwareTestBase
 		implements PublicKeyTestData, SignatureTestData, BasicValuesTestData {
 
 	@InjectMocks
 	SignWithPublicKey signWithPublicKey;
+
+	@Mock
+	ConvertPublicKeyToString convertPublicKeyToString;
+
+	@Mock
+	CryptoBase cryptoBase;
+
+	@Mock
+	CryptoHash cryptoHash;
 
 	@Test
 	@DisplayName(
@@ -37,13 +46,10 @@ class SignWithPublicKeyTest extends RandomAwareTestBase
 			- converts the public key to string
 			- returns the signature containing the signature and the string version of the public key
 			""")
-	void test() throws CryptoException, InvalidKeyException, SignatureException, IllegalAccessException {
+	void test() throws CryptoException, InvalidKeyException, SignatureException {
 		assertEquals(
 				SIGNATURE_OF_AUTH_NONCE_WITH_KEY,
 				signWithPublicKey.apply(PRIVATE_KEY, PUBLIC_KEY, AUTHENTICATION_NONCE.getBytes()));
-		ConvertPublicKeyToString convertPublicKeyToString =
-				TestUtil.dependency(signWithPublicKey, ConvertPublicKeyToString.class);
-		CryptoBase cryptoBase = TestUtil.dependency(signWithPublicKey, CryptoBase.class);
 		verify(convertPublicKeyToString).apply(PUBLIC_KEY);
 		verify(cryptoBase.rsaSigner).initSign(PRIVATE_KEY);
 		verify(cryptoBase.rsaSigner).update(AUTHENTICATION_NONCE.getBytes());
@@ -68,12 +74,8 @@ class SignWithPublicKeyTest extends RandomAwareTestBase
 			- converts the public key to string
 			- returns the signature containing the signature and the string version of the public key
 			""")
-	void test1() throws CryptoException, InvalidKeyException, SignatureException, IllegalAccessException {
+	void test1() throws CryptoException, InvalidKeyException, SignatureException {
 		assertEquals(SIGNATURE_OF_AUTH_NONCE_WITH_KEY, signWithPublicKey.apply(PRIVATE_KEY, PUBLIC_KEY, SOMESTRING));
-		ConvertPublicKeyToString convertPublicKeyToString =
-				TestUtil.dependency(signWithPublicKey, ConvertPublicKeyToString.class);
-		CryptoBase cryptoBase = TestUtil.dependency(signWithPublicKey, CryptoBase.class);
-		CryptoHash cryptoHash = TestUtil.dependency(signWithPublicKey, CryptoHash.class);
 		verify(cryptoHash).apply(SOMESTRING.getBytes());
 		verify(convertPublicKeyToString).apply(PUBLIC_KEY);
 		verify(cryptoBase.rsaSigner).initSign(PRIVATE_KEY);

@@ -13,14 +13,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import civitas.AppTestConfig;
-import civitas.common.tests.RandomAwareTestBase;
 import civitas.result.*;
 import civitas.result.tests.ResultTestData;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
 @Tag("functional")
-class ComputeWinnersFunctionalTest extends RandomAwareTestBase implements ResultTestData {
+class ComputeWinnersFunctionalTest implements ResultTestData {
 
 	@Autowired
 	ComputeWinners computeWinners;

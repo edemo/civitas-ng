@@ -16,14 +16,16 @@ import civitas.common.election.tests.ElectionDetailsTestData;
 import civitas.common.tests.EnvironmentState;
 
 public class GetRestTemplateStub implements ElectionDetailsTestData {
+	public static RestTemplate restTemplate;
+
 	public static GetRestTemplate stub() throws NoSuchFieldException, IllegalAccessException {
 		GetRestTemplate mock = mock(GetRestTemplate.class);
-		RestTemplate restTemplateMock = mock(RestTemplate.class);
-		Field restTemplate = GetRestTemplate.class.getDeclaredField("restTemplate");
-		restTemplate.setAccessible(true);
-		restTemplate.set(mock, restTemplateMock);
-		when(mock.apply()).thenReturn(restTemplateMock);
-		when(restTemplateMock.postForObject(eq(ELECTION_ID.uriBase() + "/post"), any(), any()))
+		restTemplate = mock(RestTemplate.class);
+		Field restTemplateField = GetRestTemplate.class.getDeclaredField("restTemplate");
+		restTemplateField.setAccessible(true);
+		restTemplateField.set(mock, restTemplate);
+		when(mock.apply()).thenReturn(restTemplate);
+		when(restTemplate.postForObject(eq(ELECTION_ID.uriBase() + "/post"), any(), any()))
 				.then(new EnvDependentAnswer<>(Map.of(
 						EnvironmentState.NORMAL,
 						new AnswerOrThrowable<>(null, true),

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import civitas.crypto.petdecommitment.ConstructPETDecommitment;
 import civitas.crypto.petdecommitment.PETDecommitment;
@@ -14,12 +15,14 @@ import civitas.crypto.petshare.tests.PETShareTestData;
 import civitas.crypto.proofdisclog.ConstructElGamalDiscLogEqualityProof;
 import civitas.util.CivitasBigInteger;
 import io.github.magwas.konveyor.testing.TestBase;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class ConstructPETDecommitmentTest extends TestBase implements PETDecommitmentTestData, PETShareTestData {
 
 	@InjectMocks
 	ConstructPETDecommitment constructPETDecommitment;
+
+	@Mock
+	ConstructElGamalDiscLogEqualityProof constructElGamalDiscLogEqualityProof;
 
 	@Test
 	@DisplayName("decommitment returns a PETDecommitment "
@@ -27,7 +30,7 @@ class ConstructPETDecommitmentTest extends TestBase implements PETDecommitmentTe
 			+ "proof=ElGamalDiscLogEqualityProof(parameters,d,e,exponent), "
 			+ "di = d^exponent (mod p), " + "ei = e^exponent (mod p), "
 			+ "returns PETDecommitment(di,ei,proof)")
-	void decommitmentTest() throws IllegalAccessException {
+	void decommitmentTest() {
 		CivitasBigInteger exponent = FACTOR_E;
 
 		CivitasBigInteger di =
@@ -40,7 +43,7 @@ class ConstructPETDecommitmentTest extends TestBase implements PETDecommitmentTe
 		assertEquals(di, decommitment.di());
 		assertEquals(ei, decommitment.ei());
 
-		verify(TestUtil.dependency(constructPETDecommitment, ConstructElGamalDiscLogEqualityProof.class))
+		verify(constructElGamalDiscLogEqualityProof)
 				.apply(
 						EL_GAMAL_PARAMETERS,
 						CIPHERTEXT_E_A.modDivide(CIPHERTEXT_EPRIME_A, BIGINT_P),

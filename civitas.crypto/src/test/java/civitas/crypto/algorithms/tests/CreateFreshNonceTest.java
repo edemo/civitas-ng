@@ -7,17 +7,20 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import civitas.crypto.CryptoBase;
 import civitas.crypto.algorithms.CreateFreshNonce;
 import civitas.util.tests.BasicValuesTestData;
 import io.github.magwas.konveyor.testing.TestBase;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class CreateFreshNonceTest extends TestBase implements BasicValuesTestData {
 
 	@InjectMocks
 	CreateFreshNonce createFreshNonce;
+
+	@Mock
+	CryptoBase cryptoBase;
 
 	@Test
 	@DisplayName("creates bitlenght/8 random bytes")
@@ -33,8 +36,8 @@ class CreateFreshNonceTest extends TestBase implements BasicValuesTestData {
 
 	@Test
 	@DisplayName("uses the right random generator")
-	void test1() throws IllegalAccessException {
+	void test1() {
 		createFreshNonce.apply(BITLENGTH);
-		verify(TestUtil.dependency(createFreshNonce, CryptoBase.class)).nextBytes(any());
+		verify(cryptoBase).nextBytes(any());
 	}
 }

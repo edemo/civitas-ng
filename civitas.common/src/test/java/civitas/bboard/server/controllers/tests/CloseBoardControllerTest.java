@@ -9,17 +9,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.bouncycastle.crypto.CryptoException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.springframework.web.client.RestTemplate;
+import org.mockito.Mock;
 
 import civitas.bboard.server.BoardRepository;
 import civitas.bboard.server.GetBoardForId;
 import civitas.bboard.server.controllers.CloseBoardController;
 import civitas.bboard.server.controllers.CommunicableException;
-import civitas.bboard.server.controllers.GetRestTemplate;
 import civitas.common.board.BoardClosedContentCommitment;
 import civitas.common.board.tests.BoardClosedContentCommitmentTestData;
 import civitas.common.tests.EnvironmentState;
@@ -27,7 +25,6 @@ import civitas.common.tests.RandomAwareTestBase;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.rsapublickey.VerifyPublicKeySignature;
 import civitas.crypto.signature.tests.SignatureTestData;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class CloseBoardControllerTest extends RandomAwareTestBase
 		implements BoardClosedContentCommitmentTestData, SignatureTestData {
@@ -35,23 +32,17 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 	@InjectMocks
 	CloseBoardController closeBoardController;
 
-	private GetBoardForId getBoardForId;
-	private VerifyPublicKeySignature verifyPublicKeySignature;
-	private BoardRepository boardRepository;
-	private CryptoHash cryptoHash;
-	private RestTemplate restTemplate;
+	@Mock
+	GetBoardForId getBoardForId;
 
-	@BeforeEach
-	@Override
-	public void setUp() throws Throwable {
-		super.setUp();
-		getBoardForId = TestUtil.dependency(closeBoardController, GetBoardForId.class);
-		verifyPublicKeySignature = TestUtil.dependency(closeBoardController, VerifyPublicKeySignature.class);
-		boardRepository = TestUtil.dependency(closeBoardController, BoardRepository.class);
-		cryptoHash = TestUtil.dependency(closeBoardController, CryptoHash.class);
-		GetRestTemplate getRestTemplate = TestUtil.dependency(closeBoardController, GetRestTemplate.class);
-		restTemplate = TestUtil.dependency(getRestTemplate, RestTemplate.class);
-	}
+	@Mock
+	VerifyPublicKeySignature verifyPublicKeySignature;
+
+	@Mock
+	BoardRepository boardRepository;
+
+	@Mock
+	CryptoHash cryptoHash;
 
 	@Test
 	@DisplayName(
@@ -69,7 +60,7 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 		verify(boardRepository).save(BULLETIN_BOARD);
 		verify(cryptoHash).apply(BULLETIN_BOARD_ID.getBytes(), "voterSubmission-voterBlock0".getBytes());
 		verify(cryptoHash).apply(BULLETIN_BOARD_ID.getBytes(), "voterSubmission-voterBlock1".getBytes());
-		verify(restTemplate)
+		verify(GetRestTemplateStub.restTemplate)
 				.postForObject(ELECTION_ID.uriBase() + "/post", BOARD_CLOSED_CONTENT_COMMITMENT, Boolean.class);
 	}
 
@@ -79,7 +70,7 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 		closeBoardController.apply(BULLETIN_BOARD_ID, ELECTION_ID, NUM_VOTER_BLOCKS, SIGNATURE_OF_AUTH_NONCE_WITH_KEY2);
 		verify(boardRepository, times(0)).save(BULLETIN_BOARD);
 		verifyNoInteractions(cryptoHash);
-		verifyNoInteractions(restTemplate);
+		verifyNoInteractions(GetRestTemplateStub.restTemplate);
 	}
 
 	@Test
@@ -111,7 +102,7 @@ class CloseBoardControllerTest extends RandomAwareTestBase
 	@DisplayName("if the number of voter blocks is zero, the BoardClosedContentCommitment posted has empty hashes")
 	void test6() throws CommunicableException {
 		closeBoardController.apply(BULLETIN_BOARD_ID, ELECTION_ID, 0, SIGNATURE_OF_AUTH_NONCE_WITH_KEY);
-		verify(restTemplate)
+		verify(GetRestTemplateStub.restTemplate)
 				.postForObject(
 						ELECTION_ID.uriBase() + "/post",
 						new BoardClosedContentCommitment(ELECTION_ID, BULLETIN_BOARD_ID, new ArrayList<>()),

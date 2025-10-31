@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import civitas.crypto.CryptoException;
 import civitas.crypto.ciphertext.ElGamalEncrypt;
@@ -15,13 +16,18 @@ import civitas.crypto.msg.EncodeMessage;
 import civitas.crypto.proof1ofl.ConstructWellKnownCiphertexts;
 import civitas.crypto.publickey.tests.ElGamalPublicKeyTestData;
 import io.github.magwas.konveyor.testing.TestBase;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class ConstructWellKnownCiphertextsTest extends TestBase
 		implements ElGamalCiphertextListTestData, ElGamalPublicKeyTestData {
 
 	@InjectMocks
 	ConstructWellKnownCiphertexts constructWellKnownCiphertexts;
+
+	@Mock
+	EncodeMessage encodeMessage;
+
+	@Mock
+	ElGamalEncrypt elGamalEncrypt;
 
 	@Test
 	@DisplayName(
@@ -32,13 +38,11 @@ class ConstructWellKnownCiphertextsTest extends TestBase
 			- encrypts it using the public key
 			and returns the list of the results
 			""")
-	void test() throws CryptoException, IllegalAccessException {
+	void test() throws CryptoException {
 
 		assertEquals(CIPHERTEXTLIST_TWO_LONG, constructWellKnownCiphertexts.apply(EL_GAMAL_PUBLIC_KEY_E, 2));
-		EncodeMessage encodeMessage = TestUtil.dependency(constructWellKnownCiphertexts, EncodeMessage.class);
 		verify(encodeMessage).apply(1, EL_GAMAL_PARAMETERS);
 		verify(encodeMessage).apply(2, EL_GAMAL_PARAMETERS);
-		ElGamalEncrypt elGamalEncrypt = TestUtil.dependency(constructWellKnownCiphertexts, ElGamalEncrypt.class);
 		verify(elGamalEncrypt).apply(EL_GAMAL_PUBLIC_KEY_E, ONE_ENCODED, ENCRYPT_FACTOR_ZERO);
 		verify(elGamalEncrypt).apply(EL_GAMAL_PUBLIC_KEY_E, TWO_ENCODED, ENCRYPT_FACTOR_ZERO);
 	}

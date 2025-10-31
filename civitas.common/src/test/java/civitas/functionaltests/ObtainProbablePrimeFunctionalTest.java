@@ -1,4 +1,4 @@
-package civitas.util.tests;
+package civitas.functionaltests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,7 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import civitas.AppTestConfig;
-import civitas.common.tests.RandomAwareTestBase;
 import civitas.crypto.CryptoBase;
 import civitas.crypto.parameters.tests.ElGamalParametersTestData;
 import civitas.util.CivitasBigInteger;
@@ -20,7 +19,7 @@ import civitas.util.CivitasBigInteger;
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-class ObtainProbablePrimeFunctionalTest extends RandomAwareTestBase implements ElGamalParametersTestData {
+class ObtainProbablePrimeFunctionalTest implements ElGamalParametersTestData {
 
 	@Autowired
 	CryptoBase cryptoBase;

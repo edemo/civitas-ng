@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import civitas.common.ballotdesign.CalculateBallotLength;
 import civitas.common.ballotdesign.CalculatePositionInBallot;
@@ -19,7 +19,6 @@ import civitas.common.votersubmission.VoterSubmission;
 import civitas.common.votersubmission.tests.VoterSubmissionTestData;
 import civitas.crypto.oneoflreencryption.tests.ElGamal1OfLReencryptionTestData;
 import civitas.crypto.proofvote.ConstructProofVote;
-import io.github.magwas.konveyor.testing.TestUtil;
 
 class DecomposeBallotTest extends RandomAwareTestBase
 		implements VoterSubmissionTestData, ElGamal1OfLReencryptionTestData {
@@ -27,22 +26,20 @@ class DecomposeBallotTest extends RandomAwareTestBase
 	@InjectMocks
 	DecomposeBallot decomposeBallot;
 
-	private EncryptCapability encryptCapability;
-	private EncryptChoice encryptChoice;
-	private CalculatePositionInBallot calculatePositionInBallot;
-	private ConstructProofVote constructProofVote;
-	private CalculateBallotLength calculateBallotLength;
+	@Mock
+	EncryptCapability encryptCapability;
 
-	@BeforeEach
-	@Override
-	public void setUp() throws Throwable {
-		super.setUp();
-		encryptCapability = TestUtil.dependency(decomposeBallot, EncryptCapability.class);
-		encryptChoice = TestUtil.dependency(decomposeBallot, EncryptChoice.class);
-		calculatePositionInBallot = TestUtil.dependency(decomposeBallot, CalculatePositionInBallot.class);
-		constructProofVote = TestUtil.dependency(decomposeBallot, ConstructProofVote.class);
-		calculateBallotLength = TestUtil.dependency(decomposeBallot, CalculateBallotLength.class);
-	}
+	@Mock
+	EncryptChoice encryptChoice;
+
+	@Mock
+	CalculatePositionInBallot calculatePositionInBallot;
+
+	@Mock
+	ConstructProofVote constructProofVote;
+
+	@Mock
+	CalculateBallotLength calculateBallotLength;
 
 	@Test
 	@DisplayName(

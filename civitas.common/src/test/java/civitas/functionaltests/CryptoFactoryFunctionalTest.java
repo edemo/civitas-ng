@@ -17,7 +17,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import civitas.AppTestConfig;
-import civitas.common.tests.RandomAwareTestBase;
 import civitas.crypto.CryptoBase;
 import civitas.crypto.messagedigest.CryptoHash;
 import civitas.crypto.rsaprivatekey.tests.PrivateKeyTestData;
@@ -26,7 +25,7 @@ import civitas.util.tests.BasicValuesTestData;
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-class CryptoFactoryFunctionalTest extends RandomAwareTestBase implements PrivateKeyTestData, BasicValuesTestData {
+class CryptoFactoryFunctionalTest implements PrivateKeyTestData, BasicValuesTestData {
 
 	@Autowired
 	CryptoHash cryptoHash;

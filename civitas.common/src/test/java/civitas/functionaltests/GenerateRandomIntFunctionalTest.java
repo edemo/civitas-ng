@@ -12,14 +12,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import civitas.AppTestConfig;
-import civitas.common.tests.RandomAwareTestBase;
 import civitas.crypto.algorithms.GenerateRandomInt;
 import civitas.util.tests.BasicValuesTestData;
 
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-class GenerateRandomIntFunctionalTest extends RandomAwareTestBase implements BasicValuesTestData {
+class GenerateRandomIntFunctionalTest implements BasicValuesTestData {
 	@Autowired
 	GenerateRandomInt generateRandomInt;
 
