@@ -12,16 +12,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import civitas.AppTestConfig;
-import civitas.common.RandomAwareTestBase;
 import civitas.crypto.Constants;
 import civitas.crypto.parameters.GenerateSchnorrPrime;
 import civitas.crypto.parameters.PrimePair;
-import civitas.crypto.privatekey.ElGamalPrivateKeyTestData;
+import civitas.crypto.privatekey.tests.ElGamalPrivateKeyTestData;
 
 @Tag("functional")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-class GenerateSchnorrPrimeFunctionalTest extends RandomAwareTestBase implements ElGamalPrivateKeyTestData, Constants {
+class GenerateSchnorrPrimeFunctionalTest implements ElGamalPrivateKeyTestData, Constants {
 
 	@Autowired
 	GenerateSchnorrPrime generateSchnorrPrimeReal;

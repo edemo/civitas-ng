@@ -4,7 +4,7 @@ import java.nio.charset.StandardCharsets;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-import io.github.magwas.kodekonveyorannotations.Glue;
+import io.github.magwas.konveyor.annotations.Glue;
 
 @Glue
 public class InitialTests {
