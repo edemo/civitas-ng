@@ -28,8 +28,7 @@ public class ConfirmParticipationController {
 		if (electionp.isPresent()) {
 			throw new IllegalArgumentException("we are already participating");
 		}
-		ElectionCache election =
-				new ElectionCache(elecDetails.getElectionID(), index, ElectionStatus.CREATED, elecDetails);
+		var election = new ElectionCache(elecDetails.getElectionID(), index, ElectionStatus.CREATED, elecDetails);
 		electionCacheRepository.save(election);
 		return true;
 	}

@@ -13,7 +13,7 @@ public class ComputeWinners {
 	CompareBeats compareBeats;
 
 	List<Integer> apply(final CandidatePair[][] m, final Integer n, final Boolean[] ignore) {
-		List<Integer> winners = new ArrayList<>();
+		var winners = new ArrayList<Integer>();
 		for (int i = 0; i < n; i++) {
 			if (!ignore[i] && didWin(m, n, ignore, i)) {
 				winners.add(i);

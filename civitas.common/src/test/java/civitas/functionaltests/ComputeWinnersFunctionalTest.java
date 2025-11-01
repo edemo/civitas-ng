@@ -50,7 +50,7 @@ class ComputeWinnersFunctionalTest implements ResultTestData {
 
 		List<NameAndStrength> cloudWords = makeCloudWordList.apply(candidates, winnerList);
 
-		List<String> cws = new ArrayList<>();
+		var cws = new ArrayList<String>();
 		cloudWords.forEach(x -> cws.add(x.cdr() + "," + x.car() + ",#ffffff"));
 		assertEquals(CLOUDWORDS_CSV, String.join("\n", cws));
 		String report = formatResult.apply(candidates, winnerList);

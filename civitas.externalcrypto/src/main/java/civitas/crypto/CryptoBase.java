@@ -32,7 +32,7 @@ public class CryptoBase implements Constants {
 	GetSharedKeyGeneratorService getSharedKeyGenerator;
 
 	public CryptoBase() {
-		BouncyCastleProvider bc = new BouncyCastleProvider();
+		var bc = new BouncyCastleProvider();
 		Security.addProvider(bc);
 		try {
 			sharedKeyFactory = SecretKeyFactory.getInstance(SHARED_KEY_ALG, SHARED_KEY_PROVIDER);

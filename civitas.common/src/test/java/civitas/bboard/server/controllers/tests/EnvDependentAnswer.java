@@ -18,7 +18,6 @@ public class EnvDependentAnswer<T> implements Answer<T> {
 
 	@Override
 	public T answer(final InvocationOnMock invocation) throws Throwable {
-
 		AnswerOrThrowable<T> theAnswer = answer.get(RandomAwareTestBase.state);
 		if (null == theAnswer) {
 			theAnswer = answer.get(EnvironmentState.NORMAL);

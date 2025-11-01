@@ -19,7 +19,7 @@ public class ConvertToXml {
 		marshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
 		marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 
-		StringWriter writer = new StringWriter();
+		var writer = new StringWriter();
 		marshaller.marshal(that, writer);
 		return writer.toString();
 	}

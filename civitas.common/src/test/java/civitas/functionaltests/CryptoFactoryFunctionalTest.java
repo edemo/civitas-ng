@@ -39,7 +39,7 @@ class CryptoFactoryFunctionalTest implements PrivateKeyTestData, BasicValuesTest
 
 		KeyPairGenerator generator = cryptoBase.getPublicKeyGenerator(KEYSIZE);
 
-		RSAPublicKey publicKey = (RSAPublicKey) generator.generateKeyPair().getPublic();
+		var publicKey = (RSAPublicKey) generator.generateKeyPair().getPublic();
 		assertEquals(KEYSIZE, publicKey.getModulus().bitLength());
 	}
 
@@ -58,7 +58,7 @@ class CryptoFactoryFunctionalTest implements PrivateKeyTestData, BasicValuesTest
 
 		KeyGenerator generator = cryptoBase.getSharedKeyGenerator(KEYSIZE);
 
-		SecretKeySpec key = (SecretKeySpec) generator.generateKey();
+		var key = (SecretKeySpec) generator.generateKey();
 		assertEquals(KEYSIZE / 8, key.getEncoded().length);
 	}
 

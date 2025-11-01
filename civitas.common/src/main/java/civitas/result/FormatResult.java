@@ -8,13 +8,13 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class FormatResult {
 	public String apply(final String[] candidates, final List<List<CandidateResult>> winnerList) {
-		List<String> winResult = new ArrayList<>();
+		var winResult = new ArrayList<String>();
 		int stagenum = 0;
 		for (List<CandidateResult> stage : winnerList) {
 			stagenum++;
-			List<String> winners = new ArrayList<>();
+			var winners = new ArrayList<String>();
 			for (CandidateResult winner : stage) {
-				List<String> beats = new ArrayList<>();
+				var beats = new ArrayList<String>();
 				for (int i = 0; i < winner.beatenCandidates.size(); i++) {
 					Integer beat = winner.beat.get(i);
 					Integer beaten = winner.beaten.get(i);

@@ -25,13 +25,13 @@ public class CalculateWinnerList {
 		int size = matrix.length;
 		CandidatePair[][] initial = initialMatrix.apply(matrix, size);
 		transitiveClosure.apply(initial, size);
-		Boolean[] ignore = new Boolean[size];
+		var ignore = new Boolean[size];
 		Arrays.fill(ignore, false);
-		List<List<CandidateResult>> winnerList = new ArrayList<>();
-		List<CandidateResult> lastWinners = new ArrayList<>();
+		var winnerList = new ArrayList<List<CandidateResult>>();
+		var lastWinners = new ArrayList<CandidateResult>();
 		while (!isFullyIgnored.apply(ignore)) {
 			List<Integer> winners = computeWinners.apply(initial, size, ignore);
-			List<CandidateResult> winningCandidates = new ArrayList<>();
+			var winningCandidates = new ArrayList<CandidateResult>();
 			for (Integer winner : winners) {
 				ignore[winner] = true;
 				winningCandidates.add(

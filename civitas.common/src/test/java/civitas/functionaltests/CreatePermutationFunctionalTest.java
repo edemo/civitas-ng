@@ -31,7 +31,7 @@ class CreatePermutationFunctionalTest implements PrivateKeyTestData, BasicValues
 	void createPermutation() {
 
 		int[] permutation = createPermutation.apply(SOME_SMALL_INT);
-		boolean[] hasIt = new boolean[SOME_SMALL_INT];
+		var hasIt = new boolean[SOME_SMALL_INT];
 		Arrays.fill(hasIt, false);
 		for (int i = 0; i < SOME_SMALL_INT; i++) {
 			hasIt[permutation[i]] = true;
