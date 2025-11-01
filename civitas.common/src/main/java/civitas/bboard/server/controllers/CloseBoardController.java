@@ -3,7 +3,6 @@ package civitas.bboard.server.controllers;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
 
 import org.bouncycastle.crypto.CryptoException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,8 +69,7 @@ public class CloseBoardController {
 			throw new CommunicableException("cannot verify signature");
 		}
 		if (res) {
-
-			List<String> hashes = new ArrayList<>();
+			var hashes = new ArrayList<String>();
 			for (int i = 0; i < numVoterBlocks; i++) {
 				String meta = "voterSubmission-voterBlock" + i;
 				hashes.add(Base64.getEncoder().encodeToString(cryptoHash.apply(bbid.getBytes(), meta.getBytes())));

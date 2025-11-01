@@ -8,7 +8,7 @@ import civitas.common.CommonConstants;
 public class ListContextsNeeded implements CommonConstants {
 
 	public List<String> apply(final BallotDesign that, final String baseContext) {
-		List<String> l = new ArrayList<>();
+		var l = new ArrayList<String>();
 		apply(that, l, baseContext);
 		return l;
 	}
