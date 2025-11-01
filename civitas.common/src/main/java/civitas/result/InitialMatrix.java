@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 public class InitialMatrix {
 
 	CandidatePair[][] apply(final Integer[][] m, final Integer n) {
-		CandidatePair[][] r = new CandidatePair[n][n];
+		var r = new CandidatePair[n][n];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
 				Integer x = m[i][j];

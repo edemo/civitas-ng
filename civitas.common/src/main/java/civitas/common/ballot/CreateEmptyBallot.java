@@ -17,7 +17,7 @@ public class CreateEmptyBallot {
 			throw new IllegalArgumentException("A ballot must contain at least one candidate and none of above");
 		}
 		int size = calculateBallotLength.apply(numCandidates);
-		VoteChoice[] matrix = new VoteChoice[size];
+		var matrix = new VoteChoice[size];
 		return new Ballot(size, matrix);
 	}
 }

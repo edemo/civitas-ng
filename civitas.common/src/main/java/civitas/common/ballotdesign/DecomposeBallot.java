@@ -60,7 +60,7 @@ public class DecomposeBallot implements CommonConstants {
 			throw new IllegalArgumentException("The ballot's matrix size is not correct.");
 		}
 
-		VerifiableVote[] votes = new VerifiableVote[matrixSize];
+		var votes = new VerifiableVote[matrixSize];
 		for (int i = 0; i < ballot.k; i++) {
 			for (int j = i + 1; j < ballot.k; j++) {
 				int pos = calculatePositionInBallot.apply(i, j, ballot.k);
@@ -77,7 +77,7 @@ public class DecomposeBallot implements CommonConstants {
 						encryptedCapability.factor(),
 						encryptedChoice.factor());
 
-				VerifiableVote v = new VerifiableVote(
+				var v = new VerifiableVote(
 						desiredContext, encryptedChoice.encChoice(), encryptedCapability.encCap(), proofVote);
 
 				votes[pos] = v;

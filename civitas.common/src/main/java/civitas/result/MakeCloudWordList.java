@@ -13,7 +13,7 @@ public class MakeCloudWordList {
 			for (CandidateResult result : step) {
 				String name = candidates[result.candidate];
 				Long strength = result.strength.longValue();
-				NameAndStrength e = new NameAndStrength(name, strength);
+				var e = new NameAndStrength(name, strength);
 				cloudWords.add(e);
 			}
 		}

@@ -25,7 +25,7 @@ public class CalculateWinnerList {
 		int size = matrix.length;
 		CandidatePair[][] initial = initialMatrix.apply(matrix, size);
 		transitiveClosure.apply(initial, size);
-		Boolean[] ignore = new Boolean[size];
+		var ignore = new Boolean[size];
 		Arrays.fill(ignore, false);
 		List<List<CandidateResult>> winnerList = new ArrayList<>();
 		List<CandidateResult> lastWinners = new ArrayList<>();

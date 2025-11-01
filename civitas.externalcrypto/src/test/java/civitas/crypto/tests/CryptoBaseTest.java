@@ -44,7 +44,7 @@ class CryptoBaseTest extends TestBase implements Constants, BasicValuesTestData 
 
 		SecretKey sharedKey =
 				cryptoBase.getSharedKeyGenerator(SHARED_KEY_LENGTH).generateKey();
-		SecretKeySpec skeySpec = new SecretKeySpec(sharedKey.getEncoded(), SHARED_KEY_ALG);
+		var skeySpec = new SecretKeySpec(sharedKey.getEncoded(), SHARED_KEY_ALG);
 
 		SecretKey sharedKey2 = cryptoBase.sharedKeyFactory.generateSecret(skeySpec);
 
@@ -82,7 +82,7 @@ class CryptoBaseTest extends TestBase implements Constants, BasicValuesTestData 
 	@Test
 	@DisplayName("doCrypto throws CryptoError if anything goes wrong")
 	void test6() {
-		SecretKeySpec skeySpec = new SecretKeySpec(SOMESTRING.getBytes(), SHARED_KEY_ALG);
+		var skeySpec = new SecretKeySpec(SOMESTRING.getBytes(), SHARED_KEY_ALG);
 		assertThrows(
 				CryptoError.class,
 				() -> cryptoBase.doCrypto(PUBLIC_KEY_ALG, PUBLIC_KEY_PROVIDER, skeySpec, Cipher.ENCRYPT_MODE, BYTES));

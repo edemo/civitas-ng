@@ -25,8 +25,8 @@ public class RestTemplateResponseErrorHandler implements ResponseErrorHandler {
 		String content;
 
 		try (InputStream body = httpResponse.getBody();
-				InputStreamReader inputStreamReader = new InputStreamReader(body);
-				BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
+				var inputStreamReader = new InputStreamReader(body);
+				var bufferedReader = new BufferedReader(inputStreamReader)) {
 			content = bufferedReader.lines().reduce(String::concat).get();
 		}
 

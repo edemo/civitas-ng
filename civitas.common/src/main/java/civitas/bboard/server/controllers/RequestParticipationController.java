@@ -50,7 +50,7 @@ public class RequestParticipationController implements CommonConstants {
 		if (participationRequest == null) {
 			return null;
 		}
-		ElectionDetails electionDetails = new ElectionDetails(
+		var electionDetails = new ElectionDetails(
 				participationRequest.electionID(),
 				participationRequest.supervisorPubkey(),
 				participationRequest.registrarPubKey(),
@@ -74,7 +74,7 @@ public class RequestParticipationController implements CommonConstants {
 						&& host.getUrlbase().equals(configuration.urlBase))
 				.toList()
 				.indexOf(true);
-		ElectionCache electionCache = new ElectionCache(boardId, myIndex, ElectionStatus.DEFINED, electionDetails);
+		var electionCache = new ElectionCache(boardId, myIndex, ElectionStatus.DEFINED, electionDetails);
 		electionCacheRepository.save(electionCache);
 
 		postController.apply(boardId, ELECTION_DETAILS_META, electionDetails);

@@ -76,7 +76,7 @@ public class CloseBoardController {
 				String meta = "voterSubmission-voterBlock" + i;
 				hashes.add(Base64.getEncoder().encodeToString(cryptoHash.apply(bbid.getBytes(), meta.getBytes())));
 			}
-			BoardClosedContentCommitment bccc = new BoardClosedContentCommitment(postHashTo, bbid, hashes);
+			var bccc = new BoardClosedContentCommitment(postHashTo, bbid, hashes);
 			String uriBase = postHashTo.uriBase();
 			String uri = uriBase + "/post";
 
